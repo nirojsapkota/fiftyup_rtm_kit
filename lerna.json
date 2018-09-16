@@ -1,0 +1,20 @@
+{
+  "command": {
+    "create": {
+      "license": "MIT"
+    },
+    "publish": {
+      "allowBranch": "master",
+      "bump": "prerelease",
+      "conventionalCommits": true,
+      "message": "chore(release): Publish",
+      "preid": "rc",
+      "npmClient": "npm",
+      "ignoreChanges": ["CHANGELOG.md"]
+    }
+  },
+  "packages": ["packages/*"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}

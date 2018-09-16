@@ -1,0 +1,16 @@
+{
+  "name": "button-test",
+  "private": true,
+  "description": "Gatsby example site using button-test",
+  "author": "Jeff See",
+  "dependencies": {
+    "gatsby": "latest",
+    "gatsby-link": "latest"
+  },
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build"
+  }
+}

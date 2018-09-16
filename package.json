@@ -1,0 +1,73 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "8.2.1",
+    "babel-jest": "^22.4.3",
+    "chokidar": "^1.7.0",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flow-vars": "^0.5.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.42.0",
+    "fs-extra": "^7.0.0",
+    "glob": "^7.1.1",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
+    "lerna": "^3.3.0",
+    "npm-run-all": "4.1.2",
+    "plop": "^1.8.1",
+    "prettier": "^1.12",
+    "prettier-eslint-cli": "4.7.1",
+    "rimraf": "^2.6.1",
+    "styled-components": "^3.4.6",
+    "yaml-lint": "^1.2.4",
+    "yargs": "^10.0.3"
+  },
+  "private": true,
+  "engines": {
+    "yarn": "^1.2.1",
+    "node": ">=6.11.5"
+  },
+  "eslintIgnore": [
+    "**/__tests__/fixtures/"
+  ],
+  "scripts": {
+    "bootstrap": "lerna run prepare",
+    "jest": "jest",
+    "jest:coverage": "jest --coverage",
+    "jest:update": "jest --updateSnapshot",
+    "jest:watch": "jest --watch",
+    "lerna": "lerna",
+    "lint": "eslint --ext .js,.jsx packages/**/src",
+    "plop": "plop",
+    "publish": "lerna publish",
+    "version": "prettier --write \"**/CHANGELOG.md\" --no-semi",
+    "watch": "lerna run watch --no-sort --stream --concurrency 999"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "docz": "^0.11.2",
+    "jest-dom": "^1.12.0",
+    "react-testing-library": "^5.0.1",
+    "@rtm-kit/theme": "1.0.0"
+  },
+  "name": "rmt-mono",
+  "version": "1.0.1"
+}
