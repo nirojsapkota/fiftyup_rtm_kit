@@ -25,4 +25,6 @@ module.exports = {
     "^highlight.js$": `<rootDir>/node_modules/highlight.js/lib/index.js`,
   },
   moduleDirectories: ["node_modules", "jest", __dirname],
+  // TODO: Remove this once https://github.com/facebook/jest/pull/6792 is released.
+  testURL: "http://localhost",
 };
