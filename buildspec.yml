@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - echo Installing system packages
+      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
       - npm install
       - npm install -g yarn
       - yarn global add lerna
