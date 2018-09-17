@@ -1,7 +1,7 @@
 {
   "command": {
     "create": {
-      "license": "MIT"
+      "license": "Proprietary"
     },
     "publish": {
       "allowBranch": "master",

@@ -1,6 +1,6 @@
 {
   "name": "@rtm-kit/button",
-  "version": "1.0.6-rc.0",
+  "version": "1.0.0",
   "description": "Stub description for Button",
   "main": "build/index.js",
   "publishConfig": {
@@ -15,7 +15,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@rtm-kit/theme": "^1.0.6-rc.0"
+    "@rtm-kit/theme": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
