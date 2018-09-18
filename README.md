@@ -2,5 +2,5 @@
 
 Refer to Docz
 
-Test to check on pipeline status notification.
+Test to check on pipeline status notification. Maybe another notification.
 
