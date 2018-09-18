@@ -13,7 +13,7 @@
       "conventionalCommits": true,
       "message": "chore(release): Publish",
       "preid": "rc",
-      "npmClient": "npm",
+      "npmClient": "yarn",
       "ignoreChanges": [
           "*.md",
           "**/*.md",
