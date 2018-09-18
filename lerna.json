@@ -10,10 +10,16 @@
       "message": "chore(release): Publish",
       "preid": "rc",
       "npmClient": "npm",
-      "ignoreChanges": ["CHANGELOG.md"]
+      "ignoreChanges": [
+          "*.md",
+          "**/*.md",
+          "**/example/**",
+          "**/__tests__/**"      ]
     }
   },
-  "packages": ["packages/*"],
+  "packages": [
+      "packages/*"
+  ],
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true
