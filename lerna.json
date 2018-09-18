@@ -1,4 +1,8 @@
 {
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "no-ci": true,
   "command": {
     "create": {
       "license": "Proprietary"
@@ -21,8 +25,5 @@
   },
   "packages": [
       "packages/*"
-  ],
-  "version": "independent",
-  "npmClient": "yarn",
-  "useWorkspaces": true
+  ]
 }
