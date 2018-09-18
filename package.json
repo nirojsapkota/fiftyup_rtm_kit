@@ -49,7 +49,7 @@
     "**/__tests__/fixtures/"
   ],
   "scripts": {
-    "bootstrap": "lerna run prepare --hoist",
+    "bootstrap": "lerna run prepare",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "test-update": "jest --updateSnapshot",
