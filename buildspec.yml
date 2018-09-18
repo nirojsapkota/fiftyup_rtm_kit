@@ -14,4 +14,4 @@ phases:
   build:
     commands:
       - yarn test
-      - yarn publish
+      - yarn release
