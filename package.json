@@ -67,6 +67,6 @@
     "react-testing-library": "^5.0.1",
     "@rtm-kit/theme": "1.0.0"
   },
-  "name": "rtm-mono",
+  "name": "rtm-kit",
   "version": "1.0.1"
 }
