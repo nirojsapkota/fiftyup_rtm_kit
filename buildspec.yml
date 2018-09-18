@@ -4,14 +4,12 @@ phases:
     commands:
       - echo Installing system packages
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
-      - npm install -g yarn
-      - yarn global add lerna
+      - npm install -g lerna
   pre_build:
     commands:
     - echo Bootstraping source code
-    - yarn
-    - yarn bootstrap
+    - npm run bootstrap
   build:
     commands:
-      - yarn test
-      - yarn release
+      - npm run test
+      - npm run release

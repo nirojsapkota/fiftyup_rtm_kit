@@ -1,6 +1,7 @@
 {
   "version": "independent",
   "useWorkspaces": true,
+  "npmClient": "npm",
   "command": {
     "create": {
       "license": "Proprietary"
@@ -11,7 +12,6 @@
       "conventionalCommits": true,
       "message": "chore(release): Publish",
       "preid": "rc",
-      "npmClient": "yarn",
       "ignoreChanges": [
           "*.md",
           "**/*.md",
