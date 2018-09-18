@@ -2,6 +2,7 @@
   "name": "@rtm-kit/theme",
   "version": "1.0.0",
   "description": "Stub description for theme",
+  "private": false,
   "main": "build/index.js",
   "publishConfig": {
     "access": "public"

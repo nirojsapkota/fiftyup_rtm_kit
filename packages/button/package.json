@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Stub description for Button",
   "main": "build/index.js",
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
