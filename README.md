@@ -2,5 +2,4 @@
 
 Refer to Docz
 
-Test to check on pipeline status notification. Maybe another notification.
-
+Third time is a charm.
