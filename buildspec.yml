@@ -2,13 +2,11 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing system packages
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
       - npm install -g lerna
   pre_build:
     commands:
-    - echo Bootstraping source code
-    - npm run bootstrap
+    - npm run prepare
   build:
     commands:
       - npm run test
