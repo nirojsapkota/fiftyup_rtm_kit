@@ -2,4 +2,4 @@
 
 Refer to Docz
 
-11th time is a charm.
+No build badges, but we can have fun empty docs.
