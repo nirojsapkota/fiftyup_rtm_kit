@@ -10,7 +10,7 @@ phases:
     commands:
     - echo Bootstraping source code
     - yarn
-    - lerna bootstrap
+    - yarn bootstrap
   build:
     commands:
       - yarn test
