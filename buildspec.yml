@@ -5,6 +5,7 @@ phases:
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
       - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - echo "always-auth=true" >> $HOME/.npmrc
+      - cat $HOME/.npmrc
       - npm install -g lerna
   pre_build:
     commands:
