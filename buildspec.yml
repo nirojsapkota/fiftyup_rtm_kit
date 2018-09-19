@@ -2,17 +2,17 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
-      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
-      - echo "always-auth=true" >> $HOME/.npmrc
-      - cat $HOME/.npmrc
+      - rm .npmrc
+      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
+      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> .npmrc
+      - echo "always-auth=true" >> .npmrc
+      - cat .npmrc
       - npm install -g lerna
   pre_build:
     commands:
     - npm run prepare
   build:
     commands:
-      - cat $HOME/.npmrc
       - npm whoami
       - npm run test
       - npm run release
