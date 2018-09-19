@@ -1,7 +1,7 @@
 import React from "react";
 import Theme from "../index";
 import { obs, fuc, ninesaver } from "../themes";
-import { render } from "test-utils";
+import { render } from "react-testing-library";
 import DoczWrapper from "../docz/wrapper";
 import { getColor } from "../util";
 
