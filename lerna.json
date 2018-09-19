@@ -1,6 +1,7 @@
 {
   "version": "independent",
   "npmClient": "npm",
+  "npmCLientArgs": "--loglevel verbose",
   "command": {
     "create": {
       "license": "Proprietary"
