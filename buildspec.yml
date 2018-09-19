@@ -2,8 +2,6 @@ version: 0.2
 phases:
   install:
     commands:
-      - npm -v
-      - node -v
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
       - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> .npmrc
       - echo "always-auth=true" >> .npmrc
@@ -11,9 +9,10 @@ phases:
       - npm install -g lerna
   pre_build:
     commands:
+    - npm -v
+    - npm whoami
     - npm run prepare
   build:
     commands:
-      - npm whoami
       - npm run test
       - npm run release
