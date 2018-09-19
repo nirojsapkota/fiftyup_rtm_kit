@@ -10,7 +10,7 @@ phases:
   pre_build:
     commands:
     - npm -v
-    - npm whoami
+    - cat .npmrc
     - npm run prepare
   build:
     commands:
