@@ -11,6 +11,7 @@
       "conventionalCommits": true,
       "message": "chore(release): Publish",
       "preid": "rc",
+      "verifyAccess": false,
       "ignoreChanges": [
           "*.md",
           "**/*.md",
