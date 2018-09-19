@@ -15,11 +15,9 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "dependencies": {
-    "@babel/runtime": "^7.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/cli": "^7.1.0",
     "cross-env": "^5.1.4"
   }
 }
