@@ -66,6 +66,6 @@
   "dependencies": {
   },
   "publishConfig": {
-    "registry": "https://repo.revtech.media"
+    "registry": "https://repo.revtech.media/dev"
   }
 }
