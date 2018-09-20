@@ -6,7 +6,7 @@ phases:
       - npm install -g lerna
   pre_build:
     commands:
-    - lerna bootstrap --no-ci --hoist --loglevel http
+    - lerna bootstrap --no-ci --hoist --no-verify-registry
   build:
     commands:
       - npm run test
