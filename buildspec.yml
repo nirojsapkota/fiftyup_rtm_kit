@@ -13,7 +13,8 @@ phases:
       - npm set unsafe-perm false
   pre_build:
     commands:
-    - lerna bootstrap --no-ci --hoist
+      - git config --global -l
+      - lerna bootstrap --no-ci --hoist
   build:
     commands:
       - npm run test
