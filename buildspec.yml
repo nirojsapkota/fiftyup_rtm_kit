@@ -14,8 +14,8 @@ phases:
   pre_build:
     commands:
       - git config --global -l
-      - lerna bootstrap --no-ci --hoist --loglevel silly
+      - lerna bootstrap --no-ci --hoist
   build:
     commands:
       - npm run test
-      - npm run release
+      - npm run release  --loglevel silly
