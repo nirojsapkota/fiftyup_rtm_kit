@@ -4,6 +4,7 @@ phases:
     commands:
       - npm install -g npm
       - npm install -g lerna
+      - git checkout master
   pre_build:
     commands:
     - lerna bootstrap --no-ci --hoist
