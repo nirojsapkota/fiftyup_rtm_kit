@@ -59,7 +59,7 @@
     "lerna": "lerna",
     "lint": "eslint --ext .js,.jsx packages/**/src",
     "plop": "plop",
-    "release": "lerna publish --no-git-tag-version --no-push --yes",
+    "release": "lerna publish --no-git-tag-version --no-push --yes --no-verify-registry",
     "version": "prettier --write \"**/CHANGELOG.md\" --no-semi",
     "watch": "lerna run watch --no-sort --stream --concurrency 999"
   },
