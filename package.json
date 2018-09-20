@@ -4,6 +4,7 @@
   "private": true,
 
   "devDependencies": {
+    "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
@@ -55,7 +56,7 @@
     "lerna": "lerna",
     "lint": "eslint --ext .js,.jsx packages/**/src",
     "plop": "plop",
-    "prepare": "lerna bootstrap --no-ci --loglevel silly",
+    "prepare": "lerna bootstrap --no-ci --hoist --loglevel http",
     "release": "lerna publish --no-git-tag-version --no-push --yes",
     "version": "prettier --write \"**/CHANGELOG.md\" --no-semi",
     "watch": "lerna run watch --no-sort --stream --concurrency 999"
