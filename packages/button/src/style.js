@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import t from "prop-types";
-import { getColor } from "@rtm-kit/theme";
+import { getColor } from "@rtm-test/theme";
 
 export const base = css`
   &:disabled {

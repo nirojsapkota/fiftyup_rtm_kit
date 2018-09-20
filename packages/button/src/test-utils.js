@@ -1,6 +1,6 @@
 import { render } from "react-testing-library";
 import React from "react";
-import Variant from "@rtm-kit/theme";
+import Variant from "@rtm-test/theme";
 
 const customRender = (node, ...options) =>
   render(<Variant>{node}</Variant>, ...options);
