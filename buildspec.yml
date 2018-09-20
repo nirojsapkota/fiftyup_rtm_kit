@@ -10,9 +10,8 @@ phases:
       - npm install -g lerna
   pre_build:
     commands:
-    - npm -v
     - cat .npmrc
-    - npm run lerna-bootstrap
+    - lerna bootstrap --no-ci --hoist --loglevel http
   build:
     commands:
       - npm run test
