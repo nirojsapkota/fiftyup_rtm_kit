@@ -5,14 +5,14 @@ phases:
       - npm install -g npm
       - npm install -g lerna
       - git checkout master
+      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+      - echo "always-auth=true" >> $HOME/.npmrc
+      - npm set unsafe-perm false
   pre_build:
     commands:
     - lerna bootstrap --no-ci --hoist
   build:
     commands:
       - npm run test
-      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
-      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
-      - echo "always-auth=true" >> $HOME/.npmrc
-      - npm set unsafe-perm false
       - npm run release
