@@ -11,8 +11,8 @@ phases:
   build:
     commands:
       - npm run test
-      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
-      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> .npmrc
-      - echo "always-auth=true" >> .npmrc
+      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+      - echo "always-auth=true" >> $HOME/.npmrc
       - npm set unsafe-perm false
       - npm run release
