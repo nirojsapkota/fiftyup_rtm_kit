@@ -7,11 +7,12 @@ phases:
   pre_build:
     commands:
     - lerna bootstrap --no-ci --hoist
+    - dig repo.revtech.media
   build:
     commands:
       - npm run test
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
-      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> .npmrc
+      - echo "registry=https:$NPM_REGISTRY_LOGIN_URL/registry" >> .npmrc
       - echo "always-auth=true" >> .npmrc
       - npm set unsafe-perm false
       - npm run release
