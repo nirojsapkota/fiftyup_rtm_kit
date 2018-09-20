@@ -7,7 +7,7 @@
       "license": "Proprietary"
     },
     "publish": {
-      "registry": "https://repo.revtech.media/",
+      "registry": "https://repo.revtech.media/dev",
       "allowBranch": "master",
       "bump": "prerelease",
       "conventionalCommits": true,
