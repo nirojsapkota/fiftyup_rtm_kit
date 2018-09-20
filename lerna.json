@@ -7,7 +7,7 @@
       "license": "Proprietary"
     },
     "publish": {
-      "registry": "https://repo.revtech.media/dev",
+      "registry": "https://ri8ml7zb9i.execute-api.ap-southeast-2.amazonaws.com/dev/registry/",
       "allowBranch": "master",
       "bump": "prerelease",
       "conventionalCommits": true,
