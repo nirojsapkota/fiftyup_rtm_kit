@@ -66,6 +66,6 @@
   "dependencies": {
   },
   "publishConfig": {
-    "registry": "https://ri8ml7zb9i.execute-api.ap-southeast-2.amazonaws.com/dev/registry/"
+    "registry": "https://repo.revtech.media/dev/registry/"
   }
 }
