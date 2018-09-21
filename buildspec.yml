@@ -9,6 +9,8 @@ phases:
       - echo "registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - echo "always-auth=true" >> $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL
+      - git config --global user.email "admin.dev@revtech.media"
+      - git config --global user.name $GIT_USERNAME
       - npm set unsafe-perm false
   pre_build:
     commands:
