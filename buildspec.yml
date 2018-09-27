@@ -15,7 +15,7 @@ phases:
   pre_build:
     commands:
       - cat $HOME/.npmrc
-      - lerna bootstrap --no-ci --hoist
+      - lerna bootstrap --no-ci --hoist --loglevel silly
   build:
     commands:
       - npm run test
