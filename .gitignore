@@ -3,6 +3,7 @@ packages/*/yarn.lock
 packages/*/package-lock.json
 packages/*/*.tgz
 packages/*/node_modules
+packages/*/.npmrc
 
 # Docz
 .docz
@@ -48,6 +49,8 @@ test/**/public
 public/
 .cache/
 .netlify
+
+.npmrc
 
 # IDE specific
 .idea/
