@@ -1,6 +1,8 @@
 
 packages/*/yarn.lock
 packages/*/package-lock.json
+packages/*/*.tgz
+packages/*/node_modules
 
 # Docz
 .docz
@@ -44,7 +46,6 @@ test/**/public
 .gatsby-context.js
 .DS_Store
 public/
-node_modules/
 .cache/
 .netlify
 
