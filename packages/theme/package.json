@@ -1,6 +1,6 @@
 {
   "name": "@rtm-test/theme",
-  "version": "1.0.1-rc.1",
+  "version": "1.0.1-rc.2",
   "description": "Stub description for theme",
   "private": false,
   "main": "build/index.js",

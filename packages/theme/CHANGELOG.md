@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.1-rc.2"></a>
+
+## [1.0.1-rc.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-test/theme@1.0.1-rc.1...@rtm-test/theme@1.0.1-rc.2) (2018-09-28)
+
+**Note:** Version bump only for package @rtm-test/theme
+
 <a name="1.0.1-rc.1"></a>
 
 ## [1.0.1-rc.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-test/theme@1.0.1-rc.0...@rtm-test/theme@1.0.1-rc.1) (2018-09-27)
