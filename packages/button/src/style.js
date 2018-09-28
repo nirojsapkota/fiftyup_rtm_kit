@@ -42,7 +42,7 @@ export const buttonStyling = css`
   ${resetStyling};
   ${base};
   width: ${props => props.width || "inherit"};
-  padding: 20px 30px;
+  padding: 18px 30px;
 
   display: ${props => (props.block ? "flex" : "inline-flex")};
   ${props =>

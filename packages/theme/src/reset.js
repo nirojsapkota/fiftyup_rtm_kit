@@ -48,7 +48,7 @@ injectGlobal`
 
   table {
     border-collapse: collapse;
-    border-spacing: 0;
+    border-spacing: 1;
   }
 
   * {
