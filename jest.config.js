@@ -13,12 +13,21 @@ module.exports = {
   modulePathIgnorePatterns: ignoreDirs,
   collectCoverageFrom: ["packages/**/*.{js,jsx}"],
   coveragePathIgnorePatterns: ignoreDirs,
+  coverageThreshold: {
+    "global": {
+      "branches": 90,
+      "functions": 95,
+      "lines": 90,
+      "statements": 95
+    }
+  },
   testPathIgnorePatterns: [
     `/examples/`,
     `/build/`,
     `/node_modules/`,
     `__tests__/fixtures`,
   ],
+
   setupTestFrameworkScriptFile: `<rootDir>/jest.setup.js`,
   transform: { "^.+\\.js$": `<rootDir>/jest-transformer.js` },
   moduleNameMapper: {
