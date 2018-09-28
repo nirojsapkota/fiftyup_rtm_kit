@@ -2,7 +2,6 @@
   "name": "rtm-test",
   "version": "1.0.1",
   "private": true,
-
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
@@ -19,6 +18,7 @@
     "babel-jest": "^22.4.3",
     "chokidar": "^1.7.0",
     "cross-env": "^5.1.4",
+    "docz": "^0.11.2",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "eslint-config-prettier": "^2.9.0",
@@ -32,14 +32,13 @@
     "glob": "^7.1.1",
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
-    "docz": "^0.11.2",
     "jest-dom": "^1.12.0",
-    "react-testing-library": "^5.0.1",
     "lerna": "^3.4.0",
     "npm-run-all": "4.1.2",
     "plop": "^1.8.1",
     "prettier": "^1.12",
     "prettier-eslint-cli": "4.7.1",
+    "react-testing-library": "^5.0.1",
     "rimraf": "^2.6.1",
     "styled-components": "^3.4.6",
     "yaml-lint": "^1.2.4",
@@ -63,8 +62,7 @@
     "version": "prettier --write \"**/CHANGELOG.md\" --no-semi",
     "watch": "lerna run watch --no-sort --stream --concurrency 999"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "publishConfig": {
     "registry": "https://repo.revtech.media/dev/registry/"
   }
