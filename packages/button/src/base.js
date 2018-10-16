@@ -23,5 +23,5 @@ Base.propTypes = {
   children: t.node.isRequired,
   onClick: t.func,
   block: t.bool,
-  asWrapper: t.bool
+  asWrapper: t.bool,
 };

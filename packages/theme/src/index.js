@@ -2,13 +2,20 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import t from "prop-types";
 import { obs } from "./themes";
-import "./reset";
+import { CssReset } from "./reset";
 
 export { getColor } from "./util";
 
 const Variant = ({ theme, variant, children }) => {
   const nestedTheme = variant ? { ...theme, variant } : theme;
-  return <ThemeProvider theme={nestedTheme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={nestedTheme}>
+      <React.Fragment>
+        <CssReset />
+        {children}
+      </React.Fragment>
+    </ThemeProvider>
+  );
 };
 
 Variant.defaultProps = {
