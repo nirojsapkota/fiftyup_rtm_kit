@@ -1,9 +1,8 @@
 {
-  "name": "@rtm-test/button",
-  "version": "1.0.1-rc.3",
-  "description": "Stub description for Button",
+  "name": "@rtm-test/tracker",
+  "version": "1.0.0",
+  "description": "Stub description for tracker",
   "main": "build/index.js",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
@@ -15,11 +14,13 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "dependencies": {
-    "@rtm-test/theme": "^1.0.1-rc.2",
-    "@rtm-test/tracker": "^1.0.0"
+    "@babel/runtime": "^7.0.0",
+    "universal-cookie": "^3.0.3",
+    "logrocket": "^0.6.16"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "cross-env": "^5.1.4"
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "cross-env": "^5.0.5"
   }
 }

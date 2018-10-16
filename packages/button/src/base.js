@@ -1,5 +1,6 @@
 import React from "react";
 import t from "prop-types";
+import { Tracker } from "@rtm-test/tracker";
 import { StyledButton, WrapperButton } from "./style";
 
 export const Base = ({
@@ -11,7 +12,15 @@ export const Base = ({
 }) => {
   const Component = asWrapper ? WrapperButton : StyledButton;
 
-  return (
+  return track ? (
+    <Tracker
+      render={trackEvent => (
+        <Component onClick={() => trackEvent(track, onClick)} {...buttonProps}>
+          {children}
+        </Component>
+      )}
+    />
+  ) : (
     <Component onClick={onClick} {...buttonProps}>
       {children}
     </Component>
