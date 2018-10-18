@@ -21,7 +21,7 @@ class Google {
     if (!values.every(value => value !== undefined)) {
       // TODO: alert 3rd-party service
       console.log("Missing keys for google analytics pageview:");
-      console.table(
+      console.log(
         keys.reduce((obj, key, index) => ({ ...obj, [key]: values[index] }), {})
       );
     } else {
