@@ -1,6 +1,6 @@
 {
   "name": "@rtm-test/tracker",
-  "version": "1.0.0",
+  "version": "1.0.1-rc.0",
   "description": "Stub description for tracker",
   "main": "build/index.js",
   "publishConfig": {
@@ -15,8 +15,8 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "universal-cookie": "^3.0.3",
-    "logrocket": "^0.6.16"
+    "logrocket": "^0.6.16",
+    "universal-cookie": "^3.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
