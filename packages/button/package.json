@@ -15,7 +15,7 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "dependencies": {
-    "@rtm-test/tracker": "^1.0.0"
+    "@rtm-test/tracker": "^1.0.0",
     "@rtm-test/theme": "^1.0.1-rc.3"
   },
   "devDependencies": {
