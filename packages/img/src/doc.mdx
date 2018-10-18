@@ -1,0 +1,28 @@
+---
+name: Img
+route: /packages/img
+menu: Packages
+---
+
+import { Playground, PropsTable } from 'docz'
+import Img from './index'
+
+# Image
+
+### Props
+
+<PropsTable of={Img} />
+
+## Basic Usage
+
+<Playground>
+  <Img src="https://placehold.it/300x200" alt="placeholder"/>
+</Playground>
+
+<Playground>
+  <Img src="https://placehold.it/200x200" shape="circle" alt="placeholder"/>
+</Playground>
+
+<Playground>
+  <Img src="https://placehold.it/300x200" shape="rounded" alt="placeholder"/>
+</Playground>

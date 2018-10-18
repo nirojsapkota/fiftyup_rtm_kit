@@ -1,8 +1,8 @@
-
 packages/*/yarn.lock
 packages/*/package-lock.json
 packages/*/*.tgz
 packages/*/node_modules
+packages/*/build
 packages/*/.npmrc
 
 # Docz
@@ -53,9 +53,7 @@ public/
 .npmrc
 
 # IDE specific
-.idea/
 .vscode/
-*.sw*
 
 .serverless/
 yarn.lock

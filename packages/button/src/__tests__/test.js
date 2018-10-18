@@ -1,6 +1,6 @@
 import React from "react";
 import Button, { ButtonGroup } from "../index";
-import { render, fireEvent } from "../test-utils";
+import { render, fireEvent } from "test-utils";
 
 describe(`<Button />`, () => {
   it(`renders welcome message`, () => {

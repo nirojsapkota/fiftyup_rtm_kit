@@ -53,16 +53,6 @@ module.exports = function(plop) {
           path: `packages/{{kebabCase name}}/.babelrc`,
           templateFile: `plop-templates/package/.babelrc.hbs`,
         },
-        {
-          type: `add`,
-          path: `packages/{{kebabCase name}}/.gitignore`,
-          templateFile: `plop-templates/package/.gitignore.hbs`,
-        },
-        {
-          type: `add`,
-          path: `packages/{{kebabCase name}}/.npmignore`,
-          templateFile: `plop-templates/package/.npmignore.hbs`,
-        },
       ].filter(Boolean),
   });
   // Add new example site
