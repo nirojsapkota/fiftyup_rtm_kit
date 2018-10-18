@@ -1,7 +1,7 @@
 {
-  "name": "@rtm-test/{{kebabCase name}}",
+  "name": "@rtm-test/tracker",
   "version": "1.0.0",
-  "description": "Stub description for {{name}}",
+  "description": "Stub description for tracker",
   "main": "build/index.js",
   "publishConfig": {
     "access": "public"
@@ -14,7 +14,9 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "dependencies": {
-    "@babel/runtime": "^7.0.0"
+    "@babel/runtime": "^7.0.0",
+    "universal-cookie": "^3.0.3",
+    "logrocket": "^0.6.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

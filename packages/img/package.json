@@ -1,7 +1,7 @@
 {
-  "name": "@rtm-test/{{kebabCase name}}",
+  "name": "@rtm-test/img",
   "version": "1.0.0",
-  "description": "Stub description for {{name}}",
+  "description": "Stub description for Img",
   "main": "build/index.js",
   "publishConfig": {
     "access": "public"

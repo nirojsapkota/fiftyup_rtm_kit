@@ -58,6 +58,7 @@
     "lerna": "lerna",
     "lint": "eslint --ext .js,.jsx packages/**/src",
     "plop": "plop",
+    "dev": "docz dev",
     "release": "lerna publish --yes",
     "version": "prettier --write \"**/CHANGELOG.md\" --no-semi",
     "watch": "lerna run watch --no-sort --stream --concurrency 999"

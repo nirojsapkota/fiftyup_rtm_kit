@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Img /> should render the image size images 1`] = `
+<div>
+  <div
+    class="sc-bdVaJa gPDgdl"
+  >
+    <div
+      class="fixedImage sc-bwzfXH eFSyMZ"
+      style="display: inline;"
+    >
+      <img
+        alt="Alt text for the image"
+        src="test_image.jpg"
+        title="Title for the image"
+      />
+    </div>
+  </div>
+</div>
+`;
