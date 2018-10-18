@@ -1,7 +1,7 @@
 import React from "react";
 import t from "prop-types";
 import styled from "styled-components";
-import { Base } from "./Base";
+import { Base } from "./base";
 
 const GroupWrapper = styled.div`
   display: flex;
