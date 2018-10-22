@@ -1,6 +1,6 @@
 {
   "name": "@rtm-test/button",
-  "version": "1.0.1-rc.5",
+  "version": "1.0.1-rc.6",
   "description": "Stub description for Button",
   "main": "build/index.js",
   "private": false,
@@ -15,8 +15,8 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "dependencies": {
-    "@rtm-test/theme": "^1.0.1-rc.4",
-    "@rtm-test/tracker": "^1.0.1-rc.0"
+    "@rtm-test/theme": "^1.0.1-rc.5",
+    "@rtm-test/tracker": "^1.0.1-rc.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
