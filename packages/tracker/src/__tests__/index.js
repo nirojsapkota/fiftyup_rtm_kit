@@ -24,6 +24,18 @@ describe(`track`, () => {
 });
 
 describe(`<Tracker />`, () => {
+  it(`renders with a trackEvent function to be used by it's children`, () => {
+    const childrenArg = {};
+    const children = arg => {
+      console.log(Object.assign(childrenArg, { trackEvent: arg }));
+      return null;
+    };
+
+    render(<Tracker render={children} />);
+
+    expect(childrenArg).toEqual({ trackEvent: expect.any(Function) });
+  });
+
   it(`does not prevent child components from functioning`, () => {
     const buttonEvent = jest.fn();
     const { getByText } = render(

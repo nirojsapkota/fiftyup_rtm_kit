@@ -33,6 +33,7 @@
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
     "jest-dom": "^1.12.0",
+    "jest-styled-components": "^6.2.2",
     "lerna": "^3.4.0",
     "npm-run-all": "4.1.2",
     "plop": "^1.8.1",
@@ -63,7 +64,9 @@
     "version": "prettier --write \"**/CHANGELOG.md\" --no-semi",
     "watch": "lerna run watch --no-sort --stream --concurrency 999"
   },
-  "dependencies": {},
+  "dependencies": {
+    "buble": "^0.19.4"
+  },
   "publishConfig": {
     "registry": "https://repo.revtech.media/dev/registry/"
   }
