@@ -1,13 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Img /> should render the image size images 1`] = `
+.c0 {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 0;
+  overflow: hidden;
+}
+
 <div>
   <div
-    class="sc-bdVaJa gPDgdl"
+    class="c0"
   >
     <div
-      class="fixedImage sc-bwzfXH eFSyMZ"
-      style="display: inline;"
+      class="c1"
     >
       <img
         alt="Alt text for the image"

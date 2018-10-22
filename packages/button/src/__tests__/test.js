@@ -1,11 +1,11 @@
 import React from "react";
 import Button, { ButtonGroup } from "../index";
 import { render, fireEvent } from "test-utils";
+import { Tracker } from "@rtm-test/tracker";
 
-const mockTrackEvent = jest.fn();
 jest.mock("@rtm-test/tracker", () => {
   return {
-    Tracker: props => props.render(mockTrackEvent),
+    Tracker: jest.fn(),
   };
 });
 
@@ -32,24 +32,6 @@ describe(`<Button />`, () => {
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
   });
 
-  it(`passes the track prop to the tracking context module`, () => {
-    const { getByText } = render(
-      <Button track="test">Welcome to React</Button>
-    );
-
-    fireEvent.click(getByText("Welcome to React"));
-
-    expect(mockTrackEvent).toHaveBeenCalledTimes(1);
-  });
-
-  it(`does not pass the track prop to the tracking context module`, () => {
-    const { getByText } = render(<Button>Welcome to React</Button>);
-
-    fireEvent.click(getByText("Welcome to React"));
-
-    expect(mockTrackEvent).not.toHaveBeenCalled();
-  });
-
   it(`renders without styling when specified as wrapper`, () => {
     const { getByText } = render(<Button asWrapper>Welcome to React</Button>);
 
@@ -65,5 +47,31 @@ describe(`<Button />`, () => {
     );
 
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
+  });
+
+  describe(`speaking to the tracking module`, () => {
+    it(`with a track prop it calls the tracking event`, () => {
+      const mockTrackEvent = jest.fn();
+      Tracker.mockImplementation(props => props.render(mockTrackEvent));
+
+      const { getByText } = render(
+        <Button track="testit">Welcome to React</Button>
+      );
+
+      fireEvent.click(getByText("Welcome to React"));
+
+      expect(mockTrackEvent).toHaveBeenCalledTimes(1);
+    });
+
+    it(`without a track prop it does not call the tracking event`, () => {
+      const mockTrackEvent = jest.fn();
+      Tracker.mockImplementation(props => props.render(mockTrackEvent));
+
+      const { getByText } = render(<Button>Welcome to React</Button>);
+
+      fireEvent.click(getByText("Welcome to React"));
+
+      expect(mockTrackEvent).not.toHaveBeenCalled();
+    });
   });
 });
