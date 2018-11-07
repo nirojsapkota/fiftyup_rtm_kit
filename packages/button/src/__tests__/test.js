@@ -40,6 +40,8 @@ describe(`<Button />`, () => {
     fireEvent.click(getByText("Welcome to React"));
 
     expect(mockTrackEvent).toHaveBeenCalledTimes(1);
+    // TODO: jest cleanup should take care of this
+    mockTrackEvent.mockReset();
   });
 
   it(`does not pass the track prop to the tracking context module`, () => {
