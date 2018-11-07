@@ -7,7 +7,7 @@ jest.mock("@rtm-test/tracker", () => {
   const original = require.requireActual("@rtm-test/tracker");
   return {
     ...original,
-    Tracker: props => props.render(mockTrackEvent),
+    Tracker: props => props.render(mockTrackEvent)
   };
 });
 

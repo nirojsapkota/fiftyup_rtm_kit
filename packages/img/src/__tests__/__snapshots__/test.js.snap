@@ -35,8 +35,7 @@ exports[`<Img /> should render the image size images 1`] = `
     class="c0"
   >
     <div
-      class="fixedImage c1"
-      style="display: inline;"
+      class="c1"
     >
       <img
         alt="Alt text for the image"

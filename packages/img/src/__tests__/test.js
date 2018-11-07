@@ -6,8 +6,6 @@ const setup = () => {
   const { container } = render(
     <Img
       backgroundColor
-      className={`fixedImage`}
-      style={{ display: `inline` }}
       title={`Title for the image`}
       src={`test_image.jpg`}
       alt={`Alt text for the image`}
