@@ -51,9 +51,6 @@
   "eslintIgnore": [
     "**/__tests__/fixtures/"
   ],
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "scripts": {
     "test": "jest",
     "test-coverage": "jest --coverage",
