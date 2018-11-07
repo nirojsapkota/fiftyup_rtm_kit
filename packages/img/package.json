@@ -1,6 +1,6 @@
 {
   "name": "@rtm-test/img",
-  "version": "1.0.5-rc.0",
+  "version": "1.0.5-rc.1",
   "description": "Img component",
   "main": "build/index.js",
   "publishConfig": {
