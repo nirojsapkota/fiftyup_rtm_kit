@@ -1,0 +1,25 @@
+{
+  "name": "@rtm-test/bootstrap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "babel src --out-dir build --ignore **/__tests__,**/*.test.js",
+    "watch": "babel -w src --out-dir build --ignore **/__tests__,**/*.test.js",
+    "prepare": "cross-env NODE_ENV=production npm run build"
+  },
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@rtm-test/theme": "^1.0.1-rc.4",
+    "@rtm-test/tracker": "^1.0.1-rc.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "cross-env": "^5.1.4"
+  }
+}

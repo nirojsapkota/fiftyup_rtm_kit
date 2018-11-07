@@ -14,12 +14,12 @@ module.exports = {
   collectCoverageFrom: ["packages/**/*.{js,jsx}"],
   coveragePathIgnorePatterns: ignoreDirs,
   coverageThreshold: {
-    "global": {
-      "branches": 90,
-      "functions": 95,
-      "lines": 90,
-      "statements": 95
-    }
+    global: {
+      branches: 90,
+      functions: 95,
+      lines: 90,
+      statements: 95,
+    },
   },
   testPathIgnorePatterns: [
     `/examples/`,
@@ -28,8 +28,8 @@ module.exports = {
     `__tests__/fixtures`,
   ],
 
-  setupTestFrameworkScriptFile: `<rootDir>/jest.setup.js`,
-  transform: { "^.+\\.js$": `<rootDir>/jest-transformer.js` },
+  setupTestFrameworkScriptFile: `<rootDir>/jest/jest.setup.js`,
+  transform: { "^.+\\.js$": `<rootDir>/jest/jest-transformer.js` },
   moduleNameMapper: {
     "^highlight.js$": `<rootDir>/node_modules/highlight.js/lib/index.js`,
   },

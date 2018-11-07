@@ -1,10 +1,10 @@
 import { render } from "react-testing-library";
 import React from "react";
-import Variant from "../packages/theme";
 import "jest-styled-components";
+import Bootstrap from "../packages/bootstrap";
 
-const customRender = (node, ...options) =>
-  render(<Variant>{node}</Variant>, ...options);
+const bootstrapRender = (node, ...options) =>
+  render(<Bootstrap>{node}</Bootstrap>, ...options);
 
 export * from "react-testing-library";
-export { customRender as render };
+export { bootstrapRender as render };

@@ -4,7 +4,9 @@ import { render, fireEvent } from "test-utils";
 
 const mockTrackEvent = jest.fn();
 jest.mock("@rtm-test/tracker", () => {
+  const original = require.requireActual("@rtm-test/tracker");
   return {
+    ...original,
     Tracker: props => props.render(mockTrackEvent),
   };
 });
