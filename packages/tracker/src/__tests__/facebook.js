@@ -1,4 +1,5 @@
-import { cleanup } from '@rtm-test/bootstrap/setup/testSetup';
+// eslint-disable-next-line import/named
+import { cleanup } from '../../../bootstrap/setup/testSetup';
 import Facebook from '../facebook';
 
 afterEach(cleanup);
