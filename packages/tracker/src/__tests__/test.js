@@ -1,10 +1,9 @@
 import React from 'react';
 import LogRocket from 'logrocket';
-import {
-  render,
-  cleanup,
-  fireEvent,
-} from '@rtm-test/bootstrap/setup/testSetup';
+// This is a bit hacky, I think eslint doesn't think it has access to this
+// because cleanup and fireEvent come from react-testing-library via `bootstrap`
+// eslint-disable-next-line import/named
+import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { Tracker, track } from '..';
 import Google from '../google';
 import Facebook from '../facebook';

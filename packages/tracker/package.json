@@ -12,7 +12,6 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-test/bootstrap": "^1.0.0",
     "styled-components": "^4.0",
     "logrocket": "^0.6.16",
     "universal-cookie": "^3.0.3"
