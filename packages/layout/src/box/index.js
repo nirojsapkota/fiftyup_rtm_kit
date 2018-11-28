@@ -1,0 +1,24 @@
+import React from 'react';
+import t from 'prop-types';
+import styled from 'styled-components';
+import { Box as GridBox } from '@rebass/grid';
+import Variant, { backgroundStyle } from '@rtm-test/theme';
+
+const Wrapper = styled(GridBox)`
+  ${backgroundStyle};
+`;
+
+const Box = ({ children, variant, ...gridProps }) =>
+  variant ? (
+    <Variant variant={variant}>
+      <Wrapper {...gridProps}>{children}</Wrapper>
+    </Variant>
+  ) : (
+    <Wrapper {...gridProps}>{children}</Wrapper>
+  );
+
+Box.propTypes = {
+  children: t.node.isRequired,
+};
+
+export default Box;

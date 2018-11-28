@@ -1,0 +1,22 @@
+---
+name: Tracker
+route: /packages/tracker
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import { Tracker, TrackingProvider } from './src'
+
+# Tracker
+
+## Basic usage
+
+<Playground>
+  <Tracker
+    render={trackEvent => (
+      <button onClick={() => trackEvent('get_started')}>
+        Hello
+      </button>
+    )}
+  />
+</Playground>

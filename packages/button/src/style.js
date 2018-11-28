@@ -1,6 +1,7 @@
-import styled, { css } from "styled-components";
-import t from "prop-types";
-import { getColor } from "@rtm-test/theme";
+import styled, { css } from 'styled-components';
+import t from 'prop-types';
+import { labelTextStyles } from '@rtm-test/typography';
+import { getColor } from '@rtm-test/theme';
 
 export const base = css`
   &:disabled {
@@ -9,24 +10,27 @@ export const base = css`
 `;
 
 export const primary = css`
-  color: ${props => getColor("inverseText", props.theme)};
-  background: ${props => getColor("accent", props.theme)};
-  border-bottom-color: ${props => getColor("accentAccent", props.theme)};
+  color: ${props => getColor('inverseText', props.theme)};
+  background: ${props => getColor('accent', props.theme)};
+  border-bottom-color: ${props => getColor('accentAccent', props.theme)};
 
   &:hover,
   &:focus {
-    background: ${props => getColor("accentAccent", props.theme)};
+    background: ${props => getColor('accentAccent', props.theme)};
+    border-bottom-color: ${props => getColor('accent', props.theme)};
   }
 `;
 
 export const secondary = css`
-  color: ${props => props.theme.colors.grayscale.dark};
-  background: ${props => props.theme.colors.grayscale.light};
-  border-bottom-color: ${props => props.theme.colors.grayscale.normal};
+  color: ${props => props.theme.colors.grayscale.white};
+  background: ${props => props.theme.colors.grayscale.slightlyDarker};
+  border-bottom-color: ${props => props.theme.colors.grayscale.darker};
 
   &:hover,
   &:focus {
-    background: ${props => props.theme.colors.grayscale.normal};
+    background: ${props => props.theme.colors.grayscale.darker};
+    border-bottom-color: ${props =>
+      props.theme.colors.grayscale.slightlyDarker};
   }
 `;
 
@@ -41,10 +45,11 @@ export const resetStyling = css`
 export const buttonStyling = css`
   ${resetStyling};
   ${base};
-  width: ${props => props.width || "inherit"};
+  ${labelTextStyles};
+  width: ${props => props.width || 'inherit'};
   padding: 18px 30px;
 
-  display: ${props => (props.block ? "flex" : "inline-flex")};
+  display: ${props => (props.block ? 'flex' : 'inline-flex')};
   ${props =>
     props.block &&
     css`

@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import React from "react";
-import t from "prop-types";
-import LogRocket from "logrocket";
-import Google from "./google";
-import Facebook from "./facebook";
+import React from 'react';
+import t from 'prop-types';
+import LogRocket from 'logrocket';
+import Google from './google';
+import Facebook from './facebook';
 
 const safeSendTo = (service, data) => {
   try {
@@ -26,15 +26,23 @@ export const track = (action, trackingData) => {
 
 const trackEvent = trackingData => (action, callback) => {
   track(action, trackingData);
-  if (typeof callback === "function") {
+  if (typeof callback === 'function') {
     callback();
   }
 };
 
-export const TrackingContext = React.createContext({
+const TrackingContext = React.createContext({
   trackingData: {},
   trackEvent,
 });
+
+export const TrackingProvider = ({ children, trackingData }) => {
+  return (
+    <TrackingContext.Provider value={{ trackingData, trackEvent }}>
+      {children}
+    </TrackingContext.Provider>
+  );
+};
 
 export const Tracker = props => {
   return (
@@ -48,4 +56,9 @@ export const Tracker = props => {
 
 Tracker.propTypes = {
   render: t.func,
+};
+
+TrackingProvider.propTypes = {
+  children: t.node,
+  trackingData: t.shape({ category: t.string.isRequired }),
 };

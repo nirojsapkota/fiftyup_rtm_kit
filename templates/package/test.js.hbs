@@ -1,0 +1,18 @@
+import React from 'react';
+import { render } from '@rtm-test/bootstrap/src/setupTests';
+import {{ properCase name }} from '../index';
+
+describe('<{{ properCase name }} />', () => {
+  it('has unit tests specified', () => {
+    expect(true).toEqual(false)
+  })
+
+  it('matches expected output', () => {
+    const text = 'Hello, World'
+
+    const { getByText } = render(<{{ properCase name }}>{text}</{{ properCase name }}>);
+
+    expect(getByText(text)).toBeInTheDocument();
+    expect(getByText(text)).toMatchSnapshot();
+  });
+})

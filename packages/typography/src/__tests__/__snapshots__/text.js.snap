@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Text /> matches expected output 1`] = `
+.c1 {
+  box-sizing: border-box;
+  padding: 10px;
+  background: #1566ad;
+}
+
+.c0 {
+  font-family: MuseoSans;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: left;
+  color: #1566ad;
+  font-size: 32px;
+}
+
+@media (min-width:32em) {
+  .c0 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width:46em) {
+  .c0 {
+    font-size: 42px;
+  }
+}
+
+@media (min-width:76em) {
+  .c0 {
+    font-size: 57px;
+  }
+}
+
+<h1
+  class="c0 c1"
+  title="testing"
+>
+  Hello, World!
+</h1>
+`;
+
+exports[`<Text /> matches expected output 2`] = `
+.c1 {
+  box-sizing: border-box;
+  padding: 10px;
+  background: #1566ad;
+}
+
+.c0 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 16px;
+}
+
+@media (min-width:32em) {
+  .c0 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c0 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:76em) {
+  .c0 {
+    font-size: 16px;
+  }
+}
+
+<p
+  class="c0 c1"
+  title="testing"
+>
+  Hello, World!
+</p>
+`;
+
+exports[`<Text /> matches expected output 3`] = `
+.c1 {
+  box-sizing: border-box;
+  padding: 10px;
+  background: #1566ad;
+}
+
+.c0 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 12px;
+}
+
+@media (min-width:32em) {
+  .c0 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:46em) {
+  .c0 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:76em) {
+  .c0 {
+    font-size: 12px;
+  }
+}
+
+<small
+  class="c0 c1"
+  title="testing"
+>
+  Hello, World!
+</small>
+`;

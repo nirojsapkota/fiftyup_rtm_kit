@@ -1,73 +1,57 @@
 {
-  "name": "rtm-test",
-  "version": "1.0.1",
   "private": true,
-  "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/node": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-flow": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "8.2.1",
-    "babel-jest": "^22.4.3",
-    "chokidar": "^1.7.0",
-    "cross-env": "^5.1.4",
-    "docz": "^0.11.2",
-    "eslint": "^4.19.1",
-    "eslint-config-google": "^0.9.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-flowtype": "^2.46.1",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.7.0",
-    "flow-bin": "^0.42.0",
-    "fs-extra": "^7.0.0",
-    "glob": "^7.1.1",
-    "jest": "^22.4.3",
-    "jest-cli": "^22.4.3",
-    "jest-dom": "^1.12.0",
-    "jest-styled-components": "^6.2.2",
-    "lerna": "^3.4.0",
-    "npm-run-all": "4.1.2",
-    "plop": "^1.8.1",
-    "prettier": "^1.12",
-    "prettier-eslint-cli": "4.7.1",
-    "react-testing-library": "^5.0.1",
-    "rimraf": "^2.6.1",
-    "styled-components": "^4.0.0",
-    "yaml-lint": "^1.2.4",
-    "yargs": "^10.0.3"
-  },
-  "engines": {
-    "node": ">=8.11.0"
-  },
-  "eslintIgnore": [
-    "**/__tests__/fixtures/"
-  ],
   "scripts": {
-    "test": "jest",
-    "test-coverage": "jest --coverage",
-    "test-update": "jest --updateSnapshot",
-    "test-watch": "jest --watch",
-    "lerna": "lerna",
-    "lint": "eslint --ext .js,.jsx packages/**/src",
-    "plop": "plop",
-    "dev": "docz dev",
+    "bootstrap": "lerna bootstrap --hoist",
+    "docz:dev": "docz dev",
+    "watch": "lerna run build --no-sort --stream --concurrency 999 -- -- --watch",
+    "lint": "eslint packages",
+    "test": "CI=true npm run test-watch -- -- --coverage",
+    "test-coverage": "npm run test-watch -- -- --coverage",
+    "test-updateSnapshot": "npm run test-watch --updateSnapshot",
+    "test-watch": "lerna run test --no-sort --stream --concurrency 999",
     "release": "lerna publish --yes",
-    "version": "prettier --write \"**/CHANGELOG.md\" --no-semi",
-    "watch": "lerna run watch --no-sort --stream --concurrency 999"
+    "generate": "plop --plopfile ./templates/plopfile.js"
+  },
+  "devDependencies": {
+    "docz": "^0.12.12",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "execa": "1.0.0",
+    "fs-extra": "^7.0.0",
+    "get-port": "^4.0.0",
+    "globby": "^8.0.1",
+    "husky": "^1.1.4",
+    "jest": "^23.6.0",
+    "lerna": "3.5.0",
+    "lerna-changelog": "^0.7.0",
+    "lint-staged": "^7.0.5",
+    "meow": "^5.0.0",
+    "multimatch": "^2.1.0",
+    "plop": "^2.1.0",
+    "prettier": "1.14.3",
+    "strip-ansi": "^4.0.0",
+    "tempy": "^0.2.1",
+    "wait-for-localhost": "2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "packages/**/*/*.{js,md,css}": [
+      "prettier --write",
+      "eslint"
+    ],
+    "yarn.lock": [
+      "git rm --cached"
+    ]
   },
   "dependencies": {
-    "buble": "^0.19.4"
-  },
-  "publishConfig": {
-    "registry": "https://repo.revtech.media/dev/registry/"
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0"
   }
 }

@@ -1,7 +1,7 @@
-import React from "react";
-import t from "prop-types";
-import { Tracker } from "@rtm-test/tracker";
-import { StyledButton, WrapperButton } from "./style";
+import React from 'react';
+import t from 'prop-types';
+import { Tracker } from '@rtm-test/tracker';
+import { StyledButton, WrapperButton } from './style';
 
 export const Base = ({
   track,

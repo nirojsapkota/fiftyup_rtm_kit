@@ -1,20 +1,17 @@
-import { notices, grayscale } from "./colors";
+import { notices, grayscale } from './colors';
+import { base } from './base';
 
 const colors = {
-  green: "#22b24e",
-  orange: "#ef8612",
-  orangeAccent: "#e56209",
-  navy: "#1566ad",
-  blue: "#2d9dd6",
-  blueAccent: "#82c1e0",
-  yellow: "#ffed00",
+  green: '#22b24e',
+  orange: '#ef8612',
+  orangeAccent: '#e56209',
+  navy: '#1566ad',
+  blue: '#2d9dd6',
+  blueAccent: '#82c1e0',
+  yellow: '#ffed00',
   ...grayscale,
   ...notices,
 };
-
-const sm = "32";
-const md = "46";
-const lg = "76";
 
 const variants = {
   a: {
@@ -59,29 +56,9 @@ const variants = {
 };
 
 export default {
-  breakpoints: [`${sm}em`, `${md}em`, `${lg}em`],
-  grid: {
-    sm,
-    md,
-    lg,
-  },
-  boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
-  variant: "a",
-  fonts: {
-    serif: "Museo",
-    sansSerif: "MuseoSans",
-  },
+  ...base,
   colors: {
+    ...base.colors,
     variants,
-    grayscale,
-    social: {
-      facebook: "#3B5998",
-      twitter: "#00ACED",
-    },
-  },
-  borderRadius: "4px",
-  button: {
-    borderRadius: "3px",
-    bottomBorderWidth: "4px",
   },
 };

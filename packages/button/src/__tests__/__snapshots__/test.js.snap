@@ -8,6 +8,15 @@ exports[`<Button /> renders welcome a secondary color 1`] = `
   padding: 0;
   -webkit-text-decoration: none;
   text-decoration: none;
+  font-size: 13px;
+  -webkit-letter-spacing: 1px;
+  -moz-letter-spacing: 1px;
+  -ms-letter-spacing: 1px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: MuseoSans;
+  font-weight: 900;
   width: inherit;
   padding: 18px 30px;
   display: -webkit-inline-box;
@@ -36,18 +45,11 @@ exports[`<Button /> renders welcome a secondary color 1`] = `
   border-radius: 3px;
   border-bottom-width: 4px;
   border-bottom-style: solid;
-  color: #565656;
-  background: #eee;
-  border-bottom-color: #ccc;
+  color: #FFF;
 }
 
 .c0:disabled {
   cursor: not-allowed;
-}
-
-.c0:hover,
-.c0:focus {
-  background: #ccc;
 }
 
 <div>
@@ -67,6 +69,15 @@ exports[`<Button /> renders welcome message 1`] = `
   padding: 0;
   -webkit-text-decoration: none;
   text-decoration: none;
+  font-size: 13px;
+  -webkit-letter-spacing: 1px;
+  -moz-letter-spacing: 1px;
+  -ms-letter-spacing: 1px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: MuseoSans;
+  font-weight: 900;
   width: inherit;
   padding: 18px 30px;
   display: -webkit-inline-box;
@@ -107,6 +118,7 @@ exports[`<Button /> renders welcome message 1`] = `
 .c0:hover,
 .c0:focus {
   background: #e56209;
+  border-bottom-color: #ef8612;
 }
 
 <div>
