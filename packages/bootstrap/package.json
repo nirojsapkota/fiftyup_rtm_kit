@@ -1,7 +1,7 @@
 {
   "name": "@rtm-ui/bootstrap",
   "version": "1.0.1-rc.1",
-  "description": "Description for Bootstrap",
+  "description": "Root-level component for bootstrapping an application",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
