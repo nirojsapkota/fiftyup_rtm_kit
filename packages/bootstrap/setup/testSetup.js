@@ -19,6 +19,7 @@ const bootstrapRender = (
         selectedTheme
       )
     : selectedTheme;
+
   return render(
     <TestBootstrap theme={testTheme}>{node}</TestBootstrap>,
     options

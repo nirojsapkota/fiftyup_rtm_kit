@@ -19,5 +19,5 @@ phases:
       - lerna bootstrap --no-ci --hoist
   build:
     commands:
-      - npm run test-coverage
+      - npm run test
       - npm run release
