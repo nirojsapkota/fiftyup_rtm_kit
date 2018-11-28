@@ -10,10 +10,7 @@
     "publish": {
       "registry": "https://repo.revtech.media/dev/registry/",
       "allowBranch": "master",
-      "bump": "prerelease",
       "conventionalCommits": true,
-      "message": "chore(release): Publish",
-      "preid": "rc",
       "verifyAccess": false,
       "ignoreChanges": [
         "*.md",
