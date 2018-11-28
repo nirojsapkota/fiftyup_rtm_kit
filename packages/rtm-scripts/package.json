@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/rtm-scripts",
-  "version": "1.0.0",
+  "version": "1.0.1-rc.0",
   "description": "",
   "license": "UNLICENSED",
   "engines": {
@@ -57,8 +57,8 @@
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.3.2",
     "react-testing-library": "^5.2.3",
-    "require-context": "^1.1.0",
     "require": "^2.4.20",
+    "require-context": "^1.1.0",
     "resolve": "1.8.1",
     "rollup-plugin-commonjs": "^9.2.0",
     "sass-loader": "7.1.0",
