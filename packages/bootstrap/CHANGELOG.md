@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@1.0.1-rc.1...@rtm-ui/bootstrap@1.1.0) (2018-11-28)
+
+
+### Features
+
+* another description change ([dfffc9d](https://github.com/OBSAU/rtm-kit/commit/dfffc9d))
+
+
+
+
+
 ## [1.0.1-rc.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@1.0.1-rc.0...@rtm-ui/bootstrap@1.0.1-rc.1) (2018-11-28)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/theme",
-  "version": "1.0.1-rc.0",
+  "version": "1.0.1",
   "description": "Base theming component for all RTM brands",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -21,7 +21,7 @@
     "react": "^16.6"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.1-rc.0",
+    "@rtm-ui/rtm-scripts": "^1.0.1",
     "jest-dom": "^2.1.1",
     "react-testing-library": "^5.2.3"
   }
