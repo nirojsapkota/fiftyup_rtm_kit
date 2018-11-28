@@ -2,6 +2,7 @@ import React from 'react';
 import LogRocket from 'logrocket';
 // This is a bit hacky, I think eslint doesn't think it has access to this
 // because cleanup and fireEvent come from react-testing-library via `bootstrap`
+// we don't want to have a dependency on `bootstrap` because it would be circular
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { Tracker, track } from '..';
