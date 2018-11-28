@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/layout",
-  "version": "1.0.1-rc.0",
+  "version": "1.0.1-rc.1",
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
-    "@rtm-ui/bootstrap": "^1.0.1-rc.0",
+    "@rtm-ui/bootstrap": "^1.0.1-rc.1",
     "@rtm-ui/theme": "^1.0.1-rc.0",
     "styled-components": "^4.0"
   },

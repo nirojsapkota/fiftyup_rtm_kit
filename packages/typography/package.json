@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/typography",
-  "version": "1.0.1-rc.0",
+  "version": "1.0.1-rc.1",
   "description": "Stub description for type",
   "main": "build/main.js",
   "scripts": {
@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
-    "@rtm-ui/bootstrap": "^1.0.1-rc.0",
-    "@rtm-ui/layout": "^1.0.1-rc.0",
+    "@rtm-ui/bootstrap": "^1.0.1-rc.1",
+    "@rtm-ui/layout": "^1.0.1-rc.1",
     "@rtm-ui/theme": "^1.0.1-rc.0",
     "styled-components": "^4.0"
   },
