@@ -1,6 +1,6 @@
 {
-  "name": "@rtm-test/bootstrap",
-  "version": "1.0.2",
+  "name": "@rtm-ui/bootstrap",
+  "version": "1.0.0",
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -12,8 +12,8 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-test/theme": "^2.0.0",
-    "@rtm-test/tracker": "^1.0.0",
+    "@rtm-ui/theme": "^1.0.0",
+    "@rtm-ui/tracker": "^1.0.0",
     "styled-components": "^4.0"
   },
   "peerDependencies": {
@@ -23,7 +23,7 @@
     "jest-dom": "^2.1.1"
   },
   "devDependencies": {
-    "@rtm-test/rtm-scripts": "1.0.0",
+    "@rtm-ui/rtm-scripts": "1.0.0",
     "jest-styled-components": "^6.2.2"
   }
 }

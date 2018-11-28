@@ -2,7 +2,7 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box as GridBox } from '@rebass/grid';
-import Variant, { backgroundStyle } from '@rtm-test/theme';
+import Variant, { backgroundStyle } from '@rtm-ui/theme';
 
 const Wrapper = styled(GridBox)`
   ${backgroundStyle};

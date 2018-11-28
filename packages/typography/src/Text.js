@@ -1,8 +1,8 @@
 import React from 'react';
 import t from 'prop-types';
 import styled, { css } from 'styled-components';
-import { getColor, themeColorKeys } from '@rtm-test/theme';
-import { Box } from '@rtm-test/layout';
+import { getColor, themeColorKeys } from '@rtm-ui/theme';
+import { Box } from '@rtm-ui/layout';
 
 const weightMap = {
   thin: '100',

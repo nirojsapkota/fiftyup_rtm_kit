@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-dom/extend-expect';
-import { TrackingProvider } from '@rtm-test/tracker';
+import { TrackingProvider } from '@rtm-ui/tracker';
 import { render, cleanup } from 'react-testing-library';
 import Bootstrap from '../index';
 

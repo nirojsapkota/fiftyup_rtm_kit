@@ -1,6 +1,6 @@
 {
-  "name": "@rtm-test/theme",
-  "version": "2.0.0",
+  "name": "@rtm-ui/theme",
+  "version": "1.0.0",
   "description": "",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -21,7 +21,7 @@
     "prop-types": "^15.5.4"
   },
   "devDependencies": {
-    "@rtm-test/rtm-scripts": "1.0.0",
+    "@rtm-ui/rtm-scripts": "1.0.0",
     "jest-dom": "^2.1.1",
     "react-testing-library": "^5.2.3"
   }

@@ -1,5 +1,5 @@
 {
-  "name": "@rtm-test/tracker",
+  "name": "@rtm-ui/tracker",
   "version": "1.0.0",
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
@@ -21,6 +21,6 @@
     "prop-types": "^15.5.4"
   },
   "devDependencies": {
-    "@rtm-test/rtm-scripts": "1.0.0"
+    "@rtm-ui/rtm-scripts": "1.0.0"
   }
 }

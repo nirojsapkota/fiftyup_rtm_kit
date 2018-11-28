@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import t from 'prop-types';
-import { Box } from '@rtm-test/layout';
+import { Box } from '@rtm-ui/layout';
 
 const Wrapper = styled(Box)`
   max-width: 100%;

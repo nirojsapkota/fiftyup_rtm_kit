@@ -1,6 +1,6 @@
 import React from 'react';
 import t from 'prop-types';
-import { TrackingProvider } from '@rtm-test/tracker/src';
+import { TrackingProvider } from '@rtm-ui/tracker/src';
 import Bootstrap from '../src';
 
 // This is used by jest and Docz

@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-  render,
-  cleanup,
-  fireEvent,
-} from '@rtm-test/bootstrap/setup/testSetup';
+import { render, cleanup, fireEvent } from '@rtm-ui/bootstrap/setup/testSetup';
 import Button, { ButtonGroup } from '../index';
 
 afterEach(cleanup);
 
 const mockTrackEvent = jest.fn();
-jest.mock('@rtm-test/tracker', () => {
-  const original = require.requireActual('@rtm-test/tracker');
+jest.mock('@rtm-ui/tracker', () => {
+  const original = require.requireActual('@rtm-ui/tracker');
   return {
     ...original,
     Tracker: props => props.render(mockTrackEvent),

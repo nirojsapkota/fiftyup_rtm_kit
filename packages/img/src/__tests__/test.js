@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@rtm-test/bootstrap/setup/testSetup';
+import { render } from '@rtm-ui/bootstrap/setup/testSetup';
 import Img from '../index';
 
 const setup = () => {

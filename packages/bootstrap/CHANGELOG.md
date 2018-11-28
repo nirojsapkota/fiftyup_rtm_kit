@@ -5,4 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 1.0.1-rc.0 (2018-11-07)
 
-**Note:** Version bump only for package @rtm-test/bootstrap
+**Note:** Version bump only for package @rtm-ui/bootstrap

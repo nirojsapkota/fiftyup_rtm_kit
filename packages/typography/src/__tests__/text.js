@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@rtm-test/bootstrap/setup/testSetup';
+import { render } from '@rtm-ui/bootstrap/setup/testSetup';
 import { Header, Paragraph, Small } from '../index';
 import { weightProps, fontStyles, alignmentProps } from '../text';
 

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import t from 'prop-types';
-import { labelTextStyles } from '@rtm-test/typography';
-import { getColor } from '@rtm-test/theme';
+import { labelTextStyles } from '@rtm-ui/typography';
+import { getColor } from '@rtm-ui/theme';
 
 export const base = css`
   &:disabled {

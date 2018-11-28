@@ -1,7 +1,7 @@
 import React from 'react';
 import t from 'prop-types';
-import { BootstrapTheme } from '@rtm-test/theme';
-import { TrackingProvider } from '@rtm-test/tracker';
+import { BootstrapTheme } from '@rtm-ui/theme';
+import { TrackingProvider } from '@rtm-ui/tracker';
 
 const Bootstrap = props => {
   const trackingData = props.trackingData

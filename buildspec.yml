@@ -6,7 +6,7 @@ phases:
       - npm install -g lerna
       - git checkout master
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
-      - echo "@rtm-test:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+      - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - echo "always-auth=true" >> $HOME/.npmrc
       - echo "registry=http://registry.npmjs.org/" >> $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL

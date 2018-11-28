@@ -5,7 +5,7 @@ import 'jest-styled-components';
 
 import { render } from 'react-testing-library';
 import React from 'react';
-import { obs, fuc, ninesaver, setIn } from '@rtm-test/theme';
+import { obs, fuc, ninesaver, setIn } from '@rtm-ui/theme';
 import TestBootstrap from './docSetup';
 
 const bootstrapRender = (
