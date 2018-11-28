@@ -1,7 +1,7 @@
 {
   "name": "@rtm-ui/theme",
   "version": "1.0.1-rc.0",
-  "description": "",
+  "description": "Base theming component for all RTM brands",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
