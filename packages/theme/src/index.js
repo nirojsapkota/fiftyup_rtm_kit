@@ -1,25 +1,37 @@
-import React from "react";
-import { ThemeProvider } from "styled-components";
-import t from "prop-types";
-import { obs } from "./themes";
-import { CssReset } from "./reset";
+import React from 'react';
+import { ThemeProvider, withTheme } from 'styled-components';
+import t from 'prop-types';
+import { themeMap, obs, fuc, ninesaver } from './themes';
+import { CssReset } from './reset';
+import { Fonts } from './fonts';
+import { backgroundStyle, getColor, setIn } from './util';
 
-export { getColor } from "./util";
+export { backgroundStyle, getColor, setIn };
+export { themeMap, obs, fuc, ninesaver };
+export const themeColorKeys = Object.keys(obs.colors.variants.a);
 
 const Variant = ({ theme, variant, children }) => {
-  const nestedTheme = variant ? { ...theme, variant } : theme;
+  // throw new Error(JSON.stringify(theme, 0, 2));
   return (
-    <ThemeProvider theme={nestedTheme}>
+    <ThemeProvider theme={{ ...theme, variant }}>{children}</ThemeProvider>
+  );
+};
+
+export const BootstrapTheme = ({ children, ...props }) => {
+  return (
+    <Variant {...props}>
       <React.Fragment>
         <CssReset />
+        <Fonts />
         {children}
       </React.Fragment>
-    </ThemeProvider>
+    </Variant>
   );
 };
 
 Variant.defaultProps = {
   theme: obs,
+  variant: 'a',
 };
 
 const variantShape = t.shape({
@@ -65,9 +77,9 @@ const variantPropTypes = {
     }).isRequired,
   }),
   variant: t.string,
-  children: t.node,
+  children: t.node.isRequired,
 };
 
 Variant.propTypes = variantPropTypes;
 
-export default Variant;
+export default withTheme(Variant);

@@ -1,13 +1,19 @@
-import React from "react";
-import Button, { ButtonGroup } from "../index";
-import { render, fireEvent } from "test-utils";
+import React from 'react';
+import {
+  render,
+  cleanup,
+  fireEvent,
+} from '@rtm-test/bootstrap/setup/testSetup';
+import Button, { ButtonGroup } from '../index';
+
+afterEach(cleanup);
 
 const mockTrackEvent = jest.fn();
-jest.mock("@rtm-test/tracker", () => {
-  const original = require.requireActual("@rtm-test/tracker");
+jest.mock('@rtm-test/tracker', () => {
+  const original = require.requireActual('@rtm-test/tracker');
   return {
     ...original,
-    Tracker: props => props.render(mockTrackEvent)
+    Tracker: props => props.render(mockTrackEvent),
   };
 });
 
@@ -39,7 +45,7 @@ describe(`<Button />`, () => {
       <Button track="test">Welcome to React</Button>
     );
 
-    fireEvent.click(getByText("Welcome to React"));
+    fireEvent.click(getByText('Welcome to React'));
 
     expect(mockTrackEvent).toHaveBeenCalledTimes(1);
     // TODO: jest cleanup should take care of this
@@ -49,7 +55,7 @@ describe(`<Button />`, () => {
   it(`does not pass the track prop to the tracking context module`, () => {
     const { getByText } = render(<Button>Welcome to React</Button>);
 
-    fireEvent.click(getByText("Welcome to React"));
+    fireEvent.click(getByText('Welcome to React'));
 
     expect(mockTrackEvent).not.toHaveBeenCalled();
   });

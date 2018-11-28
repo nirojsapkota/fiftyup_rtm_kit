@@ -1,14 +1,14 @@
-import React from "react";
-import Img from "../index";
-import { render } from "test-utils";
+import React from 'react';
+import { render } from '@rtm-test/bootstrap/setup/testSetup';
+import Img from '../index';
 
 const setup = () => {
   const { container } = render(
     <Img
       backgroundColor
-      title={`Title for the image`}
-      src={`test_image.jpg`}
-      alt={`Alt text for the image`}
+      title="Title for the image"
+      src="test_image.jpg"
+      alt="Alt text for the image"
     />
   );
 

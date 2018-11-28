@@ -1,54 +1,88 @@
-import React from "react";
-import Theme from "../index";
-import { obs, fuc, ninesaver } from "../themes";
-import { render } from "react-testing-library";
-import DoczWrapper from "../docz/wrapper";
-import { getColor } from "../util";
+import React from 'react';
+import 'jest-dom/extend-expect';
+import { render } from 'react-testing-library';
+import Theme, { BootstrapTheme } from '../index';
+import { obs, fuc, ninesaver } from '../themes';
+import { getColor, setIn } from '../util';
+import { MockWrapper } from '../__mocks__/backgroundExample';
 
 const themes = [obs, fuc, ninesaver];
 
-describe(`<Theme />`, () => {
+describe('<BootstrapTheme />', () => {
+  it('provides a theme context', () => {
+    const { getByText } = render(
+      <BootstrapTheme theme={obs}>
+        <div>Welcome to React</div>
+      </BootstrapTheme>
+    );
+    expect(getByText('Welcome to React')).toBeInTheDocument();
+  });
+});
+
+describe('<Theme />', () => {
   themes.map(theme =>
-    it(`provides a theme context`, () => {
+    it('provides a theme context', () => {
       const { getByText } = render(
         <Theme theme={theme}>
           <div>Welcome to React</div>
         </Theme>
       );
-      expect(getByText(`Welcome to React`)).toBeInTheDocument();
+      expect(getByText('Welcome to React')).toBeInTheDocument();
     })
   );
 
-  it(`alters the theme context`, () => {
+  it('alters the theme context', () => {
     const { getByText } = render(
       <Theme variant="b">
         <div>Welcome to React</div>
       </Theme>
     );
-    expect(getByText(`Welcome to React`)).toBeInTheDocument();
-  });
-
-  it(`provides a theme context`, () => {
-    const { getByText } = render(
-      <DoczWrapper>
-        <div>Welcome to React</div>
-      </DoczWrapper>
-    );
-    expect(getByText(`Welcome to React`)).toBeInTheDocument();
+    expect(getByText('Welcome to React')).toBeInTheDocument();
   });
 });
 
-describe(`getColor`, () => {
-  it(`gets the color of the key specified for the current variant`, () => {
-    // FIXME: mock the ninesaver object
-    expect(getColor("primary", ninesaver)).toBe("#00b1ff");
+describe('backgroundStyle', () => {
+  it('alters the theme context', () => {
+    const { getByText } = render(
+      <Theme theme={obs}>
+        <MockWrapper variant="b">Welcome to React</MockWrapper>
+      </Theme>
+    );
+    expect(getByText).toMatchSnapshot();
   });
-  it(`when the color is not in a variant`, () => {
-    // FIXME: mock the ninesaver object
-    expect(getColor("darkest", ninesaver)).toBe("#333");
+});
+
+describe('setIn', () => {
+  it('alters the theme with the path provided', () => {
+    const currentBorderRadius = obs.borderRadius;
+    expect(setIn(obs, 'borderRadius', '10px').borderRadius).toBe('10px');
+    expect(setIn(obs, 'borderRadius', '10px').borderRadius).not.toBe(
+      currentBorderRadius
+    );
+
+    const currentBackgroundColor = obs.colors.variants.a.background;
+    expect(
+      setIn(obs, 'colors.variants.a.background', 'red').colors.variants.a
+        .background
+    ).toBe('red');
+    expect(
+      setIn(obs, 'colors.variants.a.background', 'red').colors.variants.a
+        .background
+    ).not.toBe(currentBackgroundColor);
   });
-  it(`when the color for social media`, () => {
+});
+
+describe('getColor', () => {
+  it('gets the color of the key specified for the current variant', () => {
     // FIXME: mock the ninesaver object
-    expect(getColor("facebook", ninesaver)).toBe("#3B5998");
+    expect(getColor('primary', ninesaver)).toBe('#00b1ff');
+  });
+  it('when the color is not in a variant', () => {
+    // FIXME: mock the ninesaver object
+    expect(getColor('darkest', ninesaver)).toBe('#333');
+  });
+  it('when the color for social media', () => {
+    // FIXME: mock the ninesaver object
+    expect(getColor('facebook', ninesaver)).toBe('#3B5998');
   });
 });

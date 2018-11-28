@@ -1,11 +1,11 @@
-import React from "react";
-import t from "prop-types";
-import styled from "styled-components";
-import { Base } from "./base";
+import React from 'react';
+import t from 'prop-types';
+import styled from 'styled-components';
+import { Base } from './base';
 
 const GroupWrapper = styled.div`
   display: flex;
-  flex-wrap: ${props => props.flexWrap || "wrap"};
+  flex-wrap: ${props => props.flexWrap || 'wrap'};
 
   > * {
     margin-right: 10px;
@@ -32,7 +32,7 @@ ButtonGroup.propTypes = {
 Button.propTypes = {
   track: t.string,
   children: t.node.isRequired,
-  type: t.oneOf(["submit", "reset", "button"]),
+  type: t.oneOf(['submit', 'reset', 'button']),
   onClick: t.func,
   asWrapper: t.bool,
   block: t.bool,

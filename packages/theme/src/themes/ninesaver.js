@@ -1,8 +1,5 @@
 import { notices, grayscale } from './colors';
-
-const sm = '32';
-const md = '46';
-const lg = '76';
+import { base } from './base';
 
 const variants = {
   a: {
@@ -47,28 +44,13 @@ const variants = {
 };
 
 export default {
-  breakpoints: [`${sm}em`, `${md}em`, `${lg}em`],
-  grid: {
-    sm,
-    md,
-    lg,
-  },
-  boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-  variant: 'a',
-  fonts: {
-    serif: 'Museo',
-    sansSerif: 'MuseoSans',
-  },
+  ...base,
   colors: {
+    ...base.colors,
     variants,
-    grayscale,
-    social: {
-      facebook: '#3B5998',
-      twitter: '#00ACED',
-    },
   },
-  borderRadius: '4px',
   button: {
+    ...base.button,
     borderRadius: '50px',
     bottomBorderWidth: '2px',
   },

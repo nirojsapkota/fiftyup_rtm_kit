@@ -1,0 +1,38 @@
+---
+name: Layout
+route: /packages/layout
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import { Pane, Box, Card } from './src'
+
+# Layout
+
+## Basic usage
+
+<Playground>
+  <Box>Hi there</Box>
+</Playground>
+
+## Pane
+
+The Pane component maps almost directly to the Box component. This means you can pass everything to Pane that you can pass to Box.
+
+The primary purpose of a pane is to group layouts
+
+<Playground>
+  <Pane>Hello World</Pane>
+</Playground>
+
+## Card
+
+The Card component just wraps the Pane component and provides a default `elevation` & `border-radius`.
+
+<Playground>
+  <Card><Pane p={10}>Hello, World</Pane></Card>
+</Playground>
+
+### Elevation
+
+Panes and Cards have a elevation property to give the component a box shadow and visually elevate it from the page.
