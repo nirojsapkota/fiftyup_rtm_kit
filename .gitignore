@@ -10,6 +10,7 @@ packages/*/yarn.lock
 template/src/__tests__/__snapshots__/
 lerna-debug.log
 npm-debug.log*
+package-lock.json
 yarn-debug.log*
 yarn-error.log*
 yarn.lock
