@@ -1,7 +1,7 @@
 {
   "name": "@rtm-ui/layout",
   "version": "1.0.1-rc.1",
-  "description": "Description for Bootstrap",
+  "description": "Description for Layout",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
