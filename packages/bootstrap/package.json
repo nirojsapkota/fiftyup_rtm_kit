@@ -4,7 +4,7 @@
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
   "license": "UNLICENSED",
-  "modules": "build/main.js",
+  "main": "build/main.js",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",
