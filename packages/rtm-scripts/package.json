@@ -80,9 +80,6 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-uglify": "^6.0.0"
   },
-  "optionalDependencies": {
-    "fsevents": "1.2.4"
-  },
   "browserslist": [
     ">0.2%",
     "not dead",
