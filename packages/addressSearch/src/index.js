@@ -18,12 +18,10 @@ class AxiosExample extends React.Component {
       >
         <Downshift>
           {meh => {
-            console.log(meh);
             const {
               inputValue,
               getInputProps,
               getLabelProps,
-              getMenuProps,
               getItemProps,
               getToggleButtonProps,
               selectedItem,
@@ -33,16 +31,20 @@ class AxiosExample extends React.Component {
             } = meh;
             return (
               <div style={{ width: 250, margin: 'auto', position: 'relative' }}>
-                <label {...getLabelProps()}>Select a Github repository</label>
+                <label {...getLabelProps()}>
+                  Start typing and select from the list:
+                </label>
                 <div style={{ position: 'relative' }}>
                   <input
                     {...getInputProps({
+                      autocomplete: 'nope',
                       isOpen,
-                      placeholder: 'Search repository',
+                      placeholder: 'Search address',
                     })}
                   />
                   {selectedItem ? (
                     <button
+                      type="submit"
                       onClick={clearSelection}
                       aria-label="clear selection"
                     >
@@ -66,8 +68,18 @@ class AxiosExample extends React.Component {
 
                     return (
                       <Axios url={baseEndpoint} params={{ q: inputValue }}>
-                        {({ loading, error, data: { items = [] } = {} }) => {
-                          if (loading) {
+                        {({
+                          loading,
+                          error,
+                          moreChar,
+                          data: { items = [] } = {},
+                        }) => {
+                          if (moreChar) {
+                            return (
+                              <Item disabled>More characters needed...</Item>
+                            );
+                          }
+                          if (loading && !items.length) {
                             return <Item disabled>Loading...</Item>;
                           }
 
@@ -76,20 +88,20 @@ class AxiosExample extends React.Component {
                           }
 
                           if (!items.length) {
-                            return <Item disabled>No repositories found</Item>;
+                            return <Item disabled>No address found</Item>;
                           }
 
-                          return items.map(({ id, name: item }, index) => (
+                          return items.map(({ id, Picklist }, index) => (
                             <Item
                               key={id}
                               {...getItemProps({
-                                item,
+                                item: Picklist,
                                 index,
                                 isActive: highlightedIndex === index,
-                                isSelected: selectedItem === item,
+                                isSelected: selectedItem === Picklist,
                               })}
                             >
-                              {item}
+                              {Picklist}
                             </Item>
                           ));
                         }}
