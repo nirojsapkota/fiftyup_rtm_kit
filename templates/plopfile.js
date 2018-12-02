@@ -20,27 +20,27 @@ module.exports = function(plop) {
       [
         {
           type: 'add',
-          path: '../packages/{{kebabCase name}}/package.json',
+          path: '../packages/{{camelCase name}}/package.json',
           templateFile: './package/package.json.hbs',
         },
         data.type === 'React.Component' && {
           type: 'add',
-          path: '../packages/{{kebabCase name}}/src/index.js',
+          path: '../packages/{{camelCase name}}/src/index.js',
           templateFile: './package/index.js.hbs',
         },
         data.type === 'Stateless' && {
           type: 'add',
-          path: '../packages/{{kebabCase name}}/src/index.js',
+          path: '../packages/{{camelCase name}}/src/index.js',
           templateFile: './package/stateless.js.hbs',
         },
         {
           type: 'add',
-          path: '../packages/{{kebabCase name}}/doc.mdx',
+          path: '../packages/{{camelCase name}}/doc.mdx',
           templateFile: './package/doc.mdx.hbs',
         },
         {
           type: 'add',
-          path: '../packages/{{kebabCase name}}/src/__tests__/test.js',
+          path: '../packages/{{camelCase name}}/src/__tests__/test.js',
           templateFile: './package/test.js.hbs',
         },
       ].filter(Boolean),

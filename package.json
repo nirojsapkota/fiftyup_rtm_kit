@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
-    "docz:dev": "docz dev",
+    "dev": "docz dev",
     "watch": "lerna run build --no-sort --stream --concurrency 999 -- -- --watch",
     "lint": "eslint packages",
     "test": "CI=true npm run test-watch -- -- --coverage",

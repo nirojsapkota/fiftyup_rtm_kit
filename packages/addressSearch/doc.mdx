@@ -1,0 +1,23 @@
+---
+name: AddressSearch
+route: /packages/addressSearch
+menu: Packages
+---
+
+import { Playground, PropsTable } from 'docz'
+import AddressSearch from './src'
+import { setup } from './src/util/setup'
+
+# AddressSearch
+
+## Basic usage
+
+<Playground >
+  <div style={{paddingBottom: '100px'}}>
+   {setup({ label: 'Address', name: 'address' })}
+  </div>
+</Playground>
+
+## Props
+
+<PropsTable of={AddressSearch} />
