@@ -49,6 +49,10 @@ const sizeChart = [
     sizes: [16, 16, 16, 16],
   },
   {
+    element: 'input',
+    sizes: [16, 16, 16, 16],
+  },
+  {
     element: 'small',
     sizes: [12, 12, 12, 12],
   },
@@ -141,7 +145,7 @@ Text.defaultProps = {
 };
 
 export const headerTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-export const primitiveTags = ['p', 'small', 'a', 'label'];
+export const primitiveTags = ['p', 'small', 'a', 'label', 'input'];
 export const weightProps = ['thin', 'normal', 'bold'];
 export const fontStyles = ['serif', 'sansSerif'];
 export const alignmentProps = [
@@ -154,7 +158,7 @@ export const alignmentProps = [
 export { themeColorKeys };
 
 Text.propTypes = {
-  tag: t.oneOf([...headerTags, 'p', 'small', 'a', 'label']).isRequired,
+  tag: t.oneOf([...headerTags, 'p', 'small', 'a', 'label', 'input']).isRequired,
   dangerousHTML: t.string,
   children: t.node,
   align: t.oneOf(alignmentProps),

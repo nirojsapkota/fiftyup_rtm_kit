@@ -11,7 +11,6 @@ export { themeMap, obs, fuc, ninesaver };
 export const themeColorKeys = Object.keys(obs.colors.variants.a);
 
 const Variant = ({ theme, variant, children }) => {
-  // throw new Error(JSON.stringify(theme, 0, 2));
   return (
     <ThemeProvider theme={{ ...theme, variant }}>{children}</ThemeProvider>
   );

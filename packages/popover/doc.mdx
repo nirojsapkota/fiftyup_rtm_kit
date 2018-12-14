@@ -1,0 +1,29 @@
+---
+name: Popover
+route: /packages/popover
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Popover from './src'
+import { Paragraph } from '../typography'
+import { Pane } from '../layout'
+
+# Primitives
+
+## Basic usage
+
+<Playground style={{paddingBottom: '100px'}}>
+  <Popover
+    display="block"
+    anchor={(toggle) => <div>Hello<button onClick={toggle}><span>hi</span></button></div>}
+  ><Paragraph p={3}>Render anything here. Some really long text would be a good example</Paragraph></Popover>
+</Playground>
+
+<Playground style={{paddingTop: '100px'}}>
+  <Popover
+    display="block"
+    position="top"
+    anchor={(toggle) => <div>Hello<button onClick={toggle}>hi</button></div>}
+  >{closePopover => <Paragraph style={{minWidth: '400px'}} onClick={closePopover} p={3}>Render anything here. Some really long text would be a good example</Paragraph>}</Popover>
+</Playground>

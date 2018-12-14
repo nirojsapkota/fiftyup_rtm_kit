@@ -1,7 +1,7 @@
 {
-  "name": "@rtm-ui/address-search",
+  "name": "@rtm-ui/popover",
   "version": "1.0.0",
-  "description": "Description for Bootstrap",
+  "description": "Description for Popover",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
@@ -14,16 +14,6 @@
   "dependencies": {
     "@rtm-ui/bootstrap": "^1.0",
     "@rtm-ui/layout": "^1.0",
-    "@rtm-ui/icon": "^1.0",
-    "@rtm-ui/popover": "^1.0",
-    "@rtm-ui/typography": "^1.0",
-    "@rtm-ui/button": "^1.0",
-    "axios": "^0.18.0",
-    "debounce-fn": "^1.0.0",
-    "downshift": "^3.1.5",
-    "evergreen-ui": "^4.7.1",
-    "fuzzaldrin-plus": "^0.6.0",
-    "react-fast-compare": "^2.0.4",
     "styled-components": "^4.0"
   },
   "peerDependencies": {
@@ -31,6 +21,6 @@
     "prop-types": "^15.5.4"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.1-rc.0"
+    "@rtm-ui/rtm-scripts": "^1.0"
   }
 }
