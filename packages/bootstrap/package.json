@@ -1,5 +1,10 @@
 {
   "name": "@rtm-ui/bootstrap",
+  "rtmRollup": {
+    "namespace": "bootstrap",
+    "defaultExport": "Bootstrap",
+    "namedExports": []
+  },
   "version": "1.0.1-rc.1",
   "description": "Root-level component for bootstrapping an application",
   "author": "RevTech Media",

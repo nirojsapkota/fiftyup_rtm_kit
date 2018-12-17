@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import LogRocket from 'logrocket';
 import Google from './google';
 import Facebook from './facebook';
@@ -55,10 +55,10 @@ export const Tracker = props => {
 };
 
 Tracker.propTypes = {
-  render: t.func,
+  render: PropTypes.func,
 };
 
 TrackingProvider.propTypes = {
-  children: t.node,
-  trackingData: t.shape({ category: t.string.isRequired }),
+  children: PropTypes.node,
+  trackingData: PropTypes.shape({ category: PropTypes.string.isRequired }),
 };

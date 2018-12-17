@@ -1,7 +1,7 @@
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { getColor, themeColorKeys } from '@rtm-ui/theme';
+import { getColor } from '@rtm-ui/theme';
 import { Box } from '@rtm-ui/layout';
 
 const weightMap = {
@@ -155,22 +155,43 @@ export const alignmentProps = [
   'justified',
   'inherit',
 ];
-export { themeColorKeys };
 
 Text.propTypes = {
-  tag: t.oneOf([...headerTags, 'p', 'small', 'a', 'label', 'input']).isRequired,
-  dangerousHTML: t.string,
-  children: t.node,
-  align: t.oneOf(alignmentProps),
-  weight: t.oneOf(weightProps),
-  font: t.oneOf(fontStyles),
-  scale: t.oneOf([1, 2, 3, 4]),
-  color: t.string,
-  p: t.oneOfType([t.number, t.arrayOf(t.number)]),
-  pl: t.oneOfType([t.number, t.arrayOf(t.number)]),
-  pr: t.oneOfType([t.number, t.arrayOf(t.number)]),
-  pt: t.oneOfType([t.number, t.arrayOf(t.number)]),
-  pb: t.oneOfType([t.number, t.arrayOf(t.number)]),
-  px: t.oneOfType([t.number, t.arrayOf(t.number)]),
-  py: t.oneOfType([t.number, t.arrayOf(t.number)]),
+  tag: PropTypes.oneOf([...headerTags, 'p', 'small', 'a', 'label', 'input'])
+    .isRequired,
+  dangerousHTML: PropTypes.string,
+  children: PropTypes.node,
+  align: PropTypes.oneOf(alignmentProps),
+  weight: PropTypes.oneOf(weightProps),
+  font: PropTypes.oneOf(fontStyles),
+  scale: PropTypes.oneOf([1, 2, 3, 4]),
+  color: PropTypes.string,
+  p: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  pl: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  pr: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  pt: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  pb: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  px: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  py: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
 };

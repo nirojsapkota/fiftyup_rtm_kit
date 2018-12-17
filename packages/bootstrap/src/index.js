@@ -1,7 +1,7 @@
 import React from 'react';
-import t from 'prop-types';
-import { BootstrapTheme } from '@rtm-ui/theme';
+import PropTypes from 'prop-types';
 import { TrackingProvider } from '@rtm-ui/tracker';
+import { BootstrapTheme } from '@rtm-ui/theme';
 
 const Bootstrap = props => {
   const trackingData = props.trackingData
@@ -15,7 +15,6 @@ const Bootstrap = props => {
   // we will have two contexts, one from build and one
   // from source. So for now we allow the provider to
   // be passed in (as seen in `setupTests`). This shouldn't
-  // be an issue in production.
   const Tracking = props.trackingProvider
     ? props.trackingProvider
     : TrackingProvider;
@@ -27,7 +26,7 @@ const Bootstrap = props => {
 };
 
 Bootstrap.propTypes = {
-  children: t.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Bootstrap;

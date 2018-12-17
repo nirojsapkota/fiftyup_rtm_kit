@@ -1,5 +1,5 @@
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import { TrackingProvider } from '@rtm-ui/tracker/src';
 import Bootstrap from '../src';
 
@@ -14,8 +14,8 @@ const TestBootstrap = ({ theme, children }) => {
 
 TestBootstrap.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  theme: t.object,
-  children: t.node,
+  theme: PropTypes.object,
+  children: PropTypes.node,
 };
 
 export default TestBootstrap;

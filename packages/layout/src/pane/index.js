@@ -1,5 +1,5 @@
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Box from '../box';
 
@@ -14,7 +14,7 @@ const Wrapper = styled(Box)`
 const Pane = props => <Wrapper {...props} />;
 
 Pane.propTypes = {
-  children: t.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Pane;

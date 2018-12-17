@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import { getColor } from '@rtm-ui/theme';
 
 const Wrapper = styled.span`
@@ -456,13 +456,13 @@ Icon.defaultProps = {
 };
 
 Icon.propTypes = {
-  size: t.number,
-  glyph: t.oneOf(Object.keys(ICONS)),
-  fill: t.string,
+  size: PropTypes.number,
+  glyph: PropTypes.oneOf(Object.keys(ICONS)),
+  fill: PropTypes.string,
   /** Vertically center & take the icon height out of the DOM flow */
-  inline: t.bool,
-  rotate: t.number,
-  hover: t.string,
+  inline: PropTypes.bool,
+  rotate: PropTypes.number,
+  hover: PropTypes.string,
 };
 
 export default Icon;

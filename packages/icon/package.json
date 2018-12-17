@@ -2,6 +2,11 @@
   "name": "@rtm-ui/icon",
   "version": "1.0.0",
   "description": "Description for Icon",
+  "rtmRollup": {
+    "namespace": "icon",
+    "defaultExport": "Icon",
+    "namedExports": []
+  },
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",

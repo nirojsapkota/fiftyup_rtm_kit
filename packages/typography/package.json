@@ -3,6 +3,17 @@
   "version": "1.0.1-rc.1",
   "description": "Stub description for type",
   "main": "build/main.js",
+  "rtmRollup": {
+    "namespace": "typography",
+    "defaultExport": "Text",
+    "namedExports": [
+      "Header",
+      "Small",
+      "Paragraph",
+      "Text",
+      "labelTextStyles"
+    ]
+  },
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",

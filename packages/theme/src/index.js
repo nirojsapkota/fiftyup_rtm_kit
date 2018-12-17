@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider, withTheme } from 'styled-components';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import { themeMap, obs, fuc, ninesaver } from './themes';
 import { CssReset } from './reset';
 import { Fonts } from './fonts';
@@ -8,7 +8,6 @@ import { backgroundStyle, getColor, setIn } from './util';
 
 export { backgroundStyle, getColor, setIn };
 export { themeMap, obs, fuc, ninesaver };
-export const themeColorKeys = Object.keys(obs.colors.variants.a);
 
 const Variant = ({ theme, variant, children }) => {
   return (
@@ -33,50 +32,54 @@ Variant.defaultProps = {
   variant: 'a',
 };
 
-const variantShape = t.shape({
-  primary: t.string,
-  secondary: t.string,
-  tertiary: t.string,
-  accent: t.string,
-  accentAccent: t.string,
-  background: t.string,
-  text: t.string,
-  link: t.string,
-  inverseText: t.string,
+const variantShape = PropTypes.shape({
+  primary: PropTypes.string,
+  secondary: PropTypes.string,
+  tertiary: PropTypes.string,
+  accent: PropTypes.string,
+  accentAccent: PropTypes.string,
+  background: PropTypes.string,
+  text: PropTypes.string,
+  link: PropTypes.string,
+  inverseText: PropTypes.string,
 }).isRequired;
 
 const variantPropTypes = {
-  theme: t.shape({
-    breakpoints: t.array,
-    grid: t.shape({ sm: t.string, md: t.string, lg: t.string }),
-    variant: t.string,
-    fonts: t.shape({
-      serif: t.string,
-      sansSerif: t.string,
+  theme: PropTypes.shape({
+    breakpoints: PropTypes.array,
+    grid: PropTypes.shape({
+      sm: PropTypes.string,
+      md: PropTypes.string,
+      lg: PropTypes.string,
     }),
-    colors: t.shape({
-      variants: t.shape({
+    variant: PropTypes.string,
+    fonts: PropTypes.shape({
+      serif: PropTypes.string,
+      sansSerif: PropTypes.string,
+    }),
+    colors: PropTypes.shape({
+      variants: PropTypes.shape({
         a: variantShape,
         b: variantShape,
         c: variantShape,
       }).isRequired,
-      grayscale: t.shape({
-        black: t.string,
-        darkest: t.string,
-        dark: t.string,
-        normal: t.string,
-        light: t.string,
-        lightest: t.string,
-        white: t.string,
+      grayscale: PropTypes.shape({
+        black: PropTypes.string,
+        darkest: PropTypes.string,
+        dark: PropTypes.string,
+        normal: PropTypes.string,
+        light: PropTypes.string,
+        lightest: PropTypes.string,
+        white: PropTypes.string,
       }).isRequired,
-      social: t.shape({
-        facebook: t.string,
-        twitter: t.string,
+      social: PropTypes.shape({
+        facebook: PropTypes.string,
+        twitter: PropTypes.string,
       }).isRequired,
     }).isRequired,
   }),
-  variant: t.string,
-  children: t.node.isRequired,
+  variant: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 Variant.propTypes = variantPropTypes;

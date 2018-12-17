@@ -61,4 +61,7 @@ export default {
     ...base.colors,
     variants,
   },
+  button: {
+    borderRadius: '3px'
+  }
 };

@@ -1,5 +1,6 @@
 'use strict';
 
+const chalk = require('chalk');
 const rollup = require('rollup');
 const { inputOptions, outputOptions } = require('../config/rollup.config');
 const argv = process.argv.slice(2);
@@ -27,14 +28,14 @@ async function watch() {
     if (watchMap[event.code]) {
       console.log(watchMap[event.code]);
     }
-    if (event.code == 'ERROR' || event.code == 'FATAL') {
-      console.log(event);
-    }
   });
 }
 
+let command;
 if (shouldWatch) {
-  watch();
+  command = watch;
 } else {
-  build();
+  command = build;
 }
+
+command();

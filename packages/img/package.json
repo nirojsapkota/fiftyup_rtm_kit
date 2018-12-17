@@ -3,6 +3,11 @@
   "version": "1.0.1-rc.1",
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
+  "rtmRollup": {
+    "namespace": "img",
+    "defaultExport": "Img",
+    "namedExports": []
+  },
   "license": "UNLICENSED",
   "main": "build/main.js",
   "scripts": {

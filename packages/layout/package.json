@@ -2,6 +2,15 @@
   "name": "@rtm-ui/layout",
   "version": "1.0.1-rc.1",
   "description": "Description for Layout",
+  "rtmRollup": {
+    "namespace": "layout",
+    "defaultExport": "Layout",
+    "namedExports": [
+      "Pane",
+      "Box",
+      "Card"
+    ]
+  },
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",

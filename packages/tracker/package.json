@@ -1,6 +1,15 @@
 {
   "name": "@rtm-ui/tracker",
   "version": "1.0.1-rc.0",
+  "rtmRollup": {
+    "namespace": "tracker",
+    "defaultExport": "Tracker",
+    "namedExports": [
+      "TrackingProvider",
+      "Tracker",
+      "track"
+    ]
+  },
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
   "license": "UNLICENSED",

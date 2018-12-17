@@ -1,23 +1,23 @@
 /* eslint-disable no-console */
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
 const setCookie = name => {
-  const expires = new Date();
-  expires.setMinutes(expires.getMinutes() + 5);
-  cookies.set(name, true, {
-    expires,
-  });
+  // const expires = new Date();
+  // expires.setMinutes(expires.getMinutes() + 5);
+  // cookies.set(name, true, {
+  //   expires,
+  // });
 };
 
 const trackCustomEvent = (eventName, data) => {
-  const eventCookieName = `${eventName}-facebook-pixel-${data.tracking_id}`;
+  // const eventCookieName = `${eventName}-facebook-pixel-${data.tracking_id}`;
   if (window.fbq) {
-    if (!cookies.get(eventCookieName)) {
-      window.fbq('trackCustom', eventName, data);
-      setCookie(eventCookieName);
-    }
+    // if (!cookies.get(eventCookieName)) {
+    window.fbq('trackCustom', eventName, data);
+    //   setCookie(eventCookieName);
+    // }
   }
 };
 

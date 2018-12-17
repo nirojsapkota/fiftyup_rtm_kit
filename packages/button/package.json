@@ -1,6 +1,13 @@
 {
   "name": "@rtm-ui/button",
   "version": "1.0.1-rc.1",
+  "rtmRollup": {
+    "namespace": "button",
+    "defaultExport": "Button",
+    "namedExports": [
+      "ButtonGroup"
+    ]
+  },
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
   "license": "UNLICENSED",

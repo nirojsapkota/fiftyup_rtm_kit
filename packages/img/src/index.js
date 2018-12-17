@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
 
 const Wrapper = styled(Box)`
@@ -43,11 +43,11 @@ const Img = ({ src, alt, title, shape, height, width, ...boxProps }) => {
 };
 
 Img.propTypes = {
-  src: t.string.isRequired,
-  alt: t.string.isRequired,
-  shape: t.oneOf(['circle', 'rounded']),
-  width: t.number,
-  height: t.number,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  shape: PropTypes.oneOf(['circle', 'rounded']),
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
 
 export default Img;

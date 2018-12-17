@@ -3,7 +3,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "dev": "docz dev",
-    "watch": "lerna run build --no-sort --stream --concurrency 999 -- -- --watch",
+    "watch": "lerna run build --no-sort --stream --bail --concurrency 999 -- -- --watch",
     "lint": "eslint packages",
     "test": "CI=true npm run test-watch -- -- --coverage",
     "test-coverage": "npm run test-watch -- -- --coverage",
