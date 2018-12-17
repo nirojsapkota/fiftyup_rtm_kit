@@ -23,10 +23,10 @@
   },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
-    "lodash.topath": "4.5.2",
-    "styled-components": "^4.0"
+    "lodash.topath": "4.5.2"
   },
   "peerDependencies": {
+    "styled-components": "^4.0",
     "prop-types": "^15.5.4",
     "react": "^16.6"
   },

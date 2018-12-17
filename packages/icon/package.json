@@ -17,12 +17,11 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/bootstrap": "^1.0.1-rc.1",
-    "@rtm-ui/theme": "^1.0.1-rc.0",
-    "@rtm-ui/layout": "^1.0.1-rc.1",
-    "styled-components": "^4.0"
+    "@rtm-ui/theme": "^1.0.1-rc.0"
   },
   "peerDependencies": {
+    "@rtm-ui/bootstrap": "^1.0.1-rc.1",
+    "styled-components": "^4.0",
     "react": "^16.6",
     "prop-types": "^15.5.4"
   },
