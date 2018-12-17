@@ -26,9 +26,7 @@ phases:
       - echo Build completed on `date`
 
 artifacts:
-  name: libs
-  type: S3
-  packaging: NONE
-  location: "arn:aws:s3:::components.resources.revtech.media"
-  encryptionDisabled: true
-  path: "*/*/build/*"
+  files:
+    - "*/build/*"
+  discard-paths: no
+  base-directory: "packages"
