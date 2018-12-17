@@ -21,11 +21,10 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "logrocket": "^0.6.16",
-    "styled-components": "^4.0",
-    "universal-cookie": "^3.0.3"
   },
   "peerDependencies": {
+    "logrocket": "^0.6.16",
+    "universal-cookie": "^3.0.3",
     "prop-types": "^15.5.4",
     "react": "^16.6"
   },

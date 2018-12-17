@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
+    "serve": "curl pad.js.org | node",
     "dev": "docz dev",
     "watch": "lerna run build --no-sort --stream --bail --concurrency 999 -- -- --watch",
     "lint": "eslint packages",

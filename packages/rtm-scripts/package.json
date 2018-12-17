@@ -61,6 +61,8 @@
     "require-context": "^1.1.0",
     "resolve": "1.8.1",
     "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-terser": "^3.0.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
