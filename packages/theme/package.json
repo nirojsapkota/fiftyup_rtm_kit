@@ -31,7 +31,7 @@
     "react": "^16.6"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.1-rc.0",
+    "@rtm-ui/rtm-scripts": ">=1.0.0-rc <1.1.0",
     "jest-dom": "^2.1.1",
     "react-testing-library": "^5.2.3"
   }
