@@ -21,3 +21,14 @@ phases:
     commands:
       - npm run test
       - npm run release
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  name: libs
+  type: S3
+  packaging: NONE
+  location: "arn:aws:s3:::components.resources.revtech.media"
+  encryptionDisabled: true
+  path: "*/*/build/*"
