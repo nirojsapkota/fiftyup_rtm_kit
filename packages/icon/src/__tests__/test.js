@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@rtm-ui/bootstrap/setup/testSetup';
+import { render } from '../../../bootstrap/setup/testSetup';
 import Icon, { ICONS } from '../index';
 
 describe('<Icon />', () => {

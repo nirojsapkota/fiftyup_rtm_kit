@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@rtm-ui/bootstrap/setup/testSetup';
+// eslint-disable-next-line import/named
+import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import Button, { ButtonGroup } from '../index';
 
 afterEach(cleanup);
