@@ -1,5 +1,5 @@
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Pane from '../pane';
 
@@ -16,7 +16,7 @@ const Card = ({ children, ...boxProps }) => (
 );
 
 Card.propTypes = {
-  children: t.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Card;

@@ -1,5 +1,5 @@
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import { Tracker } from '@rtm-ui/tracker';
 import { StyledButton, WrapperButton } from './style';
 
@@ -28,9 +28,9 @@ export const Base = ({
 };
 
 Base.propTypes = {
-  track: t.string,
-  children: t.node.isRequired,
-  onClick: t.func,
-  block: t.bool,
-  asWrapper: t.bool,
+  track: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  block: PropTypes.bool,
+  asWrapper: PropTypes.bool,
 };

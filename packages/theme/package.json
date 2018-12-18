@@ -1,10 +1,20 @@
 {
   "name": "@rtm-ui/theme",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "rtmRollup": {
+    "namespace": "theme",
+    "defaultExport": "Theme",
+    "namedExports": [
+      "BootstrapTheme",
+      "backgroundStyle",
+      "getColor"
+    ]
+  },
   "description": "Base theming component for all RTM brands",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",
@@ -13,15 +23,15 @@
   },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
-    "lodash.topath": "4.5.2",
-    "styled-components": "^4.0"
+    "lodash.topath": "4.5.2"
   },
   "peerDependencies": {
+    "styled-components": "^4.0",
     "prop-types": "^15.5.4",
     "react": "^16.6"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.1",
+    "@rtm-ui/rtm-scripts": "1.0.*",
     "jest-dom": "^2.1.1",
     "react-testing-library": "^5.2.3"
   }

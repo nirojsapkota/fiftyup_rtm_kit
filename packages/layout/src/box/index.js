@@ -1,5 +1,5 @@
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box as GridBox } from '@rebass/grid';
 import Variant, { backgroundStyle } from '@rtm-ui/theme';
@@ -18,7 +18,7 @@ const Box = ({ children, variant, ...gridProps }) =>
   );
 
 Box.propTypes = {
-  children: t.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Box;

@@ -1,0 +1,34 @@
+---
+name: Icon
+route: /packages/icon
+menu: Packages
+---
+
+import { Playground, PropsTable } from 'docz'
+import Icon, { ICONS } from '../src'
+import { Grid, IconWrapper } from './grid'
+import { Header, Paragraph } from '../../typography'
+
+# Icon
+
+<Grid size={36}>{Object.keys(ICONS).map((icon) => <IconWrapper key={icon}><Icon glyph={icon} size={36} /><Paragraph align="center" pt={3}>{icon}</Paragraph></IconWrapper>)}</Grid>
+
+---
+
+## Basic usage
+
+<Playground>
+  <Icon glyph="profile" />
+</Playground>
+
+<Playground>
+  <Icon fill="primary" glyph="profile" />
+</Playground>
+
+<Playground>
+  <Icon hover="secondary" fill="primary" glyph="profile" />
+</Playground>
+
+## Props
+
+<PropsTable of={Icon} />

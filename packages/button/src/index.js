@@ -1,5 +1,5 @@
 import React from 'react';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Base } from './base';
 
@@ -26,15 +26,15 @@ const Button = props => <Base {...props} />;
 export default Button;
 
 ButtonGroup.propTypes = {
-  children: t.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 Button.propTypes = {
-  track: t.string,
-  children: t.node.isRequired,
-  type: t.oneOf(['submit', 'reset', 'button']),
-  onClick: t.func,
-  asWrapper: t.bool,
-  block: t.bool,
-  secondary: t.bool,
+  track: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  type: PropTypes.oneOf(['submit', 'reset', 'button']),
+  onClick: PropTypes.func,
+  asWrapper: PropTypes.bool,
+  block: PropTypes.bool,
+  secondary: PropTypes.bool,
 };

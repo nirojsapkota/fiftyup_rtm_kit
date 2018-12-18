@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import t from 'prop-types';
+import PropTypes from 'prop-types';
 import { labelTextStyles } from '@rtm-ui/typography';
 import { getColor } from '@rtm-ui/theme';
 
@@ -88,5 +88,5 @@ export const WrapperLink = styled.a`
 `;
 
 ButtonLink.propTypes = {
-  block: t.bool,
+  block: PropTypes.bool,
 };
