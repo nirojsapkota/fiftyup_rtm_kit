@@ -435,7 +435,6 @@ const Icon = ({ size, glyph, rotate, fill, inline, hover }) => {
           strokeLinejoin="round"
           strokeMiterlimit="1.414"
           xmlns="http://www.w3.org/2000/svg"
-          aria-labelledby="title"
           viewBox="0 0 32 32"
           preserveAspectRatio="xMidYMid meet"
           fill={fill}
