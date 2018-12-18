@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
+    "commit": "npx git-cz",
     "serve": "curl pad.js.org | node",
     "dev": "docz dev",
     "watch": "lerna run build --no-sort --stream --bail --concurrency 999 -- -- --watch",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "commitizen": "^3.0.5",
     "docz": "^0.12.12",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
