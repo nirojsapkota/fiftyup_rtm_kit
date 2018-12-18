@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@rtm-ui/bootstrap/setup/testSetup';
+import { render } from '../../../bootstrap/setup/testSetup';
 import { Card, Pane } from '../index';
 
 const text = 'Hello, World';

@@ -43,7 +43,6 @@ exports[`<Button /> renders welcome a secondary color 1`] = `
   justify-content: center;
   border: none;
   border-radius: 3px;
-  border-bottom-width: 4px;
   border-bottom-style: solid;
   color: #FFF;
 }
@@ -104,7 +103,6 @@ exports[`<Button /> renders welcome message 1`] = `
   justify-content: center;
   border: none;
   border-radius: 3px;
-  border-bottom-width: 4px;
   border-bottom-style: solid;
   color: #FFF;
   background: #ef8612;
