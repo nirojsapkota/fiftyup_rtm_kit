@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/theme",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "rtmRollup": {
     "namespace": "theme",
     "defaultExport": "Theme",
@@ -26,12 +26,12 @@
     "lodash.topath": "4.5.2"
   },
   "peerDependencies": {
-    "styled-components": "^4.0",
     "prop-types": "^15.5.4",
-    "react": "^16.6"
+    "react": "^16.6",
+    "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "1.0.*",
+    "@rtm-ui/rtm-scripts": "^1.0.3",
     "jest-dom": "^2.1.1",
     "react-testing-library": "^5.2.3"
   }
