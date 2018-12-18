@@ -8,17 +8,19 @@ const Wrapper = styled(GridBox)`
   ${backgroundStyle};
 `;
 
-const Box = ({ children, variant, ...gridProps }) =>
-  variant ? (
+const Box = ({ children, variant, ...gridProps }) => {
+  return variant ? (
     <Variant variant={variant}>
       <Wrapper {...gridProps}>{children}</Wrapper>
     </Variant>
   ) : (
     <Wrapper {...gridProps}>{children}</Wrapper>
   );
+};
 
 Box.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  variant: PropTypes.string,
 };
 
 export default Box;
