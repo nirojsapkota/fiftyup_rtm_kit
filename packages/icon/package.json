@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/icon",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Description for Icon",
   "rtmRollup": {
     "namespace": "icon",
@@ -18,7 +18,7 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/theme": "^1.0.3"
+    "@rtm-ui/theme": "^1.0.4"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "1.0.*",
@@ -27,6 +27,6 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.3"
+    "@rtm-ui/rtm-scripts": "^1.0.4"
   }
 }
