@@ -9,9 +9,12 @@ const replace = require('rollup-plugin-replace');
 const terser = require('rollup-plugin-terser');
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 
-const rtmDependencies = Object.keys(packageJson.dependencies).filter(dep =>
-  dep.startsWith('@rtm-ui')
-);
+let rtmDependencies = [];
+if (packageJson.dependencies) {
+  rtmDependencies = Object.keys(packageJson.dependencies).filter(dep =>
+    dep.startsWith('@rtm-ui')
+  );
+}
 
 const getRollupConfig = packageName => {
   return require(`../../${packageName.split('/')[1]}/package.json`).rtmRollup;
@@ -33,9 +36,9 @@ const inputOptions = {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    terser.terser({
-      sourcemap: true,
-    }),
+    // terser.terser({
+    //   sourcemap: true,
+    // }),
     resolve({
       main: true,
     }),
