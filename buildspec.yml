@@ -21,12 +21,9 @@ phases:
     commands:
       - npm run test
       - npm run release
-  post_build:
-    commands:
-      - echo Build completed on `date`
 
 artifacts:
   files:
     - "*/build/**"
-  discard-paths: no
+  discard-paths: yes
   base-directory: "packages"
