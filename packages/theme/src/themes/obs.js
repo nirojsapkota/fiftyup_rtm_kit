@@ -62,6 +62,6 @@ export default {
     variants,
   },
   button: {
-    borderRadius: '3px'
-  }
+    borderRadius: '3px',
+  },
 };
