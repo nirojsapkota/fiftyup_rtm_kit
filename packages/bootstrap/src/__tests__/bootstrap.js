@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-dom/extend-expect';
 import { render, cleanup } from 'react-testing-library';
-import { TrackingProvider } from '../../../tracker';
+import { TrackingProvider } from '../../../tracker/src';
 import Bootstrap from '../index';
 
 afterEach(cleanup);
