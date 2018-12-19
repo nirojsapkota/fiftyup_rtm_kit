@@ -4,6 +4,7 @@ node_modules/
 build
 .DS_Store
 .docz
+dist
 packages/*/package-lock.json
 packages/*/coverage
 packages/*/yarn.lock

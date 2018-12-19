@@ -32,10 +32,16 @@ const filename = `${paths.appBuild}/${packageJson.rtmRollup.namespace}.${
 }.min.js`;
 
 function copyToMainJs() {
+  var replace = `packages\/${packageJson.rtmRollup.namespace}\/build`;
+  var re = new RegExp(replace, 'g');
   return {
     name: 'copy-to-main-js', // this name will show up in warnings and errors
     onwrite(output) {
       fs.copyFile(output.file, filename, err => {
+        if (err) throw err;
+      });
+      fs.mkdir('../../dist', { recursive: true }, err => {});
+      fs.copyFile(output.file, filename.replace(re, 'dist'), err => {
         if (err) throw err;
       });
     },
