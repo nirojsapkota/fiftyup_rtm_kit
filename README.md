@@ -160,7 +160,7 @@ Eventually we'd like for other configuration to be located here as well like any
 # package.json
 For each package, we have a `package.json`, and the goal is to keep them as simple and lean as possible.
 
-```json
+```
 {
   "name": "@rtm-ui/button",     # from npm run generate
   "version": "1.0.5",           # managed by lerna
@@ -200,6 +200,9 @@ When commiting, instead of running `git commit -m "My message"`, you can instead
 npm run commit # or git cz if you've done npm install -g commitizen
 ```
 This will bring up a prompt to walk you through a "conventional commit", it will ask you to identify the type of change (feature/bug/documentation) as well as which files are affected. __You should try your best to let this methodology guide your workflow, keeping commits across multiple packages separate__.
+
+### Usage:
+<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.useloom.com/embed/1612e0940c124a749b6455e64e810013" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ### Examples:
 Docz follows the same convention and has a really helpful [CHANGELOG](https://github.com/pedronauck/docz/blob/master/packages/docz-core/CHANGELOG.md) as a result. It might be helpful to read through some of their commit history to see how useful this is.
