@@ -36,9 +36,9 @@ const inputOptions = {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    // terser.terser({
-    //   sourcemap: true,
-    // }),
+    terser.terser({
+      sourcemap: true,
+    }),
     resolve({
       main: true,
     }),
@@ -53,7 +53,9 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  file: paths.appBuild + '/main.js',
+  file: `${paths.appBuild}/${packageJson.rtmRollup.namespace}.${
+    packageJson.version
+  }.min.js`,
   format: 'umd',
   name: packageJson.rtmRollup.defaultExport,
   exports: 'named',
