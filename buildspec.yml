@@ -27,3 +27,7 @@ artifacts:
     - "*/build/**"
   discard-paths: no
   base-directory: "packages"
+
+cache:
+  paths:
+    - node_modules
