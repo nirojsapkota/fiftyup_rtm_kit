@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/layout",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Description for Layout",
   "rtmRollup": {
     "namespace": "layout",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
-    "@rtm-ui/theme": "^1.0.5"
+    "@rtm-ui/theme": "^1.0.6"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "1.0.*",
@@ -32,7 +32,7 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.5",
+    "@rtm-ui/rtm-scripts": "^1.0.6",
     "jest-dom": "^2.1.1"
   }
 }
