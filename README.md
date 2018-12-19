@@ -1,7 +1,5 @@
 # RTM Kit
 
-Refer to Docz
-
 ![Build Status](https://codebuild.ap-southeast-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiajkyRnFtbHg5SkpQYkhQa1BhTXdOWC9QUVFVSWlRY2V5Y1JLWGt5b3l1VkM3RFFQS25IL3lmZVVxeXJCREVwUUQ5NjFwWVU0Z1YxTXZQckhUN3E5Tk80PSIsIml2UGFyYW1ldGVyU3BlYyI6IjNqT285V0JSd3NXMW9WK3YiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
@@ -197,6 +195,18 @@ This will bring up a prompt to walk you through a "conventional commit", it will
 
 ### Examples:
 Docz follows the same convention and has a really helpful [CHANGELOG](https://github.com/pedronauck/docz/blob/master/packages/docz-core/CHANGELOG.md) as a result. It might be helpful to read through some of their commit history to see how useful this is.
+
+---
+
+# Deployment
+
+Thanks to semantic versioning, we know that any projects relying on our packages won't get a breaking change by accident. Every commit to `master` is essentially a deploy and it's up the individual project to bump it's version of our packages to get the updated code.
+
+Whenever a commit to `master` is made, AWS Codebuild picks up the change from a Github hook and runs the steps defined in `buildspec.yml`. The main goal of the process is to test and publish the packages to our npm registry.
+
+- Lerna is responsible for bumping the version of each package and will commit the change back to Github. This is where our "conventional commits" come in handy.
+- The content of each pacakge is stored in an S3 bucket, which is used by our private npm registry whenever you run `npm install @rtm-ui/foo`.
+- Additionally, Codebuild runs `npm run build`, the result of the build process is also stored as an artifact (a separate S3 bucket). The contents of this bucket, which in most cases is a just a minified build file, are synced across to yet another S3 bucket which serve as a CDN via AWS Cloudfront (work in progress).
 
 ---
 
