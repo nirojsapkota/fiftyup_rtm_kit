@@ -6,8 +6,8 @@ import Button, { ButtonGroup } from '../index';
 afterEach(cleanup);
 
 const mockTrackEvent = jest.fn();
-jest.mock('../../../tracker/src', () => {
-  const original = require.requireActual('../../../tracker/src');
+jest.mock('@rtm-ui/tracker', () => {
+  const original = require.requireActual('@rtm-ui/tracker');
   return {
     ...original,
     Tracker: props => props.render(mockTrackEvent),
@@ -44,7 +44,7 @@ describe(`<Button />`, () => {
 
     fireEvent.click(getByText('Welcome to React'));
 
-    // expect(mockTrackEvent).toHaveBeenCalledTimes(1);
+    expect(mockTrackEvent).toHaveBeenCalledTimes(1);
     // TODO: jest cleanup should take care of this
     mockTrackEvent.mockReset();
   });
