@@ -25,7 +25,7 @@ phases:
 artifacts:
   files:
     - "*/build/**"
-  discard-paths: no
+  discard-paths: yes
   base-directory: "packages"
 
 cache:
