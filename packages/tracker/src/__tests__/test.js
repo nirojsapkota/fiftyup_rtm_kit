@@ -2,7 +2,7 @@ import React from 'react';
 import LogRocket from 'logrocket';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import { Tracker, track } from '..';
+import { Tracker, TrackingProvider, track } from '..';
 import Google from '../google';
 import Facebook from '../facebook';
 
@@ -74,6 +74,25 @@ describe(`<Tracker />`, () => {
 
     fireEvent.click(getByText('Hello'));
     // FIXME: This is an implicit validation, use expect() here
+  });
+
+  it(`accepts the context by the provider`, () => {
+    const buttonEvent = jest.fn();
+    const { getByText } = render(
+      <TrackingProvider trackingData={{ category: 'general' }}>
+        <Tracker
+          render={() => (
+            <button type="submit" onClick={buttonEvent}>
+              Hello
+            </button>
+          )}
+        />
+      </TrackingProvider>
+    );
+
+    fireEvent.click(getByText('Hello'));
+
+    expect(buttonEvent).toHaveBeenCalled();
   });
 
   it(`when trackEvent is not a function it doesn't blow up`, () => {
