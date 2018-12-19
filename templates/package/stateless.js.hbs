@@ -1,11 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import styled from 'styled-components';
+// import { Header, Paragraph } from '@rtm-ui/typography'
+// import { Box } from '@rtm-ui/layout'
 
-const {{ properCase name }} = () => <div>Hello World</div>;
+const {{ properCase name }} = ({children}) => <div>{children}</div>;
 
 {{ properCase name }}.propTypes = {
-  children: t.node
+  children: PropTypes.node
 };
 
 export default {{ properCase name }};

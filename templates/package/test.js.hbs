@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@rtm-ui/bootstrap/src/setupTests';
+import { render } from '../../../bootstrap/setup/testSetup';
 import {{ properCase name }} from '../index';
 
 describe('<{{ properCase name }} />', () => {
@@ -8,7 +8,7 @@ describe('<{{ properCase name }} />', () => {
   })
 
   it('matches expected output', () => {
-    const text = 'Hello, World'
+    const text = 'Hello, World!'
 
     const { getByText } = render(<{{ properCase name }}>{text}</{{ properCase name }}>);
 
