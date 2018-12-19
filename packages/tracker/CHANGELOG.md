@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@1.0.4...@rtm-ui/tracker@1.0.5) (2018-12-19)
+
+
+### Bug Fixes
+
+* **bootstrap tracker:** Import test setup files directly for jest runs, add TrackingProvider coverag ([010ac46](https://github.com/OBSAU/rtm-kit/commit/010ac46))
+
+
+
+
+
 ## [1.0.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@1.0.3...@rtm-ui/tracker@1.0.4) (2018-12-18)
 
 
