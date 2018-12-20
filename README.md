@@ -58,6 +58,8 @@ From here there are a few things you can do:
 
 ## Create a Package
 
+[Example](https://www.useloom.com/share/31a383fccbc44d8fb7a338d52ce311f4)
+
 We have a package generation template which can be found in `templates/package`. To create a new package:
 
 ```sh
