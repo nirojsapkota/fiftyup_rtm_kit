@@ -24,6 +24,7 @@ phases:
 
 artifacts:
   files:
+    - "dist/**"
     - "*/build/**"
   discard-paths: yes
   base-directory: "packages"
