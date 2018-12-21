@@ -1,0 +1,19 @@
+---
+name: Form
+route: /packages/form
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Form from './src'
+
+# Form
+
+## Basic usage
+
+<Playground>
+  <Form onSubmit={(values, { setSubmitting}) => {
+    setSubmitting(false)
+    console.log('Yep', values)}
+  }>Hello, World!</Form>
+</Playground>

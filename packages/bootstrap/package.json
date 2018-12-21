@@ -25,10 +25,10 @@
     "jest-dom": "^2.1.1",
     "prop-types": "^15.5.4",
     "react": "^16.6",
-    "react-testing-library": "^5.2.3",
     "styled-components": "^4.0"
   },
   "devDependencies": {
+    "react-testing-library": "^5.2.3",
     "@rtm-ui/rtm-scripts": "^1.0.6",
     "jest-styled-components": "^6.2.2"
   }
