@@ -3,7 +3,7 @@ import React from 'react';
 import { Formik, Field } from 'formik';
 import styled from 'styled-components';
 
-import { Box } from '@rtm-ui/layout';
+import { Box, Card } from '@rtm-ui/layout';
 import Button from '@rtm-ui/button';
 import { Paragraph } from '@rtm-ui/typography';
 
@@ -15,6 +15,23 @@ const StyledInput = styled.input`
   font-size: 16px;
   border: none;
   border-bottom: 1px solid #ccc;
+  width: 100%;
+`;
+
+const MainWrapper = styled(Card)`
+  background: #ffffff;
+  form {
+    width: 100%;
+    min-width: 320px;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  width: 216px;
+`;
+
+const ButtonWrapper = styled(Box)`
+  text-align: center;
 `;
 
 const TextInput = props => <StyledInput {...props} />;
@@ -63,73 +80,86 @@ class LoginForm extends React.Component {
     const { hiddenFields, authenticityToken } = this.props;
 
     return (
-      <Formik
-        initialValues={{
-          user: {
-            postcode_suburb: '',
-            email: '',
-          },
-          authenticityToken,
-          ...hiddenFields,
-        }}
-        onSubmit={this.handleSubmit}
-        render={({ values, handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            {Object.keys(values).map(
-              key =>
-                key !== 'user' && (
+      <React.Fragment>
+        <MainWrapper px={20} py={15}>
+          <Formik
+            initialValues={{
+              user: {
+                postcode_suburb: '',
+                email: '',
+              },
+              authenticityToken,
+              ...hiddenFields,
+            }}
+            onSubmit={this.handleSubmit}
+            render={({ values, handleSubmit }) => (
+              <form onSubmit={handleSubmit}>
+                {Object.keys(values).map(
+                  key =>
+                    key !== 'user' && (
+                      <Field
+                        key={key}
+                        name={key}
+                        render={({ field }) => (
+                          <HiddenInput {...field} id={key} />
+                        )}
+                      />
+                    )
+                )}
+                <Box>
+                  Join One Big Switch today for FREE
+                  <br />
+                  and instantly unlock your special offers!
+                  <br />
+                  (This text should be configured by entity)
+                </Box>
+                {errors && (
+                  <Box py={2}>
+                    {errors.map(error => (
+                      <ErrorWrapper>{error}</ErrorWrapper>
+                    ))}
+                  </Box>
+                )}
+                <Box py={2}>
+                  <Box py={2}>My Postcode:</Box>
                   <Field
-                    key={key}
-                    name={key}
-                    render={({ field }) => <HiddenInput {...field} id={key} />}
+                    name="user.postcode_suburb"
+                    render={({ field }) => (
+                      <TextInput
+                        {...field}
+                        id="user.postcode_suburb"
+                        aria-labelledby="user.postcode_suburb"
+                        placeholder="Postcode"
+                        required
+                      />
+                    )}
                   />
-                )
+                </Box>
+                <Box py={2}>
+                  <Box py={2}>My Email:</Box>
+                  <Field
+                    name="user.email"
+                    render={({ field }) => (
+                      <TextInput
+                        {...field}
+                        id="user.email"
+                        aria-labelledby="user.email"
+                        placeholder="Email"
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        title="Invalid email address"
+                      />
+                    )}
+                  />
+                </Box>
+                <ButtonWrapper pt={2}>
+                  <StyledButton type="submit">See the offer</StyledButton>
+                </ButtonWrapper>
+              </form>
             )}
-            <Box py={2}>
-              Join One Big Switch today for FREE
-              <br />
-              and instantly unlock your special offers!
-              <br />
-              (This text should be configured by entity)
-            </Box>
-            <Box py={2}>
-              {errors &&
-                errors.map(error => <ErrorWrapper>{error}</ErrorWrapper>)}
-            </Box>
-            <Box py={2}>
-              <Box py={2}>My Postcode:</Box>
-              <Field
-                name="user.postcode_suburb"
-                render={({ field }) => (
-                  <TextInput
-                    {...field}
-                    id="user.postcode_suburb"
-                    aria-labelledby="user.postcode_suburb"
-                    placeholder="Postcode"
-                    required
-                  />
-                )}
-              />
-            </Box>
-            <Box py={2}>
-              <Box py={2}>My Email:</Box>
-              <Field
-                name="user.email"
-                render={({ field }) => (
-                  <TextInput
-                    {...field}
-                    id="user.email"
-                    aria-labelledby="user.email"
-                    placeholder="Email"
-                    required
-                  />
-                )}
-              />
-            </Box>
-            <Button type="submit">See the offer</Button>
-          </form>
-        )}
-      />
+          />
+        </MainWrapper>
+      </React.Fragment>
     );
   }
 }

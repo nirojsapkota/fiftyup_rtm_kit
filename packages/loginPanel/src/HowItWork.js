@@ -4,8 +4,8 @@ import React from 'react';
 
 import { Box } from '@rtm-ui/layout';
 
-const HowItWork = () => {
-  return <Box>This contain how it work</Box>;
+const HowItWork = ({ props }) => {
+  return <Box {...props}>This contain how it work</Box>;
 };
 
 export default HowItWork;
