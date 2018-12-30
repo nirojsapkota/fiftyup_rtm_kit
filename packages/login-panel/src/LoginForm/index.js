@@ -173,7 +173,8 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
   authenticityToken: t.string,
   handleRedirect: t.func,
-  hiddenFields: t.arrayOf(t.object),
+  // eslint-disable-next-line react/forbid-prop-types
+  hiddenFields: t.object,
 };
 
 export default LoginForm;
