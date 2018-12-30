@@ -1,5 +1,5 @@
 import React from 'react';
-// import t from 'prop-types';
+import t from 'prop-types';
 import { Formik, Field } from 'formik';
 import styled from 'styled-components';
 
@@ -9,6 +9,7 @@ import { Paragraph } from '@rtm-ui/typography';
 
 import { submitLogin } from './actions';
 import { LOGIN_URL } from './constants';
+import PostCodeField from '../PostCodeField';
 
 const StyledInput = styled.input`
   padding: 8px 2px;
@@ -53,7 +54,11 @@ class LoginForm extends React.Component {
   }
 
   async handleSubmit(values, actions) {
-    const result = await submitLogin(LOGIN_URL, values);
+    const result = await submitLogin(
+      LOGIN_URL,
+      values,
+      this.props.authenticityToken
+    );
     if (result && !result.errors) {
       if (typeof this.props.handleRedirect === 'function') {
         this.props.handleRedirect(result);
@@ -88,7 +93,6 @@ class LoginForm extends React.Component {
                 postcode_suburb: '',
                 email: '',
               },
-              authenticityToken,
               ...hiddenFields,
             }}
             onSubmit={this.handleSubmit}
@@ -124,9 +128,12 @@ class LoginForm extends React.Component {
                   <Box py={2}>My Postcode:</Box>
                   <Field
                     name="user.postcode_suburb"
-                    render={({ field }) => (
-                      <TextInput
-                        {...field}
+                    render={({ field, form }) => (
+                      <PostCodeField
+                        form={form}
+                        field={field}
+                        inputComponent={TextInput}
+                        authenticityToken={authenticityToken}
                         id="user.postcode_suburb"
                         aria-labelledby="user.postcode_suburb"
                         placeholder="Postcode"
@@ -163,6 +170,10 @@ class LoginForm extends React.Component {
     );
   }
 }
-LoginForm.propTypes = {};
+LoginForm.propTypes = {
+  authenticityToken: t.string,
+  handleRedirect: t.func,
+  hiddenFields: t.arrayOf(t.object),
+};
 
 export default LoginForm;

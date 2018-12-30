@@ -37,22 +37,24 @@ class Popover extends React.Component {
     super(props);
     this.anchorRef = React.createRef();
     this.popoverRef = React.createRef();
-  }
 
-  state = {
-    isOpen: this.props.isOpen,
-    isControlled: this.props.isControlled,
-    anchorDimensions: {
-      x: null,
-      y: null,
-      width: null,
-      height: null,
-      top: null,
-      bottom: null,
-      left: null,
-      right: null,
-    },
-  };
+    this.state = {
+      isOpen: this.props.isOpen,
+      isControlled: this.props.isControlled,
+      anchorDimensions: {
+        x: null,
+        y: null,
+        width: null,
+        height: null,
+        top: null,
+        bottom: null,
+        left: null,
+        right: null,
+      },
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
 
   componentDidMount() {
     const rect = this.anchorRef.current.getBoundingClientRect();
@@ -95,9 +97,10 @@ class Popover extends React.Component {
     this.cleanup();
   }
 
-  toggle = () =>
-    // eslint-disable-next-line react/no-access-state-in-setstate
-    !this.state.isControlled && this.setState({ isOpen: !this.state.isOpen });
+  toggle() {
+    const { isOpen } = this.state;
+    return !this.state.isControlled && this.setState({ isOpen: !isOpen });
+  }
 
   render() {
     const {

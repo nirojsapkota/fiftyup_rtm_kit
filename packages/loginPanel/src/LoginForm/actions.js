@@ -2,14 +2,14 @@
 // import axios from 'axios';
 const axios = require('axios');
 
-export const submitLogin = async (url, data) => {
+export const submitLogin = async (url, data, authenticityToken) => {
   const config = {
     method: 'post',
     url,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'X-CSRF-Token': data.authenticityToken,
+      'X-CSRF-Token': authenticityToken,
     },
     data,
   };
