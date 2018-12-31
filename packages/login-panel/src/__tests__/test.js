@@ -1,18 +1,24 @@
 import React from 'react';
-import { render } from '../../../bootstrap/setup/testSetup';
+// eslint-disable-next-line import/named
+import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
 import LoginPanel from '../index';
 
 describe('<LoginPanel />', () => {
-  it('has unit tests specified', () => {
-    expect(true).toEqual(false);
-  });
+  it('matches expected output', async () => {
+    // const onSubmit = jest.fn();
 
-  it('matches expected output', () => {
-    const text = 'Hello, World!';
+    const { getByText, getByPlaceholderText } = render(<LoginPanel />);
 
-    const { getByText } = render(<LoginPanel>{text}</LoginPanel>);
+    const email = getByPlaceholderText('Email');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByPlaceholderText('Postcode');
+    fireEvent.change(postcode, {
+      target: { value: '2000, Barangaroo' },
+    });
 
-    expect(getByText(text)).toBeInTheDocument();
-    expect(getByText(text)).toMatchSnapshot();
+    const submit = getByText('See the offer');
+    fireEvent.click(submit);
   });
 });

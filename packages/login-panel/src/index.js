@@ -1,6 +1,6 @@
 import React from 'react';
 import t from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 // import { Header, Paragraph } from '@rtm-ui/typography'
 import { Box } from '@rtm-ui/layout';
 
@@ -9,39 +9,79 @@ import OfferHeroImage from './OfferHeroImage';
 import HowItWork from './HowItWork';
 import FooterLogo from './FooterLogo';
 import LoginForm from './LoginForm';
-
-const base = css`
-  background: #f1f1f1;
-`;
+import Disclaimer from './Disclaimer';
 
 const BodyWrapper = styled(Box)`
-  ${base};
-  max-width: 1216px;
+  background: #f1f1f1;
+`;
+const CenterWrapper = styled(Box)`
+  background: inherit;
+  max-width: 1080px;
 `;
 
-const StyledHowItWork = styled(HowItWork)``;
-
-const MainWrapper = styled(Box)`
+const ContentWrapper = styled(Box)`
+  background: inherit;
   display: flex;
-  flex-direction: row;
-  @media (max-width: 768px) {
+  flex-wrap: wrap;
+  @media (max-width: 767px) {
     flex-direction: column;
   }
 `;
 
-const LoginFormWrapper = styled(Box)``;
+const Column = styled(Box)`
+  background: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MobileShow = styled(Box)`
+  background: inherit;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileHide = styled(Box)`
+  background: inherit;
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
+const HowItWorkWrapper = styled(Box)`
+  background: inherit;
+`;
+
+const LoginFormWrapper = styled(Box)`
+  background: none;
+`;
 
 const LoginPanel = props => (
   <React.Fragment>
     <HeaderLogo />
-    <BodyWrapper width={[1, 1, 1]}>
-      <OfferHeroImage />
-      <MainWrapper>
-        <LoginFormWrapper p={10}>
-          <LoginForm {...props} />
-        </LoginFormWrapper>
-        <StyledHowItWork />
-      </MainWrapper>
+    <BodyWrapper>
+      <CenterWrapper m="auto">
+        <OfferHeroImage />
+        <ContentWrapper mt={-30}>
+          <Column>
+            <LoginFormWrapper px={10}>
+              <LoginForm {...props} />
+            </LoginFormWrapper>
+            <MobileHide>
+              <Disclaimer />
+            </MobileHide>
+          </Column>
+          <Column>
+            <HowItWorkWrapper mt={50}>
+              <HowItWork />
+            </HowItWorkWrapper>
+          </Column>
+          <MobileShow>
+            <Disclaimer />
+          </MobileShow>
+        </ContentWrapper>
+      </CenterWrapper>
     </BodyWrapper>
     <FooterLogo />
   </React.Fragment>
