@@ -19,8 +19,6 @@ const StyledInput = styled.input`
   width: 100%;
 `;
 
-const MainWrapper = styled(Card)``;
-
 const StyledButton = styled(Button)`
   width: 216px;
 `;
@@ -76,10 +74,10 @@ class LoginForm extends React.Component {
       window.location.href = redirectPath;
     }
 
-    const { hiddenFields, authenticityToken } = this.props;
+    const { hiddenFields, authenticityToken, title, buttonText } = this.props;
 
     return (
-      <MainWrapper px={20} py={15}>
+      <Card px={20} py={15}>
         <Formik
           initialValues={{
             user: {
@@ -103,13 +101,7 @@ class LoginForm extends React.Component {
                     />
                   )
               )}
-              <Box>
-                Join One Big Switch today for FREE
-                <br />
-                and instantly unlock your special offers!
-                <br />
-                (This text should be configured by entity)
-              </Box>
+              <Paragraph>{title}</Paragraph>
               {errors && (
                 <Box py={2}>
                   {errors.map(error => (
@@ -153,12 +145,12 @@ class LoginForm extends React.Component {
                 />
               </Box>
               <ButtonWrapper pt={2}>
-                <StyledButton type="submit">See the offer</StyledButton>
+                <StyledButton type="submit">{buttonText}</StyledButton>
               </ButtonWrapper>
             </form>
           )}
         />
-      </MainWrapper>
+      </Card>
     );
   }
 }
@@ -167,6 +159,16 @@ LoginForm.propTypes = {
   handleRedirect: t.func,
   // eslint-disable-next-line react/forbid-prop-types
   hiddenFields: t.object,
+  title: t.string,
+  buttonText: t.string,
+  buttonIcon: t.string,
+};
+
+LoginForm.defaultProps = {
+  title:
+    'Join One Big Switch today for FREE and instantly unlock your special offers!',
+  buttonText: 'See the offer',
+  buttonIcon: null,
 };
 
 export default LoginForm;

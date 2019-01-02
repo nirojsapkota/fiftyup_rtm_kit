@@ -3,17 +3,19 @@ import t from 'prop-types';
 import styled from 'styled-components';
 // import { Header, Paragraph } from '@rtm-ui/typography'
 import { Box } from '@rtm-ui/layout';
+import Variant, { backgroundStyle, getColor } from '@rtm-ui/theme';
 
-import HeaderLogo from './HeaderLogo';
-import OfferHeroImage from './OfferHeroImage';
+import Header from './Header';
+import HeroImage from './HeroImage';
 import HowItWork from './HowItWork';
-import FooterLogo from './FooterLogo';
+import Footer from './Footer';
 import LoginForm from './LoginForm';
 import Disclaimer from './Disclaimer';
 
 const BodyWrapper = styled(Box)`
-  background: #f1f1f1;
+  background: ${props => getColor('light', props.theme)};
 `;
+
 const CenterWrapper = styled(Box)`
   background: inherit;
   max-width: 1080px;
@@ -21,69 +23,69 @@ const CenterWrapper = styled(Box)`
 
 const ContentWrapper = styled(Box)`
   background: inherit;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 50% auto;
+  grid-template-rows: auto auto;
   @media (max-width: 767px) {
-    flex-direction: column;
-  }
-`;
-
-const Column = styled(Box)`
-  background: none;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-const MobileShow = styled(Box)`
-  background: inherit;
-  @media (min-width: 768px) {
-    display: none;
-  }
-`;
-
-const MobileHide = styled(Box)`
-  background: inherit;
-  @media (max-width: 767px) {
-    display: none;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
   }
 `;
 
 const HowItWorkWrapper = styled(Box)`
   background: inherit;
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  margin-top: 50px;
+  @media (max-width: 767px) {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 20px;
+  }
 `;
 
 const LoginFormWrapper = styled(Box)`
   background: none;
 `;
 
-const LoginPanel = props => (
+const DisclaimerWrapper = styled(Box)`
+  background: inherit;
+`;
+
+const FooterWrapper = styled(Box)`
+  ${backgroundStyle};
+`;
+
+const LoginPanel = ({
+  headerProps,
+  footerProps,
+  howItWorkProps,
+  disclaimerProps,
+  props,
+}) => (
   <React.Fragment>
-    <HeaderLogo />
+    <Header {...headerProps} />
     <BodyWrapper>
       <CenterWrapper m="auto">
-        <OfferHeroImage />
+        <HeroImage />
         <ContentWrapper mt={-30}>
-          <Column>
-            <LoginFormWrapper px={10}>
-              <LoginForm {...props} />
-            </LoginFormWrapper>
-            <MobileHide>
-              <Disclaimer />
-            </MobileHide>
-          </Column>
-          <Column>
-            <HowItWorkWrapper mt={50}>
-              <HowItWork />
-            </HowItWorkWrapper>
-          </Column>
-          <MobileShow>
-            <Disclaimer />
-          </MobileShow>
+          <LoginFormWrapper px={10}>
+            <LoginForm {...props} />
+          </LoginFormWrapper>
+          <HowItWorkWrapper px={10}>
+            <HowItWork {...howItWorkProps} />
+          </HowItWorkWrapper>
+          <DisclaimerWrapper>
+            <Disclaimer {...disclaimerProps} />
+          </DisclaimerWrapper>
         </ContentWrapper>
       </CenterWrapper>
     </BodyWrapper>
-    <FooterLogo />
+    <Variant variant="c">
+      <FooterWrapper>
+        <Footer {...footerProps} boxWidth="1080px" />
+      </FooterWrapper>
+    </Variant>
   </React.Fragment>
 );
 

@@ -10,13 +10,14 @@ class PostCodeField extends React.Component {
     super(props);
 
     this.state = {
-      options: [],
+      options: props.options ? props.options : [],
     };
 
     this.handleInput = this.handleInput.bind(this);
   }
 
   async handleInput(isFromSelect, fieldName, value) {
+    const { authenticityToken, form } = this.props;
     let options = [];
     if (typeof this.props.getAutoCompletePostcode === 'function') {
       options = this.props.getAutoCompletePostcode(value);
@@ -24,13 +25,12 @@ class PostCodeField extends React.Component {
       options = await getAutoCompletePostcode(
         AUTOCOMPLETE_POSTCODE_URL,
         value,
-        this.props.authenticityToken
+        authenticityToken
       );
+      options = options.map(value => ({ value, label: value }));
     }
 
-    options = options.map(value => ({ value, label: value }));
-
-    this.props.form.setFieldValue(fieldName, value);
+    form.setFieldValue(fieldName, value);
     if (!isFromSelect) {
       this.setState({
         options,

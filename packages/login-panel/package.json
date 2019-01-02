@@ -9,8 +9,7 @@
   "rtmRollup": {
     "namespace": "loginPanel",
     "defaultExport": "LoginPanel",
-    "namedExports": [
-    ]
+    "namedExports": []
   },
   "scripts": {
     "start": "rtm-scripts start",
@@ -19,10 +18,11 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/button": "^1.0.0",
-    "@rtm-ui/img": "^1.0.0",
-    "@rtm-ui/layout": "^1.0.0",
-    "@rtm-ui/typography": "^1.0.0",
+    "@rtm-ui/button": "^1.0.6",
+    "@rtm-ui/img": "^1.0.6",
+    "@rtm-ui/layout": "^1.0.6",
+    "@rtm-ui/theme": "^1.0.6",
+    "@rtm-ui/typography": "^1.0.6",
     "axios": "^0.18.0",
     "formik": "^1.4.1"
   },
