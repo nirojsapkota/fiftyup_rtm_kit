@@ -1,152 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
-import { Header, Paragraph } from '@rtm-ui/typography';
-import { Box } from '@rtm-ui/layout';
-import Img from '@rtm-ui/img';
+import * as StyledPage from './style';
 
-const StyledBox = styled(Box)`
-  background: inherit;
-  padding: 0px 10px;
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    padding: 0px 30px;
-  }
-  * {
-    background: inherit;
-  }
-`;
-
-const colorStyles = css`
-  color: #1d79bc;
-`;
-
-const PrimaryArrow = css`
-  position: absolute;
-  right: -15px;
-  top: 45%;
-  width: 0;
-  height: 0;
-  content: '';
-  border-top: 6px solid transparent;
-  border-left: 12px solid #083d87;
-  border-bottom: 6px solid transparent;
-  z-index: 2;
-`;
-
-const SecondArrow = css`
-  position: absolute;
-  right: auto;
-  top: auto;
-  bottom: -15px;
-  left: calc(50% - 12px);
-  content: '';
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 25px solid #083d87;
-  z-index: 2;
-`;
-
-const HeaderTitleStyled = styled(Header)`
-  font-size: 16px;
-  line-height: 1.6;
-  text-align: left;
-  ${colorStyles};
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    font-size: 18px;
-  }
-`;
-
-const StepOfferStlyed = styled(Box)`
-  display: inline-flex;
-  flex-direction: row;
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    display: inline-block;
-    flex-direction: unset;
-    width: 100%;
-  }
-`;
-
-const ItemStyled = styled.div`
-  padding: 8px;
-  position: relative;
-  > div:first-child {
-    position: relative;
-    &:after {
-      ${PrimaryArrow};
-    }
-  }
-  &:first-child {
-    margin-left: 0px;
-    @media (min-width: ${props => props.theme.grid.md}em) {
-      flex-direction: row;
-      > p {
-        text-align: right;
-      }
-    }
-  }
-  &:last-child {
-    margin-right: 0px;
-    > div:after {
-      display: none;
-    }
-    &:after {
-      display: none;
-    }
-    @media (min-width: ${props => props.theme.grid.md}em) {
-      flex-direction: row;
-      padding: 0px;
-      > p {
-        text-align: right;
-      }
-    }
-  }
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    width: 100%;
-    display: inline-flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    > div:after {
-      display: none;
-    }
-    &:after {
-      ${SecondArrow};
-    }
-  }
-`;
-
-const StepImgStyled = styled(Img)`
-  max-width: 150px;
-  max-height: 150px;
-  padding: 10px 0px;
-`;
-
-const StepDescStyled = styled(Paragraph)`
-  text-align: center;
-  word-break: break-word;
-  width: 100%;
-  font-size: small;
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    text-align: left;
-    padding: 0px 10px;
-    font-size: 16px;
-  }
-`;
 const HowItWork = props => (
-  <StyledBox>
-    <Box>
-      <HeaderTitleStyled>{props.header}</HeaderTitleStyled>
-    </Box>
-    <StepOfferStlyed>
+  <StyledPage.WrapperBox>
+    <StyledPage.HeaderTitleStyled>{props.header}</StyledPage.HeaderTitleStyled>
+    <StyledPage.StepOfferStyled>
       {props.stepOffers.map(s => (
-        <ItemStyled>
-          <StepImgStyled src={s.imgSrc} />
-          <StepDescStyled>{s.title}</StepDescStyled>
-        </ItemStyled>
+        <StyledPage.ItemStyled>
+          <StyledPage.StepImgStyled src={s.imgSrc} />
+          <StyledPage.StepDescStyled>{s.title}</StyledPage.StepDescStyled>
+        </StyledPage.ItemStyled>
       ))}
-    </StepOfferStlyed>
-  </StyledBox>
+    </StyledPage.StepOfferStyled>
+  </StyledPage.WrapperBox>
 );
 
 HowItWork.defaultProps = {
@@ -154,15 +21,18 @@ HowItWork.defaultProps = {
     'One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!',
   stepOffers: [
     {
-      imgSrc: 'https://placehold.it/300x200',
+      imgSrc:
+        'https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/tick-81a6885ed08fa480d0a3edd9eb3daed0386aeff48e4fd6696bf9d3fd546474e2.png',
       title: 'You join the movement for free',
     },
     {
-      imgSrc: 'https://placehold.it/300x200',
+      imgSrc:
+        'https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/quote-e31e7443a59255068905462c61ea2fc8c0baf111b4cbd09e7dc0697fa73b605b.png',
       title: 'We negotiate Group Discounts',
     },
     {
-      imgSrc: 'https://placehold.it/300x200',
+      imgSrc:
+        'https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/dollar-c46a72a93eb371e6000fe5a034cdcd04bddb7c2746bc71ca8220d4e733baecba.png',
       title: 'You decide what’s right for you',
     },
   ],
@@ -170,7 +40,7 @@ HowItWork.defaultProps = {
 
 HowItWork.propTypes = {
   header: PropTypes.string,
-  stepOffers: PropTypes.arrayOf,
+  stepOffers: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default HowItWork;
