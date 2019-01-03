@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as StyledPage from './style';
+import { HeaderTitleStyled, StepOfferStyled, ItemStyled, StepImgStyled, StepDescStyled, WrapperBox } from './style';
 
 const HowItWork = props => (
-  <StyledPage.WrapperBox>
-    <StyledPage.HeaderTitleStyled>{props.header}</StyledPage.HeaderTitleStyled>
-    <StyledPage.StepOfferStyled>
+  <WrapperBox>
+    <HeaderTitleStyled>{props.header}</HeaderTitleStyled>
+    <StepOfferStyled>
       {props.stepOffers.map(s => (
-        <StyledPage.ItemStyled>
-          <StyledPage.StepImgStyled src={s.imgSrc} />
-          <StyledPage.StepDescStyled>{s.title}</StyledPage.StepDescStyled>
-        </StyledPage.ItemStyled>
+        <ItemStyled>
+          <StepImgStyled src={s.imgSrc} />
+          <StepDescStyled>{s.title}</StepDescStyled>
+        </ItemStyled>
       ))}
-    </StyledPage.StepOfferStyled>
-  </StyledPage.WrapperBox>
+    </StepOfferStyled>
+  </WrapperBox>
 );
 
 HowItWork.defaultProps = {

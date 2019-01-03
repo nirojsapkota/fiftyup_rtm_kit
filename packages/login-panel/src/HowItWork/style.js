@@ -17,7 +17,7 @@ const PrimaryArrow = css`
   content: '';
   border-top: 6px solid transparent;
   border-left: 12px solid
-    ${props => getColor(props.color || 'button', props.theme)};
+    ${props => getColor(props.color || 'background', props.theme)};
   border-bottom: 6px solid transparent;
   z-index: 2;
 `;
@@ -34,11 +34,11 @@ const SecondArrow = css`
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-top: 22px solid
-    ${props => getColor(props.color || 'botton', props.theme)};
+    ${props => getColor(props.color || 'backbround', props.theme)};
   z-index: 2;
 `;
 
-const HeaderTitleStyled = styled(Header)`
+export const HeaderTitleStyled = styled(Header)`
   font-family: ${props =>
     props.font === 'serif'
       ? props.theme.fonts.serif
@@ -52,7 +52,7 @@ const HeaderTitleStyled = styled(Header)`
   }
 `;
 
-const WrapperBox = styled(Box)`
+export const WrapperBox = styled(Box)`
   background: inherit;
   padding: 0px 10px;
   @media (min-width: ${props => props.theme.grid.md}em) {
@@ -64,7 +64,7 @@ const WrapperBox = styled(Box)`
   }
 `;
 
-const StepOfferStyled = styled(Box)`
+export const StepOfferStyled = styled(Box)`
   display: inline-flex;
   flex-direction: row;
   @media (min-width: ${props => props.theme.grid.md}em) {
@@ -73,7 +73,8 @@ const StepOfferStyled = styled(Box)`
     width: 100%;
   }
 `;
-const ItemStyled = styled.div`
+
+export const ItemStyled = styled.div`
   padding: 8px;
   position: relative;
   > div:first-child {
@@ -121,13 +122,13 @@ const ItemStyled = styled.div`
   }
 `;
 
-const StepImgStyled = styled(Img)`
+export const StepImgStyled = styled(Img)`
   max-width: 150px;
   max-height: 150px;
   padding: 10px 0px;
 `;
 
-const StepDescStyled = styled(Paragraph)`
+export const StepDescStyled = styled(Paragraph)`
   text-align: center;
   word-break: break-word;
   font-size: 0.9em;
@@ -137,12 +138,3 @@ const StepDescStyled = styled(Paragraph)`
     font-size: 1em;
   }
 `;
-
-export {
-  HeaderTitleStyled,
-  StepOfferStyled,
-  ItemStyled,
-  StepImgStyled,
-  StepDescStyled,
-  WrapperBox,
-};
