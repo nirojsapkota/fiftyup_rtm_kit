@@ -17,7 +17,7 @@ const PrimaryArrow = css`
   content: '';
   border-top: 6px solid transparent;
   border-left: 12px solid
-    ${props => getColor(props.color || 'background', props.theme)};
+    ${props => getColor(props.color || 'black', props.theme)};
   border-bottom: 6px solid transparent;
   z-index: 2;
 `;
@@ -34,7 +34,7 @@ const SecondArrow = css`
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-top: 22px solid
-    ${props => getColor(props.color || 'backbround', props.theme)};
+    ${props => getColor(props.color || 'black', props.theme)};
   z-index: 2;
 `;
 

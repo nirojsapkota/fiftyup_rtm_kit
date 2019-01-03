@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HeaderTitleStyled, StepOfferStyled, ItemStyled, StepImgStyled, StepDescStyled, WrapperBox } from './style';
+import {
+  HeaderTitleStyled,
+  StepOfferStyled,
+  ItemStyled,
+  StepImgStyled,
+  StepDescStyled,
+  WrapperBox,
+} from './style';
 
 const HowItWork = props => (
   <WrapperBox>
     <HeaderTitleStyled>{props.header}</HeaderTitleStyled>
     <StepOfferStyled>
       {props.stepOffers.map(s => (
-        <ItemStyled>
-          <StepImgStyled src={s.imgUrl} />
+        <ItemStyled key={s.imgUrl}>
+          <StepImgStyled src={s.imgUrl} alt={s.title} />
           <StepDescStyled>{s.title}</StepDescStyled>
         </ItemStyled>
       ))}

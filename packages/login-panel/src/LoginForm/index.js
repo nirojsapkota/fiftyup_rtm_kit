@@ -2,14 +2,28 @@ import React from 'react';
 import t from 'prop-types';
 import { Formik, Field } from 'formik';
 import styled from 'styled-components';
-
+import { getColor } from '@rtm-ui/theme';
 import { Box, Card } from '@rtm-ui/layout';
 import Button from '@rtm-ui/button';
-import { Paragraph } from '@rtm-ui/typography';
+import { Header, Paragraph } from '@rtm-ui/typography';
 
 import { submitLogin } from './actions';
 import { LOGIN_URL } from './constants';
 import PostCodeField from '../PostCodeField';
+
+const HeaderTitleStyled = styled(Header)`
+  font-family: ${props =>
+    props.font === 'serif'
+      ? props.theme.fonts.serif
+      : props.theme.fonts.sansSerif};
+  font-size: 15px;
+  text-align: left;
+  line-height: 1.6;
+  color: ${props => getColor(props.color || 'text', props.theme)};
+  @media (min-width: ${props => props.theme.grid.md}em) {
+    font-size: 18px;
+  }
+`;
 
 const StyledInput = styled.input`
   padding: 8px 2px;
@@ -29,7 +43,17 @@ const ButtonWrapper = styled(Box)`
 
 const TextInput = props => <StyledInput {...props} />;
 const HiddenInput = props => <input type="hidden" {...props} />;
-const ErrorWrapper = props => <Paragraph {...props} />;
+
+const ErrorWrapper = styled(Paragraph)`
+  background: #faeded;
+  position: relative;
+  font-weight: 300;
+  font-size: 1.14286rem;
+  padding: 8px 20px;
+  margin: 5px auto 5px;
+  border: 1px solid #ca3838;
+  color: #7b2121;
+`;
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -101,7 +125,7 @@ class LoginForm extends React.Component {
                     />
                   )
               )}
-              <Paragraph>{title}</Paragraph>
+              <HeaderTitleStyled>{title}</HeaderTitleStyled>
               {errors && (
                 <Box py={2}>
                   {errors.map(error => (
@@ -122,6 +146,7 @@ class LoginForm extends React.Component {
                       id="user.postcode_suburb"
                       aria-labelledby="user.postcode_suburb"
                       placeholder="Postcode"
+                      popoverProps={{ maxHeight: 150 }}
                       required
                     />
                   )}

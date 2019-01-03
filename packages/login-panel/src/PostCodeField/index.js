@@ -10,7 +10,7 @@ class PostCodeField extends React.Component {
     super(props);
 
     this.state = {
-      options: props.options ? props.options : [],
+      options: props.options || [],
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -18,20 +18,29 @@ class PostCodeField extends React.Component {
 
   async handleInput(isFromSelect, fieldName, value) {
     const { authenticityToken, form } = this.props;
-    let options = [];
-    if (typeof this.props.getAutoCompletePostcode === 'function') {
-      options = this.props.getAutoCompletePostcode(value);
-    } else {
-      options = await getAutoCompletePostcode(
-        AUTOCOMPLETE_POSTCODE_URL,
-        value,
-        authenticityToken
-      );
-      options = options.map(value => ({ value, label: value }));
-    }
 
     form.setFieldValue(fieldName, value);
+
+    // If we select from select don't need to find
     if (!isFromSelect) {
+      // Don't search if value < 2
+      if (value && value.length < 2) {
+        return;
+      }
+
+      let options = [];
+      // Call outside func if provided
+      if (typeof this.props.getAutoCompletePostcode === 'function') {
+        options = this.props.getAutoCompletePostcode(value);
+      } else {
+        options = await getAutoCompletePostcode(
+          AUTOCOMPLETE_POSTCODE_URL,
+          value,
+          authenticityToken
+        );
+        options = options.map(value => ({ value, label: value }));
+      }
+
       this.setState({
         options,
       });

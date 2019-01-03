@@ -30,6 +30,7 @@ const PositionedPane = styled(Card)`
   z-index: 1000;
   left: 0;
   overflow: hidden;
+  overflow-y: scroll;
 `;
 
 class Popover extends React.Component {

@@ -13,6 +13,8 @@ const DropdownSelect = ({
   field,
   inputComponent,
   inputEvents,
+  popoverProps,
+  form,
   ...props
 }) => {
   const inputElement = (toggle, isOpen) => {
@@ -28,7 +30,7 @@ const DropdownSelect = ({
   };
 
   return (
-    <Popover display="block" anchor={inputElement}>
+    <Popover display="block" anchor={inputElement} {...popoverProps}>
       {toggle =>
         options.map(({ value, label }) => (
           <Option
@@ -39,7 +41,7 @@ const DropdownSelect = ({
               if (typeof props.setFieldValue === 'function') {
                 props.setFieldValue(field.name, value);
               } else {
-                props.form.setFieldValue(field.name, value);
+                form.setFieldValue(field.name, value);
               }
               toggle();
             }}

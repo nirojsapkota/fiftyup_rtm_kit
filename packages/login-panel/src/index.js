@@ -26,7 +26,7 @@ const ContentWrapper = styled(Box)`
   display: grid;
   grid-template-columns: 50% auto;
   grid-template-rows: auto auto;
-  @media (max-width: 767px) {
+  @media (max-width: ${props => props.theme.grid.md}em) {
     grid-template-columns: auto;
     grid-template-rows: auto;
   }
@@ -37,7 +37,7 @@ const HowItWorkWrapper = styled(Box)`
   grid-column: 2 / 3;
   grid-row: 1 / 3;
   margin-top: 50px;
-  @media (max-width: 767px) {
+  @media (max-width: ${props => props.theme.grid.md}em) {
     grid-column: auto;
     grid-row: auto;
     margin-top: 20px;
@@ -61,7 +61,7 @@ const LoginPanel = ({
   footerProps,
   howItWorkProps,
   disclaimerProps,
-  props,
+  ...props
 }) => (
   <React.Fragment>
     <Header {...headerProps} />
