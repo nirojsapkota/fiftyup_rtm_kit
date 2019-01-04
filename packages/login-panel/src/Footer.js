@@ -42,6 +42,7 @@ Footer.propTypes = {
 
 Footer.defaultProps = {
   copyRightText: '© 2019 RevTech Media',
+  logoUrl: 'https://placehold.it/150x150',
 };
 
 export default Footer;

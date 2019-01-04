@@ -91,6 +91,14 @@ const LoginPanel = ({
 
 LoginPanel.propTypes = {
   authenticityToken: t.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  headerProps: t.object,
+  // eslint-disable-next-line react/forbid-prop-types
+  footerProps: t.object,
+  // eslint-disable-next-line react/forbid-prop-types
+  howItWorkProps: t.object,
+  // eslint-disable-next-line react/forbid-prop-types
+  disclaimerProps: t.object,
 };
 
 export default LoginPanel;

@@ -22,4 +22,8 @@ Header.propTypes = {
   imgHeight: t.number,
 };
 
+Header.defaultProps = {
+  logoUrl: 'https://placehold.it/150x150',
+};
+
 export default Header;
