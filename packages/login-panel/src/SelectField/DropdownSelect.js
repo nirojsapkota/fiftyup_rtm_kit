@@ -73,4 +73,6 @@ DropdownSelect.propTypes = {
   }),
   // eslint-disable-next-line react/forbid-prop-types
   inputComponent: t.any.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  popoverProps: t.object,
 };

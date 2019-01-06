@@ -75,30 +75,32 @@ class LoginForm extends React.Component {
       values,
       this.props.authenticityToken
     );
-    if (result && !result.errors) {
-      if (typeof this.props.handleRedirect === 'function') {
-        this.props.handleRedirect(result);
-      } else {
-        this.setState({
-          redirectPath: result.redirectPath,
-        });
-      }
-    } else {
+
+    if (result.errors) {
       this.setState({
         errors: result.errors,
       });
+      actions.setSubmitting(false);
+    } else if (typeof this.props.handleSuccess === 'function') {
+      this.props.handleSuccess(result);
+      actions.setSubmitting(true);
+    } else {
+      this.setState({
+        redirectPath: result.redirectPath,
+      });
+      actions.setSubmitting(true);
     }
-    actions.setSubmitting(false);
   }
 
   render() {
+    const { hiddenFields, authenticityToken, title, buttonText } = this.props;
+
     const { redirectPath, errors } = this.state;
     // Redirect to path when success login
     if (redirectPath) {
       window.location.href = redirectPath;
+      return null;
     }
-
-    const { hiddenFields, authenticityToken, title, buttonText } = this.props;
 
     return (
       <Card px={20} py={15}>
@@ -111,7 +113,7 @@ class LoginForm extends React.Component {
             ...hiddenFields,
           }}
           onSubmit={this.handleSubmit}
-          render={({ values, handleSubmit }) => (
+          render={({ values, handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
               {Object.keys(values).map(
                 key =>
@@ -129,7 +131,7 @@ class LoginForm extends React.Component {
               {errors && (
                 <Box py={2}>
                   {errors.map(error => (
-                    <ErrorWrapper>{error}</ErrorWrapper>
+                    <ErrorWrapper key={error}>{error}</ErrorWrapper>
                   ))}
                 </Box>
               )}
@@ -170,7 +172,9 @@ class LoginForm extends React.Component {
                 />
               </Box>
               <ButtonWrapper pt={2}>
-                <StyledButton type="submit">{buttonText}</StyledButton>
+                <StyledButton type="submit" disabled={isSubmitting}>
+                  {buttonText}
+                </StyledButton>
               </ButtonWrapper>
             </form>
           )}
@@ -181,7 +185,7 @@ class LoginForm extends React.Component {
 }
 LoginForm.propTypes = {
   authenticityToken: t.string,
-  handleRedirect: t.func,
+  handleSuccess: t.func,
   // eslint-disable-next-line react/forbid-prop-types
   hiddenFields: t.object,
   title: t.string,

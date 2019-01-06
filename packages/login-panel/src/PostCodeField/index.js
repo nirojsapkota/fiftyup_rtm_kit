@@ -82,4 +82,5 @@ PostCodeField.propTypes = {
   }),
   authenticityToken: t.string,
   getAutoCompletePostcode: t.func,
+  options: t.arrayOf(t.shape({ value: t.string, label: t.string })),
 };

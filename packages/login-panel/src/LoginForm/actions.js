@@ -4,23 +4,24 @@ const axios = require('axios');
 
 export const submitLogin = async (url, data, authenticityToken) => {
   const config = {
-    method: 'post',
-    url,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'X-CSRF-Token': authenticityToken,
     },
-    data,
   };
 
-  const result = await axios(config)
+  const result = await axios
+    .post(url, data, config)
     .then(response => {
       const { data } = response;
       return data;
     })
     .catch(error => {
-      const { data } = error.response;
+      const { data, status } = error.response;
+      if (status !== 401) {
+        return { errors: ['Login was unsuccessful.'] };
+      }
       return data;
     });
 
