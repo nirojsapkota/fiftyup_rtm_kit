@@ -4,8 +4,6 @@ const axios = require('axios');
 
 export const getAutoCompletePostcode = async (url, data, authenticityToken) => {
   const config = {
-    method: 'get',
-    url,
     headers: {
       Accept: 'application/json',
       'X-CSRF-Token': authenticityToken,
@@ -15,7 +13,8 @@ export const getAutoCompletePostcode = async (url, data, authenticityToken) => {
     },
   };
 
-  const result = await axios(config)
+  const result = await axios
+    .get(url, config)
     .then(response => {
       const { data } = response;
       return data;
