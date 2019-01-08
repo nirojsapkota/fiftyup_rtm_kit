@@ -39,6 +39,3 @@ artifacts:
   discard-paths: yes
   base-directory: "packages"
 
-cache:
-  paths:
-    - "node_modules/**/*"
