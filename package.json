@@ -15,6 +15,7 @@
     "generate": "plop --plopfile ./templates/plopfile.js"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
