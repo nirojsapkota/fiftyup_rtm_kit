@@ -1,4 +1,9 @@
 version: 0.2
+env:
+  parameter-store:
+    AWS_ACCESS_KEY_ID: "component-website-access-key"
+    AWS_SECRET_ACCESS_KEY: "component-website-secret-key"
+
 phases:
   install:
     commands:
@@ -21,10 +26,10 @@ phases:
     commands:
       - npm run test
       - npm run release
-#  post_build:
-#    commands:
-#      - if [ "$CODEBUILD_BUILD_SUCCEEDING" == "0" ]; then exit 1; fi
-#      - cd dist && aws s3 sync . s3://$CDN_BUCK_NAME/rtm-ui/libs --acl public-read  --include "*.min.js"
+  post_build:
+    commands:
+      - if [ "$CODEBUILD_BUILD_SUCCEEDING" == "0" ]; then exit 1; fi
+      - cd dist && aws s3 sync . s3://$CDN_BUCK_NAME/rtm-ui/libs --acl public-read  --include "*.min.js"
 
 
 artifacts:
