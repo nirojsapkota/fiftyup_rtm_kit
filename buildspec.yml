@@ -28,7 +28,7 @@ phases:
       - npm run release
   post_build:
     commands:
-      - if [ $CODEBUILD_BUILD_SUCCEEDING == 0 ] ; then exit 1; fi
+      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
       - cd dist && aws s3 sync . s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read  --include "*.min.js"
 
 
