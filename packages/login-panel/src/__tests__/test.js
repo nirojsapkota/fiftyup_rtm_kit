@@ -19,11 +19,15 @@ jest.mock('axios');
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
+const mockDefaultAxios = () => {
+  axios.get.mockResolvedValueOnce({ data: [] });
+  axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+};
+
 describe('<LoginPanel />', () => {
   it('matches expected output', async () => {
-    // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-    axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+    // set Up
+    mockDefaultAxios();
 
     const { getByText, getByPlaceholderText } = render(<LoginPanel />);
 
@@ -47,9 +51,8 @@ describe('<LoginPanel />', () => {
 
 describe('<LoginForm />', () => {
   it('matches expected output', async () => {
-    // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-    axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+    // set Up
+    mockDefaultAxios();
 
     const hiddenFields = {
       jump_path: '',
@@ -77,9 +80,8 @@ describe('<LoginForm />', () => {
   });
 
   it('matches expected output with handleSuccess func prop', async () => {
-    // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-    axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+    // set Up
+    mockDefaultAxios();
 
     const handleSuccess = jest.fn();
 
@@ -106,9 +108,8 @@ describe('<LoginForm />', () => {
 
   // FIXME: html5 validation doesn't work with jest
   xit("doesn't not allow empty email", async () => {
-    // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-    axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+    // set Up
+    mockDefaultAxios();
 
     const { getByText, getByPlaceholderText } = render(<LoginForm />);
 
@@ -131,9 +132,8 @@ describe('<LoginForm />', () => {
 
   // FIXME: html5 validation doesn't work with jest
   xit("doesn't not allow empty postcode", async () => {
-    // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-    axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+    // set Up
+    mockDefaultAxios();
 
     const { getByText, getByPlaceholderText } = render(<LoginForm />);
 
@@ -156,9 +156,8 @@ describe('<LoginForm />', () => {
 
   // FIXME: html5 validation doesn't work with jest
   xit("doesn't not allow invalid email", async () => {
-    // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-    axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+    // set Up
+    mockDefaultAxios();
 
     const { getByText, getByPlaceholderText } = render(<LoginForm />);
 
@@ -186,11 +185,13 @@ describe('<LoginForm />', () => {
     axios.post.mockRejectedValue({
       response: {
         status: 500,
-        data: { errors: ['Login was unsuccessful.'] },
+        data: { errors: ['Random error'] },
       },
     });
 
-    const { getByText, getByPlaceholderText } = render(<LoginForm />);
+    const { getByText, getByPlaceholderText, container } = render(
+      <LoginForm />
+    );
 
     const email = getByPlaceholderText('Email');
     fireEvent.change(email, {
@@ -206,6 +207,7 @@ describe('<LoginForm />', () => {
 
     await wait(() => {
       expect(submit).not.toBeDisabled();
+      expect(container).toHaveTextContent('Login was unsuccessful.');
     });
   });
 
@@ -220,7 +222,9 @@ describe('<LoginForm />', () => {
       },
     });
 
-    const { getByText, getByPlaceholderText } = render(<LoginForm />);
+    const { getByText, getByPlaceholderText, container } = render(
+      <LoginForm />
+    );
 
     const email = getByPlaceholderText('Email');
     fireEvent.change(email, {
@@ -236,21 +240,14 @@ describe('<LoginForm />', () => {
 
     await wait(() => {
       expect(submit).not.toBeDisabled();
+      expect(container).toHaveTextContent('Email is not valid');
     });
   });
 
   it('Auto complete not run when input postcode length < 1', async () => {
     // setup
     axios.get.mockResolvedValue({
-      data: [
-        '5000, ADELAIDE',
-        '5000, ADELAIDE BC',
-        '5000, CITY WEST CAMPUS',
-        '5000, HALIFAX STREET',
-        '5000, HUTT STREET',
-        '5000, STATION ARCADE',
-        '5000, STURT STREET',
-      ],
+      data: ['5000, ADELAIDE', '5000, ADELAIDE BC'],
     });
 
     const { getByPlaceholderText, container } = render(<LoginForm />);
@@ -269,15 +266,7 @@ describe('<LoginForm />', () => {
   it('Auto complete run when input postcode', async () => {
     // setup
     axios.get.mockResolvedValue({
-      data: [
-        '5000, ADELAIDE',
-        '5000, ADELAIDE BC',
-        '5000, CITY WEST CAMPUS',
-        '5000, HALIFAX STREET',
-        '5000, HUTT STREET',
-        '5000, STATION ARCADE',
-        '5000, STURT STREET',
-      ],
+      data: ['5000, ADELAIDE', '5000, ADELAIDE BC', '5000, CITY WEST CAMPUS'],
     });
 
     const { getByPlaceholderText, container } = render(<LoginForm />);
@@ -290,21 +279,15 @@ describe('<LoginForm />', () => {
 
     await wait(() => {
       expect(container).toHaveTextContent('5000, ADELAIDE');
+      expect(container).toHaveTextContent('5000, ADELAIDE BC');
+      expect(container).toHaveTextContent('5000, CITY WEST CAMPUS');
     });
   });
 
   it('Input change when select value in autocomplete', async () => {
     // setup
     axios.get.mockResolvedValue({
-      data: [
-        '5000, ADELAIDE',
-        '5000, ADELAIDE BC',
-        '5000, CITY WEST CAMPUS',
-        '5000, HALIFAX STREET',
-        '5000, HUTT STREET',
-        '5000, STATION ARCADE',
-        '5000, STURT STREET',
-      ],
+      data: ['5000, ADELAIDE', '5000, ADELAIDE BC'],
     });
 
     const { getByText, getByPlaceholderText, container } = render(
@@ -361,12 +344,14 @@ describe('<DropdownSelect />', () => {
 
     const Input = props => <input {...props} />;
     const { getByText, getByPlaceholderText, container } = render(
-      <DropdownSelect
-        inputComponent={Input}
-        options={[{ value: '5000, ADELAIDE', label: '5000, ADELAIDE' }]}
-        form={form}
-        field={field}
-      />
+      <React.Fragment>
+        <DropdownSelect
+          inputComponent={Input}
+          options={[{ value: '5000, ADELAIDE', label: '5000, ADELAIDE' }]}
+          form={form}
+          field={field}
+        />
+      </React.Fragment>
     );
 
     const dropdowninput = getByPlaceholderText('dropdowninput');
@@ -391,18 +376,21 @@ describe('<DropdownSelect />', () => {
 
     const Input = props => <input {...props} />;
     const { getByText, container } = render(
-      <DropdownSelect
-        inputComponent={Input}
-        options={[{ value: '5000, ADELAIDE', label: '5000, ADELAIDE' }]}
-        form={form}
-        field={field}
-        popoverProps={{ isOpen: true }}
-      />
+      <React.Fragment>
+        <DropdownSelect
+          inputComponent={Input}
+          options={[{ value: '5000, ADELAIDE', label: '5000, ADELAIDE' }]}
+          form={form}
+          field={field}
+          popoverProps={{ isOpen: true }}
+        />
+      </React.Fragment>
     );
 
     await wait(() => {
       expect(container).toHaveTextContent('5000, ADELAIDE');
       const selected = getByText('5000, ADELAIDE');
+      fireEvent.mouseDown(selected);
       fireEvent.mouseUp(selected);
       expect(form.setFieldValue).not.toBeCalled();
     });

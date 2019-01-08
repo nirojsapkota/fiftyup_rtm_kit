@@ -2,7 +2,7 @@ import React from 'react';
 import t from 'prop-types';
 import { Formik, Field } from 'formik';
 import styled from 'styled-components';
-import { getColor } from '@rtm-ui/theme';
+// import { getColor } from '@rtm-ui/theme';
 import { Box, Card } from '@rtm-ui/layout';
 import Button from '@rtm-ui/button';
 import { Header, Paragraph } from '@rtm-ui/typography';
@@ -10,20 +10,6 @@ import { Header, Paragraph } from '@rtm-ui/typography';
 import { submitLogin } from './actions';
 import { LOGIN_URL } from './constants';
 import PostCodeField from '../PostCodeField';
-
-const HeaderTitleStyled = styled(Header)`
-  font-family: ${props =>
-    props.font === 'serif'
-      ? props.theme.fonts.serif
-      : props.theme.fonts.sansSerif};
-  font-size: 15px;
-  text-align: left;
-  line-height: 1.6;
-  color: ${props => getColor(props.color || 'text', props.theme)};
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    font-size: 18px;
-  }
-`;
 
 const StyledInput = styled.input`
   padding: 8px 2px;
@@ -33,8 +19,13 @@ const StyledInput = styled.input`
   width: 100%;
 `;
 
-const StyledButton = styled(Button)`
-  width: 216px;
+const ErrorWrapper = styled(Paragraph)`
+  background: #faeded;
+  position: relative;
+  padding: 10px 20px;
+  margin: 5px auto 5px;
+  border: 1px solid #ca3838;
+  color: #7b2121;
 `;
 
 const ButtonWrapper = styled(Box)`
@@ -44,24 +35,12 @@ const ButtonWrapper = styled(Box)`
 const TextInput = props => <StyledInput {...props} />;
 const HiddenInput = props => <input type="hidden" {...props} />;
 
-const ErrorWrapper = styled(Paragraph)`
-  background: #faeded;
-  position: relative;
-  font-weight: 300;
-  font-size: 1.14286rem;
-  padding: 8px 20px;
-  margin: 5px auto 5px;
-  border: 1px solid #ca3838;
-  color: #7b2121;
-`;
-
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
 
     // Set default state
     this.state = {
-      redirectPath: null,
       errors: null,
     };
 
@@ -85,9 +64,8 @@ class LoginForm extends React.Component {
       this.props.handleSuccess(result);
       actions.setSubmitting(true);
     } else {
-      this.setState({
-        redirectPath: result.redirectPath,
-      });
+      // Redirect to path when success login
+      window.location.href = result.redirectPath;
       actions.setSubmitting(true);
     }
   }
@@ -95,15 +73,10 @@ class LoginForm extends React.Component {
   render() {
     const { hiddenFields, authenticityToken, title, buttonText } = this.props;
 
-    const { redirectPath, errors } = this.state;
-    // Redirect to path when success login
-    if (redirectPath) {
-      window.location.href = redirectPath;
-      return null;
-    }
+    const { errors } = this.state;
 
     return (
-      <Card px={20} py={15}>
+      <Card px={[20, 20, 30, 40]} py={10}>
         <Formik
           initialValues={{
             user: {
@@ -127,7 +100,9 @@ class LoginForm extends React.Component {
                     />
                   )
               )}
-              <HeaderTitleStyled>{title}</HeaderTitleStyled>
+              <Header pt={[2, 2, 3, 4]} tag="h6">
+                {title}
+              </Header>
               {errors && (
                 <Box py={2}>
                   {errors.map(error => (
@@ -135,8 +110,8 @@ class LoginForm extends React.Component {
                   ))}
                 </Box>
               )}
-              <Box py={2}>
-                <Box py={2}>My Postcode:</Box>
+              <Box pb={2} pt={[2, 2, 3, 4]}>
+                <Paragraph py={2}>My Postcode:</Paragraph>
                 <Field
                   name="user.postcode_suburb"
                   render={({ field, form }) => (
@@ -155,7 +130,7 @@ class LoginForm extends React.Component {
                 />
               </Box>
               <Box py={2}>
-                <Box py={2}>My Email:</Box>
+                <Paragraph py={2}>My Email:</Paragraph>
                 <Field
                   name="user.email"
                   render={({ field }) => (
@@ -171,10 +146,10 @@ class LoginForm extends React.Component {
                   )}
                 />
               </Box>
-              <ButtonWrapper pt={2}>
-                <StyledButton type="submit" disabled={isSubmitting}>
+              <ButtonWrapper py={[2, 2, 3, 4]}>
+                <Button type="submit" disabled={isSubmitting} track="signin">
                   {buttonText}
-                </StyledButton>
+                </Button>
               </ButtonWrapper>
             </form>
           )}
