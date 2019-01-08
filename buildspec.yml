@@ -33,7 +33,7 @@ phases:
       - mkdir $HOME/.aws
       - echo "[default]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> $HOME/.aws/credentials
       - cat $HOME/.aws/credentials
-      - aws s3 sync . s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read  --include "*.min.js"
+      - cd templates && aws s3 sync . s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read  --include "*.min.js"
 
 
 artifacts:
