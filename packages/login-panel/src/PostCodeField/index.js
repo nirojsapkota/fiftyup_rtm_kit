@@ -48,6 +48,8 @@ class PostCodeField extends React.Component {
   }
 
   render() {
+    const { getAutoCompletePostcode, ...rest } = this.props;
+
     const inputEvents = {
       onChange: e =>
         this.handleInput(false, this.props.field.name, e.target.value),
@@ -55,7 +57,7 @@ class PostCodeField extends React.Component {
 
     return (
       <DropdownSelect
-        {...this.props}
+        {...rest}
         setFieldValue={(fieldName, value) =>
           this.handleInput(true, fieldName, value)
         }

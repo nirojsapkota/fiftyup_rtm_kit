@@ -15,6 +15,7 @@ const DropdownSelect = ({
   inputEvents,
   popoverProps,
   form,
+  setFieldValue,
   ...props
 }) => {
   const inputElement = toggle => {
@@ -38,8 +39,8 @@ const DropdownSelect = ({
             px={3}
             key={value}
             onClick={() => {
-              if (typeof props.setFieldValue === 'function') {
-                props.setFieldValue(field.name, value);
+              if (typeof setFieldValue === 'function') {
+                setFieldValue(field.name, value);
               } else {
                 form.setFieldValue(field.name, value);
               }
