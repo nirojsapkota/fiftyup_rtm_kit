@@ -17,12 +17,12 @@ const DropdownSelect = ({
   form,
   ...props
 }) => {
-  const inputElement = (toggle, isOpen) => {
+  const inputElement = toggle => {
     const inputElementProps = {
       ...props,
       ...field,
       ...inputEvents,
-      hideErrors: isOpen,
+      // hideErrors: isOpen,
       onClick: toggle,
       autoComplete: 'off',
     };
