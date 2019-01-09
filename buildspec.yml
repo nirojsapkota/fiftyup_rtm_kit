@@ -13,6 +13,7 @@ phases:
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
       - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - echo "always-auth=true" >> $HOME/.npmrc
+      - echo "unsafe-perm=true" >> $HOME/.npmrc
       - echo "registry=http://registry.npmjs.org/" >> $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
@@ -37,4 +38,3 @@ artifacts:
     - "*/build/**"
   discard-paths: yes
   base-directory: "packages"
-
