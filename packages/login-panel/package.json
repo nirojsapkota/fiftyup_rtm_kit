@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/login-panel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description for loginPanel",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -27,8 +27,8 @@
     "formik": "^1.4.1"
   },
   "peerDependencies": {
-    "react": "^16.6",
     "prop-types": "^15.5.4",
+    "react": "^16.6",
     "styled-components": "^4.0"
   },
   "devDependencies": {

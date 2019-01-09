@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@1.0.6...@rtm-ui/bootstrap@1.1.0) (2019-01-09)
+
+
+### Bug Fixes
+
+* **tracker:** add missing context provider test ([cc1ad32](https://github.com/OBSAU/rtm-kit/commit/cc1ad32))
+
+
+### Features
+
+* **form:** Add form component ([6606027](https://github.com/OBSAU/rtm-kit/commit/6606027))
+
+
+
+
+
 ## [1.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@1.0.5...@rtm-ui/bootstrap@1.0.6) (2018-12-19)
 
 **Note:** Version bump only for package @rtm-ui/bootstrap
