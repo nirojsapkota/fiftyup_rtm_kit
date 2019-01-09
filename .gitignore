@@ -7,6 +7,8 @@ build
 dist
 packages/*/package-lock.json
 packages/*/coverage
+packages/*/build
+packages/*/modules
 packages/*/yarn.lock
 template/src/__tests__/__snapshots__/
 lerna-debug.log
