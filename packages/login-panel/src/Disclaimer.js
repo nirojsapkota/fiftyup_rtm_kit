@@ -8,7 +8,7 @@ const StyledParagraph = styled(Paragraph)`
 `;
 
 const Disclaimer = ({ disclaimerText }) => {
-  return <StyledParagraph p={30}>{disclaimerText}</StyledParagraph>;
+  return <StyledParagraph p={30} dangerousHTML={disclaimerText} />;
 };
 
 Disclaimer.propTypes = {

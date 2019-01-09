@@ -100,9 +100,7 @@ class LoginForm extends React.Component {
                     />
                   )
               )}
-              <Header pt={[2, 2, 3, 4]} tag="h6">
-                {title}
-              </Header>
+              <Header pt={[2, 2, 3, 4]} tag="h6" dangerousHTML={title} />
               {errors && (
                 <Box py={2}>
                   {errors.map(error => (
