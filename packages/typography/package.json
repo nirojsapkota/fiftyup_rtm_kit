@@ -2,8 +2,6 @@
   "name": "@rtm-ui/typography",
   "version": "1.0.6",
   "description": "Stub description for type",
-  "main": "build/main.js",
-  "module": "src/index.js",
   "rtmRollup": {
     "namespace": "typography",
     "defaultExport": "Text",
@@ -15,6 +13,8 @@
       "labelTextStyles"
     ]
   },
+  "main": "build/main.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",

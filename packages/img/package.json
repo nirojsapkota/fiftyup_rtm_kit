@@ -10,6 +10,7 @@
   },
   "license": "UNLICENSED",
   "main": "build/main.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",

@@ -2,7 +2,7 @@ import React from 'react';
 import LogRocket from 'logrocket';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import { Tracker, track } from '..';
+import { Tracker, TrackingProvider, track } from '..';
 import Google from '../google';
 import Facebook from '../facebook';
 
@@ -86,6 +86,25 @@ describe(`<Tracker />`, () => {
           </button>
         )}
       />
+    );
+
+    fireEvent.click(getByText('Hello'));
+
+    expect(buttonEvent).toHaveBeenCalled();
+  });
+
+  it(`accepts the context by the provider`, () => {
+    const buttonEvent = jest.fn();
+    const { getByText } = render(
+      <TrackingProvider trackingData={{ category: 'general' }}>
+        <Tracker
+          render={trackEvent => (
+            <button type="submit" onClick={(trackEvent, buttonEvent)}>
+              Hello
+            </button>
+          )}
+        />
+      </TrackingProvider>
     );
 
     fireEvent.click(getByText('Hello'));
