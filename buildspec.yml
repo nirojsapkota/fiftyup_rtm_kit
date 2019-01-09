@@ -29,7 +29,7 @@ phases:
   post_build:
     commands:
       - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
-      - aws s3 cp ./dist/ s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read  --include "*.min.js"
+      - aws s3 cp ./dist/ s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read  --include "*.min.js" --recursive
 
 artifacts:
   files:
