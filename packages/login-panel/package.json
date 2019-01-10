@@ -32,7 +32,6 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.0",
-    "styled-components": "^4.1"
+    "@rtm-ui/rtm-scripts": "^1.0.0"
   }
 }
