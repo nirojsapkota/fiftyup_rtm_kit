@@ -19,7 +19,6 @@ phases:
       - npm set unsafe-perm true
   pre_build:
     commands:
-      - cat $HOME/.npmrc
       - lerna bootstrap --no-ci --hoist
   build:
     commands:
