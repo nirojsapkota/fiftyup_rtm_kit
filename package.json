@@ -5,7 +5,6 @@
     "commit": "npx git-cz",
     "serve": "curl pad.js.org | node",
     "dev": "docz dev",
-    "watch": "lerna run prepare --no-sort --stream --bail --concurrency 999",
     "lint": "eslint packages",
     "test": "CI=true lerna run test --no-sort --stream --concurrency 999 -- -- --coverage",
     "test-coverage": "npm run test-watch -- -- --coverage --color",

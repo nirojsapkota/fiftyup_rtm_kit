@@ -1,11 +1,12 @@
 'use strict';
 
-const chalk = require('chalk');
+const paths = require('../config/paths');
+const packageJson = require(paths.appPackageJson);
 const rollup = require('rollup');
-const { inputOptions, outputOptions } = require('../config/rollup.config');
+const { inputOptions } = require('../config/rollup.config');
 const argv = process.argv.slice(2);
-const shouldTranspile = argv.indexOf('--no-transpile') === -1;
 const shouldWatch = argv.indexOf('--watch') !== -1;
+const esm = argv.indexOf('--esm') !== -1;
 const watchMap = {
   BUNDLE_START: 'building an individual bundle',
   BUNDLE_END: 'finished building a bundle',
@@ -13,10 +14,34 @@ const watchMap = {
   FATAL: 'encountered an unrecoverable error',
 };
 
-async function build() {
-  const bundle = await rollup.rollup(inputOptions);
-  // await bundle.generate(outputOptions);
-  await bundle.write(outputOptions);
+const es = {
+  file: paths.appBuild + '/module.js',
+  format: 'es',
+  name: packageJson.rtmRollup.defaultExport,
+  exports: 'named',
+  globals: {
+    react: 'React',
+    'prop-types': 'PropTypes',
+    'styled-components': 'styled',
+  },
+};
+const cjs = {
+  file: paths.appBuild + '/main.js',
+  format: 'umd',
+  name: packageJson.rtmRollup.defaultExport,
+  exports: 'named',
+  globals: {
+    react: 'React',
+    'prop-types': 'PropTypes',
+    'styled-components': 'styled',
+  },
+};
+
+function build() {
+  [es, cjs].map(async format => {
+    const bundle = await rollup.rollup(inputOptions);
+    await bundle.write(format);
+  });
 }
 
 async function watch() {
