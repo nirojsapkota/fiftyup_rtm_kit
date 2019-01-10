@@ -1,8 +1,4 @@
 version: 0.2
-env:
-  parameter-store:
-    AWS_ACCESS_KEY_ID: "component-website-access-key"
-    AWS_SECRET_ACCESS_KEY: "component-website-secret-key"
 
 phases:
   install:
