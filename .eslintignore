@@ -1,4 +1,4 @@
-packages/**/build/*.js
+packages/**/build/**/*.js
 packages/**/coverage
 packages/**/*.md
 packages/**/node_modules/*.js

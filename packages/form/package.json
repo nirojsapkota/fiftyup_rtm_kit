@@ -10,7 +10,8 @@
     "namedExports": []
   },
   "main": "build/main.js",
-  "module": "src/index.js",
+  "module": "build/module.js",
+  "_module": "src/index",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",
