@@ -5,6 +5,8 @@ const normal = '#ccc';
 const light = '#eee';
 const lightest = '#f5f5f5';
 const white = '#FFF';
+const darker = '#898989';
+const slightlyDarker = '#acacac';
 
 export const grayscale = {
   black,
@@ -14,6 +16,8 @@ export const grayscale = {
   light,
   lightest,
   white,
+  darker,
+  slightlyDarker,
 };
 
 export const notices = {
