@@ -56,6 +56,10 @@ const sizeChart = [
     element: 'small',
     sizes: [12, 12, 12, 12],
   },
+  {
+    element: 'label',
+    sizes: [12, 12, 12, 12],
+  },
 ];
 
 export const labelTextStyles = css`
