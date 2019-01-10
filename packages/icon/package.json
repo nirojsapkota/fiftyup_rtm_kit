@@ -10,7 +10,7 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
-  "module": "build/modules.js",
+  "module": "build/module.js",
   "_module": "src/index",
   "scripts": {
     "start": "rtm-scripts start",
