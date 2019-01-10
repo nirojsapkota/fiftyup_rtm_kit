@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@1.0.6...@rtm-ui/tracker@1.0.7) (2019-01-10)
+
+
+### Bug Fixes
+
+* **tracker:** add missing context provider test ([cc1ad32](https://github.com/OBSAU/rtm-kit/commit/cc1ad32))
+* name modules.js to module.js on build ([8a9848c](https://github.com/OBSAU/rtm-kit/commit/8a9848c))
+
+
+
+
+
 ## [1.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@1.0.5...@rtm-ui/tracker@1.0.6) (2018-12-19)
 
 **Note:** Version bump only for package @rtm-ui/tracker
