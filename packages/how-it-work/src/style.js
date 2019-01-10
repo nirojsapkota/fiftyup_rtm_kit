@@ -1,12 +1,8 @@
 import styled, { css } from 'styled-components';
-import { Header, Paragraph } from '@rtm-ui/typography';
+import { Paragraph } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
 import Img from '@rtm-ui/img';
 import { getColor } from '@rtm-ui/theme';
-
-const colorStyles = css`
-  color: ${props => getColor(props.color || 'text', props.theme)};
-`;
 
 const PrimaryArrow = css`
   position: absolute;
@@ -36,20 +32,6 @@ const SecondArrow = css`
   border-top: 22px solid
     ${props => getColor(props.color || 'black', props.theme)};
   z-index: 2;
-`;
-
-export const HeaderTitleStyled = styled(Header)`
-  font-family: ${props =>
-    props.font === 'serif'
-      ? props.theme.fonts.serif
-      : props.theme.fonts.sansSerif};
-  font-size: 15px;
-  text-align: left;
-  line-height: 1.6;
-  ${colorStyles};
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    font-size: 18px;
-  }
 `;
 
 export const WrapperBox = styled(Box)`

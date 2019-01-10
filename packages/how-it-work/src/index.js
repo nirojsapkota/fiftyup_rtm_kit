@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import styled from 'styled-components';
+import { Header } from '@rtm-ui/typography';
+// import { Box } from '@rtm-ui/layout'
+
 import {
-  HeaderTitleStyled,
   StepOfferStyled,
   ItemStyled,
   StepImgStyled,
@@ -11,7 +14,7 @@ import {
 
 const HowItWork = props => (
   <WrapperBox>
-    <HeaderTitleStyled>{props.header}</HeaderTitleStyled>
+    <Header tag="h6">{props.header}</Header>
     <StepOfferStyled>
       {props.stepOffers.map(s => (
         <ItemStyled key={s.imgUrl}>

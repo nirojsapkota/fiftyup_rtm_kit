@@ -3,7 +3,7 @@ import t from 'prop-types';
 import { Formik, Field } from 'formik';
 import styled from 'styled-components';
 // import { getColor } from '@rtm-ui/theme';
-import { Box, Card } from '@rtm-ui/layout';
+import { Box } from '@rtm-ui/layout';
 import Button from '@rtm-ui/button';
 import { Header, Paragraph } from '@rtm-ui/typography';
 
@@ -76,7 +76,7 @@ class LoginForm extends React.Component {
     const { errors } = this.state;
 
     return (
-      <Card px={[20, 20, 30, 40]} py={10}>
+      <React.Fragment>
         <Formik
           initialValues={{
             user: {
@@ -100,7 +100,9 @@ class LoginForm extends React.Component {
                     />
                   )
               )}
-              <Header pt={[2, 2, 3, 4]} tag="h6" dangerousHTML={title} />
+              <Header pt={[2, 2, 3, 4]} tag="h6">
+                {title}
+              </Header>
               {errors && (
                 <Box py={2}>
                   {errors.map(error => (
@@ -152,7 +154,7 @@ class LoginForm extends React.Component {
             </form>
           )}
         />
-      </Card>
+      </React.Fragment>
     );
   }
 }
