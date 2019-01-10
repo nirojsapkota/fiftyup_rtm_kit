@@ -25,7 +25,7 @@ const es = {
     'styled-components': 'styled',
   },
 };
-const cjs = {
+const umd = {
   file: paths.appBuild + '/main.js',
   format: 'umd',
   name: packageJson.rtmRollup.defaultExport,
@@ -38,7 +38,7 @@ const cjs = {
 };
 
 function build() {
-  [es, cjs].map(async format => {
+  [es, umd].map(async format => {
     const bundle = await rollup.rollup(inputOptions);
     await bundle.write(format);
   });

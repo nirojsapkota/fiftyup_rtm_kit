@@ -24,14 +24,12 @@ export default {
     },
   },
   modifyBundlerConfig: config => {
-    const newConfig = {
+    return {
       ...config,
       resolve: {
         ...config.resolve,
         mainFields: ['_module', 'module', 'main'],
       },
     };
-
-    return newConfig;
   },
 };

@@ -58,7 +58,9 @@ const inputOptions = {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    terser.terser(),
+    terser.terser({
+      sourcemap: true,
+    }),
     resolve({
       main: true,
     }),
