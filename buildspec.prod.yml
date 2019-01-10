@@ -7,6 +7,7 @@ env:
 phases:
   install:
     commands:
+      - echo "Running on branch `git name-rev --name-only --always $CODEBUILD_RESOLVED_SOURCE_VERSION 2>/dev/null`"
       - npm install -g npm
       - npm install -g lerna
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
