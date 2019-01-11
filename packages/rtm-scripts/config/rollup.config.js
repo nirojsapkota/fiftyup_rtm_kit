@@ -75,21 +75,8 @@ const inputOptions = {
   ],
 };
 
-const outputOptions = {
-  file: paths.appBuild + '/main.js',
-  format: 'umd',
-  name: packageJson.rtmRollup.defaultExport,
-  exports: 'named',
-  globals: {
-    react: 'React',
-    'prop-types': 'PropTypes',
-    'styled-components': 'styled',
-  },
-};
-
 const config = {
   inputOptions: inputOptions,
-  outputOptions: outputOptions,
 };
 
 module.exports = config;

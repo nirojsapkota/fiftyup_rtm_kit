@@ -23,4 +23,13 @@ export default {
       },
     },
   },
+  modifyBundlerConfig: config => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        mainFields: ['_module', 'module', 'main'],
+      },
+    };
+  },
 };

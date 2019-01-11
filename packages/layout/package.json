@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/layout",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Description for Layout",
   "rtmRollup": {
     "namespace": "layout",
@@ -14,7 +14,8 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
-  "module": "src/index.js",
+  "module": "build/module.js",
+  "_module": "src/index",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",
@@ -23,7 +24,7 @@
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
-    "@rtm-ui/theme": "^1.0.6"
+    "@rtm-ui/theme": "^1.0.8"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "1.0.*",
@@ -32,7 +33,7 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.6",
+    "@rtm-ui/rtm-scripts": "^1.0.8",
     "jest-dom": "^2.1.1"
   }
 }
