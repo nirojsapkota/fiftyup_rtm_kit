@@ -10,6 +10,7 @@ import { Header, Paragraph } from '@rtm-ui/typography';
 import { submitLogin } from './actions';
 import { LOGIN_URL } from './constants';
 import PostCodeField from '../PostCodeField';
+import GdprAgreement from '../GdprAgreement';
 
 const HeaderTitleStyled = styled(Header)`
   font-family: ${props =>
@@ -176,6 +177,7 @@ class LoginForm extends React.Component {
                   {buttonText}
                 </StyledButton>
               </ButtonWrapper>
+              <GdprAgreement />
             </form>
           )}
         />
