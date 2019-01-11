@@ -43,6 +43,7 @@ class GdprAgreement extends React.Component {
 
   render() {
     const {
+      agreementText,
       isShowCheckBox,
       isRequire,
       confirmationOfConsent,
@@ -64,7 +65,7 @@ class GdprAgreement extends React.Component {
 
         <Paragraph>
           <Small>
-            By ticking this box, you agree to our
+            {agreementText}
             {confirmationOfConsent && (
               <Link href={confirmationOfConsent.url}>
                 {confirmationOfConsent.text},
@@ -82,6 +83,7 @@ class GdprAgreement extends React.Component {
 }
 
 GdprAgreement.defaultProps = {
+  agreementText: "By ticking this box, you agree to our",
   isShowCheckBox: true,
   isRequire: 'required',
   checkBoxValue: false,
@@ -100,6 +102,7 @@ GdprAgreement.defaultProps = {
 };
 
 GdprAgreement.propTypes = {
+  agreementText: t.string,
   isShowCheckBox: t.bool,
   isRequire: t.string,
   checkBoxValue: t.bool,
