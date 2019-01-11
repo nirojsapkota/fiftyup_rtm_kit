@@ -20,6 +20,8 @@ phases:
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USERNAME
       - npm set unsafe-perm true
+      # echo for debugging purposes
+      - git config --global user.email
   pre_build:
     commands:
       - lerna bootstrap --no-ci --hoist
