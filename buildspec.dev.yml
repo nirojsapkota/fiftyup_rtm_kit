@@ -11,8 +11,6 @@ phases:
       - echo "always-auth=true" >> $HOME/.npmrc
       - echo "registry=http://registry.npmjs.org/" >> $HOME/.npmrc
       - npm set unsafe-perm true
-      #comment to force rebuild
-      - echo $GITHUB_URL
   pre_build:
     commands:
       - lerna bootstrap --no-ci --hoist
