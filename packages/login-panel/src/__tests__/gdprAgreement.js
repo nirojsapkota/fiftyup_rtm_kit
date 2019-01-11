@@ -58,4 +58,19 @@ describe(`<GdprAgreement/>`, () => {
     fireEvent.click(chkbAgreement);
     expect(chkbAgreement.checked).toBe(true);
   });
+
+  it('get expected output with getCheckBoxValue func prop', async () => {
+    const handleCheck = jest.fn();
+    const defaultProps = {
+      isChecked: false,
+      required: 'required',
+      getCheckBoxValue: handleCheck,
+    };
+    const { container } = render(<GdprAgreement {...defaultProps} />);
+    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+
+    fireEvent.click(chkbAgreement);
+    expect(handleCheck).toHaveBeenCalledTimes(1);
+    expect(chkbAgreement.checked).toBe(true);
+  });
 });
