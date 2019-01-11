@@ -10,7 +10,7 @@
     "test-coverage": "npm run test-watch -- -- --coverage --color",
     "test-updateSnapshot": "CI=true npm run test-watch -- -- --updateSnapshot --color",
     "test-watch": "lerna exec --no-sort --stream --concurrency 999 -- npm run test",
-    "release": "lerna publish --yes --force-publish=*",
+    "release": "lerna publish --yes",
     "generate": "plop --plopfile ./templates/plopfile.js"
   },
   "devDependencies": {
