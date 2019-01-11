@@ -15,8 +15,10 @@ afterEach(cleanup);
 
 describe(`<GdprAgreement/>`, () => {
   const props = {
-    isChecked: false,
-    required: 'required',
+    isShowCheckBox: true,
+    checkBoxValue: false,
+    isRequire: 'required',
+
     confirmationOfConsent: {
       url: '/link/to/confirmation-of-consent',
       text: 'Confirmation of consent',
@@ -51,11 +53,51 @@ describe(`<GdprAgreement/>`, () => {
     );
   });
 
-  it(`renders checkbox event tracking`, () => {
+  it('renders checkbox event tracking', () => {
     const { container } = render(<GdprAgreement {...props} />);
     const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
 
     fireEvent.click(chkbAgreement);
     expect(chkbAgreement.checked).toBe(true);
+  });
+
+  it('get expected output with getCheckBoxValue func prop', async () => {
+    const handleCheck = jest.fn();
+    const defaultProps = {
+      isShowCheckBox: true,
+      checkBoxValue: false,
+      isRequire: 'required',
+      getCheckBoxValue: handleCheck,
+    };
+    const { container } = render(<GdprAgreement {...defaultProps} />);
+    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+
+    fireEvent.click(chkbAgreement);
+    expect(handleCheck).toHaveBeenCalledTimes(1);
+    expect(chkbAgreement.checked).toBe(true);
+  });
+
+  it('Agreement checkbox should NOT be show', () => {
+    const props = {
+      isShowCheckBox: false,
+      checkBoxValue: false,
+      isRequire: 'required',
+    };
+
+    const { container } = render(<GdprAgreement {...props} />);
+    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+    expect(chkbAgreement).not.toBeInTheDocument();
+  });
+
+  it('Agreement checkbox should be show', () => {
+    const props = {
+        isShowCheckBox: true,
+        checkBoxValue: false,
+        isRequire: 'required'
+    };
+
+    const { container } = render(<GdprAgreement {...props} />);
+    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+    expect(chkbAgreement).toBeInTheDocument();
   });
 });

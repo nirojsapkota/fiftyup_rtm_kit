@@ -310,4 +310,22 @@ describe('<LoginForm />', () => {
       expect(container).not.toHaveTextContent('5000, ADELAIDE');
     });
   });
+
+  it(`Require gdpr agreement checkbox when submmit login`, async () => {
+    const GdprProps = {
+      showGdprAgreement: true,
+    };
+    const { container } = render(<LoginForm {...GdprProps} />);
+    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+    expect(chkbAgreement).toBeInTheDocument();
+  });
+
+  it('Hidden gdpr agreement checkbox in layout', async () => {
+    const GdprProps = {
+      showGdprAgreement: false,
+    };
+    const { container } = render(<LoginForm {...GdprProps} />);
+    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+    expect(chkbAgreement).not.toBeInTheDocument();
+  });
 });

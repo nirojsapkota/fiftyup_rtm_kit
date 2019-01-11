@@ -72,7 +72,14 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { hiddenFields, authenticityToken, title, buttonText } = this.props;
+    const {
+      hiddenFields,
+      authenticityToken,
+      title,
+      buttonText,
+      showGdprAgreement,
+      gdprProps,
+    } = this.props;
 
     const { errors } = this.state;
 
@@ -152,9 +159,7 @@ class LoginForm extends React.Component {
                   {buttonText}
                 </Button>
               </ButtonWrapper>
-              {this.props.performGdprCheckBox && (
-                <GdprAgreement {...this.props} />
-              )}
+              {showGdprAgreement && <GdprAgreement {...gdprProps} />}
             </form>
           )}
         />
@@ -171,7 +176,9 @@ LoginForm.propTypes = {
   title: t.string,
   buttonText: t.string,
   buttonIcon: t.string,
-  performGdprCheckBox: t.bool,
+  showGdprAgreement: t.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  gdprProps: t.object,
 };
 
 LoginForm.defaultProps = {
@@ -179,7 +186,7 @@ LoginForm.defaultProps = {
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'See the offer',
   buttonIcon: null,
-  performGdprCheckBox: true,
+  showGdprAgreement: true,
 };
 
 export default LoginForm;
