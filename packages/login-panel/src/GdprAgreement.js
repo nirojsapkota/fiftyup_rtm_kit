@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { Paragraph, Small } from '@rtm-ui/typography';
 
-const StyledCheckBox = styled.input``;
 const FlexBoxStyled = styled(Box)`
   display: flex;
   flex-direction: row;
@@ -34,15 +33,15 @@ class GdprAgreement extends React.Component {
       isChecked: value,
     });
 
-    if (this.getValue) {
-      this.props.getValue(value);
+    if (typeof this.props.getCheckBoxValue === 'function') {
+      this.props.getCheckBoxValue(value);
     }
   }
 
   render() {
     return (
       <FlexBoxStyled>
-        <StyledCheckBox
+        <input
           type="checkbox"
           id="ckb_agreement"
           required={this.props.required}
@@ -73,18 +72,18 @@ class GdprAgreement extends React.Component {
 }
 
 GdprAgreement.defaultProps = {
-  isChecked: true,
+  isChecked: false,
   required: 'required',
   confirmationOfConsent: {
-    url: '#',
+    url: '/confirmation-of-consent',
     text: 'Confirmation of Consent',
   },
   termsAndConditions: {
-    url: '#',
+    url: '/terms-and-conditions',
     text: 'Terms and Conditions',
   },
   privacyPolicy: {
-    url: '#',
+    url: '/privacy-policy',
     text: 'Privacy Policy',
   },
 };
@@ -104,7 +103,7 @@ GdprAgreement.propTypes = {
     url: t.string,
     text: t.string,
   }),
-  getValue: t.func,
+  getCheckBoxValue: t.func,
 };
 
 export default GdprAgreement;

@@ -10,6 +10,7 @@ import { Header, Paragraph } from '@rtm-ui/typography';
 import { submitLogin } from './actions';
 import { LOGIN_URL } from './constants';
 import PostCodeField from '../PostCodeField';
+import GdprAgreement from '../GdprAgreement';
 
 const StyledInput = styled.input`
   padding: 8px 2px;
@@ -151,6 +152,7 @@ class LoginForm extends React.Component {
                   {buttonText}
                 </Button>
               </ButtonWrapper>
+              <GdprAgreement />
             </form>
           )}
         />
