@@ -152,7 +152,9 @@ class LoginForm extends React.Component {
                   {buttonText}
                 </Button>
               </ButtonWrapper>
-              <GdprAgreement />
+              {this.props.performGdprCheckBox && (
+                <GdprAgreement {...this.props} />
+              )}
             </form>
           )}
         />
@@ -160,6 +162,7 @@ class LoginForm extends React.Component {
     );
   }
 }
+
 LoginForm.propTypes = {
   authenticityToken: t.string,
   handleSuccess: t.func,
@@ -168,6 +171,7 @@ LoginForm.propTypes = {
   title: t.string,
   buttonText: t.string,
   buttonIcon: t.string,
+  performGdprCheckBox: t.bool,
 };
 
 LoginForm.defaultProps = {
@@ -175,6 +179,7 @@ LoginForm.defaultProps = {
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'See the offer',
   buttonIcon: null,
+  performGdprCheckBox: true,
 };
 
 export default LoginForm;
