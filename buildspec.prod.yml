@@ -18,7 +18,7 @@ phases:
       - npm set registry http://registry.npmjs.org/
       - npm set always-auth true
       - npm set unsafe-perm true
-      - echo "$NPM_REGISTRY_LOGIN_URL/:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
       - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
