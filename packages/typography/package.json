@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/typography",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Stub description for type",
   "rtmRollup": {
     "namespace": "typography",
@@ -23,8 +23,8 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/layout": "^1.0.8",
-    "@rtm-ui/theme": "^1.0.8"
+    "@rtm-ui/layout": "^1.0.9",
+    "@rtm-ui/theme": "^1.0.9"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "1.0.*",

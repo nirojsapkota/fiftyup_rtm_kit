@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/login-panel",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Description for loginPanel",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -19,11 +19,11 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/button": "^1.0.8",
-    "@rtm-ui/img": "^1.0.8",
-    "@rtm-ui/layout": "^1.0.8",
-    "@rtm-ui/theme": "^1.0.8",
-    "@rtm-ui/typography": "^1.0.8",
+    "@rtm-ui/button": "^1.0.9",
+    "@rtm-ui/img": "^1.0.9",
+    "@rtm-ui/layout": "^1.0.9",
+    "@rtm-ui/theme": "^1.0.9",
+    "@rtm-ui/typography": "^1.0.9",
     "axios": "^0.18.0",
     "formik": "^1.4.1"
   },
