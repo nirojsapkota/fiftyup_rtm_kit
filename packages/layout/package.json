@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/layout",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "Description for Layout",
   "rtmRollup": {
     "namespace": "layout",
