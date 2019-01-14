@@ -11,11 +11,11 @@ phases:
       - echo "Running on branch `git name-rev --name-only --always $CODEBUILD_RESOLVED_SOURCE_VERSION 2>/dev/null`"
       - npm install -g npm
       - npm install -g lerna
+      - npm set registry http://registry.npmjs.org/
+      - npm set always-auth true
+      - npm set unsafe-perm true
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
       - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
-      - echo "always-auth=true" >> $HOME/.npmrc
-      - echo "registry=http://registry.npmjs.org/" >> $HOME/.npmrc
-      - npm set unsafe-perm true
   pre_build:
     commands:
       - lerna bootstrap --no-ci --hoist
