@@ -14,7 +14,6 @@ phases:
       - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - echo "always-auth=true" >> $HOME/.npmrc
       - echo "registry=http://registry.npmjs.org/" >> $HOME/.npmrc
-      - cat $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USERNAME
