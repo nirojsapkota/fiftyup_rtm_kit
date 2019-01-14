@@ -178,7 +178,7 @@ LoginForm.propTypes = {
   buttonIcon: t.string,
   showGdprAgreement: t.bool,
   // eslint-disable-next-line react/forbid-prop-types
-  gdprProps: t.object,
+  gdprProps: t.shape({}),
 };
 
 LoginForm.defaultProps = {

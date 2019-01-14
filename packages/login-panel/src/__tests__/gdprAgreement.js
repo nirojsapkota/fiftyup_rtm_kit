@@ -15,10 +15,9 @@ afterEach(cleanup);
 
 describe(`<GdprAgreement/>`, () => {
   const props = {
-    isShowCheckBox: true,
-    checkBoxValue: false,
+    enableCheckBox: true,
     isRequire: 'required',
-
+    isChecked: false,
     confirmationOfConsent: {
       url: '/link/to/confirmation-of-consent',
       text: 'Confirmation of consent',
@@ -33,29 +32,20 @@ describe(`<GdprAgreement/>`, () => {
     },
   };
 
-  it(`renders Gdpr Link confirmation`, () => {
+  it(`renders Gdpr link confirmation`, () => {
     const { getByText } = render(<GdprAgreement {...props} />);
-    const elConfirmationOfconcent = getByText(`Confirmation of consent,`);
-    const elTermsCondition = getByText(`Terms and Conditions`);
-    const elPrivacyPolicy = getByText(`Privacy Policy`);
+    const elConfirmationOfconsent = getByText(props.confirmationOfConsent.text);
+    const elTermsCondition = getByText(props.termsAndConditions.text);
+    const elPrivacyPolicy = getByText(props.privacyPolicy.text);
 
-    expect(elConfirmationOfconcent).toBeInTheDocument();
-    expect(elConfirmationOfconcent.getAttribute(`href`)).toEqual(
-      `/link/to/confirmation-of-consent`
-    );
+    expect(elConfirmationOfconsent).toBeInTheDocument();
     expect(elTermsCondition).toBeInTheDocument();
-    expect(elTermsCondition.getAttribute(`href`)).toEqual(
-      `/link/to/term-and-conditions`
-    );
     expect(elPrivacyPolicy).toBeInTheDocument();
-    expect(elPrivacyPolicy.getAttribute(`href`)).toEqual(
-      `/link/to/privacy-policy`
-    );
   });
 
   it('renders checkbox event tracking', () => {
-    const { container } = render(<GdprAgreement {...props} />);
-    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+    const { getByTestId } = render(<GdprAgreement {...props} />);
+    const chkbAgreement = getByTestId('ckAgreement');
 
     fireEvent.click(chkbAgreement);
     expect(chkbAgreement.checked).toBe(true);
@@ -64,40 +54,41 @@ describe(`<GdprAgreement/>`, () => {
   it('get expected output with getCheckBoxValue func prop', async () => {
     const handleCheck = jest.fn();
     const defaultProps = {
-      isShowCheckBox: true,
-      checkBoxValue: false,
+      isChecked: false,
       isRequire: 'required',
+      enableCheckBox: true,
       getCheckBoxValue: handleCheck,
     };
-    const { container } = render(<GdprAgreement {...defaultProps} />);
-    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
+    const { getByTestId } = render(<GdprAgreement {...defaultProps} />);
+    const chkbAgreement = getByTestId('ckAgreement');
 
     fireEvent.click(chkbAgreement);
+
     expect(handleCheck).toHaveBeenCalledTimes(1);
     expect(chkbAgreement.checked).toBe(true);
   });
 
   it('Agreement checkbox should NOT be show', () => {
     const props = {
-      isShowCheckBox: false,
-      checkBoxValue: false,
+      isChecked: false,
+      enableCheckBox: false,
       isRequire: 'required',
     };
+    const { queryAllByTestId } = render(<GdprAgreement {...props} />);
+    const chkbAgreement = queryAllByTestId('ckAgreement');
 
-    const { container } = render(<GdprAgreement {...props} />);
-    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
-    expect(chkbAgreement).not.toBeInTheDocument();
+    expect(chkbAgreement).toEqual([]);
   });
 
   it('Agreement checkbox should be show', () => {
     const props = {
-        isShowCheckBox: true,
-        checkBoxValue: false,
-        isRequire: 'required'
+      enableCheckBox: true,
+      isChecked: false,
+      isRequire: 'required',
     };
+    const { getByTestId } = render(<GdprAgreement {...props} />);
+    const chkbAgreement = getByTestId('ckAgreement');
 
-    const { container } = render(<GdprAgreement {...props} />);
-    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
     expect(chkbAgreement).toBeInTheDocument();
   });
 });

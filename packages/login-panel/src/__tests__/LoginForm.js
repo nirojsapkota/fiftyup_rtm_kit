@@ -311,21 +311,69 @@ describe('<LoginForm />', () => {
     });
   });
 
-  it(`Require gdpr agreement checkbox when submmit login`, async () => {
-    const GdprProps = {
-      showGdprAgreement: true,
-    };
-    const { container } = render(<LoginForm {...GdprProps} />);
-    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
-    expect(chkbAgreement).toBeInTheDocument();
-  });
-
-  it('Hidden gdpr agreement checkbox in layout', async () => {
+  it(`Does NOT render agreement checkbox in login form layout`, async () => {
     const GdprProps = {
       showGdprAgreement: false,
     };
-    const { container } = render(<LoginForm {...GdprProps} />);
-    const chkbAgreement = container.querySelector(`[id="ckb_agreement"]`);
-    expect(chkbAgreement).not.toBeInTheDocument();
+    const { queryAllByTestId } = render(<LoginForm {...GdprProps} />);
+    const chkbAgreement = queryAllByTestId('ckAgreement');
+
+    expect(chkbAgreement).toEqual([]);
+  });
+
+  it(`Render agreement checkbox in login form layout `, async () => {
+    const GdprProps = {
+      showGdprAgreement: true,
+    };
+    const { getByTestId } = render(<LoginForm {...GdprProps} />);
+    const chkbAgreement = getByTestId('ckAgreement');
+
+    expect(chkbAgreement).toBeInTheDocument();
+  });
+
+  it('Does not allow submit when Agreement checkbox un-checked', async () => {
+    const GdprProps = {
+      showGdprAgreement: true,
+    };
+    const { container, getByText, getByPlaceholderText } = render(
+      <LoginForm {...GdprProps} />
+    );
+
+    const email = getByPlaceholderText('Email');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByPlaceholderText('Postcode');
+    fireEvent.change(postcode, {
+      target: { value: '5000' },
+    });
+
+    const submit = getByText('See the offer');
+    fireEvent.click(submit);
+
+    expect(container).not.toHaveTextContent('Login was unsuccessful.');
+  });
+
+  it('Allow submit when Agreement checkbox checked', async () => {
+    const GdprProps = {
+      showGdprAgreement: true,
+    };
+    const { container, getByText, getByPlaceholderText } = render(
+      <LoginForm {...GdprProps} />
+    );
+
+    const email = getByPlaceholderText('Email');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByPlaceholderText('Postcode');
+    fireEvent.change(postcode, {
+      target: { value: '5000' },
+    });
+
+    const submit = getByText('See the offer');
+    fireEvent.click(submit);
+
+    expect(container).not.toHaveTextContent('Login was unsuccessful.');
   });
 });
