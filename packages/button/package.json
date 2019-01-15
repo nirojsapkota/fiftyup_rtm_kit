@@ -32,6 +32,6 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^3.0."
+    "@rtm-ui/rtm-scripts": "^3.0.0"
   }
 }
