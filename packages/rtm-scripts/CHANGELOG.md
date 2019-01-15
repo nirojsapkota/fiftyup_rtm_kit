@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/rtm-scripts@1.0.8...@rtm-ui/rtm-scripts@3.0.1) (2019-01-15)
-
-**Note:** Version bump only for package @rtm-ui/rtm-scripts
-
-
-
-
-
-## [1.0.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/rtm-scripts@1.0.7...@rtm-ui/rtm-scripts@1.0.8) (2019-01-10)
-
-**Note:** Version bump only for package @rtm-ui/rtm-scripts
-
-
-
-
-
-## [1.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/rtm-scripts@1.0.6...@rtm-ui/rtm-scripts@1.0.7) (2019-01-10)
-
-**Note:** Version bump only for package @rtm-ui/rtm-scripts
-
-
-
-
-
 ## [1.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/rtm-scripts@1.0.5...@rtm-ui/rtm-scripts@1.0.6) (2018-12-19)
 
 **Note:** Version bump only for package @rtm-ui/rtm-scripts
