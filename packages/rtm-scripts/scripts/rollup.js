@@ -66,6 +66,7 @@ const build = async () => {
         const outputOptions = await getOutput(format, path);
         const bundle = await rollup.rollup(inputOptions);
         const res = await bundle.write(outputOptions);
+        copyToMainJs(outputOptions);
         report(outputOptions, res);
       });
     }
@@ -126,6 +127,34 @@ const report = (buildOutput, buildResult, options = {}) => {
   console.log(summary.toString());
   console.log(dependenciesTable.toString());
 };
+
+function copyToMainJs(output) {
+  const filename = `${paths.appBuild}/${packageJson.rtmRollup.namespace}.${
+    packageJson.version
+  }`;
+
+  var replace = `packages\/${packageJson.rtmRollup.namespace}\/build`;
+  var re = new RegExp(replace, 'g');
+  fs.copyFile(
+    output.file,
+    `${filename.replace(re, 'dist')}.${
+      output.format === 'es' ? 'module.' : ''
+    }min.js`,
+    err => {
+      if (err) throw err;
+    }
+  );
+  fs.mkdir('../../dist', { recursive: true }, err => {});
+  fs.copyFile(
+    output.file,
+    `${filename.replace(re, 'dist')}.${
+      output.format === 'es' ? 'module.' : ''
+    }min.js`,
+    err => {
+      if (err) throw err;
+    }
+  );
+}
 
 if (shouldWatch) {
   watch('umd', 'main');
