@@ -1,14 +1,14 @@
 {
-  "name": "@rtm-ui/views",
+  "name": "@rtm-ui/hybrid-login-view",
   "version": "1.0.0",
-  "description": "Contains all views to render UI",
+  "description": "hybrid login view",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "src/index.js",
   "module": "build/main.js",
   "rtmRollup": {
-    "namespace": "views",
-    "defaultExport": "Views",
+    "namespace": "hybridLoginView",
+    "defaultExport": "HybridLoginView",
     "namedExports": [
     ]
   },

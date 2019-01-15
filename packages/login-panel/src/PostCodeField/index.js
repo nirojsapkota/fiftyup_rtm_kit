@@ -3,7 +3,6 @@ import React from 'react';
 import t from 'prop-types';
 import DropdownSelect from '../SelectField/DropdownSelect';
 import { getAutoCompletePostcode } from './actions';
-import { AUTOCOMPLETE_POSTCODE_URL } from './constants';
 
 class PostCodeField extends React.Component {
   constructor(props) {
@@ -16,13 +15,13 @@ class PostCodeField extends React.Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  async handleInput(isFromSelect, fieldName, value) {
-    const { authenticityToken, form } = this.props;
+  async handleInput(isFromDropdown, fieldName, value) {
+    const { authenticityToken, form, autocompletePostcodeUrl } = this.props;
 
     form.setFieldValue(fieldName, value);
 
-    // If we select from select don't need to find
-    if (!isFromSelect) {
+    // If we select from Dropdown select don't need to find
+    if (!isFromDropdown) {
       // Don't search if value < 2
       if (value && value.length < 2) {
         return;
@@ -34,7 +33,7 @@ class PostCodeField extends React.Component {
         options = this.props.getAutoCompletePostcode(value);
       } else {
         options = await getAutoCompletePostcode(
-          AUTOCOMPLETE_POSTCODE_URL,
+          autocompletePostcodeUrl,
           value,
           authenticityToken
         );
@@ -48,7 +47,11 @@ class PostCodeField extends React.Component {
   }
 
   render() {
-    const { getAutoCompletePostcode, ...rest } = this.props;
+    const {
+      getAutoCompletePostcode,
+      autocompletePostcodeUrl,
+      ...rest
+    } = this.props;
 
     const inputEvents = {
       onChange: e =>
@@ -85,4 +88,5 @@ PostCodeField.propTypes = {
   authenticityToken: t.string,
   getAutoCompletePostcode: t.func,
   options: t.arrayOf(t.shape({ value: t.string, label: t.string })),
+  autocompletePostcodeUrl: t.string.isRequired,
 };

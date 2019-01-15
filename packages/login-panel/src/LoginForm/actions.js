@@ -14,15 +14,15 @@ export const submitLogin = async (url, data, authenticityToken) => {
   const result = await axios
     .post(url, data, config)
     .then(response => {
-      const { data } = response;
-      return data;
+      const { data, status } = response;
+      return { status, data };
     })
     .catch(error => {
       const { data, status } = error.response;
       if (status !== 401) {
-        return { errors: ['Login was unsuccessful.'] };
+        return { data: { errors: ['Login was unsuccessful.'] }, status };
       }
-      return data;
+      return { status, data };
     });
 
   return result;

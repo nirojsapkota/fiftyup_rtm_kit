@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@rtm-ui/button": "^1.0.8",
+    "@rtm-ui/icon": "^1.0.6",
     "@rtm-ui/img": "^1.0.8",
     "@rtm-ui/layout": "^1.0.8",
     "@rtm-ui/theme": "^1.0.8",
