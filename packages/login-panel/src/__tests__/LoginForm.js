@@ -311,69 +311,104 @@ describe('<LoginForm />', () => {
     });
   });
 
-  it(`Does NOT render agreement checkbox in login form layout`, async () => {
-    const GdprProps = {
-      showGdprAgreement: false,
+  describe('When <LoginForm /> enable Gdpr agreement.', () => {
+    const gdprProps = {
+      enableCheckBox: true,
+      isRequire: 'required',
+      isChecked: false,
+      confirmationOfConsent: {
+        url: '/confirmation-of-consent',
+        text: 'Confirmation of Consent',
+      },
+      termsAndConditions: {
+        url: '/terms-and-conditions',
+        text: 'Terms and Conditions',
+      },
+      privacyPolicy: {
+        url: '/privacy-policy',
+        text: 'Privacy Policy',
+      },
     };
-    const { queryAllByTestId } = render(<LoginForm {...GdprProps} />);
-    const chkbAgreement = queryAllByTestId('ckAgreement');
 
-    expect(chkbAgreement).toEqual([]);
-  });
+    it(`Render gdpr agreement with checkbox confirm`, () => {
+      const { getByTestId, getByText, container } = render(
+        <LoginForm gdprProps={gdprProps} />
+      );
+      const chkbAgreement = getByTestId('ckAgreement');
 
-  it(`Render agreement checkbox in login form layout `, async () => {
-    const GdprProps = {
-      showGdprAgreement: true,
-    };
-    const { getByTestId } = render(<LoginForm {...GdprProps} />);
-    const chkbAgreement = getByTestId('ckAgreement');
-
-    expect(chkbAgreement).toBeInTheDocument();
-  });
-
-  it('Does not allow submit when Agreement checkbox un-checked', async () => {
-    const GdprProps = {
-      showGdprAgreement: true,
-    };
-    const { container, getByText, getByPlaceholderText } = render(
-      <LoginForm {...GdprProps} />
-    );
-
-    const email = getByPlaceholderText('Email');
-    fireEvent.change(email, {
-      target: { value: 'user@example.com' },
-    });
-    const postcode = getByPlaceholderText('Postcode');
-    fireEvent.change(postcode, {
-      target: { value: '5000' },
+      expect(
+        getByText('By ticking this box, you agree to our')
+      ).toBeInTheDocument();
+      expect(chkbAgreement).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
-    const submit = getByText('See the offer');
-    fireEvent.click(submit);
+    it(`Render gdpr agreement message does NOT show checkbox`, () => {
+      gdprProps.enableCheckBox = false;
 
-    expect(container).not.toHaveTextContent('Login was unsuccessful.');
-  });
+      const { queryByTestId, getByText } = render(
+        <LoginForm gdprProps={gdprProps} />
+      );
+      const chkbAgreement = queryByTestId('ckAgreement');
 
-  it('Allow submit when Agreement checkbox checked', async () => {
-    const GdprProps = {
-      showGdprAgreement: true,
-    };
-    const { container, getByText, getByPlaceholderText } = render(
-      <LoginForm {...GdprProps} />
-    );
-
-    const email = getByPlaceholderText('Email');
-    fireEvent.change(email, {
-      target: { value: 'user@example.com' },
-    });
-    const postcode = getByPlaceholderText('Postcode');
-    fireEvent.change(postcode, {
-      target: { value: '5000' },
+      expect(
+        getByText('By clicking the button above, you agree to our')
+      ).toBeInTheDocument();
+      expect(chkbAgreement).not.toBeInTheDocument();
     });
 
-    const submit = getByText('See the offer');
-    fireEvent.click(submit);
+    it('Form does NOT allow submit when agreement checkbox un-checked', async () => {
+      gdprProps.enableCheckBox = true;
+      const { container, getByText, getByPlaceholderText } = render(
+        <LoginForm gdprProps={gdprProps} />
+      );
+      const email = getByPlaceholderText('Email');
+      const postcode = getByPlaceholderText('Postcode');
+      const form = container.querySelector('form');
+      const submit = getByText('See the offer');
 
-    expect(container).not.toHaveTextContent('Login was unsuccessful.');
+      fireEvent.change(email, {
+        target: { value: 'user@example.com' },
+      });
+      fireEvent.change(postcode, {
+        target: { value: '5000' },
+      });
+      fireEvent.click(submit);
+
+      await wait(() => {
+        // check it directly
+        expect(form.checkValidity()).toBeFalsy();
+      });
+    });
+
+    it('Form allow submit when agreement checkbox checked', async () => {
+      gdprProps.enableCheckBox = true;
+      const {
+        container,
+        getByText,
+        getByPlaceholderText,
+        getByTestId,
+      } = render(<LoginForm gdprProps={gdprProps} />);
+      const form = container.querySelector('form');
+      const email = getByPlaceholderText('Email');
+      fireEvent.change(email, {
+        target: { value: 'user@example.com' },
+      });
+      const postcode = getByPlaceholderText('Postcode');
+      fireEvent.change(postcode, {
+        target: { value: '5000' },
+      });
+      const submit = getByText('See the offer');
+      const chkbAgreement = getByTestId('ckAgreement');
+
+      fireEvent.click(submit);
+      fireEvent.click(chkbAgreement);
+
+      await wait(() => {
+        // check it directly
+        expect(form.checkValidity()).toBeTruthy();
+      });
+      expect(container).not.toHaveTextContent('Login was unsuccessful.');
+    });
   });
 });
