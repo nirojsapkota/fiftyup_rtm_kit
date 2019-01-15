@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/rtm-scripts@3.0.1...@rtm-ui/rtm-scripts@4.0.0) (2019-01-15)
+
+
+### Build System
+
+* **rtm-scripts:** Build packages while excluding all dependencies ([94dabc2](https://github.com/OBSAU/rtm-kit/commit/94dabc2))
+
+
+### BREAKING CHANGES
+
+* **rtm-scripts:** Dependencies will not be bundled
+
+
+
+
+
 ## [1.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/rtm-scripts@1.0.5...@rtm-ui/rtm-scripts@1.0.6) (2018-12-19)
 
 **Note:** Version bump only for package @rtm-ui/rtm-scripts
