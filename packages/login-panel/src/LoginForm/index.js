@@ -77,7 +77,6 @@ class LoginForm extends React.Component {
       authenticityToken,
       title,
       buttonText,
-      showGdprAgreement,
       gdprProps,
     } = this.props;
 
@@ -159,7 +158,7 @@ class LoginForm extends React.Component {
                   {buttonText}
                 </Button>
               </ButtonWrapper>
-              {showGdprAgreement && <GdprAgreement {...gdprProps} />}
+              {<GdprAgreement {...gdprProps} />}
             </form>
           )}
         />
@@ -176,7 +175,6 @@ LoginForm.propTypes = {
   title: t.string,
   buttonText: t.string,
   buttonIcon: t.string,
-  showGdprAgreement: t.bool,
   // eslint-disable-next-line react/forbid-prop-types
   gdprProps: t.shape({}),
 };
