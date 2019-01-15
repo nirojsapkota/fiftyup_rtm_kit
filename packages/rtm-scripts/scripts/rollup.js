@@ -2,6 +2,7 @@
 
 const paths = require('../config/paths');
 const fs = require('fs');
+const path = require('path');
 const Table = require('cli-table');
 const packageJson = require(paths.appPackageJson);
 const rollup = require('rollup');
@@ -66,8 +67,8 @@ const build = async () => {
         const outputOptions = await getOutput(format, path);
         const bundle = await rollup.rollup(inputOptions);
         const res = await bundle.write(outputOptions);
-        copyToMainJs(outputOptions);
-        report(outputOptions, res);
+        await copyToMainJs(outputOptions);
+        await report(outputOptions, res);
       });
     }
   );
@@ -128,22 +129,18 @@ const report = (buildOutput, buildResult, options = {}) => {
   console.log(dependenciesTable.toString());
 };
 
-function copyToMainJs(output) {
+async function copyToMainJs(output) {
   const filename = `${paths.appBuild}/${packageJson.rtmRollup.namespace}.${
     packageJson.version
   }`;
 
+  fs.readdir(path.dirname(output.file), function(err, items) {
+    console.log('Checking files', path.dirname(output.file));
+    console.log(items);
+  });
+
   var replace = `packages\/${packageJson.rtmRollup.namespace}\/build`;
   var re = new RegExp(replace, 'g');
-  fs.copyFile(
-    output.file,
-    `${filename.replace(re, 'dist')}.${
-      output.format === 'es' ? 'module.' : ''
-    }min.js`,
-    err => {
-      if (err) throw err;
-    }
-  );
   fs.mkdir('../../dist', { recursive: true }, err => {});
   fs.copyFile(
     output.file,
@@ -151,7 +148,7 @@ function copyToMainJs(output) {
       output.format === 'es' ? 'module.' : ''
     }min.js`,
     err => {
-      if (err) throw err;
+      if (err) console.log(err);
     }
   );
 }

@@ -22,3 +22,4 @@ phases:
   build:
     commands:
       - npm run test
+      - ls dist
