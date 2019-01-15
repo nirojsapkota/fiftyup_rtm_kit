@@ -134,11 +134,6 @@ async function copyToMainJs(output) {
     packageJson.version
   }`;
 
-  fs.readdir(path.dirname(output.file), function(err, items) {
-    console.log('Checking files', path.dirname(output.file));
-    console.log(items);
-  });
-
   var replace = `packages\/${packageJson.rtmRollup.namespace}\/build`;
   var re = new RegExp(replace, 'g');
   fs.mkdir('../../dist', { recursive: true }, err => {});
@@ -148,7 +143,9 @@ async function copyToMainJs(output) {
       output.format === 'es' ? 'module.' : ''
     }min.js`,
     err => {
-      if (err) console.log(err);
+      if (err) {
+        throw err;
+      }
     }
   );
 }

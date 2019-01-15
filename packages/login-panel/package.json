@@ -5,7 +5,7 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
-    "namespace": "loginPanel",
+    "namespace": "login-panel",
     "defaultExport": "LoginPanel",
     "namedExports": []
   },
