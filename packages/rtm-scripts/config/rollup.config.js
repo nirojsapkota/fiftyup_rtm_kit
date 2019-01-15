@@ -38,7 +38,6 @@ function copyToMainJs() {
   return {
     name: 'copy-to-main-js', // this name will show up in warnings and errors
     onwrite(output) {
-      console.log('read file', output.file, fs.readFileSync(output.file));
       fs.copyFile(
         output.file,
         `${filename.replace(re, 'dist')}.${
@@ -82,7 +81,7 @@ const inputOptions = {
     commonjs({
       namedExports: namedExports,
     }),
-    copyToMainJs(),
+    // copyToMainJs(),
   ],
 };
 
