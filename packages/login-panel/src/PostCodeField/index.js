@@ -30,7 +30,7 @@ class PostCodeField extends React.Component {
       let options = [];
       // Call outside func if provided
       if (typeof this.props.getAutoCompletePostcode === 'function') {
-        options = this.props.getAutoCompletePostcode(value);
+        options = await this.props.getAutoCompletePostcode(value);
       } else {
         options = await getAutoCompletePostcode(
           autocompletePostcodeUrl,

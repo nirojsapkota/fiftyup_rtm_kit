@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<View /> matches expected output 1`] = `
+exports[`<HybridLoginView /> matches expected output 1`] = `
 .c1 {
   box-sizing: border-box;
   background: #FFF;
@@ -8,27 +8,32 @@ exports[`<View /> matches expected output 1`] = `
 
 .c3 {
   box-sizing: border-box;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background: #FFF;
+}
+
+.c7 {
+  box-sizing: border-box;
+  margin: auto;
+  background: #FFF;
+}
+
+.c9 {
+  box-sizing: border-box;
   margin: auto;
   margin-top: -30px;
   background: #FFF;
 }
 
-.c5 {
+.c11 {
   box-sizing: border-box;
   padding-left: 10px;
   padding-right: 10px;
   background: #FFF;
 }
 
-.c22 {
-  box-sizing: border-box;
-  margin-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background: #FFF;
-}
-
-.c8 {
+.c14 {
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
@@ -37,17 +42,16 @@ exports[`<View /> matches expected output 1`] = `
   background: #FFF;
 }
 
-.c11 {
+.c16 {
   box-sizing: border-box;
-  padding-bottom: 8px;
   padding-top: 8px;
   background: #FFF;
 }
 
 .c17 {
   box-sizing: border-box;
-  padding-top: 8px;
   padding-bottom: 8px;
+  padding-top: 8px;
   background: #FFF;
 }
 
@@ -58,18 +62,92 @@ exports[`<View /> matches expected output 1`] = `
   background: #FFF;
 }
 
-.c7 {
+.c24 {
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: #FFF;
+}
+
+.c27 {
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #FFF;
+}
+
+.c34 {
+  box-sizing: border-box;
+  padding: 30px;
+  background: #FFF;
+}
+
+.c36 {
+  box-sizing: border-box;
+  background: #2d9dd6;
+}
+
+.c38 {
+  box-sizing: border-box;
+  margin: auto;
+  background: #2d9dd6;
+}
+
+.c39 {
+  box-sizing: border-box;
+  padding-left: 4px;
+  background: #2d9dd6;
+}
+
+.c41 {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 4px;
+  background: #2d9dd6;
+}
+
+.c13 {
   overflow: hidden;
   border-radius: 4px;
   box-shadow: 0 0 1px rgba(67,90,111,0.3),0 8px 10px -4px rgba(67,90,111,0.47);
 }
 
-.c6 {
+.c12 {
   overflow: hidden;
   border-radius: 4px;
 }
 
-.c20 {
+.c15 {
+  font-family: MuseoSans;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: left;
+  color: #1566ad;
+  font-size: 16px;
+}
+
+.c18 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 16px;
+}
+
+.c40 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #FFF;
+  font-size: 16px;
+}
+
+.c25 {
   background: none;
   cursor: pointer;
   border: none;
@@ -117,57 +195,26 @@ exports[`<View /> matches expected output 1`] = `
   border-bottom-color: #e56209;
 }
 
-.c20:disabled {
+.c25:disabled {
   cursor: not-allowed;
 }
 
-.c20:hover,
-.c20:focus {
+.c25:hover,
+.c25:focus {
   background: #e56209;
   border-bottom-color: #ef8612;
 }
 
-.c10 {
-  box-sizing: border-box;
-  padding-top: 8px;
-  background: #FFF;
-}
-
-.c13 {
-  box-sizing: border-box;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  background: #FFF;
-}
-
-.c9 {
-  font-family: MuseoSans;
-  font-weight: 900;
-  line-height: 1.2;
-  text-align: left;
-  color: #1566ad;
-  font-size: 16px;
-}
-
-.c12 {
-  font-family: MuseoSans;
-  font-weight: 400;
-  line-height: 1.2;
-  text-align: left;
-  color: #565656;
-  font-size: 16px;
-}
-
-.c14 {
+.c20 {
   position: relative;
   display: block;
 }
 
-.c15 {
+.c21 {
   display: block;
 }
 
-.c16 {
+.c22 {
   padding: 8px 2px;
   font-size: 16px;
   border: none;
@@ -175,44 +222,11 @@ exports[`<View /> matches expected output 1`] = `
   width: 100%;
 }
 
-.c18 {
+.c23 {
   text-align: center;
 }
 
-.c26 {
-  box-sizing: border-box;
-  background: #FFF;
-}
-
-.c25 {
-  font-family: MuseoSans;
-  font-weight: 900;
-  line-height: 1.2;
-  text-align: left;
-  color: #1566ad;
-  font-size: 16px;
-}
-
-.c35 {
-  font-family: MuseoSans;
-  font-weight: 400;
-  line-height: 1.2;
-  text-align: left;
-  color: #565656;
-  font-size: 16px;
-}
-
-.c24 {
-  box-sizing: border-box;
-  background: #FFF;
-}
-
-.c30 {
-  box-sizing: border-box;
-  background: #FFF;
-}
-
-.c29 {
+.c0 {
   max-width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -228,7 +242,7 @@ exports[`<View /> matches expected output 1`] = `
   justify-content: center;
 }
 
-.c32 {
+.c2 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -241,20 +255,20 @@ exports[`<View /> matches expected output 1`] = `
   overflow: hidden;
 }
 
-.c33 {
+.c4 {
   min-width: 1px;
 }
 
-.c23 {
+.c28 {
   background: inherit;
   padding: 0px 10px;
 }
 
-.c23 * {
+.c28 * {
   background: inherit;
 }
 
-.c27 {
+.c29 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -264,16 +278,16 @@ exports[`<View /> matches expected output 1`] = `
   flex-direction: row;
 }
 
-.c28 {
+.c30 {
   padding: 8px;
   position: relative;
 }
 
-.c28 > div:first-child {
+.c30 > div:first-child {
   position: relative;
 }
 
-.c28 > div:first-child:after {
+.c30 > div:first-child:after {
   position: absolute;
   right: -15px;
   top: 45%;
@@ -286,19 +300,19 @@ exports[`<View /> matches expected output 1`] = `
   z-index: 2;
 }
 
-.c28:first-child {
+.c30:first-child {
   padding-left: 0px;
 }
 
-.c28:last-child {
+.c30:last-child {
   padding-right: 0px;
 }
 
-.c28:last-child > div:after {
+.c30:last-child > div:after {
   display: none;
 }
 
-.c28:last-child:after {
+.c30:last-child:after {
   display: none;
 }
 
@@ -308,255 +322,262 @@ exports[`<View /> matches expected output 1`] = `
   padding: 10px 0px;
 }
 
-.c34 {
+.c32 {
   text-align: center;
   word-break: break-word;
   font-size: 0.9em;
 }
 
-.c38 {
-  box-sizing: border-box;
-  padding: 30px;
-  background: #FFF;
-}
-
 .c37 {
-  font-family: MuseoSans;
-  font-weight: 400;
-  line-height: 1.2;
-  text-align: left;
-  color: #565656;
-  font-size: 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 1080px;
 }
 
-.c0 {
+.c5 {
   background: #eee;
 }
 
-.c2 {
+.c8 {
   max-width: 1080px;
-  background: inherit;
+  background: none;
   display: grid;
   grid-template-columns: 50% auto;
   grid-template-rows: auto auto;
 }
 
-.c21 {
+.c26 {
   background: inherit;
   grid-column: 2 / 3;
   grid-row: 1 / 3;
 }
 
-.c4 {
+.c10 {
   background: none;
 }
 
-.c36 {
+.c33 {
   background: inherit;
 }
 
-.c36 * {
+.c33 * {
   background: inherit;
+}
+
+.c35 {
+  background: #2d9dd6;
+}
+
+.c6 {
+  max-width: 1080px;
 }
 
 @media screen and (min-width:32em) {
-  .c5 {
+  .c11 {
     padding-left: 10px;
     padding-right: 10px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c5 {
+  .c11 {
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c5 {
+  .c11 {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c22 {
-    margin-top: 20px;
-  }
-}
-
-@media screen and (min-width:46em) {
-  .c22 {
-    margin-top: 40px;
-  }
-}
-
-@media screen and (min-width:76em) {
-  .c22 {
-    margin-top: 50px;
-  }
-}
-
-@media screen and (min-width:32em) {
-  .c8 {
+  .c14 {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c8 {
+  .c14 {
     padding-left: 30px;
     padding-right: 30px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c8 {
+  .c14 {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c11 {
+  .c16 {
     padding-top: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c11 {
+  .c16 {
     padding-top: 16px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c11 {
+  .c16 {
     padding-top: 32px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c19 {
+  .c17 {
+    padding-top: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c17 {
+    padding-top: 16px;
+  }
+}
+
+@media screen and (min-width:76em) {
+  .c17 {
+    padding-top: 32px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c24 {
     padding-top: 8px;
     padding-bottom: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c19 {
+  .c24 {
     padding-top: 16px;
     padding-bottom: 16px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c19 {
+  .c24 {
     padding-top: 32px;
     padding-bottom: 32px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c10 {
-    padding-top: 8px;
+  .c27 {
+    margin-top: 20px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c10 {
-    padding-top: 16px;
+  .c27 {
+    margin-top: 40px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c10 {
-    padding-top: 32px;
+  .c27 {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c39 {
+    padding-left: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c39 {
+    padding-left: 32px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c41 {
+    padding-right: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c41 {
+    padding-right: 32px;
   }
 }
 
 @media (min-width:32em) {
-  .c9 {
+  .c15 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c9 {
+  .c15 {
     font-size: 20px;
   }
 }
 
 @media (min-width:76em) {
-  .c9 {
+  .c15 {
     font-size: 20px;
   }
 }
 
 @media (min-width:32em) {
-  .c12 {
+  .c18 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c12 {
+  .c18 {
     font-size: 16px;
   }
 }
 
 @media (min-width:76em) {
-  .c12 {
+  .c18 {
     font-size: 16px;
   }
 }
 
 @media (min-width:32em) {
-  .c25 {
+  .c40 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c25 {
-    font-size: 20px;
-  }
-}
-
-@media (min-width:76em) {
-  .c25 {
-    font-size: 20px;
-  }
-}
-
-@media (min-width:32em) {
-  .c35 {
-    font-size: 16px;
-  }
-}
-
-@media (min-width:46em) {
-  .c35 {
+  .c40 {
     font-size: 16px;
   }
 }
 
 @media (min-width:76em) {
-  .c35 {
+  .c40 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c23 {
+  .c28 {
     padding: 0px 30px;
     margin-right: 10px;
   }
 }
 
 @media (min-width:46em) {
-  .c27 {
+  .c29 {
     display: inline-block;
     -webkit-flex-direction: unset;
     -ms-flex-direction: unset;
@@ -566,32 +587,32 @@ exports[`<View /> matches expected output 1`] = `
 }
 
 @media (min-width:46em) {
-  .c28:first-child {
+  .c30:first-child {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
   }
 
-  .c28:first-child > p {
+  .c30:first-child > p {
     text-align: left;
   }
 }
 
 @media (min-width:46em) {
-  .c28:last-child {
+  .c30:last-child {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     padding: 0px;
   }
 
-  .c28:last-child > p {
+  .c30:last-child > p {
     text-align: left;
   }
 }
 
 @media (min-width:46em) {
-  .c28 {
+  .c30 {
     width: 100%;
     display: -webkit-inline-box;
     display: -webkit-inline-flex;
@@ -606,11 +627,11 @@ exports[`<View /> matches expected output 1`] = `
     align-items: center;
   }
 
-  .c28 > div:after {
+  .c30 > div:after {
     display: none;
   }
 
-  .c28:after {
+  .c30:after {
     position: absolute;
     right: auto;
     top: auto;
@@ -627,40 +648,22 @@ exports[`<View /> matches expected output 1`] = `
 }
 
 @media (min-width:46em) {
-  .c34 {
+  .c32 {
     text-align: right;
     padding: 0px 10px;
     font-size: 1em;
   }
 }
 
-@media (min-width:32em) {
-  .c37 {
-    font-size: 16px;
-  }
-}
-
-@media (min-width:46em) {
-  .c37 {
-    font-size: 16px;
-  }
-}
-
-@media (min-width:76em) {
-  .c37 {
-    font-size: 16px;
-  }
-}
-
 @media (max-width:46em) {
-  .c2 {
+  .c8 {
     grid-template-columns: auto;
     grid-template-rows: auto;
   }
 }
 
 @media (max-width:46em) {
-  .c21 {
+  .c26 {
     grid-column: auto;
     grid-row: auto;
   }
@@ -673,11 +676,41 @@ exports[`<View /> matches expected output 1`] = `
     <div
       class="c2 c3"
     >
+      <img
+        alt="Header logo"
+        class="c4"
+        src="/assets/design_aug_2015/OBS_Logo.png"
+      />
+    </div>
+  </div>
+  <div
+    class="c5 c1"
+  >
+    <div
+      class="c6 c7"
+    >
       <div
-        class="c4 c5"
+        class="c0 c1"
       >
         <div
-          class="c6 c7 c8"
+          class="c2 c1"
+        >
+          <img
+            alt="Hero image"
+            class="c4"
+            src="https://obs-development.s3.amazonaws.com/feature_tiles/35/main_image.png"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="c8 c9"
+    >
+      <div
+        class="c10 c11"
+      >
+        <div
+          class="c12 c13 c14"
           elevation="2"
         >
           <form>
@@ -694,29 +727,29 @@ exports[`<View /> matches expected output 1`] = `
               value="/campaigns/OBS_BES_2017_Offers"
             />
             <h6
-              class="c9 c10"
+              class="c15 c16"
             >
-              Enter your details to view&lt;br&gt;Energy discounts in your area
+              Login panel title
             </h6>
             <div
-              class="c11"
+              class="c17"
             >
               <p
-                class="c12 c13"
+                class="c18 c19"
               >
                 My Postcode:
               </p>
               <span
-                class="c14"
+                class="c20"
                 display="block"
               >
                 <span
-                  class="c15"
+                  class="c21"
                 >
                   <input
                     aria-labelledby="user.postcode_suburb"
                     autocomplete="off"
-                    class="c16"
+                    class="c22"
                     id="user.postcode_suburb"
                     name="user.postcode_suburb"
                     placeholder="Postcode"
@@ -727,16 +760,16 @@ exports[`<View /> matches expected output 1`] = `
               </span>
             </div>
             <div
-              class="c17"
+              class="c19"
             >
               <p
-                class="c12 c13"
+                class="c18 c19"
               >
                 My Email:
               </p>
               <input
                 aria-labelledby="user.email"
-                class="c16"
+                class="c22"
                 id="user.email"
                 name="user.email"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
@@ -747,10 +780,10 @@ exports[`<View /> matches expected output 1`] = `
               />
             </div>
             <div
-              class="c18 c19"
+              class="c23 c24"
             >
               <button
-                class="c20"
+                class="c25"
                 type="submit"
               >
                 See the offer
@@ -760,81 +793,81 @@ exports[`<View /> matches expected output 1`] = `
         </div>
       </div>
       <div
-        class="c21 c22"
+        class="c26 c27"
       >
         <div
-          class="c23 c24"
+          class="c28 c1"
         >
           <h6
-            class="c25 c26"
+            class="c15 c1"
           >
-            New Energy Group Discounts now available for a limited time only!
+            One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
           </h6>
           <div
-            class="c27 c24"
+            class="c29 c1"
           >
             <div
-              class="c28"
+              class="c30"
             >
               <div
-                class="c29 c30"
+                class="c0 c1"
               >
                 <div
-                  class="c31 c32 c30"
+                  class="c31 c2 c1"
                 >
                   <img
                     alt="You join the movement for free"
-                    class="c33"
+                    class="c4"
                     src="https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/tick-81a6885ed08fa480d0a3edd9eb3daed0386aeff48e4fd6696bf9d3fd546474e2.png"
                   />
                 </div>
               </div>
               <p
-                class="c34 c35 c26"
+                class="c32 c18 c1"
               >
                 You join the movement for free
               </p>
             </div>
             <div
-              class="c28"
+              class="c30"
             >
               <div
-                class="c29 c30"
+                class="c0 c1"
               >
                 <div
-                  class="c31 c32 c30"
+                  class="c31 c2 c1"
                 >
                   <img
                     alt="We negotiate Group Discounts"
-                    class="c33"
+                    class="c4"
                     src="https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/quote-e31e7443a59255068905462c61ea2fc8c0baf111b4cbd09e7dc0697fa73b605b.png"
                   />
                 </div>
               </div>
               <p
-                class="c34 c35 c26"
+                class="c32 c18 c1"
               >
                 We negotiate Group Discounts
               </p>
             </div>
             <div
-              class="c28"
+              class="c30"
             >
               <div
-                class="c29 c30"
+                class="c0 c1"
               >
                 <div
-                  class="c31 c32 c30"
+                  class="c31 c2 c1"
                 >
                   <img
                     alt="You decide what’s right for you"
-                    class="c33"
+                    class="c4"
                     src="https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/dollar-c46a72a93eb371e6000fe5a034cdcd04bddb7c2746bc71ca8220d4e733baecba.png"
                   />
                 </div>
               </div>
               <p
-                class="c34 c35 c26"
+                class="c32 c18 c1"
               >
                 You decide what’s right for you
               </p>
@@ -843,14 +876,40 @@ exports[`<View /> matches expected output 1`] = `
         </div>
       </div>
       <div
-        class="c36 c1"
+        class="c33 c1"
       >
         <p
-          class="c37 c38"
+          class="c18 c34"
         >
-          * test
+          * disclaimer text
         </p>
       </div>
+    </div>
+  </div>
+  <div
+    class="c35 c36"
+  >
+    <div
+      class="c37 c38"
+    >
+      <div
+        class="c0 c36"
+      >
+        <div
+          class="c2 c39"
+        >
+          <img
+            alt="Footer logo"
+            class="c4"
+            src="/assets/footer/obs/footer-logo.png"
+          />
+        </div>
+      </div>
+      <p
+        class="c40 c41"
+      >
+        © 2019 RevTech Media
+      </p>
     </div>
   </div>
 </div>
