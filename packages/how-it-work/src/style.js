@@ -1,13 +1,11 @@
 import styled, { css } from 'styled-components';
-import { Paragraph } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
-import Img from '@rtm-ui/img';
 import { getColor } from '@rtm-ui/theme';
 
-const PrimaryArrow = css`
+const RightArrow = css`
   position: absolute;
-  right: -15px;
-  top: 45%;
+  right: -5px;
+  top: 45px;
   width: 0;
   height: 0;
   content: '';
@@ -18,7 +16,7 @@ const PrimaryArrow = css`
   z-index: 2;
 `;
 
-const SecondArrow = css`
+const BottomArrow = css`
   position: absolute;
   right: auto;
   top: auto;
@@ -27,9 +25,9 @@ const SecondArrow = css`
   content: '';
   width: 0;
   height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 22px solid
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 16px solid
     ${props => getColor(props.color || 'black', props.theme)};
   z-index: 2;
 `;
@@ -38,7 +36,7 @@ export const WrapperBox = styled(Box)`
   background: inherit;
   padding: 0px 10px;
   @media (min-width: ${props => props.theme.grid.md}em) {
-    padding: 0px 30px;
+    padding: 0px 15px;
     margin-right: 10px;
   }
   * {
@@ -59,26 +57,12 @@ export const StepOfferStyled = styled(Box)`
 export const ItemStyled = styled.div`
   padding: 8px;
   position: relative;
-  > div:first-child {
-    position: relative;
-    &:after {
-      ${PrimaryArrow};
-    }
-  }
-  &:first-child {
-    padding-left: 0px;
-    @media (min-width: ${props => props.theme.grid.md}em) {
-      flex-direction: row;
-      > p {
-        text-align: left;
-      }
-    }
+  text-align: center;
+  &:after {
+    ${RightArrow};
   }
   &:last-child {
     padding-right: 0px;
-    > div:after {
-      display: none;
-    }
     &:after {
       display: none;
     }
@@ -92,31 +76,20 @@ export const ItemStyled = styled.div`
   }
   @media (min-width: ${props => props.theme.grid.md}em) {
     width: 100%;
-    display: inline-flex;
+    display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    > div:after {
-      display: none;
-    }
     &:after {
-      ${SecondArrow};
+      ${BottomArrow};
     }
-  }
-`;
-
-export const StepImgStyled = styled(Img)`
-  max-width: 150px;
-  max-height: 150px;
-  padding: 10px 0px;
-`;
-
-export const StepDescStyled = styled(Paragraph)`
-  text-align: center;
-  word-break: break-word;
-  font-size: 0.9em;
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    text-align: right;
-    padding: 0px 10px;
-    font-size: 1em;
+    &:first-child {
+      padding-left: 0px;
+      @media (min-width: ${props => props.theme.grid.md}em) {
+        flex-direction: row;
+        > p {
+          text-align: left;
+        }
+      }
+    }
   }
 `;
