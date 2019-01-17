@@ -2,34 +2,33 @@ import styled, { css } from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { getColor } from '@rtm-ui/theme';
 
-const RightArrow = css`
+const ResetArrow = css`
   position: absolute;
-  right: -5px;
-  top: 45px;
   width: 0;
   height: 0;
   content: '';
+  z-index: 2;
+`; 
+const RightArrow = css`
+  ${ResetArrow}
+  right: -5px;
+  top: 45px;
   border-top: 6px solid transparent;
   border-left: 12px solid
-    ${props => getColor(props.color || 'black', props.theme)};
+    ${props => getColor(props.color || 'text', props.theme)};
   border-bottom: 6px solid transparent;
-  z-index: 2;
 `;
 
 const BottomArrow = css`
-  position: absolute;
+  ${ResetArrow}
   right: auto;
   top: auto;
   bottom: -15px;
   left: calc(50% - 12px);
-  content: '';
-  width: 0;
-  height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 16px solid
-    ${props => getColor(props.color || 'black', props.theme)};
-  z-index: 2;
+    ${props => getColor(props.color || 'text', props.theme)};
 `;
 
 export const WrapperBox = styled(Box)`
@@ -44,7 +43,7 @@ export const WrapperBox = styled(Box)`
   }
 `;
 
-export const StepOfferStyled = styled(Box)`
+export const Container = styled(Box)`
   display: inline-flex;
   flex-direction: row;
   @media (min-width: ${props => props.theme.grid.md}em) {
@@ -54,7 +53,7 @@ export const StepOfferStyled = styled(Box)`
   }
 `;
 
-export const ItemStyled = styled.div`
+export const Item = styled.div`
   padding: 8px;
   position: relative;
   text-align: center;
