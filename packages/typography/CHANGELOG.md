@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.0.1...@rtm-ui/typography@3.0.2) (2019-01-15)
+
+**Note:** Version bump only for package @rtm-ui/typography
+
+
+
+
+
+## [3.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@1.0.9...@rtm-ui/typography@3.0.1) (2019-01-15)
+
+**Note:** Version bump only for package @rtm-ui/typography
+
+
+
+
+
+## [1.0.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@1.0.8...@rtm-ui/typography@1.0.9) (2019-01-14)
+
+
+### Bug Fixes
+
+* **component:** added font-sizes for label ([83654c4](https://github.com/OBSAU/rtm-kit/commit/83654c4))
+
+
+
+
+
 ## [1.0.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@1.0.7...@rtm-ui/typography@1.0.8) (2019-01-10)
 
 **Note:** Version bump only for package @rtm-ui/typography

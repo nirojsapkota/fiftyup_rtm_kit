@@ -1,5 +1,12 @@
 {
   "private": true,
+  "rtmRollup": {
+    "globalMap": {
+      "styled-components": "styled",
+      "cloneDeep": "lodash.clonedeep",
+      "toPath": "lodash.topath"
+    }
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "commit": "npx git-cz",

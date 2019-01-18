@@ -11,6 +11,8 @@ import {
   cleanup,
 } from '../../../bootstrap/setup/testSetup';
 import LoginForm from '../LoginForm';
+import { mockData } from '../__mocks__/data';
+import { loginMock } from '../__mocks__/functionMock';
 
 jest.mock('axios');
 
@@ -18,22 +20,17 @@ jest.mock('axios');
 afterEach(cleanup);
 
 const mockDefaultAxios = () => {
-  axios.get.mockResolvedValueOnce({ data: [] });
-  axios.post.mockResolvedValueOnce({ data: { redirectPath: '/' } });
+  axios.get.mockResolvedValue({ data: [] });
+  axios.post.mockResolvedValue({ data: { redirectPath: '/' } });
 };
 
 describe('<LoginForm />', () => {
-  it('matches expected output', async () => {
+  it('submit button will be disable when clicked', async () => {
     // set Up
     mockDefaultAxios();
 
-    // initial hidden fields
-    const hiddenFields = {
-      jump_path: 'test_value',
-    };
-
-    const { getByText, getByPlaceholderText, getByValue } = render(
-      <LoginForm hiddenFields={hiddenFields} />
+    const { getByText, getByPlaceholderText } = render(
+      <LoginForm {...mockData} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -45,27 +42,23 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    // expect hidden fields
-    const hiddenJumpPath = getByValue('test_value');
-    expect(hiddenJumpPath.name).toEqual('jump_path');
-
     const submit = getByText('See the offer');
     fireEvent.click(submit);
 
-    // expect event was fired
+    // expect submit button was disable
     await wait(() => {
       expect(submit).toBeDisabled();
     });
   });
 
-  it('matches expected output with handleSuccess func prop', async () => {
+  it('handleSuccess func prop was fired after click submit', async () => {
     // set Up
     mockDefaultAxios();
 
     const handleSuccess = jest.fn();
 
     const { getByText, getByPlaceholderText } = render(
-      <LoginForm handleSuccess={handleSuccess} />
+      <LoginForm {...mockData} handleSuccess={handleSuccess} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -86,12 +79,56 @@ describe('<LoginForm />', () => {
     });
   });
 
-  // FIXME: html5 validation doesn't work with jest
-  xit("doesn't not allow empty email", async () => {
+  it('login request as epected url and param', async () => {
     // set Up
     mockDefaultAxios();
 
-    const { getByText, getByPlaceholderText } = render(<LoginForm />);
+    const { getByText, getByPlaceholderText } = render(
+      <LoginForm {...mockData} />
+    );
+
+    const email = getByPlaceholderText('Email');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByPlaceholderText('Postcode');
+    fireEvent.change(postcode, {
+      target: { value: '2000, Barangaroo' },
+    });
+
+    const submit = getByText('See the offer');
+    fireEvent.click(submit);
+
+    expect(axios.post).toHaveBeenCalledTimes(2);
+    expect(axios.post).toHaveBeenCalledWith(
+      mockData.loginUrl,
+      {
+        ...mockData.hiddenFields,
+        user: {
+          email: 'user@example.com',
+          postcode_suburb: '2000, Barangaroo',
+        },
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': mockData.authenticityToken,
+        },
+      }
+    );
+  });
+
+  it("doesn't not allow empty email", async () => {
+    // set Up
+    mockDefaultAxios();
+
+    const { container, getByText, getByPlaceholderText } = render(
+      <LoginForm {...mockData} />
+    );
+
+    // grab the form node
+    const form = container.querySelector('form');
 
     const email = getByPlaceholderText('Email');
     fireEvent.change(email, {
@@ -106,16 +143,21 @@ describe('<LoginForm />', () => {
     fireEvent.click(submit);
 
     await wait(() => {
-      expect(submit).not.toBeDisabled();
+      // expect form can't submit
+      expect(form.checkValidity()).toBeFalsy();
     });
   });
 
-  // FIXME: html5 validation doesn't work with jest
-  xit("doesn't not allow empty postcode", async () => {
+  it("doesn't not allow empty postcode", async () => {
     // set Up
     mockDefaultAxios();
 
-    const { getByText, getByPlaceholderText } = render(<LoginForm />);
+    const { container, getByText, getByPlaceholderText } = render(
+      <LoginForm {...mockData} />
+    );
+
+    // grab the form node
+    const form = container.querySelector('form');
 
     const email = getByPlaceholderText('Email');
     fireEvent.change(email, {
@@ -130,20 +172,25 @@ describe('<LoginForm />', () => {
     fireEvent.click(submit);
 
     await wait(() => {
-      expect(submit).not.toBeDisabled();
+      // expect form can't submit
+      expect(form.checkValidity()).toBeFalsy();
     });
   });
 
-  // FIXME: html5 validation doesn't work with jest
-  xit("doesn't not allow invalid email", async () => {
+  it("doesn't not allow invalid email", async () => {
     // set Up
     mockDefaultAxios();
 
-    const { getByText, getByPlaceholderText } = render(<LoginForm />);
+    const { container, getByText, getByPlaceholderText } = render(
+      <LoginForm {...mockData} />
+    );
+
+    // grab the form node
+    const form = container.querySelector('form');
 
     const email = getByPlaceholderText('Email');
     fireEvent.change(email, {
-      target: { value: 'test' },
+      target: { value: 'invalid email' },
     });
     const postcode = getByPlaceholderText('Postcode');
     fireEvent.change(postcode, {
@@ -154,14 +201,14 @@ describe('<LoginForm />', () => {
     fireEvent.click(submit);
 
     await wait(() => {
-      expect(submit).not.toBeDisabled();
+      // expect form can't submit
+      expect(form.checkValidity()).toBeFalsy();
     });
   });
 
   it('Get internal errors from server when submit login', async () => {
     // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-
+    axios.get.mockResolvedValue({ data: [] });
     axios.post.mockRejectedValue({
       response: {
         status: 500,
@@ -170,7 +217,7 @@ describe('<LoginForm />', () => {
     });
 
     const { getByText, getByPlaceholderText, container } = render(
-      <LoginForm />
+      <LoginForm {...mockData} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -193,8 +240,7 @@ describe('<LoginForm />', () => {
 
   it('Get unauthorize errors from server when submit login', async () => {
     // setup
-    axios.get.mockResolvedValueOnce({ data: [] });
-
+    axios.get.mockResolvedValue({ data: [] });
     axios.post.mockRejectedValue({
       response: {
         status: 401,
@@ -203,7 +249,7 @@ describe('<LoginForm />', () => {
     });
 
     const { getByText, getByPlaceholderText, container } = render(
-      <LoginForm />
+      <LoginForm {...mockData} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -224,90 +270,152 @@ describe('<LoginForm />', () => {
     });
   });
 
-  it('Auto complete not run when input postcode length < 1', async () => {
+  it('response signin failed by pass custom handle func', async () => {
     // setup
-    axios.get.mockResolvedValue({
-      data: ['5000, ADELAIDE', '5000, ADELAIDE BC'],
-    });
-
-    const { getByPlaceholderText, container } = render(<LoginForm />);
-    const postcode = getByPlaceholderText('Postcode');
-    fireEvent.change(postcode, {
-      target: { value: '5' },
-    });
-
-    fireEvent.click(postcode);
-
-    await wait(() => {
-      expect(container).not.toHaveTextContent('5000, ADELAIDE');
-    });
-  });
-
-  it('Auto complete run when input postcode', async () => {
-    // setup
-    axios.get.mockResolvedValue({
-      data: ['5000, ADELAIDE', '5000, ADELAIDE BC', '5000, CITY WEST CAMPUS'],
-    });
-
-    const { getByPlaceholderText, container } = render(<LoginForm />);
-    const postcode = getByPlaceholderText('Postcode');
-    fireEvent.change(postcode, {
-      target: { value: '5000' },
-    });
-
-    fireEvent.click(postcode);
-
-    await wait(() => {
-      expect(container).toHaveTextContent('5000, ADELAIDE');
-      expect(container).toHaveTextContent('5000, ADELAIDE BC');
-      expect(container).toHaveTextContent('5000, CITY WEST CAMPUS');
-    });
-  });
-
-  it('Input change when select value in autocomplete', async () => {
-    // setup
-    axios.get.mockResolvedValue({
-      data: ['5000, ADELAIDE', '5000, ADELAIDE BC'],
-    });
+    axios.get.mockResolvedValue({ data: [] });
 
     const { getByText, getByPlaceholderText, container } = render(
-      <LoginForm />
+      <LoginForm
+        {...mockData}
+        handleSubmit={loginMock(400, { data: { errors: ['Sign in failed'] } })}
+      />
     );
+
+    const email = getByPlaceholderText('Email');
+    fireEvent.change(email, {
+      target: { value: 'test@gmail.com' },
+    });
     const postcode = getByPlaceholderText('Postcode');
     fireEvent.change(postcode, {
-      target: { value: '5000' },
+      target: { value: '2000, Barangaroo' },
     });
 
-    fireEvent.click(postcode);
+    const submit = getByText('See the offer');
+    fireEvent.click(submit);
 
     await wait(() => {
-      expect(container).toHaveTextContent('5000, ADELAIDE');
-      const selected = getByText('5000, ADELAIDE');
-      fireEvent.click(selected);
-
-      expect(postcode.value).toEqual('5000, ADELAIDE');
+      expect(submit).not.toBeDisabled();
+      expect(container).toHaveTextContent('Sign in failed');
     });
   });
 
-  it('Error when get value in autocomplete', async () => {
+  it('response unexpected error by pass custom handle func', async () => {
     // setup
-    axios.get.mockRejectedValue({
-      response: {
-        status: 500,
-        data: { errors: ['error'] },
-      },
-    });
+    axios.get.mockResolvedValue({ data: [] });
 
-    const { getByPlaceholderText, container } = render(<LoginForm />);
+    const { getByText, getByPlaceholderText, container } = render(
+      <LoginForm
+        {...mockData}
+        handleSubmit={loginMock(500, {
+          data: { errors: ['Something went wrong'] },
+        })}
+      />
+    );
+
+    const email = getByPlaceholderText('Email');
+    fireEvent.change(email, {
+      target: { value: 'test@gmail.com' },
+    });
     const postcode = getByPlaceholderText('Postcode');
     fireEvent.change(postcode, {
-      target: { value: '5000' },
+      target: { value: '2000, Barangaroo' },
     });
 
-    fireEvent.click(postcode);
+    const submit = getByText('See the offer');
+    fireEvent.click(submit);
 
     await wait(() => {
-      expect(container).not.toHaveTextContent('5000, ADELAIDE');
+      expect(submit).not.toBeDisabled();
+      expect(container).toHaveTextContent('Something went wrong');
+    });
+  });
+
+  describe('Post code field events', () => {
+    it('Auto complete not run when input postcode length < 1', async () => {
+      // setup
+      const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
+      axios.get.mockResolvedValue({
+        data,
+      });
+      const { getByPlaceholderText, container } = render(
+        <LoginForm {...mockData} />
+      );
+      const postcode = getByPlaceholderText('Postcode');
+      fireEvent.change(postcode, { target: { value: '5' } });
+      fireEvent.click(postcode);
+      await wait(() => {
+        expect(container).not.toHaveTextContent(data[0]);
+        expect(container).not.toHaveTextContent(data[1]);
+      });
+    });
+
+    it('Auto complete run when input postcode', async () => {
+      // setup
+      const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
+      axios.get.mockResolvedValue({
+        data,
+      });
+      const { getByPlaceholderText, container } = render(
+        <LoginForm {...mockData} />
+      );
+      const postcode = getByPlaceholderText('Postcode');
+      fireEvent.change(postcode, { target: { value: '5000' } });
+      fireEvent.click(postcode);
+      expect(axios.get).toHaveBeenCalledWith(mockData.autocompletePostcodeUrl, {
+        headers: {
+          Accept: 'application/json',
+          'X-CSRF-Token': mockData.authenticityToken,
+        },
+        params: { term: '5000' },
+      });
+      await wait(() => {
+        expect(container).toHaveTextContent(data[0]);
+        expect(container).toHaveTextContent(data[1]);
+      });
+    });
+
+    it('Input change when select value in autocomplete', async () => {
+      // setup
+      const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
+      axios.get.mockResolvedValue({
+        data,
+      });
+      const { getByText, getByPlaceholderText, container } = render(
+        <LoginForm {...mockData} />
+      );
+      const postcode = getByPlaceholderText('Postcode');
+      fireEvent.change(postcode, {
+        target: { value: '5000' },
+      });
+      fireEvent.click(postcode);
+      await wait(() => {
+        expect(container).toHaveTextContent(data[0]);
+        expect(container).toHaveTextContent(data[1]);
+        const selected = getByText(data[0]);
+        fireEvent.click(selected);
+        expect(postcode.value).toEqual(data[0]);
+      });
+    });
+
+    it('Error when get value in autocomplete', async () => {
+      // setup
+      axios.get.mockRejectedValue({
+        response: {
+          status: 500,
+          data: { errors: ['error'] },
+        },
+      });
+      const { getByPlaceholderText, container } = render(
+        <LoginForm {...mockData} />
+      );
+      const postcode = getByPlaceholderText('Postcode');
+      fireEvent.change(postcode, {
+        target: { value: '5000' },
+      });
+      fireEvent.click(postcode);
+      await wait(() => {
+        expect(container).not.toHaveTextContent('5000, ADELAIDE');
+      });
     });
   });
 });

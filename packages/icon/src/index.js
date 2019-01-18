@@ -867,6 +867,11 @@ export const ICONS = {
       />
     </g>
   ),
+  error: (
+    <g>
+      <path d="M0 22h25L12.5 0 0 22zm13.971-2.933h-2.942v-2.933h2.942v2.933zm0-4.4h-2.942V8.8h2.942v5.867z" />
+    </g>
+  ),
 };
 
 export const Glyph = ({ glyph }) => ICONS[glyph];
