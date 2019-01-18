@@ -20,6 +20,7 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
+    "@rtm-ui/bootstrap": "^3.0.2",
     "@rtm-ui/img": "^3.0.2",
     "@rtm-ui/how-it-works": "^1.0.0",
     "@rtm-ui/layout": "^3.0.2",
@@ -28,7 +29,6 @@
     "@rtm-ui/typography": "^3.0.2"
   },
   "peerDependencies": {
-    "@rtm-ui/bootstrap": "3.0.*",
     "react": "^16.6",
     "prop-types": "^15.5.4",
     "styled-components": "^4.0"
