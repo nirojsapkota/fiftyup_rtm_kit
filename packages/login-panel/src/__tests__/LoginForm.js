@@ -11,8 +11,8 @@ import {
   cleanup,
 } from '../../../bootstrap/setup/testSetup';
 import LoginForm from '../LoginForm';
-import { mockData } from '../__mocks__/data';
-import { loginMock } from '../__mocks__/functionMock';
+import loginPanelProps from '../__fixtures__/loginPanel';
+import loginMock from '../__fixtures__/loginMock';
 
 jest.mock('axios');
 
@@ -30,7 +30,7 @@ describe('<LoginForm />', () => {
     mockDefaultAxios();
 
     const { getByText, getByPlaceholderText } = render(
-      <LoginForm {...mockData} />
+      <LoginForm {...loginPanelProps} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -42,7 +42,7 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     // expect submit button was disable
@@ -58,7 +58,7 @@ describe('<LoginForm />', () => {
     const handleSuccess = jest.fn();
 
     const { getByText, getByPlaceholderText } = render(
-      <LoginForm {...mockData} handleSuccess={handleSuccess} />
+      <LoginForm {...loginPanelProps} handleSuccess={handleSuccess} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -70,7 +70,7 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     // expect props event was fired
@@ -84,7 +84,7 @@ describe('<LoginForm />', () => {
     mockDefaultAxios();
 
     const { getByText, getByPlaceholderText } = render(
-      <LoginForm {...mockData} />
+      <LoginForm {...loginPanelProps} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -96,14 +96,14 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     expect(axios.post).toHaveBeenCalledTimes(2);
     expect(axios.post).toHaveBeenCalledWith(
-      mockData.loginUrl,
+      loginPanelProps.loginUrl,
       {
-        ...mockData.hiddenFields,
+        ...loginPanelProps.hiddenFields,
         user: {
           email: 'user@example.com',
           postcode_suburb: '2000, Barangaroo',
@@ -113,7 +113,7 @@ describe('<LoginForm />', () => {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'X-CSRF-Token': mockData.authenticityToken,
+          'X-CSRF-Token': loginPanelProps.authenticityToken,
         },
       }
     );
@@ -124,7 +124,7 @@ describe('<LoginForm />', () => {
     mockDefaultAxios();
 
     const { container, getByText, getByPlaceholderText } = render(
-      <LoginForm {...mockData} />
+      <LoginForm {...loginPanelProps} />
     );
 
     // grab the form node
@@ -139,7 +139,7 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     await wait(() => {
@@ -153,7 +153,7 @@ describe('<LoginForm />', () => {
     mockDefaultAxios();
 
     const { container, getByText, getByPlaceholderText } = render(
-      <LoginForm {...mockData} />
+      <LoginForm {...loginPanelProps} />
     );
 
     // grab the form node
@@ -168,7 +168,7 @@ describe('<LoginForm />', () => {
       target: { value: '' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     await wait(() => {
@@ -182,7 +182,7 @@ describe('<LoginForm />', () => {
     mockDefaultAxios();
 
     const { container, getByText, getByPlaceholderText } = render(
-      <LoginForm {...mockData} />
+      <LoginForm {...loginPanelProps} />
     );
 
     // grab the form node
@@ -197,7 +197,7 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     await wait(() => {
@@ -217,7 +217,7 @@ describe('<LoginForm />', () => {
     });
 
     const { getByText, getByPlaceholderText, container } = render(
-      <LoginForm {...mockData} />
+      <LoginForm {...loginPanelProps} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -229,12 +229,14 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     await wait(() => {
       expect(submit).not.toBeDisabled();
-      expect(container).toHaveTextContent('Login was unsuccessful.');
+      expect(container).toHaveTextContent(
+        'An error has occurred, please try again in a few minutes'
+      );
     });
   });
 
@@ -249,7 +251,7 @@ describe('<LoginForm />', () => {
     });
 
     const { getByText, getByPlaceholderText, container } = render(
-      <LoginForm {...mockData} />
+      <LoginForm {...loginPanelProps} />
     );
 
     const email = getByPlaceholderText('Email');
@@ -261,7 +263,7 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     await wait(() => {
@@ -276,7 +278,7 @@ describe('<LoginForm />', () => {
 
     const { getByText, getByPlaceholderText, container } = render(
       <LoginForm
-        {...mockData}
+        {...loginPanelProps}
         handleSubmit={loginMock(400, { data: { errors: ['Sign in failed'] } })}
       />
     );
@@ -290,7 +292,7 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     await wait(() => {
@@ -305,7 +307,7 @@ describe('<LoginForm />', () => {
 
     const { getByText, getByPlaceholderText, container } = render(
       <LoginForm
-        {...mockData}
+        {...loginPanelProps}
         handleSubmit={loginMock(500, {
           data: { errors: ['Something went wrong'] },
         })}
@@ -321,7 +323,7 @@ describe('<LoginForm />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText('See the offer');
+    const submit = getByText(loginPanelProps.buttonText);
     fireEvent.click(submit);
 
     await wait(() => {
@@ -338,7 +340,7 @@ describe('<LoginForm />', () => {
         data,
       });
       const { getByPlaceholderText, container } = render(
-        <LoginForm {...mockData} />
+        <LoginForm {...loginPanelProps} />
       );
       const postcode = getByPlaceholderText('Postcode');
       fireEvent.change(postcode, { target: { value: '5' } });
@@ -356,18 +358,21 @@ describe('<LoginForm />', () => {
         data,
       });
       const { getByPlaceholderText, container } = render(
-        <LoginForm {...mockData} />
+        <LoginForm {...loginPanelProps} />
       );
       const postcode = getByPlaceholderText('Postcode');
       fireEvent.change(postcode, { target: { value: '5000' } });
       fireEvent.click(postcode);
-      expect(axios.get).toHaveBeenCalledWith(mockData.autocompletePostcodeUrl, {
-        headers: {
-          Accept: 'application/json',
-          'X-CSRF-Token': mockData.authenticityToken,
-        },
-        params: { term: '5000' },
-      });
+      expect(axios.get).toHaveBeenCalledWith(
+        loginPanelProps.autocompletePostcodeUrl,
+        {
+          headers: {
+            Accept: 'application/json',
+            'X-CSRF-Token': loginPanelProps.authenticityToken,
+          },
+          params: { term: '5000' },
+        }
+      );
       await wait(() => {
         expect(container).toHaveTextContent(data[0]);
         expect(container).toHaveTextContent(data[1]);
@@ -381,7 +386,7 @@ describe('<LoginForm />', () => {
         data,
       });
       const { getByText, getByPlaceholderText, container } = render(
-        <LoginForm {...mockData} />
+        <LoginForm {...loginPanelProps} />
       );
       const postcode = getByPlaceholderText('Postcode');
       fireEvent.change(postcode, {
@@ -406,7 +411,7 @@ describe('<LoginForm />', () => {
         },
       });
       const { getByPlaceholderText, container } = render(
-        <LoginForm {...mockData} />
+        <LoginForm {...loginPanelProps} />
       );
       const postcode = getByPlaceholderText('Postcode');
       fireEvent.change(postcode, {

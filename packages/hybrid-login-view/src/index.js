@@ -7,7 +7,7 @@ import LoginPanel from '@rtm-ui/login-panel';
 import Bootstrap from '@rtm-ui/bootstrap';
 import { Paragraph } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
-import HowItWork from '@rtm-ui/how-it-work';
+import HowItWorks from '@rtm-ui/how-it-works';
 
 import Footer from './Footer';
 
@@ -18,35 +18,42 @@ const BodyWrapper = styled(Box)`
 const ContentWrapper = styled(Box)`
   max-width: 1080px;
   background: none;
-  display: grid;
-  grid-template-columns: 50% auto;
-  grid-template-rows: auto auto;
+`;
+
+const MobileHide = styled(Box)`
+  background: inherit;
+  display: flex;
+  flex-flow: row;
   @media (max-width: ${props => props.theme.grid.md}em) {
-    grid-template-columns: auto;
-    grid-template-rows: auto;
+    display: none;
   }
 `;
 
-const HowItWorkWrapper = styled(Box)`
+const Column = styled(Box)`
   background: inherit;
-  grid-column: 2 / 3;
-  grid-row: 1 / 3;
-  @media (max-width: ${props => props.theme.grid.md}em) {
-    grid-column: auto;
-    grid-row: auto;
+  display: flex;
+  flex-flow: column;
+`;
+
+const MobileShow = styled(Box)`
+  background: inherit;
+  display: flex;
+  flex-flow: column;
+  @media (min-width: ${props => props.theme.grid.md}em) {
+    display: none;
   }
+`;
+
+const HowItWorksWrapper = styled(Box)`
+  background: inherit;
 `;
 
 const LoginPanelWrapper = styled(Box)`
-  background: none;
+  background: inherit;
 `;
 
-const DisclaimerWrapper = styled(Box)`
+const StyledDisclaimer = styled(Paragraph)`
   background: inherit;
-
-  * {
-    background: inherit;
-  }
 `;
 
 const FooterWrapper = styled(Box)`
@@ -57,42 +64,60 @@ const HeroImageWrapper = styled(Box)`
   max-width: 1080px;
 `;
 
-const View = ({
-  howItWorkProps,
+const HybridLoginView = ({
+  howItWorksProps,
   disclaimerProps,
   footerProps,
   headerProps,
+  trackingData,
   ...props
 }) => (
-  <Bootstrap>
+  <Bootstrap trackingData={trackingData}>
     <Img src={headerProps.logoUrl} py={3} alt="Header logo" />
     <BodyWrapper>
       <HeroImageWrapper m="auto">
         <Img src={headerProps.heroImageUrl} alt="Hero image" />
       </HeroImageWrapper>
       <ContentWrapper mt={-30} m="auto">
-        <LoginPanelWrapper px={[10, 10, 15, 20]}>
-          <LoginPanel {...props} />
-        </LoginPanelWrapper>
-        <HowItWorkWrapper px={10} mt={[20, 20, 40, 50]}>
-          <HowItWork {...howItWorkProps} />
-        </HowItWorkWrapper>
-        <DisclaimerWrapper>
-          <Paragraph p={30}>{disclaimerProps.disclaimerText || ''}</Paragraph>
-        </DisclaimerWrapper>
+        <MobileHide>
+          <Column width={1 / 2}>
+            <LoginPanelWrapper px={[10, 10, 15, 20]}>
+              <LoginPanel {...props} />
+            </LoginPanelWrapper>
+            <StyledDisclaimer p={50}>
+              {disclaimerProps.disclaimerText || ''}
+            </StyledDisclaimer>
+          </Column>
+          <Column width={1 / 2}>
+            <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
+              <HowItWorks {...howItWorksProps} />
+            </HowItWorksWrapper>
+          </Column>
+        </MobileHide>
+        <MobileShow>
+          <LoginPanelWrapper px={[10, 10, 15, 20]}>
+            <LoginPanel {...props} />
+          </LoginPanelWrapper>
+          <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
+            <HowItWorks {...howItWorksProps} />
+          </HowItWorksWrapper>
+          <StyledDisclaimer p={30}>
+            {disclaimerProps.disclaimerText || ''}
+          </StyledDisclaimer>
+        </MobileShow>
       </ContentWrapper>
     </BodyWrapper>
     <Variant variant="c">
-      <FooterWrapper>
+      <FooterWrapper py={3}>
         <Footer {...footerProps} boxWidth="1080px" />
       </FooterWrapper>
     </Variant>
   </Bootstrap>
 );
 
-View.propTypes = {
+HybridLoginView.propTypes = {
   authenticityToken: t.string,
-  howItWorkProps: t.shape({}),
+  howItWorksProps: t.shape({}),
   disclaimerProps: t.shape({
     disclaimerText: t.string,
   }),
@@ -104,34 +129,32 @@ View.propTypes = {
     logoUrl: t.string,
     heroImageUrl: t.string,
   }),
+  trackingData: t.shape({}),
 };
 
-View.defaultProps = {
+HybridLoginView.defaultProps = {
   disclaimerProps: {
     disclaimerText:
       '* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.  ',
   },
-  howItWorkProps: {
+  howItWorksProps: {
     header:
       'One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!',
     stepOffers: [
       {
-        imgUrl:
-          'https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/tick-81a6885ed08fa480d0a3edd9eb3daed0386aeff48e4fd6696bf9d3fd546474e2.png',
+        imgUrl: 'https://placehold.it/100x100',
         title: 'You join the movement for free',
       },
       {
-        imgUrl:
-          'https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/quote-e31e7443a59255068905462c61ea2fc8c0baf111b4cbd09e7dc0697fa73b605b.png',
+        imgUrl: 'https://placehold.it/100x100',
         title: 'We negotiate Group Discounts',
       },
       {
-        imgUrl:
-          'https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/dollar-c46a72a93eb371e6000fe5a034cdcd04bddb7c2746bc71ca8220d4e733baecba.png',
+        imgUrl: 'https://placehold.it/100x100',
         title: 'You decide what’s right for you',
       },
     ],
   },
 };
 
-export default View;
+export default HybridLoginView;

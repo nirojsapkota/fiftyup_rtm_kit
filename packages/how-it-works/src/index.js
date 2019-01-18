@@ -10,12 +10,12 @@ import {
   WrapperBox,
 } from './style';
 
-const HowItWork = props => (
+const HowItWorks = props => (
   <WrapperBox>
     <Header tag="h6">{props.header}</Header>
     <StepOfferStyled>
       {props.stepOffers.map(s => (
-        <ItemStyled key={s.imgUrl}>
+        <ItemStyled key={s.title}>
           <StepImgStyled src={s.imgUrl} alt={s.title} />
           <StepDescStyled>{s.title}</StepDescStyled>
         </ItemStyled>
@@ -24,11 +24,11 @@ const HowItWork = props => (
   </WrapperBox>
 );
 
-HowItWork.propTypes = {
+HowItWorks.propTypes = {
   header: PropTypes.string,
   stepOffers: PropTypes.arrayOf(
     PropTypes.shape({ imgUrl: PropTypes.string, title: PropTypes.string })
   ),
 };
 
-export default HowItWork;
+export default HowItWorks;

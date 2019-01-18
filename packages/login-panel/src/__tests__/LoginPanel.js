@@ -6,7 +6,7 @@ import {
   cleanup,
 } from '../../../bootstrap/setup/testSetup';
 import LoginPanel from '../index';
-import { mockData } from '../__mocks__/data';
+import loginPanelProps from '../__fixtures__/loginPanel';
 
 jest.mock('axios');
 
@@ -16,19 +16,19 @@ afterEach(cleanup);
 describe('<LoginPanel />', () => {
   it('matches expected output', async () => {
     const { getByText, getByValue, container } = render(
-      <LoginPanel {...mockData} />
+      <LoginPanel {...loginPanelProps} />
     );
 
     // expect hidden fields
-    const jumpPath = getByValue(mockData.hiddenFields.jump_path);
+    const jumpPath = getByValue(loginPanelProps.hiddenFields.jump_path);
     expect(jumpPath.name).toEqual('jump_path');
     const registeringCampaignId = getByValue(
-      mockData.hiddenFields.registering_campaign_id.toString()
+      loginPanelProps.hiddenFields.registering_campaign_id.toString()
     );
     expect(registeringCampaignId.name).toEqual('registering_campaign_id');
 
-    expect(getByText(mockData.title)).toBeInTheDocument();
-    expect(getByText(mockData.buttonText)).toBeInTheDocument();
+    expect(getByText(loginPanelProps.title)).toBeInTheDocument();
+    expect(getByText(loginPanelProps.buttonText)).toBeInTheDocument();
 
     expect(container).toMatchSnapshot();
   });

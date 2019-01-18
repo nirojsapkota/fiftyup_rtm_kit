@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import HowItWork from '../index';
-import { mockData } from '../__mocks__/data';
+import HowItWorks from '../index';
+import howItWorksProps from '../__fixtures__/howItWorks';
 
 describe('<HowItWork />', () => {
   it('matches expected output', () => {
-    const props = mockData;
+    const props = howItWorksProps;
 
     const { getByText, getByAltText, container } = render(
-      <HowItWork {...props} />
+      <HowItWorks {...props} />
     );
 
     expect(getByText(props.header)).toBeInTheDocument();

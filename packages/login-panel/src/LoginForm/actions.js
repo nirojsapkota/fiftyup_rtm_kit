@@ -20,7 +20,14 @@ export const submitLogin = async (url, data, authenticityToken) => {
     .catch(error => {
       const { data, status } = error.response;
       if (status !== 401) {
-        return { data: { errors: ['Login was unsuccessful.'] }, status };
+        return {
+          data: {
+            errors: [
+              'An error has occurred, please try again in a few minutes',
+            ],
+          },
+          status,
+        };
       }
       return { status, data };
     });

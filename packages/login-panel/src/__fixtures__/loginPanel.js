@@ -1,4 +1,4 @@
-export const mockData = {
+const loginPanel = {
   title:
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   authenticityToken:
@@ -9,5 +9,7 @@ export const mockData = {
   },
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
-  buttonText: 'See the offer',
+  buttonText: 'See the offers',
 };
+
+export default loginPanel;

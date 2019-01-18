@@ -26,14 +26,20 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: #FFF;
 }
 
-.c11 {
+.c12 {
+  box-sizing: border-box;
+  width: 50%;
+  background: #FFF;
+}
+
+.c14 {
   box-sizing: border-box;
   padding-left: 10px;
   padding-right: 10px;
   background: #FFF;
 }
 
-.c14 {
+.c17 {
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
@@ -42,27 +48,20 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: #FFF;
 }
 
-.c16 {
-  box-sizing: border-box;
-  padding-top: 8px;
-  background: #FFF;
-}
-
-.c17 {
-  box-sizing: border-box;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  background: #FFF;
-}
-
 .c19 {
   box-sizing: border-box;
   padding-top: 8px;
-  padding-bottom: 8px;
   background: #FFF;
 }
 
-.c24 {
+.c20 {
+  box-sizing: border-box;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  background: #FFF;
+}
+
+.c22 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -71,36 +70,56 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 
 .c27 {
   box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: #FFF;
+}
+
+.c30 {
+  box-sizing: border-box;
+  padding: 50px;
+  background: #FFF;
+}
+
+.c32 {
+  box-sizing: border-box;
   margin-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
   background: #FFF;
 }
 
-.c34 {
+.c39 {
   box-sizing: border-box;
   padding: 30px;
   background: #FFF;
 }
 
-.c36 {
+.c41 {
   box-sizing: border-box;
+  padding-top: 16px;
+  padding-bottom: 16px;
   background: #2d9dd6;
 }
 
-.c38 {
+.c43 {
   box-sizing: border-box;
   margin: auto;
   background: #2d9dd6;
 }
 
-.c39 {
+.c44 {
+  box-sizing: border-box;
+  background: #2d9dd6;
+}
+
+.c45 {
   box-sizing: border-box;
   padding-left: 4px;
   background: #2d9dd6;
 }
 
-.c41 {
+.c47 {
   box-sizing: border-box;
   margin-left: auto;
   margin-top: auto;
@@ -109,18 +128,18 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: #2d9dd6;
 }
 
-.c13 {
+.c16 {
   overflow: hidden;
   border-radius: 4px;
   box-shadow: 0 0 1px rgba(67,90,111,0.3),0 8px 10px -4px rgba(67,90,111,0.47);
 }
 
-.c12 {
+.c15 {
   overflow: hidden;
   border-radius: 4px;
 }
 
-.c15 {
+.c18 {
   font-family: MuseoSans;
   font-weight: 900;
   line-height: 1.2;
@@ -129,7 +148,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   font-size: 16px;
 }
 
-.c18 {
+.c21 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -138,7 +157,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   font-size: 16px;
 }
 
-.c40 {
+.c46 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -147,7 +166,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   font-size: 16px;
 }
 
-.c25 {
+.c28 {
   background: none;
   cursor: pointer;
   border: none;
@@ -195,26 +214,26 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   border-bottom-color: #e56209;
 }
 
-.c25:disabled {
+.c28:disabled {
   cursor: not-allowed;
 }
 
-.c25:hover,
-.c25:focus {
+.c28:hover,
+.c28:focus {
   background: #e56209;
   border-bottom-color: #ef8612;
 }
 
-.c20 {
+.c23 {
   position: relative;
   display: block;
 }
 
-.c21 {
+.c24 {
   display: block;
 }
 
-.c22 {
+.c25 {
   padding: 8px 2px;
   font-size: 16px;
   border: none;
@@ -222,7 +241,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   width: 100%;
 }
 
-.c23 {
+.c26 {
   text-align: center;
 }
 
@@ -259,16 +278,16 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   min-width: 1px;
 }
 
-.c28 {
+.c33 {
   background: inherit;
   padding: 0px 10px;
 }
 
-.c28 * {
+.c33 * {
   background: inherit;
 }
 
-.c29 {
+.c34 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -278,16 +297,16 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   flex-direction: row;
 }
 
-.c30 {
+.c35 {
   padding: 8px;
   position: relative;
 }
 
-.c30 > div:first-child {
+.c35 > div:first-child {
   position: relative;
 }
 
-.c30 > div:first-child:after {
+.c35 > div:first-child:after {
   position: absolute;
   right: -15px;
   top: 45%;
@@ -300,35 +319,35 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   z-index: 2;
 }
 
-.c30:first-child {
+.c35:first-child {
   padding-left: 0px;
 }
 
-.c30:last-child {
+.c35:last-child {
   padding-right: 0px;
 }
 
-.c30:last-child > div:after {
+.c35:last-child > div:after {
   display: none;
 }
 
-.c30:last-child:after {
+.c35:last-child:after {
   display: none;
 }
 
-.c31 {
+.c36 {
   max-width: 150px;
   max-height: 150px;
   padding: 10px 0px;
 }
 
-.c32 {
+.c37 {
   text-align: center;
   word-break: break-word;
   font-size: 0.9em;
 }
 
-.c37 {
+.c42 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -343,30 +362,54 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 .c8 {
   max-width: 1080px;
   background: none;
-  display: grid;
-  grid-template-columns: 50% auto;
-  grid-template-rows: auto auto;
-}
-
-.c26 {
-  background: inherit;
-  grid-column: 2 / 3;
-  grid-row: 1 / 3;
 }
 
 .c10 {
-  background: none;
+  background: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row;
+  -ms-flex-flow: row;
+  flex-flow: row;
 }
 
-.c33 {
+.c11 {
+  background: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c38 {
+  background: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c31 {
   background: inherit;
 }
 
-.c33 * {
+.c13 {
   background: inherit;
 }
 
-.c35 {
+.c29 {
+  background: inherit;
+}
+
+.c40 {
   background: #2d9dd6;
 }
 
@@ -375,209 +418,209 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media screen and (min-width:32em) {
-  .c11 {
+  .c14 {
     padding-left: 10px;
     padding-right: 10px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c11 {
+  .c14 {
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c11 {
+  .c14 {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c14 {
+  .c17 {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c14 {
+  .c17 {
     padding-left: 30px;
     padding-right: 30px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c14 {
+  .c17 {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c16 {
+  .c19 {
     padding-top: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c16 {
+  .c19 {
     padding-top: 16px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c16 {
+  .c19 {
     padding-top: 32px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c17 {
+  .c20 {
     padding-top: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c17 {
+  .c20 {
     padding-top: 16px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c17 {
+  .c20 {
     padding-top: 32px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c24 {
+  .c27 {
     padding-top: 8px;
     padding-bottom: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c24 {
+  .c27 {
     padding-top: 16px;
     padding-bottom: 16px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c24 {
+  .c27 {
     padding-top: 32px;
     padding-bottom: 32px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c27 {
+  .c32 {
     margin-top: 20px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c27 {
+  .c32 {
     margin-top: 40px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c27 {
+  .c32 {
     margin-top: 50px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c39 {
+  .c45 {
     padding-left: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c39 {
+  .c45 {
     padding-left: 32px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c41 {
+  .c47 {
     padding-right: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c41 {
+  .c47 {
     padding-right: 32px;
   }
 }
 
 @media (min-width:32em) {
-  .c15 {
+  .c18 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c15 {
+  .c18 {
     font-size: 20px;
   }
 }
 
 @media (min-width:76em) {
-  .c15 {
+  .c18 {
     font-size: 20px;
   }
 }
 
 @media (min-width:32em) {
-  .c18 {
+  .c21 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c18 {
+  .c21 {
     font-size: 16px;
   }
 }
 
 @media (min-width:76em) {
-  .c18 {
+  .c21 {
     font-size: 16px;
   }
 }
 
 @media (min-width:32em) {
-  .c40 {
+  .c46 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c40 {
+  .c46 {
     font-size: 16px;
   }
 }
 
 @media (min-width:76em) {
-  .c40 {
+  .c46 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c28 {
+  .c33 {
     padding: 0px 30px;
     margin-right: 10px;
   }
 }
 
 @media (min-width:46em) {
-  .c29 {
+  .c34 {
     display: inline-block;
     -webkit-flex-direction: unset;
     -ms-flex-direction: unset;
@@ -587,32 +630,32 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media (min-width:46em) {
-  .c30:first-child {
+  .c35:first-child {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
   }
 
-  .c30:first-child > p {
+  .c35:first-child > p {
     text-align: left;
   }
 }
 
 @media (min-width:46em) {
-  .c30:last-child {
+  .c35:last-child {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     padding: 0px;
   }
 
-  .c30:last-child > p {
+  .c35:last-child > p {
     text-align: left;
   }
 }
 
 @media (min-width:46em) {
-  .c30 {
+  .c35 {
     width: 100%;
     display: -webkit-inline-box;
     display: -webkit-inline-flex;
@@ -627,11 +670,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
     align-items: center;
   }
 
-  .c30 > div:after {
+  .c35 > div:after {
     display: none;
   }
 
-  .c30:after {
+  .c35:after {
     position: absolute;
     right: auto;
     top: auto;
@@ -648,7 +691,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media (min-width:46em) {
-  .c32 {
+  .c37 {
     text-align: right;
     padding: 0px 10px;
     font-size: 1em;
@@ -656,16 +699,14 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media (max-width:46em) {
-  .c8 {
-    grid-template-columns: auto;
-    grid-template-rows: auto;
+  .c10 {
+    display: none;
   }
 }
 
-@media (max-width:46em) {
-  .c26 {
-    grid-column: auto;
-    grid-row: auto;
+@media (min-width:46em) {
+  .c38 {
+    display: none;
   }
 }
 
@@ -679,7 +720,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
       <img
         alt="Header logo"
         class="c4"
-        src="/assets/design_aug_2015/OBS_Logo.png"
+        src="https://placehold.it/100x100"
       />
     </div>
   </div>
@@ -698,7 +739,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
           <img
             alt="Hero image"
             class="c4"
-            src="https://obs-development.s3.amazonaws.com/feature_tiles/35/main_image.png"
+            src="https://placehold.it/1080x454"
           />
         </div>
       </div>
@@ -707,179 +748,367 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
       class="c8 c9"
     >
       <div
-        class="c10 c11"
+        class="c10 c1"
       >
         <div
-          class="c12 c13 c14"
-          elevation="2"
+          class="c11 c12"
+          width="0.5"
         >
-          <form>
-            <input
-              id="registering_campaign_id"
-              name="registering_campaign_id"
-              type="hidden"
-              value="276"
-            />
-            <input
-              id="jump_path"
-              name="jump_path"
-              type="hidden"
-              value="/campaigns/OBS_BES_2017_Offers"
-            />
-            <h6
-              class="c15 c16"
-            >
-              Login panel title
-            </h6>
+          <div
+            class="c13 c14"
+          >
             <div
-              class="c17"
+              class="c15 c16 c17"
+              elevation="2"
             >
-              <p
-                class="c18 c19"
-              >
-                My Postcode:
-              </p>
-              <span
-                class="c20"
-                display="block"
-              >
-                <span
-                  class="c21"
+              <form>
+                <input
+                  id="registering_campaign_id"
+                  name="registering_campaign_id"
+                  type="hidden"
+                  value="276"
+                />
+                <input
+                  id="jump_path"
+                  name="jump_path"
+                  type="hidden"
+                  value="/campaigns/OBS_BES_2017_Offers"
+                />
+                <h6
+                  class="c18 c19"
                 >
+                  Login panel title
+                </h6>
+                <div
+                  class="c20"
+                >
+                  <p
+                    class="c21 c22"
+                  >
+                    My Postcode:
+                  </p>
+                  <span
+                    class="c23"
+                    display="block"
+                  >
+                    <span
+                      class="c24"
+                    >
+                      <input
+                        aria-labelledby="user.postcode_suburb"
+                        autocomplete="off"
+                        class="c25"
+                        id="user.postcode_suburb"
+                        name="user.postcode_suburb"
+                        placeholder="Postcode"
+                        required=""
+                        value=""
+                      />
+                    </span>
+                  </span>
+                </div>
+                <div
+                  class="c22"
+                >
+                  <p
+                    class="c21 c22"
+                  >
+                    My Email:
+                  </p>
                   <input
-                    aria-labelledby="user.postcode_suburb"
-                    autocomplete="off"
-                    class="c22"
-                    id="user.postcode_suburb"
-                    name="user.postcode_suburb"
-                    placeholder="Postcode"
+                    aria-labelledby="user.email"
+                    class="c25"
+                    id="user.email"
+                    name="user.email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
+                    placeholder="Email"
                     required=""
+                    title="Invalid email address"
                     value=""
                   />
-                </span>
-              </span>
+                </div>
+                <div
+                  class="c26 c27"
+                >
+                  <button
+                    class="c28"
+                    type="submit"
+                  >
+                    See the offers
+                  </button>
+                </div>
+              </form>
             </div>
-            <div
-              class="c19"
-            >
-              <p
-                class="c18 c19"
-              >
-                My Email:
-              </p>
-              <input
-                aria-labelledby="user.email"
-                class="c22"
-                id="user.email"
-                name="user.email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
-                placeholder="Email"
-                required=""
-                title="Invalid email address"
-                value=""
-              />
-            </div>
-            <div
-              class="c23 c24"
-            >
-              <button
-                class="c25"
-                type="submit"
-              >
-                See the offer
-              </button>
-            </div>
-          </form>
+          </div>
+          <p
+            class="c29 c21 c30"
+          >
+            * disclaimer text
+          </p>
         </div>
-      </div>
-      <div
-        class="c26 c27"
-      >
         <div
-          class="c28 c1"
+          class="c11 c12"
+          width="0.5"
         >
-          <h6
-            class="c15 c1"
-          >
-            One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
-          </h6>
           <div
-            class="c29 c1"
+            class="c31 c32"
           >
             <div
-              class="c30"
+              class="c33 c1"
             >
+              <h6
+                class="c18 c1"
+              >
+                One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+              </h6>
               <div
-                class="c0 c1"
+                class="c34 c1"
               >
                 <div
-                  class="c31 c2 c1"
+                  class="c35"
                 >
-                  <img
-                    alt="You join the movement for free"
-                    class="c4"
-                    src="https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/tick-81a6885ed08fa480d0a3edd9eb3daed0386aeff48e4fd6696bf9d3fd546474e2.png"
-                  />
+                  <div
+                    class="c0 c1"
+                  >
+                    <div
+                      class="c36 c2 c1"
+                    >
+                      <img
+                        alt="You join the movement for free"
+                        class="c4"
+                        src="https://placehold.it/100x100"
+                      />
+                    </div>
+                  </div>
+                  <p
+                    class="c37 c21 c1"
+                  >
+                    You join the movement for free
+                  </p>
                 </div>
-              </div>
-              <p
-                class="c32 c18 c1"
-              >
-                You join the movement for free
-              </p>
-            </div>
-            <div
-              class="c30"
-            >
-              <div
-                class="c0 c1"
-              >
                 <div
-                  class="c31 c2 c1"
+                  class="c35"
                 >
-                  <img
-                    alt="We negotiate Group Discounts"
-                    class="c4"
-                    src="https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/quote-e31e7443a59255068905462c61ea2fc8c0baf111b4cbd09e7dc0697fa73b605b.png"
-                  />
+                  <div
+                    class="c0 c1"
+                  >
+                    <div
+                      class="c36 c2 c1"
+                    >
+                      <img
+                        alt="We negotiate Group Discounts"
+                        class="c4"
+                        src="https://placehold.it/100x100"
+                      />
+                    </div>
+                  </div>
+                  <p
+                    class="c37 c21 c1"
+                  >
+                    We negotiate Group Discounts
+                  </p>
                 </div>
-              </div>
-              <p
-                class="c32 c18 c1"
-              >
-                We negotiate Group Discounts
-              </p>
-            </div>
-            <div
-              class="c30"
-            >
-              <div
-                class="c0 c1"
-              >
                 <div
-                  class="c31 c2 c1"
+                  class="c35"
                 >
-                  <img
-                    alt="You decide what’s right for you"
-                    class="c4"
-                    src="https://www.onebigswitch.com.au/assets/obs-image-assets/pages/home/dollar-c46a72a93eb371e6000fe5a034cdcd04bddb7c2746bc71ca8220d4e733baecba.png"
-                  />
+                  <div
+                    class="c0 c1"
+                  >
+                    <div
+                      class="c36 c2 c1"
+                    >
+                      <img
+                        alt="You decide what’s right for you"
+                        class="c4"
+                        src="https://placehold.it/100x100"
+                      />
+                    </div>
+                  </div>
+                  <p
+                    class="c37 c21 c1"
+                  >
+                    You decide what’s right for you
+                  </p>
                 </div>
               </div>
-              <p
-                class="c32 c18 c1"
-              >
-                You decide what’s right for you
-              </p>
             </div>
           </div>
         </div>
       </div>
       <div
-        class="c33 c1"
+        class="c38 c1"
       >
+        <div
+          class="c13 c14"
+        >
+          <div
+            class="c15 c16 c17"
+            elevation="2"
+          >
+            <form>
+              <input
+                id="registering_campaign_id"
+                name="registering_campaign_id"
+                type="hidden"
+                value="276"
+              />
+              <input
+                id="jump_path"
+                name="jump_path"
+                type="hidden"
+                value="/campaigns/OBS_BES_2017_Offers"
+              />
+              <h6
+                class="c18 c19"
+              >
+                Login panel title
+              </h6>
+              <div
+                class="c20"
+              >
+                <p
+                  class="c21 c22"
+                >
+                  My Postcode:
+                </p>
+                <span
+                  class="c23"
+                  display="block"
+                >
+                  <span
+                    class="c24"
+                  >
+                    <input
+                      aria-labelledby="user.postcode_suburb"
+                      autocomplete="off"
+                      class="c25"
+                      id="user.postcode_suburb"
+                      name="user.postcode_suburb"
+                      placeholder="Postcode"
+                      required=""
+                      value=""
+                    />
+                  </span>
+                </span>
+              </div>
+              <div
+                class="c22"
+              >
+                <p
+                  class="c21 c22"
+                >
+                  My Email:
+                </p>
+                <input
+                  aria-labelledby="user.email"
+                  class="c25"
+                  id="user.email"
+                  name="user.email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
+                  placeholder="Email"
+                  required=""
+                  title="Invalid email address"
+                  value=""
+                />
+              </div>
+              <div
+                class="c26 c27"
+              >
+                <button
+                  class="c28"
+                  type="submit"
+                >
+                  See the offers
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="c31 c32"
+        >
+          <div
+            class="c33 c1"
+          >
+            <h6
+              class="c18 c1"
+            >
+              One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+            </h6>
+            <div
+              class="c34 c1"
+            >
+              <div
+                class="c35"
+              >
+                <div
+                  class="c0 c1"
+                >
+                  <div
+                    class="c36 c2 c1"
+                  >
+                    <img
+                      alt="You join the movement for free"
+                      class="c4"
+                      src="https://placehold.it/100x100"
+                    />
+                  </div>
+                </div>
+                <p
+                  class="c37 c21 c1"
+                >
+                  You join the movement for free
+                </p>
+              </div>
+              <div
+                class="c35"
+              >
+                <div
+                  class="c0 c1"
+                >
+                  <div
+                    class="c36 c2 c1"
+                  >
+                    <img
+                      alt="We negotiate Group Discounts"
+                      class="c4"
+                      src="https://placehold.it/100x100"
+                    />
+                  </div>
+                </div>
+                <p
+                  class="c37 c21 c1"
+                >
+                  We negotiate Group Discounts
+                </p>
+              </div>
+              <div
+                class="c35"
+              >
+                <div
+                  class="c0 c1"
+                >
+                  <div
+                    class="c36 c2 c1"
+                  >
+                    <img
+                      alt="You decide what’s right for you"
+                      class="c4"
+                      src="https://placehold.it/100x100"
+                    />
+                  </div>
+                </div>
+                <p
+                  class="c37 c21 c1"
+                >
+                  You decide what’s right for you
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         <p
-          class="c18 c34"
+          class="c29 c21 c39"
         >
           * disclaimer text
         </p>
@@ -887,26 +1116,26 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
     </div>
   </div>
   <div
-    class="c35 c36"
+    class="c40 c41"
   >
     <div
-      class="c37 c38"
+      class="c42 c43"
     >
       <div
-        class="c0 c36"
+        class="c0 c44"
       >
         <div
-          class="c2 c39"
+          class="c2 c45"
         >
           <img
             alt="Footer logo"
             class="c4"
-            src="/assets/footer/obs/footer-logo.png"
+            src="https://placehold.it/100x100"
           />
         </div>
       </div>
       <p
-        class="c40 c41"
+        class="c46 c47"
       >
         © 2019 RevTech Media
       </p>
