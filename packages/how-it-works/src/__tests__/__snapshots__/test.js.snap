@@ -1,0 +1,332 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HowItWork /> matches expected output 1`] = `
+.c1 {
+  box-sizing: border-box;
+  background: #FFF;
+}
+
+.c2 {
+  font-family: MuseoSans;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: left;
+  color: #1566ad;
+  font-size: 16px;
+}
+
+.c10 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 16px;
+}
+
+.c5 {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c7 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.c8 {
+  min-width: 1px;
+}
+
+.c0 {
+  background: inherit;
+  padding: 0px 10px;
+}
+
+.c0 * {
+  background: inherit;
+}
+
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c4 {
+  padding: 8px;
+  position: relative;
+}
+
+.c4 > div:first-child {
+  position: relative;
+}
+
+.c4 > div:first-child:after {
+  position: absolute;
+  right: -15px;
+  top: 45%;
+  width: 0;
+  height: 0;
+  content: '';
+  border-top: 6px solid transparent;
+  border-left: 12px solid #000;
+  border-bottom: 6px solid transparent;
+  z-index: 2;
+}
+
+.c4:first-child {
+  padding-left: 0px;
+}
+
+.c4:last-child {
+  padding-right: 0px;
+}
+
+.c4:last-child > div:after {
+  display: none;
+}
+
+.c4:last-child:after {
+  display: none;
+}
+
+.c6 {
+  max-width: 150px;
+  max-height: 150px;
+  padding: 10px 0px;
+}
+
+.c9 {
+  text-align: center;
+  word-break: break-word;
+  font-size: 0.9em;
+}
+
+@media (min-width:32em) {
+  .c2 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c2 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width:76em) {
+  .c2 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width:32em) {
+  .c10 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c10 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:76em) {
+  .c10 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c0 {
+    padding: 0px 30px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width:46em) {
+  .c3 {
+    display: inline-block;
+    -webkit-flex-direction: unset;
+    -ms-flex-direction: unset;
+    flex-direction: unset;
+    width: 100%;
+  }
+}
+
+@media (min-width:46em) {
+  .c4:first-child {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .c4:first-child > p {
+    text-align: left;
+  }
+}
+
+@media (min-width:46em) {
+  .c4:last-child {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 0px;
+  }
+
+  .c4:last-child > p {
+    text-align: left;
+  }
+}
+
+@media (min-width:46em) {
+  .c4 {
+    width: 100%;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .c4 > div:after {
+    display: none;
+  }
+
+  .c4:after {
+    position: absolute;
+    right: auto;
+    top: auto;
+    bottom: -15px;
+    left: calc(50% - 12px);
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 22px solid #000;
+    z-index: 2;
+  }
+}
+
+@media (min-width:46em) {
+  .c9 {
+    text-align: right;
+    padding: 0px 10px;
+    font-size: 1em;
+  }
+}
+
+<div>
+  <div
+    class="c0 c1"
+  >
+    <h6
+      class="c2 c1"
+    >
+      One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+    </h6>
+    <div
+      class="c3 c1"
+    >
+      <div
+        class="c4"
+      >
+        <div
+          class="c5 c1"
+        >
+          <div
+            class="c6 c7 c1"
+          >
+            <img
+              alt="You join the movement for free"
+              class="c8"
+              src="https://placehold.it/100x100"
+            />
+          </div>
+        </div>
+        <p
+          class="c9 c10 c1"
+        >
+          You join the movement for free
+        </p>
+      </div>
+      <div
+        class="c4"
+      >
+        <div
+          class="c5 c1"
+        >
+          <div
+            class="c6 c7 c1"
+          >
+            <img
+              alt="We negotiate Group Discounts"
+              class="c8"
+              src="https://placehold.it/100x100"
+            />
+          </div>
+        </div>
+        <p
+          class="c9 c10 c1"
+        >
+          We negotiate Group Discounts
+        </p>
+      </div>
+      <div
+        class="c4"
+      >
+        <div
+          class="c5 c1"
+        >
+          <div
+            class="c6 c7 c1"
+          >
+            <img
+              alt="You decide what’s right for you"
+              class="c8"
+              src="https://placehold.it/100x100"
+            />
+          </div>
+        </div>
+        <p
+          class="c9 c10 c1"
+        >
+          You decide what’s right for you
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

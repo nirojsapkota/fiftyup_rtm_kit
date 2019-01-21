@@ -10,22 +10,10 @@ const Wrapper = styled(Box)`
   max-width: ${props => props.boxWidth};
 `;
 
-const Footer = ({
-  logoUrl,
-  imgWidth,
-  imgHeight,
-  copyRightText,
-  ...boxProps
-}) => {
+const Footer = ({ logoUrl, copyRightText, ...boxProps }) => {
   return (
     <Wrapper m="auto" {...boxProps}>
-      <Img
-        src={logoUrl}
-        width={imgWidth}
-        height={imgHeight}
-        pl={[1, 2, 4]}
-        alt="Footer logo"
-      />
+      <Img src={logoUrl} pl={[1, 2, 4]} alt="Footer logo" />
       <Paragraph my="auto" ml="auto" pr={[1, 2, 4]}>
         {copyRightText}
       </Paragraph>
@@ -35,14 +23,11 @@ const Footer = ({
 
 Footer.propTypes = {
   logoUrl: t.string,
-  imgWidth: t.number,
-  imgHeight: t.number,
   copyRightText: t.string,
 };
 
 Footer.defaultProps = {
   copyRightText: '© 2019 RevTech Media',
-  logoUrl: 'https://placehold.it/150x150',
 };
 
 export default Footer;

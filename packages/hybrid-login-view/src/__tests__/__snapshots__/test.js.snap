@@ -1,0 +1,1145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HybridLoginView /> matches expected output 1`] = `
+.c1 {
+  box-sizing: border-box;
+  background: #FFF;
+}
+
+.c3 {
+  box-sizing: border-box;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background: #FFF;
+}
+
+.c7 {
+  box-sizing: border-box;
+  margin: auto;
+  background: #FFF;
+}
+
+.c9 {
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: -30px;
+  background: #FFF;
+}
+
+.c12 {
+  box-sizing: border-box;
+  width: 50%;
+  background: #FFF;
+}
+
+.c14 {
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #FFF;
+}
+
+.c17 {
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #FFF;
+}
+
+.c19 {
+  box-sizing: border-box;
+  padding-top: 8px;
+  background: #FFF;
+}
+
+.c20 {
+  box-sizing: border-box;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  background: #FFF;
+}
+
+.c22 {
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: #FFF;
+}
+
+.c27 {
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: #FFF;
+}
+
+.c30 {
+  box-sizing: border-box;
+  padding: 50px;
+  background: #FFF;
+}
+
+.c32 {
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #FFF;
+}
+
+.c39 {
+  box-sizing: border-box;
+  padding: 30px;
+  background: #FFF;
+}
+
+.c41 {
+  box-sizing: border-box;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background: #2d9dd6;
+}
+
+.c43 {
+  box-sizing: border-box;
+  margin: auto;
+  background: #2d9dd6;
+}
+
+.c44 {
+  box-sizing: border-box;
+  background: #2d9dd6;
+}
+
+.c45 {
+  box-sizing: border-box;
+  padding-left: 4px;
+  background: #2d9dd6;
+}
+
+.c47 {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 4px;
+  background: #2d9dd6;
+}
+
+.c16 {
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 0 1px rgba(67,90,111,0.3),0 8px 10px -4px rgba(67,90,111,0.47);
+}
+
+.c15 {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.c18 {
+  font-family: MuseoSans;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: left;
+  color: #1566ad;
+  font-size: 16px;
+}
+
+.c21 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 16px;
+}
+
+.c46 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #FFF;
+  font-size: 16px;
+}
+
+.c28 {
+  background: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: 13px;
+  -webkit-letter-spacing: 1px;
+  -moz-letter-spacing: 1px;
+  -ms-letter-spacing: 1px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: MuseoSans;
+  font-weight: 900;
+  width: inherit;
+  padding: 18px 30px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 3px;
+  border-bottom-style: solid;
+  color: #FFF;
+  background: #ef8612;
+  border-bottom-color: #e56209;
+}
+
+.c28:disabled {
+  cursor: not-allowed;
+}
+
+.c28:hover,
+.c28:focus {
+  background: #e56209;
+  border-bottom-color: #ef8612;
+}
+
+.c23 {
+  position: relative;
+  display: block;
+}
+
+.c24 {
+  display: block;
+}
+
+.c25 {
+  padding: 8px 2px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+
+.c26 {
+  text-align: center;
+}
+
+.c0 {
+  max-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c2 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.c4 {
+  min-width: 1px;
+}
+
+.c33 {
+  background: inherit;
+  padding: 0px 10px;
+}
+
+.c33 * {
+  background: inherit;
+}
+
+.c34 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c35 {
+  padding: 8px;
+  position: relative;
+}
+
+.c35 > div:first-child {
+  position: relative;
+}
+
+.c35 > div:first-child:after {
+  position: absolute;
+  right: -15px;
+  top: 45%;
+  width: 0;
+  height: 0;
+  content: '';
+  border-top: 6px solid transparent;
+  border-left: 12px solid #000;
+  border-bottom: 6px solid transparent;
+  z-index: 2;
+}
+
+.c35:first-child {
+  padding-left: 0px;
+}
+
+.c35:last-child {
+  padding-right: 0px;
+}
+
+.c35:last-child > div:after {
+  display: none;
+}
+
+.c35:last-child:after {
+  display: none;
+}
+
+.c36 {
+  max-width: 150px;
+  max-height: 150px;
+  padding: 10px 0px;
+}
+
+.c37 {
+  text-align: center;
+  word-break: break-word;
+  font-size: 0.9em;
+}
+
+.c42 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 1080px;
+}
+
+.c5 {
+  background: #eee;
+}
+
+.c8 {
+  max-width: 1080px;
+  background: none;
+}
+
+.c10 {
+  background: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row;
+  -ms-flex-flow: row;
+  flex-flow: row;
+}
+
+.c11 {
+  background: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c38 {
+  background: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c31 {
+  background: inherit;
+}
+
+.c13 {
+  background: inherit;
+}
+
+.c29 {
+  background: inherit;
+}
+
+.c40 {
+  background: #2d9dd6;
+}
+
+.c6 {
+  max-width: 1080px;
+}
+
+@media screen and (min-width:32em) {
+  .c14 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c14 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media screen and (min-width:76em) {
+  .c14 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c17 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c17 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (min-width:76em) {
+  .c17 {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c19 {
+    padding-top: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c19 {
+    padding-top: 16px;
+  }
+}
+
+@media screen and (min-width:76em) {
+  .c19 {
+    padding-top: 32px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c20 {
+    padding-top: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c20 {
+    padding-top: 16px;
+  }
+}
+
+@media screen and (min-width:76em) {
+  .c20 {
+    padding-top: 32px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c27 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c27 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+@media screen and (min-width:76em) {
+  .c27 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c32 {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c32 {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (min-width:76em) {
+  .c32 {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c45 {
+    padding-left: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c45 {
+    padding-left: 32px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c47 {
+    padding-right: 8px;
+  }
+}
+
+@media screen and (min-width:46em) {
+  .c47 {
+    padding-right: 32px;
+  }
+}
+
+@media (min-width:32em) {
+  .c18 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c18 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width:76em) {
+  .c18 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width:32em) {
+  .c21 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c21 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:76em) {
+  .c21 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:32em) {
+  .c46 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c46 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:76em) {
+  .c46 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c33 {
+    padding: 0px 30px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width:46em) {
+  .c34 {
+    display: inline-block;
+    -webkit-flex-direction: unset;
+    -ms-flex-direction: unset;
+    flex-direction: unset;
+    width: 100%;
+  }
+}
+
+@media (min-width:46em) {
+  .c35:first-child {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .c35:first-child > p {
+    text-align: left;
+  }
+}
+
+@media (min-width:46em) {
+  .c35:last-child {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 0px;
+  }
+
+  .c35:last-child > p {
+    text-align: left;
+  }
+}
+
+@media (min-width:46em) {
+  .c35 {
+    width: 100%;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .c35 > div:after {
+    display: none;
+  }
+
+  .c35:after {
+    position: absolute;
+    right: auto;
+    top: auto;
+    bottom: -15px;
+    left: calc(50% - 12px);
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 22px solid #000;
+    z-index: 2;
+  }
+}
+
+@media (min-width:46em) {
+  .c37 {
+    text-align: right;
+    padding: 0px 10px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width:46em) {
+  .c10 {
+    display: none;
+  }
+}
+
+@media (min-width:46em) {
+  .c38 {
+    display: none;
+  }
+}
+
+<div>
+  <div
+    class="c0 c1"
+  >
+    <div
+      class="c2 c3"
+    >
+      <img
+        alt="Header logo"
+        class="c4"
+        src="https://placehold.it/100x100"
+      />
+    </div>
+  </div>
+  <div
+    class="c5 c1"
+  >
+    <div
+      class="c6 c7"
+    >
+      <div
+        class="c0 c1"
+      >
+        <div
+          class="c2 c1"
+        >
+          <img
+            alt="Hero image"
+            class="c4"
+            src="https://placehold.it/1080x454"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="c8 c9"
+    >
+      <div
+        class="c10 c1"
+      >
+        <div
+          class="c11 c12"
+          width="0.5"
+        >
+          <div
+            class="c13 c14"
+          >
+            <div
+              class="c15 c16 c17"
+              elevation="2"
+            >
+              <form>
+                <input
+                  id="registering_campaign_id"
+                  name="registering_campaign_id"
+                  type="hidden"
+                  value="276"
+                />
+                <input
+                  id="jump_path"
+                  name="jump_path"
+                  type="hidden"
+                  value="/campaigns/OBS_BES_2017_Offers"
+                />
+                <h6
+                  class="c18 c19"
+                >
+                  Login panel title
+                </h6>
+                <div
+                  class="c20"
+                >
+                  <p
+                    class="c21 c22"
+                  >
+                    My Postcode:
+                  </p>
+                  <span
+                    class="c23"
+                    display="block"
+                  >
+                    <span
+                      class="c24"
+                    >
+                      <input
+                        aria-labelledby="user.postcode_suburb"
+                        autocomplete="off"
+                        class="c25"
+                        id="user.postcode_suburb"
+                        name="user.postcode_suburb"
+                        placeholder="Postcode"
+                        required=""
+                        value=""
+                      />
+                    </span>
+                  </span>
+                </div>
+                <div
+                  class="c22"
+                >
+                  <p
+                    class="c21 c22"
+                  >
+                    My Email:
+                  </p>
+                  <input
+                    aria-labelledby="user.email"
+                    class="c25"
+                    id="user.email"
+                    name="user.email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
+                    placeholder="Email"
+                    required=""
+                    title="Invalid email address"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="c26 c27"
+                >
+                  <button
+                    class="c28"
+                    type="submit"
+                  >
+                    See the offers
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <p
+            class="c29 c21 c30"
+          >
+            * disclaimer text
+          </p>
+        </div>
+        <div
+          class="c11 c12"
+          width="0.5"
+        >
+          <div
+            class="c31 c32"
+          >
+            <div
+              class="c33 c1"
+            >
+              <h6
+                class="c18 c1"
+              >
+                One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+              </h6>
+              <div
+                class="c34 c1"
+              >
+                <div
+                  class="c35"
+                >
+                  <div
+                    class="c0 c1"
+                  >
+                    <div
+                      class="c36 c2 c1"
+                    >
+                      <img
+                        alt="You join the movement for free"
+                        class="c4"
+                        src="https://placehold.it/100x100"
+                      />
+                    </div>
+                  </div>
+                  <p
+                    class="c37 c21 c1"
+                  >
+                    You join the movement for free
+                  </p>
+                </div>
+                <div
+                  class="c35"
+                >
+                  <div
+                    class="c0 c1"
+                  >
+                    <div
+                      class="c36 c2 c1"
+                    >
+                      <img
+                        alt="We negotiate Group Discounts"
+                        class="c4"
+                        src="https://placehold.it/100x100"
+                      />
+                    </div>
+                  </div>
+                  <p
+                    class="c37 c21 c1"
+                  >
+                    We negotiate Group Discounts
+                  </p>
+                </div>
+                <div
+                  class="c35"
+                >
+                  <div
+                    class="c0 c1"
+                  >
+                    <div
+                      class="c36 c2 c1"
+                    >
+                      <img
+                        alt="You decide what’s right for you"
+                        class="c4"
+                        src="https://placehold.it/100x100"
+                      />
+                    </div>
+                  </div>
+                  <p
+                    class="c37 c21 c1"
+                  >
+                    You decide what’s right for you
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="c38 c1"
+      >
+        <div
+          class="c13 c14"
+        >
+          <div
+            class="c15 c16 c17"
+            elevation="2"
+          >
+            <form>
+              <input
+                id="registering_campaign_id"
+                name="registering_campaign_id"
+                type="hidden"
+                value="276"
+              />
+              <input
+                id="jump_path"
+                name="jump_path"
+                type="hidden"
+                value="/campaigns/OBS_BES_2017_Offers"
+              />
+              <h6
+                class="c18 c19"
+              >
+                Login panel title
+              </h6>
+              <div
+                class="c20"
+              >
+                <p
+                  class="c21 c22"
+                >
+                  My Postcode:
+                </p>
+                <span
+                  class="c23"
+                  display="block"
+                >
+                  <span
+                    class="c24"
+                  >
+                    <input
+                      aria-labelledby="user.postcode_suburb"
+                      autocomplete="off"
+                      class="c25"
+                      id="user.postcode_suburb"
+                      name="user.postcode_suburb"
+                      placeholder="Postcode"
+                      required=""
+                      value=""
+                    />
+                  </span>
+                </span>
+              </div>
+              <div
+                class="c22"
+              >
+                <p
+                  class="c21 c22"
+                >
+                  My Email:
+                </p>
+                <input
+                  aria-labelledby="user.email"
+                  class="c25"
+                  id="user.email"
+                  name="user.email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
+                  placeholder="Email"
+                  required=""
+                  title="Invalid email address"
+                  value=""
+                />
+              </div>
+              <div
+                class="c26 c27"
+              >
+                <button
+                  class="c28"
+                  type="submit"
+                >
+                  See the offers
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="c31 c32"
+        >
+          <div
+            class="c33 c1"
+          >
+            <h6
+              class="c18 c1"
+            >
+              One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+            </h6>
+            <div
+              class="c34 c1"
+            >
+              <div
+                class="c35"
+              >
+                <div
+                  class="c0 c1"
+                >
+                  <div
+                    class="c36 c2 c1"
+                  >
+                    <img
+                      alt="You join the movement for free"
+                      class="c4"
+                      src="https://placehold.it/100x100"
+                    />
+                  </div>
+                </div>
+                <p
+                  class="c37 c21 c1"
+                >
+                  You join the movement for free
+                </p>
+              </div>
+              <div
+                class="c35"
+              >
+                <div
+                  class="c0 c1"
+                >
+                  <div
+                    class="c36 c2 c1"
+                  >
+                    <img
+                      alt="We negotiate Group Discounts"
+                      class="c4"
+                      src="https://placehold.it/100x100"
+                    />
+                  </div>
+                </div>
+                <p
+                  class="c37 c21 c1"
+                >
+                  We negotiate Group Discounts
+                </p>
+              </div>
+              <div
+                class="c35"
+              >
+                <div
+                  class="c0 c1"
+                >
+                  <div
+                    class="c36 c2 c1"
+                  >
+                    <img
+                      alt="You decide what’s right for you"
+                      class="c4"
+                      src="https://placehold.it/100x100"
+                    />
+                  </div>
+                </div>
+                <p
+                  class="c37 c21 c1"
+                >
+                  You decide what’s right for you
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p
+          class="c29 c21 c39"
+        >
+          * disclaimer text
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="c40 c41"
+  >
+    <div
+      class="c42 c43"
+    >
+      <div
+        class="c0 c44"
+      >
+        <div
+          class="c2 c45"
+        >
+          <img
+            alt="Footer logo"
+            class="c4"
+            src="https://placehold.it/100x100"
+          />
+        </div>
+      </div>
+      <p
+        class="c46 c47"
+      >
+        © 2019 RevTech Media
+      </p>
+    </div>
+  </div>
+</div>
+`;

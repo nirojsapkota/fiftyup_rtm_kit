@@ -3,27 +3,13 @@ import t from 'prop-types';
 import { Formik, Field } from 'formik';
 import styled from 'styled-components';
 import { getColor } from '@rtm-ui/theme';
-import { Box, Card } from '@rtm-ui/layout';
+import { Box } from '@rtm-ui/layout';
 import Button from '@rtm-ui/button';
 import { Header, Paragraph } from '@rtm-ui/typography';
+import Icon from '@rtm-ui/icon';
 
 import { submitLogin } from './actions';
-import { LOGIN_URL } from './constants';
 import PostCodeField from '../PostCodeField';
-
-const HeaderTitleStyled = styled(Header)`
-  font-family: ${props =>
-    props.font === 'serif'
-      ? props.theme.fonts.serif
-      : props.theme.fonts.sansSerif};
-  font-size: 15px;
-  text-align: left;
-  line-height: 1.6;
-  color: ${props => getColor(props.color || 'text', props.theme)};
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    font-size: 18px;
-  }
-`;
 
 const StyledInput = styled.input`
   padding: 8px 2px;
@@ -33,8 +19,13 @@ const StyledInput = styled.input`
   width: 100%;
 `;
 
-const StyledButton = styled(Button)`
-  width: 216px;
+const Error = styled(Paragraph)`
+  text-align: center;
+  color: ${props => getColor('error', props.theme)};
+  svg {
+    fill: ${props => getColor('error', props.theme)};
+    padding-top: 2px;
+  }
 `;
 
 const ButtonWrapper = styled(Box)`
@@ -44,24 +35,12 @@ const ButtonWrapper = styled(Box)`
 const TextInput = props => <StyledInput {...props} />;
 const HiddenInput = props => <input type="hidden" {...props} />;
 
-const ErrorWrapper = styled(Paragraph)`
-  background: #faeded;
-  position: relative;
-  font-weight: 300;
-  font-size: 1.14286rem;
-  padding: 8px 20px;
-  margin: 5px auto 5px;
-  border: 1px solid #ca3838;
-  color: #7b2121;
-`;
-
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
 
     // Set default state
     this.state = {
-      redirectPath: null,
       errors: null,
     };
 
@@ -70,40 +49,49 @@ class LoginForm extends React.Component {
   }
 
   async handleSubmit(values, actions) {
-    const result = await submitLogin(
-      LOGIN_URL,
-      values,
-      this.props.authenticityToken
-    );
+    let result;
+    if (typeof this.props.handleSubmit === 'function') {
+      result = await this.props.handleSubmit(
+        this.props.loginUrl,
+        values,
+        this.props.authenticityToken
+      );
+    } else {
+      result = await submitLogin(
+        this.props.loginUrl,
+        values,
+        this.props.authenticityToken
+      );
+    }
 
-    if (result.errors) {
+    const { data } = result;
+
+    if (data.errors) {
       this.setState({
-        errors: result.errors,
+        errors: data.errors,
       });
       actions.setSubmitting(false);
     } else if (typeof this.props.handleSuccess === 'function') {
       this.props.handleSuccess(result);
-      actions.setSubmitting(true);
     } else {
-      this.setState({
-        redirectPath: result.redirectPath,
-      });
-      actions.setSubmitting(true);
+      // Redirect to path when success login
+      window.location.href = data.redirectPath;
     }
   }
 
   render() {
-    const { hiddenFields, authenticityToken, title, buttonText } = this.props;
+    const {
+      hiddenFields,
+      authenticityToken,
+      title,
+      buttonText,
+      autocompletePostcodeUrl,
+    } = this.props;
 
-    const { redirectPath, errors } = this.state;
-    // Redirect to path when success login
-    if (redirectPath) {
-      window.location.href = redirectPath;
-      return null;
-    }
+    const { errors } = this.state;
 
     return (
-      <Card px={20} py={15}>
+      <React.Fragment>
         <Formik
           initialValues={{
             user: {
@@ -127,16 +115,11 @@ class LoginForm extends React.Component {
                     />
                   )
               )}
-              <HeaderTitleStyled>{title}</HeaderTitleStyled>
-              {errors && (
-                <Box py={2}>
-                  {errors.map(error => (
-                    <ErrorWrapper key={error}>{error}</ErrorWrapper>
-                  ))}
-                </Box>
-              )}
-              <Box py={2}>
-                <Box py={2}>My Postcode:</Box>
+              <Header pt={[2, 2, 3, 4]} tag="h6">
+                {title}
+              </Header>
+              <Box pb={2} pt={[2, 2, 3, 4]}>
+                <Paragraph py={2}>My Postcode:</Paragraph>
                 <Field
                   name="user.postcode_suburb"
                   render={({ field, form }) => (
@@ -145,6 +128,7 @@ class LoginForm extends React.Component {
                       field={field}
                       inputComponent={TextInput}
                       authenticityToken={authenticityToken}
+                      autocompletePostcodeUrl={autocompletePostcodeUrl}
                       id="user.postcode_suburb"
                       aria-labelledby="user.postcode_suburb"
                       placeholder="Postcode"
@@ -155,7 +139,7 @@ class LoginForm extends React.Component {
                 />
               </Box>
               <Box py={2}>
-                <Box py={2}>My Email:</Box>
+                <Paragraph py={2}>My Email:</Paragraph>
                 <Field
                   name="user.email"
                   render={({ field }) => (
@@ -171,32 +155,44 @@ class LoginForm extends React.Component {
                   )}
                 />
               </Box>
-              <ButtonWrapper pt={2}>
-                <StyledButton type="submit" disabled={isSubmitting}>
+              <ButtonWrapper py={[2, 2, 3, 4]}>
+                <Button type="submit" disabled={isSubmitting} track="signin">
                   {buttonText}
-                </StyledButton>
+                </Button>
+                {errors && (
+                  <Box pt={2}>
+                    {errors.map(error => (
+                      <Error key={error}>
+                        <Icon glyph="error" size={20} /> {error}
+                      </Error>
+                    ))}
+                  </Box>
+                )}
               </ButtonWrapper>
             </form>
           )}
         />
-      </Card>
+      </React.Fragment>
     );
   }
 }
 LoginForm.propTypes = {
-  authenticityToken: t.string,
+  authenticityToken: t.string.isRequired,
+  loginUrl: t.string.isRequired,
   handleSuccess: t.func,
+  handleSubmit: t.func,
   // eslint-disable-next-line react/forbid-prop-types
   hiddenFields: t.object,
   title: t.string,
   buttonText: t.string,
   buttonIcon: t.string,
+  autocompletePostcodeUrl: t.string,
 };
 
 LoginForm.defaultProps = {
   title:
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
-  buttonText: 'See the offer',
+  buttonText: 'See the offers',
   buttonIcon: null,
 };
 
