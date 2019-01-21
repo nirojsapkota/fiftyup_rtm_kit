@@ -478,7 +478,7 @@ describe('<LoginForm />', () => {
       const email = getByPlaceholderText('Email');
       const postcode = getByPlaceholderText('Postcode');
       const form = container.querySelector('form');
-      const submit = getByText('See the offer');
+      const submit = getByText(loginPanelProps.buttonText);
 
       fireEvent.change(email, {
         target: { value: 'user@example.com' },
@@ -511,7 +511,7 @@ describe('<LoginForm />', () => {
       fireEvent.change(postcode, {
         target: { value: '5000' },
       });
-      const submit = getByText('See the offer');
+      const submit = getByText(loginPanelProps.buttonText);
       const chkbAgreement = getByTestId('ckAgreement');
 
       fireEvent.click(submit);

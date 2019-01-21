@@ -6,11 +6,6 @@ exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
   background: #FFF;
 }
 
-.c3 {
-  box-sizing: border-box;
-  background: #FFF;
-}
-
 .c2 {
   font-family: MuseoSans;
   font-weight: 400;
@@ -20,7 +15,7 @@ exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
   font-size: 16px;
 }
 
-.c4 {
+.c3 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -44,7 +39,7 @@ exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
   background: inherit;
 }
 
-.c5 {
+.c4 {
   padding-left: 5px;
 }
 
@@ -67,19 +62,19 @@ exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
 }
 
 @media (min-width:32em) {
-  .c4 {
+  .c3 {
     font-size: 12px;
   }
 }
 
 @media (min-width:46em) {
-  .c4 {
+  .c3 {
     font-size: 12px;
   }
 }
 
 @media (min-width:76em) {
-  .c4 {
+  .c3 {
     font-size: 12px;
   }
 }
@@ -89,7 +84,7 @@ exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
     class="c0 c1"
   >
     <p
-      class="c2 c3"
+      class="c2 c1"
     >
       <input
         data-testid="ckAgreement"
@@ -97,22 +92,22 @@ exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
         type="checkbox"
       />
       <small
-        class="c4 c3"
+        class="c3 c1"
       >
         By ticking this box, you agree to our
       </small>
       <small
-        class="c4 c3"
+        class="c3 c1"
       >
         <a
-          class="c5"
+          class="c4"
           href="/link/to/confirmation-of-consent"
         >
           Confirmation of consent
         </a>
         ,
         <a
-          class="c5"
+          class="c4"
           href="/link/to/term-and-conditions"
         >
           Terms and Conditions
@@ -120,7 +115,7 @@ exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
          
         and
         <a
-          class="c5"
+          class="c4"
           href="/link/to/privacy-policy"
         >
           Privacy Policy

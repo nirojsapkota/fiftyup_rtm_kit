@@ -37,6 +37,11 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   background: #FFF;
 }
 
+.c15 {
+  box-sizing: border-box;
+  background: #FFF;
+}
+
 .c1 {
   overflow: hidden;
   border-radius: 4px;
@@ -64,6 +69,15 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   text-align: left;
   color: #565656;
   font-size: 16px;
+}
+
+.c16 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 12px;
 }
 
 .c13 {
@@ -131,6 +145,25 @@ exports[`<LoginPanel /> matches expected output 1`] = `
 
 .c9 {
   display: block;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  background: inherit;
+}
+
+.c14 * {
+  background: inherit;
+}
+
+.c17 {
+  padding-left: 5px;
 }
 
 .c10 {
@@ -259,6 +292,24 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   }
 }
 
+@media (min-width:32em) {
+  .c16 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:46em) {
+  .c16 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:76em) {
+  .c16 {
+    font-size: 12px;
+  }
+}
+
 <div>
   <div
     class="c0 c1 c2"
@@ -339,6 +390,50 @@ exports[`<LoginPanel /> matches expected output 1`] = `
         >
           See the offers
         </button>
+      </div>
+      <div
+        class="c14 c15"
+      >
+        <p
+          class="c6 c15"
+        >
+          <input
+            data-testid="ckAgreement"
+            required=""
+            type="checkbox"
+          />
+          <small
+            class="c16 c15"
+          >
+            By ticking this box, you agree to our
+          </small>
+          <small
+            class="c16 c15"
+          >
+            <a
+              class="c17"
+              href="/confirmation-of-consent"
+            >
+              Confirmation of Consent
+            </a>
+            ,
+            <a
+              class="c17"
+              href="/terms-and-conditions"
+            >
+              Terms and Conditions
+            </a>
+             
+            and
+            <a
+              class="c17"
+              href="/privacy-policy"
+            >
+              Privacy Policy
+               
+            </a>
+          </small>
+        </p>
       </div>
     </form>
   </div>
