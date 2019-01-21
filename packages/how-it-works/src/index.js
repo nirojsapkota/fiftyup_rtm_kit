@@ -5,8 +5,8 @@ import { Header, Paragraph } from '@rtm-ui/typography';
 import { Container, Item, WrapperBox } from './style';
 import { howItWorkContent } from './constants';
 
-const HowItWork = (props) => {
-  const  entity = props.entity || "obs"
+const HowItWorks = props => {
+  const entity = props.entity || 'obs';
   const { header, icons } = howItWorkContent[entity];
 
   return (
@@ -18,9 +18,9 @@ const HowItWork = (props) => {
         {icons.map(s => (
           <Item>
             <div>
-              <Icon glyph={s.glyph} size="60" />
+              <Icon glyph={s.glyph} size={60} />
             </div>
-            <Paragraph px="2">{s.title}</Paragraph>
+            <Paragraph px={2}>{s.title}</Paragraph>
           </Item>
         ))}
       </Container>
@@ -28,8 +28,8 @@ const HowItWork = (props) => {
   );
 };
 
-HowItWork.propTypes = {
+HowItWorks.propTypes = {
   entity: t.string,
-}
+};
 
-export default HowItWork;
+export default HowItWorks;
