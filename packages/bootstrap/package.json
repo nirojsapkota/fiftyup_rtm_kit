@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/bootstrap",
-  "version": "1.1.0",
+  "version": "3.0.2",
   "rtmRollup": {
     "namespace": "bootstrap",
     "defaultExport": "Bootstrap",
@@ -10,7 +10,8 @@
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
-  "module": "src/index.js",
+  "module": "build/module.js",
+  "_module": "src/index",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",
@@ -18,8 +19,8 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/theme": "^1.0.6",
-    "@rtm-ui/tracker": "^1.0.6"
+    "@rtm-ui/theme": "^3.0.2",
+    "@rtm-ui/tracker": "^3.0.2"
   },
   "peerDependencies": {
     "jest-dom": "^2.1.1",
@@ -28,7 +29,7 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.6",
+    "@rtm-ui/rtm-scripts": "^4.0.0",
     "jest-styled-components": "^6.2.2",
     "react-testing-library": "^5.2.3"
   }

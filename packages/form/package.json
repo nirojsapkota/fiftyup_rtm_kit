@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/form",
-  "version": "1.1.0",
+  "version": "3.0.2",
   "description": "Description for form",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -10,7 +10,8 @@
     "namedExports": []
   },
   "main": "build/main.js",
-  "module": "src/index.js",
+  "module": "build/module.js",
+  "_module": "src/index",
   "scripts": {
     "start": "rtm-scripts start",
     "build": "rtm-scripts rollup",
@@ -18,9 +19,9 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/button": "^1.0.0",
-    "@rtm-ui/layout": "^1.0.0",
-    "@rtm-ui/typography": "^1.0.0",
+    "@rtm-ui/button": "^3.0.2",
+    "@rtm-ui/layout": "^3.0.2",
+    "@rtm-ui/typography": "^3.0.2",
     "formik": "^1.4.1"
   },
   "peerDependencies": {
@@ -29,6 +30,6 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.0"
+    "@rtm-ui/rtm-scripts": "^4.0.0"
   }
 }

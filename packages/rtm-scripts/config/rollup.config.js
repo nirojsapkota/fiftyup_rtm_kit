@@ -3,12 +3,11 @@
 const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const paths = require('./paths');
-const fs = require('fs');
 const packageJson = require(paths.appPackageJson);
 const resolve = require('rollup-plugin-node-resolve');
 const replace = require('rollup-plugin-replace');
 const terser = require('rollup-plugin-terser');
-const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+const autoExternal = require('rollup-plugin-auto-external');
 
 let rtmDependencies = [];
 if (packageJson.dependencies) {
@@ -27,40 +26,16 @@ rtmDependencies.map(dep => getRollupConfig(dep)).map(packageRollup => {
     packageRollup.namedExports);
 });
 
-const filename = `${paths.appBuild}/${packageJson.rtmRollup.namespace}.${
-  packageJson.version
-}.min.js`;
-
-function copyToMainJs() {
-  var replace = `packages\/${packageJson.rtmRollup.namespace}\/build`;
-  var re = new RegExp(replace, 'g');
-  return {
-    name: 'copy-to-main-js', // this name will show up in warnings and errors
-    onwrite(output) {
-      fs.copyFile(output.file, filename, err => {
-        if (err) throw err;
-      });
-      fs.mkdir('../../dist', { recursive: true }, err => {});
-      fs.copyFile(output.file, filename.replace(re, 'dist'), err => {
-        if (err) throw err;
-      });
-    },
-  };
-}
-
 const inputOptions = {
   input: paths.appIndexJs,
-  external: ['react', 'prop-types', 'styled-components'],
   plugins: [
-    peerDepsExternal({
-      packageJsonPath: paths.appPackageJson,
+    autoExternal({
+      packagePath: paths.appPackageJson,
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    terser.terser({
-      sourcemap: true,
-    }),
+    terser.terser(),
     resolve({
       main: true,
     }),
@@ -71,25 +46,11 @@ const inputOptions = {
     commonjs({
       namedExports: namedExports,
     }),
-    copyToMainJs(),
   ],
-};
-
-const outputOptions = {
-  file: paths.appBuild + '/main.js',
-  format: 'umd',
-  name: packageJson.rtmRollup.defaultExport,
-  exports: 'named',
-  globals: {
-    react: 'React',
-    'prop-types': 'PropTypes',
-    'styled-components': 'styled',
-  },
 };
 
 const config = {
   inputOptions: inputOptions,
-  outputOptions: outputOptions,
 };
 
 module.exports = config;
