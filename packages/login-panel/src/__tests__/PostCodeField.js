@@ -10,7 +10,7 @@ import {
   cleanup,
 } from '../../../bootstrap/setup/testSetup';
 import PostCodeField from '../PostCodeField';
-import { mockData } from '../__mocks__/data';
+import loginPanelProps from '../__fixtures__/loginPanel';
 
 jest.mock('axios');
 
@@ -38,7 +38,7 @@ describe('<PostCodeField />', () => {
           options={[{ value: '5000, ADELAIDE', label: '5000, ADELAIDE' }]}
           form={form}
           field={field}
-          autocompletePostcodeUrl={mockData.autocompletePostcodeUrl}
+          autocompletePostcodeUrl={loginPanelProps.autocompletePostcodeUrl}
           getAutoCompletePostcode={getAutoCompletePostcode}
         />
       </React.Fragment>

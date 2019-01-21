@@ -192,7 +192,7 @@ LoginForm.propTypes = {
 LoginForm.defaultProps = {
   title:
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
-  buttonText: 'See the offer',
+  buttonText: 'See the offers',
   buttonIcon: null,
 };
 

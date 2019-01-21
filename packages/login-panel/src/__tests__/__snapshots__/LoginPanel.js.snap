@@ -337,7 +337,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
           class="c13"
           type="submit"
         >
-          See the offer
+          See the offers
         </button>
       </div>
     </form>

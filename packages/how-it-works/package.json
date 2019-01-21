@@ -1,12 +1,12 @@
 {
-  "name": "@rtm-ui/how-it-work",
+  "name": "@rtm-ui/how-it-works",
   "version": "1.0.0",
-  "description": "Description for howItWork",
+  "description": "Description for HowItWorks",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
-    "namespace": "how-it-work",
-    "defaultExport": "HowItWork",
+    "namespace": "how-it-works",
+    "defaultExport": "HowItWorks",
     "namedExports": []
   },
   "main": "build/main.js",

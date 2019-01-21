@@ -22,7 +22,7 @@
   "dependencies": {
     "@rtm-ui/bootstrap": "^3.0.2",
     "@rtm-ui/img": "^3.0.2",
-    "@rtm-ui/how-it-work": "^1.0.0",
+    "@rtm-ui/how-it-works": "^1.0.0",
     "@rtm-ui/layout": "^3.0.2",
     "@rtm-ui/login-panel": "^3.0.2",
     "@rtm-ui/theme": "^3.0.2",
