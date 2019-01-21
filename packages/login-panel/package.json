@@ -24,9 +24,7 @@
     "@rtm-ui/img": "^3.0.2",
     "@rtm-ui/layout": "^3.0.2",
     "@rtm-ui/theme": "^3.0.2",
-    "@rtm-ui/typography": "^3.0.2",
-    "axios": "^0.18.0",
-    "formik": "^1.4.1"
+    "@rtm-ui/typography": "^3.0.2"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
