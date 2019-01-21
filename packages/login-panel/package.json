@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/login-panel",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Description for loginPanel",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@rtm-ui/button": "^3.0.2",
-    "@rtm-ui/icon": "^3.0.2",
+    "@rtm-ui/icon": "^3.0.3",
     "@rtm-ui/img": "^3.0.2",
     "@rtm-ui/layout": "^3.0.2",
     "@rtm-ui/theme": "^3.0.2",

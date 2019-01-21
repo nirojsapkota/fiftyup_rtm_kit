@@ -1,14 +1,13 @@
 {
   "name": "@rtm-ui/hybrid-login-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "hybrid login view",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "hybrid-login-view",
     "defaultExport": "HybridLoginView",
-    "namedExports": [
-    ]
+    "namedExports": []
   },
   "main": "build/main.js",
   "module": "build/module.js",
@@ -21,16 +20,16 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "^3.0.2",
+    "@rtm-ui/how-it-works": "^1.0.1",
     "@rtm-ui/img": "^3.0.2",
-    "@rtm-ui/how-it-works": "^1.0.0",
     "@rtm-ui/layout": "^3.0.2",
-    "@rtm-ui/login-panel": "^3.0.2",
+    "@rtm-ui/login-panel": "^3.0.3",
     "@rtm-ui/theme": "^3.0.2",
     "@rtm-ui/typography": "^3.0.2"
   },
   "peerDependencies": {
-    "react": "^16.6",
     "prop-types": "^15.5.4",
+    "react": "^16.6",
     "styled-components": "^4.0"
   },
   "devDependencies": {
