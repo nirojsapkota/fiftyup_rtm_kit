@@ -19,7 +19,7 @@ export const howItWorkContent = {
   },
   ninesaver: {
     header:
-      'One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!',
+      'Join 9Saver today for FREE and instantly unlock your special offers!',
     icons: [
       {
         glyph: 'users-idea',
@@ -37,7 +37,7 @@ export const howItWorkContent = {
   },
   fuc: {
     header:
-      'One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!',
+      'Join The FiftyUp Club today for FREE and instantly unlock your special offers!',
     icons: [
       {
         glyph: 'hand-like',
