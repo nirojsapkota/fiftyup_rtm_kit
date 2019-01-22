@@ -8,27 +8,25 @@ const ResetArrow = css`
   height: 0;
   content: '';
   z-index: 2;
-`; 
+`;
 const RightArrow = css`
-  ${ResetArrow}
-  right: -5px;
+  ${ResetArrow} right: -5px;
   top: 45px;
   border-top: 6px solid transparent;
   border-left: 12px solid
-    ${props => getColor(props.color || 'text', props.theme)};
+    ${props => getColor(props.color || 'shape', props.theme)};
   border-bottom: 6px solid transparent;
 `;
 
 const BottomArrow = css`
-  ${ResetArrow}
-  right: auto;
+  ${ResetArrow} right: auto;
   top: auto;
   bottom: -15px;
   left: calc(50% - 12px);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 16px solid
-    ${props => getColor(props.color || 'text', props.theme)};
+    ${props => getColor(props.color || 'shape', props.theme)};
 `;
 
 export const WrapperBox = styled(Box)`
