@@ -18,15 +18,20 @@ const Bootstrap = props => {
   const Tracking = props.trackingProvider
     ? props.trackingProvider
     : TrackingProvider;
+
+  const { brand = 'obs' } = trackingData;
+
   return (
     <Tracking trackingData={trackingData}>
-      <BootstrapTheme {...props} />
+      <BootstrapTheme brand={brand} {...props} />
     </Tracking>
   );
 };
 
 Bootstrap.propTypes = {
   children: PropTypes.node.isRequired,
+  trackingData: PropTypes.shape({ brand: PropTypes.string }),
+  trackingProvider: PropTypes.func,
 };
 
 export default Bootstrap;
