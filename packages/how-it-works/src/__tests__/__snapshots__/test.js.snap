@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HowItWork /> Matches expected default content for obs 1`] = `
+exports[`<HowItWork /> matches expected default content for obs 1`] = `
 .c6 {
   position: relative;
   display: inline-block;
