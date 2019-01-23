@@ -1,34 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Header } from '@rtm-ui/typography';
+import Icon from '@rtm-ui/icon';
+import t from 'prop-types';
+import { Header, Paragraph } from '@rtm-ui/typography';
+import { Container, Item, WrapperBox } from './style';
+import { howItWorkContent } from './constants';
 
-import {
-  StepOfferStyled,
-  ItemStyled,
-  StepImgStyled,
-  StepDescStyled,
-  WrapperBox,
-} from './style';
+const HowItWorks = ({ entity }) => {
+  const { header, icons } = howItWorkContent[entity];
 
-const HowItWorks = props => (
-  <WrapperBox>
-    <Header tag="h6">{props.header}</Header>
-    <StepOfferStyled>
-      {props.stepOffers.map(s => (
-        <ItemStyled key={s.title}>
-          <StepImgStyled src={s.imgUrl} alt={s.title} />
-          <StepDescStyled>{s.title}</StepDescStyled>
-        </ItemStyled>
-      ))}
-    </StepOfferStyled>
-  </WrapperBox>
-);
+  return (
+    <WrapperBox>
+      <Header py="0" tag="h6">
+        {header}
+      </Header>
+      <Container>
+        {icons.map(s => (
+          <Item>
+            <div>
+              <Icon glyph={s.glyph} size={60} />
+            </div>
+            <Paragraph px={2}>{s.title}</Paragraph>
+          </Item>
+        ))}
+      </Container>
+    </WrapperBox>
+  );
+};
 
+HowItWorks.defaultProps = {
+  entity: 'obs',
+};
 HowItWorks.propTypes = {
-  header: PropTypes.string,
-  stepOffers: PropTypes.arrayOf(
-    PropTypes.shape({ imgUrl: PropTypes.string, title: PropTypes.string })
-  ),
+  entity: t.string,
 };
 
 export default HowItWorks;
