@@ -10,12 +10,12 @@ const HowItWorks = ({ entity }) => {
 
   return (
     <WrapperBox>
-      <Header py="0" tag="h6">
+      <Header py={0} tag="h6">
         {header}
       </Header>
       <Container>
         {icons.map(s => (
-          <Item>
+          <Item key={s.title}>
             <div>
               <Icon glyph={s.glyph} size={60} />
             </div>

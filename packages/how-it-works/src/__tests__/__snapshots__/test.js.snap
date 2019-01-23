@@ -46,8 +46,8 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
 
 .c3 {
   box-sizing: border-box;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
   background: #FFF;
 }
 
