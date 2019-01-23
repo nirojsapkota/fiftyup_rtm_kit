@@ -182,9 +182,4 @@ WrappedHybridLoginView.propTypes = {
   entity: t.shape({}),
 };
 
-WrappedHybridLoginView.defaultProps = {
-  trackingData: t.shape({}),
-  entity: { brand: 'obs' },
-};
-
 export default WrappedHybridLoginView;
