@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.0...@rtm-ui/login-panel@3.1.1) (2019-01-23)
+
+**Note:** Version bump only for package @rtm-ui/login-panel
+
+
+
+
+
+# [3.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.0.3...@rtm-ui/login-panel@3.1.0) (2019-01-23)
+
+
+### Features
+
+* **Login-panel:** Added Gdpr checkbox component to login panel ([06a2cdc](https://github.com/OBSAU/rtm-kit/commit/06a2cdc))
+* **Login-panel:** Added Gdpr checkbox component to login panel ([76f04be](https://github.com/OBSAU/rtm-kit/commit/76f04be))
+
+
+
+
+
 ## [3.0.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.0.2...@rtm-ui/login-panel@3.0.3) (2019-01-21)
 
 
