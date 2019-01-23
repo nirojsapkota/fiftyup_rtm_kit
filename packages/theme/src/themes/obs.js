@@ -9,6 +9,8 @@ const colors = {
   blue: '#2d9dd6',
   blueAccent: '#82c1e0',
   yellow: '#ffed00',
+  lightBlue: '#083d87',
+  darkBlue: '#1b1d39',
   ...grayscale,
   ...notices,
 };

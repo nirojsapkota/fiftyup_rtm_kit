@@ -35,7 +35,7 @@ export const howItWorkContent = {
       },
     ],
   },
-  fuc: {
+  fiftyup: {
     header:
       'Join The FiftyUp Club today for FREE and instantly unlock your special offers!',
     icons: [

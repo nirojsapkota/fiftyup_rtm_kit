@@ -7,8 +7,6 @@ const lightest = '#f5f5f5';
 const white = '#FFF';
 const darker = '#898989';
 const slightlyDarker = '#acacac';
-const lightBlue = '#083d87';
-const darkBlue = '#1b1d39';
 
 export const grayscale = {
   black,
@@ -20,8 +18,6 @@ export const grayscale = {
   white,
   darker,
   slightlyDarker,
-  lightBlue,
-  darkBlue,
 };
 
 export const notices = {

@@ -5,8 +5,7 @@ import { Header, Paragraph } from '@rtm-ui/typography';
 import { Container, Item, WrapperBox } from './style';
 import { howItWorkContent } from './constants';
 
-const HowItWorks = props => {
-  const entity = props.entity || 'obs';
+const HowItWorks = ({ entity }) => {
   const { header, icons } = howItWorkContent[entity];
 
   return (
@@ -28,6 +27,9 @@ const HowItWorks = props => {
   );
 };
 
+HowItWorks.defaultProps = {
+  entity: 'obs',
+};
 HowItWorks.propTypes = {
   entity: t.string,
 };

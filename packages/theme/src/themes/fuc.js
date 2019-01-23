@@ -2,6 +2,8 @@ import { grayscale, notices } from './colors';
 import { base } from './base';
 
 const colors = {
+  lightBlue: '#083d87',
+  darkBlue: '#1b1d39',
   ...grayscale,
   ...notices,
 };
