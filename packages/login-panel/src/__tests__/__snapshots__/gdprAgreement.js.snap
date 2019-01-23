@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GdprAgreement/> renders Gdpr link confirmation 1`] = `
+.c1 {
+  box-sizing: border-box;
+  background: #FFF;
+}
+
+.c2 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 16px;
+}
+
+.c3 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 12px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  background: inherit;
+}
+
+.c0 * {
+  background: inherit;
+}
+
+.c4 {
+  padding-left: 5px;
+}
+
+@media (min-width:32em) {
+  .c2 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:46em) {
+  .c2 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:76em) {
+  .c2 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:32em) {
+  .c3 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:46em) {
+  .c3 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:76em) {
+  .c3 {
+    font-size: 12px;
+  }
+}
+
+<div>
+  <div
+    class="c0 c1"
+  >
+    <p
+      class="c2 c1"
+    >
+      <input
+        data-testid="ckAgreement"
+        required=""
+        type="checkbox"
+      />
+      <small
+        class="c3 c1"
+      >
+        By ticking this box, you agree to our
+      </small>
+      <small
+        class="c3 c1"
+      >
+        <a
+          class="c4"
+          href="/link/to/confirmation-of-consent"
+        >
+          Confirmation of consent
+        </a>
+        ,
+        <a
+          class="c4"
+          href="/link/to/term-and-conditions"
+        >
+          Terms and Conditions
+        </a>
+         
+        and
+        <a
+          class="c4"
+          href="/link/to/privacy-policy"
+        >
+          Privacy Policy
+           
+        </a>
+      </small>
+    </p>
+  </div>
+</div>
+`;
