@@ -10,6 +10,7 @@ import Icon from '@rtm-ui/icon';
 
 import { submitLogin } from './actions';
 import PostCodeField from '../PostCodeField';
+import GdprAgreement from '../GdprAgreement';
 
 const StyledInput = styled.input`
   padding: 8px 2px;
@@ -85,6 +86,7 @@ class LoginForm extends React.Component {
       authenticityToken,
       title,
       buttonText,
+      gdprProps,
       autocompletePostcodeUrl,
     } = this.props;
 
@@ -169,6 +171,7 @@ class LoginForm extends React.Component {
                   </Box>
                 )}
               </ButtonWrapper>
+              {<GdprAgreement {...gdprProps} />}
             </form>
           )}
         />
@@ -176,6 +179,7 @@ class LoginForm extends React.Component {
     );
   }
 }
+
 LoginForm.propTypes = {
   authenticityToken: t.string.isRequired,
   loginUrl: t.string.isRequired,
@@ -186,6 +190,8 @@ LoginForm.propTypes = {
   title: t.string,
   buttonText: t.string,
   buttonIcon: t.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  gdprProps: t.shape({}),
   autocompletePostcodeUrl: t.string,
 };
 
@@ -194,6 +200,7 @@ LoginForm.defaultProps = {
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'See the offers',
   buttonIcon: null,
+  showGdprAgreement: true,
 };
 
 export default LoginForm;
