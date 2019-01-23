@@ -10,6 +10,23 @@ const loginPanel = {
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
   buttonText: 'See the offers',
+  gdprProps: {
+    enableCheckBox: true,
+    isRequire: 'required',
+    isChecked: false,
+    confirmationOfConsent: {
+      url: '/confirmation-of-consent',
+      text: 'Confirmation of Consent',
+    },
+    termsAndConditions: {
+      url: '/terms-and-conditions',
+      text: 'Terms and Conditions',
+    },
+    privacyPolicy: {
+      url: '/privacy-policy',
+      text: 'Privacy Policy',
+    },
+  },
 };
 
 export default loginPanel;

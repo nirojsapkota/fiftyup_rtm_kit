@@ -271,6 +271,18 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
 
 <div>
   <form>
+    <input
+      id="registering_campaign_id"
+      name="registering_campaign_id"
+      type="hidden"
+      value="276"
+    />
+    <input
+      id="jump_path"
+      name="jump_path"
+      type="hidden"
+      value="/campaigns/OBS_BES_2017_Offers"
+    />
     <h6
       class="c0 c1"
     >
