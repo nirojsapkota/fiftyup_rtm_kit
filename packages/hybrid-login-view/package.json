@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "^3.0.2",
+    "@rtm-ui/context": "^1.0.0",
     "@rtm-ui/how-it-works": "^1.0.1",
     "@rtm-ui/img": "^3.0.2",
     "@rtm-ui/layout": "^3.0.2",
