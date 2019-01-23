@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/bootstrap",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "rtmRollup": {
     "namespace": "bootstrap",
     "defaultExport": "Bootstrap",
@@ -19,7 +19,7 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/theme": "^3.0.2",
+    "@rtm-ui/theme": "^3.0.3",
     "@rtm-ui/tracker": "^3.0.2"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/img",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
   "rtmRollup": {
@@ -19,7 +19,7 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/layout": "^3.0.2"
+    "@rtm-ui/layout": "^3.0.3"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "3.0.*",
