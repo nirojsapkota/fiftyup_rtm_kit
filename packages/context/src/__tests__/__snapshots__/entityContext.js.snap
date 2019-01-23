@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EntityProvider /> matches expected output 1`] = `
+<div>
+  <div>
+    <div>
+      obs
+    </div>
+    <div>
+      One Big Switch
+    </div>
+    <div>
+      TEL: 1300 858 737
+    </div>
+    <div>
+      One Big Switch AFSL 455982
+        One Big Switch ACL 405918
+        One Big Switch ABN 75 150 963 474
+    </div>
+    <div>
+      business opening hours
+    </div>
+    <div>
+      https://s3-ap-southeast-1.amazonaws.com/onebigswitch/OBSFSG.pdf
+    </div>
+    <div>
+      https://twitter.com/OneBigSwitchAU
+    </div>
+    <div>
+      https://facebook.com/onebigswitch
+    </div>
+  </div>
+</div>
+`;

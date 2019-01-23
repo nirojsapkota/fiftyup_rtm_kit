@@ -118,6 +118,11 @@ EntityProvider.propTypes = {
   entity: PropTypes.shape({ brand: PropTypes.string }),
 };
 
+EntityProvider.defaultProps = {
+  children: PropTypes.node,
+  entity: { brand: 'obs' },
+};
+
 export const withEntity = BaseComponent => {
   const WrappedComponent = props => (
     <EntityContext.Consumer>
