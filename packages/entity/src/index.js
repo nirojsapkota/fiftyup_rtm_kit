@@ -7,10 +7,14 @@ const EntityContext = createContext({});
 
 export const EntityProvider = ({ children, entity }) => {
   const { brand, namespace } = entity;
-  const instant = entityMap[brand];
+  const selectedEntity = entityMap[brand];
+  const updatedEntity = {
+    ...(selectedEntity[namespace] || selectedEntity),
+    ...entity,
+  };
 
   return (
-    <EntityContext.Provider value={instant[namespace] || instant}>
+    <EntityContext.Provider value={updatedEntity}>
       {children}
     </EntityContext.Provider>
   );
