@@ -71,13 +71,51 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   font-size: 16px;
 }
 
-.c16 {
+.c20 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
   text-align: left;
   color: #565656;
   font-size: 12px;
+}
+
+.c16 {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.c18 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: inherit;
+  fill: #565656;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.c17 {
+  -webkit-flex: 0 0 20px;
+  -ms-flex: 0 0 20px;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  color: inherit;
 }
 
 .c13 {
@@ -138,6 +176,24 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   border-bottom-color: #ef8612;
 }
 
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c14 > * {
+  margin-right: 10px;
+}
+
+.c14 > *:last-child {
+  margin-right: 0px;
+}
+
 .c8 {
   position: relative;
   display: block;
@@ -147,7 +203,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   display: block;
 }
 
-.c14 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -158,11 +214,11 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   background: inherit;
 }
 
-.c14 * {
+.c19 * {
   background: inherit;
 }
 
-.c17 {
+.c21 {
   padding-left: 5px;
 }
 
@@ -176,6 +232,14 @@ exports[`<LoginPanel /> matches expected output 1`] = `
 
 .c11 {
   text-align: center;
+}
+
+.c11 div {
+  background: none;
+}
+
+.c11 svg {
+  fill: #FFF;
 }
 
 @media screen and (min-width:32em) {
@@ -293,19 +357,19 @@ exports[`<LoginPanel /> matches expected output 1`] = `
 }
 
 @media (min-width:32em) {
-  .c16 {
+  .c20 {
     font-size: 12px;
   }
 }
 
 @media (min-width:46em) {
-  .c16 {
+  .c20 {
     font-size: 12px;
   }
 }
 
 @media (min-width:76em) {
-  .c16 {
+  .c20 {
     font-size: 12px;
   }
 }
@@ -389,10 +453,41 @@ exports[`<LoginPanel /> matches expected output 1`] = `
           type="submit"
         >
           See the offers
+          <div
+            class="c14 c15"
+          >
+            <span
+              class="c16"
+              size="20"
+            >
+              <span
+                class="icon c17"
+                size="20"
+              >
+                <svg
+                  aria-labelledby="title"
+                  class="view-forward c18"
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  preserveAspectRatio="xMidYMid meet"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="1.414"
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M12.982,23.89c-0.354,-0.424 -0.296,-1.055 0.128,-1.408c1.645,-1.377 5.465,-4.762 6.774,-6.482c-1.331,-1.749 -5.1,-5.085 -6.774,-6.482c-0.424,-0.353 -0.482,-0.984 -0.128,-1.408c0.353,-0.425 0.984,-0.482 1.409,-0.128c1.839,1.532 5.799,4.993 7.2,6.964c0.219,0.312 0.409,0.664 0.409,1.054c0,0.39 -0.19,0.742 -0.409,1.053c-1.373,1.932 -5.399,5.462 -7.2,6.964l-0.001,0.001c-0.424,0.354 -1.055,0.296 -1.408,-0.128Z"
+                    />
+                  </g>
+                </svg>
+              </span>
+            </span>
+          </div>
         </button>
       </div>
       <div
-        class="c14 c15"
+        class="c19 c15"
       >
         <p
           class="c6 c15"
@@ -403,22 +498,22 @@ exports[`<LoginPanel /> matches expected output 1`] = `
             type="checkbox"
           />
           <small
-            class="c16 c15"
+            class="c20 c15"
           >
             By ticking this box, you agree to our
           </small>
           <small
-            class="c16 c15"
+            class="c20 c15"
           >
             <a
-              class="c17"
+              class="c21"
               href="/confirmation-of-consent"
             >
               Confirmation of Consent
             </a>
             ,
             <a
-              class="c17"
+              class="c21"
               href="/terms-and-conditions"
             >
               Terms and Conditions
@@ -426,7 +521,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
              
             and
             <a
-              class="c17"
+              class="c21"
               href="/privacy-policy"
             >
               Privacy Policy
