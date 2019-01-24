@@ -9,8 +9,8 @@ import { EntityProvider, EntityConsumer } from '@rtm-ui/entity';
 import { Paragraph } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
-
-import Footer from './Footer';
+import Header from '@rtm-ui/header';
+import Footer from '@rtm-ui/footer';
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -65,6 +65,10 @@ const HeroImageWrapper = styled(Box)`
   max-width: 1080px;
 `;
 
+const HeaderWrapper = styled(Box)`
+  display: flex;
+`;
+
 const HybridLoginView = ({
   howItWorksProps,
   disclaimerProps,
@@ -76,7 +80,6 @@ const HybridLoginView = ({
 }) => {
   return (
     <React.Fragment>
-      <Img src={headerProps.logoUrl} py={3} alt="Header logo" />
       <BodyWrapper>
         <HeroImageWrapper m="auto">
           <Img src={heroImageUrl} alt="Hero image" />
@@ -87,7 +90,7 @@ const HybridLoginView = ({
               <LoginPanelWrapper px={[10, 10, 15, 20]}>
                 <LoginPanel
                   {...props}
-                  buttonIcon={entityBrand !== 'ninesaver' && 'view-forward'}
+                  buttonIcon={entityBrand !== 'ninesaver' ? 'view-forward' : ''}
                 />
               </LoginPanelWrapper>
               <StyledDisclaimer p={50}>
@@ -113,28 +116,17 @@ const HybridLoginView = ({
           </MobileShow>
         </ContentWrapper>
       </BodyWrapper>
-      <Variant variant="c">
-        <FooterWrapper py={3}>
-          <Footer {...footerProps} boxWidth="1080px" />
-        </FooterWrapper>
-      </Variant>
     </React.Fragment>
   );
 };
 
 HybridLoginView.propTypes = {
-  authenticityToken: t.string,
   howItWorksProps: t.shape({}),
   disclaimerProps: t.shape({
     disclaimerText: t.string,
   }),
-  footerProps: t.shape({
-    logoUrl: t.string,
-    copyRightText: t.string,
-  }),
-  headerProps: t.shape({
-    logoUrl: t.string,
-  }),
+  footerProps: t.shape({}),
+  headerProps: t.shape({}),
   heroImageUrl: t.string,
   entityBrand: t.string,
 };
@@ -163,12 +155,26 @@ const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
             logoUrl: headerLogoUrl,
           };
           return (
-            <HybridLoginView
-              {...rest}
-              footerProps={footerProps}
-              headerProps={headerProps}
-              entityBrand={brand}
-            />
+            <React.Fragment>
+              <HeaderWrapper py={3}>
+                <Header {...headerProps} entityBrand={brand} />
+              </HeaderWrapper>
+              <HybridLoginView
+                {...rest}
+                footerProps={footerProps}
+                headerProps={headerProps}
+                entityBrand={brand}
+              />
+              <Variant variant="c">
+                <FooterWrapper py={3}>
+                  <Footer
+                    {...footerProps}
+                    maxWidth={1080}
+                    entityBrand={brand}
+                  />
+                </FooterWrapper>
+              </Variant>
+            </React.Fragment>
           );
         }}
       </EntityConsumer>
