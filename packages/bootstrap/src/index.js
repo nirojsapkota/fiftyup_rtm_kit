@@ -19,11 +19,9 @@ const Bootstrap = props => {
     ? props.trackingProvider
     : TrackingProvider;
 
-  const { brand = 'obs' } = trackingData;
-
   return (
     <Tracking trackingData={trackingData}>
-      <BootstrapTheme brand={brand} {...props} />
+      <BootstrapTheme brand={trackingData.brand} {...props} />
     </Tracking>
   );
 };
