@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import Button, { ButtonGroup } from '../index';
+import Button, { ButtonGroup, ButtonWithIcon } from '../index';
 
 afterEach(cleanup);
 
@@ -72,5 +72,14 @@ describe(`<Button />`, () => {
     );
 
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
+  });
+
+  it(`renders button with icon`, () => {
+    const { getByText, container } = render(
+      <ButtonWithIcon icon="view-forward">Welcome to React</ButtonWithIcon>
+    );
+
+    expect(getByText(`Welcome to React`)).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });
