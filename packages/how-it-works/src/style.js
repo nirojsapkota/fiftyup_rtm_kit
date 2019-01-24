@@ -14,7 +14,7 @@ const RightArrow = css`
   top: 45px;
   border-top: 6px solid transparent;
   border-left: 12px solid
-    ${props => getColor(props.color || 'shape', props.theme)};
+    ${props => getColor('shape', props.theme)};
   border-bottom: 6px solid transparent;
 `;
 
@@ -26,14 +26,14 @@ const BottomArrow = css`
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 16px solid
-    ${props => getColor(props.color || 'shape', props.theme)};
+    ${props => getColor('shape', props.theme)};
 `;
 
 export const WrapperBox = styled(Box)`
   background: inherit;
-  padding: 0px 10px;
+  padding: 0px 20px;
   @media (min-width: ${props => props.theme.grid.md}em) {
-    padding: 0px 15px;
+    padding: 0px 30px;
     margin-right: 10px;
   }
   * {
@@ -44,7 +44,9 @@ export const WrapperBox = styled(Box)`
 export const Container = styled(Box)`
   display: inline-flex;
   flex-direction: row;
+  padding-top: 20px;
   @media (min-width: ${props => props.theme.grid.md}em) {
+    padding-top: 30px;
     display: inline-block;
     flex-direction: unset;
     width: 100%;
@@ -55,6 +57,7 @@ export const Item = styled.div`
   padding: 8px;
   position: relative;
   text-align: center;
+  justify-content: center;
   &:after {
     ${RightArrow};
   }
@@ -63,29 +66,44 @@ export const Item = styled.div`
     &:after {
       display: none;
     }
-    @media (min-width: ${props => props.theme.grid.md}em) {
-      flex-direction: row;
-      padding: 0px;
-      > p {
-        text-align: left;
-      }
-    }
   }
+  > p {
+    text-align: center;
+    padding-top: 5px;
+  }
+
   @media (min-width: ${props => props.theme.grid.md}em) {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    > p {
+      padding-right: 20px;
+    }
     &:after {
       ${BottomArrow};
     }
-    &:first-child {
+    &:first-child,
+    &:last-child {
       padding-left: 0px;
-      @media (min-width: ${props => props.theme.grid.md}em) {
-        flex-direction: row;
-        > p {
-          text-align: left;
-        }
+      flex-direction: row;
+      > p {
+        padding-left: 20px;
+        padding-right: 0px;
+      }
+    }
+  }
+  @media (min-width: ${props => props.theme.grid.lg}em) {
+    > p {
+      padding-right: 40px;
+    }
+    &:first-child,
+    &:last-child {
+      padding-left: 0px;
+      flex-direction: row;
+      > p {
+        padding-left: 40px;
+        padding-right: 0px;
       }
     }
   }

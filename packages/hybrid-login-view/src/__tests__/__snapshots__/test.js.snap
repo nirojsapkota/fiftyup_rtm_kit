@@ -91,8 +91,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 
 .c37 {
   box-sizing: border-box;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 8px;
   background: #FFF;
 }
 
@@ -251,8 +250,8 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .c42 {
@@ -270,13 +269,13 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 .c41 {
-  -webkit-flex: 0 0 60px;
-  -ms-flex: 0 0 60px;
-  flex: 0 0 60px;
-  width: 60px;
-  height: 60px;
-  min-width: 60px;
-  min-height: 60px;
+  -webkit-flex: 0 0 80px;
+  -ms-flex: 0 0 80px;
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   position: absolute;
   top: 0;
   right: 0;
@@ -360,7 +359,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 
 .c36 {
   background: inherit;
-  padding: 0px 10px;
+  padding: 0px 20px;
 }
 
 .c36 * {
@@ -375,12 +374,17 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  padding-top: 20px;
 }
 
 .c39 {
   padding: 8px;
   position: relative;
   text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .c39:after {
@@ -402,6 +406,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 
 .c39:last-child:after {
   display: none;
+}
+
+.c39 > p {
+  text-align: center;
+  padding-top: 5px;
 }
 
 .c48 {
@@ -689,31 +698,19 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 
 @media (min-width:46em) {
   .c36 {
-    padding: 0px 15px;
+    padding: 0px 30px;
     margin-right: 10px;
   }
 }
 
 @media (min-width:46em) {
   .c38 {
+    padding-top: 30px;
     display: inline-block;
     -webkit-flex-direction: unset;
     -ms-flex-direction: unset;
     flex-direction: unset;
     width: 100%;
-  }
-}
-
-@media (min-width:46em) {
-  .c39:last-child {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    padding: 0px;
-  }
-
-  .c39:last-child > p {
-    text-align: left;
   }
 }
 
@@ -733,6 +730,10 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
     align-items: center;
   }
 
+  .c39 > p {
+    padding-right: 20px;
+  }
+
   .c39:after {
     position: absolute;
     width: 0;
@@ -748,8 +749,38 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
     border-top: 16px solid #083d87;
   }
 
-  .c39:first-child {
+  .c39:first-child,
+  .c39:last-child {
     padding-left: 0px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .c39:first-child > p,
+  .c39:last-child > p {
+    padding-left: 20px;
+    padding-right: 0px;
+  }
+}
+
+@media (min-width:76em) {
+  .c39 > p {
+    padding-right: 40px;
+  }
+
+  .c39:first-child,
+  .c39:last-child {
+    padding-left: 0px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .c39:first-child > p,
+  .c39:last-child > p {
+    padding-left: 40px;
+    padding-right: 0px;
   }
 }
 
@@ -958,7 +989,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
               <h6
                 class="c18 c37"
               >
-                One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+                One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!
               </h6>
               <div
                 class="c38 c1"
@@ -969,11 +1000,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                   <div>
                     <span
                       class="c40"
-                      size="60"
+                      size="80"
                     >
                       <span
                         class="icon c41"
-                        size="60"
+                        size="80"
                       >
                         <svg
                           aria-labelledby="title"
@@ -1038,11 +1069,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                   <div>
                     <span
                       class="c40"
-                      size="60"
+                      size="80"
                     >
                       <span
                         class="icon c41"
-                        size="60"
+                        size="80"
                       >
                         <svg
                           aria-labelledby="title"
@@ -1347,11 +1378,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                   <div>
                     <span
                       class="c40"
-                      size="60"
+                      size="80"
                     >
                       <span
                         class="icon c41"
-                        size="60"
+                        size="80"
                       >
                         <svg
                           aria-labelledby="title"
@@ -1616,7 +1647,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
             <h6
               class="c18 c37"
             >
-              One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+              One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!
             </h6>
             <div
               class="c38 c1"
@@ -1627,11 +1658,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                 <div>
                   <span
                     class="c40"
-                    size="60"
+                    size="80"
                   >
                     <span
                       class="icon c41"
-                      size="60"
+                      size="80"
                     >
                       <svg
                         aria-labelledby="title"
@@ -1696,11 +1727,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                 <div>
                   <span
                     class="c40"
-                    size="60"
+                    size="80"
                   >
                     <span
                       class="icon c41"
-                      size="60"
+                      size="80"
                     >
                       <svg
                         aria-labelledby="title"
@@ -2005,11 +2036,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                 <div>
                   <span
                     class="c40"
-                    size="60"
+                    size="80"
                   >
                     <span
                       class="icon c41"
-                      size="60"
+                      size="80"
                     >
                       <svg
                         aria-labelledby="title"
