@@ -2,18 +2,25 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Img from '@rtm-ui/img';
 import { Paragraph } from '@rtm-ui/typography';
+import Logo from '@rtm-ui/logo';
+import Variant from '@rtm-ui/theme';
 
 const Wrapper = styled(Box)`
   display: flex;
-  max-width: ${props => props.boxWidth};
+  max-width: ${props => props.maxWidth}px};
 `;
 
-const Footer = ({ logoUrl, copyRightText, ...boxProps }) => {
+const LogoWrapper = styled(Box)``;
+
+const Footer = ({ logoUrl, copyRightText, entityBrand, ...boxProps }) => {
   return (
     <Wrapper m="auto" {...boxProps}>
-      <Img src={logoUrl} pl={[1, 2, 4]} alt="Footer logo" />
+      <LogoWrapper pl={[1, 2, 4]}>
+        <Variant variant="b">
+          <Logo customLogo={logoUrl} entityBrand={entityBrand} />
+        </Variant>
+      </LogoWrapper>
       <Paragraph my="auto" ml="auto" pr={[1, 2, 4]}>
         {copyRightText}
       </Paragraph>
@@ -24,6 +31,7 @@ const Footer = ({ logoUrl, copyRightText, ...boxProps }) => {
 Footer.propTypes = {
   logoUrl: t.string,
   copyRightText: t.string,
+  entityBrand: t.string,
 };
 
 Footer.defaultProps = {
