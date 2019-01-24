@@ -1,7 +1,7 @@
 export const howItWorkContent = {
   obs: {
     header:
-      'One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!',
+      'One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!',
     icons: [
       {
         glyph: 'user-help',
