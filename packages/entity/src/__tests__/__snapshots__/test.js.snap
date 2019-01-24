@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EntityProvider /> matches expected output fiftyup 1`] = `
+<div>
+  <div>
+    <div>
+      fiftyup
+    </div>
+    <div>
+      fiftyup
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<EntityProvider /> matches expected output ninesaver 1`] = `
+<div>
+  <div>
+    <div>
+      ninesaver
+    </div>
+    <div>
+      ninesaver
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<EntityProvider /> matches expected output obsau 1`] = `
+<div>
+  <div>
+    <div>
+      obs
+    </div>
+    <div>
+      obsau
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<EntityProvider /> matches expected output obseu 1`] = `
+<div>
+  <div>
+    <div>
+      obs
+    </div>
+    <div>
+      obseu
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<EntityProvider /> matches expected output obsus 1`] = `
+<div>
+  <div>
+    <div>
+      obs
+    </div>
+    <div>
+      obsus
+    </div>
+  </div>
+</div>
+`;

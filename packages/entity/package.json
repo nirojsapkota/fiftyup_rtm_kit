@@ -1,12 +1,12 @@
 {
-  "name": "@rtm-ui/context",
+  "name": "@rtm-ui/entity",
   "version": "1.0.0",
-  "description": "Description for context",
+  "description": "Description for entity",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
-    "namespace": "context",
-    "defaultExport": "Context",
+    "namespace": "entity",
+    "defaultExport": "entity",
     "namedExports": []
   },
   "main": "build/main.js",
