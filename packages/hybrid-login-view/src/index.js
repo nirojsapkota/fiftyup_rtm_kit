@@ -5,7 +5,7 @@ import { Box } from '@rtm-ui/layout';
 import Variant, { backgroundStyle, getColor } from '@rtm-ui/theme';
 import LoginPanel from '@rtm-ui/login-panel';
 import Bootstrap from '@rtm-ui/bootstrap';
-import { EntityProvider, withEntity } from '@rtm-ui/context';
+import { EntityProvider, EntityConsumer } from '@rtm-ui/entity';
 import { Paragraph } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
@@ -70,11 +70,9 @@ const HybridLoginView = ({
   disclaimerProps,
   footerProps,
   headerProps,
-  entity,
+  entityBrand,
   ...props
 }) => {
-  const { getBrand } = entity;
-
   return (
     <React.Fragment>
       <Img src={headerProps.logoUrl} py={3} alt="Header logo" />
@@ -94,10 +92,7 @@ const HybridLoginView = ({
             </Column>
             <Column width={1 / 2}>
               <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-                <HowItWorks
-                  {...howItWorksProps}
-                  entity={typeof getBrand === 'function' && getBrand()}
-                />
+                <HowItWorks {...howItWorksProps} entity={entityBrand} />
               </HowItWorksWrapper>
             </Column>
           </MobileHide>
@@ -137,9 +132,7 @@ HybridLoginView.propTypes = {
     logoUrl: t.string,
     heroImageUrl: t.string,
   }),
-  entity: t.shape({
-    getBrand: t.func,
-  }),
+  entityBrand: t.string,
 };
 
 HybridLoginView.defaultProps = {
@@ -167,12 +160,12 @@ HybridLoginView.defaultProps = {
   },
 };
 
-const WithEntityHybridLoginView = withEntity(HybridLoginView);
-
 const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
   <Bootstrap trackingData={trackingData}>
     <EntityProvider entity={entity}>
-      <WithEntityHybridLoginView {...rest} />
+      <EntityConsumer>
+        {({ brand }) => <HybridLoginView {...rest} entityBrand={brand} />}
+      </EntityConsumer>
     </EntityProvider>
   </Bootstrap>
 );
