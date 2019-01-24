@@ -1,7 +1,4 @@
 const hybridLoginView = {
-  howItWorksProps: {
-    entity: 'obs'
-  },
   disclaimerProps: {
     disclaimerText: '* disclaimer text',
   },
@@ -14,12 +11,15 @@ const hybridLoginView = {
   },
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
-  footerProps: {
-    logoUrl: 'https://placehold.it/100x100',
-  },
-  headerProps: {
-    logoUrl: 'https://placehold.it/100x100',
-    heroImageUrl: 'https://placehold.it/1080x454',
+  heroImageUrl: 'https://placehold.it/1080x454',
+  entity: {
+    brand: 'obs',
+    footer_items: {
+      logo: 'https://placehold.it/100x100',
+    },
+    header_items: {
+      logo: 'https://placehold.it/100x100',
+    },
   },
 };
 
