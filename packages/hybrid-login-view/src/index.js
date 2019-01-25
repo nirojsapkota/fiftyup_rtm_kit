@@ -5,6 +5,7 @@ import { Box } from '@rtm-ui/layout';
 import Variant, { backgroundStyle, getColor } from '@rtm-ui/theme';
 import LoginPanel from '@rtm-ui/login-panel';
 import Bootstrap from '@rtm-ui/bootstrap';
+import { EntityProvider, EntityConsumer } from '@rtm-ui/entity';
 import { Paragraph } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
@@ -69,51 +70,53 @@ const HybridLoginView = ({
   disclaimerProps,
   footerProps,
   headerProps,
-  trackingData,
+  entityBrand,
   ...props
-}) => (
-  <Bootstrap trackingData={trackingData}>
-    <Img src={headerProps.logoUrl} py={3} alt="Header logo" />
-    <BodyWrapper>
-      <HeroImageWrapper m="auto">
-        <Img src={headerProps.heroImageUrl} alt="Hero image" />
-      </HeroImageWrapper>
-      <ContentWrapper mt={-30} m="auto">
-        <MobileHide>
-          <Column width={1 / 2}>
+}) => {
+  return (
+    <React.Fragment>
+      <Img src={headerProps.logoUrl} py={3} alt="Header logo" />
+      <BodyWrapper>
+        <HeroImageWrapper m="auto">
+          <Img src={headerProps.heroImageUrl} alt="Hero image" />
+        </HeroImageWrapper>
+        <ContentWrapper mt={-30} m="auto">
+          <MobileHide>
+            <Column width={1 / 2}>
+              <LoginPanelWrapper px={[10, 10, 15, 20]}>
+                <LoginPanel {...props} />
+              </LoginPanelWrapper>
+              <StyledDisclaimer p={50}>
+                {disclaimerProps.disclaimerText || ''}
+              </StyledDisclaimer>
+            </Column>
+            <Column width={1 / 2}>
+              <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
+                <HowItWorks {...howItWorksProps} entity={entityBrand} />
+              </HowItWorksWrapper>
+            </Column>
+          </MobileHide>
+          <MobileShow>
             <LoginPanelWrapper px={[10, 10, 15, 20]}>
               <LoginPanel {...props} />
             </LoginPanelWrapper>
-            <StyledDisclaimer p={50}>
-              {disclaimerProps.disclaimerText || ''}
-            </StyledDisclaimer>
-          </Column>
-          <Column width={1 / 2}>
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
               <HowItWorks {...howItWorksProps} />
             </HowItWorksWrapper>
-          </Column>
-        </MobileHide>
-        <MobileShow>
-          <LoginPanelWrapper px={[10, 10, 15, 20]}>
-            <LoginPanel {...props} />
-          </LoginPanelWrapper>
-          <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-            <HowItWorks {...howItWorksProps} />
-          </HowItWorksWrapper>
-          <StyledDisclaimer p={30}>
-            {disclaimerProps.disclaimerText || ''}
-          </StyledDisclaimer>
-        </MobileShow>
-      </ContentWrapper>
-    </BodyWrapper>
-    <Variant variant="c">
-      <FooterWrapper py={3}>
-        <Footer {...footerProps} boxWidth="1080px" />
-      </FooterWrapper>
-    </Variant>
-  </Bootstrap>
-);
+            <StyledDisclaimer p={30}>
+              {disclaimerProps.disclaimerText || ''}
+            </StyledDisclaimer>
+          </MobileShow>
+        </ContentWrapper>
+      </BodyWrapper>
+      <Variant variant="c">
+        <FooterWrapper py={3}>
+          <Footer {...footerProps} boxWidth="1080px" />
+        </FooterWrapper>
+      </Variant>
+    </React.Fragment>
+  );
+};
 
 HybridLoginView.propTypes = {
   authenticityToken: t.string,
@@ -129,7 +132,7 @@ HybridLoginView.propTypes = {
     logoUrl: t.string,
     heroImageUrl: t.string,
   }),
-  trackingData: t.shape({}),
+  entityBrand: t.string,
 };
 
 HybridLoginView.defaultProps = {
@@ -157,4 +160,19 @@ HybridLoginView.defaultProps = {
   },
 };
 
-export default HybridLoginView;
+const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
+  <Bootstrap trackingData={trackingData}>
+    <EntityProvider entity={entity}>
+      <EntityConsumer>
+        {({ brand }) => <HybridLoginView {...rest} entityBrand={brand} />}
+      </EntityConsumer>
+    </EntityProvider>
+  </Bootstrap>
+);
+
+WrappedHybridLoginView.propTypes = {
+  trackingData: t.shape({}),
+  entity: t.shape({}),
+};
+
+export default WrappedHybridLoginView;

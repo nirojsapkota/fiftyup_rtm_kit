@@ -425,27 +425,9 @@ describe('<LoginForm />', () => {
   });
 
   describe('When <LoginForm /> enable Gdpr agreement.', () => {
-    const gdprProps = {
-      enableCheckBox: true,
-      isRequire: 'required',
-      isChecked: false,
-      confirmationOfConsent: {
-        url: '/confirmation-of-consent',
-        text: 'Confirmation of Consent',
-      },
-      termsAndConditions: {
-        url: '/terms-and-conditions',
-        text: 'Terms and Conditions',
-      },
-      privacyPolicy: {
-        url: '/privacy-policy',
-        text: 'Privacy Policy',
-      },
-    };
-
     it(`Render gdpr agreement with checkbox confirm`, () => {
       const { getByTestId, getByText, container } = render(
-        <LoginForm gdprProps={gdprProps} />
+        <LoginForm {...loginPanelProps} />
       );
       const chkbAgreement = getByTestId('ckAgreement');
 
@@ -457,10 +439,10 @@ describe('<LoginForm />', () => {
     });
 
     it(`Render gdpr agreement message does NOT show checkbox`, () => {
-      gdprProps.enableCheckBox = false;
+      const gdprProps = { ...loginPanelProps.gdprProps, enableCheckBox: false };
 
       const { queryByTestId, getByText } = render(
-        <LoginForm gdprProps={gdprProps} />
+        <LoginForm {...loginPanelProps} gdprProps={gdprProps} />
       );
       const chkbAgreement = queryByTestId('ckAgreement');
 
@@ -471,9 +453,9 @@ describe('<LoginForm />', () => {
     });
 
     it('Form does NOT allow submit when agreement checkbox un-checked', async () => {
-      gdprProps.enableCheckBox = true;
+      const gdprProps = { ...loginPanelProps.gdprProps, enableCheckBox: true };
       const { container, getByText, getByPlaceholderText } = render(
-        <LoginForm gdprProps={gdprProps} />
+        <LoginForm {...loginPanelProps} gdprProps={gdprProps} />
       );
       const email = getByPlaceholderText('Email');
       const postcode = getByPlaceholderText('Postcode');
@@ -495,13 +477,13 @@ describe('<LoginForm />', () => {
     });
 
     it('Form allow submit when agreement checkbox checked', async () => {
-      gdprProps.enableCheckBox = true;
+      const gdprProps = { ...loginPanelProps.gdprProps, enableCheckBox: true };
       const {
         container,
         getByText,
         getByPlaceholderText,
         getByTestId,
-      } = render(<LoginForm gdprProps={gdprProps} />);
+      } = render(<LoginForm {...loginPanelProps} gdprProps={gdprProps} />);
       const form = container.querySelector('form');
       const email = getByPlaceholderText('Email');
       fireEvent.change(email, {

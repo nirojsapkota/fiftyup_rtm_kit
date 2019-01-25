@@ -1,11 +1,11 @@
 import obs from './obs';
-import fuc from './fuc';
+import fiftyup from './fiftyup';
 import ninesaver from './ninesaver';
 
-export { obs, fuc, ninesaver };
+export { obs, fiftyup, ninesaver };
 
 export const themeMap = {
   obs,
-  fuc,
+  fiftyup,
   ninesaver,
 };
