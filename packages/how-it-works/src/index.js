@@ -30,7 +30,7 @@ const HowItWorks = ({ entity }) => {
 };
 
 HowItWorks.defaultProps = {
-  entity: 'fiftyup',
+  entity: 'obs',
 };
 HowItWorks.propTypes = {
   entity: t.string,

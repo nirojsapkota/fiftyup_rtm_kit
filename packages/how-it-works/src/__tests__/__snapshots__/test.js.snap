@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HowItWork /> matches expected default content for obs 1`] = `
-.c6 {
+.c8 {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -9,7 +9,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   height: 80px;
 }
 
-.c8 {
+.c10 {
   position: absolute;
   top: 0;
   right: 0;
@@ -18,12 +18,12 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   height: 100%;
   width: 100%;
   color: inherit;
-  fill: #565656;
+  fill: #FFF;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
-.c7 {
+.c9 {
   -webkit-flex: 0 0 80px;
   -ms-flex: 0 0 80px;
   flex: 0 0 80px;
@@ -50,7 +50,12 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   background: #FFF;
 }
 
-.c10 {
+.c7 {
+  box-sizing: border-box;
+  background: #2d9dd6;
+}
+
+.c12 {
   box-sizing: border-box;
   padding-left: 8px;
   padding-right: 8px;
@@ -66,7 +71,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   font-size: 16px;
 }
 
-.c9 {
+.c11 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -82,6 +87,10 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
 
 .c0 * {
   background: inherit;
+}
+
+.c6 svg {
+  fill: #2d9dd6;
 }
 
 .c4 {
@@ -150,19 +159,19 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
 }
 
 @media (min-width:32em) {
-  .c9 {
+  .c11 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c9 {
+  .c11 {
     font-size: 16px;
   }
 }
 
 @media (min-width:76em) {
-  .c9 {
+  .c11 {
     font-size: 16px;
   }
 }
@@ -270,18 +279,20 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
       <div
         class="c5"
       >
-        <div>
+        <div
+          class="c6 c7"
+        >
           <span
-            class="c6"
+            class="c8"
             size="80"
           >
             <span
-              class="icon c7"
+              class="icon c9"
               size="80"
             >
               <svg
                 aria-labelledby="title"
-                class="user-help c8"
+                class="user-help c10"
                 clip-rule="evenodd"
                 fill-rule="evenodd"
                 preserveAspectRatio="xMidYMid meet"
@@ -331,7 +342,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
           </span>
         </div>
         <p
-          class="c9 c10"
+          class="c11 c12"
         >
           You join the movement for free
         </p>
@@ -339,18 +350,20 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
       <div
         class="c5"
       >
-        <div>
+        <div
+          class="c6 c7"
+        >
           <span
-            class="c6"
+            class="c8"
             size="80"
           >
             <span
-              class="icon c7"
+              class="icon c9"
               size="80"
             >
               <svg
                 aria-labelledby="title"
-                class="balance c8"
+                class="balance c10"
                 clip-rule="evenodd"
                 fill-rule="evenodd"
                 preserveAspectRatio="xMidYMid meet"
@@ -640,7 +653,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
           </span>
         </div>
         <p
-          class="c9 c10"
+          class="c11 c12"
         >
           We negotiate Group Discounts
         </p>
@@ -648,18 +661,20 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
       <div
         class="c5"
       >
-        <div>
+        <div
+          class="c6 c7"
+        >
           <span
-            class="c6"
+            class="c8"
             size="80"
           >
             <span
-              class="icon c7"
+              class="icon c9"
               size="80"
             >
               <svg
                 aria-labelledby="title"
-                class="hands-shake-2 c8"
+                class="hands-shake-2 c10"
                 clip-rule="evenodd"
                 fill-rule="evenodd"
                 preserveAspectRatio="xMidYMid meet"
@@ -768,7 +783,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
           </span>
         </div>
         <p
-          class="c9 c10"
+          class="c11 c12"
         >
           You decide what’s right for you
         </p>
