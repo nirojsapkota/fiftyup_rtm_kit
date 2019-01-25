@@ -72,8 +72,6 @@ const HeaderWrapper = styled(Box)`
 const HybridLoginView = ({
   howItWorksProps,
   disclaimerProps,
-  footerProps,
-  headerProps,
   heroImageUrl,
   entityBrand,
   ...props
@@ -125,8 +123,6 @@ HybridLoginView.propTypes = {
   disclaimerProps: t.shape({
     disclaimerText: t.string,
   }),
-  footerProps: t.shape({}),
-  headerProps: t.shape({}),
   heroImageUrl: t.string,
   entityBrand: t.string,
 };
@@ -144,31 +140,18 @@ const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
       <EntityConsumer>
         {({ brand, footer_items, header_items }) => { // eslint-disable-line camelcase
           const footerLogoUrl = footer_items.logo; // eslint-disable-line camelcase
-          const footerProps = {
-            ...(rest.footerProps || {}),
-            logoUrl: footerLogoUrl,
-          };
-
           const headerLogoUrl = header_items.logo; // eslint-disable-line camelcase
-          const headerProps = {
-            ...(rest.headerProps || {}),
-            logoUrl: headerLogoUrl,
-          };
+
           return (
             <React.Fragment>
               <HeaderWrapper py={3}>
-                <Header {...headerProps} entityBrand={brand} />
+                <Header logoUrl={headerLogoUrl} entityBrand={brand} />
               </HeaderWrapper>
-              <HybridLoginView
-                {...rest}
-                footerProps={footerProps}
-                headerProps={headerProps}
-                entityBrand={brand}
-              />
+              <HybridLoginView {...rest} entityBrand={brand} />
               <Variant variant="c">
                 <FooterWrapper py={3}>
                   <Footer
-                    {...footerProps}
+                    logoUrl={footerLogoUrl}
                     maxWidth={1080}
                     entityBrand={brand}
                   />

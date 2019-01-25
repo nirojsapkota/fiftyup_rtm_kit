@@ -11,7 +11,11 @@ const Wrapper = styled(Box)`
   max-width: ${props => props.maxWidth}px};
 `;
 
-const LogoWrapper = styled(Box)``;
+const LogoWrapper = styled(Box)`
+  * {
+    background: none;
+  }
+`;
 
 const Footer = ({ logoUrl, copyRightText, entityBrand, ...boxProps }) => {
   return (
