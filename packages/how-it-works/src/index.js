@@ -3,11 +3,11 @@ import t from 'prop-types';
 import Icon from '@rtm-ui/icon';
 import Variant from '@rtm-ui/theme';
 import { Header, Paragraph } from '@rtm-ui/typography';
-import { howItWorkContent } from './constants';
+import { howItWorksContent } from './constants';
 import { Container, Item, WrapperBox, IconBox } from './style';
 
 const HowItWorks = ({ entity }) => {
-  const { header, icons } = howItWorkContent[entity];
+  const { header, icons } = howItWorksContent[entity];
   return (
     <WrapperBox>
       <Header pt={2} tag="h6">
@@ -30,7 +30,7 @@ const HowItWorks = ({ entity }) => {
 };
 
 HowItWorks.defaultProps = {
-  entity: 'fiftyup',
+  entity: 'obs',
 };
 HowItWorks.propTypes = {
   entity: t.string,

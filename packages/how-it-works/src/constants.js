@@ -1,4 +1,4 @@
-export const howItWorkContent = {
+export const howItWorksContent = {
   obs: {
     header:
       'One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!',
