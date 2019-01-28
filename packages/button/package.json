@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/button",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "rtmRollup": {
     "namespace": "button",
     "defaultExport": "Button",
@@ -23,9 +23,9 @@
   "dependencies": {
     "@rtm-ui/icon": "^3.0.4",
     "@rtm-ui/layout": "^3.0.3",
-    "@rtm-ui/theme": "^3.0.3",
+    "@rtm-ui/theme": "^3.0.4",
     "@rtm-ui/tracker": "^3.0.2",
-    "@rtm-ui/typography": "^3.0.3"
+    "@rtm-ui/typography": "^3.0.4"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "3.0.*",

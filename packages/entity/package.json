@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/entity",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description for entity",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -18,11 +18,9 @@
     "prepare": "rtm-scripts rollup",
     "test": "rtm-scripts test"
   },
-  "dependencies": {
-  },
   "peerDependencies": {
-    "react": "^16.6",
     "prop-types": "^15.5.4",
+    "react": "^16.6",
     "styled-components": "^4.0"
   },
   "devDependencies": {
