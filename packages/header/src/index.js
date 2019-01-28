@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '@rtm-ui/logo';
 import { Box } from '@rtm-ui/layout';
-import styled from 'styled-components';
-
-const Wrapper = styled(Box)``;
 
 const Header = ({ logoUrl, entityBrand }) => (
-  <Wrapper m="auto">
+  <Box m="auto">
     <Logo customLogo={logoUrl} entityBrand={entityBrand} />
-  </Wrapper>
+  </Box>
 );
 
 Header.propTypes = {

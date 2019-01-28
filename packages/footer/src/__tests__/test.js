@@ -3,16 +3,16 @@ import { render } from '../../../bootstrap/setup/testSetup';
 import Footer from '../index';
 
 describe('<Footer />', () => {
-  it('has unit tests specified', () => {
-    expect(true).toEqual(false);
-  });
-
-  it('matches expected output', () => {
-    const text = 'Hello, World!';
-
-    const { getByText } = render(<Footer>{text}</Footer>);
-
-    expect(getByText(text)).toBeInTheDocument();
-    expect(getByText(text)).toMatchSnapshot();
+  it('render custom logo', () => {
+    const copyRightText = 'test copyright';
+    const { getByAltText, container, getByText } = render(
+      <Footer
+        logoUrl="https://placehold.it/100x100"
+        copyRightText={copyRightText}
+      />
+    );
+    expect(getByAltText('logo')).toBeInTheDocument();
+    expect(getByText(copyRightText)).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });

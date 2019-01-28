@@ -4,7 +4,7 @@ route: /packages/footer
 menu: Packages
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import Footer from './src'
 
 # Footer
@@ -12,5 +12,9 @@ import Footer from './src'
 ## Basic usage
 
 <Playground>
-  <Footer>Hello, World!</Footer>
+  <Footer logoUrl="https://placehold.it/100x100" />
 </Playground>
+
+## Props
+
+<PropsTable of={Footer} />

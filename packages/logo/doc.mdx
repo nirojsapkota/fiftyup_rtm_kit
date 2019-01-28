@@ -4,13 +4,23 @@ route: /packages/logo
 menu: Packages
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import Logo from './src'
 
 # Logo
 
 ## Basic usage
 
+Custom logo:
 <Playground>
-  <Logo>Hello, World!</Logo>
+  <Logo customLogo="https://placehold.it/100x100"/ >
 </Playground>
+
+Ninesaver logo:
+<Playground>
+  <Logo entityBrand='ninesaver' />
+</Playground>
+
+## Props
+
+<PropsTable of={Logo} />
