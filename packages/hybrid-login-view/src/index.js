@@ -9,8 +9,8 @@ import { EntityProvider, EntityConsumer } from '@rtm-ui/entity';
 import { Paragraph } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
-import Header from '@rtm-ui/header';
-import Footer from '@rtm-ui/footer';
+import { BasicHeader } from '@rtm-ui/header';
+import { BasicFooter } from '@rtm-ui/footer';
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -63,10 +63,6 @@ const FooterWrapper = styled(Box)`
 
 const HeroImageWrapper = styled(Box)`
   max-width: 1080px;
-`;
-
-const HeaderWrapper = styled(Box)`
-  display: flex;
 `;
 
 const HybridLoginView = ({
@@ -144,13 +140,11 @@ const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
 
           return (
             <React.Fragment>
-              <HeaderWrapper py={3}>
-                <Header logoUrl={headerLogoUrl} entityBrand={brand} />
-              </HeaderWrapper>
+              <BasicHeader logoUrl={headerLogoUrl} entityBrand={brand} py={2} />
               <HybridLoginView {...rest} entityBrand={brand} />
               <Variant variant="c">
-                <FooterWrapper py={3}>
-                  <Footer
+                <FooterWrapper py={2}>
+                  <BasicFooter
                     logoUrl={footerLogoUrl}
                     maxWidth={1080}
                     entityBrand={brand}

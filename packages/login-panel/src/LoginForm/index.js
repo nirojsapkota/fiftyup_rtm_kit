@@ -4,7 +4,7 @@ import { Formik, Field } from 'formik';
 import styled from 'styled-components';
 import { getColor } from '@rtm-ui/theme';
 import { Box } from '@rtm-ui/layout';
-import Button, { ButtonWithIcon } from '@rtm-ui/button';
+import Button from '@rtm-ui/button';
 import { Header, Paragraph } from '@rtm-ui/typography';
 import Icon from '@rtm-ui/icon';
 
@@ -23,7 +23,7 @@ const StyledInput = styled.input`
 const Error = styled(Paragraph)`
   text-align: center;
   color: ${props => getColor('error', props.theme)};
-  svg {
+  * > span > svg {
     fill: ${props => getColor('error', props.theme)};
     padding-top: 2px;
   }
@@ -35,7 +35,8 @@ const ButtonWrapper = styled(Box)`
     background: none;
   }
 
-  svg {
+  * > svg {
+    margin-top: -2px;
     fill: ${props => getColor('inverseText', props.theme)};
   }
 `;
@@ -166,21 +167,10 @@ class LoginForm extends React.Component {
                 />
               </Box>
               <ButtonWrapper py={[2, 2, 3, 4]}>
-                {buttonIcon ? (
-                  <ButtonWithIcon
-                    type="submit"
-                    disabled={isSubmitting}
-                    track="signin"
-                    icon={buttonIcon}
-                    iconSize={20}
-                  >
-                    {buttonText}
-                  </ButtonWithIcon>
-                ) : (
-                  <Button type="submit" disabled={isSubmitting} track="signin">
-                    {buttonText}
-                  </Button>
-                )}
+                <Button type="submit" disabled={isSubmitting} track="signin">
+                  {buttonText}
+                  {buttonIcon && <Icon inline glyph={buttonIcon} size={20} />}
+                </Button>
                 {errors && (
                   <Box pt={2}>
                     {errors.map(error => (

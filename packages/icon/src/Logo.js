@@ -1,13 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
 import t from 'prop-types';
-import { InlineSvg, Glyph } from '@rtm-ui/icon';
 import Img from '@rtm-ui/img';
+import styled from 'styled-components';
+import InlineSvg from './InlineSvg';
+import SvgWrapper from './SvgWrapper';
+import { Glyph } from './Icon';
+
+const StyledSvgWrapper = styled(SvgWrapper)`
+  display: inline-block;
+`;
 
 const Logo = ({ customLogo, entityBrand }) => {
   if (entityBrand === 'ninesaver') {
     return (
-      <SvgWrapper>
+      <StyledSvgWrapper size={32} width={132} height={57} position="relative">
         <InlineSvg
           fillRule="evenodd"
           clipRule="evenodd"
@@ -24,27 +30,18 @@ const Logo = ({ customLogo, entityBrand }) => {
           <title id="title">logo</title>
           <Glyph glyph="ninesaver-logo" />
         </InlineSvg>
-      </SvgWrapper>
+      </StyledSvgWrapper>
     );
   }
 
+  // FIXME: workaround for load outside image
   if (customLogo) {
     return <Img src={customLogo} alt="logo" />;
   }
 
-  // FIXME: need update for load local logo or load svg for obs and fiftyup
+  // FIXME: need update for load svg of obs or fiftyup
   return null;
 };
-
-// TODO: This has static fixed dimension as of now
-export const SvgWrapper = styled.span`
-  display: inline-block;
-  flex: 0 0 32px;
-  width: 132px;
-  height: 57px;
-  position: relative;
-  color: inherit;
-`;
 
 Logo.propTypes = {
   customLogo: t.string,

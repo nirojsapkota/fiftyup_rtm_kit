@@ -19,6 +19,7 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
+    "@rtm-ui/img": "^3.0.4",
     "@rtm-ui/theme": "^3.0.4"
   },
   "peerDependencies": {
