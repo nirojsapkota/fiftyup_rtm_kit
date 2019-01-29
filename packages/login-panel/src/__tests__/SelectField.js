@@ -38,7 +38,6 @@ describe('<DropdownSelect />', () => {
         />
       </React.Fragment>
     );
-
     const dropdowninput = getByPlaceholderText('dropdowninput');
     fireEvent.click(dropdowninput);
 
@@ -142,5 +141,37 @@ describe('<Popover />', () => {
 
     const el = getByPlaceholderText('testHolder');
     expect(el).toBeInTheDocument();
+  });
+
+  it('popover does not show when options props blank', async () => {
+    const form = {
+      setFieldValue: jest.fn(),
+    };
+    const field = {
+      name: 'dropdowninput',
+      placeholder: 'dropdowninput',
+    };
+
+    const Input = props => <input {...props} />;
+    const { container, getByPlaceholderText } = render(
+      <React.Fragment>
+        <DropdownSelect
+          inputComponent={Input}
+          options={[]}
+          form={form}
+          field={field}
+        />
+      </React.Fragment>
+    );
+
+    const el = getByPlaceholderText('dropdowninput');
+    expect(el).toBeInTheDocument();
+    fireEvent.change(el, {
+      target: { value: '3000' },
+    });
+
+    await wait(() => {
+      expect(container).not.toHaveTextContent('3000');
+    });
   });
 });

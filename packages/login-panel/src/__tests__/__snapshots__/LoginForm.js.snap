@@ -21,14 +21,14 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   background: #FFF;
 }
 
-.c9 {
+.c7 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
   background: #FFF;
 }
 
-.c12 {
+.c10 {
   box-sizing: border-box;
   background: #FFF;
 }
@@ -51,7 +51,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   font-size: 16px;
 }
 
-.c13 {
+.c11 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -60,7 +60,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   font-size: 12px;
 }
 
-.c10 {
+.c8 {
   background: none;
   cursor: pointer;
   border: none;
@@ -108,26 +108,17 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   border-bottom-color: #e56209;
 }
 
-.c10:disabled {
+.c8:disabled {
   cursor: not-allowed;
 }
 
-.c10:hover,
-.c10:focus {
+.c8:hover,
+.c8:focus {
   background: #e56209;
   border-bottom-color: #ef8612;
 }
 
-.c5 {
-  position: relative;
-  display: block;
-}
-
-.c6 {
-  display: block;
-}
-
-.c11 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -138,15 +129,15 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   background: inherit;
 }
 
-.c11 * {
+.c9 * {
   background: inherit;
 }
 
-.c14 {
+.c12 {
   padding-left: 5px;
 }
 
-.c7 {
+.c5 {
   padding: 8px 2px;
   font-size: 16px;
   border: none;
@@ -154,7 +145,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   width: 100%;
 }
 
-.c8 {
+.c6 {
   text-align: center;
 }
 
@@ -195,21 +186,21 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
 }
 
 @media screen and (min-width:32em) {
-  .c9 {
+  .c7 {
     padding-top: 8px;
     padding-bottom: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c9 {
+  .c7 {
     padding-top: 16px;
     padding-bottom: 16px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c9 {
+  .c7 {
     padding-top: 32px;
     padding-bottom: 32px;
   }
@@ -252,19 +243,19 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
 }
 
 @media (min-width:32em) {
-  .c13 {
+  .c11 {
     font-size: 12px;
   }
 }
 
 @media (min-width:46em) {
-  .c13 {
+  .c11 {
     font-size: 12px;
   }
 }
 
 @media (min-width:76em) {
-  .c13 {
+  .c11 {
     font-size: 12px;
   }
 }
@@ -296,25 +287,16 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
       >
         My Postcode:
       </p>
-      <span
+      <input
+        aria-labelledby="user.postcode_suburb"
+        autocomplete="off"
         class="c5"
-        display="block"
-      >
-        <span
-          class="c6"
-        >
-          <input
-            aria-labelledby="user.postcode_suburb"
-            autocomplete="off"
-            class="c7"
-            id="user.postcode_suburb"
-            name="user.postcode_suburb"
-            placeholder="Postcode"
-            required=""
-            value=""
-          />
-        </span>
-      </span>
+        id="user.postcode_suburb"
+        name="user.postcode_suburb"
+        placeholder="Postcode"
+        required=""
+        value=""
+      />
     </div>
     <div
       class="c4"
@@ -326,7 +308,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
       </p>
       <input
         aria-labelledby="user.email"
-        class="c7"
+        class="c5"
         id="user.email"
         name="user.email"
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
@@ -337,20 +319,20 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
       />
     </div>
     <div
-      class="c8 c9"
+      class="c6 c7"
     >
       <button
-        class="c10"
+        class="c8"
         type="submit"
       >
         See the offers
       </button>
     </div>
     <div
-      class="c11 c12"
+      class="c9 c10"
     >
       <p
-        class="c3 c12"
+        class="c3 c10"
       >
         <input
           data-testid="ckAgreement"
@@ -358,22 +340,22 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
           type="checkbox"
         />
         <small
-          class="c13 c12"
+          class="c11 c10"
         >
           By ticking this box, you agree to our
         </small>
         <small
-          class="c13 c12"
+          class="c11 c10"
         >
           <a
-            class="c14"
+            class="c12"
             href="/confirmation-of-consent"
           >
             Confirmation of Consent
           </a>
           ,
           <a
-            class="c14"
+            class="c12"
             href="/terms-and-conditions"
           >
             Terms and Conditions
@@ -381,7 +363,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
            
           and
           <a
-            class="c14"
+            class="c12"
             href="/privacy-policy"
           >
             Privacy Policy
