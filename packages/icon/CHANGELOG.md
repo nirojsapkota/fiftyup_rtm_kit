@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/icon@3.0.5...@rtm-ui/icon@3.1.0) (2019-01-30)
+
+
+### Bug Fixes
+
+* **login-panel:** update implement use button icon ([e4b5d04](https://github.com/OBSAU/rtm-kit/commit/e4b5d04))
+
+
+### Features
+
+* **icon:** add ninesaver-logo ([b5f47f7](https://github.com/OBSAU/rtm-kit/commit/b5f47f7))
+
+
+
+
+
 ## [3.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/icon@3.0.4...@rtm-ui/icon@3.0.5) (2019-01-25)
 
 **Note:** Version bump only for package @rtm-ui/icon
