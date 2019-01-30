@@ -1,24 +1,26 @@
 import React from 'react';
-import Icon from '@rtm-ui/icon';
 import t from 'prop-types';
+import Icon from '@rtm-ui/icon';
+import Variant from '@rtm-ui/theme';
 import { Header, Paragraph } from '@rtm-ui/typography';
-import { Container, Item, WrapperBox } from './style';
-import { howItWorkContent } from './constants';
+import { howItWorksContent } from './constants';
+import { Container, Item, WrapperBox, IconBox } from './style';
 
 const HowItWorks = ({ entity }) => {
-  const { header, icons } = howItWorkContent[entity];
-
+  const { header, icons } = howItWorksContent[entity];
   return (
     <WrapperBox>
-      <Header py={0} tag="h6">
+      <Header pt={2} tag="h6">
         {header}
       </Header>
       <Container>
         {icons.map(s => (
           <Item key={s.title}>
-            <div>
-              <Icon glyph={s.glyph} size={60} />
-            </div>
+            <Variant variant="c">
+              <IconBox>
+                <Icon glyph={s.glyph} size={80} />
+              </IconBox>
+            </Variant>
             <Paragraph px={2}>{s.title}</Paragraph>
           </Item>
         ))}

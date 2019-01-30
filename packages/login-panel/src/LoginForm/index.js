@@ -23,14 +23,17 @@ const StyledInput = styled.input`
 const Error = styled(Paragraph)`
   text-align: center;
   color: ${props => getColor('error', props.theme)};
-  svg {
-    fill: ${props => getColor('error', props.theme)};
-    padding-top: 2px;
-  }
+`;
+
+const ButtonIConWrapper = styled(Box)`
+  margin-top: -3px;
 `;
 
 const ButtonWrapper = styled(Box)`
   text-align: center;
+  div {
+    background: none;
+  }
 `;
 
 const TextInput = props => <StyledInput {...props} />;
@@ -88,6 +91,7 @@ class LoginForm extends React.Component {
       buttonText,
       gdprProps,
       autocompletePostcodeUrl,
+      buttonIcon,
     } = this.props;
 
     const { errors } = this.state;
@@ -160,12 +164,22 @@ class LoginForm extends React.Component {
               <ButtonWrapper py={[2, 2, 3, 4]}>
                 <Button type="submit" disabled={isSubmitting} track="signin">
                   {buttonText}
+                  {buttonIcon && (
+                    <ButtonIConWrapper>
+                      <Icon
+                        fill="inverseText"
+                        inline
+                        glyph={buttonIcon}
+                        size={20}
+                      />
+                    </ButtonIConWrapper>
+                  )}
                 </Button>
                 {errors && (
                   <Box pt={2}>
                     {errors.map(error => (
                       <Error key={error}>
-                        <Icon glyph="error" size={20} /> {error}
+                        <Icon fill="error" glyph="error" size={20} /> {error}
                       </Error>
                     ))}
                   </Box>
@@ -200,7 +214,6 @@ LoginForm.defaultProps = {
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'See the offers',
   buttonIcon: null,
-  showGdprAgreement: true,
 };
 
 export default LoginForm;

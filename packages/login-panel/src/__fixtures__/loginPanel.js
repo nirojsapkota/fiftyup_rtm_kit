@@ -27,6 +27,7 @@ const loginPanel = {
       text: 'Privacy Policy',
     },
   },
+  buttonIcon: 'view-forward',
 };
 
 export default loginPanel;

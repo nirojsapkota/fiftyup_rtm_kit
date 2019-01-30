@@ -9,8 +9,8 @@ import { EntityProvider, EntityConsumer } from '@rtm-ui/entity';
 import { Paragraph } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
-
-import Footer from './Footer';
+import { BasicHeader } from '@rtm-ui/header';
+import { BasicFooter } from '@rtm-ui/footer';
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -68,23 +68,24 @@ const HeroImageWrapper = styled(Box)`
 const HybridLoginView = ({
   howItWorksProps,
   disclaimerProps,
-  footerProps,
-  headerProps,
+  heroImageUrl,
   entityBrand,
   ...props
 }) => {
   return (
     <React.Fragment>
-      <Img src={headerProps.logoUrl} py={3} alt="Header logo" />
       <BodyWrapper>
         <HeroImageWrapper m="auto">
-          <Img src={headerProps.heroImageUrl} alt="Hero image" />
+          <Img src={heroImageUrl} alt="Hero image" />
         </HeroImageWrapper>
         <ContentWrapper mt={-30} m="auto">
           <MobileHide>
             <Column width={1 / 2}>
               <LoginPanelWrapper px={[10, 10, 15, 20]}>
-                <LoginPanel {...props} />
+                <LoginPanel
+                  {...props}
+                  buttonIcon={entityBrand !== 'ninesaver' ? 'view-forward' : ''}
+                />
               </LoginPanelWrapper>
               <StyledDisclaimer p={50}>
                 {disclaimerProps.disclaimerText || ''}
@@ -101,7 +102,7 @@ const HybridLoginView = ({
               <LoginPanel {...props} />
             </LoginPanelWrapper>
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-              <HowItWorks {...howItWorksProps} />
+              <HowItWorks {...howItWorksProps} entity={entityBrand} />
             </HowItWorksWrapper>
             <StyledDisclaimer p={30}>
               {disclaimerProps.disclaimerText || ''}
@@ -109,29 +110,16 @@ const HybridLoginView = ({
           </MobileShow>
         </ContentWrapper>
       </BodyWrapper>
-      <Variant variant="c">
-        <FooterWrapper py={3}>
-          <Footer {...footerProps} boxWidth="1080px" />
-        </FooterWrapper>
-      </Variant>
     </React.Fragment>
   );
 };
 
 HybridLoginView.propTypes = {
-  authenticityToken: t.string,
   howItWorksProps: t.shape({}),
   disclaimerProps: t.shape({
     disclaimerText: t.string,
   }),
-  footerProps: t.shape({
-    logoUrl: t.string,
-    copyRightText: t.string,
-  }),
-  headerProps: t.shape({
-    logoUrl: t.string,
-    heroImageUrl: t.string,
-  }),
+  heroImageUrl: t.string,
   entityBrand: t.string,
 };
 
@@ -140,31 +128,32 @@ HybridLoginView.defaultProps = {
     disclaimerText:
       '* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.  ',
   },
-  howItWorksProps: {
-    header:
-      'One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!',
-    stepOffers: [
-      {
-        imgUrl: 'https://placehold.it/100x100',
-        title: 'You join the movement for free',
-      },
-      {
-        imgUrl: 'https://placehold.it/100x100',
-        title: 'We negotiate Group Discounts',
-      },
-      {
-        imgUrl: 'https://placehold.it/100x100',
-        title: 'You decide what’s right for you',
-      },
-    ],
-  },
 };
 
 const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
   <Bootstrap trackingData={trackingData}>
     <EntityProvider entity={entity}>
       <EntityConsumer>
-        {({ brand }) => <HybridLoginView {...rest} entityBrand={brand} />}
+        {({ brand, footer_items, header_items }) => { // eslint-disable-line camelcase
+          const footerLogoUrl = footer_items.logo; // eslint-disable-line camelcase
+          const headerLogoUrl = header_items.logo; // eslint-disable-line camelcase
+
+          return (
+            <React.Fragment>
+              <BasicHeader logoUrl={headerLogoUrl} entityBrand={brand} py={2} />
+              <HybridLoginView {...rest} entityBrand={brand} />
+              <Variant variant="c">
+                <FooterWrapper py={2}>
+                  <BasicFooter
+                    logoUrl={footerLogoUrl}
+                    maxWidth={1080}
+                    entityBrand={brand}
+                  />
+                </FooterWrapper>
+              </Variant>
+            </React.Fragment>
+          );
+        }}
       </EntityConsumer>
     </EntityProvider>
   </Bootstrap>
@@ -172,7 +161,15 @@ const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
 
 WrappedHybridLoginView.propTypes = {
   trackingData: t.shape({}),
-  entity: t.shape({}),
+  entity: t.shape({
+    brand: t.string,
+    footer_items: t.shape({
+      logo: t.string,
+    }),
+    header_items: t.shape({
+      logo: t.string,
+    }),
+  }),
 };
 
 export default WrappedHybridLoginView;
