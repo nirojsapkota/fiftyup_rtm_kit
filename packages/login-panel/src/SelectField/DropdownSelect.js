@@ -2,6 +2,7 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Paragraph } from '@rtm-ui/typography';
+import { isArray } from 'util';
 import Popover from './popover';
 
 const Option = styled(Paragraph)`
@@ -30,7 +31,7 @@ const DropdownSelect = ({
     return React.createElement(inputComponent, inputElementProps, null);
   };
 
-  return (
+  return isArray(options) && options.length > 0 ? (
     <Popover display="block" anchor={inputElement} {...popoverProps}>
       {toggle =>
         options.map(({ value, label }) => (
@@ -52,6 +53,8 @@ const DropdownSelect = ({
         ))
       }
     </Popover>
+  ) : (
+    inputElement()
   );
 };
 

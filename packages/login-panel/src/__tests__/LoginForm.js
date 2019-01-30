@@ -9,6 +9,8 @@ import {
   wait,
   // eslint-disable-next-line import/named
   cleanup,
+  // eslint-disable-next-line import/named
+  waitForDomChange,
 } from '../../../bootstrap/setup/testSetup';
 import LoginForm from '../LoginForm';
 import loginPanelProps from '../__fixtures__/loginPanel';
@@ -363,6 +365,7 @@ describe('<LoginForm />', () => {
       const postcode = getByPlaceholderText('Postcode');
       fireEvent.change(postcode, { target: { value: '5000' } });
       fireEvent.click(postcode);
+
       expect(axios.get).toHaveBeenCalledWith(
         loginPanelProps.autocompletePostcodeUrl,
         {
@@ -373,10 +376,14 @@ describe('<LoginForm />', () => {
           params: { term: '5000' },
         }
       );
-      await wait(() => {
-        expect(container).toHaveTextContent(data[0]);
-        expect(container).toHaveTextContent(data[1]);
-      });
+
+      await waitForDomChange(
+        () => {
+          expect(container).toHaveTextContent(data[0]);
+          expect(container).toHaveTextContent(data[1]);
+        },
+        { container }
+      );
     });
 
     it('Input change when select value in autocomplete', async () => {
@@ -393,13 +400,16 @@ describe('<LoginForm />', () => {
         target: { value: '5000' },
       });
       fireEvent.click(postcode);
-      await wait(() => {
-        expect(container).toHaveTextContent(data[0]);
-        expect(container).toHaveTextContent(data[1]);
-        const selected = getByText(data[0]);
-        fireEvent.click(selected);
-        expect(postcode.value).toEqual(data[0]);
-      });
+      await waitForDomChange(
+        () => {
+          expect(container).toHaveTextContent(data[0]);
+          expect(container).toHaveTextContent(data[1]);
+          const selected = getByText(data[0]);
+          fireEvent.click(selected);
+          expect(postcode.value).toEqual(data[0]);
+        },
+        { container }
+      );
     });
 
     it('Error when get value in autocomplete', async () => {
