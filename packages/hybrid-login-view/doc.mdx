@@ -4,7 +4,7 @@ route: /packages/hybrid-login-view
 menu: Packages
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import HybridLoginView from './src'
 import hybridLoginViewProps from './src/__fixtures__/hybridLoginView';
 
@@ -15,3 +15,7 @@ import hybridLoginViewProps from './src/__fixtures__/hybridLoginView';
 <Playground>
   <HybridLoginView {...hybridLoginViewProps} />
 </Playground>
+
+## Props
+
+<PropsTable of={HybridLoginView} />

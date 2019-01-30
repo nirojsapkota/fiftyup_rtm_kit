@@ -27,6 +27,8 @@
     "@rtm-ui/typography": "^3.0.4"
   },
   "peerDependencies": {
+    "axios": "^0.18.0",
+    "formik": "^1.4.1",
     "prop-types": "^15.5.4",
     "react": "^16.6",
     "styled-components": "^4.0"

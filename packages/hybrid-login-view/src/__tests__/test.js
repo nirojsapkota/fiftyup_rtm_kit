@@ -14,7 +14,7 @@ describe('<HybridLoginView />', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('matches expected output', () => {
+  it('disclaimerText not exist', () => {
     const disclaimerProps = { ...props.disclaimerProps, disclaimerText: '' };
     const updateMockData = { ...props, disclaimerProps };
     const { queryByText } = render(<HybridLoginView {...updateMockData} />);
@@ -22,5 +22,13 @@ describe('<HybridLoginView />', () => {
     expect(
       queryByText(props.disclaimerProps.disclaimerText)
     ).not.toBeInTheDocument();
+  });
+
+  it('entity brand ninesaver button icon will not rendered', () => {
+    const entity = { ...props.entity, brand: 'ninesaver' };
+    const updateMockData = { ...props, entity };
+    const { container } = render(<HybridLoginView {...updateMockData} />);
+
+    expect(container).toMatchSnapshot();
   });
 });

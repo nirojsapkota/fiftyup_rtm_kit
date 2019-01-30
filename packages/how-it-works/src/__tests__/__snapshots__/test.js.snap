@@ -1,12 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HowItWork /> matches expected default content for obs 1`] = `
-.c6 {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  width: 60px;
-  height: 60px;
+.c1 {
+  box-sizing: border-box;
+  background: #FFF;
+}
+
+.c3 {
+  box-sizing: border-box;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #FFF;
+}
+
+.c10 {
+  box-sizing: border-box;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: #FFF;
 }
 
 .c8 {
@@ -39,23 +50,12 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   color: inherit;
 }
 
-.c1 {
-  box-sizing: border-box;
-  background: #FFF;
-}
-
-.c3 {
-  box-sizing: border-box;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  background: #FFF;
-}
-
-.c10 {
-  box-sizing: border-box;
-  padding-left: 8px;
-  padding-right: 8px;
-  background: #FFF;
+.c6 {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+  height: 60px;
 }
 
 .c2 {
