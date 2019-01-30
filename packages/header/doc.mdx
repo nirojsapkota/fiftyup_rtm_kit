@@ -5,16 +5,17 @@ menu: Packages
 ---
 
 import { Playground, PropsTable } from 'docz'
-import Header from './src'
+import { BasicHeader } from './src'
 
 # Header
 
 ## Basic usage
 
+BasicHeader:
 <Playground>
-  <Header logoUrl="https://placehold.it/100x100" />
+  <BasicHeader logoUrl="https://placehold.it/100x100" />
 </Playground>
 
 ## Props
 
-<PropsTable of={Header} />
+<PropsTable of={BasicHeader} />

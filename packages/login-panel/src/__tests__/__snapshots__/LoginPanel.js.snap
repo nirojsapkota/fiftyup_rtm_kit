@@ -37,7 +37,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   background: #FFF;
 }
 
-.c18 {
+.c15 {
   box-sizing: border-box;
   background: #FFF;
 }
@@ -71,7 +71,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   font-size: 16px;
 }
 
-.c19 {
+.c20 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -138,7 +138,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   border-bottom-color: #ef8612;
 }
 
-.c16 {
+.c18 {
   position: absolute;
   top: 0;
   right: 0;
@@ -147,12 +147,12 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   height: 100%;
   width: 100%;
   color: inherit;
-  fill: #565656;
+  fill: #FFF;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
-.c15 {
+.c17 {
   -webkit-flex: 0 0 20px;
   -ms-flex: 0 0 20px;
   flex: 0 0 20px;
@@ -168,7 +168,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   color: inherit;
 }
 
-.c14 {
+.c16 {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -190,7 +190,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   display: block;
 }
 
-.c17 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -201,11 +201,11 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   background: inherit;
 }
 
-.c17 * {
+.c19 * {
   background: inherit;
 }
 
-.c20 {
+.c21 {
   padding-left: 5px;
 }
 
@@ -217,17 +217,16 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   width: 100%;
 }
 
+.c14 {
+  margin-top: -3px;
+}
+
 .c11 {
   text-align: center;
 }
 
 .c11 div {
   background: none;
-}
-
-.c11 * > svg {
-  margin-top: -2px;
-  fill: #FFF;
 }
 
 @media screen and (min-width:32em) {
@@ -345,19 +344,19 @@ exports[`<LoginPanel /> matches expected output 1`] = `
 }
 
 @media (min-width:32em) {
-  .c19 {
+  .c20 {
     font-size: 12px;
   }
 }
 
 @media (min-width:46em) {
-  .c19 {
+  .c20 {
     font-size: 12px;
   }
 }
 
 @media (min-width:76em) {
-  .c19 {
+  .c20 {
     font-size: 12px;
   }
 }
@@ -441,40 +440,45 @@ exports[`<LoginPanel /> matches expected output 1`] = `
           type="submit"
         >
           See the offers
-          <span
-            class="c14"
-            size="20"
+          <div
+            class="c14 c15"
           >
             <span
-              class="icon c15"
+              class="c16"
               size="20"
             >
-              <svg
-                aria-labelledby="title"
-                class="view-forward c16"
-                clip-rule="evenodd"
-                fill-rule="evenodd"
-                preserveAspectRatio="xMidYMid meet"
-                stroke-linejoin="round"
-                stroke-miterlimit="1.414"
-                viewBox="0 0 32 32"
-                xmlns="http://www.w3.org/2000/svg"
+              <span
+                class="icon c17"
+                size="20"
               >
-                <g>
-                  <path
-                    d="M12.982,23.89c-0.354,-0.424 -0.296,-1.055 0.128,-1.408c1.645,-1.377 5.465,-4.762 6.774,-6.482c-1.331,-1.749 -5.1,-5.085 -6.774,-6.482c-0.424,-0.353 -0.482,-0.984 -0.128,-1.408c0.353,-0.425 0.984,-0.482 1.409,-0.128c1.839,1.532 5.799,4.993 7.2,6.964c0.219,0.312 0.409,0.664 0.409,1.054c0,0.39 -0.19,0.742 -0.409,1.053c-1.373,1.932 -5.399,5.462 -7.2,6.964l-0.001,0.001c-0.424,0.354 -1.055,0.296 -1.408,-0.128Z"
-                  />
-                </g>
-              </svg>
+                <svg
+                  aria-labelledby="title"
+                  class="view-forward c18"
+                  clip-rule="evenodd"
+                  fill="inverseText"
+                  fill-rule="evenodd"
+                  preserveAspectRatio="xMidYMid meet"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="1.414"
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M12.982,23.89c-0.354,-0.424 -0.296,-1.055 0.128,-1.408c1.645,-1.377 5.465,-4.762 6.774,-6.482c-1.331,-1.749 -5.1,-5.085 -6.774,-6.482c-0.424,-0.353 -0.482,-0.984 -0.128,-1.408c0.353,-0.425 0.984,-0.482 1.409,-0.128c1.839,1.532 5.799,4.993 7.2,6.964c0.219,0.312 0.409,0.664 0.409,1.054c0,0.39 -0.19,0.742 -0.409,1.053c-1.373,1.932 -5.399,5.462 -7.2,6.964l-0.001,0.001c-0.424,0.354 -1.055,0.296 -1.408,-0.128Z"
+                    />
+                  </g>
+                </svg>
+              </span>
             </span>
-          </span>
+          </div>
         </button>
       </div>
       <div
-        class="c17 c18"
+        class="c19 c15"
       >
         <p
-          class="c6 c18"
+          class="c6 c15"
         >
           <input
             data-testid="ckAgreement"
@@ -482,22 +486,22 @@ exports[`<LoginPanel /> matches expected output 1`] = `
             type="checkbox"
           />
           <small
-            class="c19 c18"
+            class="c20 c15"
           >
             By ticking this box, you agree to our
           </small>
           <small
-            class="c19 c18"
+            class="c20 c15"
           >
             <a
-              class="c20"
+              class="c21"
               href="/confirmation-of-consent"
             >
               Confirmation of Consent
             </a>
             ,
             <a
-              class="c20"
+              class="c21"
               href="/terms-and-conditions"
             >
               Terms and Conditions
@@ -505,7 +509,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
              
             and
             <a
-              class="c20"
+              class="c21"
               href="/privacy-policy"
             >
               Privacy Policy

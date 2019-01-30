@@ -28,7 +28,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   background: #FFF;
 }
 
-.c15 {
+.c12 {
   box-sizing: border-box;
   background: #FFF;
 }
@@ -51,7 +51,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   font-size: 16px;
 }
 
-.c16 {
+.c17 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -118,7 +118,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   border-bottom-color: #ef8612;
 }
 
-.c13 {
+.c15 {
   position: absolute;
   top: 0;
   right: 0;
@@ -127,12 +127,12 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   height: 100%;
   width: 100%;
   color: inherit;
-  fill: #565656;
+  fill: #FFF;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
-.c12 {
+.c14 {
   -webkit-flex: 0 0 20px;
   -ms-flex: 0 0 20px;
   flex: 0 0 20px;
@@ -148,7 +148,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   color: inherit;
 }
 
-.c11 {
+.c13 {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -170,7 +170,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   display: block;
 }
 
-.c14 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -181,11 +181,11 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   background: inherit;
 }
 
-.c14 * {
+.c16 * {
   background: inherit;
 }
 
-.c17 {
+.c18 {
   padding-left: 5px;
 }
 
@@ -197,17 +197,16 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
   width: 100%;
 }
 
+.c11 {
+  margin-top: -3px;
+}
+
 .c8 {
   text-align: center;
 }
 
 .c8 div {
   background: none;
-}
-
-.c8 * > svg {
-  margin-top: -2px;
-  fill: #FFF;
 }
 
 @media screen and (min-width:32em) {
@@ -304,19 +303,19 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
 }
 
 @media (min-width:32em) {
-  .c16 {
+  .c17 {
     font-size: 12px;
   }
 }
 
 @media (min-width:46em) {
-  .c16 {
+  .c17 {
     font-size: 12px;
   }
 }
 
 @media (min-width:76em) {
-  .c16 {
+  .c17 {
     font-size: 12px;
   }
 }
@@ -396,40 +395,45 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
         type="submit"
       >
         See the offers
-        <span
-          class="c11"
-          size="20"
+        <div
+          class="c11 c12"
         >
           <span
-            class="icon c12"
+            class="c13"
             size="20"
           >
-            <svg
-              aria-labelledby="title"
-              class="view-forward c13"
-              clip-rule="evenodd"
-              fill-rule="evenodd"
-              preserveAspectRatio="xMidYMid meet"
-              stroke-linejoin="round"
-              stroke-miterlimit="1.414"
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
+            <span
+              class="icon c14"
+              size="20"
             >
-              <g>
-                <path
-                  d="M12.982,23.89c-0.354,-0.424 -0.296,-1.055 0.128,-1.408c1.645,-1.377 5.465,-4.762 6.774,-6.482c-1.331,-1.749 -5.1,-5.085 -6.774,-6.482c-0.424,-0.353 -0.482,-0.984 -0.128,-1.408c0.353,-0.425 0.984,-0.482 1.409,-0.128c1.839,1.532 5.799,4.993 7.2,6.964c0.219,0.312 0.409,0.664 0.409,1.054c0,0.39 -0.19,0.742 -0.409,1.053c-1.373,1.932 -5.399,5.462 -7.2,6.964l-0.001,0.001c-0.424,0.354 -1.055,0.296 -1.408,-0.128Z"
-                />
-              </g>
-            </svg>
+              <svg
+                aria-labelledby="title"
+                class="view-forward c15"
+                clip-rule="evenodd"
+                fill="inverseText"
+                fill-rule="evenodd"
+                preserveAspectRatio="xMidYMid meet"
+                stroke-linejoin="round"
+                stroke-miterlimit="1.414"
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M12.982,23.89c-0.354,-0.424 -0.296,-1.055 0.128,-1.408c1.645,-1.377 5.465,-4.762 6.774,-6.482c-1.331,-1.749 -5.1,-5.085 -6.774,-6.482c-0.424,-0.353 -0.482,-0.984 -0.128,-1.408c0.353,-0.425 0.984,-0.482 1.409,-0.128c1.839,1.532 5.799,4.993 7.2,6.964c0.219,0.312 0.409,0.664 0.409,1.054c0,0.39 -0.19,0.742 -0.409,1.053c-1.373,1.932 -5.399,5.462 -7.2,6.964l-0.001,0.001c-0.424,0.354 -1.055,0.296 -1.408,-0.128Z"
+                  />
+                </g>
+              </svg>
+            </span>
           </span>
-        </span>
+        </div>
       </button>
     </div>
     <div
-      class="c14 c15"
+      class="c16 c12"
     >
       <p
-        class="c3 c15"
+        class="c3 c12"
       >
         <input
           data-testid="ckAgreement"
@@ -437,22 +441,22 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
           type="checkbox"
         />
         <small
-          class="c16 c15"
+          class="c17 c12"
         >
           By ticking this box, you agree to our
         </small>
         <small
-          class="c16 c15"
+          class="c17 c12"
         >
           <a
-            class="c17"
+            class="c18"
             href="/confirmation-of-consent"
           >
             Confirmation of Consent
           </a>
           ,
           <a
-            class="c17"
+            class="c18"
             href="/terms-and-conditions"
           >
             Terms and Conditions
@@ -460,7 +464,7 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
            
           and
           <a
-            class="c17"
+            class="c18"
             href="/privacy-policy"
           >
             Privacy Policy

@@ -276,6 +276,20 @@ exports[`<HybridLoginView /> entity brand ninesaver button icon will not rendere
   min-width: 1px;
 }
 
+.c55 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: inherit;
+  fill: #FFF;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
 .c45 {
   position: absolute;
   top: 0;
@@ -300,20 +314,6 @@ exports[`<HybridLoginView /> entity brand ninesaver button icon will not rendere
   width: 100%;
   color: inherit;
   fill: #1566ad;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-
-.c55 {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  color: inherit;
-  fill: #FFF;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
@@ -401,11 +401,6 @@ exports[`<HybridLoginView /> entity brand ninesaver button icon will not rendere
 
 .c29 div {
   background: none;
-}
-
-.c29 * > svg {
-  margin-top: -2px;
-  fill: #FFF;
 }
 
 .c39 {
@@ -1581,13 +1576,13 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: #FFF;
 }
 
-.c37 {
+.c38 {
   box-sizing: border-box;
   padding: 50px;
   background: #FFF;
 }
 
-.c39 {
+.c40 {
   box-sizing: border-box;
   margin-top: 20px;
   padding-left: 10px;
@@ -1595,51 +1590,51 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: #FFF;
 }
 
-.c41 {
+.c42 {
   box-sizing: border-box;
   padding-top: 0px;
   padding-bottom: 0px;
   background: #FFF;
 }
 
-.c46 {
+.c48 {
   box-sizing: border-box;
   padding-left: 8px;
   padding-right: 8px;
   background: #FFF;
 }
 
-.c48 {
+.c50 {
   box-sizing: border-box;
   padding: 30px;
   background: #FFF;
 }
 
-.c50 {
+.c52 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
   background: #2d9dd6;
 }
 
-.c52 {
+.c54 {
   box-sizing: border-box;
   margin: auto;
   background: #2d9dd6;
 }
 
-.c54 {
+.c56 {
   box-sizing: border-box;
   padding-left: 4px;
   background: #2d9dd6;
 }
 
-.c55 {
+.c57 {
   box-sizing: border-box;
   background: #1566ad;
 }
 
-.c57 {
+.c59 {
   box-sizing: border-box;
   margin-left: auto;
   margin-top: auto;
@@ -1677,7 +1672,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   font-size: 16px;
 }
 
-.c34 {
+.c35 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -1686,7 +1681,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   font-size: 12px;
 }
 
-.c56 {
+.c58 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -1786,7 +1781,21 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   min-width: 1px;
 }
 
-.c32 {
+.c33 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: inherit;
+  fill: #FFF;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.c47 {
   position: absolute;
   top: 0;
   right: 0;
@@ -1800,7 +1809,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   transition: all 0.2s ease;
 }
 
-.c31 {
+.c32 {
   -webkit-flex: 0 0 20px;
   -ms-flex: 0 0 20px;
   flex: 0 0 20px;
@@ -1816,7 +1825,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   color: inherit;
 }
 
-.c45 {
+.c46 {
   -webkit-flex: 0 0 60px;
   -ms-flex: 0 0 60px;
   flex: 0 0 60px;
@@ -1832,7 +1841,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   color: inherit;
 }
 
-.c30 {
+.c31 {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1845,7 +1854,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   transform: translateY(-10px);
 }
 
-.c44 {
+.c45 {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1862,7 +1871,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   display: block;
 }
 
-.c33 {
+.c34 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1873,11 +1882,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: inherit;
 }
 
-.c33 * {
+.c34 * {
   background: inherit;
 }
 
-.c35 {
+.c36 {
   padding-left: 5px;
 }
 
@@ -1889,6 +1898,10 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   width: 100%;
 }
 
+.c30 {
+  margin-top: -3px;
+}
+
 .c27 {
   text-align: center;
 }
@@ -1897,21 +1910,16 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: none;
 }
 
-.c27 * > svg {
-  margin-top: -2px;
-  fill: #FFF;
-}
-
-.c40 {
+.c41 {
   background: inherit;
   padding: 0px 10px;
 }
 
-.c40 * {
+.c41 * {
   background: inherit;
 }
 
-.c42 {
+.c43 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1921,13 +1929,13 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   flex-direction: row;
 }
 
-.c43 {
+.c44 {
   padding: 8px;
   position: relative;
   text-align: center;
 }
 
-.c43:after {
+.c44:after {
   position: absolute;
   width: 0;
   height: 0;
@@ -1940,11 +1948,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   border-bottom: 6px solid transparent;
 }
 
-.c43:last-child {
+.c44:last-child {
   padding-right: 0px;
 }
 
-.c43:last-child:after {
+.c44:last-child:after {
   display: none;
 }
 
@@ -1955,7 +1963,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   display: flex;
 }
 
-.c51 {
+.c53 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1963,7 +1971,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   max-width: 1080px;
 }
 
-.c53 * {
+.c55 * {
   background: none;
 }
 
@@ -1998,7 +2006,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   flex-flow: column;
 }
 
-.c47 {
+.c49 {
   background: inherit;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2009,7 +2017,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   flex-flow: column;
 }
 
-.c38 {
+.c39 {
   background: inherit;
 }
 
@@ -2017,11 +2025,11 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
   background: inherit;
 }
 
-.c36 {
+.c37 {
   background: inherit;
 }
 
-.c49 {
+.c51 {
   background: #2d9dd6;
 }
 
@@ -2129,43 +2137,43 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media screen and (min-width:32em) {
-  .c39 {
+  .c40 {
     margin-top: 20px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c39 {
+  .c40 {
     margin-top: 40px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c39 {
+  .c40 {
     margin-top: 50px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c54 {
+  .c56 {
     padding-left: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c54 {
+  .c56 {
     padding-left: 32px;
   }
 }
 
 @media screen and (min-width:32em) {
-  .c57 {
+  .c59 {
     padding-right: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c57 {
+  .c59 {
     padding-right: 32px;
   }
 }
@@ -2207,50 +2215,50 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media (min-width:32em) {
-  .c34 {
+  .c35 {
     font-size: 12px;
   }
 }
 
 @media (min-width:46em) {
-  .c34 {
+  .c35 {
     font-size: 12px;
   }
 }
 
 @media (min-width:76em) {
-  .c34 {
+  .c35 {
     font-size: 12px;
   }
 }
 
 @media (min-width:32em) {
-  .c56 {
+  .c58 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c56 {
+  .c58 {
     font-size: 16px;
   }
 }
 
 @media (min-width:76em) {
-  .c56 {
+  .c58 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c40 {
+  .c41 {
     padding: 0px 15px;
     margin-right: 10px;
   }
 }
 
 @media (min-width:46em) {
-  .c42 {
+  .c43 {
     display: inline-block;
     -webkit-flex-direction: unset;
     -ms-flex-direction: unset;
@@ -2260,20 +2268,20 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media (min-width:46em) {
-  .c43:last-child {
+  .c44:last-child {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
     padding: 0px;
   }
 
-  .c43:last-child > p {
+  .c44:last-child > p {
     text-align: left;
   }
 }
 
 @media (min-width:46em) {
-  .c43 {
+  .c44 {
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
@@ -2288,7 +2296,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
     align-items: center;
   }
 
-  .c43:after {
+  .c44:after {
     position: absolute;
     width: 0;
     height: 0;
@@ -2303,7 +2311,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
     border-top: 16px solid #083d87;
   }
 
-  .c43:first-child {
+  .c44:first-child {
     padding-left: 0px;
   }
 }
@@ -2315,7 +2323,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
 }
 
 @media (min-width:46em) {
-  .c47 {
+  .c49 {
     display: none;
   }
 }
@@ -2453,37 +2461,42 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                     type="submit"
                   >
                     See the offers
-                    <span
-                      class="c30"
-                      size="20"
+                    <div
+                      class="c30 c1"
                     >
                       <span
-                        class="icon c31"
+                        class="c31"
                         size="20"
                       >
-                        <svg
-                          aria-labelledby="title"
-                          class="view-forward c32"
-                          clip-rule="evenodd"
-                          fill-rule="evenodd"
-                          preserveAspectRatio="xMidYMid meet"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="1.414"
-                          viewBox="0 0 32 32"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <span
+                          class="icon c32"
+                          size="20"
                         >
-                          <g>
-                            <path
-                              d="M12.982,23.89c-0.354,-0.424 -0.296,-1.055 0.128,-1.408c1.645,-1.377 5.465,-4.762 6.774,-6.482c-1.331,-1.749 -5.1,-5.085 -6.774,-6.482c-0.424,-0.353 -0.482,-0.984 -0.128,-1.408c0.353,-0.425 0.984,-0.482 1.409,-0.128c1.839,1.532 5.799,4.993 7.2,6.964c0.219,0.312 0.409,0.664 0.409,1.054c0,0.39 -0.19,0.742 -0.409,1.053c-1.373,1.932 -5.399,5.462 -7.2,6.964l-0.001,0.001c-0.424,0.354 -1.055,0.296 -1.408,-0.128Z"
-                            />
-                          </g>
-                        </svg>
+                          <svg
+                            aria-labelledby="title"
+                            class="view-forward c33"
+                            clip-rule="evenodd"
+                            fill="inverseText"
+                            fill-rule="evenodd"
+                            preserveAspectRatio="xMidYMid meet"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="1.414"
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g>
+                              <path
+                                d="M12.982,23.89c-0.354,-0.424 -0.296,-1.055 0.128,-1.408c1.645,-1.377 5.465,-4.762 6.774,-6.482c-1.331,-1.749 -5.1,-5.085 -6.774,-6.482c-0.424,-0.353 -0.482,-0.984 -0.128,-1.408c0.353,-0.425 0.984,-0.482 1.409,-0.128c1.839,1.532 5.799,4.993 7.2,6.964c0.219,0.312 0.409,0.664 0.409,1.054c0,0.39 -0.19,0.742 -0.409,1.053c-1.373,1.932 -5.399,5.462 -7.2,6.964l-0.001,0.001c-0.424,0.354 -1.055,0.296 -1.408,-0.128Z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
                       </span>
-                    </span>
+                    </div>
                   </button>
                 </div>
                 <div
-                  class="c33 c1"
+                  class="c34 c1"
                 >
                   <p
                     class="c22 c1"
@@ -2494,22 +2507,22 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                       type="checkbox"
                     />
                     <small
-                      class="c34 c1"
+                      class="c35 c1"
                     >
                       By ticking this box, you agree to our
                     </small>
                     <small
-                      class="c34 c1"
+                      class="c35 c1"
                     >
                       <a
-                        class="c35"
+                        class="c36"
                         href="/confirmation-of-consent"
                       >
                         Confirmation of Consent
                       </a>
                       ,
                       <a
-                        class="c35"
+                        class="c36"
                         href="/terms-and-conditions"
                       >
                         Terms and Conditions
@@ -2517,7 +2530,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                        
                       and
                       <a
-                        class="c35"
+                        class="c36"
                         href="/privacy-policy"
                       >
                         Privacy Policy
@@ -2530,7 +2543,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
             </div>
           </div>
           <p
-            class="c36 c22 c37"
+            class="c37 c22 c38"
           >
             * disclaimer text
           </p>
@@ -2540,34 +2553,34 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
           width="0.5"
         >
           <div
-            class="c38 c39"
+            class="c39 c40"
           >
             <div
-              class="c40 c1"
+              class="c41 c1"
             >
               <h6
-                class="c19 c41"
+                class="c19 c42"
               >
                 One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
               </h6>
               <div
-                class="c42 c1"
+                class="c43 c1"
               >
                 <div
-                  class="c43"
+                  class="c44"
                 >
                   <div>
                     <span
-                      class="c44"
+                      class="c45"
                       size="60"
                     >
                       <span
-                        class="icon c45"
+                        class="icon c46"
                         size="60"
                       >
                         <svg
                           aria-labelledby="title"
-                          class="user-help c32"
+                          class="user-help c47"
                           clip-rule="evenodd"
                           fill-rule="evenodd"
                           preserveAspectRatio="xMidYMid meet"
@@ -2617,26 +2630,26 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                     </span>
                   </div>
                   <p
-                    class="c22 c46"
+                    class="c22 c48"
                   >
                     You join the movement for free
                   </p>
                 </div>
                 <div
-                  class="c43"
+                  class="c44"
                 >
                   <div>
                     <span
-                      class="c44"
+                      class="c45"
                       size="60"
                     >
                       <span
-                        class="icon c45"
+                        class="icon c46"
                         size="60"
                       >
                         <svg
                           aria-labelledby="title"
-                          class="balance c32"
+                          class="balance c47"
                           clip-rule="evenodd"
                           fill-rule="evenodd"
                           preserveAspectRatio="xMidYMid meet"
@@ -2926,26 +2939,26 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                     </span>
                   </div>
                   <p
-                    class="c22 c46"
+                    class="c22 c48"
                   >
                     We negotiate Group Discounts
                   </p>
                 </div>
                 <div
-                  class="c43"
+                  class="c44"
                 >
                   <div>
                     <span
-                      class="c44"
+                      class="c45"
                       size="60"
                     >
                       <span
-                        class="icon c45"
+                        class="icon c46"
                         size="60"
                       >
                         <svg
                           aria-labelledby="title"
-                          class="hands-shake-2 c32"
+                          class="hands-shake-2 c47"
                           clip-rule="evenodd"
                           fill-rule="evenodd"
                           preserveAspectRatio="xMidYMid meet"
@@ -3054,7 +3067,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                     </span>
                   </div>
                   <p
-                    class="c22 c46"
+                    class="c22 c48"
                   >
                     You decide what’s right for you
                   </p>
@@ -3065,7 +3078,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
         </div>
       </div>
       <div
-        class="c47 c1"
+        class="c49 c1"
       >
         <div
           class="c14 c15"
@@ -3151,7 +3164,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                 </button>
               </div>
               <div
-                class="c33 c1"
+                class="c34 c1"
               >
                 <p
                   class="c22 c1"
@@ -3162,22 +3175,22 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                     type="checkbox"
                   />
                   <small
-                    class="c34 c1"
+                    class="c35 c1"
                   >
                     By ticking this box, you agree to our
                   </small>
                   <small
-                    class="c34 c1"
+                    class="c35 c1"
                   >
                     <a
-                      class="c35"
+                      class="c36"
                       href="/confirmation-of-consent"
                     >
                       Confirmation of Consent
                     </a>
                     ,
                     <a
-                      class="c35"
+                      class="c36"
                       href="/terms-and-conditions"
                     >
                       Terms and Conditions
@@ -3185,7 +3198,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                      
                     and
                     <a
-                      class="c35"
+                      class="c36"
                       href="/privacy-policy"
                     >
                       Privacy Policy
@@ -3198,34 +3211,34 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
           </div>
         </div>
         <div
-          class="c38 c39"
+          class="c39 c40"
         >
           <div
-            class="c40 c1"
+            class="c41 c1"
           >
             <h6
-              class="c19 c41"
+              class="c19 c42"
             >
               One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
             </h6>
             <div
-              class="c42 c1"
+              class="c43 c1"
             >
               <div
-                class="c43"
+                class="c44"
               >
                 <div>
                   <span
-                    class="c44"
+                    class="c45"
                     size="60"
                   >
                     <span
-                      class="icon c45"
+                      class="icon c46"
                       size="60"
                     >
                       <svg
                         aria-labelledby="title"
-                        class="user-help c32"
+                        class="user-help c47"
                         clip-rule="evenodd"
                         fill-rule="evenodd"
                         preserveAspectRatio="xMidYMid meet"
@@ -3275,26 +3288,26 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                   </span>
                 </div>
                 <p
-                  class="c22 c46"
+                  class="c22 c48"
                 >
                   You join the movement for free
                 </p>
               </div>
               <div
-                class="c43"
+                class="c44"
               >
                 <div>
                   <span
-                    class="c44"
+                    class="c45"
                     size="60"
                   >
                     <span
-                      class="icon c45"
+                      class="icon c46"
                       size="60"
                     >
                       <svg
                         aria-labelledby="title"
-                        class="balance c32"
+                        class="balance c47"
                         clip-rule="evenodd"
                         fill-rule="evenodd"
                         preserveAspectRatio="xMidYMid meet"
@@ -3584,26 +3597,26 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                   </span>
                 </div>
                 <p
-                  class="c22 c46"
+                  class="c22 c48"
                 >
                   We negotiate Group Discounts
                 </p>
               </div>
               <div
-                class="c43"
+                class="c44"
               >
                 <div>
                   <span
-                    class="c44"
+                    class="c45"
                     size="60"
                   >
                     <span
-                      class="icon c45"
+                      class="icon c46"
                       size="60"
                     >
                       <svg
                         aria-labelledby="title"
-                        class="hands-shake-2 c32"
+                        class="hands-shake-2 c47"
                         clip-rule="evenodd"
                         fill-rule="evenodd"
                         preserveAspectRatio="xMidYMid meet"
@@ -3712,7 +3725,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
                   </span>
                 </div>
                 <p
-                  class="c22 c46"
+                  class="c22 c48"
                 >
                   You decide what’s right for you
                 </p>
@@ -3721,7 +3734,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
           </div>
         </div>
         <p
-          class="c36 c22 c48"
+          class="c37 c22 c50"
         >
           * disclaimer text
         </p>
@@ -3729,19 +3742,19 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
     </div>
   </div>
   <div
-    class="c49 c50"
+    class="c51 c52"
   >
     <div
-      class="c51 c52"
+      class="c53 c54"
     >
       <div
-        class="c53 c54"
+        class="c55 c56"
       >
         <div
-          class="c3 c55"
+          class="c3 c57"
         >
           <div
-            class="c4 c55"
+            class="c4 c57"
           >
             <img
               alt="logo"
@@ -3752,7 +3765,7 @@ exports[`<HybridLoginView /> matches expected output 1`] = `
         </div>
       </div>
       <p
-        class="c56 c57"
+        class="c58 c59"
       >
         © 2019 RevTech Media
       </p>

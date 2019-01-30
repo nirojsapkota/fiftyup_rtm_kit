@@ -23,21 +23,16 @@ const StyledInput = styled.input`
 const Error = styled(Paragraph)`
   text-align: center;
   color: ${props => getColor('error', props.theme)};
-  * > span > svg {
-    fill: ${props => getColor('error', props.theme)};
-    padding-top: 2px;
-  }
+`;
+
+const ButtonIConWrapper = styled(Box)`
+  margin-top: -3px;
 `;
 
 const ButtonWrapper = styled(Box)`
   text-align: center;
   div {
     background: none;
-  }
-
-  * > svg {
-    margin-top: -2px;
-    fill: ${props => getColor('inverseText', props.theme)};
   }
 `;
 
@@ -169,13 +164,22 @@ class LoginForm extends React.Component {
               <ButtonWrapper py={[2, 2, 3, 4]}>
                 <Button type="submit" disabled={isSubmitting} track="signin">
                   {buttonText}
-                  {buttonIcon && <Icon inline glyph={buttonIcon} size={20} />}
+                  {buttonIcon && (
+                    <ButtonIConWrapper>
+                      <Icon
+                        fill="inverseText"
+                        inline
+                        glyph={buttonIcon}
+                        size={20}
+                      />
+                    </ButtonIConWrapper>
+                  )}
                 </Button>
                 {errors && (
                   <Box pt={2}>
                     {errors.map(error => (
                       <Error key={error}>
-                        <Icon glyph="error" size={20} /> {error}
+                        <Icon fill="error" glyph="error" size={20} /> {error}
                       </Error>
                     ))}
                   </Box>
