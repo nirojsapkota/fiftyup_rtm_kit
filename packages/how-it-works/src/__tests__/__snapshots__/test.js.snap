@@ -8,19 +8,23 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
 
 .c3 {
   box-sizing: border-box;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 8px;
   background: #FFF;
 }
 
-.c10 {
+.c7 {
+  box-sizing: border-box;
+  background: #2d9dd6;
+}
+
+.c12 {
   box-sizing: border-box;
   padding-left: 8px;
   padding-right: 8px;
   background: #FFF;
 }
 
-.c8 {
+.c10 {
   position: absolute;
   top: 0;
   right: 0;
@@ -29,19 +33,19 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   height: 100%;
   width: 100%;
   color: inherit;
-  fill: #565656;
+  fill: #FFF;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
-.c7 {
-  -webkit-flex: 0 0 60px;
-  -ms-flex: 0 0 60px;
-  flex: 0 0 60px;
-  width: 60px;
-  height: 60px;
-  min-width: 60px;
-  min-height: 60px;
+.c9 {
+  -webkit-flex: 0 0 80px;
+  -ms-flex: 0 0 80px;
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   position: absolute;
   top: 0;
   right: 0;
@@ -50,12 +54,12 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   color: inherit;
 }
 
-.c6 {
+.c8 {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .c2 {
@@ -67,7 +71,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   font-size: 16px;
 }
 
-.c9 {
+.c11 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -78,11 +82,15 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
 
 .c0 {
   background: inherit;
-  padding: 0px 10px;
+  padding: 0px 20px;
 }
 
 .c0 * {
   background: inherit;
+}
+
+.c6 svg {
+  fill: #2d9dd6;
 }
 
 .c4 {
@@ -93,12 +101,17 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  padding-top: 20px;
 }
 
 .c5 {
   padding: 8px;
   position: relative;
   text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .c5:after {
@@ -122,6 +135,11 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
   display: none;
 }
 
+.c5 > p {
+  text-align: center;
+  padding-top: 5px;
+}
+
 @media (min-width:32em) {
   .c2 {
     font-size: 16px;
@@ -141,50 +159,38 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
 }
 
 @media (min-width:32em) {
-  .c9 {
+  .c11 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
-  .c9 {
+  .c11 {
     font-size: 16px;
   }
 }
 
 @media (min-width:76em) {
-  .c9 {
+  .c11 {
     font-size: 16px;
   }
 }
 
 @media (min-width:46em) {
   .c0 {
-    padding: 0px 15px;
+    padding: 0px 30px;
     margin-right: 10px;
   }
 }
 
 @media (min-width:46em) {
   .c4 {
+    padding-top: 30px;
     display: inline-block;
     -webkit-flex-direction: unset;
     -ms-flex-direction: unset;
     flex-direction: unset;
     width: 100%;
-  }
-}
-
-@media (min-width:46em) {
-  .c5:last-child {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    padding: 0px;
-  }
-
-  .c5:last-child > p {
-    text-align: left;
   }
 }
 
@@ -204,6 +210,10 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
     align-items: center;
   }
 
+  .c5 > p {
+    padding-right: 20px;
+  }
+
   .c5:after {
     position: absolute;
     width: 0;
@@ -219,8 +229,38 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
     border-top: 16px solid #083d87;
   }
 
-  .c5:first-child {
+  .c5:first-child,
+  .c5:last-child {
     padding-left: 0px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .c5:first-child > p,
+  .c5:last-child > p {
+    padding-left: 20px;
+    padding-right: 0px;
+  }
+}
+
+@media (min-width:76em) {
+  .c5 > p {
+    padding-right: 40px;
+  }
+
+  .c5:first-child,
+  .c5:last-child {
+    padding-left: 0px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .c5:first-child > p,
+  .c5:last-child > p {
+    padding-left: 40px;
+    padding-right: 0px;
   }
 }
 
@@ -231,7 +271,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
     <h6
       class="c2 c3"
     >
-      One Big Switch takes the stress out of getting value on your household bills by doing the neogtiating for you!
+      One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!
     </h6>
     <div
       class="c4 c1"
@@ -239,18 +279,20 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
       <div
         class="c5"
       >
-        <div>
+        <div
+          class="c6 c7"
+        >
           <span
-            class="c6"
-            size="60"
+            class="c8"
+            size="80"
           >
             <span
-              class="icon c7"
-              size="60"
+              class="icon c9"
+              size="80"
             >
               <svg
                 aria-labelledby="title"
-                class="user-help c8"
+                class="user-help c10"
                 clip-rule="evenodd"
                 fill-rule="evenodd"
                 preserveAspectRatio="xMidYMid meet"
@@ -300,7 +342,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
           </span>
         </div>
         <p
-          class="c9 c10"
+          class="c11 c12"
         >
           You join the movement for free
         </p>
@@ -308,18 +350,20 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
       <div
         class="c5"
       >
-        <div>
+        <div
+          class="c6 c7"
+        >
           <span
-            class="c6"
-            size="60"
+            class="c8"
+            size="80"
           >
             <span
-              class="icon c7"
-              size="60"
+              class="icon c9"
+              size="80"
             >
               <svg
                 aria-labelledby="title"
-                class="balance c8"
+                class="balance c10"
                 clip-rule="evenodd"
                 fill-rule="evenodd"
                 preserveAspectRatio="xMidYMid meet"
@@ -609,7 +653,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
           </span>
         </div>
         <p
-          class="c9 c10"
+          class="c11 c12"
         >
           We negotiate Group Discounts
         </p>
@@ -617,18 +661,20 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
       <div
         class="c5"
       >
-        <div>
+        <div
+          class="c6 c7"
+        >
           <span
-            class="c6"
-            size="60"
+            class="c8"
+            size="80"
           >
             <span
-              class="icon c7"
-              size="60"
+              class="icon c9"
+              size="80"
             >
               <svg
                 aria-labelledby="title"
-                class="hands-shake-2 c8"
+                class="hands-shake-2 c10"
                 clip-rule="evenodd"
                 fill-rule="evenodd"
                 preserveAspectRatio="xMidYMid meet"
@@ -737,7 +783,7 @@ exports[`<HowItWork /> matches expected default content for obs 1`] = `
           </span>
         </div>
         <p
-          class="c9 c10"
+          class="c11 c12"
         >
           You decide what’s right for you
         </p>
