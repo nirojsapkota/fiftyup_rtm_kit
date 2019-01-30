@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@3.0.4...@rtm-ui/bootstrap@3.0.5) (2019-01-30)
+
+**Note:** Version bump only for package @rtm-ui/bootstrap
+
+
+
+
+
+## [3.0.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@3.0.3...@rtm-ui/bootstrap@3.0.4) (2019-01-25)
+
+
+### Bug Fixes
+
+* **bootstrap:** remove unnecessary default brand value. ([a396c5b](https://github.com/OBSAU/rtm-kit/commit/a396c5b))
+
+
+
+
+
 ## [3.0.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@3.0.2...@rtm-ui/bootstrap@3.0.3) (2019-01-23)
 
 **Note:** Version bump only for package @rtm-ui/bootstrap
