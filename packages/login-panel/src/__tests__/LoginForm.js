@@ -9,8 +9,6 @@ import {
   wait,
   // eslint-disable-next-line import/named
   cleanup,
-  // eslint-disable-next-line import/named
-  waitForDomChange,
 } from '../../../bootstrap/setup/testSetup';
 import LoginForm from '../LoginForm';
 import loginPanelProps from '../__fixtures__/loginPanel';
@@ -377,13 +375,10 @@ describe('<LoginForm />', () => {
         }
       );
 
-      await waitForDomChange(
-        () => {
-          expect(container).toHaveTextContent(data[0]);
-          expect(container).toHaveTextContent(data[1]);
-        },
-        { container }
-      );
+      await await (() => {
+        expect(container).toHaveTextContent(data[0]);
+        expect(container).toHaveTextContent(data[1]);
+      });
     });
 
     it('Input change when select value in autocomplete', async () => {
@@ -400,16 +395,13 @@ describe('<LoginForm />', () => {
         target: { value: '5000' },
       });
       fireEvent.click(postcode);
-      await waitForDomChange(
-        () => {
-          expect(container).toHaveTextContent(data[0]);
-          expect(container).toHaveTextContent(data[1]);
-          const selected = getByText(data[0]);
-          fireEvent.click(selected);
-          expect(postcode.value).toEqual(data[0]);
-        },
-        { container }
-      );
+      await await (() => {
+        expect(container).toHaveTextContent(data[0]);
+        expect(container).toHaveTextContent(data[1]);
+        const selected = getByText(data[0]);
+        fireEvent.click(selected);
+        expect(postcode.value).toEqual(data[0]);
+      });
     });
 
     it('Error when get value in autocomplete', async () => {
