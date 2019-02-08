@@ -32,7 +32,7 @@ export const RadioInput = props => {
       <InvisibleInput
         type="radio"
         id={props.id}
-        data-testId={props.id}
+        data-testid={props.id}
         disabled={props.disabled}
         defaultChecked={props.selected}
         onClick={props.onClick}

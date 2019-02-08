@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from './form';
 
-const passThruStep = async values => values;
+const passThruStep = async values => {
+  values;
+};
 
 class StepForm extends React.Component {
   state = {
@@ -57,7 +59,6 @@ class StepForm extends React.Component {
         });
       })
       .catch(err => {
-        console.log('catch', err);
         this.setState(prevState => {
           return {
             formErrors: {
@@ -72,7 +73,6 @@ class StepForm extends React.Component {
         });
       })
       .finally(() => {
-        console.log('finally');
         actions.setSubmitting(false);
 
         this.calculateNextStep();

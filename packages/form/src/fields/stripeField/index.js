@@ -31,10 +31,10 @@ class Card extends React.Component {
     complete: false,
   };
 
-  getStripeToken = async () => {
+  getStripeToken = () => {
     this.props.setFieldError(this.props.name, null);
     // TODO: grab the username or id and use it here
-    this.props.stripe.createToken({ name: 'Jenny Rosen' }).then(({ token }) => {
+    this.props.stripe.createToken({ name: 'Some User' }).then(({ token }) => {
       this.props.onWaiting();
 
       this.props.setFieldValue(this.props.name, token.id);
@@ -101,9 +101,8 @@ Card.propTypes = {
   setFieldError: PropTypes.func,
   setFieldValue: PropTypes.func,
   onBlur: PropTypes.func,
-  stripe: PropTypes.objectOf({
-    createToken: PropTypes.func,
-  }),
+  // eslint-disable-next-line react/forbid-prop-types
+  stripe: PropTypes.object,
 };
 
 export default StripeField;

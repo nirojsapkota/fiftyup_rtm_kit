@@ -9,16 +9,19 @@ const StyledInput = styled(MaskedInput)`
   ${inputStyle};
 `;
 
-const NumberField = ({ mask, ...rest }) => (
-  <div>
-    <StyledInput
-      mask={maskPatterns[mask]}
-      pipe={pipes[mask]}
-      guide={false}
-      {...rest}
-    />
-  </div>
-);
+const NumberField = ({ mask, ...rest }) => {
+  const { setFieldValue, setFieldError, setFieldTouched, ...inputProps } = rest;
+  return (
+    <div>
+      <StyledInput
+        mask={maskPatterns[mask]}
+        pipe={pipes[mask]}
+        guide={false}
+        {...inputProps}
+      />
+    </div>
+  );
+};
 
 NumberField.propTypes = {
   autoComplete: PropTypes.string,

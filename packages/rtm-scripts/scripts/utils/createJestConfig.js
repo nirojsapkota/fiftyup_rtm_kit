@@ -24,9 +24,9 @@ module.exports = (resolve, rootDir, isEjecting) => {
     coverageThreshold: {
       global: {
         branches: 80,
-        functions: 95,
+        functions: 90,
         lines: 90,
-        statements: 95,
+        statements: 90,
       },
     },
 

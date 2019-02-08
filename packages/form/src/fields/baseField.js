@@ -1,20 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import { Paragraph, Label } from '@rtm-ui/typography';
+import { Paragraph } from '@rtm-ui/typography';
 import Icon from '@rtm-ui/icon';
 import RadioField from './radioField';
 import TextField from './textField';
 import NumberField from './numberField';
 import StripeField from './stripeField';
-import AddressField from './addressField';
-import DateField from './dateField';
+
+const Label = styled.label``;
 
 export const fieldTypes = {
   radio: RadioField,
-  stripe_payment: StripeField,
-  datepicker: DateField,
-  addressSearch: AddressField,
+  paymentField: StripeField,
   text: TextField,
   password: TextField,
   tel: NumberField,
@@ -72,12 +70,8 @@ export default class BaseField extends React.Component {
         : props.type === 'paymentField'
           ? StripeField
           : props.mask !== undefined
-            ? props.type === 'datepicker'
-              ? DateField
-              : NumberField
-            : props.type === 'addressSearch'
-              ? AddressField
-              : TextField;
+            ? NumberField
+            : TextField;
 
     return (
       <Container mb={10}>

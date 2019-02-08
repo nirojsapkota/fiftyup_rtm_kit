@@ -3,6 +3,18 @@ import React from 'react';
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import Form from '../index';
 
+class HandlerError extends Error {
+  constructor(object, ...params) {
+    super(...params);
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, HandlerError);
+    }
+
+    this.object = object;
+  }
+}
+
 const validFields = [
   {
     label: 'First Name:',
@@ -14,10 +26,8 @@ const validFields = [
   {
     label: 'My Zipcode:',
     name: 'zipcode',
-    type: 'addressSearch',
+    type: 'text',
     validator: 'zipcode',
-    apiService: 'zipcode',
-    shouldMock: true,
     initialValue: '75000',
   },
   {
@@ -57,7 +67,7 @@ const validFields = [
     mask: 'phoneUS',
     validator: 'mask',
     validatorArgs: ['phoneUS', 'Phone Number'],
-    initialValue: '+1 (234) 213-4233',
+    initialValue: '+11232134233',
   },
   {
     label: 'Date of Birth:',
@@ -65,7 +75,7 @@ const validFields = [
     placeholder: 'MM/DD/YY',
     hint: 'MM/DD/YY',
     name: 'dob',
-    type: 'datepicker',
+    type: 'text',
     mask: 'dateUS',
     validator: 'mask',
     validatorArgs: ['dateUS'],
@@ -88,7 +98,7 @@ describe('<Form />', () => {
       });
 
       const { getByText } = render(
-        <Form onSubmit={onSubmit} fields={fields} />
+        <Form formId="test-id" onSubmit={onSubmit} fields={fields} />
       );
 
       const submit = getByText(/get started/i);
@@ -101,10 +111,15 @@ describe('<Form />', () => {
   });
 
   it("doesn't allow invalid inputs", async () => {
-    const onSubmit = jest.fn();
+    const onSubmit = jest.fn(() => {
+      throw new HandlerError({
+        formError: 'There was an issue',
+        fieldErrors: { email: 'Meeeeh' },
+      });
+    });
 
     const { getByLabelText, getByText } = render(
-      <Form onSubmit={onSubmit} fields={validFields} />
+      <Form submitIcon="check" onSubmit={onSubmit} fields={validFields} />
     );
 
     const email = getByLabelText(/my email/i);
@@ -122,5 +137,14 @@ describe('<Form />', () => {
     await wait(() => {
       expect(onSubmit).not.toHaveBeenCalled();
     });
+
+    await wait(() => {
+      fireEvent.change(email, {
+        target: { value: 'user@example.com' },
+      });
+      fireEvent.click(submit);
+    });
+
+    await wait(() => {});
   });
 });

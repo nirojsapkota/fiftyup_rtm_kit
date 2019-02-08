@@ -1,78 +1,85 @@
 import React from 'react';
 // eslint-disable-next-line import/named
-import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
+import {
+  render,
+  fireEvent,
+  wait,
+  cleanup,
+} from '../../../bootstrap/setup/testSetup';
 import StepForm from '../stepForm';
+
+class HandlerError extends Error {
+  constructor(object, ...params) {
+    super(...params);
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, HandlerError);
+    }
+
+    this.object = object;
+  }
+}
+
+beforeAll(() => {
+  spyOn(global, 'scrollTo');
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
+  cleanup;
+});
+
+const onSubmit = jest.fn(async () => {});
 
 export const inputs = {
   steps: [
     {
+      id: 'first',
+      onSubmit: onSubmit,
       fields: [
         {
           label: 'First Name:',
           error: 'Name must be at least 6 characters',
           name: 'first_name',
           validator: 'required',
-          initialValue: 'User',
+          initialValue: '',
         },
+      ],
+    },
+    {
+      id: 'last',
+      fields: [
         {
-          label: 'My Zipcode:',
-          name: 'zipcode',
-          type: 'addressSearch',
-          validator: 'zipcode',
-          apiService: 'zipcode',
-          shouldMock: true,
-          initialValue: '75000',
+          label: 'Last Name:',
+          error: 'Name must be at least 6 characters',
+          name: 'last_name',
+          validator: 'required',
+          initialValue: '',
         },
+      ],
+    },
+    {
+      id: 'random',
+      onSubmit: async () => {
+        throw new HandlerError({ random: 'Meh' });
+      },
+      fields: [
         {
-          label: 'My Email:',
+          label: 'Random',
+          error: 'Some random error',
+          name: 'random',
+          validator: 'required',
+        },
+      ],
+    },
+    {
+      id: 'email',
+      fields: [
+        {
+          label: 'Email',
+          error: 'Must be a valid email',
           name: 'email',
-          validator: 'email',
-          initialValue: 'user@example.com',
-        },
-        {
-          label: 'How would you like to be billed?',
-          error: 'Please select an option',
-          name: 'billing_period',
-          value: 'year',
-          validator: 'requiredRadio',
-          type: 'radio',
-          options: [
-            { label: '$90/year (Best Value)', value: 'year' },
-            { label: '$10/month', value: 'month' },
-          ],
-          initialValue: 'month',
-        },
-        {
-          label: 'Social Security Number:',
-          error: 'Must be 9 digits',
-          placeholder: '  -  -    ',
-          mask: 'ssn',
-          validator: 'mask',
-          validatorArgs: ['ssn'],
-          name: 'ssn',
-          initialValue: '123-45-6789',
-        },
-        {
-          label: 'Phone Number:',
-          hint: 'Please follow the format provided (US numbers only)',
-          name: 'phone_number',
-          type: 'tel',
-          mask: 'phoneUS',
-          validator: 'mask',
-          validatorArgs: ['phoneUS', 'Phone Number'],
-          initialValue: '+1 (234) 213-4233',
-        },
-        {
-          label: 'Date of Birth:',
-          error: 'Invalid date format',
-          placeholder: 'MM/DD/YY',
-          hint: 'MM/DD/YY',
-          name: 'dob',
-          type: 'datepicker',
-          mask: 'dateUS',
-          validator: 'mask',
-          validatorArgs: ['dateUS'],
-          initialValue: '02/02/1999',
+          validator: 'required',
         },
       ],
     },
@@ -82,13 +89,33 @@ export const inputs = {
 // since testing of fields is done elsewhere
 describe('<Form />', () => {
   describe('with valid fields', () => {
-    it('calls the onSubmit handler', async () => {
-      const onSubmit = jest.fn();
+    it.only('calls the onSubmit handler', async () => {
+      const { getByTestId, getByLabelText } = render(<StepForm {...inputs} />);
 
-      const { getByText } = render(<StepForm {...inputs} />);
+      const firstName = getByLabelText(/first name/i);
+      fireEvent.change(firstName, {
+        target: { value: 'John' },
+      });
+      const firstSubmit = getByTestId('form-first-submit');
+      fireEvent.click(firstSubmit);
 
-      const submit = getByText(/get started/i);
-      fireEvent.click(submit);
+      await wait(() => {
+        const lastName = getByLabelText(/last name/i);
+        fireEvent.change(lastName, {
+          target: { value: 'Doe' },
+        });
+        const secondSubmit = getByTestId('form-last-submit');
+        fireEvent.click(secondSubmit);
+      });
+
+      await wait(() => {
+        const randomField = getByLabelText(/random/i);
+        fireEvent.change(randomField, {
+          target: { value: 'Something random' },
+        });
+        const thirdSubmit = getByTestId('form-random-submit');
+        fireEvent.click(thirdSubmit);
+      });
 
       await wait(() => {
         expect(onSubmit).toHaveBeenCalled();
@@ -97,16 +124,10 @@ describe('<Form />', () => {
   });
 
   it("doesn't allow invalid inputs", async () => {
-    const onSubmit = jest.fn();
-
     const { getByLabelText, getByText } = render(<StepForm {...inputs} />);
 
-    const email = getByLabelText(/my email/i);
-    fireEvent.change(email, {
-      target: { value: 'user' },
-    });
-    const postcode = getByLabelText(/my zipcode/i);
-    fireEvent.change(postcode, {
+    const name = getByLabelText(/first name/i);
+    fireEvent.change(name, {
       target: { value: '' },
     });
 

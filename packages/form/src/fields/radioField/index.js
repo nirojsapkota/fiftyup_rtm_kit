@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import { Label } from '@rtm-ui/typography';
+import { Paragraph } from '@rtm-ui/typography';
 import { RadioInput } from './radioInput';
 
-const StyledLabel = styled(Label)`
+const StyledLabel = styled.label`
   cursor: pointer;
 `;
 
