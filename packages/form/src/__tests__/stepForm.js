@@ -23,15 +23,15 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const onSubmit = async values => {
+const onSubmit = jest.fn(async values => {
   return values;
-};
+});
 
 export const inputs = {
   steps: [
     {
       id: 'first',
-      onSubmit,
+      // onSubmit,
       fields: [
         {
           label: 'First Name:',
@@ -56,9 +56,9 @@ export const inputs = {
     },
     {
       id: 'random',
-      onSubmit: async () => {
-        throw new HandlerError({ random: 'Meh' });
-      },
+      // onSubmit: async () => {
+      //   throw new HandlerError({ random: 'Meh' });
+      // },
       fields: [
         {
           label: 'Random',
