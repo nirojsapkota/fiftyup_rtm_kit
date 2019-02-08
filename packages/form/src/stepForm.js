@@ -38,7 +38,7 @@ class StepForm extends React.Component {
     options = {},
     formId
   ) => {
-    console.log('callback ->', callback, typeof callback);
+    callback('hi').then(res => console.log('result', res));
     await callback(values, { ...options, ...this.state.values })
       .then(res => {
         this.setState(prevState => {
