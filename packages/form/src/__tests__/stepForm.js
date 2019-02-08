@@ -23,15 +23,13 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const onSubmit = jest.fn(async values => {
-  return values;
-});
+const onSubmit = jest.fn(async () => {});
 
 export const inputs = {
   steps: [
     {
       id: 'first',
-      // onSubmit,
+      onSubmit,
       fields: [
         {
           label: 'First Name:',
@@ -56,9 +54,9 @@ export const inputs = {
     },
     {
       id: 'random',
-      // onSubmit: async () => {
-      //   throw new HandlerError({ random: 'Meh' });
-      // },
+      onSubmit: async () => {
+        throw new HandlerError({ random: 'Meh' });
+      },
       fields: [
         {
           label: 'Random',
@@ -114,7 +112,7 @@ describe('<Form />', () => {
       });
 
       await wait(() => {
-        // expect(onSubmit).toHaveBeenCalled();
+        expect(onSubmit).toHaveBeenCalled();
       });
     });
   });
@@ -131,7 +129,7 @@ describe('<Form />', () => {
     fireEvent.click(submit);
 
     await wait(() => {
-      // expect(onSubmit).not.toHaveBeenCalled();
+      expect(onSubmit).not.toHaveBeenCalled();
     });
   });
 });
