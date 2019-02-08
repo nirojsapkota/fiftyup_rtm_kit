@@ -1,11 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line import/named
-import {
-  render,
-  fireEvent,
-  wait,
-  cleanup,
-} from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import StepForm from '../stepForm';
 
 class HandlerError extends Error {
@@ -26,7 +21,6 @@ beforeAll(() => {
 
 afterEach(() => {
   jest.clearAllMocks();
-  cleanup;
 });
 
 const onSubmit = jest.fn(async () => {});
@@ -89,7 +83,7 @@ export const inputs = {
 // since testing of fields is done elsewhere
 describe('<Form />', () => {
   describe('with valid fields', () => {
-    it.only('calls the onSubmit handler', async () => {
+    it('calls the onSubmit handler', async () => {
       const { getByTestId, getByLabelText } = render(<StepForm {...inputs} />);
 
       const firstName = getByLabelText(/first name/i);
