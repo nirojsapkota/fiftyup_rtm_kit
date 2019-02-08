@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Form from './form';
 
 const passThruStep = async values => {
-  values;
+  return values;
 };
 
 class StepForm extends React.Component {

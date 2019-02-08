@@ -23,13 +23,15 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const onSubmit = jest.fn(async () => {});
+const onSubmit = jest.fn(async values => {
+  return values;
+});
 
 export const inputs = {
   steps: [
     {
       id: 'first',
-      onSubmit: onSubmit,
+      onSubmit,
       fields: [
         {
           label: 'First Name:',
