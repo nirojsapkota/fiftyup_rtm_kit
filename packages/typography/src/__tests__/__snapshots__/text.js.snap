@@ -125,3 +125,45 @@ exports[`<Text /> matches expected output 3`] = `
   Hello, World!
 </small>
 `;
+
+exports[`<Text /> matches expected output 4`] = `
+.c1 {
+  box-sizing: border-box;
+  padding: 10px;
+  background: #1566ad;
+}
+
+.c0 {
+  font-family: MuseoSans;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #565656;
+  font-size: 12px;
+}
+
+@media (min-width:32em) {
+  .c0 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:46em) {
+  .c0 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:76em) {
+  .c0 {
+    font-size: 12px;
+  }
+}
+
+<label
+  class="c0 c1"
+  title="testing"
+>
+  Hello, World!
+</label>
+`;

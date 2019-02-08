@@ -41,6 +41,7 @@ const inputOptions = {
     }),
     babel({
       presets: ['@babel/react'],
+      plugins: ['@babel/plugin-proposal-class-properties'],
       exclude: 'node_modules/**',
     }),
     commonjs({
