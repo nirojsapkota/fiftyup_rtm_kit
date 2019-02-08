@@ -7,7 +7,9 @@
   "rtmRollup": {
     "namespace": "form",
     "defaultExport": "Form",
-    "namedExports": []
+    "namedExports": [
+      "StepForm"
+    ]
   },
   "main": "build/main.js",
   "module": "build/module.js",
