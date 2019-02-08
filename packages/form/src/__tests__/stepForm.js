@@ -23,7 +23,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const onSubmit = async values => values;
+const onSubmit = jest.fn(values => new Promise(resolve => resolve(values)));
 
 export const inputs = {
   steps: [
@@ -111,8 +111,8 @@ describe('<Form />', () => {
         fireEvent.click(thirdSubmit);
       });
 
-      await wait(async () => {
-        // await expect(onSubmit).toHaveBeenCalled();
+      await wait(() => {
+        expect(onSubmit).toHaveBeenCalled();
       });
     });
   });
@@ -129,7 +129,7 @@ describe('<Form />', () => {
     fireEvent.click(submit);
 
     await wait(() => {
-      // expect(onSubmit).not.toHaveBeenCalled();
+      expect(onSubmit).not.toHaveBeenCalled();
     });
   });
 });
