@@ -38,6 +38,11 @@ class StepForm extends React.Component {
     options = {},
     formId
   ) => {
+    // TODO: somehow not passing in a promise here in
+    // codepipeline only
+    // callback(values, { ...options, ...this.state.values })
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log('err', err));
     await callback(values, { ...options, ...this.state.values })
       .then(res => {
         this.setState(prevState => {
