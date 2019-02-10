@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/entity",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Description for entity",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -24,6 +24,6 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^4.0.0"
+    "@rtm-ui/rtm-scripts": "^4.0.1"
   }
 }
