@@ -64,6 +64,7 @@ class StepForm extends React.Component {
         });
       })
       .catch(err => {
+        console.log('hii', err);
         this.setState(prevState => {
           return {
             formErrors: {

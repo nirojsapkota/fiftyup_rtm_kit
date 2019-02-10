@@ -21,5 +21,4 @@ phases:
       - lerna bootstrap --no-ci --hoist
   build:
     commands:
-      - ls packages/form/src
       - npm run test

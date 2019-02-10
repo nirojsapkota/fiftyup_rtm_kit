@@ -58,7 +58,7 @@ const sizeChart = [
   },
   {
     element: 'label',
-    sizes: [12, 12, 12, 12],
+    sizes: [14, 14, 14, 14],
   },
 ];
 
