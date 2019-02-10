@@ -56,9 +56,6 @@ class StepForm extends React.Component {
             JSON.stringify(values, 0, 2)
           );
 
-          actions.setSubmitting(false);
-
-          this.calculateNextStep();
           return {
             values,
             errors: {},
@@ -79,6 +76,8 @@ class StepForm extends React.Component {
             },
           };
         });
+      })
+      .then(() => {
         actions.setSubmitting(false);
 
         this.calculateNextStep();

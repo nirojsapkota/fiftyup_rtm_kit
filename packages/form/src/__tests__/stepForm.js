@@ -53,15 +53,11 @@ export const inputs = {
       ],
     },
     {
-      id: 'random',
-      onSubmit: async () => {
-        throw new HandlerError({ random: 'Meh' });
-      },
+      id: 'step-with-no-handler',
       fields: [
         {
-          label: 'Random',
-          error: 'Some random error',
-          name: 'random',
+          label: 'Zipcode',
+          name: 'zipcode',
           validator: 'required',
         },
       ],
@@ -73,6 +69,20 @@ export const inputs = {
           label: 'Email',
           error: 'Must be a valid email',
           name: 'email',
+          validator: 'required',
+        },
+      ],
+    },
+    {
+      id: 'random',
+      onSubmit: async () => {
+        throw new HandlerError({ random: 'Meh' });
+      },
+      fields: [
+        {
+          label: 'Random',
+          error: 'Some random error',
+          name: 'random',
           validator: 'required',
         },
       ],
