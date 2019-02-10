@@ -5,15 +5,13 @@ menu: Packages
 ---
 
 import { Playground } from 'docz'
-import Form from './src'
+import { inputs } from './sampleInputs'
+import StepForm from './src/stepForm'
 
 # Form
 
 ## Basic usage
 
 <Playground>
-  <Form onSubmit={(values, { setSubmitting}) => {
-    setSubmitting(false)
-    console.log('Yep', values)}
-  }>Hello, World!</Form>
+  <StepForm {...inputs} />
 </Playground>
