@@ -139,24 +139,24 @@ exports[`<Text /> matches expected output 4`] = `
   line-height: 1.2;
   text-align: left;
   color: #565656;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 @media (min-width:32em) {
   .c0 {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
 @media (min-width:46em) {
   .c0 {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
 @media (min-width:76em) {
   .c0 {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
