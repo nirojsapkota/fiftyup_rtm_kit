@@ -4,18 +4,15 @@ exports[`<Footer /> render custom logo 1`] = `
 .c1 {
   box-sizing: border-box;
   margin: auto;
-  background: #FFF;
 }
 
 .c3 {
   box-sizing: border-box;
   padding-left: 4px;
-  background: #FFF;
 }
 
 .c5 {
   box-sizing: border-box;
-  background: #1566ad;
 }
 
 .c9 {
@@ -24,7 +21,6 @@ exports[`<Footer /> render custom logo 1`] = `
   margin-top: auto;
   margin-bottom: auto;
   padding-right: 4px;
-  background: #FFF;
 }
 
 .c8 {

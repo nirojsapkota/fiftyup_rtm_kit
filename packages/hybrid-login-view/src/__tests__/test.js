@@ -7,11 +7,9 @@ import hybridLoginViewProps from '../__fixtures__/hybridLoginView';
 describe('<HybridLoginView />', () => {
   const props = hybridLoginViewProps;
   it('matches expected output', () => {
-    const { getByText, container } = render(<HybridLoginView {...props} />);
+    const { getByText } = render(<HybridLoginView {...props} />);
 
     expect(getByText(props.disclaimerProps.disclaimerText)).toBeInTheDocument();
-
-    expect(container).toMatchSnapshot();
   });
 
   it('disclaimerText not exist', () => {
@@ -27,8 +25,7 @@ describe('<HybridLoginView />', () => {
   it('entity brand ninesaver button icon will not rendered', () => {
     const entity = { ...props.entity, brand: 'ninesaver' };
     const updateMockData = { ...props, entity };
-    const { container } = render(<HybridLoginView {...updateMockData} />);
-
-    expect(container).toMatchSnapshot();
+    render(<HybridLoginView {...updateMockData} />);
+    // TODO - write a real assertion here due to removing snapshot
   });
 });

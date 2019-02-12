@@ -13,33 +13,28 @@ exports[`<LoginPanel /> matches expected output 1`] = `
 .c4 {
   box-sizing: border-box;
   padding-top: 8px;
-  background: #FFF;
 }
 
 .c5 {
   box-sizing: border-box;
   padding-bottom: 8px;
   padding-top: 8px;
-  background: #FFF;
 }
 
 .c7 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
-  background: #FFF;
 }
 
 .c10 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
-  background: #FFF;
 }
 
 .c13 {
   box-sizing: border-box;
-  background: #FFF;
 }
 
 .c1 {

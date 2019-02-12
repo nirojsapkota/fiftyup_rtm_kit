@@ -3,13 +3,11 @@
 exports[`<Header /> render custom logo 1`] = `
 .c1 {
   box-sizing: border-box;
-  background: #FFF;
 }
 
 .c2 {
   box-sizing: border-box;
   margin: auto;
-  background: #FFF;
 }
 
 .c3 {

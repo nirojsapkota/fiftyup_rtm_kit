@@ -5,13 +5,15 @@ import { Box as GridBox } from '@rebass/grid';
 import Variant, { backgroundStyle } from '@rtm-ui/theme';
 
 const Wrapper = styled(GridBox)`
-  ${backgroundStyle};
+  ${props => props.showBackground && backgroundStyle};
 `;
 
 const Box = ({ children, variant, ...gridProps }) => {
   return variant ? (
     <Variant variant={variant}>
-      <Wrapper {...gridProps}>{children}</Wrapper>
+      <Wrapper showBackground {...gridProps}>
+        {children}
+      </Wrapper>
     </Variant>
   ) : (
     <Wrapper {...gridProps}>{children}</Wrapper>

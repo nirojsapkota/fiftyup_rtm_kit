@@ -1,0 +1,33 @@
+---
+name: Hero
+route: /packages/hero
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Hero from './src'
+import { Box, Card } from '@rtm-ui/layout';
+import { Header, Paragraph } from '@rtm-ui/typography';
+import Icon from '@rtm-ui/icon';
+
+# Hero
+
+<Playground>
+  <Hero title="You have successfully signed up!" icon="thumbs-up">
+    <Header my={3} tag="h6" font="serif">
+      What happens next?
+    </Header>
+    <Paragraph>• We have sent you an email for your records</Paragraph>
+    <Paragraph>• You upload your most recent bill for analysis</Paragraph>
+    <Paragraph>
+      • We will find a better elelecticity deal for your specific needs
+    </Paragraph>
+    <Paragraph>
+      • We will Automatically switch you to a better deal
+    </Paragraph>
+    <Paragraph>• You Sit back and save!</Paragraph>
+    <Header my={3} tag="h6" font="serif">
+      Upload your most recent bill now:
+    </Header>
+  </Hero>
+</Playground>

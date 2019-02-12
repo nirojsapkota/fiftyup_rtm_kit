@@ -4,33 +4,28 @@ exports[`<LoginForm /> When <LoginForm /> enable Gdpr agreement. Render gdpr agr
 .c1 {
   box-sizing: border-box;
   padding-top: 8px;
-  background: #FFF;
 }
 
 .c2 {
   box-sizing: border-box;
   padding-bottom: 8px;
   padding-top: 8px;
-  background: #FFF;
 }
 
 .c4 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
-  background: #FFF;
 }
 
 .c7 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
-  background: #FFF;
 }
 
 .c10 {
   box-sizing: border-box;
-  background: #FFF;
 }
 
 .c0 {
