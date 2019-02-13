@@ -72,6 +72,10 @@ const HybridLoginView = ({
   entityBrand,
   ...props
 }) => {
+  const loginPanelProps = {
+    ...props,
+    buttonIcon: entityBrand !== 'ninesaver' ? 'view-forward' : '',
+  };
   return (
     <React.Fragment>
       <BodyWrapper>
@@ -82,10 +86,7 @@ const HybridLoginView = ({
           <MobileHide>
             <Column width={1 / 2}>
               <LoginPanelWrapper px={[10, 10, 15, 20]}>
-                <LoginPanel
-                  {...props}
-                  buttonIcon={entityBrand !== 'ninesaver' ? 'view-forward' : ''}
-                />
+                <LoginPanel {...loginPanelProps} />
               </LoginPanelWrapper>
               <StyledDisclaimer p={50}>
                 {disclaimerProps.disclaimerText || ''}
@@ -99,7 +100,7 @@ const HybridLoginView = ({
           </MobileHide>
           <MobileShow>
             <LoginPanelWrapper px={[10, 10, 15, 20]}>
-              <LoginPanel {...props} />
+              <LoginPanel {...loginPanelProps} />
             </LoginPanelWrapper>
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
               <HowItWorks {...howItWorksProps} entity={entityBrand} />
@@ -134,7 +135,8 @@ const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
   <Bootstrap trackingData={trackingData}>
     <EntityProvider entity={entity}>
       <EntityConsumer>
-        {({ brand, footer_items, header_items }) => { // eslint-disable-line camelcase
+        {({ brand, footer_items, header_items }) => {
+          // eslint-disable-line camelcase
           const footerLogoUrl = footer_items.logo; // eslint-disable-line camelcase
           const headerLogoUrl = header_items.logo; // eslint-disable-line camelcase
 

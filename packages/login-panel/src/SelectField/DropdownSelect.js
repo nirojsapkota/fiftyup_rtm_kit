@@ -19,19 +19,26 @@ const DropdownSelect = ({
   setFieldValue,
   ...props
 }) => {
+  const isNotEmpty = isArray(options) && options.length > 0;
   const inputElement = toggle => {
+    const handleClick = () => {
+      if (isNotEmpty) {
+        toggle();
+      }
+    };
+
     const inputElementProps = {
       ...props,
       ...field,
       ...inputEvents,
       // hideErrors: isOpen,
-      onClick: toggle,
+      onClick: handleClick,
       autoComplete: 'off',
     };
     return React.createElement(inputComponent, inputElementProps, null);
   };
 
-  return isArray(options) && options.length > 0 ? (
+  return (
     <Popover display="block" anchor={inputElement} {...popoverProps}>
       {toggle =>
         options.map(({ value, label }) => (
@@ -53,8 +60,6 @@ const DropdownSelect = ({
         ))
       }
     </Popover>
-  ) : (
-    inputElement()
   );
 };
 

@@ -27,13 +27,13 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   padding-bottom: 8px;
 }
 
-.c10 {
+.c12 {
   box-sizing: border-box;
   padding-top: 8px;
   padding-bottom: 8px;
 }
 
-.c13 {
+.c15 {
   box-sizing: border-box;
 }
 
@@ -66,7 +66,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   font-size: 16px;
 }
 
-.c18 {
+.c20 {
   font-family: MuseoSans;
   font-weight: 400;
   line-height: 1.2;
@@ -75,7 +75,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   font-size: 12px;
 }
 
-.c11 {
+.c13 {
   background: none;
   cursor: pointer;
   border: none;
@@ -123,17 +123,17 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   border-bottom-color: #e56209;
 }
 
-.c11:disabled {
+.c13:disabled {
   cursor: not-allowed;
 }
 
-.c11:hover,
-.c11:focus {
+.c13:hover,
+.c13:focus {
   background: #e56209;
   border-bottom-color: #ef8612;
 }
 
-.c16 {
+.c18 {
   position: absolute;
   top: 0;
   right: 0;
@@ -147,7 +147,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   transition: all 0.2s ease;
 }
 
-.c15 {
+.c17 {
   -webkit-flex: 0 0 20px;
   -ms-flex: 0 0 20px;
   flex: 0 0 20px;
@@ -163,7 +163,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   color: inherit;
 }
 
-.c14 {
+.c16 {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -176,7 +176,16 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   transform: translateY(-10px);
 }
 
-.c17 {
+.c8 {
+  position: relative;
+  display: block;
+}
+
+.c9 {
+  display: block;
+}
+
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -187,15 +196,15 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   background: inherit;
 }
 
-.c17 * {
+.c19 * {
   background: inherit;
 }
 
-.c19 {
+.c21 {
   padding-left: 5px;
 }
 
-.c8 {
+.c10 {
   padding: 8px 2px;
   font-size: 16px;
   border: none;
@@ -203,15 +212,15 @@ exports[`<LoginPanel /> matches expected output 1`] = `
   width: 100%;
 }
 
-.c12 {
+.c14 {
   margin-top: -3px;
 }
 
-.c9 {
+.c11 {
   text-align: center;
 }
 
-.c9 div {
+.c11 div {
   background: none;
 }
 
@@ -273,21 +282,21 @@ exports[`<LoginPanel /> matches expected output 1`] = `
 }
 
 @media screen and (min-width:32em) {
-  .c10 {
+  .c12 {
     padding-top: 8px;
     padding-bottom: 8px;
   }
 }
 
 @media screen and (min-width:46em) {
-  .c10 {
+  .c12 {
     padding-top: 16px;
     padding-bottom: 16px;
   }
 }
 
 @media screen and (min-width:76em) {
-  .c10 {
+  .c12 {
     padding-top: 32px;
     padding-bottom: 32px;
   }
@@ -330,19 +339,19 @@ exports[`<LoginPanel /> matches expected output 1`] = `
 }
 
 @media (min-width:32em) {
-  .c18 {
+  .c20 {
     font-size: 12px;
   }
 }
 
 @media (min-width:46em) {
-  .c18 {
+  .c20 {
     font-size: 12px;
   }
 }
 
 @media (min-width:76em) {
-  .c18 {
+  .c20 {
     font-size: 12px;
   }
 }
@@ -378,16 +387,25 @@ exports[`<LoginPanel /> matches expected output 1`] = `
         >
           My Postcode:
         </p>
-        <input
-          aria-labelledby="user.postcode_suburb"
-          autocomplete="off"
+        <span
           class="c8"
-          id="user.postcode_suburb"
-          name="user.postcode_suburb"
-          placeholder="Postcode"
-          required=""
-          value=""
-        />
+          display="block"
+        >
+          <span
+            class="c9"
+          >
+            <input
+              aria-labelledby="user.postcode_suburb"
+              autocomplete="off"
+              class="c10"
+              id="user.postcode_suburb"
+              name="user.postcode_suburb"
+              placeholder="Postcode"
+              required=""
+              value=""
+            />
+          </span>
+        </span>
       </div>
       <div
         class="c7"
@@ -399,7 +417,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
         </p>
         <input
           aria-labelledby="user.email"
-          class="c8"
+          class="c10"
           id="user.email"
           name="user.email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
@@ -410,27 +428,27 @@ exports[`<LoginPanel /> matches expected output 1`] = `
         />
       </div>
       <div
-        class="c9 c10"
+        class="c11 c12"
       >
         <button
-          class="c11"
+          class="c13"
           type="submit"
         >
           See the offers
           <div
-            class="c12 c13"
+            class="c14 c15"
           >
             <span
-              class="c14"
+              class="c16"
               size="20"
             >
               <span
-                class="icon c15"
+                class="icon c17"
                 size="20"
               >
                 <svg
                   aria-labelledby="title"
-                  class="view-forward c16"
+                  class="view-forward c18"
                   clip-rule="evenodd"
                   fill="inverseText"
                   fill-rule="evenodd"
@@ -452,10 +470,10 @@ exports[`<LoginPanel /> matches expected output 1`] = `
         </button>
       </div>
       <div
-        class="c17 c13"
+        class="c19 c15"
       >
         <p
-          class="c6 c13"
+          class="c6 c15"
         >
           <input
             data-testid="ckAgreement"
@@ -463,22 +481,22 @@ exports[`<LoginPanel /> matches expected output 1`] = `
             type="checkbox"
           />
           <small
-            class="c18 c13"
+            class="c20 c15"
           >
             By ticking this box, you agree to our
           </small>
           <small
-            class="c18 c13"
+            class="c20 c15"
           >
             <a
-              class="c19"
+              class="c21"
               href="/confirmation-of-consent"
             >
               Confirmation of Consent
             </a>
             ,
             <a
-              class="c19"
+              class="c21"
               href="/terms-and-conditions"
             >
               Terms and Conditions
@@ -486,7 +504,7 @@ exports[`<LoginPanel /> matches expected output 1`] = `
              
             and
             <a
-              class="c19"
+              class="c21"
               href="/privacy-policy"
             >
               Privacy Policy
