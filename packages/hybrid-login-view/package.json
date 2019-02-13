@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/hybrid-login-view",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "hybrid login view",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -26,7 +26,7 @@
     "@rtm-ui/how-it-works": "^1.0.7",
     "@rtm-ui/img": "^3.0.7",
     "@rtm-ui/layout": "^3.0.7",
-    "@rtm-ui/login-panel": "^3.1.6",
+    "@rtm-ui/login-panel": "^3.1.7",
     "@rtm-ui/theme": "^3.0.6",
     "@rtm-ui/typography": "^3.0.7"
   },
