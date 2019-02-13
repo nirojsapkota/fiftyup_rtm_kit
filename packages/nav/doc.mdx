@@ -1,0 +1,14 @@
+---
+name: Nav
+route: /packages/nav
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Nav from './src'
+
+# Nav
+
+<Playground style={{minHeight: '500px'}}>
+  <Nav logo="thumbs-up" items={[{id: 'privacy-policy', onClick: () => {console.log('clicked')}, label: 'Privacy Policy'}]} />
+</Playground>

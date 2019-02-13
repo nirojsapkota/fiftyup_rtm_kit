@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/tracker",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "rtmRollup": {
     "namespace": "tracker",
     "defaultExport": "Tracker",
@@ -29,6 +29,6 @@
     "universal-cookie": "^3.0.3"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^4.0.0"
+    "@rtm-ui/rtm-scripts": "^4.0.1"
   }
 }

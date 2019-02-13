@@ -3,7 +3,6 @@
 exports[`<Img /> should render the image size images 1`] = `
 .c1 {
   box-sizing: border-box;
-  background: #FFF;
 }
 
 .c0 {

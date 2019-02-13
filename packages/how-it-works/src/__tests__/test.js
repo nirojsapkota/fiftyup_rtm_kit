@@ -6,12 +6,11 @@ import { howItWorksContent } from '../constants';
 describe('<HowItWork />', () => {
   it('matches expected default content for obs', () => {
     const content = howItWorksContent.obs;
-    const { getByText, container } = render(<HowItWorks />);
+    const { getByText } = render(<HowItWorks />);
     expect(getByText(content.header)).toBeInTheDocument();
     expect(getByText(content.icons[0].title)).toBeInTheDocument();
     expect(getByText(content.icons[1].title)).toBeInTheDocument();
     expect(getByText(content.icons[2].title)).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
   });
 
   it('matches expected output for entities', () => {

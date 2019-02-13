@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import { Header, Paragraph, Small } from '../index';
+import { Header, Paragraph, Label, Small } from '../index';
 import { weightProps, fontStyles, alignmentProps } from '../text';
 
 describe('<Text />', () => {
-  [Header, Paragraph, Small].map(Component => {
+  [Header, Paragraph, Small, Label].map(Component => {
     // FIXME: output name of component in test
     it('matches expected output', () => {
       const { getByText } = render(

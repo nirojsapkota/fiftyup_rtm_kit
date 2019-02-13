@@ -10,7 +10,7 @@ const Wrapper = styled(Pane)`
 `;
 
 const Card = ({ children, ...boxProps }) => (
-  <Wrapper rounded elevation="2" {...boxProps}>
+  <Wrapper rounded showBackground elevation="2" {...boxProps}>
     {children}
   </Wrapper>
 );
