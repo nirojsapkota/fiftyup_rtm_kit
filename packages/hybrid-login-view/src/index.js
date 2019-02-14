@@ -94,7 +94,11 @@ const HybridLoginView = ({
             </Column>
             <Column width={1 / 2}>
               <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-                <HowItWorks {...howItWorksProps} entity={entityBrand} />
+                <HowItWorks
+                  orientation="vertical"
+                  {...howItWorksProps}
+                  entity={entityBrand}
+                />
               </HowItWorksWrapper>
             </Column>
           </MobileHide>
@@ -135,11 +139,11 @@ const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
   <Bootstrap trackingData={trackingData}>
     <EntityProvider entity={entity}>
       <EntityConsumer>
-        {({ brand, footer_items, header_items }) => {
-          // eslint-disable-line camelcase
-          const footerLogoUrl = footer_items.logo; // eslint-disable-line camelcase
-          const headerLogoUrl = header_items.logo; // eslint-disable-line camelcase
-
+        {({
+          brand,
+          footer_items: footerLogoUrl,
+          header_items: headerLogoUrl,
+        }) => {
           return (
             <React.Fragment>
               <BasicHeader logoUrl={headerLogoUrl} entityBrand={brand} py={2} />

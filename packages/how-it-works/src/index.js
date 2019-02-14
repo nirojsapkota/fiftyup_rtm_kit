@@ -1,39 +1,111 @@
 import React from 'react';
 import t from 'prop-types';
+import styled from 'styled-components';
 import Icon from '@rtm-ui/icon';
-import Variant from '@rtm-ui/theme';
-import { Header, Paragraph } from '@rtm-ui/typography';
+import { Header, Small } from '@rtm-ui/typography';
+import { Box } from '@rtm-ui/layout';
 import { howItWorksContent } from './constants';
-import { Container, Item, WrapperBox, IconBox } from './style';
 
-const HowItWorks = ({ entity }) => {
-  const { header, icons } = howItWorksContent[entity];
+const StyledSmall = styled(Small)`
+  max-width: ${props => (props.orientation === 'vertical' ? 'auto' : '130px')};
+  text-align: center;
+  padding: 0;
+`;
+
+const VerticalContainer = styled(Box)`
+  justify-content: center;
+`;
+
+const VerticalItem = styled(Box)`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &:nth-child(4n + 3) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+`;
+
+const HorizontalContainer = styled(Box)`
+  justify-content: center;
+  display: flex;
+`;
+
+const HorizontalItem = styled(Box)`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const HowItWorks = ({
+  entity,
+  header = howItWorksContent[entity].header,
+  icons = howItWorksContent[entity].icons,
+  orientation,
+}) => {
+  const Container =
+    orientation === 'vertical' ? VerticalContainer : HorizontalContainer;
+  const Item = orientation === 'vertical' ? VerticalItem : HorizontalItem;
   return (
-    <WrapperBox>
-      <Header pt={2} tag="h6">
+    <Box
+      style={{
+        flexDirection: 'column',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <Header align="center" py={2} tag="h6">
         {header}
       </Header>
       <Container>
-        {icons.map(s => (
-          <Item key={s.title}>
-            <Variant variant="c">
-              <IconBox>
-                <Icon glyph={s.glyph} size={80} />
-              </IconBox>
-            </Variant>
-            <Paragraph px={2}>{s.title}</Paragraph>
-          </Item>
+        {icons.map((s, index) => (
+          <React.Fragment key={s.title}>
+            <Item>
+              <Box my={10}>
+                <Icon fill="background" glyph={s.glyph} size={50} />
+              </Box>
+              <StyledSmall orientation={orientation} px={2}>
+                {s.title}
+              </StyledSmall>
+            </Item>
+            {index < icons.length - 1 && (
+              <Box
+                p={10}
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  display: 'flex',
+                }}
+              >
+                <Icon
+                  rotate={orientation === 'vertical' ? 90 : 0}
+                  fill="primary"
+                  glyph="triangle"
+                  size={13}
+                />
+              </Box>
+            )}
+          </React.Fragment>
         ))}
       </Container>
-    </WrapperBox>
+    </Box>
   );
 };
 
 HowItWorks.defaultProps = {
   entity: 'obs',
+  orientation: 'horizontal',
 };
+
 HowItWorks.propTypes = {
   entity: t.string,
+  header: t.string,
+  icons: t.arrayOf({ title: t.string, glyph: t.string }),
+  orientation: t.oneOf(['vertical', 'horizontal']),
 };
 
 export default HowItWorks;

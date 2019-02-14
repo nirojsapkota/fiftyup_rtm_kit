@@ -28,7 +28,7 @@ const Navbar = props => {
       <A onClick={props.onHomeClick}>
         <Icon glyph={props.logo} />
       </A>
-      <A showHover data-testid="toggle-nav" onClick={props.onNavClick}>
+      <A showHover data-testid="toggle-nav" onClick={() => props.onNavClick()}>
         <Icon size={48} glyph="menu" />
       </A>
     </Flex>
@@ -39,11 +39,14 @@ const Nav = props => {
   return (
     <Sheet items={props.items}>
       {({ toggle }) => (
-        <Navbar
-          logo={props.logo}
-          onHomeClick={props.onHomeClick}
-          onNavClick={toggle}
-        />
+        <React.Fragment>
+          <Navbar
+            logo={props.logo}
+            onHomeClick={() => props.onHomeClick(toggle)}
+            onNavClick={toggle}
+          />
+          {props.children}
+        </React.Fragment>
       )}
     </Sheet>
   );
@@ -59,6 +62,7 @@ Nav.propTypes = {
       label: PropTypes.string,
     })
   ),
+  children: PropTypes.node,
 };
 
 Navbar.propTypes = {

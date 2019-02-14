@@ -31,14 +31,14 @@ const SheetWrapper = styled(Pane)`
   max-width: 80%;
   width: 330px;
   background: white;
-  z-index: 10;
+  z-index: 1000;
 `;
 
 const ScreenWrapper = styled.div`
   position: absolute;
   background: black;
   opacity: 0.25;
-  z-index: 10;
+  z-index: 900;
   top: 0;
   right: 0;
   bottom: 0;
@@ -51,7 +51,6 @@ const Screen = props => {
 };
 
 const Wrapper = styled.div`
-  overflow: hidden;
   position: absolute;
   top: 0;
   right: 0;
@@ -98,7 +97,7 @@ class Sheet extends React.Component {
             </A>
           </SheetItem>
           {this.props.items.map(({ id, onClick, label }) => (
-            <A key={id} onClick={onClick}>
+            <A key={id} onClick={() => onClick(id, this.toggle)}>
               <SheetItem p={20}>
                 <Header style={{ lineHeight: '2' }} tag="h6">
                   {label}
@@ -119,6 +118,10 @@ class Sheet extends React.Component {
 Screen.propTypes = {
   onClick: PropTypes.func,
   isClosed: PropTypes.bool,
+};
+
+Sheet.defaultProps = {
+  isClosed: true,
 };
 
 Sheet.propTypes = {

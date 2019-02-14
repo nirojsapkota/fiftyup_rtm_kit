@@ -6,9 +6,12 @@ menu: Packages
 
 import { Playground } from 'docz'
 import Nav from './src'
+import Hero from '../hero/src'
 
 # Nav
 
 <Playground style={{minHeight: '500px'}}>
-  <Nav logo="thumbs-up" items={[{id: 'privacy-policy', onClick: () => {console.log('clicked')}, label: 'Privacy Policy'}]} />
+  <Nav logo="thumbs-up" items={[{id: 'privacy-policy', onClick: (id, toggle) => {toggle(); console.log(toggle, 'clicked')}, label: 'Privacy Policy'}]}>
+    <Hero title="You have successfully signed up!" icon="thumbs-up" />
+  </Nav>
 </Playground>
