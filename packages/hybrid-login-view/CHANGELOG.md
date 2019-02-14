@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@1.1.5...@rtm-ui/hybrid-login-view@2.0.0) (2019-02-14)
+
+
+* Modify how it works (#29) ([c076047](https://github.com/OBSAU/rtm-kit/commit/c076047)), closes [#29](https://github.com/OBSAU/rtm-kit/issues/29)
+
+
+### BREAKING CHANGES
+
+* - this will modify the layout slightly when not passing the orientation
+
+* Add gear and logo icons
+
+
+
+
+
 ## [1.1.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@1.1.4...@rtm-ui/hybrid-login-view@1.1.5) (2019-02-13)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
