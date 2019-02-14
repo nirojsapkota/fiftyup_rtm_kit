@@ -66,7 +66,7 @@ const HowItWorks = ({
           <React.Fragment key={s.title}>
             <Item>
               <Box my={10}>
-                <Icon fill="background" glyph={s.glyph} size={50} />
+                <Icon fill="iconPrimary" glyph={s.glyph} size={50} />
               </Box>
               <StyledSmall orientation={orientation} px={2}>
                 {s.title}

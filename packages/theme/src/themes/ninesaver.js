@@ -1,6 +1,10 @@
 import { notices, grayscale } from './colors';
 import { base } from './base';
 
+const iconColors = {
+  iconPrimary: '#00b1ff',
+};
+
 const variants = {
   a: {
     primary: '#00b1ff',
@@ -16,6 +20,7 @@ const variants = {
     shape: '#e1107b',
     ...grayscale,
     ...notices,
+    ...iconColors,
   },
   b: {
     primary: '#ffffff',
@@ -31,6 +36,7 @@ const variants = {
     shape: '#e1107b',
     ...grayscale,
     ...notices,
+    ...iconColors,
   },
   c: {
     primary: '#ffffff',
@@ -46,6 +52,7 @@ const variants = {
     shape: '#e1107b',
     ...grayscale,
     ...notices,
+    ...iconColors,
   },
 };
 

@@ -76,8 +76,12 @@ class GdprAgreement extends React.Component {
             )}
             <Link href={termsAndConditions.url}>{termsAndConditions.text}</Link>
             {` `}
-            and
-            <Link href={privacyPolicy.url}>{privacyPolicy.text} </Link>
+            {privacyPolicy && (
+              <React.Fragment>
+                and
+                <Link href={privacyPolicy.url}>{privacyPolicy.text} </Link>
+              </React.Fragment>
+            )}
           </Small>
         </Paragraph>
       </FlexBoxStyled>
@@ -89,17 +93,9 @@ GdprAgreement.defaultProps = {
   enableCheckBox: true,
   isRequire: 'required',
   isChecked: false,
-  confirmationOfConsent: {
-    url: '/confirmation-of-consent',
-    text: 'Confirmation of Consent',
-  },
   termsAndConditions: {
     url: '/terms-and-conditions',
     text: 'Terms and Conditions',
-  },
-  privacyPolicy: {
-    url: '/privacy-policy',
-    text: 'Privacy Policy',
   },
 };
 

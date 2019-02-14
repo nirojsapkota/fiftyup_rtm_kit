@@ -8,6 +8,10 @@ const colors = {
   ...notices,
 };
 
+const iconColors = {
+  iconPrimary: '#f4b534',
+};
+
 const variants = {
   a: {
     primary: '#00005e',
@@ -23,6 +27,7 @@ const variants = {
     shape: colors.darkBlue,
     ...grayscale,
     ...notices,
+    ...iconColors,
   },
   b: {
     primary: '#FFF',
@@ -38,6 +43,7 @@ const variants = {
     shape: colors.darkBlue,
     ...grayscale,
     ...notices,
+    ...iconColors,
   },
   c: {
     primary: '#1b1d39',
@@ -53,6 +59,7 @@ const variants = {
     shape: colors.darkBlue,
     ...grayscale,
     ...notices,
+    ...iconColors,
   },
 };
 
