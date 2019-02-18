@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.8...@rtm-ui/login-panel@3.1.9) (2019-02-18)
+
+
+### Bug Fixes
+
+* **hybrid login page:** Update confirmation link and how it work icon color ([7f76dab](https://github.com/OBSAU/rtm-kit/commit/7f76dab))
+
+
+
+
+
 ## [3.1.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.7...@rtm-ui/login-panel@3.1.8) (2019-02-14)
 
 **Note:** Version bump only for package @rtm-ui/login-panel

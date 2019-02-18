@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/header",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Description for header",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -19,8 +19,8 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/icon": "^4.0.0",
-    "@rtm-ui/layout": "^3.0.7"
+    "@rtm-ui/icon": "^4.0.1",
+    "@rtm-ui/layout": "^3.0.8"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",

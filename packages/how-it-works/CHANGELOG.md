@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.0...@rtm-ui/how-it-works@2.0.1) (2019-02-18)
+
+
+### Bug Fixes
+
+* **hybrid login page:** Update confirmation link and how it work icon color ([7f76dab](https://github.com/OBSAU/rtm-kit/commit/7f76dab))
+
+
+
+
+
 # [2.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@1.0.7...@rtm-ui/how-it-works@2.0.0) (2019-02-14)
 
 

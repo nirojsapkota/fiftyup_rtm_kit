@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@3.0.6...@rtm-ui/theme@3.0.7) (2019-02-18)
+
+
+### Bug Fixes
+
+* **hybrid login page:** Update confirmation link and how it work icon color ([7f76dab](https://github.com/OBSAU/rtm-kit/commit/7f76dab))
+
+
+
+
+
 ## [3.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@3.0.5...@rtm-ui/theme@3.0.6) (2019-02-10)
 
 **Note:** Version bump only for package @rtm-ui/theme

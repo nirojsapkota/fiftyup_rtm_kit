@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/layout",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Description for Layout",
   "rtmRollup": {
     "namespace": "layout",
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
-    "@rtm-ui/theme": "^3.0.6"
+    "@rtm-ui/theme": "^3.0.7"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "3.0.*",

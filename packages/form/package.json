@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/form",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "description": "Description for form",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -21,10 +21,10 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/button": "^3.1.3",
-    "@rtm-ui/icon": "^4.0.0",
-    "@rtm-ui/layout": "^3.0.7",
-    "@rtm-ui/typography": "^3.0.7",
+    "@rtm-ui/button": "^3.1.4",
+    "@rtm-ui/icon": "^4.0.1",
+    "@rtm-ui/layout": "^3.0.8",
+    "@rtm-ui/typography": "^3.0.8",
     "formik": "^1.4.1",
     "react-stripe-elements": "^2.0.3",
     "react-text-mask": "^5.4.3",

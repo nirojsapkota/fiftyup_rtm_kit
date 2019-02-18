@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/nav",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Top-level site navigation",
   "author": "RevTech Media",
   "rtmRollup": {
@@ -19,9 +19,9 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/icon": "^4.0.0",
-    "@rtm-ui/layout": "^3.0.7",
-    "@rtm-ui/typography": "^3.0.7"
+    "@rtm-ui/icon": "^4.0.1",
+    "@rtm-ui/layout": "^3.0.8",
+    "@rtm-ui/typography": "^3.0.8"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "3.0.*",

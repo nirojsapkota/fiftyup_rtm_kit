@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/how-it-works",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Description for HowItWorks",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -19,12 +19,12 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/icon": "^4.0.0",
-    "@rtm-ui/img": "^3.0.7",
-    "@rtm-ui/layout": "^3.0.7",
-    "@rtm-ui/theme": "^3.0.6",
+    "@rtm-ui/icon": "^4.0.1",
+    "@rtm-ui/img": "^3.0.8",
+    "@rtm-ui/layout": "^3.0.8",
+    "@rtm-ui/theme": "^3.0.7",
     "@rtm-ui/tracker": "^3.0.3",
-    "@rtm-ui/typography": "^3.0.7"
+    "@rtm-ui/typography": "^3.0.8"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
