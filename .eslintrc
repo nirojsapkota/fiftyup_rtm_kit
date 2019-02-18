@@ -8,6 +8,7 @@
     ],
     "react/react-in-jsx-scope": 0,
     "react/destructuring-assignment": 0,
+    "no-unused-vars": [{ "argsIgnorePattern": "^_" }],
     "react/require-default-props": 0,
     "react/forbid-prop-types": 2,
     "react/no-did-mount-set-state": 0,

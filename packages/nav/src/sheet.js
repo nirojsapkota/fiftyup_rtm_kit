@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Pane } from '@rtm-ui/layout';
@@ -22,98 +23,75 @@ const SheetItem = styled(Box)`
   border-bottom: 1px solid #efefef;
 `;
 
-const SheetWrapper = styled(Pane)`
-  position: absolute;
-  right: ${props => (props.isClosed ? '-330px' : '0')};
-  transition: all 0.3s ease;
+const Wrapper = styled.div`
+  position: fixed;
+  z-index: 2000;
   top: 0;
+  right: 0;
+  left: 0;
   bottom: 0;
-  max-width: 80%;
-  width: 330px;
-  background: white;
-  z-index: 1000;
 `;
 
 const ScreenWrapper = styled.div`
   position: absolute;
   background: black;
   opacity: 0.25;
-  z-index: 900;
+  z-index: 3000;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: ${props => (props.isClosed ? 'none' : 'auto')};
+  display: block;
+`;
+
+const SheetWrapper = styled(Pane)`
+  position: absolute;
+  right: 0;
+  transition: all 0.3s ease;
+  top: 0;
+  bottom: 0;
+  max-width: 80%;
+  width: 330px;
+  background: white;
+  z-index: 4000;
 `;
 
 const Screen = props => {
-  return <ScreenWrapper onClick={props.onClick} isClosed={props.isClosed} />;
+  return <ScreenWrapper onClick={props.onClick} />;
 };
 
-const Wrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-`;
+const Sheet = props => {
+  const { isClosed, toggle } = props;
 
-class Sheet extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isClosed: this.props.isClosed,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      isClosed: this.props.isClosed,
-    });
-  }
-
-  toggle = () => {
-    this.setState(prevState => {
-      return { isClosed: !prevState.isClosed };
-    });
-  };
-
-  render() {
-    return (
-      <Wrapper>
-        <Screen
-          data-testid="nav-screen"
-          onClick={this.toggle}
-          isClosed={this.state.isClosed}
-        />
-        <SheetWrapper elevation={2} isClosed={this.state.isClosed}>
-          <SheetItem p={20}>
-            {this.props.headerAction || <div />}
-            <A onClick={this.toggle}>
+  return (
+    <Wrapper isClosed={isClosed}>
+      <Screen data-testid="nav-screen" onClick={toggle} />
+      <SheetWrapper elevation={2}>
+        <SheetItem p={20}>
+          {typeof props.headerAction === 'function' &&
+            props.headerAction(toggle)}
+          <A onClick={toggle}>
+            <Box>
+              <Icon size={48} fill="primary" glyph="view-close" />
+            </Box>
+          </A>
+        </SheetItem>
+        {props.items.map(({ id, onClick, label }) => (
+          <A key={id} onClick={() => onClick(id, toggle)}>
+            <SheetItem p={20}>
+              <Header style={{ lineHeight: '2' }} tag="h6">
+                {label}
+              </Header>
               <Box>
-                <Icon size={48} fill="primary" glyph="view-close" />
+                <Icon fill="primary" inline glyph="view-forward" />
               </Box>
-            </A>
-          </SheetItem>
-          {this.props.items.map(({ id, onClick, label }) => (
-            <A key={id} onClick={() => onClick(id, this.toggle)}>
-              <SheetItem p={20}>
-                <Header style={{ lineHeight: '2' }} tag="h6">
-                  {label}
-                </Header>
-                <Box>
-                  <Icon fill="primary" inline glyph="view-forward" />
-                </Box>
-              </SheetItem>
-            </A>
-          ))}
-        </SheetWrapper>
-        {this.props.children({ toggle: this.toggle })}
-      </Wrapper>
-    );
-  }
-}
+            </SheetItem>
+          </A>
+        ))}
+      </SheetWrapper>
+    </Wrapper>
+  );
+};
 
 Screen.propTypes = {
   onClick: PropTypes.func,
@@ -126,7 +104,7 @@ Sheet.defaultProps = {
 
 Sheet.propTypes = {
   isClosed: PropTypes.bool,
-  headerAction: PropTypes.node,
+  headerAction: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

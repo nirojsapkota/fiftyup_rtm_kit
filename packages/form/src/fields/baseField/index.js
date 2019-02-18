@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import { Paragraph } from '@rtm-ui/typography';
+import { Paragraph, Label } from '@rtm-ui/typography';
 import Icon from '@rtm-ui/icon';
-import RadioField from './radioField';
-import TextField from './textField';
-import NumberField from './numberField';
-import StripeField from './stripeField';
-
-const Label = styled.label``;
+import RadioField from '../radioField';
+import TextField from '../textField';
+import NumberField from '../numberField';
+import StripeField from '../stripeField';
+import CheckboxField from '../checkboxField';
 
 export const fieldTypes = {
   radio: RadioField,
@@ -17,8 +16,6 @@ export const fieldTypes = {
   password: TextField,
   tel: NumberField,
 };
-
-const Container = styled(Box)``;
 
 const SmallText = styled(Paragraph)`
   font-size: 10px;
@@ -45,9 +42,9 @@ export default class BaseField extends React.Component {
     });
   };
 
-  toggleWaiting = () => {
-    this.setState(prevState => {
-      return { waiting: !prevState.waiting };
+  toggleWaiting = value => {
+    this.setState(() => {
+      return { waiting: value };
     });
   };
 
@@ -60,21 +57,23 @@ export default class BaseField extends React.Component {
       helper,
       error,
       success,
-      initialValue, // FIXME: destructuring to remove
-      validatorArgs, // FIXME: destructuring to remove
+      initialValue: _initialValue,
+      validatorArgs: _validatorArgs,
       ...props
     } = this.props;
     const Input =
       props.type === 'radio'
         ? RadioField
-        : props.type === 'paymentField'
-          ? StripeField
-          : props.mask !== undefined
-            ? NumberField
-            : TextField;
+        : props.type === 'checkbox'
+          ? CheckboxField
+          : props.type === 'paymentField'
+            ? StripeField
+            : props.mask !== undefined
+              ? NumberField
+              : TextField;
 
     return (
-      <Container mb={10}>
+      <Box mb={10}>
         <Wrapper alignItems="flex-end">
           <Box>
             <Label font="serif" htmlFor={props.name}>
@@ -98,12 +97,11 @@ export default class BaseField extends React.Component {
             data-testid="fieldError"
             showErrorColor={!this.state.focused && error}
           >
-            {this.state.waiting && 'Waiting'}
+            {this.state.waiting}
             {error}
-            {success && <Icon glyph="check" fill="secondary" size={10} />}
           </SmallText>
         </Wrapper>
-      </Container>
+      </Box>
     );
   }
 }

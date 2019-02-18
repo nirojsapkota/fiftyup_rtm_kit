@@ -1,6 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line
-import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import Nav from '../index';
 
 describe(`<Nav />`, () => {
@@ -9,6 +9,9 @@ describe(`<Nav />`, () => {
     const { getByText, getByTestId } = render(
       <Nav
         logo="thumbs-up"
+        header={toggle => (
+          <button data-test-id="header-action" onClick={toggle} />
+        )}
         items={[
           {
             id: 'privacy-policy',
@@ -20,10 +23,15 @@ describe(`<Nav />`, () => {
     );
 
     const toggle = getByTestId('toggle-nav');
-    const item = getByText(/privacy policy/i);
     fireEvent.click(toggle);
-    fireEvent.click(item);
 
-    expect(onClick).toHaveBeenCalled();
+    wait(() => {
+      const toggle = getByTestId('header-action');
+      const item = getByText(/privacy policy/i);
+      expect(item).not.toBeInTheDocument();
+      fireEvent.click(item);
+      expect(item).toBeInTheDocument();
+      expect(onClick).toHaveBeenCalled();
+    });
   });
 });

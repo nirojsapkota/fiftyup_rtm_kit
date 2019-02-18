@@ -4,65 +4,6 @@ import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import Form from '../index';
 
 describe(`<BaseField />`, async () => {
-  describe(`when entering values in a masked input`, async () => {
-    it(`matches the mask`, async () => {
-      const { getByLabelText } = render(
-        <Form
-          formId="test"
-          onSubmit={async () => {}}
-          fields={[
-            {
-              label: 'Phone Number:',
-              hint: 'Please follow the format provided (US numbers only)',
-              name: 'phone_number',
-              type: 'tel',
-              mask: 'phoneUS',
-              validator: 'mask',
-              validatorArgs: ['phoneUS', 'Phone Number'],
-            },
-          ]}
-        />
-      );
-
-      const itemInput = getByLabelText('Phone Number:');
-      fireEvent.change(itemInput, {
-        target: { value: '2345678901' },
-      });
-
-      await wait(() => {
-        expect(itemInput.value).toEqual('+12345678901');
-        // Set it back to null to test behavior on value deletion
-        fireEvent.change(itemInput, {
-          target: { value: null },
-        });
-        expect(itemInput.value).toEqual('');
-      });
-    });
-  });
-  describe(`when disabled`, async () => {
-    const handleSubmit = jest.fn();
-    it(`doesn't allow input`, async () => {
-      const { getByLabelText } = render(
-        <Form
-          onSubmit={handleSubmit}
-          fields={[
-            {
-              label: 'Enter your name',
-              error: 'Requied',
-              name: 'name',
-              type: 'text',
-              disabled: true,
-              validator: 'required',
-            },
-          ]}
-        />
-      );
-      const itemInput = getByLabelText('Enter your name');
-      fireEvent.change(itemInput, {
-        target: { value: 'User' },
-      });
-    });
-  });
   describe(`with an error`, async () => {
     const handleSubmit = jest.fn();
     it.skip(`highlights the error message when not focused`, async () => {

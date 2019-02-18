@@ -29,6 +29,14 @@ The Card component just wraps the Pane component and provides a default `elevati
   <Card><Pane p={10}>Hello, World</Pane></Card>
 </Playground>
 
+# Overrides
+
+Any layout component can accept a background override, this is really only useful for very subtle background alterations
+
+<Playground>
+  <Card variant="c" p={20}><Pane variant="a" backgroundColor="normal" p={10}>Hello, World</Pane></Card>
+</Playground>
+
 ### Elevation
 
 Panes and Cards have a elevation property to give the component a box shadow and visually elevate it from the page.

@@ -9,17 +9,19 @@ const StyledInput = styled(MaskedInput)`
   ${inputStyle};
 `;
 
-const NumberField = ({ mask, ...rest }) => {
-  const { setFieldValue, setFieldError, setFieldTouched, ...inputProps } = rest;
+const NumberField = ({
+  mask,
+  fieldUtils: _fieldUtils,
+  onWaiting: _onWaiting,
+  ...inputProps
+}) => {
   return (
-    <div>
-      <StyledInput
-        mask={maskPatterns[mask]}
-        pipe={pipes[mask]}
-        guide={false}
-        {...inputProps}
-      />
-    </div>
+    <StyledInput
+      mask={maskPatterns[mask]}
+      pipe={pipes[mask]}
+      guide={false}
+      {...inputProps}
+    />
   );
 };
 

@@ -19,7 +19,7 @@ export const Elements = props => {
   return props.children;
 };
 
-const stripeEvent = { complete: true };
+const stripeEvent = { error: true };
 
 export const CardElement = props => {
   return (
@@ -27,6 +27,7 @@ export const CardElement = props => {
       onClick={props.onClick}
       onChange={() => props.onChange(stripeEvent)}
       onFocus={props.onFocus}
+      onBlur={props.onBlur}
       data-testid="stripe-input"
       name={props.name}
       type="text"

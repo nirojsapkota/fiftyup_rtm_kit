@@ -8,17 +8,24 @@ beforeEach(() => {
   global.Stripe = publicKey => {};
 });
 
-describe(`<StripeField />`, async () => {
-  describe(`with invalid info`, async () => {
+describe(`For an input of type paymentField`, async () => {
+  describe(`with invalid input of 411111111111110`, async () => {
     it.only(`prevents submission and shows no match`, async () => {
-      const { queryAllByTestId, getByTestId, getByLabelText } = render(
+      const handleSubmit = jest.fn();
+      const { getByTestId, queryAllByTestId } = render(
         <Form
-          formId="payment"
-          onSubmit={() => {}}
+          id="payment"
+          onSubmit={handleSubmit}
           fields={[
             {
               label: 'Payment:',
               name: 'cc_token',
+              type: 'paymentField',
+              validator: 'required',
+            },
+            {
+              label: 'Payment:',
+              name: 'other',
               type: 'paymentField',
             },
           ]}
@@ -28,14 +35,18 @@ describe(`<StripeField />`, async () => {
       const item = getByTestId('stripe-input');
       item.focus();
       fireEvent.change(item, {
-        target: { value: '4111111111111111' },
+        target: { value: '411111111111110' },
       });
 
-      const submit = getByTestId('form-payment-submit');
+      const submit = getByTestId('submit-payment');
       submit.focus();
       fireEvent.click(submit);
 
-      await wait(() => {});
+      const errorContainers = queryAllByTestId('fieldError');
+      await wait(() => {
+        expect(handleSubmit).not.toHaveBeenCalled();
+        expect(errorContainers[0]).toHaveTextContent('Required');
+      });
     });
   });
 });

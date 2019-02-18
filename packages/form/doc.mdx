@@ -5,13 +5,46 @@ menu: Packages
 ---
 
 import { Playground } from 'docz'
-import { inputs } from './sampleInputs'
-import StepForm from './src/stepForm'
+import { stepInputs, formInputs, presignupInputs } from './sampleInputs'
+import StepForm from './src/stopForm'
+import Form from './src/form'
+import { Header, Small } from '@rtm-ui/typography';
+import Button from '@rtm-ui/button'
+import Accordion from './src/accordion'
 
 # Form
 
 ## Basic usage
 
 <Playground>
-  <StepForm {...inputs} />
+  <StepForm {...stepInputs} renderForm={(formProps) => formProps}>
+  {({activeFormId, forms}) =>  {
+  return(
+    <Accordion
+      items={forms}
+      activeItem={activeFormId}
+      setOpenItems={(openItems, openingItemId) => [openItems, openingItemId]}
+      itemHeader={({item, onClick}) => <Button asWrapper onClick={onClick} ><Header tag="h6">{item.id}</Header></Button>}
+      itemBody={(item) => <Form {...item} />}
+    />
+  )}
+  }
+  </StepForm>
+</Playground>
+
+Since forms can be strung together, it's often useful to pass through some
+forms which already have any info they need. Providing `passThru` will ensure
+that the form is valid, and if so it will call it's `onSuccess` prop. Note
+that it will not submit the form, meaning no API call will be made
+
+<Playground>
+  <Form {...presignupInputs} passThru onSuccess={values=> console.log('success', values)} />
+</Playground>
+
+<Playground>
+  <Form {...formInputs} />
+</Playground>
+
+<Playground>
+  <Form {...formInputs} renderFooter={<Button type="submit">Hi</Button>} />
 </Playground>

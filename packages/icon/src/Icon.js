@@ -117,6 +117,13 @@ export const ICONS = {
       />
     </g>
   ),
+  box: (
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M28 3H4C3.44772 3 3 3.44772 3 4V28C3 28.5523 3.44772 29 4 29H28C28.5523 29 29 28.5523 29 28V4C29 3.44772 28.5523 3 28 3ZM4 0C1.79086 0 0 1.79086 0 4V28C0 30.2091 1.79086 32 4 32H28C30.2091 32 32 30.2091 32 28V4C32 1.79086 30.2091 0 28 0H4Z"
+    />
+  ),
   'business-profile': (
     <g strokeWidth="1" fillRule="evenodd">
       <g transform="translate(1.000000, 0.000000)" fillRule="nonzero">
@@ -2064,6 +2071,7 @@ export const ICONS = {
       />
     </g>
   ),
+  void: <g />,
 };
 
 export const Glyph = ({ glyph }) => ICONS[glyph];

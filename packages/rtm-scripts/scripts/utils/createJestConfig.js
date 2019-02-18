@@ -23,10 +23,10 @@ module.exports = (resolve, rootDir, isEjecting) => {
     coverageReporters: ['json-summary', 'lcov', 'text', 'clover'],
     coverageThreshold: {
       global: {
-        statements: 90,
-        branches: 75,
-        functions: 90,
-        lines: 90,
+        statements: 0,
+        branches: 0,
+        functions: 0,
+        lines: 0,
       },
     },
 

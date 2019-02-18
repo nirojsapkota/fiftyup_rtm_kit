@@ -5,92 +5,67 @@ import { Box } from '@rtm-ui/layout';
 import { injectStripe, CardElement } from 'react-stripe-elements';
 import Stripe from './stripe';
 import { inputStyle } from '../textField';
+import { stripeStyle } from './styles';
 
-// TODO grab these from theme object via withTheme()
-const style = {
-  base: {
-    color: '#565656',
-    letterSpacing: '0.025em',
-    fontFamily: 'MuseoSans',
-    fontSize: '16px',
-    '::placeholder': {
-      color: '#aab7c4',
-    },
-  },
-  invalid: {
-    color: '#9e2146',
-  },
-};
-
-const Wrapper = styled.div`
+const Wrapper = styled(Box)`
   ${inputStyle};
 `;
 
-class Card extends React.Component {
-  state = {
-    complete: false,
-  };
+const Card = props => {
+  const [completed, setCompleted] = React.useState(false);
 
-  getStripeToken = () => {
-    this.props.setFieldError(this.props.name, null);
-    // TODO: grab the username or id and use it here
-    this.props.stripe.createToken({ name: 'Some User' }).then(({ token }) => {
-      this.props.onWaiting();
+  const getStripeToken = () => {
+    props.onWaiting('Establishing secure payment token');
+    props.fieldUtils.setFieldError(props.name, null);
+    props.stripe.createToken({ name: 'Some User' }).then(({ token }) => {
+      props.onWaiting(false);
 
-      this.props.setFieldValue(this.props.name, token.id);
+      props.fieldUtils.setFieldValue(props.name, token.id);
     });
   };
 
-  setEntryStatus = stripeEvent => {
-    // TODO: grab the error from stripeEvent.error and pass it up
-    this.setState({ complete: stripeEvent.complete });
+  const setEntryStatus = stripeEvent => {
+    setCompleted(stripeEvent.complete);
 
     if (stripeEvent.complete) {
-      this.getStripeToken();
+      getStripeToken();
+    }
+    if (stripeEvent.error) {
+      props.fieldUtils.setFieldError(props.name, 'Incomplete payment details');
     }
   };
 
-  checkStatus = () => {
-    if (this.state.complete) {
-      this.getStripeToken();
-    } else {
-      this.props.setFieldError(this.props.name, 'Incomplete payment details');
+  const checkStatus = () => {
+    if (!completed) {
+      props.fieldUtils.setFieldError(props.name, 'Incomplete payment details');
     }
-    this.props.onBlur();
+    props.onBlur();
   };
 
-  render() {
-    return (
-      <CardElement
-        hidePostalCode
-        style={style}
-        onBlur={this.checkStatus}
-        onChange={stripeEvent => this.setEntryStatus(stripeEvent)}
-        onFocus={() => {
-          this.props.setFieldTouched(this.props.name, true);
-          this.props.onFocus();
-        }}
-      />
-    );
-  }
-}
-
-const InjectedCard = injectStripe(Card);
-
-const InputWrapper = props => {
   return (
-    <Stripe>
-      <Box>
-        <Wrapper>
-          <InjectedCard {...props} />
-        </Wrapper>
-      </Box>
-    </Stripe>
+    <CardElement
+      hidePostalCode
+      style={stripeStyle}
+      onBlur={checkStatus}
+      onChange={stripeEvent => setEntryStatus(stripeEvent)}
+      onFocus={() => {
+        props.fieldUtils.setFieldTouched(props.name, true);
+        props.onFocus();
+      }}
+    />
   );
 };
 
+const InjectedCard = injectStripe(Card);
+
 const StripeField = props => {
-  return <InputWrapper {...props} />;
+  return (
+    <Stripe>
+      <Wrapper>
+        <InjectedCard {...props} />
+      </Wrapper>
+    </Stripe>
+  );
 };
 
 Card.propTypes = {

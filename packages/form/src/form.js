@@ -1,176 +1,97 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
-import styled from 'styled-components';
-import * as Yup from 'yup';
 import Button from '@rtm-ui/button';
-import Icon from '@rtm-ui/icon';
-import { Box } from '@rtm-ui/layout';
-import { Header, Small } from '@rtm-ui/typography';
-import BaseField, { fieldTypes } from './fields/baseField';
-import {
-  maskValidator,
-  requiredValidator,
-  requiredRadioValidator,
-  emailValidator,
-  passwordConfirmValidator,
-  passwordComplexityValidator,
-  zipcodeValidator,
-} from './fields/util/validators';
+import BaseField from './fields/baseField';
+import { setupForm, getFormErrors, getFieldErrors } from './util/helpers';
+import { useLocalStorage } from './util/useLocalStorage';
+import { FormContext } from './formContext';
 
-const Footer = styled(Box)`
-  display: flex;
-  align-items: ${props => props.alignItems};
-  justify-content: flex-end;
-  flex-direction: column;
-`;
-
-const FormStatus = ({ formError, submitting }) => {
-  return (
-    // FIXME: minHeight due to not wanting to jump when nothing present
-    <Box style={{ minHeight: '34px' }} p={2}>
-      {formError &&
-        !submitting && (
-          <Small color="error" mr={10}>
-            <Icon fill="error" size={16} glyph="view-close" />
-            {formError || 'An error has ocurred, please try again.'}
-          </Small>
-        )}
-    </Box>
-  );
+const passThruSubmit = async values => {
+  return values;
 };
 
-const validatorMap = {
-  maskValidator,
-  requiredValidator,
-  requiredRadioValidator,
-  emailValidator,
-  passwordConfirmValidator,
-  passwordComplexityValidator,
-  zipcodeValidator,
-};
-
-const getSchema = fields => {
-  const validationSchema = {};
-  fields
-    .filter(({ validator }) => validator)
-    .forEach(({ name, validator, validatorArgs }) => {
-      validationSchema[name] = validatorArgs
-        ? validatorMap[`${validator}Validator`](...validatorArgs)
-        : validatorMap[`${validator}Validator`];
-    });
-
-  return validationSchema;
-};
-
-// NOTE: this may become more annoying as it's current behavior
-// is to store the last submitted state in localStorage and
-// restore it as an initalValue, overriding what has been
-// setup from the form configuration. A scenario where this
-// may become annoying is when a user has changed a restored
-// form, then refreshed the page to see their recent changes
-// overridden by older changes.
-const getInitialValues = (fields, storedValues = {}) => {
-  const initialValues = {};
-  fields.forEach(({ name, initialValue }) => {
-    initialValues[name] =
-      (storedValues && storedValues[name]) || initialValue || '';
-  });
-  return initialValues;
-};
-
-const Form = props => {
-  const {
-    onSubmit,
+const Form = ({ onSubmit = passThruSubmit, fields, id, ...props }) => {
+  const [storedValues, setStoredValues] = useLocalStorage(id, {});
+  const { validationSchema, initialValues } = setupForm(
     fields,
-    header,
-    disabled: formDisabled,
-    submitText,
-    submitIcon,
-    storedValues,
-    status,
-  } = props;
-  const initialValues = getInitialValues(fields, storedValues);
-  const schema = Yup.object().shape(getSchema(fields));
+    id,
+    storedValues
+  );
+
+  const filterObject = (raw, sensitiveKeys) => {
+    return Object.keys(raw)
+      .filter(key => !sensitiveKeys.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = raw[key];
+        return obj;
+      }, {});
+  };
+
+  const context = React.useContext(FormContext) || {};
+
+  const submitWrapper = async (...args) => {
+    try {
+      const sensitiveFields = fields
+        .filter(({ sensitive }) => sensitive === true)
+        .map(({ name }) => name);
+
+      const response = await onSubmit(...args, context);
+
+      await setStoredValues(filterObject(response, sensitiveFields));
+
+      props.onSuccess({ id, values: response });
+    } catch (e) {
+      getFormErrors(e, fields);
+    }
+  };
+
+  // Pass these values straight through with no submission
+  React.useEffect(function() {
+    if (props.passThru) {
+      validationSchema.isValid(initialValues).then(valid => {
+        if (valid) {
+          props.onSuccess({ id, values: initialValues });
+        }
+      });
+    }
+  }, []);
 
   return (
-    // FIXME: temporary solution to hide step form
-    <div style={{ opacity: formDisabled && 0 }} id={`form-${props.formId}`}>
-      <Formik
-        enableReinitialize // tell formik we're loading data from localStorage
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={(values, actions) => onSubmit(values, actions)}
-        render={({ handleSubmit, ...rest }) => (
-          <React.Fragment>
-            <Header tag="h6">{header}</Header>
-            <form onSubmit={handleSubmit}>
-              {fields.map(field => (
-                <BaseField
-                  {...field}
-                  key={field.name}
-                  disabled={formDisabled || field.disabled}
-                  setFieldValue={rest.setFieldValue}
-                  setFieldError={rest.setFieldError}
-                  setFieldTouched={rest.setFieldTouched}
-                  onChange={rest.handleChange}
-                  value={rest.values[field.name]}
-                  error={
-                    (rest.touched[field.name] && rest.errors[field.name]) ||
-                    props.errors[field.name]
-                  }
-                  success={
-                    rest.touched[field.name] &&
-                    !rest.errors[field.name] &&
-                    !props.errors[field.name]
-                  }
-                />
-              ))}
-              <Footer alignItems="flex-end">
-                <Box>
-                  <Button
-                    data-testid={`form-${props.formId}-submit`}
-                    type="submit"
-                    disabled={formDisabled || rest.isSubmitting}
-                  >
-                    {submitText || 'Get Started'}
-                    {submitIcon && (
-                      <Icon
-                        inline
-                        size={24}
-                        fill="inverseText"
-                        glyph={rest.isSubmitting ? 'switching' : submitIcon}
-                      />
-                    )}
-                  </Button>
-                </Box>
-                <FormStatus
-                  formError={props.formError}
-                  submitting={rest.isSubmitting}
-                />
-              </Footer>
-            </form>
-          </React.Fragment>
-        )}
-      />
-    </div>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      enableReinitialize
+      onSubmit={submitWrapper}
+      render={({ handleSubmit, isSubmitting, isValidating, ...rest }) => {
+        const fieldUtils = {
+          setFieldValue: rest.setFieldValue,
+          setFieldTouched: rest.setFieldTouched,
+          setFieldError: rest.setFieldError,
+        };
+
+        return (
+          <form onSubmit={handleSubmit}>
+            {fields.map(field => (
+              <BaseField
+                key={field.name}
+                {...field}
+                value={rest.values[field.name]}
+                error={getFieldErrors(rest, field)}
+                onChange={rest.handleChange}
+                fieldUtils={fieldUtils}
+              />
+            ))}
+            {props.renderFooter || (
+              <Button data-testid={`submit-${id}`} type="submit">
+                Submit
+              </Button>
+            )}
+          </form>
+        );
+      }}
+    />
   );
-};
-
-Form.defaultProps = {
-  fields: [],
-  errors: {},
-};
-
-Form.propTypes = {
-  onSubmit: PropTypes.func,
-  fields: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(Object.keys(fieldTypes)),
-    })
-  ),
 };
 
 export default Form;

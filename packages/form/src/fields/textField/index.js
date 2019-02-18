@@ -1,7 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { Box } from '@rtm-ui/layout';
+
+export const focusStyle = css`
+  &:focus {
+    z-index: 2;
+    outline: none;
+    box-shadow: inset 0 0 2px rgba(67, 90, 111, 0.18), inset 0 0 0 1px #579ad900,
+      0 0 0 3px rgba(16, 112, 202, 0.07);
+  }
+`;
 
 export const inputStyle = css`
   padding: 8px 5px;
@@ -16,27 +24,15 @@ export const inputStyle = css`
   &::placeholder {
     color: #b3b3b3;
   }
-  &:focus {
-    z-index: 2;
-    outline: none;
-    box-shadow: inset 0 0 2px rgba(67, 90, 111, 0.18), inset 0 0 0 1px #579ad900,
-      0 0 0 3px rgba(16, 112, 202, 0.07);
-  }
+
+  ${focusStyle};
 `;
 
 const StyledInput = styled.input`
   ${inputStyle};
 `;
 
-const InputWrapper = props => (
-  <Box>
-    <StyledInput {...props} />
-  </Box>
-);
-
-const TextField = props => {
-  return <InputWrapper {...props} />;
-};
+const TextField = props => <StyledInput {...props} />;
 
 TextField.propTypes = {
   autoComplete: PropTypes.string,

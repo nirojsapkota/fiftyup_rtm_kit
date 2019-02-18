@@ -29,13 +29,16 @@ const BackgroundIconWrapper = styled(Box)`
   z-index: 10;
   top: 50%;
   transform: translateY(-50%);
+  opacity: 0.5;
 `;
 
 const IconContainer = ({ backgroundIcon, children, ...boxProps }) => {
   return (
     <IconWrapper {...boxProps}>
       <React.Fragment>
-        <Box style={{ zIndex: 100 }}>{children}</Box>
+        <Box w={[200, 400]} style={{ zIndex: 100 }}>
+          {children}
+        </Box>
         <BackgroundIconWrapper>{backgroundIcon}</BackgroundIconWrapper>
       </React.Fragment>
     </IconWrapper>
@@ -54,16 +57,16 @@ const Hero = props => {
       }}
     >
       <Flex py={30}>
-        <Box style={{ position: 'relative', zIndex: 100 }} px={10}>
+        <Box style={{ position: 'relative', zIndex: 100 }}>
           <Header align="center" font="serif">
             {props.title}
           </Header>
         </Box>
         <IconContainer
           px={10}
-          backgroundIcon={<Icon fill="inverseText" glyph="gear" size={600} />}
+          backgroundIcon={<Icon fill="inverseText" glyph="gear-2" size={600} />}
         >
-          <Icon glyph={props.icon} size={250} />
+          <Icon glyph={props.icon} size={150} />
         </IconContainer>
       </Flex>
       <Card p={[20, 30]} mx={2} mb={4} style={{ zIndex: 10 }}>

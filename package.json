@@ -50,6 +50,8 @@
     "multimatch": "^2.1.0",
     "plop": "^2.1.0",
     "prettier": "1.14.3",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "react-dev-utils": "^6.1.1",
     "react-stripe-elements": "^2.0.3",
     "react-text-mask": "^5.4.3",

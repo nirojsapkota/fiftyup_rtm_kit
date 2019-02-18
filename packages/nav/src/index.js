@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Pane } from '@rtm-ui/layout';
-import Icon from '@rtm-ui/icon';
+import Icon, { Logo } from '@rtm-ui/icon';
 import Sheet from './sheet';
 
 const A = styled.a`
@@ -25,8 +26,8 @@ const Navbar = props => {
   return (
     <Flex p={20} elevation={1}>
       {props.desktop && <div />}
-      <A onClick={props.onHomeClick}>
-        <Icon glyph={props.logo} />
+      <A style={{ display: 'flex' }} onClick={props.onHomeClick}>
+        <Logo entityBrand={props.logo} width={100} />
       </A>
       <A showHover data-testid="toggle-nav" onClick={() => props.onNavClick()}>
         <Icon size={48} glyph="menu" />
@@ -35,20 +36,25 @@ const Navbar = props => {
   );
 };
 
+const Portal = props => {
+  return ReactDOM.createPortal(
+    <Sheet headerAction={props.header} {...props} />,
+    document.body
+  );
+};
+
 const Nav = props => {
+  const [isClosed, toggleClosed] = React.useState(true);
+  const toggle = () => toggleClosed(!isClosed);
   return (
-    <Sheet items={props.items}>
-      {({ toggle }) => (
-        <React.Fragment>
-          <Navbar
-            logo={props.logo}
-            onHomeClick={() => props.onHomeClick(toggle)}
-            onNavClick={toggle}
-          />
-          {props.children}
-        </React.Fragment>
-      )}
-    </Sheet>
+    <React.Fragment>
+      <Navbar
+        logo={props.logo}
+        onHomeClick={props.onHomeClick}
+        onNavClick={toggle}
+      />
+      {!isClosed && <Portal {...props} isClosed={isClosed} toggle={toggle} />}
+    </React.Fragment>
   );
 };
 

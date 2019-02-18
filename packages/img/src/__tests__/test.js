@@ -16,11 +16,6 @@ const setup = () => {
 };
 
 describe(`<Img />`, () => {
-  it(`should render the image size images`, () => {
-    const component = setup();
-    expect(component).toMatchSnapshot();
-  });
-
   it(`should have correct src, title and alt attributes`, () => {
     const imageTag = setup().querySelector(`img`);
     expect(imageTag.getAttribute(`src`)).toEqual(`test_image.jpg`);

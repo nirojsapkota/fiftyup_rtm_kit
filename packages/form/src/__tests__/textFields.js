@@ -3,116 +3,43 @@ import React from 'react';
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import Form from '../index';
 
-const testFields = [
-  {
-    fieldType: '<TextField />',
-    testData: [
-      {
-        inputValue: '',
-        errorMessage: 'Required',
-        field: {
-          label: 'Zipcode:',
-          name: 'zipcode',
-          validator: 'required',
-        },
-      },
-      {
-        inputValue: '123',
-        errorMessage: 'Must be 5 digits',
-        field: {
-          label: 'Zipcode:',
-          name: 'zipcode',
-          validator: 'zipcode',
-        },
-      },
-      {
-        inputValue: '123',
-        errorMessage: 'Not enough characters',
-        field: {
-          label: 'Phone Number:',
-          hint: 'Please follow the format provided (US numbers only)',
-          name: 'phone_number',
-          type: 'tel',
-          mask: 'phoneUS',
-          validator: 'mask',
-          validatorArgs: ['phoneUS', 'Phone Number'],
-        },
-      },
-    ],
-  },
-  {
-    fieldType: '<NumberField />',
-    testData: [
-      {
-        inputValue: '',
-        errorMessage: 'Required',
-        field: {
-          label: 'My Email:',
-          name: 'email',
-          validator: 'required',
-        },
-      },
-      {
-        inputValue: 'invalidemail',
-        errorMessage: 'Invalid email address',
-        field: {
-          label: 'My Email:',
-          name: 'email',
-          validator: 'email',
-        },
-      },
-    ],
-  },
-];
-
-const setup = (handleSubmit, field) => {
-  return render(<Form onSubmit={handleSubmit} fields={[field]} />);
-};
-
-const runTest = ({ field, inputValue, errorMessage }) => {
-  const validatorDescription = field.validatorArgs
-    ? `${field.validator} (${field.validatorArgs[0]})`
-    : field.validator;
-  describe(`the ${validatorDescription} validator`, async () => {
+describe(`<TextField />`, async () => {
+  describe(`when submitting immediately`, async () => {
     const handleSubmit = jest.fn();
-    it(`prevents submission and shows ${errorMessage}`, async () => {
-      const { getByTestId, getByText, getByLabelText } = setup(
-        handleSubmit,
-        field
+    it(`prevents submission and shows an error`, async () => {
+      const { queryAllByTestId, getByTestId, debug } = render(
+        <Form
+          id="test"
+          onSubmit={handleSubmit}
+          fields={[
+            {
+              label: 'Name',
+              name: 'name',
+              type: 'text',
+              validator: 'required',
+            },
+          ]}
+        />
       );
-      const itemInput = getByLabelText(field.label);
-      fireEvent.change(itemInput, {
-        target: { value: inputValue },
-      });
-      const errorContainer = getByTestId('fieldError');
-      const submit = getByText('Get Started');
+
+      const errorContainers = queryAllByTestId('fieldError');
+
+      const submit = getByTestId(`submit-test`);
       fireEvent.click(submit);
 
       await wait(() => {
-        expect(errorContainer).toHaveTextContent(errorMessage);
+        expect(errorContainers[0]).toHaveTextContent('Required');
         expect(handleSubmit).not.toHaveBeenCalled();
       });
     });
   });
-};
-
-testFields.map(({ fieldType, testData }) => {
-  describe(fieldType, () => {
-    describe('with invalid input', () => {
-      testData.map(testField => {
-        runTest(testField);
-      });
-    });
-  });
-});
-
-describe(`<TextField />`, async () => {
   describe(`without matching passwords`, async () => {
     describe(`the password confirm validator`, async () => {
       const handleSubmit = jest.fn();
       it(`prevents submission and shows no match`, async () => {
-        const { queryAllByTestId, getByText, getByLabelText } = render(
+        const { queryAllByTestId, getByTestId, getByLabelText } = render(
           <Form
+            id="test"
             onSubmit={handleSubmit}
             fields={[
               {
@@ -145,7 +72,7 @@ describe(`<TextField />`, async () => {
         });
         const errorContainers = queryAllByTestId('fieldError');
 
-        const submit = getByText('Get Started');
+        const submit = getByTestId(`submit-test`);
         fireEvent.click(submit);
 
         await wait(() => {
