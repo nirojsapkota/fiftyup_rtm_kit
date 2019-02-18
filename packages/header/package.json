@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/header",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Description for header",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -19,8 +19,8 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/icon": "^4.0.1",
-    "@rtm-ui/layout": "^3.0.8"
+    "@rtm-ui/icon": "^4.0.2",
+    "@rtm-ui/layout": "^3.0.9"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -28,6 +28,6 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^4.0.1"
+    "@rtm-ui/rtm-scripts": "^4.0.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/typography",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "Stub description for type",
   "rtmRollup": {
     "namespace": "typography",
@@ -23,8 +23,8 @@
     "test": "rtm-scripts test"
   },
   "dependencies": {
-    "@rtm-ui/layout": "^3.0.8",
-    "@rtm-ui/theme": "^3.0.7"
+    "@rtm-ui/layout": "^3.0.9",
+    "@rtm-ui/theme": "^3.0.8"
   },
   "peerDependencies": {
     "@rtm-ui/bootstrap": "3.0.*",
@@ -33,6 +33,6 @@
     "styled-components": "^4.0"
   },
   "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^4.0.1"
+    "@rtm-ui/rtm-scripts": "^4.0.2"
   }
 }
