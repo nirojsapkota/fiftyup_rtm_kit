@@ -8,14 +8,12 @@
     }
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap",
     "commit": "npx git-cz",
     "serve": "curl pad.js.org | node",
     "dev": "docz dev",
     "lint": "eslint packages",
-    "test": "CI=true lerna run test --no-sort --stream --concurrency 999 -- -- --coverage",
-    "test-coverage": "npm run test-watch -- -- --coverage --color",
-    "test-updateSnapshot": "CI=true npm run test-watch -- -- --updateSnapshot --color",
+    "test": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --coverage",
     "test-watch": "lerna exec --no-sort --stream --concurrency 999 -- npm run test",
     "release": "lerna publish --yes",
     "generate": "plop --plopfile ./templates/plopfile.js"
@@ -24,6 +22,8 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "axios": "^0.18.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-preset-react": "^6.24.1",
     "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
     "docz": "^0.13",
@@ -43,7 +43,8 @@
     "jest-dom": "^2.1.1",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
-    "lerna": "3.5.0",
+    "jest-styled-components": "^6.2.2",
+    "lerna": "^3.13.0",
     "lerna-changelog": "^0.7.0",
     "lint-staged": "^7.0.5",
     "meow": "^5.0.0",
@@ -51,10 +52,16 @@
     "plop": "^2.1.0",
     "prettier": "1.14.3",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
     "react-dev-utils": "^6.1.1",
+    "react-dom": "^16.8.0",
     "react-stripe-elements": "^2.0.3",
+    "react-testing-library": "^5.2.3",
     "react-text-mask": "^5.4.3",
+    "rollup": "^0.67.0",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-uglify": "^6.0.0",
     "strip-ansi": "^4.0.0",
     "tempy": "^0.2.1",
     "text-mask-addons": "^3.8.0",
@@ -78,17 +85,29 @@
     ]
   },
   "dependencies": {
-    "@rebass/grid": "^6.0.0-7",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-plugin-prettier": "^3.0.0",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.topath": "^4.5.2",
-    "logrocket": "^0.6.17",
-    "styled-components": "^4.1.3"
+    "@rtm-ui/bootstrap": "file:packages/bootstrap",
+    "@rtm-ui/button": "file:packages/button",
+    "@rtm-ui/entity": "file:packages/entity",
+    "@rtm-ui/footer": "file:packages/footer",
+    "@rtm-ui/form": "file:packages/form",
+    "@rtm-ui/header": "file:packages/header",
+    "@rtm-ui/hero": "file:packages/hero",
+    "@rtm-ui/how-it-works": "file:packages/how-it-works",
+    "@rtm-ui/hybrid-login-view": "file:packages/hybrid-login-view",
+    "@rtm-ui/icon": "file:packages/icon",
+    "@rtm-ui/img": "file:packages/img",
+    "@rtm-ui/layout": "file:packages/layout",
+    "@rtm-ui/login-panel": "file:packages/login-panel",
+    "@rtm-ui/nav": "file:packages/nav",
+    "@rtm-ui/rtm-scripts": "file:packages/rtm-scripts",
+    "@rtm-ui/theme": "file:packages/theme",
+    "@rtm-ui/tracker": "file:packages/tracker",
+    "@rtm-ui/typography": "file:packages/typography"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "name": "rtm-kit"
 }

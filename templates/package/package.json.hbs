@@ -4,30 +4,25 @@
   "description": "Description for {{camelCase name}}",
   "author": "RevTech Media",
   "license": "UNLICENSED",
-  "main": "build/main.js",
-  "module": "src/index.js",
   "rtmRollup": {
     "namespace": "{{kebabCase name}}",
     "defaultExport": "{{properCase name}}",
     "namedExports": [
     ]
   },
+  "main": "build/main.js",
+  "module": "src/index.js",
+  "_module": "src/index",
   "scripts": {
-    "start": "rtm-scripts start",
-    "build": "rtm-scripts rollup",
-    "prepare": "rtm-scripts rollup",
-    "test": "rtm-scripts test"
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
-    "@rtm-ui/layout": "^1.0.0",
-    "@rtm-ui/typography": "^1.0.0"
+    "@rtm-ui/bootstrap": "file:../bootstrap"
   },
   "peerDependencies": {
-    "react": "^16.6",
-    "prop-types": "^15.5.4",
-    "styled-components": "^4.0"
-  },
-  "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^1.0.0"
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
   }
 }

@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 // import { Header, Paragraph } from '@rtm-ui/typography'
 // import { Box } from '@rtm-ui/layout'
 
-class {{ properCase name }} extends {{{ type }}} {
-  render() {
-    return <div>{this.props.children}</div>;
-  }
-}
+const {{ properCase name }} = ({children}) => <div>{children}</div>;
 
 {{ properCase name }}.propTypes = {
   children: PropTypes.node

@@ -137,7 +137,7 @@ RTM Scripts acts as a single source of truth for how we build and test things. Y
 ```json
 "scripts": {
   "start": "rtm-scripts start",
-  "build": "rtm-scripts rollup",
+  "build": "node ../rtm-scripts/scripts/rollup",
   "prepare": "rtm-scripts rollup",
   "test": "rtm-scripts test"
 }

@@ -18,7 +18,8 @@ phases:
       - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
   pre_build:
     commands:
-      - lerna bootstrap --no-ci --hoist
+      - lerna bootstrap --no-ci
+      - lerna run build --parallel
   build:
     commands:
       - npm run test

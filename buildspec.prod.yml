@@ -25,7 +25,8 @@ phases:
       - git config --global user.name $GIT_USER_NAME
   pre_build:
     commands:
-      - lerna bootstrap --no-ci --hoist
+      - lerna bootstrap --no-ci
+      - lerna run build --parallel
   build:
     commands:
       - npm run test

@@ -8,13 +8,6 @@ module.exports = function(plop) {
         name: 'name',
         message: 'name of new package',
       },
-      {
-        type: 'list',
-        name: 'type',
-        message: 'Will the core component be stateless?',
-        default: 'Stateless',
-        choices: () => ['Stateless', 'React.Component'],
-      },
     ],
     actions: data =>
       [
@@ -23,15 +16,10 @@ module.exports = function(plop) {
           path: '../packages/{{camelCase name}}/package.json',
           templateFile: './package/package.json.hbs',
         },
-        data.type === 'React.Component' && {
+        {
           type: 'add',
           path: '../packages/{{camelCase name}}/src/index.js',
           templateFile: './package/index.js.hbs',
-        },
-        data.type === 'Stateless' && {
-          type: 'add',
-          path: '../packages/{{camelCase name}}/src/index.js',
-          templateFile: './package/stateless.js.hbs',
         },
         {
           type: 'add',

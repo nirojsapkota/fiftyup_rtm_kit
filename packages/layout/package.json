@@ -17,23 +17,17 @@
   "module": "build/module.js",
   "_module": "src/index",
   "scripts": {
-    "start": "rtm-scripts start",
-    "build": "rtm-scripts rollup",
-    "prepare": "rtm-scripts rollup",
-    "test": "rtm-scripts test"
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
-    "@rtm-ui/theme": "^3.0.8"
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/theme": "file:../theme"
   },
   "peerDependencies": {
-    "@rtm-ui/bootstrap": "3.0.*",
-    "prop-types": "^15.5.4",
-    "react": "^16.6",
-    "styled-components": "^4.0"
-  },
-  "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^4.0.2",
-    "jest-dom": "^2.1.1"
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
   }
 }

@@ -13,6 +13,5 @@ describe('<{{ properCase name }} />', () => {
     const { getByText } = render(<{{ properCase name }}>{text}</{{ properCase name }}>);
 
     expect(getByText(text)).toBeInTheDocument();
-    expect(getByText(text)).toMatchSnapshot();
   });
 })

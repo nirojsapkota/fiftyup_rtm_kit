@@ -13,29 +13,24 @@
   "module": "build/module.js",
   "_module": "src/index",
   "scripts": {
-    "start": "rtm-scripts start",
-    "build": "rtm-scripts rollup",
-    "prepare": "rtm-scripts rollup",
-    "test": "rtm-scripts test"
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
-    "@rtm-ui/bootstrap": "^3.0.8",
-    "@rtm-ui/entity": "^1.0.3",
-    "@rtm-ui/footer": "^1.1.5",
-    "@rtm-ui/header": "^1.1.5",
-    "@rtm-ui/how-it-works": "^2.0.2",
-    "@rtm-ui/img": "^3.0.9",
-    "@rtm-ui/layout": "^3.0.9",
-    "@rtm-ui/login-panel": "^3.1.10",
-    "@rtm-ui/theme": "^3.0.8",
-    "@rtm-ui/typography": "^3.0.9"
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/entity": "file:../entity",
+    "@rtm-ui/footer": "file:../footer",
+    "@rtm-ui/header": "file:../header",
+    "@rtm-ui/how-it-works": "file:../how-it-works",
+    "@rtm-ui/img": "file:../img",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/login-panel": "file:../login-panel",
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.4",
-    "react": "^16.6",
-    "styled-components": "^4.0"
-  },
-  "devDependencies": {
-    "@rtm-ui/rtm-scripts": "^4.0.2"
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
   }
 }
