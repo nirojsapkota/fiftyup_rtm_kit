@@ -17,7 +17,7 @@ export const inputStyle = css`
   color: #565656;
   font-size: 16px;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${props => (props.showErrorColor ? 'red' : '#ccc')};
   display: block;
   width: 100%;
 

@@ -18,6 +18,9 @@ export const presignupInputs = {
 
 export const formInputs = {
   id: 'kitcket-sink',
+  onSubmit: (values, bag, context) => {
+    console.log(values, bag, context);
+  },
   fields: [
     {
       label: 'My Zipcode:',

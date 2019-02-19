@@ -16,7 +16,8 @@
     "test": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --coverage",
     "test-watch": "lerna exec --no-sort --stream --concurrency 999 -- npm run test",
     "release": "lerna publish --yes",
-    "generate": "plop --plopfile ./templates/plopfile.js"
+    "generate": "plop --plopfile ./templates/plopfile.js",
+    "watch": "lerna run --parallel build -- -- --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

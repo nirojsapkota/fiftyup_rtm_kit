@@ -61,7 +61,7 @@ const InjectedCard = injectStripe(Card);
 const StripeField = props => {
   return (
     <Stripe>
-      <Wrapper>
+      <Wrapper showErrorColor={props.showErrorColor}>
         <InjectedCard {...props} />
       </Wrapper>
     </Stripe>

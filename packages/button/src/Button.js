@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Box } from '@rtm-ui/layout';
 import styled from 'styled-components';
 import { Base } from './base';
 
@@ -15,6 +16,13 @@ const GroupWrapper = styled.div`
   > *:last-child {
     margin-right: 0px;
   }
+`;
+
+export const ButtonGrid = styled(Box)`
+  display: grid;
+  grid-gap: 10px 10px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: auto;
 `;
 
 export const ButtonGroup = ({ children, ...flexProps }) => {
