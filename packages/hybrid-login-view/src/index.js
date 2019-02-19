@@ -11,6 +11,7 @@ import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
 import { BasicHeader } from '@rtm-ui/header';
 import { BasicFooter } from '@rtm-ui/footer';
+import { track } from '@rtm-ui/tracker';
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -128,42 +129,49 @@ HybridLoginView.propTypes = {
   entityBrand: t.string,
 };
 
-HybridLoginView.defaultProps = {
-  disclaimerProps: {
-    disclaimerText:
-      '* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.  ',
-  },
-};
+class WrappedHybridLoginView extends React.Component {
+  componentDidMount() {
+    track('presignup', this.props.trackingData);
+  }
 
-const WrappedHybridLoginView = ({ trackingData, entity, ...rest }) => (
-  <Bootstrap trackingData={trackingData}>
-    <EntityProvider entity={entity}>
-      <EntityConsumer>
-        {({
-          brand,
-          footer_items: footerLogoUrl,
-          header_items: headerLogoUrl,
-        }) => {
-          return (
-            <React.Fragment>
-              <BasicHeader logoUrl={headerLogoUrl} entityBrand={brand} py={2} />
-              <HybridLoginView {...rest} entityBrand={brand} />
-              <Variant variant="c">
-                <FooterWrapper py={2}>
-                  <BasicFooter
-                    logoUrl={footerLogoUrl}
-                    maxWidth={1080}
+  render() {
+    const { trackingData, entity, ...rest } = this.props;
+
+    return (
+      <Bootstrap trackingData={trackingData}>
+        <EntityProvider entity={entity}>
+          <EntityConsumer>
+            {({
+              brand,
+              footer_items: footerLogoUrl,
+              header_items: headerLogoUrl,
+            }) => {
+              return (
+                <React.Fragment>
+                  <BasicHeader
+                    logoUrl={headerLogoUrl}
                     entityBrand={brand}
+                    py={2}
                   />
-                </FooterWrapper>
-              </Variant>
-            </React.Fragment>
-          );
-        }}
-      </EntityConsumer>
-    </EntityProvider>
-  </Bootstrap>
-);
+                  <HybridLoginView {...rest} entityBrand={brand} />
+                  <Variant variant="c">
+                    <FooterWrapper py={2}>
+                      <BasicFooter
+                        logoUrl={footerLogoUrl}
+                        maxWidth={1080}
+                        entityBrand={brand}
+                      />
+                    </FooterWrapper>
+                  </Variant>
+                </React.Fragment>
+              );
+            }}
+          </EntityConsumer>
+        </EntityProvider>
+      </Bootstrap>
+    );
+  }
+}
 
 WrappedHybridLoginView.propTypes = {
   trackingData: t.shape({}),

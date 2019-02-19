@@ -75,4 +75,95 @@ describe(`Google`, () => {
 
     expect(logSpy).toHaveBeenCalled();
   });
+
+  it(`with energy category and presignup action`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'presignup',
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/presignup',
+    });
+  });
+
+  describe(`energy category`, () => {
+    it(`get_started action, Electricity and solar`, () => {
+      global.ga = jest.fn();
+      const spyGa = jest.spyOn(global, 'ga');
+
+      Google.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'E',
+          is_solar: true,
+        },
+      });
+
+      expect(spyGa).toHaveBeenCalledWith('send', {
+        hitType: 'pageview',
+        page: 'virtual/energy/get_started/internal/NSW/Electricity/solar',
+      });
+    });
+
+    it(`get_started action, DualFuel and non solar`, () => {
+      global.ga = jest.fn();
+      const spyGa = jest.spyOn(global, 'ga');
+
+      Google.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'EG',
+          is_solar: false,
+        },
+      });
+
+      expect(spyGa).toHaveBeenCalledWith('send', {
+        hitType: 'pageview',
+        page: 'virtual/energy/get_started/internal/NSW/DualFuel/nonsolar',
+      });
+    });
+
+    it(`get_started action, missing is_solar`, () => {
+      const logSpy = jest.spyOn(LogRocket, 'captureException');
+
+      Google.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'EG',
+        },
+      });
+
+      expect(logSpy).toHaveBeenCalled();
+    });
+
+    it(`get_started action, missing plan_type`, () => {
+      const logSpy = jest.spyOn(LogRocket, 'captureException');
+
+      Google.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          is_solar: false,
+        },
+      });
+
+      expect(logSpy).toHaveBeenCalled();
+    });
+  });
 });
