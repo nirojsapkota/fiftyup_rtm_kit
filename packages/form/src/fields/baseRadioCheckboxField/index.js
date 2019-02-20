@@ -8,7 +8,7 @@ import { focusStyle } from '../textField';
 const StyledButton = styled(Button)`
   ${focusStyle};
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
@@ -32,6 +32,7 @@ const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
             htmlFor={`${name}_${option.value}`}
             pl={10}
             pr={20}
+            pt="4px"
           >
             {option.label}
           </Label>

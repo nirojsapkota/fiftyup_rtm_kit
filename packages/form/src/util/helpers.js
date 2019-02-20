@@ -32,22 +32,20 @@ export const getSchema = fields => {
   return Yup.object().shape(validationSchema);
 };
 
-export const getInitialValues = (fields, formId, storedValues) => {
+export const getInitialValues = fields => {
   const initialValues = {};
   fields.forEach(({ name, initialValue }) => {
-    initialValues[name] = initialValue || storedValues[name] || '';
+    initialValues[name] = initialValue || '';
   });
   return initialValues;
 };
 
-export const setupForm = (fields, formId, storedValues) => {
+export const setupForm = fields => {
   return {
     validationSchema: getSchema(fields),
-    initialValues: getInitialValues(fields, formId, storedValues),
+    initialValues: getInitialValues(fields),
   };
 };
-
-export const getFormErrors = error => {};
 
 export const getFieldErrors = (rest = {}, field) => {
   const { errors = [], touched = [] } = rest;

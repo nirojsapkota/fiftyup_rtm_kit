@@ -17,19 +17,27 @@ import Accordion from './src/accordion'
 ## Basic usage
 
 <Playground>
-  <StepForm {...stepInputs} renderForm={(formProps) => formProps}>
-  {({activeFormId, forms}) =>  {
-  return(
-    <Accordion
-      items={forms}
-      activeItem={activeFormId}
-      setOpenItems={(openItems, openingItemId) => [openItems, openingItemId]}
-      itemHeader={({item, onClick}) => <Button asWrapper onClick={onClick} ><Header tag="h6">{item.id}</Header></Button>}
-      itemBody={(item) => <Form {...item} />}
-    />
-  )}
-  }
-  </StepForm>
+    <StepForm {...stepInputs} renderForm={formProps => formProps}>
+      {({ activeFormId, forms }) => {
+        console.log(forms);
+        return (
+          <Accordion
+            items={forms}
+            activeItem={activeFormId}
+            setOpenItems={(openItems, openingItemId) => [
+              openItems,
+              openingItemId,
+            ]}
+            itemHeader={({ item, onClick }) => (
+              <Button asWrapper onClick={onClick}>
+                <Header tag="h6">{item.id}</Header>
+              </Button>
+            )}
+            itemBody={item => <Form {...item} />}
+          />
+        );
+      }}
+    </StepForm>
 </Playground>
 
 Since forms can be strung together, it's often useful to pass through some

@@ -11,6 +11,11 @@ export const focusStyle = css`
   }
 `;
 
+const disabledStyle = css`
+  cursor: not-allowed;
+  opacity: 0.5;
+`;
+
 export const inputStyle = css`
   padding: 8px 5px;
   font-family: Museo;
@@ -20,12 +25,12 @@ export const inputStyle = css`
   border-bottom: 1px solid ${props => (props.showErrorColor ? 'red' : '#ccc')};
   display: block;
   width: 100%;
+  ${props => props.disabled && disabledStyle};
+  ${focusStyle};
 
   &::placeholder {
     color: #b3b3b3;
   }
-
-  ${focusStyle};
 `;
 
 const StyledInput = styled.input`

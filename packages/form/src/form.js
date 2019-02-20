@@ -6,8 +6,8 @@ import { Box } from '@rtm-ui/layout';
 import Button from '@rtm-ui/button';
 import BaseField from './fields/baseField';
 import { setupForm, getFieldErrors } from './util/helpers';
-import { useLocalStorage } from './util/useLocalStorage';
 import { FormContext } from './formContext';
+import { FormError } from './formError';
 
 export const getFormValues = fields => {
   const values = {};
@@ -34,48 +34,32 @@ const Form = ({
   ...props
 }) => {
   const [fields, setFields] = React.useState(providedFields);
-
   const [serverErrors, setServerErrors] = React.useState({
     formError: null,
     fieldErrors: {},
   });
-  const [storedValues, setStoredValues] = useLocalStorage(id, {});
-  const { validationSchema, initialValues } = setupForm(
-    fields,
-    id,
-    storedValues
-  );
-
-  const filterObject = (raw, sensitiveKeys) => {
-    return Object.keys(raw)
-      .filter(key => !sensitiveKeys.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = raw[key];
-        return obj;
-      }, {});
-  };
-
+  const { validationSchema, initialValues } = setupForm(fields, id);
   const context = React.useContext(FormContext) || {};
 
   const submitWrapper = async (...args) => {
     try {
-      const sensitiveFields = fields
-        .filter(({ sensitive }) => sensitive === true)
-        .map(({ name }) => name);
-
       const [submitValues, formikBag] = args;
       const fieldsWithValues = fields.map(field => {
         return { ...field, value: submitValues[field.name] };
       });
       const response = await onSubmit(fieldsWithValues, context);
-      await setFields(response);
+      if (response) {
+        // console.lot('res', response);
+        await setFields(response);
+      } else {
+        throw new FormError({ formError: 'Something went wrong' });
+      }
 
-      // TODO: this might just be replaced with reducer/localstorage
-      // await setStoredValues(filterObject(response, sensitiveFields));
-
-      await props.onSuccess({ id, values: getFormValues(fields) });
+      formikBag.setSubmitting(false);
+      if (props.onSuccess) {
+        await props.onSuccess({ id, values: getFormValues(fieldsWithValues) });
+      }
     } catch (e) {
-      console.log(e);
       setServerErrors(e.object);
     }
   };
@@ -109,10 +93,10 @@ const Form = ({
             {fields.map(field => (
               <BaseField
                 key={field.name}
-                onChange={rest.handleChange}
                 fieldUtils={fieldUtils}
-                value={rest.values[field.name]}
                 {...field}
+                value={rest.values[field.name]}
+                onChange={rest.handleChange}
                 error={
                   serverErrors.fieldErrors[field.name] ||
                   getFieldErrors(rest, field)

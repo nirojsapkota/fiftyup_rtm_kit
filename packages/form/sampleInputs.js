@@ -63,6 +63,14 @@ export const formInputs = {
       ],
     },
     {
+      label: 'Some preference',
+      validator: 'requiredRadio',
+      name: 'some_pref',
+      value: '',
+      type: 'checkbox',
+      options: [{ label: 'Yes', value: 'yes' }],
+    },
+    {
       label: 'Authorize',
       validator: 'requiredRadio',
       name: 'authorized',
