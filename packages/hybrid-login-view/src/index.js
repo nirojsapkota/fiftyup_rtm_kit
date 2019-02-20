@@ -149,7 +149,7 @@ class WrappedHybridLoginView extends React.Component {
               return (
                 <React.Fragment>
                   <BasicHeader
-                    logoUrl={headerLogoUrl}
+                    logoUrl={headerLogoUrl.logo}
                     entityBrand={brand}
                     py={2}
                   />
@@ -157,7 +157,7 @@ class WrappedHybridLoginView extends React.Component {
                   <Variant variant="c">
                     <FooterWrapper py={2}>
                       <BasicFooter
-                        logoUrl={footerLogoUrl}
+                        logoUrl={footerLogoUrl.logo}
                         maxWidth={1080}
                         entityBrand={brand}
                       />
