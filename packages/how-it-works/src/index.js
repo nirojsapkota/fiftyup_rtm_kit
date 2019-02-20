@@ -6,12 +6,6 @@ import { Header, Small, Paragraph } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
 import { howItWorksContent } from './constants';
 
-const StyledSmall = styled(Small)`
-  max-width: ${props => (props.orientation === 'vertical' ? 'auto' : '130px')};
-  text-align: center;
-  padding: 0;
-`;
-
 const VerticalTitle = styled(Paragraph)`
   max-width: auto;
   text-align: center;
