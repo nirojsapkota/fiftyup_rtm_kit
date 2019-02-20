@@ -2,12 +2,24 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import Icon from '@rtm-ui/icon';
-import { Header, Small } from '@rtm-ui/typography';
+import { Header, Small, Paragraph } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
 import { howItWorksContent } from './constants';
 
 const StyledSmall = styled(Small)`
   max-width: ${props => (props.orientation === 'vertical' ? 'auto' : '130px')};
+  text-align: center;
+  padding: 0;
+`;
+
+const VerticalTitle = styled(Paragraph)`
+  max-width: auto;
+  text-align: center;
+  padding: 0;
+`;
+
+const HorizontalTitle = styled(Small)`
+  max-width: '150px';
   text-align: center;
   padding: 0;
 `;
@@ -25,6 +37,13 @@ const VerticalItem = styled(Box)`
   &:nth-child(4n + 3) {
     display: flex;
     flex-direction: row-reverse;
+    p {
+      padding-right: 20px;
+      padding-left: 0px;
+    }
+  }
+  p {
+    padding-left: 20px;
   }
 `;
 
@@ -50,6 +69,8 @@ const HowItWorks = ({
   const Container =
     orientation === 'vertical' ? VerticalContainer : HorizontalContainer;
   const Item = orientation === 'vertical' ? VerticalItem : HorizontalItem;
+  const IconTitle =
+    orientation === 'vertical' ? VerticalTitle : HorizontalTitle;
   return (
     <Box
       style={{
@@ -66,11 +87,13 @@ const HowItWorks = ({
           <React.Fragment key={s.title}>
             <Item>
               <Box my={10}>
-                <Icon fill="iconPrimary" glyph={s.glyph} size={50} />
+                <Icon
+                  fill="iconPrimary"
+                  glyph={s.glyph}
+                  size={orientation === 'vertical' ? 70 : 50}
+                />
               </Box>
-              <StyledSmall orientation={orientation} px={2}>
-                {s.title}
-              </StyledSmall>
+              <IconTitle px={2}>{s.title}</IconTitle>
             </Item>
             {index < icons.length - 1 && (
               <Box
@@ -85,7 +108,7 @@ const HowItWorks = ({
                   rotate={orientation === 'vertical' ? 90 : 0}
                   fill="primary"
                   glyph="triangle"
-                  size={13}
+                  size={14}
                 />
               </Box>
             )}

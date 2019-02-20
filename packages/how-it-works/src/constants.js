@@ -19,7 +19,7 @@ export const howItWorksContent = {
   },
   ninesaver: {
     header:
-      'Join 9Saver today for FREE and instantly unlock your special offers!',
+      '9Saver takes the stress out of getting value on your household bills by doing the negotiating for you!',
     icons: [
       {
         glyph: 'users-idea',
