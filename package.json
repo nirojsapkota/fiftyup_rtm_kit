@@ -16,7 +16,8 @@
     "test": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --coverage",
     "test-watch": "lerna exec --no-sort --stream --concurrency 999 -- npm run test",
     "release": "lerna publish --yes",
-    "generate": "plop --plopfile ./templates/plopfile.js"
+    "generate": "plop --plopfile ./templates/plopfile.js",
+    "watch": "lerna run --parallel build -- -- --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -87,6 +88,7 @@
   "dependencies": {
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
+    "@rtm-ui/dialog": "file:packages/dialog",
     "@rtm-ui/entity": "file:packages/entity",
     "@rtm-ui/footer": "file:packages/footer",
     "@rtm-ui/form": "file:packages/form",

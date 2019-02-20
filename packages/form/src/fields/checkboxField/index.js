@@ -16,32 +16,37 @@ const AbsoluteIcon = styled(Box)`
   left: 0;
 `;
 
-const CheckboxField = ({ fieldUtils: { setFieldValue }, ...props }) => (
-  <BaseRadioCheckboxField
-    {...props}
-    onClick={(name, value, fieldValues) =>
-      setFieldValue(
-        name,
-        fieldValues.includes(value)
-          ? fieldValues.filter(fieldValue => fieldValue !== value)
-          : [...fieldValues, value]
-      )
-    }
-    icon={({ itemValue, fieldValue }) => {
-      return (
-        <IconContainer>
-          <AbsoluteIcon>
-            <Icon size={22} glyph="box" />
-          </AbsoluteIcon>
-          <Icon
-            size={22}
-            glyph={fieldValue.includes(itemValue) ? 'check' : 'void'}
-          />
-        </IconContainer>
-      );
-    }}
-  />
-);
+const CheckboxField = ({ fieldUtils: { setFieldValue }, ...props }) => {
+  const isSingle = props.options.length === 1;
+  return (
+    <BaseRadioCheckboxField
+      {...props}
+      onClick={(name, value, fieldValues) => {
+        isSingle
+          ? setFieldValue(name, fieldValues === '' ? value : '')
+          : setFieldValue(
+              name,
+              fieldValues.includes(value)
+                ? fieldValues.filter(fieldValue => fieldValue !== value)
+                : [...fieldValues, value]
+            );
+      }}
+      icon={({ itemValue, fieldValue }) => {
+        return (
+          <IconContainer>
+            <AbsoluteIcon>
+              <Icon size={22} glyph="box" />
+            </AbsoluteIcon>
+            <Icon
+              size={22}
+              glyph={fieldValue.includes(itemValue) ? 'check' : 'void'}
+            />
+          </IconContainer>
+        );
+      }}
+    />
+  );
+};
 
 CheckboxField.propTypes = {
   autoComplete: PropTypes.string,

@@ -18,6 +18,9 @@ export const presignupInputs = {
 
 export const formInputs = {
   id: 'kitcket-sink',
+  onSubmit: (values, bag, context) => {
+    console.log(values, bag, context);
+  },
   fields: [
     {
       label: 'My Zipcode:',
@@ -58,6 +61,14 @@ export const formInputs = {
         { label: 'No', value: 'no' },
         { label: 'Not Sure', value: 'notSure' },
       ],
+    },
+    {
+      label: 'Some preference',
+      validator: 'requiredRadio',
+      name: 'some_pref',
+      value: '',
+      type: 'checkbox',
+      options: [{ label: 'Yes', value: 'yes' }],
     },
     {
       label: 'Authorize',

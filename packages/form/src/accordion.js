@@ -46,6 +46,7 @@ const Accordion = props => {
             props.canControlExpansion &&
             setIt(appendOrRemove(openItems, item.id)),
         })}
+
       {openItems.includes(item.id) ? (
         <Div>{props.itemBody({ ...item, visible: true })}</Div>
       ) : (
@@ -66,7 +67,7 @@ Accordion.propTypes = {
 };
 
 Accordion.defaulProps = {
-  setOpenItems: (openItemId, openingItemId) => [openItemId, openingItemId],
+  // setOpenItems: (openItemId, openingItemId) => [openItemId, openingItemId],
   canControlExpansion: true,
   initialOpenItems: [],
 };

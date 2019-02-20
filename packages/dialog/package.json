@@ -1,33 +1,35 @@
 {
-  "name": "@rtm-ui/button",
-  "version": "3.1.7",
-  "rtmRollup": {
-    "namespace": "button",
-    "defaultExport": "Button",
-    "namedExports": [
-      "ButtonGroup"
-    ]
-  },
-  "description": "Description for Bootstrap",
+  "name": "@rtm-ui/dialog",
+  "version": "3.0.8",
+  "description": "Description for dialog",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "main": "build/main.js",
   "module": "build/module.js",
   "_module": "src/index",
+  "rtmRollup": {
+    "namespace": "dialog",
+    "defaultExport": "Dialog",
+    "namedExports": [
+      "Modal"
+    ]
+  },
   "scripts": {
+    "start": "node ../rtm-scripts/scripts/start",
     "build": "node ../rtm-scripts/scripts/rollup",
+    "prepare": "node ../rtm-scripts/scripts/rollup",
     "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
-    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",
-    "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
     "prop-types": "15.x",
     "react": "16.x",
+    "react-dom": "^16.x",
     "styled-components": "4.x"
   }
 }

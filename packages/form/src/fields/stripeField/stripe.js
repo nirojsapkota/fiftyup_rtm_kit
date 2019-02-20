@@ -11,7 +11,9 @@ const Stripe = ({ children }) => {
   }
 
   if (error) {
-    return <div>Unable to load payment gateway</div>;
+    return (
+      <div data-testid="stripe-load-error">Unable to load payment gateway</div>
+    );
   }
 
   return (

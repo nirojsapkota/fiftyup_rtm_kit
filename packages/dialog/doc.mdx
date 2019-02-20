@@ -1,0 +1,22 @@
+---
+name: Dialog
+route: /packages/dialog
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Dialog from './src'
+import Button from '../button'
+
+# Dialog
+
+## Basic usage
+
+<Playground>
+  <Dialog
+    renderContainer={({CloseDialog}) => { return(
+      <div style={{textAlign: 'center'}}>Hello World!</div>
+    )}}
+    renderTrigger={(open) => { return(<Button onClick={open}>Open Dialog</Button>) }}
+  />
+</Playground>

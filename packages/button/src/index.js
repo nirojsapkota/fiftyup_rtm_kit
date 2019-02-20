@@ -1,4 +1,4 @@
-import Button, { ButtonGroup } from './Button';
+import Button, { ButtonGroup, ButtonGrid } from './Button';
 
-export { ButtonGroup };
+export { ButtonGroup, ButtonGrid };
 export default Button;
