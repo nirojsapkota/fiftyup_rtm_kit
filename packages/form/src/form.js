@@ -23,16 +23,7 @@ const FooterBox = styled(Box)`
   justify-content: flex-end;
 `;
 
-const passThruSubmit = async values => {
-  return values;
-};
-
-const Form = ({
-  onSubmit = passThruSubmit,
-  fields: providedFields,
-  id,
-  ...props
-}) => {
+const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
   const [fields, setFields] = React.useState(providedFields);
   const [serverErrors, setServerErrors] = React.useState({
     formError: null,
@@ -48,15 +39,17 @@ const Form = ({
         return { ...field, value: submitValues[field.name] };
       });
       const response = await onSubmit(fieldsWithValues, context);
-      if (response) {
-        // console.lot('res', response);
+      if (Array.isArray(response)) {
         await setFields(response);
       } else {
-        throw new FormError({ formError: 'Something went wrong' });
+        throw new FormError({
+          formError: 'Something went wrong',
+          fieldErrors: {},
+        });
       }
 
       formikBag.setSubmitting(false);
-      if (props.onSuccess) {
+      if (typeof props.onSuccess === 'function') {
         await props.onSuccess({ id, values: getFormValues(fieldsWithValues) });
       }
     } catch (e) {

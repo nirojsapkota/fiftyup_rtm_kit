@@ -98,9 +98,25 @@ formInputs.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
     validEntries.map(valid => {
       describe(`with valid input of ${valid.entry}`, async () => {
         describe(`for regular forms`, async () => {
+          it(`it makes sure onSuccess is provided before calling`, async () => {
+            const handleSubmit = jest.fn(() => {
+              return 'invalid format';
+            });
+            const handleStepSubmit = jest.fn();
+            const handleFinalSubmit = jest.fn();
+
+            setup(
+              valid.entry,
+              form,
+              handleSubmit,
+              null,
+              handleFinalSubmit,
+              false
+            );
+            await wait(() => {});
+          });
           it(`handles invalid handler responses`, async () => {
-            const handleSubmit = jest.fn(fields => {
-              return fields;
+            const handleSubmit = jest.fn(() => {
               return 'invalid format';
             });
             const handleStepSubmit = jest.fn();
@@ -121,6 +137,35 @@ formInputs.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
         });
 
         describe(`for step forms`, async () => {
+          it(`allows the values to be passed through to the onSuccessHandler`, async () => {
+            const handleSubmit = jest.fn(fields => {
+              return fields;
+            });
+            const handleStepSubmit = jest.fn();
+            const handleFinalSubmit = jest.fn();
+
+            console.log({
+              ...form,
+              passThru: true,
+              fields: [{ ...form.fields[0], value: valid.expect }],
+            });
+            setup(
+              valid.entry,
+              {
+                ...form,
+                passThru: true,
+                fields: [{ ...form.fields[0], initialValue: valid.expect }],
+              },
+              handleSubmit,
+              handleStepSubmit,
+              handleFinalSubmit,
+              true
+            );
+            await wait(() => {
+              expect(handleStepSubmit).toHaveBeenCalled();
+            });
+          });
+
           it(`handles server errors`, async () => {
             const handleSubmit = jest.fn(fields => {
               throw new FormError({
