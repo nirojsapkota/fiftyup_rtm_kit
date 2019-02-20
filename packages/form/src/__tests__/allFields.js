@@ -11,6 +11,7 @@ const fireFieldEvents = (field, value, fireEvent, getByLabelText) => {
   let input;
   if (field.type === 'radio' || field.type === 'checkbox') {
     input = getByLabelText(field.options[0].label);
+    // Toggle on and off to ensure we're handling properly
     fireEvent.click(input);
     fireEvent.click(input);
     fireEvent.click(input);

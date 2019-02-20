@@ -22,6 +22,7 @@ const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
           aria-labelledby={`${name}_${option.value}-label`}
           role="radio"
           id={`${name}_${option.value}`}
+          data-testid={`${rest.type}-${name}_${option.value}`}
           asWrapper
           type="button"
           onClick={() => rest.onClick(name, option.value, rest.value)}
