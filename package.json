@@ -87,6 +87,7 @@
   "dependencies": {
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
+    "@rtm-ui/dialog": "file:packages/dialog",
     "@rtm-ui/entity": "file:packages/entity",
     "@rtm-ui/footer": "file:packages/footer",
     "@rtm-ui/form": "file:packages/form",
