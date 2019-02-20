@@ -26,6 +26,7 @@
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/login-panel": "file:../login-panel",
     "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
