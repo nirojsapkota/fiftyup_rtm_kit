@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { Paragraph, Label } from '@rtm-ui/typography';
-import Icon from '@rtm-ui/icon';
 import RadioField from '../radioField';
 import TextField from '../textField';
 import NumberField from '../numberField';
@@ -85,6 +84,7 @@ export default class BaseField extends React.Component {
         </Wrapper>
         <Input
           {...props}
+          showErrorColor={!this.state.focused && error}
           id={`${this.props.name}`}
           onFocus={this.toggleFocused}
           onBlur={this.toggleFocused}

@@ -36,13 +36,4 @@ const StepForm = ({ steps, ...props }) => {
   );
 };
 
-StepForm.defaultProps = {
-  renderForm: formProps => {
-    return <Form {...formProps} />;
-  },
-  children: ({ forms: forms }) => {
-    return forms;
-  },
-};
-
 export default StepForm;

@@ -1,48 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
+import styled from 'styled-components';
+import { Box } from '@rtm-ui/layout';
 import Button from '@rtm-ui/button';
 import BaseField from './fields/baseField';
-import { setupForm, getFormErrors, getFieldErrors } from './util/helpers';
-import { useLocalStorage } from './util/useLocalStorage';
+import { setupForm, getFieldErrors } from './util/helpers';
 import { FormContext } from './formContext';
+import { FormError } from './formError';
 
-const passThruSubmit = async values => {
+export const getFormValues = fields => {
+  const values = {};
+  fields.map(field => {
+    values[field.name] = field.value;
+  });
+
   return values;
 };
 
-const Form = ({ onSubmit = passThruSubmit, fields, id, ...props }) => {
-  const [storedValues, setStoredValues] = useLocalStorage(id, {});
-  const { validationSchema, initialValues } = setupForm(
-    fields,
-    id,
-    storedValues
-  );
+const FooterBox = styled(Box)`
+  display: flex;
+  justify-content: flex-end;
+`;
 
-  const filterObject = (raw, sensitiveKeys) => {
-    return Object.keys(raw)
-      .filter(key => !sensitiveKeys.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = raw[key];
-        return obj;
-      }, {});
-  };
-
+const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
+  const [fields, setFields] = React.useState(providedFields);
+  const [serverErrors, setServerErrors] = React.useState({
+    formError: null,
+    fieldErrors: {},
+  });
+  const { validationSchema, initialValues } = setupForm(fields, id);
   const context = React.useContext(FormContext) || {};
 
   const submitWrapper = async (...args) => {
     try {
-      const sensitiveFields = fields
-        .filter(({ sensitive }) => sensitive === true)
-        .map(({ name }) => name);
+      const [submitValues, formikBag] = args;
+      const fieldsWithValues = fields.map(field => {
+        return { ...field, value: submitValues[field.name] };
+      });
+      const response = await onSubmit(fieldsWithValues, context);
+      if (Array.isArray(response)) {
+        await setFields(response);
+      } else {
+        throw new FormError({
+          formError: 'Something went wrong',
+          fieldErrors: {},
+        });
+      }
 
-      const response = await onSubmit(...args, context);
-
-      await setStoredValues(filterObject(response, sensitiveFields));
-
-      props.onSuccess({ id, values: response });
+      formikBag.setSubmitting(false);
+      if (typeof props.onSuccess === 'function') {
+        await props.onSuccess({ id, values: getFormValues(fieldsWithValues) });
+      }
     } catch (e) {
-      getFormErrors(e, fields);
+      setServerErrors(e.object);
     }
   };
 
@@ -75,17 +86,22 @@ const Form = ({ onSubmit = passThruSubmit, fields, id, ...props }) => {
             {fields.map(field => (
               <BaseField
                 key={field.name}
+                fieldUtils={fieldUtils}
                 {...field}
                 value={rest.values[field.name]}
-                error={getFieldErrors(rest, field)}
                 onChange={rest.handleChange}
-                fieldUtils={fieldUtils}
+                error={
+                  serverErrors.fieldErrors[field.name] ||
+                  getFieldErrors(rest, field)
+                }
               />
             ))}
             {props.renderFooter || (
-              <Button data-testid={`submit-${id}`} type="submit">
-                Submit
-              </Button>
+              <FooterBox>
+                <Button data-testid={`submit-${id}`} type="submit">
+                  Submit
+                </Button>
+              </FooterBox>
             )}
           </form>
         );

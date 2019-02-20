@@ -35,6 +35,10 @@ const formSetup = [
     field: getFieldProps('authorized'),
     valid: { entry: 'yes', expect: ['yes'] },
   },
+  {
+    field: getFieldProps('some_pref'),
+    valid: { entry: 'yes', expect: 'yes' },
+  },
 ];
 
 export const formInputs = formSetup.map(item => {
