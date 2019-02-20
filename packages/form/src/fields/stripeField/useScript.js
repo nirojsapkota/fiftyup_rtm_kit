@@ -25,6 +25,7 @@ export function useScript(src) {
         let script = document.createElement('script');
         script.src = src;
         script.async = true;
+        script.id = 'stripe';
 
         // Script event listener callbacks for load and error
         const onScriptLoad = () => {
@@ -35,6 +36,7 @@ export function useScript(src) {
         };
 
         const onScriptError = () => {
+          console.log('err');
           // Remove from cachedScripts we can try loading again
           const index = cachedScripts.indexOf(src);
           if (index >= 0) cachedScripts.splice(index, 1);

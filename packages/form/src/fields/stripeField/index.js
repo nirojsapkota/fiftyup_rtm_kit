@@ -14,24 +14,27 @@ const Wrapper = styled(Box)`
 const Card = props => {
   const [completed, setCompleted] = React.useState(false);
 
-  const getStripeToken = () => {
+  const getStripeToken = async () => {
     props.onWaiting('Establishing secure payment token');
     props.fieldUtils.setFieldError(props.name, null);
-    props.stripe.createToken({ name: 'Some User' }).then(({ token }) => {
+    await props.stripe.createToken({ name: 'Some User' }).then(({ token }) => {
       props.onWaiting(false);
 
       props.fieldUtils.setFieldValue(props.name, token.id);
     });
   };
 
-  const setEntryStatus = stripeEvent => {
-    setCompleted(stripeEvent.complete);
+  const setEntryStatus = async stripeEvent => {
+    await setCompleted(stripeEvent.complete);
 
     if (stripeEvent.complete) {
-      getStripeToken();
+      await getStripeToken();
     }
     if (stripeEvent.error) {
-      props.fieldUtils.setFieldError(props.name, 'Incomplete payment details');
+      await props.fieldUtils.setFieldError(
+        props.name,
+        'Incomplete payment details'
+      );
     }
   };
 

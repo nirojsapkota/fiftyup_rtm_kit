@@ -8,6 +8,7 @@ export const injectStripe = component => {
       },
     },
   };
+
   return component;
 };
 
@@ -19,17 +20,24 @@ export const Elements = props => {
   return props.children;
 };
 
-const stripeEvent = { error: true };
+const stripeEvent = e => {
+  const value = e.target.value;
+  if (value === '411111111111111') {
+    return { complete: true };
+  } else {
+    return { error: true };
+  }
+};
 
 export const CardElement = props => {
   return (
     <input
       onClick={props.onClick}
-      onChange={() => props.onChange(stripeEvent)}
+      onChange={e => props.onChange(stripeEvent(e))}
       onFocus={props.onFocus}
       onBlur={props.onBlur}
       data-testid="stripe-input"
-      name={props.name}
+      name="cc_token"
       type="text"
     />
   );

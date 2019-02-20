@@ -47,8 +47,8 @@ export const setupForm = fields => {
   };
 };
 
-export const getFieldErrors = (rest = {}, field) => {
-  const { errors = [], touched = [] } = rest;
+export const getFieldErrors = (rest, field) => {
+  const { errors, touched } = rest;
   if (errors[field.name] && touched[field.name]) {
     return errors[field.name];
   }
