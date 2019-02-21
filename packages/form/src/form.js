@@ -53,6 +53,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
         await props.onSuccess({ id, values: getFormValues(fieldsWithValues) });
       }
     } catch (e) {
+      console.log('e', JSON.stringify(e, 0, 2));
       setServerErrors(e.object);
     }
   };

@@ -37,7 +37,7 @@ const StyledInput = styled.input`
   ${inputStyle};
 `;
 
-const TextField = props => <StyledInput {...props} />;
+const TextField = props => <StyledInput {...props} type="text" />;
 
 TextField.propTypes = {
   autoComplete: PropTypes.string,

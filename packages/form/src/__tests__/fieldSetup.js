@@ -10,17 +10,17 @@ describe('filler', () => {
 
 const formSetup = [
   {
-    field: getFieldProps('zipcode'),
-    valid: [{ entry: '45044', expect: '45044' }],
-    invalid: { entry: '450', expect: 'Must be 5 digits' },
-  },
-  {
     field: getFieldProps('email'),
     valid: { entry: 'user@example.com' },
     invalid: [
       { entry: 'user.com', expect: 'Invalid email' },
       { entry: 'user@com', expect: 'Invalid email' },
     ],
+  },
+  {
+    field: getFieldProps('suburb'),
+    valid: { entry: '2000', expect: '2000, BARANGAROO' },
+    invalid: { entry: '', expect: 'Required' },
   },
   {
     field: getFieldProps('phone_number'),

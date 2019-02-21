@@ -17,6 +17,28 @@ import Accordion from './src/accordion'
 ## Basic usage
 
 <Playground>
+  <Form
+    id="test"
+    onSubmit={(values) => values}
+    fields={[
+      {
+        label: 'My postcode:',
+        error: 'Please select a surburb',
+        hint: '5000, Adelaide',
+        data: {
+          autoCompleteUrl:
+            'http://obsau.develop:3000/suburbs/autocomplete_postcode',
+        },
+        autoComplete: 'off',
+        name: 'suburb',
+        type: 'autocomplete',
+        validator: 'zipcode',
+      },
+    ]}
+  />
+</Playground>
+
+<Playground>
     <StepForm {...stepInputs} renderForm={formProps => formProps}>
       {({ activeFormId, forms }) => {
         console.log(forms);

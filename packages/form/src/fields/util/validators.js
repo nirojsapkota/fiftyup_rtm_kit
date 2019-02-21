@@ -20,7 +20,7 @@ export const maskValidator = (regex, fieldName) => {
 
 export const zipcodeValidator = Yup.string()
   .required('Required')
-  .min(5, 'Must be 5 digits');
+  .min(4, 'Must be 4 digits');
 
 export const requiredValidator = Yup.string().required('Required');
 export const requiredRadioValidator = Yup.string().required(

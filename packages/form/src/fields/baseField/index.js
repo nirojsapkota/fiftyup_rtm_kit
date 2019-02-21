@@ -7,6 +7,7 @@ import TextField from '../textField';
 import NumberField from '../numberField';
 import StripeField from '../stripeField';
 import CheckboxField from '../checkboxField';
+import AutocompleteField from '../autocompleteField';
 
 export const fieldTypes = {
   radio: RadioField,
@@ -67,9 +68,11 @@ export default class BaseField extends React.Component {
           ? CheckboxField
           : props.type === 'paymentField'
             ? StripeField
-            : props.mask !== undefined
-              ? NumberField
-              : TextField;
+            : props.type === 'autocomplete'
+              ? AutocompleteField
+              : props.mask !== undefined
+                ? NumberField
+                : TextField;
 
     return (
       <Box mb={10}>
@@ -97,8 +100,7 @@ export default class BaseField extends React.Component {
             data-testid="fieldError"
             showErrorColor={!this.state.focused && error}
           >
-            {this.state.waiting}
-            {error}
+            {this.state.waiting || error}
           </SmallText>
         </Wrapper>
       </Box>

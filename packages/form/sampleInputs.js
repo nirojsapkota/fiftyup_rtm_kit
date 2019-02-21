@@ -2,9 +2,16 @@ export const presignupInputs = {
   id: 'presignup',
   fields: [
     {
-      label: 'My Zipcode:',
-      name: 'zipcode',
-      type: 'text',
+      label: 'My postcode:',
+      error: 'Please select a surburb',
+      hint: '5000, Adelaide',
+      autoComplete: 'off',
+      data: {
+        autoCompleteUrl:
+          'http://obsau.develop:3000/suburbs/autocomplete_postcode',
+      },
+      name: 'suburb',
+      type: 'autocomplete',
       validator: 'zipcode',
     },
     {
@@ -23,9 +30,16 @@ export const formInputs = {
   },
   fields: [
     {
-      label: 'My Zipcode:',
-      name: 'zipcode',
-      type: 'text',
+      label: 'My postcode:',
+      error: 'Please select a surburb',
+      hint: '5000, Adelaide',
+      autoComplete: 'off',
+      data: {
+        autoCompleteUrl:
+          'http://obsau.develop:3000/suburbs/autocomplete_postcode',
+      },
+      name: 'suburb',
+      type: 'autocomplete',
       validator: 'zipcode',
     },
     {
