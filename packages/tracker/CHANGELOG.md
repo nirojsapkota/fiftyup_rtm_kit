@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@3.0.5...@rtm-ui/tracker@3.1.0) (2019-02-21)
+
+
+### Features
+
+* **hybrid-login-view:** add track presignup ([81b8d39](https://github.com/OBSAU/rtm-kit/commit/81b8d39))
+
+
+
+
+
 ## [3.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@3.0.4...@rtm-ui/tracker@3.0.5) (2019-02-18)
 
 **Note:** Version bump only for package @rtm-ui/tracker
