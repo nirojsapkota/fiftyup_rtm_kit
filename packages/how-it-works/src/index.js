@@ -2,12 +2,17 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import Icon from '@rtm-ui/icon';
-import { Header, Small } from '@rtm-ui/typography';
+import { Header, Small, Paragraph } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
-import { howItWorksContent } from './constants';
 
-const StyledSmall = styled(Small)`
-  max-width: ${props => (props.orientation === 'vertical' ? 'auto' : '130px')};
+const VerticalTitle = styled(Paragraph)`
+  max-width: auto;
+  text-align: center;
+  padding: 0;
+`;
+
+const HorizontalTitle = styled(Small)`
+  max-width: '150px';
   text-align: center;
   padding: 0;
 `;
@@ -25,6 +30,13 @@ const VerticalItem = styled(Box)`
   &:nth-child(4n + 3) {
     display: flex;
     flex-direction: row-reverse;
+    p {
+      padding-right: 20px;
+      padding-left: 0px;
+    }
+  }
+  p {
+    padding-left: 20px;
   }
 `;
 
@@ -41,15 +53,12 @@ const HorizontalItem = styled(Box)`
   flex-direction: column;
 `;
 
-const HowItWorks = ({
-  entity,
-  header = howItWorksContent[entity].header,
-  icons = howItWorksContent[entity].icons,
-  orientation,
-}) => {
+const HowItWorks = ({ header, icons, orientation }) => {
   const Container =
     orientation === 'vertical' ? VerticalContainer : HorizontalContainer;
   const Item = orientation === 'vertical' ? VerticalItem : HorizontalItem;
+  const IconTitle =
+    orientation === 'vertical' ? VerticalTitle : HorizontalTitle;
   return (
     <Box
       style={{
@@ -62,15 +71,17 @@ const HowItWorks = ({
         {header}
       </Header>
       <Container>
-        {icons.map((s, index) => (
+        { icons && icons.map((s, index) => (
           <React.Fragment key={s.title}>
             <Item>
               <Box my={10}>
-                <Icon fill="iconPrimary" glyph={s.glyph} size={50} />
+                <Icon
+                  fill="iconPrimary"
+                  glyph={s.glyph}
+                  size={orientation === 'vertical' ? 70 : 50}
+                />
               </Box>
-              <StyledSmall orientation={orientation} px={2}>
-                {s.title}
-              </StyledSmall>
+              <IconTitle px={2}>{s.title}</IconTitle>
             </Item>
             {index < icons.length - 1 && (
               <Box
@@ -85,7 +96,7 @@ const HowItWorks = ({
                   rotate={orientation === 'vertical' ? 90 : 0}
                   fill="primary"
                   glyph="triangle"
-                  size={13}
+                  size={14}
                 />
               </Box>
             )}
@@ -97,14 +108,12 @@ const HowItWorks = ({
 };
 
 HowItWorks.defaultProps = {
-  entity: 'obs',
-  orientation: 'horizontal',
+  orientation: 'horizontal'
 };
 
 HowItWorks.propTypes = {
-  entity: t.string,
-  header: t.string,
-  icons: t.arrayOf({ title: t.string, glyph: t.string }),
+  header: t.string.isRequired,
+  icons: t.arrayOf(t.shape({ title: t.string, glyph: t.string })).isRequired,
   orientation: t.oneOf(['vertical', 'horizontal']),
 };
 
