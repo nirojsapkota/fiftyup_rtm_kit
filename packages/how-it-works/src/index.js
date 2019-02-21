@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Icon from '@rtm-ui/icon';
 import { Header, Small, Paragraph } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
-import { howItWorksContent } from './constants';
 
 const VerticalTitle = styled(Paragraph)`
   max-width: auto;
@@ -54,12 +53,7 @@ const HorizontalItem = styled(Box)`
   flex-direction: column;
 `;
 
-const HowItWorks = ({
-  entity,
-  header = howItWorksContent[entity].header,
-  icons = howItWorksContent[entity].icons,
-  orientation,
-}) => {
+const HowItWorks = ({ header, icons, orientation }) => {
   const Container =
     orientation === 'vertical' ? VerticalContainer : HorizontalContainer;
   const Item = orientation === 'vertical' ? VerticalItem : HorizontalItem;
@@ -77,7 +71,7 @@ const HowItWorks = ({
         {header}
       </Header>
       <Container>
-        {icons.map((s, index) => (
+        { icons && icons.map((s, index) => (
           <React.Fragment key={s.title}>
             <Item>
               <Box my={10}>
@@ -114,14 +108,12 @@ const HowItWorks = ({
 };
 
 HowItWorks.defaultProps = {
-  entity: 'obs',
-  orientation: 'horizontal',
+  orientation: 'horizontal'
 };
 
 HowItWorks.propTypes = {
-  entity: t.string,
-  header: t.string,
-  icons: t.arrayOf({ title: t.string, glyph: t.string }),
+  header: t.string.isRequired,
+  icons: t.arrayOf(t.shape({ title: t.string, glyph: t.string })).isRequired,
   orientation: t.oneOf(['vertical', 'horizontal']),
 };
 
