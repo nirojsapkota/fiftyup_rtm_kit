@@ -4,7 +4,7 @@ route: /packages/how-it-works
 menu: Packages
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import HowItWorks from './src'
 
 # HowItWorks
@@ -12,7 +12,21 @@ import HowItWorks from './src'
 ## Basic usage
 
 <Playground>
-  <HowItWorks />
+  <HowItWorks orientation="horizontal" header="How it works" icons={[
+    {
+      glyph: 'user-help',
+      title: 'You join the movement for free',
+    },
+    {
+      glyph: 'balance',
+      title: 'We negotiate Group Discounts',
+    },
+    {
+      glyph: 'hands-shake-2',
+      title: 'You decide what’s right for you',
+    }
+    ]}
+  />
 </Playground>
 
 <Playground>
@@ -32,3 +46,5 @@ import HowItWorks from './src'
     ]}
   />
 </Playground>
+
+<PropsTable of={HowItWorks} />
