@@ -14,12 +14,8 @@ const hybridLoginView = {
   heroImageUrl: 'https://placehold.it/1080x454',
   entity: {
     brand: 'obs',
-    footer_items: {
-      logo: 'https://placehold.it/100x100',
-    },
-    header_items: {
-      logo: 'https://placehold.it/100x100',
-    },
+    footer_items: {},
+    header_items: {},
   },
   howItWorksProps: {
     header:

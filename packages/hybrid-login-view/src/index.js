@@ -143,13 +143,13 @@ class WrappedHybridLoginView extends React.Component {
           <EntityConsumer>
             {({
               brand,
-              footer_items: footerLogoUrl,
-              header_items: headerLogoUrl,
+              footer_items: footer,
+              header_items: header,
             }) => {
               return (
                 <React.Fragment>
                   <BasicHeader
-                    logoUrl={headerLogoUrl}
+                    logoUrl={header.logo}
                     entityBrand={brand}
                     py={2}
                   />
@@ -157,7 +157,7 @@ class WrappedHybridLoginView extends React.Component {
                   <Variant variant="c">
                     <FooterWrapper py={2}>
                       <BasicFooter
-                        logoUrl={footerLogoUrl}
+                        logoUrl={footer.logo}
                         maxWidth={1080}
                         entityBrand={brand}
                       />
