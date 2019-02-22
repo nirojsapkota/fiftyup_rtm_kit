@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@3.0.15...@rtm-ui/form@4.0.0) (2019-02-22)
+
+
+* Improve tests for form, add config to fields setup (#40) ([f137e32](https://github.com/OBSAU/rtm-kit/commit/f137e32)), closes [#40](https://github.com/OBSAU/rtm-kit/issues/40)
+
+
+### BREAKING CHANGES
+
+* update field inputs to take a config prop
+
+
+
+
+
 ## [3.0.15](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@3.0.14...@rtm-ui/form@3.0.15) (2019-02-21)
 
 **Note:** Version bump only for package @rtm-ui/form
