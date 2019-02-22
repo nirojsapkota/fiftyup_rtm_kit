@@ -2,12 +2,12 @@ import React from 'react';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import { useScript } from './useScript';
 
-const Stripe = ({ children }) => {
+const Stripe = ({ apiKey, children }) => {
   const [loaded, error] = useScript('https://js.stripe.com/v3/');
 
   let stripe = null;
   if (loaded && window.Stripe) {
-    stripe = window.Stripe('pk_test_82Xn9YM3wF2LVCLD0kPewINf');
+    stripe = window.Stripe(apiKey);
   }
 
   if (error) {

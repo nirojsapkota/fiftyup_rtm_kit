@@ -2,20 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { Paragraph, Label } from '@rtm-ui/typography';
-import RadioField from '../radioField';
-import TextField from '../textField';
-import NumberField from '../numberField';
-import StripeField from '../stripeField';
-import CheckboxField from '../checkboxField';
-import AutocompleteField from '../autocompleteField';
+import { fieldTypes, getFieldComponent } from '../util/getFieldComponent';
 
-export const fieldTypes = {
-  radio: RadioField,
-  paymentField: StripeField,
-  text: TextField,
-  password: TextField,
-  tel: NumberField,
-};
+export { fieldTypes };
 
 const SmallText = styled(Paragraph)`
   font-size: 10px;
@@ -52,27 +41,14 @@ export default class BaseField extends React.Component {
     const {
       label,
       description,
-      validator,
       hint,
       helper,
       error,
       success,
       initialValue: _initialValue,
-      validatorArgs: _validatorArgs,
       ...props
     } = this.props;
-    const Input =
-      props.type === 'radio'
-        ? RadioField
-        : props.type === 'checkbox'
-          ? CheckboxField
-          : props.type === 'paymentField'
-            ? StripeField
-            : props.type === 'autocomplete'
-              ? AutocompleteField
-              : props.mask !== undefined
-                ? NumberField
-                : TextField;
+    const Input = getFieldComponent(props.type, props.config);
 
     return (
       <Box mb={10}>

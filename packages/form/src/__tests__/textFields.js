@@ -16,7 +16,9 @@ describe(`<TextField />`, async () => {
               label: 'Name',
               name: 'name',
               type: 'text',
-              validator: 'required',
+              config: {
+                validator: 'required',
+              },
             },
           ]}
         />
@@ -48,7 +50,9 @@ describe(`<TextField />`, async () => {
                 name: 'password',
                 autoComplete: 'new-password',
                 type: 'password',
-                validator: 'passwordComplexity',
+                config: {
+                  validator: 'passwordComplexity',
+                },
               },
               {
                 label: 'Confirm password:',
@@ -56,8 +60,10 @@ describe(`<TextField />`, async () => {
                 name: 'confirmPassword',
                 autoComplete: 'new-password',
                 type: 'password',
-                validator: 'passwordConfirm',
-                validatorArgs: ['password'],
+                config: {
+                  validator: 'passwordConfirm',
+                  validatorArgs: ['password'],
+                },
               },
             ]}
           />

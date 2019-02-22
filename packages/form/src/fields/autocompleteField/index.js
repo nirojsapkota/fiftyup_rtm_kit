@@ -6,12 +6,13 @@ import { Header, Label } from '@rtm-ui/typography';
 import TextField from '../textField';
 import Button from '@rtm-ui/button';
 import { useOnClickOutside } from './useOnClickOutside';
-import { searchCharacters, useDebounce } from './search';
+import { useDebounce } from './useDebounce';
 
 const ResultsContainer = styled(Card)`
   position: absolute;
   width: 100%;
   top: ${({ distanceFromTop }) => `${distanceFromTop}px`};
+  z-index: 100;
 `;
 
 const ResultItem = styled(Button)`
@@ -23,7 +24,12 @@ const ResultItem = styled(Button)`
   }
 `;
 
-const AutocompleteField = ({ onWaiting, fieldUtils, data, ...inputProps }) => {
+const AutocompleteField = ({
+  onWaiting,
+  fieldUtils,
+  config,
+  ...inputProps
+}) => {
   const resultsRef = React.useRef();
   const inputRef = React.useRef();
   const [results, setResults] = React.useState([]);
@@ -37,14 +43,12 @@ const AutocompleteField = ({ onWaiting, fieldUtils, data, ...inputProps }) => {
     () => {
       if (debouncedSearchTerm) {
         !hasSelected && onWaiting('Searching pending...');
-        searchCharacters(debouncedSearchTerm, data.autoCompleteUrl).then(
-          results => {
-            isModalOpen && results.length > 0
-              ? onWaiting(`${results.length} results`)
-              : onWaiting(``);
-            setResults(results);
-          }
-        );
+        config.searchFunction(debouncedSearchTerm).then(results => {
+          isModalOpen && results.length > 0
+            ? onWaiting(`${results.length} results`)
+            : onWaiting(``);
+          setResults(results);
+        });
       } else {
         onWaiting('');
         setResults([]);

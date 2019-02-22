@@ -42,9 +42,6 @@ const Accordion = props => {
       {showHeader(item.id) &&
         props.itemHeader({
           item,
-          onClick: () =>
-            props.canControlExpansion &&
-            setIt(appendOrRemove(openItems, item.id)),
         })}
 
       {openItems.includes(item.id) ? (

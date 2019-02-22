@@ -10,7 +10,7 @@ const StyledInput = styled(MaskedInput)`
 `;
 
 const NumberField = ({
-  mask,
+  config: { mask },
   fieldUtils: _fieldUtils,
   onWaiting: _onWaiting,
   ...inputProps
