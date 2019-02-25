@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import LogRocket from 'logrocket';
 import Google from './google';
 import Facebook from './facebook';
+import Funnel from './funnel';
 
 const safeSendTo = (service, data) => {
   try {
@@ -22,6 +23,7 @@ export const track = (action, trackingData) => {
 
   safeSendTo(Google, data);
   safeSendTo(Facebook, data);
+  safeSendTo(Funnel, data);
 };
 
 const trackEvent = trackingData => (action, callback) => {
