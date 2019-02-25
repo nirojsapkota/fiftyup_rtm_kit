@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import Form from '../index';
+import Form, { FormError } from '../index';
 import { Box } from '@rtm-ui/layout';
 import { Small } from '@rtm-ui/typography';
 import Button from '@rtm-ui/button';
@@ -14,7 +14,11 @@ const form = {
 
 describe(`<Form />`, async () => {
   it(`renderFooter is a function`, async () => {
-    const handleSubmit = jest.fn(() => 'Some invalid thing');
+    const handleSubmit = jest.fn(() => {
+      throw new FormError({
+        formError: 'test form error',
+      });
+    });
     const buttonText = 'test button text';
     const buttonTestId = `button-test-id`;
     const { getByTestId, getByLabelText, container } = await render(
@@ -52,7 +56,7 @@ describe(`<Form />`, async () => {
 
     await wait(async () => {
       expect(handleSubmit).toHaveBeenCalled();
-      expect(container).toHaveTextContent('Something went wrong');
+      expect(container).toHaveTextContent('test form error');
     });
   });
 });
