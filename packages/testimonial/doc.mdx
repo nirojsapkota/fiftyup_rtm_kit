@@ -1,0 +1,33 @@
+---
+name: Testimonial
+route: /packages/testimonial
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Testimonial from './src'
+
+# Testimonial
+
+## Basic usage
+
+<Playground>
+  <Testimonial
+    items={[
+      {
+        id: 0,
+        author:"Jenny Jane",
+        bio: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout",
+        body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        selfie: "https://placeimg.com/400/400/people"
+      },
+      {
+        id: 1,
+        author:"Bobby Bob",
+        bio: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout",
+        body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        selfie: "https://placeimg.com/400/400/people"
+      }
+    ]}
+  />
+</Playground>
