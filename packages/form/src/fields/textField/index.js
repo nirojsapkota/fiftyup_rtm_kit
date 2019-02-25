@@ -43,7 +43,7 @@ const StyledInput = styled(({ showErrorColor, ...rest }) => (
 `;
 
 const TextField = ({ config: _config, fieldUtils: _fieldUtils, ...props }) => (
-  <StyledInput {...props} type="text" />
+  <StyledInput {...props} />
 );
 
 TextField.propTypes = {
