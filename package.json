@@ -86,6 +86,7 @@
     ]
   },
   "dependencies": {
+    "@rtm-ui/animate": "file:packages/animate",
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
     "@rtm-ui/dialog": "file:packages/dialog",
