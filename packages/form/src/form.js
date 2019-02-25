@@ -101,31 +101,33 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
                 }
               />
             ))}
-            {props.renderFooter || (
-              <FooterBox>
-                <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Box
-                    mb={10}
-                    style={{ display: 'flex', alignSelf: 'flex-end' }}
-                  >
-                    <Button data-testid={`submit-${id}`} type="submit">
-                      Submit
-                    </Button>
-                  </Box>
-                  <Box
-                    style={{
-                      height: '12px',
-                      display: 'flex',
-                      alignSelf: 'flex-end',
-                    }}
-                  >
-                    <Small align="left" color="error">
-                      {serverErrors.formError}
-                    </Small>
-                  </Box>
-                </Box>
-              </FooterBox>
-            )}
+            {typeof props.renderFooter === 'function'
+              ? props.renderFooter(serverErrors.formError)
+              : props.renderFooter || (
+                  <FooterBox>
+                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                      <Box
+                        mb={10}
+                        style={{ display: 'flex', alignSelf: 'flex-end' }}
+                      >
+                        <Button data-testid={`submit-${id}`} type="submit">
+                          Submit
+                        </Button>
+                      </Box>
+                      <Box
+                        style={{
+                          height: '12px',
+                          display: 'flex',
+                          alignSelf: 'flex-end',
+                        }}
+                      >
+                        <Small align="left" color="error">
+                          {serverErrors.formError}
+                        </Small>
+                      </Box>
+                    </Box>
+                  </FooterBox>
+                )}
           </form>
         );
       }}

@@ -127,7 +127,7 @@ describe('<LoginPanel />', () => {
       },
     });
 
-    const { getByText, getByLabelText } = render(
+    const { getByText, getByLabelText, container } = render(
       <LoginPanel {...loginPanelProps} />
     );
 
@@ -144,7 +144,7 @@ describe('<LoginPanel />', () => {
     fireEvent.click(submit);
 
     await wait(() => {
-      // expect formError will display
+      expect(container).toHaveTextContent('Something went wrong');
     });
   });
 
