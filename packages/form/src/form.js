@@ -50,7 +50,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
 
       formikBag.setSubmitting(false);
       if (typeof props.onSuccess === 'function') {
-        await props.onSuccess({ id, values: getFormValues(fieldsWithValues) });
+        await props.onSuccess({ id, values: getFormValues(response) });
       }
     } catch (e) {
       console.log('e', JSON.stringify(e, 0, 2));

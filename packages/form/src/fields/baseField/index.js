@@ -50,7 +50,7 @@ export default class BaseField extends React.Component {
     } = this.props;
     const Input = getFieldComponent(props.type, props.config);
 
-    return (
+    return props.type !== 'hidden' ? (
       <Box mb={10}>
         <Wrapper alignItems="flex-end">
           <Box>
@@ -80,6 +80,8 @@ export default class BaseField extends React.Component {
           </SmallText>
         </Wrapper>
       </Box>
+    ) : (
+      <Input {...props} id={`${this.props.name}`} />
     );
   }
 }

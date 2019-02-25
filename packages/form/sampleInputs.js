@@ -102,6 +102,12 @@ export const formInputs = {
       type: 'checkbox',
       options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
     },
+    {
+      label: 'authenticity_token',
+      name: 'authenticity_token',
+      type: 'hidden',
+      config: {},
+    },
   ],
 };
 

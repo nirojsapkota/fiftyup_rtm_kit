@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Pane from '../pane';
 
 const Wrapper = styled(Pane)`
-  overflow: hidden;
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.boxShadow};
 `;

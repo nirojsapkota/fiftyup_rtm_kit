@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Box from '../box';
 
 const Wrapper = styled(Box)`
-  overflow: hidden;
   border-radius: ${({ rounded, theme }) =>
     rounded ? theme.borderRadius : '0'};
   box-shadow: ${({ elevation, theme }) =>

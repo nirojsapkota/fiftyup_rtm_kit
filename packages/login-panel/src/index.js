@@ -1,8 +1,185 @@
 import React from 'react';
-import { Card } from '@rtm-ui/layout';
 import t from 'prop-types';
+import styled from 'styled-components';
 
-import LoginForm from './LoginForm';
+import { Card, Box } from '@rtm-ui/layout';
+import { Header } from '@rtm-ui/typography';
+import Form, { FormError } from '@rtm-ui/form';
+import Button from '@rtm-ui/button';
+import Icon from '@rtm-ui/icon';
+
+import { submitLogin } from './actions';
+import GdprAgreement from './GdprAgreement';
+
+const ButtonIConWrapper = styled(Box)`
+  margin-top: -3px;
+`;
+
+const ButtonWrapper = styled(Box)`
+  text-align: center;
+`;
+
+class LoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // Binding event
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSuccess = this.handleSuccess.bind(this);
+  }
+
+  async handleSubmit(fieldsWithValues) {
+    const { loginUrl, authenticityToken } = this.props;
+
+    const values = { user: {} };
+    fieldsWithValues.forEach(field => {
+      if (field.name === 'postcode_suburb' || field.name === 'email') {
+        values['user'][field.name] = field.value;
+      } else {
+        values[field.name] = field.value;
+      }
+    });
+
+    const result = await submitLogin(loginUrl, values, authenticityToken);
+    const { data } = result;
+
+    if (data.errors) {
+      const fieldErrors = {};
+      data.errors.forEach(error => {
+        if (error.toLowerCase().indexOf('postcode') !== -1) {
+          fieldErrors['postcode_suburb'] = error;
+        } else if (error.toLowerCase().indexOf('email') !== -1) {
+          fieldErrors['email'] = error;
+        }
+      });
+
+      throw new FormError({
+        formError: 'Something went wrong',
+        fieldErrors: fieldErrors,
+      });
+    }
+
+    return fieldsWithValues.map(field => {
+      if (data.redirectPath && field.name === 'redirectPath') {
+        return { ...field, value: data.redirectPath };
+      } else {
+        return field;
+      }
+    });
+  }
+
+  async handleSuccess(form) {
+    const redirectPath = form.values.redirectPath;
+    if (redirectPath) {
+      window.location.href = redirectPath;
+    }
+  }
+
+  render() {
+    const {
+      title,
+      hiddenFields,
+      authenticityToken,
+      buttonText,
+      buttonIcon,
+      gdprProps,
+      autocompletePostcodeUrl,
+    } = this.props;
+
+    const formInput = {
+      id: 'signup',
+      fields: [
+        {
+          label: 'My Postcode:',
+          name: 'postcode_suburb',
+          type: 'text',
+          placeholder: 'Postcode',
+          autoComplete: 'off',
+          hint: '5000, Adelaide',
+          error: 'Please select a postcode and suburb',
+          config: {
+            component: 'autocomplete',
+            validator: 'zipcode',
+            searchFunction: searchTerm => {
+              return fetch(`${autocompletePostcodeUrl}?term=${searchTerm}`, {
+                method: 'GET',
+              })
+                .then(payload => {
+                  return payload.json();
+                })
+                .then(results => {
+                  return results.map(item => {
+                    return { label: item };
+                  });
+                });
+            },
+          },
+        },
+        {
+          label: 'My Email:',
+          name: 'email',
+          type: 'text',
+          placeholder: 'Email',
+          config: {
+            validator: 'email',
+          },
+        },
+        {
+          label: '',
+          name: 'authenticity_token',
+          type: 'hidden',
+          initialValue: authenticityToken,
+          config: {},
+        },
+        {
+          label: '',
+          name: 'redirectPath',
+          type: 'hidden',
+          config: {},
+        },
+        ...Object.keys(hiddenFields).map(key => ({
+          label: '',
+          name: key,
+          type: 'hidden',
+          initialValue: hiddenFields[key],
+          config: {},
+        })),
+      ],
+    };
+    return (
+      <React.Fragment>
+        <Header py={3} tag="h6">
+          {title}
+        </Header>
+        <Form
+          {...formInput}
+          onSubmit={this.handleSubmit}
+          onSuccess={this.handleSuccess}
+          renderFooter={
+            <React.Fragment>
+              <ButtonWrapper pb={3}>
+                <Button type="submit" track="signin">
+                  {buttonText}
+                  {buttonIcon && (
+                    <ButtonIConWrapper>
+                      <Icon
+                        fill="inverseText"
+                        inline
+                        glyph={buttonIcon}
+                        size={20}
+                      />
+                    </ButtonIConWrapper>
+                  )}
+                </Button>
+              </ButtonWrapper>
+              <GdprAgreement {...gdprProps} />
+            </React.Fragment>
+          }
+        />
+      </React.Fragment>
+    );
+  }
+}
 
 const LoginPanel = props => (
   <Card px={[20, 20, 30, 40]} py={10}>
@@ -21,6 +198,13 @@ LoginPanel.propTypes = {
   buttonText: t.string,
   buttonIcon: t.string,
   autocompletePostcodeUrl: t.string,
+};
+
+LoginPanel.defaultProps = {
+  title:
+    'Join One Big Switch today for FREE and instantly unlock your special offers!',
+  buttonText: 'See the offers',
+  buttonIcon: null,
 };
 
 export default LoginPanel;

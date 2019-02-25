@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@rtm-ui/button": "file:../button",
+    "@rtm-ui/form": "file:../form",
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",

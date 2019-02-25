@@ -21,12 +21,12 @@ export const submitLogin = async (url, data, authenticityToken) => {
       const { data, status } = error.response;
       if (status !== 401) {
         return {
+          status,
           data: {
             errors: [
               'An error has occurred, please try again in a few minutes',
             ],
           },
-          status,
         };
       }
       return { status, data };
