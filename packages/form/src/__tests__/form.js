@@ -17,6 +17,7 @@ describe(`<Form />`, async () => {
     const handleSubmit = jest.fn(() => {
       throw new FormError({
         formError: 'test form error',
+        fieldErrors: {},
       });
     });
     const buttonText = 'test button text';
