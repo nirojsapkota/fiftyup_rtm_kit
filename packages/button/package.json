@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/button",
-  "version": "3.1.10",
+  "version": "3.1.11",
   "rtmRollup": {
     "namespace": "button",
     "defaultExport": "Button",
