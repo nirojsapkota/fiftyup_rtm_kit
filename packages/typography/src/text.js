@@ -172,30 +172,37 @@ Text.propTypes = {
   color: PropTypes.string,
   p: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pl: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pr: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pt: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pb: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   px: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   py: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
 };

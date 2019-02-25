@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
+import { getColor } from '@rtm-ui/theme';
 import { Paragraph, Label } from '@rtm-ui/typography';
-import { fieldTypes, getFieldComponent } from '../util/getFieldComponent';
-
-export { fieldTypes };
+import { getFieldComponent } from '../util/getFieldComponent';
 
 const SmallText = styled(Paragraph)`
   font-size: 10px;
-  ${props => props.showErrorColor && `color: red`};
+  ${props =>
+    props.showErrorColor && `color: ${getColor('error', props.theme)}`};
 `;
 
 const Wrapper = styled(Box)`
@@ -85,3 +86,20 @@ export default class BaseField extends React.Component {
     );
   }
 }
+
+BaseField.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([
+    'text',
+    'tel',
+    'radio',
+    'password',
+    'checkbox',
+    'hidden',
+  ]).isRequired,
+  config: PropTypes.shape({
+    component: PropTypes.string,
+    validator: PropTypes.string,
+  }),
+};

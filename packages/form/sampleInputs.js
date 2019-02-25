@@ -1,5 +1,6 @@
 export const presignupInputs = {
   id: 'presignup',
+  onSubmit: async values => values,
   fields: [
     {
       label: 'My Email:',
@@ -13,9 +14,16 @@ export const presignupInputs = {
       label: 'My Zipcode:',
       name: 'zipcode',
       type: 'text',
+      hint: 'Ex. 2000, Barangaroo',
       autoComplete: 'off',
       config: {
         component: 'autocomplete',
+        // searchFunction: async searchTerm => {
+        //   return [
+        //     { label: `${searchTerm}, Sydney` },
+        //     { label: `${searchTerm}, Barangaroo` },
+        //   ];
+        // },
         searchFunction: searchTerm => {
           return fetch(
             `http://obsau.develop:3000/suburbs/autocomplete_postcode?term=${searchTerm}`,

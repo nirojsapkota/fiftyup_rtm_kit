@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import { Label } from '@rtm-ui/typography';
-import Button from '@rtm-ui/button';
 import Icon from '@rtm-ui/icon';
 import BaseRadioCheckboxField from '../baseRadioCheckboxField';
 
@@ -16,7 +14,11 @@ const AbsoluteIcon = styled(Box)`
   left: 0;
 `;
 
-const CheckboxField = ({ fieldUtils: { setFieldValue }, ...props }) => {
+const CheckboxField = ({
+  config: _config,
+  fieldUtils: { setFieldValue },
+  ...props
+}) => {
   const isSingle = props.options.length === 1;
   return (
     <BaseRadioCheckboxField

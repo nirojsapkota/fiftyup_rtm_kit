@@ -6,16 +6,6 @@ import CheckboxField from '../checkboxField';
 import AutocompletField from '../autocompleteField';
 import HiddenField from '../hiddenField';
 
-export const fieldTypes = {
-  radio: RadioField,
-  checkbox: CheckboxField,
-  stripePayment: StripeField,
-  autocomplete: AutocompletField,
-  number: NumberField,
-  text: TextField,
-  hidden: HiddenField,
-};
-
 export const getFieldComponent = (
   type,
   { component = null, validator = null }

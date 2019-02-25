@@ -4,17 +4,95 @@ route: /packages/form
 menu: Packages
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import { stepInputs, formInputs, presignupInputs } from './sampleInputs'
 import StepForm from './src/stepForm'
-import Form from './src/form'
+import Form, { FormError } from './src/form'
+import BaseField from './src/fields/baseField'
 import { Header, Small } from '@rtm-ui/typography';
 import Button from '@rtm-ui/button'
 import Accordion from './src/accordion'
 
 # Form
 
-## Basic usage
+## Basic Usage
+
+`Form` consists of an array of `fields` which make up the form. `fields` are
+what make up the value of the form submission.
+
+### onSubmit
+
+The `onSubmit` prop takes a __handler__ function with the `fields` as it's payload. `onSubmit` props
+must be promises to ensure they're executed asynchronously. Upon a successful response
+the form will go on to call `onSuccess`. When the __handler__ fails it should `throw`. The thrown
+object has a specific format:
+
+```js
+{
+  formError: 'Oh no! Something went wrong',
+  fieldErrors: { username: 'That username already exists' }
+}
+```
+
+`FormError` is exported by this package, and can be used to throw:
+
+```
+// myHandlerFunction.js
+import { FormError } from '@rtm-ui/form'
+
+...
+
+export const handle = values => {
+  try {
+    // do something that throws an error
+  } catch(e) {
+    throw new FormError({
+      formError: 'Oh no! Something went wrong',
+      fieldErrors: { username: 'That username already exists' }
+    })
+  }
+}
+```
+
+An error should result in the following:
+
+<Playground>
+  <Form
+    {...presignupInputs}
+    formError="Oh no! Something went wrong"
+    fieldErrors={{email: 'That username already exists'}} />
+</Playground>
+
+
+The `fields` payload is identical to the `fields` prop provided on render but with an additional
+`value` attribute supplied by the user input. This is to give the form handler the opportunity
+to manipulate the form after submission by passing back an updated set of `fields`.
+Some examples of why this might be useful:
+
+* Certain fields are no longer editable after initial submission (ie. `username` & `password`
+during signup)
+* Additional items are needed (ie. we couldn't find the address you submitted, so enter a
+multi-field address instead)
+
+TODO: There will be scenarios where we want to pass other data to the `onSuccess` prop
+from the `onSubmit` response, this will need to be able to pass that back as well.
+
+## PropTypes
+
+<PropsTable of={Form} />
+
+# StepForm
+
+`StepForm` consists of one or more `Form` components. It's main jobs:
+
+1. Provide a mechanism for stepping through multiple forms
+2. Provide context for these forms. Each `Form` in a step form has access
+to the submitted values in a previous form
+
+`Form` accepts an `onSuccess` prop - which is the recommended way of progressing
+through sequential forms. It's the job of the step form to navigate the user, which
+can be done in several ways. Below is an example of using a regular `accordion` component
+to show/hide each form.
 
 <Playground>
     <StepForm {...stepInputs} renderForm={formProps => formProps}>
@@ -40,19 +118,83 @@ import Accordion from './src/accordion'
     </StepForm>
 </Playground>
 
+### renderForm
+The `renderForm` prop allows us to manipulate the form from the context of the caller
+of the step form. When rendering a regular `Form` you may want to add a specific header
+or position the footer in specific manner - but if you're using the `StepForm`, you'd expect
+to lose access to that. As a convenience, the `StepForm` provides `renderForm` as a render prop
+so that you can style it however you'd like. You'll also receive the `formId` in this callback
+so you can style each step however you'd like.
+
+> This functionality may go away as the following section can likely handle everything we need.
+
+### children
+`StepForm` accepts a `children` render prop as well. This is useful for when you want to
+style the collection of forms in their entirety - however you can still dig into each
+form with ease. See the `accordion` example above for usage details.
+
+### passThru
+
 Since forms can be strung together, it's often useful to pass through some
 forms which already have any info they need. Providing `passThru` will ensure
-that the form is valid, and if so it will call it's `onSuccess` prop. Note
-that it will not submit the form, meaning no API call will be made
+that the form is valid, and if so it will call it's `onSuccess` prop.
 
-<Playground>
-  <Form {...presignupInputs} passThru onSuccess={values=> console.log('success', values)} />
-</Playground>
+> Note that it will not submit the form, meaning no API call will be made
 
-<Playground>
-  <Form {...formInputs} />
-</Playground>
+## PropTypes
 
-<Playground>
-  <Form {...formInputs} renderFooter={<Button type="submit">Hi</Button>} />
-</Playground>
+<PropsTable of={StepForm} />
+
+# Fields
+
+Fields all pass through the `BaseField` component, which handles displaying labels,
+hints & errors.
+
+Each field also accepts a `config` prop which determines it's functionality. This
+can range from specify an autocomplete input to setting up a Stripe token generator.
+
+```js
+  const props = {
+    label: 'My Zipcode:',
+    name: 'zipcode',
+    type: 'text',
+    autoComplete: 'off',
+    config: {
+      component: 'autocomplete',
+      searchFunction: (term) => someSearchFunction(term)
+      validator: 'zipcode',
+    },
+  }
+
+  ...
+
+  <BaseField {...props} />
+```
+
+It can also be used to configure a text mask as shown below. This will enforce the text
+mask of `+1 (###) ###-####` on the input.
+
+```js
+  const props = {
+    label: 'Phone Number:',
+    disabled: true,
+    hint: 'US numbers only',
+    name: 'phone_number',
+    type: 'tel',
+    config: {
+      mask: 'phoneUS',
+      validator: 'mask',
+      validatorArgs: ['phoneUS', 'Phone Number'],
+    },
+  },
+
+  ...
+
+  <BaseField {...props} />
+```
+In most cases these fields will be passed in via the `<Form />` props and will be automatically
+rendered to the `BaseField`.
+
+## PropTypes
+
+<PropsTable of={BaseField} />

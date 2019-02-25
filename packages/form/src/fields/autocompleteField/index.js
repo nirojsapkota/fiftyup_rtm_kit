@@ -98,7 +98,10 @@ const AutocompleteField = ({
           <ResultsContainer distanceFromTop={resultsPosition}>
             {results.map((result, index) => {
               return (
-                <Label htmlFor={`result-${inputProps.name}-${index}`}>
+                <Label
+                  htmlFor={`result-${inputProps.name}-${index}`}
+                  key={result.label}
+                >
                   <ResultItem
                     role="option"
                     aria-selected={result.label === inputProps.value}
