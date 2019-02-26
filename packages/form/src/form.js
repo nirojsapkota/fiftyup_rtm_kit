@@ -102,7 +102,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
               />
             ))}
             {typeof props.renderFooter === 'function'
-              ? props.renderFooter(serverErrors.formError)
+              ? props.renderFooter({ formError: serverErrors.formError })
               : props.renderFooter || (
                   <FooterBox>
                     <Box style={{ display: 'flex', flexDirection: 'column' }}>

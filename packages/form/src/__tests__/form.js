@@ -26,7 +26,7 @@ describe(`<Form />`, async () => {
       <Form
         onSubmit={handleSubmit}
         {...form}
-        renderFooter={formError => {
+        renderFooter={({ formError }) => {
           return (
             <React.Fragment>
               <Box>

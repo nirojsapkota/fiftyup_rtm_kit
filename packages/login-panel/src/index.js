@@ -54,7 +54,10 @@ class LoginForm extends React.Component {
       });
 
       throw new FormError({
-        formError: 'Something went wrong',
+        formError:
+          Object.keys(fieldErrors).length > 0
+            ? 'Something went wrong'
+            : 'An error has occurred, please try again in a few minutes',
         fieldErrors: fieldErrors,
       });
     }
@@ -155,7 +158,7 @@ class LoginForm extends React.Component {
           {...formInput}
           onSubmit={this.handleSubmit}
           onSuccess={this.handleSuccess}
-          renderFooter={formError => (
+          renderFooter={({ formError }) => (
             <React.Fragment>
               <ButtonWrapper pb={3}>
                 <Button type="submit" track="signin">
