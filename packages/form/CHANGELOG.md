@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@4.0.4...@rtm-ui/form@4.0.5) (2019-02-26)
+
+
+### Bug Fixes
+
+* **form:** renderFooter will pass object for more additional context if any ([7deb1ba](https://github.com/OBSAU/rtm-kit/commit/7deb1ba))
+* **login-panel:** display server error below button. ([6b63e29](https://github.com/OBSAU/rtm-kit/commit/6b63e29))
+
+
+
+
+
 ## [4.0.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@4.0.3...@rtm-ui/form@4.0.4) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/form
