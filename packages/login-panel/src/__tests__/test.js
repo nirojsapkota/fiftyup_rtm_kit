@@ -115,6 +115,7 @@ describe('<LoginPanel />', () => {
     await wait(() => {
       expect(container).toHaveTextContent('Email is not valid');
       expect(container).toHaveTextContent('Postcode is not valid');
+      expect(container).toHaveTextContent('Something went wrong');
     });
   });
 
@@ -127,7 +128,7 @@ describe('<LoginPanel />', () => {
       },
     });
 
-    const { getByText, getByLabelText } = render(
+    const { getByText, getByLabelText, container } = render(
       <LoginPanel {...loginPanelProps} />
     );
 
@@ -144,7 +145,9 @@ describe('<LoginPanel />', () => {
     fireEvent.click(submit);
 
     await wait(() => {
-      // expect formError will display
+      expect(container).toHaveTextContent(
+        'An error has occurred, please try again in a few minutes'
+      );
     });
   });
 

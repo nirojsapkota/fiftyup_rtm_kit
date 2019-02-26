@@ -3,7 +3,7 @@ import t from 'prop-types';
 import styled from 'styled-components';
 
 import { Card, Box } from '@rtm-ui/layout';
-import { Header } from '@rtm-ui/typography';
+import { Header, Small } from '@rtm-ui/typography';
 import Form, { FormError } from '@rtm-ui/form';
 import Button from '@rtm-ui/button';
 import Icon from '@rtm-ui/icon';
@@ -54,7 +54,10 @@ class LoginForm extends React.Component {
       });
 
       throw new FormError({
-        formError: 'Something went wrong',
+        formError:
+          Object.keys(fieldErrors).length > 0
+            ? 'Something went wrong'
+            : 'An error has occurred, please try again in a few minutes',
         fieldErrors: fieldErrors,
       });
     }
@@ -155,7 +158,7 @@ class LoginForm extends React.Component {
           {...formInput}
           onSubmit={this.handleSubmit}
           onSuccess={this.handleSuccess}
-          renderFooter={
+          renderFooter={({ formError }) => (
             <React.Fragment>
               <ButtonWrapper pb={3}>
                 <Button type="submit" track="signin">
@@ -171,10 +174,18 @@ class LoginForm extends React.Component {
                     </ButtonIConWrapper>
                   )}
                 </Button>
+                {formError && (
+                  <Box pt={2}>
+                    <Small align="left" color="error">
+                      <Icon fill="error" glyph="error" size={15} />
+                      {formError}
+                    </Small>
+                  </Box>
+                )}
               </ButtonWrapper>
               <GdprAgreement {...gdprProps} />
             </React.Fragment>
-          }
+          )}
         />
       </React.Fragment>
     );
