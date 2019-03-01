@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Animate from '@rtm-ui/animate/';
+import Animate from '@rtm-ui/animate';
 import { Box } from '@rtm-ui/layout';
 import { backgroundStyle } from '@rtm-ui/theme';
 import Img from '@rtm-ui/img';
@@ -38,19 +38,12 @@ const Item = ({item, align}) => (
   </React.Fragment>
 );
 
-const ItemsList = (items, align) => {
-  return items.map(item => {
-    return {
-      id: item.id,
-      content: () => (<Item item={item} align={align} />)
-    }
-  })
-};
-
-const Testimonial = ({items, align, sliderOps}) => {
+const Testimonial = ({items, align}) => {
   return (
     <Wrapper px={[2, 3]} py={[2]}>
-      <Animate slides={ItemsList(items,align)}/>
+      <Animate>
+        {items.map(item => {return (<Item item={item} align={align} key={item.id}/>)})}
+      </Animate>
     </Wrapper>
   )
 };

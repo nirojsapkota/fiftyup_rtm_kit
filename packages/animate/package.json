@@ -16,14 +16,10 @@
     "build": "node ../rtm-scripts/scripts/rollup",
     "test": "node ../rtm-scripts/scripts/test"
   },
-  "dependencies": {
-    "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/layout": "file:../layout"
-  },
   "peerDependencies": {
     "prop-types": "15.x",
     "react": "16.x",
-    "styled-components": "4.x",
-    "react-spring": "^8.0.7"
+    "react-dom": "16.x",
+    "styled-components": "4.x"
   }
 }
