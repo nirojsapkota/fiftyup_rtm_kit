@@ -7,9 +7,19 @@ import { Small } from '@rtm-ui/typography';
 import Button from '@rtm-ui/button';
 import { getFieldProps } from './fieldSetup';
 
+const mockSuccessResponse = ['2000, BARANGAROO'];
+const mockJsonPromise = Promise.resolve(mockSuccessResponse);
+const mockFetchPromise = Promise.resolve({
+  json: () => mockJsonPromise,
+});
+jest
+  .spyOn(global, 'fetch')
+  .mockImplementation(() => mockFetchPromise)
+  .mockImplementation(() => mockFetchPromise);
+
 const form = {
   id: 'test-form',
-  fields: [getFieldProps('email')],
+  fields: [getFieldProps('email'), getFieldProps('zipcode')],
 };
 
 describe(`<Form />`, async () => {
@@ -48,9 +58,13 @@ describe(`<Form />`, async () => {
     const submit = await getByTestId(buttonTestId);
     expect(submit.textContent).toEqual(buttonText);
 
-    const itemInput = await getByLabelText(form.fields[0].label);
-    await fireEvent.change(itemInput, {
+    const emailInput = await getByLabelText(form.fields[0].label);
+    await fireEvent.change(emailInput, {
       target: { value: 'user@example.com' },
+    });
+    const zipCodeInput = await getByLabelText(form.fields[1].label);
+    await fireEvent.change(zipCodeInput, {
+      target: { value: '5000' },
     });
 
     await fireEvent.click(submit);
@@ -58,6 +72,52 @@ describe(`<Form />`, async () => {
     await wait(async () => {
       expect(handleSubmit).toHaveBeenCalled();
       expect(container).toHaveTextContent('test form error');
+    });
+  });
+
+  it(`handle display errors`, async () => {
+    const handleSubmit = jest.fn(() => {
+      throw new FormError({
+        formError: 'test form error',
+        fieldErrors: { zipcode: 'zipcode not valid' },
+      });
+    });
+
+    const {
+      getByTestId,
+      getByLabelText,
+      container,
+      queryAllByTestId,
+    } = await render(<Form onSubmit={handleSubmit} {...form} />);
+
+    const submit = await getByTestId(`submit-${form.id}`);
+
+    const emailInput = await getByLabelText(form.fields[0].label);
+    await fireEvent.change(emailInput, {
+      target: { value: 'user@example.com' },
+    });
+    const zipCodeInput = await getByLabelText(form.fields[1].label);
+    await fireEvent.change(zipCodeInput, {
+      target: { value: '5000' },
+    });
+    await fireEvent.click(submit);
+
+    const errorContainers = await queryAllByTestId('fieldError');
+
+    await wait(async () => {
+      expect(handleSubmit).toHaveBeenCalled();
+      expect(container).toHaveTextContent('test form error');
+      expect(errorContainers[1]).toHaveTextContent('zipcode not valid');
+    });
+
+    await wait(async () => {
+      const item = await getByLabelText('2000, BARANGAROO');
+      await fireEvent.click(item);
+    });
+
+    await wait(async () => {
+      expect(container).not.toHaveTextContent('test form error');
+      expect(errorContainers[0]).not.toHaveTextContent('zipcode not valid');
     });
   });
 });

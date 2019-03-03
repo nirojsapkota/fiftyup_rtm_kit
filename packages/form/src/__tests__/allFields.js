@@ -50,6 +50,15 @@ const fireFieldEvents = async (field, value, util) => {
       await fireEvent.change(input, {
         target: { value: value },
       });
+      // Check popup re-display when focus to input
+      await fireEvent.mouseDown(util.getByText(field.label));
+      await expect(item).not.toBeInTheDocument();
+      await fireEvent.focus(input);
+      await wait(async () => {
+        const item = await getByLabelText('2000, BARANGAROO');
+        await expect(item).toBeInTheDocument();
+      });
+
       await wait(async () => {
         const item = await getByLabelText('2000, BARANGAROO');
         await fireEvent.click(item);

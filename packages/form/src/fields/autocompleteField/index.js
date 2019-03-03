@@ -87,6 +87,7 @@ const AutocompleteField = ({
         <TextField
           {...inputProps}
           aria-haspopup="listbox"
+          onFocus={() => setModalOpen(true)}
           onChange={e => {
             setHasSelected(false);
             inputProps.onChange(e);

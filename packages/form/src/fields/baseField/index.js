@@ -77,7 +77,7 @@ export default class BaseField extends React.Component {
             data-testid="fieldError"
             showErrorColor={!this.state.focused && error}
           >
-            {this.state.waiting || error}
+            {error || this.state.waiting}
           </SmallText>
         </Wrapper>
       </Box>

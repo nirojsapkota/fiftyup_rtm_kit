@@ -81,7 +81,31 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
       onSubmit={submitWrapper}
       render={({ handleSubmit, isSubmitting, isValidating, ...rest }) => {
         const fieldUtils = {
-          setFieldValue: rest.setFieldValue,
+          setFieldValue: (field, value) => {
+            // filter out field's error message from server errors.
+            const fieldErrors = Object.keys(serverErrors.fieldErrors).reduce(
+              (obj, key) => {
+                if (key !== field) {
+                  return { ...obj, [key]: serverErrors.fieldErrors[key] };
+                }
+                return obj;
+              },
+              {}
+            );
+
+            // update server errors message
+            if (serverErrors.formError) {
+              setServerErrors({
+                formError:
+                  Object.keys(fieldErrors).length > 0
+                    ? serverErrors.formError
+                    : '',
+                fieldErrors,
+              });
+            }
+
+            rest.setFieldValue(field, value);
+          },
           setFieldTouched: rest.setFieldTouched,
           setFieldError: rest.setFieldError,
         };
