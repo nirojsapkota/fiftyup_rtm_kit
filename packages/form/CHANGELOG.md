@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@4.0.5...@rtm-ui/form@4.0.6) (2019-03-03)
+
+
+### Bug Fixes
+
+* **form:** OB-2293 - fix autocomplete display select values when clic… ([#47](https://github.com/OBSAU/rtm-kit/issues/47)) ([1433b73](https://github.com/OBSAU/rtm-kit/commit/1433b73))
+
+
+
+
+
 ## [4.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@4.0.4...@rtm-ui/form@4.0.5) (2019-02-26)
 
 
