@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { WindowSize } from '@rtm-ui/layout';
 
 const Slider = styled.div`
-  height: ${props => `${props.height}px`};
+  height: ${props => `${props.slideHeight}px`};
 `;
 
 const SliderMask = styled.div`
-  height: ${props => `${props.height}px`};
+  height: ${props => `${props.slideHeight}px`};
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -15,108 +16,97 @@ const SliderMask = styled.div`
 
 const SliderWrapper = styled.div`
   display: inline-box;
-  height: ${props => `${props.height}px`};
-  left: ${props => `${props.currentPosition}px`};
+  transform: ${props => `translateX(${props.currentPosition}px)`};
   overflow: hidden;
   position: absolute;
-  transition: 2s;
-  width: ${props => (props.width === 0 ? `100%` : `${props.width}px`)};
+  transition: transform 2s ease;
 `;
 
 const Slide = styled.div`
   display: block;
-  width: ${props => (props.width === 0 ? `auto` : `${props.width}px`)};
+  width: 100%
+  width: ${props =>
+    /* istanbul ignore else  */
+    props.slideWidth === 0 ? `auto` : `${props.slideWidth}px`};
 `;
 
 export const Animate = ({ children }) => {
   const sliderRef = useRef(null);
+  const middleRef = useRef(null);
+  const windowSize = WindowSize();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [heightValue, setHeightValue] = useState(0);
-  const [sliderWidth, setSliderWidth] = useState(0);
-  const [maskWidth, setMaskWidth] = useState(0);
-  const [previousMaskWidth, setPreviousMaskWidth] = useState(0);
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [maskWidth, setMaskWidth] = useState(null);
   const secondsDelay = 3000; // 3 seconds
-
-  const clientHeight = () => {
-    var maxHeight = 0;
-    [...sliderRef.current.querySelectorAll('.slide > *')].forEach(slide => {
-      var newHeight = slide.offsetHeight;
-      if (newHeight > maxHeight) {
-        maxHeight = newHeight;
-      }
-    });
-    return maxHeight + 100;
-  };
-
-  const getMaskWidth = () => {
-    const mask = sliderRef.current.querySelector('.slider-mask');
-    return mask.offsetWidth || 0;
-  };
-
-  const SliderWrapperWidth = () => {
-    const slides = sliderRef.current.querySelectorAll('.slide > *');
-    var total = 0;
-    [...slides].forEach(s => {
-      total += s.offsetWidth;
-    })
-    return total;
-  };
-
-  const goToNextSlide = () => {
-    if (previousMaskWidth != maskWidth) {
-      // Go back to the initial slide
-      // if the screen has been resized
-      setCurrentIndex(0);
-      setCurrentPosition(0);
-      setMaskWidth(getMaskWidth());
-      setPreviousMaskWidth(maskWidth);
-    } else if (children && currentIndex === children.length - 1) {
-      // Go back to the inital slide if we've reached the
-      // maximum number of slides
-      setCurrentIndex(0);
-      setCurrentPosition(0);
-    } else {
-      // Increment the current index
-      setCurrentIndex(currentIndex + 1);
-      setCurrentPosition(currentPosition - maskWidth);
-    }
-  };
-
-  useEffect(() => {
-    setMaskWidth(getMaskWidth());
-    setSliderWidth(SliderWrapperWidth());
-    setHeightValue(clientHeight());
-    setTimeout(() => goToNextSlide(), secondsDelay);
-  });
 
   useEffect(
     () => {
-      setHeightValue(clientHeight());
-      setCurrentIndex(0);
-      setCurrentPosition(0);
+      setMaskWidth(
+        sliderRef.current.querySelector('.slider-mask').offsetWidth || 0
+      );
+      /* istanbul ignore else  */
+      if (middleRef.current) {
+        setHeightValue(middleRef.current.getBoundingClientRect().height);
+      }
     },
-    [heightValue]
+    [windowSize.width]
+  );
+
+  useEffect(
+    () => {
+      setTimeout(() => {
+        if (children && currentIndex === children.length - 1) {
+          // Go back to the inital slide if we've reached the
+          // maximum number of slides
+          setCurrentIndex(0);
+        } else {
+          // Increment the current index
+          setCurrentIndex(currentIndex + 1);
+        }
+      }, secondsDelay);
+    },
+    [currentIndex]
+  );
+
+  useEffect(
+    () => {
+      /* istanbul ignore else  */
+      if (middleRef.current) {
+        setHeightValue(middleRef.current.getBoundingClientRect().height);
+      }
+    },
+    [
+      middleRef.current
+        ? middleRef.current.getBoundingClientRect().height
+        : middleRef.current,
+    ]
   );
 
   return (
-    <Slider height={heightValue} ref={sliderRef}>
-      <SliderMask className="slider-mask" height={heightValue}>
+    <Slider
+      slideHeight={heightValue}
+      ref={sliderRef}
+      data-windowwidth={windowSize.width}
+      data-windowheight={windowSize.height}
+      className="slider-main-container"
+    >
+      <SliderMask className="slider-mask" slideHeight={heightValue}>
         <SliderWrapper
           className="slider-wrapper"
-          height={heightValue}
-          width={sliderWidth}
-          currentPosition={currentPosition}
+          currentPosition={currentIndex * maskWidth * -1}
         >
-          {children && children.map((child, index) => (
-            <Slide
-              className={`slide ${index === currentIndex ? `current` : ``}`}
-              key={index}
-              width={maskWidth}
-            >
-              {child}
-            </Slide>
-          ))}
+          <div ref={middleRef} style={{ display: 'flex' }}>
+            {children &&
+              children.map((child, index) => (
+                <Slide
+                  className={`slide ${index === currentIndex ? `current` : ``}`}
+                  key={index}
+                  slideWidth={maskWidth}
+                >
+                  {child}
+                </Slide>
+              ))}
+          </div>
         </SliderWrapper>
       </SliderMask>
     </Slider>
