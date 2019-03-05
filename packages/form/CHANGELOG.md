@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@4.0.6...@rtm-ui/form@4.0.7) (2019-03-05)
+
+
+### Bug Fixes
+
+* **form:** OB-2293- fix issue color of autocomplete postcode field and remove ‘Something went wrong’ message ([#51](https://github.com/OBSAU/rtm-kit/issues/51)) ([b9481a9](https://github.com/OBSAU/rtm-kit/commit/b9481a9))
+
+
+
+
+
 ## [4.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@4.0.5...@rtm-ui/form@4.0.6) (2019-03-03)
 
 

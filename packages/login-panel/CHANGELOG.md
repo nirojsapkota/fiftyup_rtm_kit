@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.20](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.19...@rtm-ui/login-panel@3.1.20) (2019-03-05)
+
+
+### Bug Fixes
+
+* **form:** OB-2293- fix issue color of autocomplete postcode field and remove ‘Something went wrong’ message ([#51](https://github.com/OBSAU/rtm-kit/issues/51)) ([b9481a9](https://github.com/OBSAU/rtm-kit/commit/b9481a9))
+
+
+
+
+
 ## [3.1.19](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.18...@rtm-ui/login-panel@3.1.19) (2019-03-03)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
