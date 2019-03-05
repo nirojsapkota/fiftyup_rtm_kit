@@ -83,12 +83,9 @@ describe(`<Form />`, async () => {
       });
     });
 
-    const {
-      getByTestId,
-      getByLabelText,
-      container,
-      queryAllByTestId,
-    } = await render(<Form onSubmit={handleSubmit} {...form} />);
+    const { getByTestId, getByLabelText, queryAllByTestId } = await render(
+      <Form onSubmit={handleSubmit} {...form} />
+    );
 
     const submit = await getByTestId(`submit-${form.id}`);
 
@@ -106,7 +103,6 @@ describe(`<Form />`, async () => {
 
     await wait(async () => {
       expect(handleSubmit).toHaveBeenCalled();
-      expect(container).toHaveTextContent('test form error');
       expect(errorContainers[1]).toHaveTextContent('zipcode not valid');
     });
 
@@ -116,7 +112,6 @@ describe(`<Form />`, async () => {
     });
 
     await wait(async () => {
-      expect(container).not.toHaveTextContent('test form error');
       expect(errorContainers[0]).not.toHaveTextContent('zipcode not valid');
     });
   });

@@ -94,15 +94,10 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
             );
 
             // update server errors message
-            if (serverErrors.formError) {
-              setServerErrors({
-                formError:
-                  Object.keys(fieldErrors).length > 0
-                    ? serverErrors.formError
-                    : '',
-                fieldErrors,
-              });
-            }
+            setServerErrors({
+              formError: serverErrors.formError,
+              fieldErrors,
+            });
 
             rest.setFieldValue(field, value);
           },

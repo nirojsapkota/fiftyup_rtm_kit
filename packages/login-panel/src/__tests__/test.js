@@ -115,7 +115,6 @@ describe('<LoginPanel />', () => {
     await wait(() => {
       expect(container).toHaveTextContent('Email is not valid');
       expect(container).toHaveTextContent('Postcode is not valid');
-      expect(container).toHaveTextContent('Something went wrong');
     });
   });
 

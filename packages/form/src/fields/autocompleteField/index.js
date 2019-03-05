@@ -26,6 +26,8 @@ const ResultItem = styled(Button)`
 
 const AutocompleteField = ({
   onWaiting,
+  onFocus,
+  onBlur,
   fieldUtils,
   config,
   ...inputProps
@@ -87,7 +89,11 @@ const AutocompleteField = ({
         <TextField
           {...inputProps}
           aria-haspopup="listbox"
-          onFocus={() => setModalOpen(true)}
+          onFocus={() => {
+            setModalOpen(true);
+            onFocus();
+          }}
+          onBlur={onBlur}
           onChange={e => {
             setHasSelected(false);
             inputProps.onChange(e);

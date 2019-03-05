@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
       throw new FormError({
         formError:
           Object.keys(fieldErrors).length > 0
-            ? 'Something went wrong'
+            ? ''
             : 'An error has occurred, please try again in a few minutes',
         fieldErrors: fieldErrors,
       });
