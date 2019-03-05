@@ -13,7 +13,7 @@ const Wrapper = styled(Box)`
 
 const Flex = styled(Box)`
   display: flex;
-`
+`;
 
 const ImgStyle = styled(Img)`
   img {
@@ -21,7 +21,7 @@ const ImgStyle = styled(Img)`
   }
 `;
 
-const Item = ({item, align}) => (
+const Item = ({ item, align }) => (
   <React.Fragment key={item.author}>
     <Paragraph pb={[2, 3]} align={align}>
       {item.body}
@@ -38,19 +38,21 @@ const Item = ({item, align}) => (
   </React.Fragment>
 );
 
-const Testimonial = ({items, align}) => {
+const Testimonial = ({ items, align }) => {
   return (
     <Wrapper px={[2, 3]} py={[2]}>
       <Animate>
-        {items.map(item => {return (<Item item={item} align={align} key={item.id}/>)})}
+        {items.map(item => {
+          return <Item item={item} align={align} key={item.id} />;
+        })}
       </Animate>
     </Wrapper>
-  )
+  );
 };
 
 Testimonial.defaultProps = {
   align: 'left',
-}
+};
 
 Testimonial.propTypes = {
   items: PropTypes.arrayOf(
@@ -60,7 +62,7 @@ Testimonial.propTypes = {
       body: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
       bio: PropTypes.string.isRequired,
-    }),
+    })
   ),
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
