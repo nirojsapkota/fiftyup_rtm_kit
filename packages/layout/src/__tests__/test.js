@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '../../../bootstrap/setup/testSetup';
-import { Card, Pane } from '../index';
+import { render, wait } from '../../../bootstrap/setup/testSetup';
+import { Card, Pane, WindowSize } from '../index';
 
 const text = 'Hello, World';
 
@@ -30,4 +30,17 @@ describe('<Card />', () => {
 
     expect(getByText(text)).toHaveStyleRule('border-radius', '12px');
   });
+});
+
+describe('<WindowSize />', () => {
+  jest.fn(WindowSize());
+  var event = new Event('resize');
+
+  global.window.innerWidth = 100;
+  global.window.innerHeight = 200;
+
+  global.dispatchEvent(event);
+
+  expect(WindowSize().width).toBe(100);
+  expect(WindowSize().height).toBe(200);
 });
