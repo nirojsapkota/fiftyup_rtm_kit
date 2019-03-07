@@ -27,20 +27,41 @@ jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
 
 describe('<LoginPanel />', () => {
   it('matches expected output', async () => {
+    const postCodeField = {
+      label: 'My Postcode:',
+      placeholder: 'Postcode',
+      hint: '10001, New York',
+    };
+    const emailField = {
+      label: 'My Email:',
+      placeholder: 'Email',
+    };
+
     const { getByText, getByValue } = render(
-      <LoginPanel {...loginPanelProps} />
+      <LoginPanel
+        {...loginPanelProps}
+        postCodeField={postCodeField}
+        emailField={emailField}
+      />
     );
 
+    const { hiddenFields } = loginPanelProps;
+
     // expect hidden fields
-    const jumpPath = getByValue(loginPanelProps.hiddenFields.jump_path);
+    const jumpPath = getByValue(hiddenFields.jump_path);
     expect(jumpPath.name).toEqual('jump_path');
     const registeringCampaignId = getByValue(
-      loginPanelProps.hiddenFields.registering_campaign_id.toString()
+      hiddenFields.registering_campaign_id.toString()
     );
     expect(registeringCampaignId.name).toEqual('registering_campaign_id');
 
     expect(getByText(loginPanelProps.title)).toBeInTheDocument();
     expect(getByText(loginPanelProps.buttonText)).toBeInTheDocument();
+
+    expect(getByText(postCodeField.label)).toBeInTheDocument();
+    expect(getByText(postCodeField.hint)).toBeInTheDocument();
+
+    expect(getByText(emailField.label)).toBeInTheDocument();
   });
 
   it('success call with input props', async () => {

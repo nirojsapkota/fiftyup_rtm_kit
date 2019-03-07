@@ -73,10 +73,7 @@ const HybridLoginView = ({
   entityBrand,
   ...props
 }) => {
-  const loginPanelProps = {
-    ...props,
-    buttonIcon: entityBrand !== 'ninesaver' ? 'view-forward' : '',
-  };
+  const loginPanelProps = props;
   return (
     <React.Fragment>
       <BodyWrapper>
@@ -141,11 +138,7 @@ class WrappedHybridLoginView extends React.Component {
       <Bootstrap trackingData={trackingData}>
         <EntityProvider entity={entity}>
           <EntityConsumer>
-            {({
-              brand,
-              footer_items: footer,
-              header_items: header,
-            }) => {
+            {({ brand, footer_items: footer, header_items: header }) => {
               return (
                 <React.Fragment>
                   <BasicHeader

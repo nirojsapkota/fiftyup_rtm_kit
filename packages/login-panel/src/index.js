@@ -87,25 +87,30 @@ class LoginForm extends React.Component {
       buttonIcon,
       gdprProps,
       autocompletePostcodeUrl,
+      postCodeField,
+      emailField,
     } = this.props;
 
     const formInput = {
       id: 'signup',
       fields: [
         {
-          label: 'My Postcode:',
+          label: postCodeField.label || 'My Postcode:',
           name: 'postcode_suburb',
           type: 'text',
-          placeholder: 'Postcode',
+          placeholder: postCodeField.placeholder || 'Postcode',
           autoComplete: 'off',
-          hint: '5000, Adelaide',
-          error: 'Please select a postcode and suburb',
+          hint: postCodeField.hint || '5000, Adelaide',
           config: {
             component: 'autocomplete',
             validator: 'zipcode',
             searchFunction: searchTerm => {
+              const headers = new Headers({
+                'X-CSRF-Token': authenticityToken,
+              });
               return fetch(`${autocompletePostcodeUrl}?term=${searchTerm}`, {
                 method: 'GET',
+                headers,
               })
                 .then(payload => {
                   return payload.json();
@@ -119,10 +124,10 @@ class LoginForm extends React.Component {
           },
         },
         {
-          label: 'My Email:',
+          label: emailField.label || 'My Email:',
           name: 'email',
           type: 'text',
-          placeholder: 'Email',
+          placeholder: emailField.placeholder || 'Email',
           config: {
             validator: 'email',
           },
@@ -209,6 +214,15 @@ LoginPanel.propTypes = {
   buttonText: t.string,
   buttonIcon: t.string,
   autocompletePostcodeUrl: t.string,
+  postCodeField: {
+    label: t.string,
+    placeholder: t.string,
+    hint: t.string,
+  },
+  emailField: {
+    label: t.string,
+    placeholder: t.string,
+  },
 };
 
 LoginPanel.defaultProps = {
@@ -216,6 +230,8 @@ LoginPanel.defaultProps = {
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'See the offers',
   buttonIcon: null,
+  postCodeField: {},
+  emailField: {},
 };
 
 export default LoginPanel;
