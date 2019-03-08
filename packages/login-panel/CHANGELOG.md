@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.21](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.20...@rtm-ui/login-panel@3.1.21) (2019-03-08)
+
+
+### Bug Fixes
+
+* **login-panel:** OB-2308 fix missing csrf ([434b016](https://github.com/OBSAU/rtm-kit/commit/434b016))
+* **login-panel:** OB-2308 fix props type of postcode/email field ([acb70f3](https://github.com/OBSAU/rtm-kit/commit/acb70f3))
+* **login-panel:** OB-2308 fix unit test ([31e8534](https://github.com/OBSAU/rtm-kit/commit/31e8534))
+* **login-panel:** OB-2308 use axios for get autocomplete data, remove unused variable ([0024784](https://github.com/OBSAU/rtm-kit/commit/0024784))
+
+
+
+
+
 ## [3.1.20](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.19...@rtm-ui/login-panel@3.1.20) (2019-03-05)
 
 
