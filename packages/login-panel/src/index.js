@@ -211,15 +211,15 @@ LoginPanel.propTypes = {
   buttonText: t.string,
   buttonIcon: t.string,
   autocompletePostcodeUrl: t.string,
-  postCodeField: {
+  postCodeField: t.shape({
     label: t.string,
     placeholder: t.string,
     hint: t.string,
-  },
-  emailField: {
+  }),
+  emailField: t.shape({
     label: t.string,
     placeholder: t.string,
-  },
+  }),
 };
 
 LoginPanel.defaultProps = {
