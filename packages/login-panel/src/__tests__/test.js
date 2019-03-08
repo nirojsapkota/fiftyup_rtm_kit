@@ -18,13 +18,6 @@ jest.mock('axios');
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-const mockSuccessResponse = ['2000, BARANGAROO'];
-const mockJsonPromise = Promise.resolve(mockSuccessResponse);
-const mockFetchPromise = Promise.resolve({
-  json: () => mockJsonPromise,
-});
-jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
-
 describe('<LoginPanel />', () => {
   it('matches expected output', async () => {
     const postCodeField = {
@@ -172,17 +165,58 @@ describe('<LoginPanel />', () => {
   });
 
   it('autocompelete api was called', async () => {
+    // setup
+    const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
+    axios.get.mockResolvedValue({
+      data,
+    });
+
     const { getByLabelText } = render(<LoginPanel {...loginPanelProps} />);
 
     const postcode = getByLabelText('My Postcode:');
     fireEvent.change(postcode, {
-      target: { value: '2000' },
+      target: { value: '5000' },
     });
 
     await wait(async () => {
+      expect(axios.get).toHaveBeenCalledWith(
+        loginPanelProps.autocompletePostcodeUrl,
+        {
+          headers: {
+            Accept: 'application/json',
+            'X-CSRF-Token': loginPanelProps.authenticityToken,
+          },
+          params: { term: '5000' },
+        }
+      );
+
       // Wait until popup arrives
-      const item = await getByLabelText('2000, BARANGAROO');
+      const item = await getByLabelText('5000, ADELAIDE BC');
       expect(item).toBeInTheDocument();
+    });
+  });
+
+  it('autocompelete api was called with error returned', async () => {
+    // setup
+    axios.get.mockRejectedValue({
+      response: {
+        status: 500,
+        data: { errors: ['error'] },
+      },
+    });
+
+    const { getByLabelText, container } = render(
+      <LoginPanel {...loginPanelProps} />
+    );
+
+    const postcode = getByLabelText('My Postcode:');
+    fireEvent.change(postcode, {
+      target: { value: '5000' },
+    });
+
+    await wait(async () => {
+      expect(axios.get).toHaveBeenCalled();
+      expect(container).not.toHaveTextContent('5000, ADELAIDE BC');
     });
   });
 });

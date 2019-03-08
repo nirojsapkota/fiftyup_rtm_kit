@@ -8,7 +8,7 @@ import Form, { FormError } from '@rtm-ui/form';
 import Button from '@rtm-ui/button';
 import Icon from '@rtm-ui/icon';
 
-import { submitLogin } from './actions';
+import { submitLogin, getAutoCompletePostcode } from './actions';
 import GdprAgreement from './GdprAgreement';
 
 const ButtonIConWrapper = styled(Box)`
@@ -26,6 +26,7 @@ class LoginForm extends React.Component {
     // Binding event
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSuccess = this.handleSuccess.bind(this);
+    this.autoCompleteSearch = this.autoCompleteSearch.bind(this);
   }
 
   async handleSubmit(fieldsWithValues) {
@@ -78,6 +79,19 @@ class LoginForm extends React.Component {
     }
   }
 
+  async autoCompleteSearch(searchTerm) {
+    const { autocompletePostcodeUrl, authenticityToken } = this.props;
+    const results = await getAutoCompletePostcode(
+      autocompletePostcodeUrl,
+      searchTerm,
+      authenticityToken
+    );
+
+    return results.map(item => {
+      return { label: item };
+    });
+  }
+
   render() {
     const {
       title,
@@ -86,7 +100,6 @@ class LoginForm extends React.Component {
       buttonText,
       buttonIcon,
       gdprProps,
-      autocompletePostcodeUrl,
       postCodeField,
       emailField,
     } = this.props;
@@ -104,23 +117,7 @@ class LoginForm extends React.Component {
           config: {
             component: 'autocomplete',
             validator: 'zipcode',
-            searchFunction: searchTerm => {
-              const headers = new Headers({
-                'X-CSRF-Token': authenticityToken,
-              });
-              return fetch(`${autocompletePostcodeUrl}?term=${searchTerm}`, {
-                method: 'GET',
-                headers,
-              })
-                .then(payload => {
-                  return payload.json();
-                })
-                .then(results => {
-                  return results.map(item => {
-                    return { label: item };
-                  });
-                });
-            },
+            searchFunction: this.autoCompleteSearch,
           },
         },
         {
