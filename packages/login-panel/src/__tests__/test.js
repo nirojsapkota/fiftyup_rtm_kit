@@ -12,6 +12,7 @@ import {
 } from '../../../bootstrap/setup/testSetup';
 import LoginPanel from '../index';
 import loginPanelProps from '../__fixtures__/loginPanel';
+import { getAutoCompletePostcode } from '../actions';
 
 jest.mock('axios');
 
@@ -196,7 +197,7 @@ describe('<LoginPanel />', () => {
     });
   });
 
-  it('autocompelete api was called with error returned', async () => {
+  it('getAutoCompletePostcode api was called with error empty', async () => {
     // setup
     axios.get.mockRejectedValue({
       response: {
@@ -205,18 +206,12 @@ describe('<LoginPanel />', () => {
       },
     });
 
-    const { getByLabelText, container } = render(
-      <LoginPanel {...loginPanelProps} />
+    const results = await getAutoCompletePostcode(
+      loginPanelProps.autocompletePostcodeUrl,
+      5000,
+      loginPanelProps.authenticityToken
     );
 
-    const postcode = getByLabelText('My Postcode:');
-    fireEvent.change(postcode, {
-      target: { value: '5000' },
-    });
-
-    await wait(async () => {
-      expect(axios.get).toHaveBeenCalled();
-      expect(container).not.toHaveTextContent('5000, ADELAIDE BC');
-    });
+    expect(results).toEqual([]);
   });
 });
