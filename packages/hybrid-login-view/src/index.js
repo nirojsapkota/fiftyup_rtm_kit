@@ -70,13 +70,8 @@ const HybridLoginView = ({
   howItWorksProps,
   disclaimerProps,
   heroImageUrl,
-  entityBrand,
   ...props
 }) => {
-  const loginPanelProps = {
-    ...props,
-    buttonIcon: entityBrand !== 'ninesaver' ? 'view-forward' : '',
-  };
   return (
     <React.Fragment>
       <BodyWrapper>
@@ -87,7 +82,7 @@ const HybridLoginView = ({
           <MobileHide>
             <Column width={1 / 2}>
               <LoginPanelWrapper px={[10, 10, 15, 20]}>
-                <LoginPanel {...loginPanelProps} />
+                <LoginPanel {...props} />
               </LoginPanelWrapper>
               <StyledDisclaimer p={50}>
                 {disclaimerProps.disclaimerText || ''}
@@ -95,20 +90,16 @@ const HybridLoginView = ({
             </Column>
             <Column width={1 / 2}>
               <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-                <HowItWorks
-                  orientation="vertical"
-                  {...howItWorksProps}
-                  entity={entityBrand}
-                />
+                <HowItWorks orientation="vertical" {...howItWorksProps} />
               </HowItWorksWrapper>
             </Column>
           </MobileHide>
           <MobileShow>
             <LoginPanelWrapper px={[10, 10, 15, 20]}>
-              <LoginPanel {...loginPanelProps} />
+              <LoginPanel {...props} />
             </LoginPanelWrapper>
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-              <HowItWorks {...howItWorksProps} entity={entityBrand} />
+              <HowItWorks {...howItWorksProps} />
             </HowItWorksWrapper>
             <StyledDisclaimer p={30}>
               {disclaimerProps.disclaimerText || ''}
@@ -126,7 +117,6 @@ HybridLoginView.propTypes = {
     disclaimerText: t.string,
   }),
   heroImageUrl: t.string,
-  entityBrand: t.string,
 };
 
 class WrappedHybridLoginView extends React.Component {
@@ -141,11 +131,7 @@ class WrappedHybridLoginView extends React.Component {
       <Bootstrap trackingData={trackingData}>
         <EntityProvider entity={entity}>
           <EntityConsumer>
-            {({
-              brand,
-              footer_items: footer,
-              header_items: header,
-            }) => {
+            {({ brand, footer_items: footer, header_items: header }) => {
               return (
                 <React.Fragment>
                   <BasicHeader
@@ -153,7 +139,7 @@ class WrappedHybridLoginView extends React.Component {
                     entityBrand={brand}
                     py={2}
                   />
-                  <HybridLoginView {...rest} entityBrand={brand} />
+                  <HybridLoginView {...rest} />
                   <Variant variant="c">
                     <FooterWrapper py={2}>
                       <BasicFooter

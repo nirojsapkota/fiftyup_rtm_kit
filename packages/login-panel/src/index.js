@@ -8,7 +8,7 @@ import Form, { FormError } from '@rtm-ui/form';
 import Button from '@rtm-ui/button';
 import Icon from '@rtm-ui/icon';
 
-import { submitLogin } from './actions';
+import { submitLogin, getAutoCompletePostcode } from './actions';
 import GdprAgreement from './GdprAgreement';
 
 const ButtonIConWrapper = styled(Box)`
@@ -26,6 +26,7 @@ class LoginForm extends React.Component {
     // Binding event
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSuccess = this.handleSuccess.bind(this);
+    this.autoCompleteSearch = this.autoCompleteSearch.bind(this);
   }
 
   async handleSubmit(fieldsWithValues) {
@@ -78,6 +79,19 @@ class LoginForm extends React.Component {
     }
   }
 
+  async autoCompleteSearch(searchTerm) {
+    const { autocompletePostcodeUrl, authenticityToken } = this.props;
+    const results = await getAutoCompletePostcode(
+      autocompletePostcodeUrl,
+      searchTerm,
+      authenticityToken
+    );
+
+    return results.map(item => {
+      return { label: item };
+    });
+  }
+
   render() {
     const {
       title,
@@ -86,43 +100,31 @@ class LoginForm extends React.Component {
       buttonText,
       buttonIcon,
       gdprProps,
-      autocompletePostcodeUrl,
+      postCodeField,
+      emailField,
     } = this.props;
 
     const formInput = {
       id: 'signup',
       fields: [
         {
-          label: 'My Postcode:',
+          label: postCodeField.label || 'My Postcode:',
           name: 'postcode_suburb',
           type: 'text',
-          placeholder: 'Postcode',
+          placeholder: postCodeField.placeholder || 'Postcode',
           autoComplete: 'off',
-          hint: '5000, Adelaide',
-          error: 'Please select a postcode and suburb',
+          hint: postCodeField.hint || '5000, Adelaide',
           config: {
             component: 'autocomplete',
             validator: 'zipcode',
-            searchFunction: searchTerm => {
-              return fetch(`${autocompletePostcodeUrl}?term=${searchTerm}`, {
-                method: 'GET',
-              })
-                .then(payload => {
-                  return payload.json();
-                })
-                .then(results => {
-                  return results.map(item => {
-                    return { label: item };
-                  });
-                });
-            },
+            searchFunction: this.autoCompleteSearch,
           },
         },
         {
-          label: 'My Email:',
+          label: emailField.label || 'My Email:',
           name: 'email',
           type: 'text',
-          placeholder: 'Email',
+          placeholder: emailField.placeholder || 'Email',
           config: {
             validator: 'email',
           },
@@ -209,6 +211,15 @@ LoginPanel.propTypes = {
   buttonText: t.string,
   buttonIcon: t.string,
   autocompletePostcodeUrl: t.string,
+  postCodeField: t.shape({
+    label: t.string,
+    placeholder: t.string,
+    hint: t.string,
+  }),
+  emailField: t.shape({
+    label: t.string,
+    placeholder: t.string,
+  }),
 };
 
 LoginPanel.defaultProps = {
@@ -216,6 +227,8 @@ LoginPanel.defaultProps = {
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'See the offers',
   buttonIcon: null,
+  postCodeField: {},
+  emailField: {},
 };
 
 export default LoginPanel;

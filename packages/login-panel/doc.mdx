@@ -7,25 +7,13 @@ menu: Packages
 import { Playground, PropsTable } from 'docz'
 import LoginPanel from './src'
 import loginPanelProps from './src/__fixtures__/loginPanel';
-import loginMock from './src/__fixtures__/loginMock';
 
 # LoginPanel
 
 ## Basic usage
 
-Redirect when success login:
 <Playground>
-  <LoginPanel {...loginPanelProps} handleSubmit={loginMock(200, { data: { redirectPath: '/packages/login-panel' } })} />
-</Playground>
-
-Raise error for bad request:
-<Playground>
-  <LoginPanel {...loginPanelProps} handleSubmit={loginMock(400, { data: {errors: ['Sign in failed']}})} />
-</Playground>
-
-Raise error when internal error:
-<Playground>
-  <LoginPanel {...loginPanelProps} handleSubmit={loginMock(500, { data: {errors: ['Something went wrong']}})} />
+  <LoginPanel {...loginPanelProps} />
 </Playground>
 
 ## Props

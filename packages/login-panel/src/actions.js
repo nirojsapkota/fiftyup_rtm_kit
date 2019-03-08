@@ -34,3 +34,27 @@ export const submitLogin = async (url, data, authenticityToken) => {
 
   return result;
 };
+
+export const getAutoCompletePostcode = async (url, data, authenticityToken) => {
+  const config = {
+    headers: {
+      Accept: 'application/json',
+      'X-CSRF-Token': authenticityToken,
+    },
+    params: {
+      term: data,
+    },
+  };
+
+  const result = await axios
+    .get(url, config)
+    .then(response => {
+      const { data } = response;
+      return data;
+    })
+    .catch(() => {
+      return [];
+    });
+
+  return result;
+};

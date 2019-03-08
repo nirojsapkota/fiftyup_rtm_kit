@@ -18,29 +18,43 @@ jest.mock('axios');
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-const mockSuccessResponse = ['2000, BARANGAROO'];
-const mockJsonPromise = Promise.resolve(mockSuccessResponse);
-const mockFetchPromise = Promise.resolve({
-  json: () => mockJsonPromise,
-});
-jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
-
 describe('<LoginPanel />', () => {
   it('matches expected output', async () => {
+    const postCodeField = {
+      label: 'My Postcode:',
+      placeholder: 'Postcode',
+      hint: '10001, New York',
+    };
+    const emailField = {
+      label: 'My Email:',
+      placeholder: 'Email',
+    };
+
     const { getByText, getByValue } = render(
-      <LoginPanel {...loginPanelProps} />
+      <LoginPanel
+        {...loginPanelProps}
+        postCodeField={postCodeField}
+        emailField={emailField}
+      />
     );
 
+    const { hiddenFields } = loginPanelProps;
+
     // expect hidden fields
-    const jumpPath = getByValue(loginPanelProps.hiddenFields.jump_path);
+    const jumpPath = getByValue(hiddenFields.jump_path);
     expect(jumpPath.name).toEqual('jump_path');
     const registeringCampaignId = getByValue(
-      loginPanelProps.hiddenFields.registering_campaign_id.toString()
+      hiddenFields.registering_campaign_id.toString()
     );
     expect(registeringCampaignId.name).toEqual('registering_campaign_id');
 
     expect(getByText(loginPanelProps.title)).toBeInTheDocument();
     expect(getByText(loginPanelProps.buttonText)).toBeInTheDocument();
+
+    expect(getByText(postCodeField.label)).toBeInTheDocument();
+    expect(getByText(postCodeField.hint)).toBeInTheDocument();
+
+    expect(getByText(emailField.label)).toBeInTheDocument();
   });
 
   it('success call with input props', async () => {
@@ -151,17 +165,53 @@ describe('<LoginPanel />', () => {
   });
 
   it('autocompelete api was called', async () => {
-    const { getByLabelText } = render(<LoginPanel {...loginPanelProps} />);
+    // setup resolve
+    const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
+    axios.get.mockResolvedValue({
+      data,
+    });
+
+    const { getByLabelText, container } = render(<LoginPanel {...loginPanelProps} />);
 
     const postcode = getByLabelText('My Postcode:');
-    fireEvent.change(postcode, {
-      target: { value: '2000' },
+    await fireEvent.change(postcode, {
+      target: { value: '5000' },
     });
 
     await wait(async () => {
+      expect(axios.get).toHaveBeenCalledWith(
+        loginPanelProps.autocompletePostcodeUrl,
+        {
+          headers: {
+            Accept: 'application/json',
+            'X-CSRF-Token': loginPanelProps.authenticityToken,
+          },
+          params: { term: '5000' },
+        }
+      );
+
       // Wait until popup arrives
-      const item = await getByLabelText('2000, BARANGAROO');
+      const item = await getByLabelText('5000, ADELAIDE BC');
       expect(item).toBeInTheDocument();
+    });
+
+    await wait(async () => {
+      // setup reject
+      axios.get.mockRejectedValue({
+        response: {
+          status: 500,
+          data: { errors: ['error'] },
+        },
+      });
+
+      await fireEvent.change(postcode, {
+        target: { value: '5000, ADELAIDE' },
+      });
+  
+      await wait(async () => {
+        expect(axios.get).toHaveBeenCalled();
+        expect(container).not.toHaveTextContent('5000, ADELAIDE BC');
+      });
     });
   });
 });
