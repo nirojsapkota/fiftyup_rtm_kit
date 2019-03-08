@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { WindowSize } from '@rtm-ui/layout';
+import { useWindowSize } from '@rtm-ui/layout';
 
 const Slider = styled.div`
   height: ${props => `${props.slideHeight}px`};
@@ -30,10 +30,10 @@ const Slide = styled.div`
     props.slideWidth === 0 ? `auto` : `${props.slideWidth}px`};
 `;
 
-export const Animate = ({ children }) => {
+const Animate = ({ children }) => {
   const sliderRef = useRef(null);
   const middleRef = useRef(null);
-  const windowSize = WindowSize();
+  const windowSize = useWindowSize();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [heightValue, setHeightValue] = useState(0);
   const [maskWidth, setMaskWidth] = useState(null);

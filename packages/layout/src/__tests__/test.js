@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, wait } from '../../../bootstrap/setup/testSetup';
-import { Card, Pane, WindowSize } from '../index';
+import { render, act } from '../../../bootstrap/setup/testSetup';
+import { Card, Pane, useWindowSize } from '../index';
 
 const text = 'Hello, World';
 
@@ -32,15 +32,34 @@ describe('<Card />', () => {
   });
 });
 
-describe('<WindowSize />', () => {
-  jest.fn(WindowSize());
-  var event = new Event('resize');
+describe('useWindowSize', () => {
+  const TestFn = () => {
+    const windowSize = useWindowSize();
+    return (
+      <div>
+        <span data-testid="width">{windowSize.width}</span>
+        <span data-testid="height">{windowSize.height}</span>
+      </div>
+    );
+  };
 
-  global.window.innerWidth = 100;
-  global.window.innerHeight = 200;
+  it('responds to window resize', () => {
+    window.innerWidth = 100;
+    window.innerHeight = 200;
+    const { getByTestId } = render(<TestFn />);
 
-  global.dispatchEvent(event);
+    expect(getByTestId('width')).toHaveTextContent('100');
+    expect(getByTestId('height')).toHaveTextContent('200');
 
-  expect(WindowSize().width).toBe(100);
-  expect(WindowSize().height).toBe(200);
+    window.innerWidth = 200;
+    window.innerHeight = 300;
+
+    act(() => {
+      var event = new Event('resize');
+      window.dispatchEvent(event);
+    });
+
+    expect(getByTestId('width')).toHaveTextContent('200');
+    expect(getByTestId('height')).toHaveTextContent('300');
+  });
 });
