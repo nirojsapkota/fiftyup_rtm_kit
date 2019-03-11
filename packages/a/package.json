@@ -1,14 +1,13 @@
 {
   "name": "@rtm-ui/a",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Description for A",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "a",
     "defaultExport": "A",
-    "namedExports": [
-    ]
+    "namedExports": []
   },
   "main": "build/main.js",
   "module": "build/module.js",
