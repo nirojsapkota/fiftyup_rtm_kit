@@ -3,7 +3,7 @@ import 'jest-dom/extend-expect';
 import { render } from 'react-testing-library';
 import Theme, { BootstrapTheme } from '../index';
 import { obs, fuc, ninesaver } from '../themes';
-import { getColor, setIn } from '../util';
+import { getColor, setIn, getWeight } from '../util';
 import { MockWrapper } from '../__mocks__/backgroundExample';
 
 const themes = [obs, fuc, ninesaver];
@@ -86,3 +86,15 @@ describe('getColor', () => {
     expect(getColor('facebook', ninesaver)).toBe('#3B5998');
   });
 });
+
+describe('getWeight', () => {
+  it('gets the weight specified from the mapping', () => {
+    expect(getWeight('thin')).toBe('100')
+    expect(getWeight('normal')).toBe('400')
+    expect(getWeight('bold')).toBe('900')
+  })
+
+  it('defaults to 400', () => {
+    expect(getWeight('unknownKey')).toBe('400')
+  })
+})
