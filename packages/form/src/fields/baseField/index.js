@@ -1,25 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
+import { getColor } from '@rtm-ui/theme';
 import { Paragraph, Label } from '@rtm-ui/typography';
-import RadioField from '../radioField';
-import TextField from '../textField';
-import NumberField from '../numberField';
-import StripeField from '../stripeField';
-import CheckboxField from '../checkboxField';
-import AutocompleteField from '../autocompleteField';
-
-export const fieldTypes = {
-  radio: RadioField,
-  paymentField: StripeField,
-  text: TextField,
-  password: TextField,
-  tel: NumberField,
-};
+import { getFieldComponent } from '../util/getFieldComponent';
 
 const SmallText = styled(Paragraph)`
   font-size: 10px;
-  ${props => props.showErrorColor && `color: red`};
+  ${props =>
+    props.showErrorColor && `color: ${getColor('error', props.theme)}`};
 `;
 
 const Wrapper = styled(Box)`
@@ -52,29 +42,16 @@ export default class BaseField extends React.Component {
     const {
       label,
       description,
-      validator,
       hint,
       helper,
       error,
       success,
       initialValue: _initialValue,
-      validatorArgs: _validatorArgs,
       ...props
     } = this.props;
-    const Input =
-      props.type === 'radio'
-        ? RadioField
-        : props.type === 'checkbox'
-          ? CheckboxField
-          : props.type === 'paymentField'
-            ? StripeField
-            : props.type === 'autocomplete'
-              ? AutocompleteField
-              : props.mask !== undefined
-                ? NumberField
-                : TextField;
+    const Input = getFieldComponent(props.type, props.config);
 
-    return (
+    return props.type !== 'hidden' ? (
       <Box mb={10}>
         <Wrapper alignItems="flex-end">
           <Box>
@@ -100,10 +77,29 @@ export default class BaseField extends React.Component {
             data-testid="fieldError"
             showErrorColor={!this.state.focused && error}
           >
-            {this.state.waiting || error}
+            {error || this.state.waiting}
           </SmallText>
         </Wrapper>
       </Box>
+    ) : (
+      <Input {...props} id={`${this.props.name}`} />
     );
   }
 }
+
+BaseField.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([
+    'text',
+    'tel',
+    'radio',
+    'password',
+    'checkbox',
+    'hidden',
+  ]).isRequired,
+  config: PropTypes.shape({
+    component: PropTypes.string,
+    validator: PropTypes.string,
+  }),
+};

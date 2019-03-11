@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
+import { Small } from '@rtm-ui/typography';
 import Button from '@rtm-ui/button';
 import BaseField from './fields/baseField';
 import { setupForm, getFieldErrors } from './util/helpers';
 import { FormContext } from './formContext';
 import { FormError } from './formError';
+
+export { FormError };
 
 export const getFormValues = fields => {
   const values = {};
@@ -26,14 +29,16 @@ const FooterBox = styled(Box)`
 const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
   const [fields, setFields] = React.useState(providedFields);
   const [serverErrors, setServerErrors] = React.useState({
-    formError: null,
-    fieldErrors: {},
+    formError: props.formError || null,
+    fieldErrors: props.fieldErrors || {},
   });
   const { validationSchema, initialValues } = setupForm(fields, id);
   const context = React.useContext(FormContext) || {};
 
   const submitWrapper = async (...args) => {
     try {
+      // Undo server errors
+      setServerErrors({ formError: '', fieldErrors: {} });
       const [submitValues, formikBag] = args;
       const fieldsWithValues = fields.map(field => {
         return { ...field, value: submitValues[field.name] };
@@ -50,10 +55,9 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
 
       formikBag.setSubmitting(false);
       if (typeof props.onSuccess === 'function') {
-        await props.onSuccess({ id, values: getFormValues(fieldsWithValues) });
+        await props.onSuccess({ id, values: getFormValues(response) });
       }
     } catch (e) {
-      console.log('e', JSON.stringify(e, 0, 2));
       setServerErrors(e.object);
     }
   };
@@ -77,7 +81,26 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
       onSubmit={submitWrapper}
       render={({ handleSubmit, isSubmitting, isValidating, ...rest }) => {
         const fieldUtils = {
-          setFieldValue: rest.setFieldValue,
+          setFieldValue: (field, value) => {
+            // filter out field's error message from server errors.
+            const fieldErrors = Object.keys(serverErrors.fieldErrors).reduce(
+              (obj, key) => {
+                if (key !== field) {
+                  return { ...obj, [key]: serverErrors.fieldErrors[key] };
+                }
+                return obj;
+              },
+              {}
+            );
+
+            // update server errors message
+            setServerErrors({
+              formError: serverErrors.formError,
+              fieldErrors,
+            });
+
+            rest.setFieldValue(field, value);
+          },
           setFieldTouched: rest.setFieldTouched,
           setFieldError: rest.setFieldError,
         };
@@ -97,13 +120,33 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
                 }
               />
             ))}
-            {props.renderFooter || (
-              <FooterBox>
-                <Button data-testid={`submit-${id}`} type="submit">
-                  Submit
-                </Button>
-              </FooterBox>
-            )}
+            {typeof props.renderFooter === 'function'
+              ? props.renderFooter({ formError: serverErrors.formError })
+              : props.renderFooter || (
+                  <FooterBox>
+                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                      <Box
+                        mb={10}
+                        style={{ display: 'flex', alignSelf: 'flex-end' }}
+                      >
+                        <Button data-testid={`submit-${id}`} type="submit">
+                          Submit
+                        </Button>
+                      </Box>
+                      <Box
+                        style={{
+                          height: '12px',
+                          display: 'flex',
+                          alignSelf: 'flex-end',
+                        }}
+                      >
+                        <Small align="left" color="error">
+                          {serverErrors.formError}
+                        </Small>
+                      </Box>
+                    </Box>
+                  </FooterBox>
+                )}
           </form>
         );
       }}
@@ -112,3 +155,8 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
 };
 
 export default Form;
+
+Form.propTypes = {
+  id: PropTypes.string.isRequired,
+  fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),
+};

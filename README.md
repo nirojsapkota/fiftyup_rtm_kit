@@ -19,7 +19,7 @@ registry=http://registry.npmjs.org/ # All other packages
 
 ## Lerna
 
-[Lerna](!https://lernajs.io/) is a tool for managing monorepos, it handles dependencies and versioning. One of it's key features is to allow you to keep your `node_modules` in the root `node_modules` directory so that if two packages require the same package you'll still only need to store it once. It also ensures that we follow semantic versioning by automatically bumping the versions of our packages based on [conventional commits](#conventional-commits).
+[Lerna](!https://lernajs.io/) is a tool for managing monorepos, it handles dependencies and versioning. One of it's key features is to share a common `node_modules` directory so that if two packages require the same package you'll still only need to store it once. It also ensures that we follow semantic versioning by automatically bumping the versions of our packages based on [conventional commits](#conventional-commits).
 
 # Getting Started
 
@@ -31,15 +31,13 @@ npm install
 
 > We're using `npm` for this instead of `yarn`. So all scripts should be run with `npm run <command>` rather than `yarn <command>`.
 
-### Bootstrap packages
+### Link packages
 
 ```sh
-npm run bootstrap
+lerna link
 ```
 
-This step makes sure that each package has the dependencies it needs. It uses `lerna bootstrap` under the hood. Most packages rely on another `@rtm-ui` package, and Lerna helps us in this process by creating a symlink to the dependency rather than trying to grab it from an npm registry (it will still grab it from the registry if it can't find it locally).
-
-By now you should be able to click into a package (ex. `/packages/button`) and see a `node_modules` directory. If you ran `find . -type l -l` from `/packages/button/node_modules` you'll that these are just symlinks thanks to lerna.
+This step will ensure that each package has linked together.
 
 ### Run tests
 
@@ -48,6 +46,15 @@ npm run test
 ```
 
 This will run all the tests and dump out coverage reports for each of them. All tests should be passing and at this point you're ready to start working. Read more about [testing](#testing)
+
+To run a test in an individual package:
+
+```sh
+cd package/myPackage
+npm run test # run tests with autoreload
+# or
+npm run test -- --coverage # run coverage report on this package only
+```
 
 ---
 
@@ -85,9 +92,23 @@ As you can see, this will create a component with tests and documentation ready 
 
 You should make sure the `package.json` has any dependencies you'll need, look around at some other packages to see how they're structured.
 
-> Note: We make heavy use of peerDependencies, this allows us to skip bundling things like `styled-components` and `react`. The drawback here is that those packages can't be found when you go to run your tests or start the dev server. To get around this (for now), you can ensure that any peer dependencies are ALSO listed in the top-level `package.json`. So if you decide you need dependency `foo`, then you can add it to your `"peerDependencies"` key in `/packages/bar/package.json` - and then you'll need to go in to the top-level `package.json` and install `foo` in the `"devDependencies"` there.
-
 At this point you should be ready to [start the dev server](#start-the-dev-server).
+
+> Note: We use peerDependencies in order for us to be able to skip bundling things like `styled-components` and `react` in each package's dependencies. Doing so would mean we'd to be pretty strict with our versions and we'd ideally like to allow the package consumer (ie. react application) to be the one deciding specific package versions.
+
+## Installing a new package
+To install a 3rd-party package:
+```sh
+lerna add @some/package packages/<pattern>
+
+# To add react to button
+lerna add react packages/button
+
+# To add react to all pacakges
+lerna add react
+```
+See [here](https://github.com/lerna/lerna/tree/master/commands/add) from more info. There
+are a lot of lerna commands that may be helpful to [review](https://github.com/lerna/lerna/tree/master/commands)
 
 ## Start the dev server
 Ensure you're at the root of project
@@ -98,21 +119,44 @@ npm run dev
 
 This will start the [Docz](https://docz.site) webpack dev server. Docz has it's own webpack process and will start to watch your files and and implement hot-reloading.
 
-> Note: you might find that Docz isn't picking up changes from an underlying dependency (Ex. The `typography/Text` component relies on the `layout/Box` component, so changes to `Box` should trigger a hot-reload). This SHOULD be working automatically as each package should be relying on the `module` in each package's `package.json`. You might find that killing the Docz process and restarting it works, if not you can try running `npm run watch` from the root directory which should do the trick (though it will be slower).
-
 ### The Bootstrap Component
 This component is aimed at "bootstrapping" any environment with the essential context for our applications to work. It's main goal is to provide theming and tracking contexts so that other components just work. It's also being used as a wrapper for the Docz site as well as Jest's unit tests.
 
-## NPM Link
+## Linking for local development
 
-[npm link](https://docs.npmjs.com/cli/link.html) provides a mechanism for development across repos. If you're working on a package in this repository it's likely that you'll want to see how it works in the context of whatever app you're working on. To get this working for a package:
+For webpack builds in other repos, we should be able to specify this repo's local path as
+an [alias](https://webpack.js.org/configuration/resolve/#resolvealias)
+
+If your project is adjacent to rtm-kit, you can provide a configuration like this:
+
+```js
+module.exports = {
+  //...
+  resolve: {
+    alias: {
+      "@rtm-ui": path.resolve(__dirname, "../../rtm-kit/packages")
+    }
+  }
+};
+```
+This would remove any need for `npm link`, your webpack environment should pick up any
+changes to your rtm-kit packages.
+
+## Watch
+
+While using Docz for local development, you won't need to worry about cross-package
+dependencies, as it's webpack config will automatically pick up changes. However if you're running tests in package that has other package dependencies or if you're working on another app with this repo aliased - you'll want to run the watch command so that each change triggers a build:
 
 ```sh
-# from the root of this repo
-cd packages/foo               # go into the package directory
-npm link                      # creates the global link
-cd ~/One-Big-Switch-Website   # go into some other application
-npm link @rtm-ui/foo          # provide the name of the package
+# from the root of the repo
+npm run watch
+```
+
+To run the watch command on an individual package:
+
+```sh
+cd package/myPackage
+npm run build -- --watch
 ```
 
 ---
@@ -136,10 +180,8 @@ RTM Scripts acts as a single source of truth for how we build and test things. Y
 
 ```json
 "scripts": {
-  "start": "rtm-scripts start",
   "build": "node ../rtm-scripts/scripts/rollup",
-  "prepare": "rtm-scripts rollup",
-  "test": "rtm-scripts test"
+  "test": "node ../rtm-scripts/scripts/test"
 }
 ```
 
@@ -209,21 +251,3 @@ Whenever a commit to `master` is made, AWS Codebuild picks up the change from a 
 - Lerna is responsible for bumping the version of each package and will commit the change back to Github. This is where our "conventional commits" come in handy.
 - The content of each pacakge is stored in an S3 bucket, which is used by our private npm registry whenever you run `npm install @rtm-ui/foo`.
 - Additionally, Codebuild runs `npm run build`, the result of the build process is also stored as an artifact (a separate S3 bucket). The contents of this bucket, which in most cases is a just a minified build file, are synced across to yet another S3 bucket which serve as a CDN via AWS Cloudfront (work in progress).
-
----
-
-# Gotchas
-
-For almost all scenarios where you think things have gotten screwy, go to the root of the project and run:
-
-```sh
-npm run bootstrap
-```
-
-When run, this command will:
-1. npm install all external dependencies of each package.
-2. Symlink together all Lerna packages that are dependencies of each other.
-3. npm run prepublish in all bootstrapped packages.
-4. npm run prepare in all bootstrapped packages.
-
-You can read more about this command [here](https://github.com/lerna/lerna/tree/master/commands/bootstrap)

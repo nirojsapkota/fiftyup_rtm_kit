@@ -46,3 +46,13 @@ export function setIn(obj, path, value) {
 
   return result;
 }
+
+export function getWeight(weight) {
+  const weightMap = {
+    thin: '100',
+    normal: '400',
+    bold: '900',
+  };
+
+  return weightMap[weight] || '400';
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { getColor } from '@rtm-ui/theme';
 import PropTypes from 'prop-types';
 
 export const focusStyle = css`
@@ -19,25 +20,31 @@ const disabledStyle = css`
 export const inputStyle = css`
   padding: 8px 5px;
   font-family: Museo;
-  color: #565656;
+  color: ${props => `${getColor('text', props.theme)}`};
   font-size: 16px;
   border: none;
-  border-bottom: 1px solid ${props => (props.showErrorColor ? 'red' : '#ccc')};
+  border-bottom: 1px solid
+    ${props =>
+      `${getColor(props.showErrorColor ? 'error' : 'normal', props.theme)}`};
   display: block;
   width: 100%;
   ${props => props.disabled && disabledStyle};
   ${focusStyle};
 
   &::placeholder {
-    color: #b3b3b3;
+    color: ${props => `${getColor('normal', props.theme)}`};
   }
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled(({ showErrorColor, ...rest }) => (
+  <input {...rest} />
+))`
   ${inputStyle};
 `;
 
-const TextField = props => <StyledInput {...props} type="text" />;
+const TextField = ({ config: _config, fieldUtils: _fieldUtils, ...props }) => (
+  <StyledInput {...props} />
+);
 
 TextField.propTypes = {
   autoComplete: PropTypes.string,

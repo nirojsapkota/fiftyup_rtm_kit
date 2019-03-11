@@ -1,19 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { getColor } from '@rtm-ui/theme';
+import { getColor, getWeight } from '@rtm-ui/theme';
 import { Box } from '@rtm-ui/layout';
-
-const weightMap = {
-  thin: '100',
-  normal: '400',
-  bold: '900',
-};
-
-// FIXME: this should default to bold for headers
-function getWeight(weight) {
-  return weightMap[weight] || '400';
-}
 
 const colorStyles = css`
   color: ${props => getColor(props.color || 'text', props.theme)};
@@ -60,6 +49,10 @@ const sizeChart = [
     element: 'label',
     sizes: [14, 14, 14, 14],
   },
+  {
+    element: 'a',
+    sizes: [16, 16, 16, 16],
+  }
 ];
 
 export const labelTextStyles = css`
@@ -172,30 +165,37 @@ Text.propTypes = {
   color: PropTypes.string,
   p: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pl: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pr: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pt: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   pb: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   px: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
   py: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.number),
   ]),
 };

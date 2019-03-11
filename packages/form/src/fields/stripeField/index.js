@@ -62,8 +62,9 @@ const Card = props => {
 const InjectedCard = injectStripe(Card);
 
 const StripeField = props => {
+  const { apiKey } = props.config;
   return (
-    <Stripe>
+    <Stripe apiKey={apiKey}>
       <Wrapper showErrorColor={props.showErrorColor}>
         <InjectedCard {...props} />
       </Wrapper>

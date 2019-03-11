@@ -1,0 +1,32 @@
+{
+  "name": "@rtm-ui/a",
+  "version": "1.1.0",
+  "description": "Description for A",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "a",
+    "defaultExport": "A",
+    "namedExports": []
+  },
+  "main": "build/main.js",
+  "module": "build/module.js",
+  "_module": "src/index",
+  "scripts": {
+    "start": "node ../rtm-scripts/scripts/start",
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "prepare": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
+  },
+  "dependencies": {
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/tracker": "file:../tracker",
+    "@rtm-ui/typography": "file:../typography"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}

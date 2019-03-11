@@ -22,8 +22,8 @@ const validatorMap = {
 export const getSchema = fields => {
   const validationSchema = {};
   fields
-    .filter(({ validator }) => validator)
-    .forEach(({ name, validator, validatorArgs }) => {
+    .filter(({ config: { validator } }) => validator)
+    .forEach(({ name, config: { validator, validatorArgs } }) => {
       validationSchema[name] = validatorArgs
         ? validatorMap[`${validator}Validator`](...validatorArgs)
         : validatorMap[`${validator}Validator`];

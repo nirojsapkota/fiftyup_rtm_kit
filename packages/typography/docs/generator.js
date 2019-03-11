@@ -7,7 +7,10 @@ export function GeneratedStyles() {
   return headerTags.map(tag =>
     fontStyles.map(fontStyle =>
       weightProps.map(weight => (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div
+          key={`${tag}-${fontStyle}-${weight}`}
+          style={{ display: 'flex', alignItems: 'center' }}
+        >
           <Header weight={weight} font={fontStyle} tag={tag}>
             Hello, World
           </Header>

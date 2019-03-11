@@ -5,14 +5,16 @@ import Form, { StepForm, Accordion } from '../index';
 import Button from '@rtm-ui/button';
 import { Header } from '@rtm-ui/typography';
 import { formInputs } from './fieldSetup';
-import { getInitialValues } from '../util/helpers';
 
 const mockSuccessResponse = ['2000, BARANGAROO'];
 const mockJsonPromise = Promise.resolve(mockSuccessResponse);
 const mockFetchPromise = Promise.resolve({
   json: () => mockJsonPromise,
 });
-jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+jest
+  .spyOn(global, 'fetch')
+  .mockImplementation(() => mockFetchPromise)
+  .mockImplementation(() => mockFetchPromise);
 
 const fireSubmitEvent = (fireEvent, formId, { getByTestId }) => {
   const submit = getByTestId(`submit-${formId}`);
@@ -29,18 +31,38 @@ const fireFieldEvents = async (field, value, util) => {
     await fireEvent.click(input);
     await fireEvent.click(input);
     await fireEvent.click(input);
-  } else if (field.type === 'autocomplete') {
+  } else if (field.config.component === 'autocomplete') {
     input = await getByLabelText(field.label);
     await fireEvent.change(input, {
       target: { value: value },
     });
-    await fireEvent.click(input);
-    await fireEvent.change(input, {
-      target: { value: value },
-    });
     await wait(async () => {
-      const item = await queryByLabelText('2000, BARANGAROO');
-      await fireEvent.click(item);
+      // Wait until popup arrives
+      const item = await getByLabelText('2000, BARANGAROO');
+      // Click away to ensure popup is gone
+      await fireEvent.mouseDown(util.getByText(field.label));
+      await fireEvent.change(input, {
+        target: { value: '' },
+      });
+      await expect(item).not.toBeInTheDocument();
+      // Retype values
+      input = await getByLabelText(field.label);
+      await fireEvent.change(input, {
+        target: { value: value },
+      });
+      // Check popup re-display when focus to input
+      await fireEvent.mouseDown(util.getByText(field.label));
+      await expect(item).not.toBeInTheDocument();
+      await fireEvent.focus(input);
+      await wait(async () => {
+        const item = await getByLabelText('2000, BARANGAROO');
+        await expect(item).toBeInTheDocument();
+      });
+
+      await wait(async () => {
+        const item = await getByLabelText('2000, BARANGAROO');
+        await fireEvent.click(item);
+      });
     });
   } else {
     input = await getByLabelText(field.label);
@@ -99,7 +121,10 @@ const fireEvents = async (value, form, util) => {
 };
 
 formInputs.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
-  const { type, validator, mask = null } = form.fields[0];
+  const {
+    type,
+    config: { validator, mask = null },
+  } = form.fields[0];
 
   const validatorDescription =
     validator === 'mask' ? `${mask} mask` : validator;
@@ -127,12 +152,15 @@ formInputs.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
             });
 
             await wait(async () => {
-              await expect(handleSubmit).toHaveBeenCalled();
+              await expect(handleSubmit).toHaveBeenCalledWith(
+                [{ ...form.fields[0], value: valid.expect || valid.entry }],
+                {}
+              );
               await expect(handleSuccess).toHaveBeenCalled();
             });
           });
 
-          it(`handles invalid handler responses`, async () => {
+          it(`absorbs invalid handler responses and doesn't call the onSuccess callback`, async () => {
             const handleSubmit = jest.fn(() => 'Some invalid thing');
             const handleSuccess = jest.fn();
 
@@ -150,13 +178,51 @@ formInputs.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
         });
       });
     });
+    const invalidEntries = Array.isArray(invalidEntry)
+      ? invalidEntry
+      : [invalidEntry];
+    invalidEntries.map(invalid => {
+      describe(`with invalid input of ${invalid.entry}`, async () => {
+        describe(`for regular forms`, async () => {
+          const submitValidForm = async form => {
+            const util = await setup(form);
+            await fireEvents(invalid.entry, form, util);
+
+            return util;
+          };
+
+          it(`does not call submit and shows an error`, async () => {
+            const handleSubmit = jest.fn(value => value);
+            const handleSuccess = jest.fn();
+
+            const form2 = {
+              ...form,
+              onSubmit: handleSubmit,
+              onSuccess: handleSuccess,
+            };
+
+            const util = await setup(form2);
+            await fireEvents(invalid.entry, form2, util);
+            const errorContainers = await util.queryAllByTestId('fieldError');
+
+            await wait(async () => {
+              expect(errorContainers[0]).toHaveTextContent(invalid.expect);
+              await expect(handleSubmit).not.toHaveBeenCalled();
+            });
+          });
+        });
+      });
+    });
   });
 });
 
 const firstForm = [formInputs[0]];
 
 firstForm.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
-  const { type, validator, mask = null } = form.fields[0];
+  const {
+    type,
+    config: { validator, mask = null },
+  } = form.fields[0];
 
   const validatorDescription =
     validator === 'mask' ? `${mask} mask` : validator;
@@ -216,85 +282,6 @@ firstForm.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
                 });
               });
             });
-          });
-
-          // it(`handles server errors`, async () => {
-          //   const handleSubmit = jest.fn(fields => {
-          //     throw new FormError({
-          //       formErrors: 'Alert',
-          //       fieldErrors: [{ ...fields[0], error: 'Oh no' }],
-          //     });
-          //   });
-          //   const handleStepSubmit = jest.fn();
-          //   const handleFinalSubmit = jest.fn();
-
-          //   setup(
-          //     valid.entry,
-          //     form,
-          //     handleSubmit,
-          //     handleStepSubmit,
-          //     handleFinalSubmit,
-          //     true
-          //   );
-          //   await wait(() => {
-          //     expect(handleStepSubmit).not.toHaveBeenCalled();
-          //   });
-          // });
-
-          // it(`it's expected value of ${valid.expect ||
-          //   valid.entry} are in submit payload`, async () => {
-          //   const handleSubmit = jest.fn(fields => {
-          //     return fields;
-          //   });
-          //   const handleStepSubmit = jest.fn();
-          //   const handleFinalSubmit = jest.fn();
-
-          //   setup(
-          //     valid.entry,
-          //     form,
-          //     handleSubmit,
-          //     handleStepSubmit,
-          //     handleFinalSubmit,
-          //     true
-          //   );
-          //   await wait(() => {
-          //     expect(handleStepSubmit).toHaveBeenCalled();
-          //     // expect(handleFinalSubmit).toHaveBeenCalled();
-          //     expect(handleSubmit).toHaveBeenCalledWith(
-          //       [
-          //         {
-          //           ...form.fields[0],
-          //           value: valid.expect || valid.entry,
-          //         },
-          //       ],
-          //       expect.anything()
-          //     );
-          //   });
-          // });
-        });
-      });
-    });
-
-    const invalidEntries = Array.isArray(invalidEntry)
-      ? invalidEntry
-      : [invalidEntry];
-
-    invalidEntries.map(invalid => {
-      describe(`with invalid input of ${invalid.entry}`, async () => {
-        it.skip(`the submit handler is not called`, async () => {
-          const handleSubmit = jest.fn();
-
-          setup(invalid.entry, form, handleSubmit);
-
-          await wait(() => {
-            expect(handleSubmit).not.toHaveBeenCalled();
-          });
-        });
-
-        it.skip(`an error message is shown`, async () => {
-          const util = await setup(invalid.entry, form, () => {});
-          await wait(() => {
-            expect(errorContainers[0]).toHaveTextContent(invalid.expect);
           });
         });
       });

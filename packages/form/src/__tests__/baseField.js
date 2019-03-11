@@ -2,26 +2,40 @@ import React from 'react';
 // eslint-disable-next-line import/named
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import Form from '../index';
+import { getFieldProps } from './fieldSetup';
+
+const form = {
+  id: 'test-form',
+  fields: [getFieldProps('email')],
+};
 
 describe(`<BaseField />`, async () => {
   describe(`with an error`, async () => {
-    const handleSubmit = jest.fn();
-    it.skip(`highlights the error message when not focused`, async () => {
-      const { getByTestId, getByText, getByLabelText } = render(
-        <Form
-          formId="test"
-          onSubmit={handleSubmit}
-          fields={[
-            {
-              label: 'Enter your name',
-              error: 'Required',
-              name: 'name',
-              type: 'text',
-              validator: 'required',
-              itemValue: 'User',
-            },
-          ]}
-        />,
+    it(`can mutate fields from the submit handler`, async () => {
+      const handleSubmit = jest.fn(fields => {
+        return [{ ...fields[0], disabled: 'disabled' }];
+      });
+      const { getByLabelText, getByTestId, debug } = await render(
+        <Form onSubmit={handleSubmit} {...form} />
+      );
+      const itemInput = await getByLabelText(form.fields[0].label);
+      await fireEvent.change(itemInput, {
+        target: { value: 'user@example.com' },
+      });
+
+      const submit = await getByTestId(`submit-test-form`);
+      await fireEvent.click(submit);
+
+      debug();
+      await wait(async () => {
+        await expect(itemInput).toHaveAttribute('disabled');
+      });
+    });
+
+    it(`highlights the error message when not focused`, async () => {
+      const handleSubmit = jest.fn();
+      const { getByLabelText, getByTestId } = await render(
+        <Form onSubmit={handleSubmit} {...form} />,
         {
           themeOverrides: {
             'colors.variants.a.error': 'red',
@@ -29,18 +43,19 @@ describe(`<BaseField />`, async () => {
           },
         }
       );
-      const itemInput = getByLabelText('Enter your name');
-      fireEvent.change(itemInput, {
+
+      const itemInput = await getByLabelText(form.fields[0].label);
+      await fireEvent.change(itemInput, {
         target: { value: '' },
       });
-      const errorContainer = getByTestId('fieldError');
+      const errorContainer = await getByTestId('fieldError');
 
-      const submit = getByText('Get Started');
-      fireEvent.click(submit);
+      const submit = getByTestId(`submit-test-form`);
+      await fireEvent.click(submit);
 
       await wait(async () => {
         await expect(errorContainer).toHaveStyleRule('color', 'red');
-        await itemInput.focus();
+        await fireEvent.focus(itemInput);
         await expect(errorContainer).toHaveStyleRule('color', 'black');
       });
     });

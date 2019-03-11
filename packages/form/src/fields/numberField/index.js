@@ -5,12 +5,17 @@ import styled from 'styled-components';
 import maskPatterns, { pipes } from '../util/maskPatterns';
 import { inputStyle } from '../textField';
 
-const StyledInput = styled(MaskedInput)`
+// const StyledInput = styled(MaskedInput)`
+//   ${inputStyle};
+// `;
+const StyledInput = styled(({ showErrorColor, ...rest }) => (
+  <MaskedInput {...rest} />
+))`
   ${inputStyle};
 `;
 
 const NumberField = ({
-  mask,
+  config: { mask },
   fieldUtils: _fieldUtils,
   onWaiting: _onWaiting,
   ...inputProps

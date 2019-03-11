@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { themeMap, obs, fiftyup, ninesaver } from './themes';
 import { CssReset } from './reset';
 import { Fonts } from './fonts';
-import { backgroundStyle, getColor, setIn } from './util';
+import { backgroundStyle, getColor, setIn, getWeight } from './util';
 
-export { backgroundStyle, getColor, setIn };
+export { backgroundStyle, getColor, setIn, getWeight };
 export { themeMap, obs, fiftyup, ninesaver };
 
 const Variant = ({ theme, variant, children }) => {

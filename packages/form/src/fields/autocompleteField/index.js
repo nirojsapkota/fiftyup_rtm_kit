@@ -6,12 +6,13 @@ import { Header, Label } from '@rtm-ui/typography';
 import TextField from '../textField';
 import Button from '@rtm-ui/button';
 import { useOnClickOutside } from './useOnClickOutside';
-import { searchCharacters, useDebounce } from './search';
+import { useDebounce } from './useDebounce';
 
 const ResultsContainer = styled(Card)`
   position: absolute;
   width: 100%;
   top: ${({ distanceFromTop }) => `${distanceFromTop}px`};
+  z-index: 100;
 `;
 
 const ResultItem = styled(Button)`
@@ -23,7 +24,14 @@ const ResultItem = styled(Button)`
   }
 `;
 
-const AutocompleteField = ({ onWaiting, fieldUtils, data, ...inputProps }) => {
+const AutocompleteField = ({
+  onWaiting,
+  onFocus,
+  onBlur,
+  fieldUtils,
+  config,
+  ...inputProps
+}) => {
   const resultsRef = React.useRef();
   const inputRef = React.useRef();
   const [results, setResults] = React.useState([]);
@@ -37,14 +45,12 @@ const AutocompleteField = ({ onWaiting, fieldUtils, data, ...inputProps }) => {
     () => {
       if (debouncedSearchTerm) {
         !hasSelected && onWaiting('Searching pending...');
-        searchCharacters(debouncedSearchTerm, data.autoCompleteUrl).then(
-          results => {
-            isModalOpen && results.length > 0
-              ? onWaiting(`${results.length} results`)
-              : onWaiting(``);
-            setResults(results);
-          }
-        );
+        config.searchFunction(debouncedSearchTerm).then(results => {
+          isModalOpen && results.length > 0
+            ? onWaiting(`${results.length} results`)
+            : onWaiting(``);
+          setResults(results);
+        });
       } else {
         onWaiting('');
         setResults([]);
@@ -83,6 +89,11 @@ const AutocompleteField = ({ onWaiting, fieldUtils, data, ...inputProps }) => {
         <TextField
           {...inputProps}
           aria-haspopup="listbox"
+          onFocus={() => {
+            setModalOpen(true);
+            onFocus();
+          }}
+          onBlur={onBlur}
           onChange={e => {
             setHasSelected(false);
             inputProps.onChange(e);
@@ -94,7 +105,10 @@ const AutocompleteField = ({ onWaiting, fieldUtils, data, ...inputProps }) => {
           <ResultsContainer distanceFromTop={resultsPosition}>
             {results.map((result, index) => {
               return (
-                <Label htmlFor={`result-${inputProps.name}-${index}`}>
+                <Label
+                  htmlFor={`result-${inputProps.name}-${index}`}
+                  key={result.label}
+                >
                   <ResultItem
                     role="option"
                     aria-selected={result.label === inputProps.value}

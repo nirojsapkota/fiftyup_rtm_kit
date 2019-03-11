@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Form from './form';
 import { FormContext } from './formContext';
+import Form from './form';
 
 const StepForm = ({ steps, ...props }) => {
   const [activeFormId, setActiveFormId] = React.useState(steps[0].id);
@@ -37,3 +37,10 @@ const StepForm = ({ steps, ...props }) => {
 };
 
 export default StepForm;
+
+StepForm.propTypes = {
+  /** An array of Forms */
+  steps: PropTypes.arrayOf(PropTypes.shape({ ...Form.propTypes })),
+  children: PropTypes.func,
+  renderForm: PropTypes.func,
+};

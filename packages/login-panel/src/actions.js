@@ -21,15 +21,39 @@ export const submitLogin = async (url, data, authenticityToken) => {
       const { data, status } = error.response;
       if (status !== 401) {
         return {
+          status,
           data: {
             errors: [
               'An error has occurred, please try again in a few minutes',
             ],
           },
-          status,
         };
       }
       return { status, data };
+    });
+
+  return result;
+};
+
+export const getAutoCompletePostcode = async (url, data, authenticityToken) => {
+  const config = {
+    headers: {
+      Accept: 'application/json',
+      'X-CSRF-Token': authenticityToken,
+    },
+    params: {
+      term: data,
+    },
+  };
+
+  const result = await axios
+    .get(url, config)
+    .then(response => {
+      const { data } = response;
+      return data;
+    })
+    .catch(() => {
+      return [];
     });
 
   return result;

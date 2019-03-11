@@ -36,7 +36,7 @@ export const CardElement = props => {
       onChange={e => props.onChange(stripeEvent(e))}
       onFocus={props.onFocus}
       onBlur={props.onBlur}
-      data-testid="stripe-input"
+      id="cc_token"
       name="cc_token"
       type="text"
     />

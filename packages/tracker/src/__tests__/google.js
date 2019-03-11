@@ -91,6 +91,21 @@ describe(`Google`, () => {
     });
   });
 
+  it(`with energy category and preoffer action`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'preoffer',
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/preoffer',
+    });
+  });
+
   describe(`energy category`, () => {
     it(`get_started action, Electricity and solar`, () => {
       global.ga = jest.fn();
