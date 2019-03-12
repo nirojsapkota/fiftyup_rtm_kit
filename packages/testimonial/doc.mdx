@@ -11,6 +11,8 @@ import Testimonial from './src'
 
 ## Basic usage
 
+Without animation
+
 <Playground>
   <Testimonial
     items={[
@@ -25,6 +27,30 @@ import Testimonial from './src'
         id: 1,
         author:"Bobby Bob",
         bio: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout",
+        body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        selfie: "https://placeimg.com/400/400/nature"
+      }
+    ]}
+  />
+</Playground>
+
+With animation
+
+<Playground>
+  <Testimonial
+    animate
+    items={[
+      {
+        id: 0,
+        author:"Mary May",
+        bio: "OneBigSwitch Member",
+        body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        selfie: "https://placeimg.com/400/400/tech"
+      },
+      {
+        id: 1,
+        author:"Sally Silly",
+        bio: "OneBigSwitch Member",
         body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
         selfie: "https://placeimg.com/400/400/people"
       }

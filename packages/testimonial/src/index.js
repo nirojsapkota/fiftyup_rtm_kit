@@ -22,7 +22,7 @@ const ImgStyle = styled(Img)`
 `;
 
 const Item = ({ item, align }) => (
-  <React.Fragment key={item.author}>
+  <Box key={item.author} py="10px">
     <Paragraph pb={[2, 3]} align={align}>
       {item.body}
     </Paragraph>
@@ -35,17 +35,16 @@ const Item = ({ item, align }) => (
         <Paragraph color="primary">{item.bio}</Paragraph>
       </Box>
     </Flex>
-  </React.Fragment>
+  </Box>
 );
 
-const Testimonial = ({ items, align }) => {
+const Testimonial = ({ items, align, animate }) => {
+  const itemsList = items.map(item => (
+    <Item item={item} align={align} key={item.id} />
+  ));
   return (
     <Wrapper px={[2, 3]} py={[2]}>
-      <Animate>
-        {items.map(item => {
-          return <Item item={item} align={align} key={item.id} />;
-        })}
-      </Animate>
+      {animate ? <Animate>{itemsList}</Animate> : itemsList}
     </Wrapper>
   );
 };

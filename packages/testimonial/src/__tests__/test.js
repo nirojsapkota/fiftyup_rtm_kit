@@ -44,4 +44,11 @@ describe('<Testimonial />', async () => {
       await expect(getByAltText(item.author)).toBeInTheDocument();
     });
   });
+
+  it('it can animate', async() => {
+    await render(
+      <Testimonial items={items} animate />
+    );
+    expect(document.querySelector('.slider-mask')).toBeInTheDocument();
+  })
 });
