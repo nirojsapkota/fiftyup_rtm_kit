@@ -87,6 +87,7 @@
     ]
   },
   "dependencies": {
+    "@rtm-ui/animate": "file:packages/animate",
     "@rtm-ui/a": "file:packages/a",
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
@@ -104,6 +105,7 @@
     "@rtm-ui/login-panel": "file:packages/login-panel",
     "@rtm-ui/nav": "file:packages/nav",
     "@rtm-ui/rtm-scripts": "file:packages/rtm-scripts",
+    "@rtm-ui/testimonial": "file:packages/testimonial",
     "@rtm-ui/theme": "file:packages/theme",
     "@rtm-ui/tracker": "file:packages/tracker",
     "@rtm-ui/typography": "file:packages/typography"

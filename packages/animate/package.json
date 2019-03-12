@@ -1,0 +1,28 @@
+{
+  "name": "@rtm-ui/animate",
+  "version": "1.0.0",
+  "description": "Description for animate",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "animate",
+    "defaultExport": "Animate",
+    "namedExports": []
+  },
+  "main": "build/main.js",
+  "module": "src/module.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
+  },
+  "dependencies": {
+    "@rtm-ui/layout": "file:../layout"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "react-dom": "16.x",
+    "styled-components": "4.x"
+  }
+}
