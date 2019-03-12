@@ -1,14 +1,13 @@
 {
   "name": "@rtm-ui/testimonial",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Description for testimonial",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "testimonial",
     "defaultExport": "Testimonial",
-    "namedExports": [
-    ]
+    "namedExports": []
   },
   "main": "build/main.js",
   "module": "src/module.js",
@@ -18,11 +17,11 @@
     "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
-    "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/animate": "file:../animate",
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/img": "file:../img",
     "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
