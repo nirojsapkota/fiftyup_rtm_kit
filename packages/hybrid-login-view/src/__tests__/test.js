@@ -7,9 +7,11 @@ import hybridLoginViewProps from '../__fixtures__/hybridLoginView';
 describe('<HybridLoginView />', () => {
   const props = hybridLoginViewProps;
   it('matches expected output', () => {
-    const { getByText } = render(<HybridLoginView {...props} />);
+    const { queryByText } = render(<HybridLoginView {...props} />);
 
-    expect(getByText(props.disclaimerProps.disclaimerText)).toBeInTheDocument();
+    expect(
+      queryByText(/origin saver is available to residential customers only/i)
+    ).toBeInTheDocument();
   });
 
   it('disclaimerText not exist', () => {
@@ -18,7 +20,7 @@ describe('<HybridLoginView />', () => {
     const { queryByText } = render(<HybridLoginView {...updateMockData} />);
 
     expect(
-      queryByText(props.disclaimerProps.disclaimerText)
+      queryByText(/origin saver is available to residential customers only/i)
     ).not.toBeInTheDocument();
   });
 

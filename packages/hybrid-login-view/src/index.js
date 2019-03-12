@@ -6,11 +6,10 @@ import Variant, { backgroundStyle, getColor } from '@rtm-ui/theme';
 import LoginPanel from '@rtm-ui/login-panel';
 import Bootstrap from '@rtm-ui/bootstrap';
 import { EntityProvider, EntityConsumer } from '@rtm-ui/entity';
-import { Paragraph } from '@rtm-ui/typography';
+import { Small } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
 import { BasicHeader } from '@rtm-ui/header';
-import { BasicFooter } from '@rtm-ui/footer';
 import { track } from '@rtm-ui/tracker';
 
 const BodyWrapper = styled(Box)`
@@ -54,8 +53,9 @@ const LoginPanelWrapper = styled(Box)`
   background: inherit;
 `;
 
-const StyledDisclaimer = styled(Paragraph)`
+const StyledDisclaimer = styled(Small)`
   background: inherit;
+  text-align: justify;
 `;
 
 const FooterWrapper = styled(Box)`
@@ -84,9 +84,10 @@ const HybridLoginView = ({
               <LoginPanelWrapper px={[10, 10, 15, 20]}>
                 <LoginPanel {...props} />
               </LoginPanelWrapper>
-              <StyledDisclaimer p={50}>
-                {disclaimerProps.disclaimerText || ''}
-              </StyledDisclaimer>
+              <StyledDisclaimer
+                p={50}
+                dangerousHTML={disclaimerProps.disclaimerText || ''}
+              />
             </Column>
             <Column width={1 / 2}>
               <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
@@ -140,15 +141,6 @@ class WrappedHybridLoginView extends React.Component {
                     py={2}
                   />
                   <HybridLoginView {...rest} />
-                  <Variant variant="c">
-                    <FooterWrapper py={2}>
-                      <BasicFooter
-                        logoUrl={footer.logo}
-                        maxWidth={1080}
-                        entityBrand={brand}
-                      />
-                    </FooterWrapper>
-                  </Variant>
                 </React.Fragment>
               );
             }}
