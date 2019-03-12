@@ -102,9 +102,10 @@ const HybridLoginView = ({
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
               <HowItWorks {...howItWorksProps} />
             </HowItWorksWrapper>
-            <StyledDisclaimer p={30}>
-              {disclaimerProps.disclaimerText || ''}
-            </StyledDisclaimer>
+            <StyledDisclaimer
+              p={30}
+              dangerousHTML={disclaimerProps.disclaimerText || ''}
+            />
           </MobileShow>
         </ContentWrapper>
       </BodyWrapper>
