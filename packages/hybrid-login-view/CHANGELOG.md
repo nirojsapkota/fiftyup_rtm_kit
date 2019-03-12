@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.9...@rtm-ui/hybrid-login-view@3.0.0) (2019-03-12)
+
+
+* Hybrid page fixups (#54) ([100aae7](https://github.com/OBSAU/rtm-kit/commit/100aae7)), closes [#54](https://github.com/OBSAU/rtm-kit/issues/54)
+
+
+### BREAKING CHANGES
+
+* this will remove the footer from the hybrid page
+
+
+
+
+
 ## [2.1.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.8...@rtm-ui/hybrid-login-view@2.1.9) (2019-03-11)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
