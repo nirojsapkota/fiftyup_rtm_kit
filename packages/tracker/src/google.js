@@ -51,7 +51,9 @@ const getValues = (keys, tracking) => {
   // FIXME: energy presignup hybrid doesn't have plan's info cause not match required values of energy category
   if (
     tracking.category === 'energy' &&
-    (tracking.action === 'presignup' || tracking.action === 'preoffer')
+    (tracking.action === 'presignup' ||
+      tracking.action === 'preoffer' ||
+      tracking.action === 'signin')
   ) {
     return getTrackingValues(categoryKeys.generic, tracking);
   }

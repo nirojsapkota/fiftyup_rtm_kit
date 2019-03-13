@@ -106,6 +106,21 @@ describe(`Google`, () => {
     });
   });
 
+  it(`with energy category and signin action`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'signin',
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/signin',
+    });
+  });
+
   describe(`energy category`, () => {
     it(`get_started action, Electricity and solar`, () => {
       global.ga = jest.fn();

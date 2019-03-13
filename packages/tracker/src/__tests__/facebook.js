@@ -5,18 +5,53 @@ import Facebook from '../facebook';
 afterEach(cleanup);
 
 describe(`Facebook`, () => {
-  it(`sends an event to the fbq object`, () => {
-    global.fbq = jest.fn();
-    const spyFbq = jest.spyOn(global, 'fbq');
+  describe(`when there are special mappings`, () => {
+    describe(`special names are used as the event name`, () => {
+      it(`get_started sends getStarted`, () => {
+        global.fbq = jest.fn();
+        const spyFbq = jest.spyOn(global, 'fbq');
 
-    Facebook.sendData({
-      category: 'life_insurance',
-      action: 'get_started',
+        Facebook.sendData({
+          category: 'life_insurance',
+          action: 'get_started',
+        });
+
+        expect(spyFbq).toHaveBeenCalledWith('trackCustom', 'getStarted', {
+          action: 'get_started',
+          product: 'life_insurance',
+        });
+      });
+      it(`signin sends SignUp`, () => {
+        global.fbq = jest.fn();
+        const spyFbq = jest.spyOn(global, 'fbq');
+
+        Facebook.sendData({
+          category: 'life_insurance',
+          action: 'signin',
+        });
+
+        expect(spyFbq).toHaveBeenCalledWith('trackCustom', 'SignUp', {
+          action: 'signin',
+          product: 'life_insurance',
+        });
+      });
     });
+  });
 
-    expect(spyFbq).toHaveBeenCalledWith('trackCustom', 'getStarted', {
-      action: 'get_started',
-      product: 'life_insurance',
+  describe(`when there are no special mappings`, () => {
+    it(`the name of the action is used as the event name`, () => {
+      global.fbq = jest.fn();
+      const spyFbq = jest.spyOn(global, 'fbq');
+
+      Facebook.sendData({
+        category: 'life_insurance',
+        action: 'some_action',
+      });
+
+      expect(spyFbq).toHaveBeenCalledWith('trackCustom', 'some_action', {
+        action: 'some_action',
+        product: 'life_insurance',
+      });
     });
   });
 
@@ -44,18 +79,6 @@ describe(`Facebook`, () => {
       tracking_id: 8,
     });
   });
-
-  // it(`logs to the console when an event has been sent`, () => {
-  //   const spyGa = jest.spyOn(console, 'log');
-  //   global.fbq = jest.fn();
-
-  //   Facebook.sendData({
-  //     category: 'life_insurance',
-  //     action: 'get_started',
-  //   });
-
-  //   expect(spyGa).toHaveBeenCalled();
-  // });
 
   it(`does nothing when fbq does not exist`, () => {
     global.fbq = undefined;
