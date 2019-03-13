@@ -7,110 +7,59 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/login-panel
 
-
-
-
-
 ## [3.1.25](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.24...@rtm-ui/login-panel@3.1.25) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
-
-
-
-
 
 ## [3.1.24](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.23...@rtm-ui/login-panel@3.1.24) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
 
-
-
-
-
 ## [3.1.23](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.22...@rtm-ui/login-panel@3.1.23) (2019-03-12)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
-
-
-
-
 
 ## [3.1.22](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.21...@rtm-ui/login-panel@3.1.22) (2019-03-11)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
 
-
-
-
-
 ## [3.1.21](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.20...@rtm-ui/login-panel@3.1.21) (2019-03-08)
-
 
 ### Bug Fixes
 
-* **login-panel:** OB-2308 fix missing csrf ([434b016](https://github.com/OBSAU/rtm-kit/commit/434b016))
-* **login-panel:** OB-2308 fix props type of postcode/email field ([acb70f3](https://github.com/OBSAU/rtm-kit/commit/acb70f3))
-* **login-panel:** OB-2308 fix unit test ([31e8534](https://github.com/OBSAU/rtm-kit/commit/31e8534))
-* **login-panel:** OB-2308 use axios for get autocomplete data, remove unused variable ([0024784](https://github.com/OBSAU/rtm-kit/commit/0024784))
-
-
-
-
+- **login-panel:** OB-2308 fix missing csrf ([434b016](https://github.com/OBSAU/rtm-kit/commit/434b016))
+- **login-panel:** OB-2308 fix props type of postcode/email field ([acb70f3](https://github.com/OBSAU/rtm-kit/commit/acb70f3))
+- **login-panel:** OB-2308 fix unit test ([31e8534](https://github.com/OBSAU/rtm-kit/commit/31e8534))
+- **login-panel:** OB-2308 use axios for get autocomplete data, remove unused variable ([0024784](https://github.com/OBSAU/rtm-kit/commit/0024784))
 
 ## [3.1.20](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.19...@rtm-ui/login-panel@3.1.20) (2019-03-05)
 
-
 ### Bug Fixes
 
-* **form:** OB-2293- fix issue color of autocomplete postcode field and remove ‘Something went wrong’ message ([#51](https://github.com/OBSAU/rtm-kit/issues/51)) ([b9481a9](https://github.com/OBSAU/rtm-kit/commit/b9481a9))
-
-
-
-
+- **form:** OB-2293- fix issue color of autocomplete postcode field and remove ‘Something went wrong’ message ([#51](https://github.com/OBSAU/rtm-kit/issues/51)) ([b9481a9](https://github.com/OBSAU/rtm-kit/commit/b9481a9))
 
 ## [3.1.19](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.18...@rtm-ui/login-panel@3.1.19) (2019-03-03)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
 
-
-
-
-
 ## [3.1.18](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.17...@rtm-ui/login-panel@3.1.18) (2019-02-26)
-
 
 ### Bug Fixes
 
-* **form:** renderFooter will pass object for more additional context if any ([7deb1ba](https://github.com/OBSAU/rtm-kit/commit/7deb1ba))
-* **login-panel:** display server error below button. ([6b63e29](https://github.com/OBSAU/rtm-kit/commit/6b63e29))
-
-
-
-
+- **form:** renderFooter will pass object for more additional context if any ([7deb1ba](https://github.com/OBSAU/rtm-kit/commit/7deb1ba))
+- **login-panel:** display server error below button. ([6b63e29](https://github.com/OBSAU/rtm-kit/commit/6b63e29))
 
 ## [3.1.17](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.16...@rtm-ui/login-panel@3.1.17) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
 
-
-
-
-
 ## [3.1.16](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.15...@rtm-ui/login-panel@3.1.16) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
 
-
-
-
-
 ## [3.1.15](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.14...@rtm-ui/login-panel@3.1.15) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
-
-
-
-
 
 ## [3.1.14](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.13...@rtm-ui/login-panel@3.1.14) (2019-02-25)
 

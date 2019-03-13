@@ -7,57 +7,29 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/hero
 
-
-
-
-
 ## [3.0.19](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.18...@rtm-ui/hero@3.0.19) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/hero
-
-
-
-
 
 ## [3.0.18](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.17...@rtm-ui/hero@3.0.18) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/hero
 
-
-
-
-
 ## [3.0.17](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.16...@rtm-ui/hero@3.0.17) (2019-03-12)
 
 **Note:** Version bump only for package @rtm-ui/hero
-
-
-
-
 
 ## [3.0.16](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.15...@rtm-ui/hero@3.0.16) (2019-03-11)
 
 **Note:** Version bump only for package @rtm-ui/hero
 
-
-
-
-
 ## [3.0.15](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.14...@rtm-ui/hero@3.0.15) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/hero
 
-
-
-
-
 ## [3.0.14](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.13...@rtm-ui/hero@3.0.14) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/hero
-
-
-
-
 
 ## [3.0.13](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.12...@rtm-ui/hero@3.0.13) (2019-02-25)
 

@@ -7,57 +7,29 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
 
-
-
-
-
 ## [2.0.11](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.10...@rtm-ui/how-it-works@2.0.11) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
-
-
-
-
 
 ## [2.0.10](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.9...@rtm-ui/how-it-works@2.0.10) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
 
-
-
-
-
 ## [2.0.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.8...@rtm-ui/how-it-works@2.0.9) (2019-03-12)
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
-
-
-
-
 
 ## [2.0.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.7...@rtm-ui/how-it-works@2.0.8) (2019-03-11)
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
 
-
-
-
-
 ## [2.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.6...@rtm-ui/how-it-works@2.0.7) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
 
-
-
-
-
 ## [2.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.5...@rtm-ui/how-it-works@2.0.6) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
-
-
-
-
 
 ## [2.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@2.0.4...@rtm-ui/how-it-works@2.0.5) (2019-02-25)
 

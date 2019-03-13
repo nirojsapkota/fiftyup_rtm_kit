@@ -7,124 +7,65 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 ## [3.0.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@3.0.3...@rtm-ui/hybrid-login-view@3.0.4) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
-
-
-
-
 
 ## [3.0.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@3.0.2...@rtm-ui/hybrid-login-view@3.0.3) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 ## [3.0.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@3.0.1...@rtm-ui/hybrid-login-view@3.0.2) (2019-03-12)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
-
-
-
-
 
 ## [3.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@3.0.0...@rtm-ui/hybrid-login-view@3.0.1) (2019-03-12)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 # [3.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.9...@rtm-ui/hybrid-login-view@3.0.0) (2019-03-12)
 
-
-* Hybrid page fixups (#54) ([100aae7](https://github.com/OBSAU/rtm-kit/commit/100aae7)), closes [#54](https://github.com/OBSAU/rtm-kit/issues/54)
-
+- Hybrid page fixups (#54) ([100aae7](https://github.com/OBSAU/rtm-kit/commit/100aae7)), closes [#54](https://github.com/OBSAU/rtm-kit/issues/54)
 
 ### BREAKING CHANGES
 
-* this will remove the footer from the hybrid page
-
-
-
-
+- this will remove the footer from the hybrid page
 
 ## [2.1.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.8...@rtm-ui/hybrid-login-view@2.1.9) (2019-03-11)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 ## [2.1.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.7...@rtm-ui/hybrid-login-view@2.1.8) (2019-03-08)
-
 
 ### Bug Fixes
 
-* **login-panel:** OB-2308 fix missing csrf ([434b016](https://github.com/OBSAU/rtm-kit/commit/434b016))
-* **login-panel:** OB-2308 remove unused variable ([f5c8045](https://github.com/OBSAU/rtm-kit/commit/f5c8045))
-* **login-panel:** OB-2308 use axios for get autocomplete data, remove unused variable ([0024784](https://github.com/OBSAU/rtm-kit/commit/0024784))
-
-
-
-
+- **login-panel:** OB-2308 fix missing csrf ([434b016](https://github.com/OBSAU/rtm-kit/commit/434b016))
+- **login-panel:** OB-2308 remove unused variable ([f5c8045](https://github.com/OBSAU/rtm-kit/commit/f5c8045))
+- **login-panel:** OB-2308 use axios for get autocomplete data, remove unused variable ([0024784](https://github.com/OBSAU/rtm-kit/commit/0024784))
 
 ## [2.1.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.6...@rtm-ui/hybrid-login-view@2.1.7) (2019-03-05)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 ## [2.1.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.5...@rtm-ui/hybrid-login-view@2.1.6) (2019-03-03)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
-
-
-
-
 
 ## [2.1.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.4...@rtm-ui/hybrid-login-view@2.1.5) (2019-02-26)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 ## [2.1.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.3...@rtm-ui/hybrid-login-view@2.1.4) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
-
-
-
-
 
 ## [2.1.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.2...@rtm-ui/hybrid-login-view@2.1.3) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 ## [2.1.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.1...@rtm-ui/hybrid-login-view@2.1.2) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
-
-
-
-
 
 ## [2.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@2.1.0...@rtm-ui/hybrid-login-view@2.1.1) (2019-02-25)
 

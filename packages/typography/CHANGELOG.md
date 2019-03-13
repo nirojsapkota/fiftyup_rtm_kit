@@ -7,60 +7,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/typography
 
-
-
-
-
 ## [3.1.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.1.2...@rtm-ui/typography@3.1.3) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/typography
-
-
-
-
 
 ## [3.1.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.1.1...@rtm-ui/typography@3.1.2) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/typography
 
-
-
-
-
 ## [3.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.1.0...@rtm-ui/typography@3.1.1) (2019-03-12)
 
 **Note:** Version bump only for package @rtm-ui/typography
 
-
-
-
-
 # [3.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.0.14...@rtm-ui/typography@3.1.0) (2019-03-11)
-
 
 ### Features
 
-* **A:** Add a link ('A') component as part of feature tile component ([#53](https://github.com/OBSAU/rtm-kit/issues/53)) ([3bdfbbb](https://github.com/OBSAU/rtm-kit/commit/3bdfbbb)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
-
-
-
-
+- **A:** Add a link ('A') component as part of feature tile component ([#53](https://github.com/OBSAU/rtm-kit/issues/53)) ([3bdfbbb](https://github.com/OBSAU/rtm-kit/commit/3bdfbbb)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
 
 ## [3.0.14](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.0.13...@rtm-ui/typography@3.0.14) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/typography
 
-
-
-
-
 ## [3.0.13](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.0.12...@rtm-ui/typography@3.0.13) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/typography
-
-
-
-
 
 ## [3.0.12](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@3.0.11...@rtm-ui/typography@3.0.12) (2019-02-25)
 

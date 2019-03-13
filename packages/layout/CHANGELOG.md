@@ -7,60 +7,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/layout
 
-
-
-
-
 ## [3.1.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@3.1.1...@rtm-ui/layout@3.1.2) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/layout
-
-
-
-
 
 ## [3.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@3.1.0...@rtm-ui/layout@3.1.1) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/layout
 
-
-
-
-
 # [3.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@3.0.15...@rtm-ui/layout@3.1.0) (2019-03-12)
-
 
 ### Features
 
-* **Layout/WindowSize:** Utitlity helper for getting the window size ([3d186e5](https://github.com/OBSAU/rtm-kit/commit/3d186e5))
-
-
-
-
+- **Layout/WindowSize:** Utitlity helper for getting the window size ([3d186e5](https://github.com/OBSAU/rtm-kit/commit/3d186e5))
 
 ## [3.0.15](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@3.0.14...@rtm-ui/layout@3.0.15) (2019-03-11)
 
 **Note:** Version bump only for package @rtm-ui/layout
 
-
-
-
-
 ## [3.0.14](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@3.0.13...@rtm-ui/layout@3.0.14) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/layout
 
-
-
-
-
 ## [3.0.13](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@3.0.12...@rtm-ui/layout@3.0.13) (2019-02-25)
 
 **Note:** Version bump only for package @rtm-ui/layout
-
-
-
-
 
 ## [3.0.12](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@3.0.11...@rtm-ui/layout@3.0.12) (2019-02-25)
 
