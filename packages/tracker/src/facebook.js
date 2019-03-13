@@ -23,6 +23,7 @@ const trackCustomEvent = (eventName, data) => {
 
 const actionMap = {
   get_started: 'getStarted',
+  signin: 'SignUp', // keeping this as SingUp for tracking purposes
 };
 
 const genericPlanKeys = tracking => {
@@ -63,7 +64,7 @@ class Facebook {
   static sendData(tracking) {
     const categoryKeys = chooseCategoryKeys(tracking.category);
     trackCustomEvent(
-      actionMap[tracking.action],
+      actionMap[tracking.action] || tracking.action,
       filterObject(categoryKeys(tracking))
     );
   }
