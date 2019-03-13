@@ -1,8 +1,6 @@
 import LogRocket from 'logrocket';
 import Google from '../google';
 
-// ['send', { hitType: 'pageview', page: 'virtual/signin/get_started/hybrid' }];
-
 describe(`Google`, () => {
   it(`sends an event to the GA object`, () => {
     global.ga = jest.fn();
