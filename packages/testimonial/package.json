@@ -1,23 +1,24 @@
 {
-  "name": "@rtm-ui/footer",
-  "version": "1.1.12",
-  "description": "Description for footer",
+  "name": "@rtm-ui/testimonial",
+  "version": "1.1.0",
+  "description": "Description for testimonial",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
-    "namespace": "footer",
-    "defaultExport": "Footer",
+    "namespace": "testimonial",
+    "defaultExport": "Testimonial",
     "namedExports": []
   },
   "main": "build/main.js",
-  "module": "build/module.js",
+  "module": "src/module.js",
   "_module": "src/index",
   "scripts": {
     "build": "node ../rtm-scripts/scripts/rollup",
     "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
-    "@rtm-ui/icon": "file:../icon",
+    "@rtm-ui/animate": "file:../animate",
+    "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",

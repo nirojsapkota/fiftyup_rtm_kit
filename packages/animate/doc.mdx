@@ -1,0 +1,38 @@
+---
+name: Animate
+route: /packages/animate
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Animate from './src/index'
+import Img from '../img/src'
+
+# Animate
+## Basic Usage
+
+This component will animate its direct children.
+<Playground>
+  <Animate>
+    <div>This is a direct child</div>
+    <p>
+      I'm inside a paragraph tag and I'm a direct child of Animate component
+    </p>
+    <div>Test</div>
+  </Animate>
+</Playground>
+
+Images should be wrapped in a container like div
+<Playground>
+  <Animate>
+    <div>
+      <Img mr={2} src="https://placeimg.com/640/480/arch" alt='sample' />
+    </div>
+    <div>
+      <Img mr={2} src="https://placeimg.com/640/480/nature" alt='sample2' />
+    </div>
+    <div>
+      <Img mr={2} src="https://placeimg.com/400/1000/tech" alt='sample3' />
+    </div>
+  </Animate>
+</Playground>
