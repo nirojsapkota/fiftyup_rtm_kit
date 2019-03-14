@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/hero
 
-
-
-
-
 ## [3.0.21](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@3.0.20...@rtm-ui/hero@3.0.21) (2019-03-14)
 
 **Note:** Version bump only for package @rtm-ui/hero

@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/img
 
-
-
-
-
 ## [3.0.20](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/img@3.0.19...@rtm-ui/img@3.0.20) (2019-03-14)
 
 **Note:** Version bump only for package @rtm-ui/img

@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/header
 
-
-
-
-
 ## [1.1.16](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/header@1.1.15...@rtm-ui/header@1.1.16) (2019-03-14)
 
 **Note:** Version bump only for package @rtm-ui/header

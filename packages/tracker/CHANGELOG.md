@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/tracker
 
-
-
-
-
 ## [3.1.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@3.1.5...@rtm-ui/tracker@3.1.6) (2019-03-14)
 
 **Note:** Version bump only for package @rtm-ui/tracker

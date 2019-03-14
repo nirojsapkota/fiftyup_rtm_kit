@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/button
 
-
-
-
-
 ## [3.1.17](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@3.1.16...@rtm-ui/button@3.1.17) (2019-03-14)
 
 **Note:** Version bump only for package @rtm-ui/button
