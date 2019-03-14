@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/animate
 
-
-
-
-
 ## [1.1.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/animate@1.1.2...@rtm-ui/animate@1.1.3) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/animate

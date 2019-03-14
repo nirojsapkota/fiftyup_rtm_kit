@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/form
 
-
-
-
-
 ## [4.0.12](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@4.0.11...@rtm-ui/form@4.0.12) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/form

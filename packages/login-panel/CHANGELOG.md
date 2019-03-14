@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/login-panel
 
-
-
-
-
 ## [3.1.26](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@3.1.25...@rtm-ui/login-panel@3.1.26) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/login-panel

@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
 
-
-
-
-
 ## [3.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@3.0.4...@rtm-ui/hybrid-login-view@3.0.5) (2019-03-13)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
