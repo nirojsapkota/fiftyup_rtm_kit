@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/tracker",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "rtmRollup": {
     "namespace": "tracker",
     "defaultExport": "Tracker",
