@@ -12,7 +12,7 @@ const iconColors = {
   iconPrimary: '#f4b534',
 };
 
-const variants = {
+const baseVariants = {
   a: {
     primary: '#00005e',
     secondary: '#cacaca',
@@ -62,6 +62,15 @@ const variants = {
     ...iconColors,
   },
 };
+
+const variants = Object.assign(baseVariants, {
+  regular: {
+    ...baseVariants.a,
+    secondary: '#1b1d39',
+    text: '#1b1d39',
+    tertiary: '#646464',
+  },
+})
 
 export default {
   ...base,

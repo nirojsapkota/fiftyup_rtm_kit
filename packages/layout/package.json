@@ -8,6 +8,7 @@
     "namedExports": [
       "Pane",
       "Box",
+      "Flex",
       "Card"
     ]
   },

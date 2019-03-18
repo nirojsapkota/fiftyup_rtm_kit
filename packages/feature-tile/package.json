@@ -1,0 +1,36 @@
+{
+  "name": "@rtm-ui/feature-tile",
+  "version": "1.0.0",
+  "description": "Description for FeatureTile",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "feature-tile",
+    "defaultExport": "FeatureTile",
+    "namedExports": [
+    ]
+  },
+  "main": "build/main.js",
+  "module": "build/module.js",
+  "_module": "src/index",
+  "scripts": {
+    "start": "node ../rtm-scripts/scripts/start",
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "prepare": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
+  },
+  "dependencies": {
+    "@rtm-ui/a": "file:../a",
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/img": "file:../img",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/typography": "file:../typography"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}

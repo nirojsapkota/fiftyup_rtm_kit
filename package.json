@@ -93,6 +93,7 @@
     "@rtm-ui/button": "file:packages/button",
     "@rtm-ui/dialog": "file:packages/dialog",
     "@rtm-ui/entity": "file:packages/entity",
+    "@rtm-ui/feature-tile": "file:packages/feature-tile",
     "@rtm-ui/footer": "file:packages/footer",
     "@rtm-ui/form": "file:packages/form",
     "@rtm-ui/header": "file:packages/header",

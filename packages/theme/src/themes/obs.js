@@ -15,7 +15,7 @@ const colors = {
   ...notices,
 };
 
-const variants = {
+const baseVariants = {
   a: {
     primary: colors.navy,
     secondary: colors.blue,
@@ -62,6 +62,14 @@ const variants = {
     ...notices,
   },
 };
+
+const variants = Object.assign(baseVariants, {
+  regular: {
+    ...baseVariants.a,
+    text: '#1566ad',
+    tertiary: '#565656',
+  },
+})
 
 export default {
   ...base,
