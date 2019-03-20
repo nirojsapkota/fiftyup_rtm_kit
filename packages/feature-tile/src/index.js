@@ -18,10 +18,40 @@ export const ContentWrapper = styled(Box)`
   flex-wrap: wrap;
   border: 1px solid;
 
+const TileGroupFlex = styled(Flex)`
+  > * {
+    transition: all 0.3s ease-in-out;
+    flex: 0 0 24%;
+    &:hover {
+      transform: translateY(-10px);
+    }
+  }
+`;
+
+export const ContentWrapper = styled(Box)`
+  max-width: 1280px;
+  width: 100%;
+  margin: auto;
+  padding: 30px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid;
+
   @media (max-width: 664px) {
     justify-content: center
   }
 `;
+
+export const FeatureTileGroup = ({ children, ...props }) => (
+  <TileGroupFlex flexDirection={['column', 'column', 'row', 'row']}>
+    {children.map((tile, index) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <TileWrapper key={index} width={[1, 1, 1 / 3]} {...props}>
+        {tile}
+      </TileWrapper>
+    ))}
+  </TileGroupFlex>
+);
 
 const ImgContainer = styled.div`
   display: block
@@ -48,11 +78,13 @@ const StyledPendant = styled(Pendant)`
 
 const StyledCard = styled(Card)`
   max-width: 316px;
-  margin: auto;
-  height: 100%;
+  min-width: 285px;
+`;
+
+const CardWrapper = styled(Box)`
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  justify-content: space-between;
 `;
 
 const FeatureTile = ({
@@ -64,13 +96,13 @@ const FeatureTile = ({
   moreInfoLink,
   ctaText,
 }) => (
-  <StyledCard>
-    <Box>
-      <StyledCardHeader>
-        <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
-          {headerText}
-        </Paragraph>
-      </StyledCardHeader>
+  <CardWrapper>
+    <StyledCard>
+    <StyledCardHeader>
+      <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
+        {headerText}
+      </Paragraph>
+    </StyledCardHeader>
 
       <PendantPositioner>
         <ImgContainer>
@@ -101,8 +133,9 @@ const FeatureTile = ({
       >
       {ctaText}
       </Button>
-    </Box>
+    </StyledInnerFlex>
   </StyledCard>
+  </CardWrapper>
 );
 
 const featureTileShape = {

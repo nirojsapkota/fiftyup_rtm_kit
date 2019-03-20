@@ -12,17 +12,16 @@ const StyledInnerFlex = styled(Flex)`
   justify-content: space-evenly;
   flex: 1 1 0%;
   min-height: 240px;
-  padding-top: 10px;
 `;
 
 export const FeatureRowWrapper = styled(Box)`
+  max-width: 1280px;
+  width: 100%;
+  margin: auto;
+  padding: 30px 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center
-  margin: auto;
-  max-width: 1280px;
-  padding: 30px 10px;
-  width: 100%;
 `;
 
 const ImgContainer = styled.div`
@@ -34,8 +33,8 @@ const StyledCardHeader = styled(Box)`
   background: ${({ theme }) => getColor('secondary', theme)};
   margin-top: 0;
   p {
-    line-height: 1.5;
     padding: 2px 0 0;
+    line-height: 1.5;
   }
 `;
 
@@ -49,9 +48,7 @@ const FeatureWrapper = styled(Box)`
 `;
 
 const FeatureContent = styled(Box)`
-  padding-bottom: 20px;
-  padding-top: 20px;
-  width: 350px;
+  width: 300px;
 `;
 
 export const FeatureRow = ({
@@ -65,21 +62,19 @@ export const FeatureRow = ({
 }) => (
   <FeatureWrapper>
     <Feature flexDirection={['column', 'column', 'initial']}>
-      <Box width={[1, 1, '80%']}>
+      <Box width={[1,1,'auto']}>
         <ImgContainer>
           <Img src={image} alt="" />
         </ImgContainer>
       </Box>
-      <FeatureContent ml={[0, 0, '-30px']}>
-        <StyledCardHeader pl={[0, 0, '25%']}>
+      <FeatureContent ml={[0, 0, "-30px"]} pt="20px" pb="20px">
+        <StyledCardHeader pl={[0, 0, "25%"]}>
           <Paragraph align="left" weight="bold" color="inverseText">
             {headerText}
           </Paragraph>
         </StyledCardHeader>
-        <StyledInnerFlex pl={[0, 0, '25%']}>
-          <Paragraph color="primary" weight="bold">
-            {flagText}
-          </Paragraph>
+        <StyledInnerFlex pl={[0, 0, "25%"]} pt="10px">
+          <Paragraph color="primary" weight="bold">{flagText}</Paragraph>
           <Header color="text" align="left" tag="h6">
             {focalText}
           </Header>
@@ -91,8 +86,9 @@ export const FeatureRow = ({
             color="accent"
             weight="bold"
             align="center"
-            as="a"
-            href={moreInfoLink}
+            onClick={() => {
+              window.location.assign(moreInfoLink);
+            }}
           >
             {ctaText}
           </Button>
