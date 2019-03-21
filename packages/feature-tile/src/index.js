@@ -78,6 +78,7 @@ const StyledPendant = styled(Pendant)`
 
 const StyledCard = styled(Card)`
   max-width: 316px;
+  margin: auto;
 `;
 
 const CardWrapper = styled(Box)`

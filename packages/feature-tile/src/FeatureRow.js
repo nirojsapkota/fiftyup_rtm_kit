@@ -62,7 +62,7 @@ export const FeatureRow = ({
 }) => (
   <FeatureWrapper>
     <Feature flexDirection={['column', 'column', 'initial']}>
-      <Box width={[1,1,'auto']}>
+      <Box width={[1,1,'80%']}>
         <ImgContainer>
           <Img src={image} alt="" />
         </ImgContainer>
