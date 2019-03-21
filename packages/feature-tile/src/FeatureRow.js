@@ -48,7 +48,7 @@ const FeatureWrapper = styled(Box)`
 `;
 
 const FeatureContent = styled(Box)`
-  width: 300px;
+  width: 350px;
 `;
 
 export const FeatureRow = ({

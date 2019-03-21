@@ -78,7 +78,6 @@ const StyledPendant = styled(Pendant)`
 
 const StyledCard = styled(Card)`
   max-width: 316px;
-  min-width: 285px;
 `;
 
 const CardWrapper = styled(Box)`
@@ -96,8 +95,7 @@ const FeatureTile = ({
   moreInfoLink,
   ctaText,
 }) => (
-  <CardWrapper>
-    <StyledCard>
+  <StyledCard>
     <StyledCardHeader>
       <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
         {headerText}
@@ -135,7 +133,6 @@ const FeatureTile = ({
       </Button>
     </StyledInnerFlex>
   </StyledCard>
-  </CardWrapper>
 );
 
 const featureTileShape = {
