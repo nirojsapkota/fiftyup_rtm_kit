@@ -86,9 +86,8 @@ export const FeatureRow = ({
             color="accent"
             weight="bold"
             align="center"
-            onClick={() => {
-              window.location.assign(moreInfoLink);
-            }}
+            as="a"
+            href={moreInfoLink}
           >
             {ctaText}
           </Button>
