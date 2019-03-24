@@ -9,14 +9,10 @@ import { getColor } from '@rtm-ui/theme';
 import Pendant, { PendantPositioner } from './Pendant';
 import { FeatureRow } from './FeatureRow';
 
-export const ContentWrapper = styled(Box)`
-  max-width: 1280px;
-  width: 100%;
-  margin: auto;
-  padding: 30px 10px;
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid;
+const TileWrapper = styled(Box)`
+  display: block;
+  margin: 10px 4px;
+`;
 
 const TileGroupFlex = styled(Flex)`
   > * {
@@ -79,12 +75,10 @@ const StyledPendant = styled(Pendant)`
 const StyledCard = styled(Card)`
   max-width: 316px;
   margin: auto;
-`;
-
-const CardWrapper = styled(Box)`
+  height: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const FeatureTile = ({
@@ -97,11 +91,12 @@ const FeatureTile = ({
   ctaText,
 }) => (
   <StyledCard>
-    <StyledCardHeader>
-      <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
-        {headerText}
-      </Paragraph>
-    </StyledCardHeader>
+    <Box>
+      <StyledCardHeader>
+        <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
+          {headerText}
+        </Paragraph>
+      </StyledCardHeader>
 
       <PendantPositioner>
         <ImgContainer>
@@ -132,7 +127,7 @@ const FeatureTile = ({
       >
       {ctaText}
       </Button>
-    </StyledInnerFlex>
+    </Box>
   </StyledCard>
 );
 
