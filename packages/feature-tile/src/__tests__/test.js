@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
+import { render } from '../../../bootstrap/setup/testSetup';
 import FeatureTile, { FeatureTileGroup, FeatureRow } from '../index';
 import { dummyData } from '../../dummyData'
 
