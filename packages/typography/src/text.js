@@ -90,6 +90,9 @@ const headerStyles = css`
   line-height: 1.2;
   text-align: ${props => props.align};
   ${colorStyles};
+  strong {
+    font-weight: bold;
+  }
 `;
 
 function createMarkup(html) {
