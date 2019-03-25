@@ -9,21 +9,6 @@ import { getColor } from '@rtm-ui/theme';
 import Pendant, { PendantPositioner } from './Pendant';
 import { FeatureRow } from './FeatureRow';
 
-const TileWrapper = styled(Box)`
-  display: block;
-  margin: 10px 4px;
-`;
-
-const TileGroupFlex = styled(Flex)`
-  > * {
-    transition: all 0.3s ease-in-out;
-    flex: 0 0 24%;
-    &:hover {
-      transform: translateY(-10px);
-    }
-  }
-`;
-
 export const ContentWrapper = styled(Box)`
   max-width: 1280px;
   width: 100%;
@@ -37,17 +22,6 @@ export const ContentWrapper = styled(Box)`
     justify-content: center
   }
 `;
-
-export const FeatureTileGroup = ({ children, ...props }) => (
-  <TileGroupFlex flexDirection={['column', 'column', 'row', 'row']}>
-    {children.map((tile, index) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <TileWrapper key={index} width={[1, 1, 1 / 3]} {...props}>
-        {tile}
-      </TileWrapper>
-    ))}
-  </TileGroupFlex>
-);
 
 const ImgContainer = styled.div`
   display: block

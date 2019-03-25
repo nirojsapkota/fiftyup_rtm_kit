@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import FeatureTile, { FeatureTileGroup, FeatureRow } from '../index';
+import FeatureTile, { FeatureRow } from '../index';
 import { dummyData } from '../../dummyData'
 
 describe('<FeatureTile />', () => {
