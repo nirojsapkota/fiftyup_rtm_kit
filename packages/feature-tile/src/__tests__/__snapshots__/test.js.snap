@@ -12,12 +12,12 @@ exports[`<FeatureRow /> matches expected output 1`] = `
 
 .c18 {
   box-sizing: border-box;
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .c20 {
   box-sizing: border-box;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .c27 {
@@ -38,7 +38,7 @@ exports[`<FeatureRow /> matches expected output 1`] = `
 
 .c23 {
   box-sizing: border-box;
-  padding-left: 0px;
+  padding-left: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -127,7 +127,7 @@ exports[`<FeatureRow /> matches expected output 1`] = `
 
 .c1 {
   box-sizing: border-box;
-  margin-left: 0px;
+  margin-left: 0;
   padding: 15px;
 }
 
@@ -361,7 +361,7 @@ exports[`<FeatureRow /> matches expected output 1`] = `
 
 @media screen and (min-width:32em) {
   .c18 {
-    margin-left: 0px;
+    margin-left: 0;
   }
 }
 
@@ -373,7 +373,7 @@ exports[`<FeatureRow /> matches expected output 1`] = `
 
 @media screen and (min-width:32em) {
   .c20 {
-    padding-left: 0px;
+    padding-left: 0;
   }
 }
 
@@ -401,7 +401,7 @@ exports[`<FeatureRow /> matches expected output 1`] = `
 
 @media screen and (min-width:32em) {
   .c23 {
-    padding-left: 0px;
+    padding-left: 0;
   }
 }
 
@@ -784,10 +784,10 @@ exports[`<FeatureTile /> matches expected output 1`] = `
 
 .c24 {
   box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .c25 {
@@ -892,7 +892,7 @@ exports[`<FeatureTile /> matches expected output 1`] = `
 
 .c1 {
   box-sizing: border-box;
-  margin-left: 0px;
+  margin-left: 0;
   padding: 15px;
 }
 
@@ -1099,6 +1099,11 @@ exports[`<FeatureTile /> matches expected output 1`] = `
 @media screen and (min-width:32em) {
   .c28 {
     padding-top: 16px;
+  }
+}
+
+@media screen and (min-width:32em) {
+  .c28 {
     padding-bottom: 16px;
   }
 }
@@ -1616,7 +1621,7 @@ exports[`<FeatureTile /> matches expected output 1`] = `
 exports[`<FeatureTile /> matches expected output 2`] = `
 <div>
   <div
-    class="sc-bdVaJa sc-jTzLTM gAWIqc sc-VigVT jmnnUT"
+    class="sc-bdVaJa sc-jTzLTM gAWIqc sc-VigVT fRWqHh"
     elevation="4"
     style="position: absolute;"
   >
@@ -1859,7 +1864,7 @@ exports[`<FeatureTile /> matches expected output 2`] = `
           color="secondary"
         >
           <h6
-            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat cAfyDr"
+            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat eKqoFj"
           >
             SAVE BIG
           </h6>
@@ -1875,7 +1880,7 @@ exports[`<FeatureTile /> matches expected output 2`] = `
         Up to 30% off + eGift Card
       </h6>
       <p
-        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat ePsWuG"
+        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat fJaXYq"
       >
         Here's the body
       </p>
@@ -1934,7 +1939,7 @@ exports[`<FeatureTile /> matches expected output 2`] = `
           color="secondary"
         >
           <h6
-            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat cAfyDr"
+            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat eKqoFj"
           >
             SPECIAL OFFER
           </h6>
@@ -1950,7 +1955,7 @@ exports[`<FeatureTile /> matches expected output 2`] = `
         Save up to $400 a year!
       </h6>
       <p
-        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat ePsWuG"
+        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat fJaXYq"
       >
         Worried about your caravan getting trashed? Well, we can’t help you, get a real house and we’ll talk...
       </p>
@@ -2009,7 +2014,7 @@ exports[`<FeatureTile /> matches expected output 2`] = `
           color="secondary"
         >
           <h6
-            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat cAfyDr"
+            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat eKqoFj"
           >
             GET A QUOTE
           </h6>
@@ -2025,7 +2030,7 @@ exports[`<FeatureTile /> matches expected output 2`] = `
         Save up to $400 a year!
       </h6>
       <p
-        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat ePsWuG"
+        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat fJaXYq"
       >
         Life is too short to not have a pet duck. My ducks name is Szechuan.
       </p>
@@ -2049,7 +2054,7 @@ exports[`<FeatureTile /> matches expected output 2`] = `
 exports[`<FeatureTile /> matches expected output 3`] = `
 <div>
   <div
-    class="sc-bdVaJa sc-jTzLTM gAWIqc sc-VigVT jmnnUT"
+    class="sc-bdVaJa sc-jTzLTM gAWIqc sc-VigVT fRWqHh"
     elevation="4"
     style="position: absolute;"
   >
@@ -2292,7 +2297,7 @@ exports[`<FeatureTile /> matches expected output 3`] = `
           color="secondary"
         >
           <h6
-            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat cAfyDr"
+            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat eKqoFj"
           >
             SAVE BIG
           </h6>
@@ -2308,7 +2313,7 @@ exports[`<FeatureTile /> matches expected output 3`] = `
         Up to 30% off + eGift Card
       </h6>
       <p
-        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat ePsWuG"
+        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat fJaXYq"
       >
         Here's the body
       </p>
@@ -2367,7 +2372,7 @@ exports[`<FeatureTile /> matches expected output 3`] = `
           color="secondary"
         >
           <h6
-            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat cAfyDr"
+            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat eKqoFj"
           >
             SPECIAL OFFER
           </h6>
@@ -2383,7 +2388,7 @@ exports[`<FeatureTile /> matches expected output 3`] = `
         Save up to $400 a year!
       </h6>
       <p
-        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat ePsWuG"
+        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat fJaXYq"
       >
         Worried about your caravan getting trashed? Well, we can’t help you, get a real house and we’ll talk...
       </p>
@@ -2442,7 +2447,7 @@ exports[`<FeatureTile /> matches expected output 3`] = `
           color="secondary"
         >
           <h6
-            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat cAfyDr"
+            class="sc-bdVaJa sc-bZQynM dbcGlD sc-htpNat eKqoFj"
           >
             GET A QUOTE
           </h6>
@@ -2458,7 +2463,7 @@ exports[`<FeatureTile /> matches expected output 3`] = `
         Save up to $400 a year!
       </h6>
       <p
-        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat ePsWuG"
+        class="sc-bdVaJa sc-bZQynM dhbKsn sc-htpNat fJaXYq"
       >
         Life is too short to not have a pet duck. My ducks name is Szechuan.
       </p>
