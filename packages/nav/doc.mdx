@@ -7,10 +7,131 @@ menu: Packages
 import { Playground } from 'docz'
 import Nav from './src'
 import Hero from '../hero/src'
+import Button from '../button/src'
 
 # Nav
 
+When there is no user:
 <Playground style={{minHeight: '500px'}}>
-  <Nav header={'sign out'} logo="obs" items={[{id: 'privacy-policy', onClick: (id, toggle) => {toggle(); console.log(toggle, 'clicked')}, label: 'Privacy Policy'}]} />
-  <Hero title="You have successfully signed up!" icon="thumbs-up" />
+  <Nav
+    user={false}
+    header={toggle => 'Hello'}
+    onHomeClick={() => console.log("/")}
+    subHeader="Australia's top money-saving destination"
+    tagline="1,000,000 Members"
+    isClosed={true}
+    logo="fiftyup"
+    items={[
+      {
+        id: "news",
+        href: '/',
+        label: "News",
+        navbar: true,
+      },
+      {
+        id: "our-story",
+        href: '/our-story',
+        label: "Our Story",
+        navbar: true,
+      },
+      {
+        id: "how-it-works",
+        href: '/how-it-works',
+        label: "How it works",
+        navbar: true,
+      },
+      {
+        id: "menu-1",
+        href: '/menu-1',
+        label: "Menu option 1"
+      },
+      {
+        id: "menu-2",
+        href: '/menu-2',
+        label: "Menu option 2"
+      },
+      {
+        id: "menu-3",
+        href: '/menu-3',
+        label: "Menu option 3"
+      },
+      {
+        id: "menu-4",
+        href: '/menu-4',
+        label: "Menu option 4"
+      },
+      {
+        id: "menu-5",
+        href: '/menu-5',
+        label: "Menu option 5"
+      },
+    ]}
+  >
+    <Button>join for free</Button>
+  </Nav>
+  <Hero title="You have successfully signed up!" icon="thumbs-up">Hello</Hero>
+</Playground>
+
+When a user is signed in:
+
+<Playground style={{minHeight: '500px'}}>
+  <Nav
+    user={{email: 'user@example.com'}}
+    signOutPath="https://example.com"
+    signInPath="https://example.com"
+    header={toggle => 'Hello'}
+    onHomeClick={() => console.log("/")}
+    subHeader="Australia's top money-saving destination"
+    tagline="1,000,000 Members"
+    isClosed={true}
+    logo="fiftyup"
+    items={[
+      {
+        id: "news",
+        href: '/',
+        label: "News",
+        navbar: true,
+      },
+      {
+        id: "our-story",
+        href: '/our-story',
+        label: "Our Story",
+        navbar: true,
+      },
+      {
+        id: "how-it-works",
+        href: '/how-it-works',
+        label: "How it works",
+        navbar: true,
+      },
+      {
+        id: "menu-1",
+        href: '/menu-1',
+        label: "Menu option 1"
+      },
+      {
+        id: "menu-2",
+        href: '/menu-2',
+        label: "Menu option 2"
+      },
+      {
+        id: "menu-3",
+        href: '/menu-3',
+        label: "Menu option 3"
+      },
+      {
+        id: "menu-4",
+        href: '/menu-4',
+        label: "Menu option 4"
+      },
+      {
+        id: "menu-5",
+        href: '/menu-5',
+        label: "Menu option 5"
+      },
+    ]}
+  >
+    <Button>join for free</Button>
+  </Nav>
+  <Hero title="You have successfully signed up!" icon="thumbs-up">Hello</Hero>
 </Playground>

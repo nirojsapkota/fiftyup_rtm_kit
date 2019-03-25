@@ -2,15 +2,14 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Variant, { backgroundStyle, getColor } from '@rtm-ui/theme';
+import { backgroundStyle, getColor } from '@rtm-ui/theme';
 import LoginPanel from '@rtm-ui/login-panel';
 import Bootstrap from '@rtm-ui/bootstrap';
-import { EntityProvider, EntityConsumer } from '@rtm-ui/entity';
 import { Small } from '@rtm-ui/typography';
 import Img from '@rtm-ui/img';
 import HowItWorks from '@rtm-ui/how-it-works';
-import { BasicHeader } from '@rtm-ui/header';
 import { track } from '@rtm-ui/tracker';
+import BasicHeader from './header';
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -131,22 +130,10 @@ class WrappedHybridLoginView extends React.Component {
 
     return (
       <Bootstrap trackingData={trackingData}>
-        <EntityProvider entity={entity}>
-          <EntityConsumer>
-            {({ brand, footer_items: footer, header_items: header }) => {
-              return (
-                <React.Fragment>
-                  <BasicHeader
-                    logoUrl={header.logo}
-                    entityBrand={brand}
-                    py={2}
-                  />
-                  <HybridLoginView {...rest} />
-                </React.Fragment>
-              );
-            }}
-          </EntityConsumer>
-        </EntityProvider>
+        <React.Fragment>
+          <BasicHeader py={2} />
+          <HybridLoginView {...rest} />
+        </React.Fragment>
       </Bootstrap>
     );
   }

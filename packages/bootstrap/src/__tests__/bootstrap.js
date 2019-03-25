@@ -11,9 +11,15 @@ it('renders the theme', () => {
   expect(getByText('Hello, World!')).toBeInTheDocument();
 });
 
-it('renders the tracking provider', () => {
+it('renders the theme with overrides', () => {
   const { getByText } = render(
-    <Bootstrap trackingProvider={TrackingProvider}>Hello, World!</Bootstrap>
+    <Bootstrap
+      themeName="obs"
+      overrides={{ background: 'red' }}
+      trackingProvider={TrackingProvider}
+    >
+      Hello, World!
+    </Bootstrap>
   );
   expect(getByText('Hello, World!')).toBeInTheDocument();
 });

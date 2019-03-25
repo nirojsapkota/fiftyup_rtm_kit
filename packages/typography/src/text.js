@@ -60,7 +60,7 @@ export const labelTextStyles = css`
   letter-spacing: 1px;
   line-height: 1;
   text-transform: uppercase;
-  font-family: MuseoSans;
+  font-family: ${props => props.theme.fonts.sansSerif};
   font-weight: 900;
 `;
 

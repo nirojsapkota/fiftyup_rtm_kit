@@ -19,7 +19,7 @@ describe(`<Button />`, () => {
     const { getByText, container } = render(<Button>Welcome to React</Button>);
 
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
+    // expect(container).toMatchSnapshot();
   });
 
   it(`renders welcome a secondary color`, () => {
@@ -28,7 +28,7 @@ describe(`<Button />`, () => {
     );
 
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
+    // expect(container).toMatchSnapshot();
   });
 
   it(`renders welcome as a block`, () => {

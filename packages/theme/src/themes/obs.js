@@ -72,6 +72,7 @@ const variants = Object.assign(baseVariants, {
 })
 
 export default {
+  logoGlyph: 'obs',
   ...base,
   colors: {
     ...base.colors,

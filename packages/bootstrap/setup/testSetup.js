@@ -14,16 +14,10 @@ const bootstrapRender = (
   node,
   { theme = 'obs', themeOverrides, ...options } = {}
 ) => {
-  const selectedTheme = { obs, fuc, ninesaver }[theme];
-  const testTheme = themeOverrides
-    ? Object.keys(themeOverrides).reduce(
-        (acc, cv, ci) => setIn(acc, cv, Object.values(themeOverrides)[ci]),
-        selectedTheme
-      )
-    : selectedTheme;
-
   return render(
-    <TestBootstrap theme={testTheme}>{node}</TestBootstrap>,
+    <TestBootstrap themeName={theme} overrides={themeOverrides}>
+      {node}
+    </TestBootstrap>,
     options
   );
 };

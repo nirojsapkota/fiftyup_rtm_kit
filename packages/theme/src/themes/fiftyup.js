@@ -73,6 +73,7 @@ const variants = Object.assign(baseVariants, {
 })
 
 export default {
+  logoGlyph: 'fiftyup',
   ...base,
   colors: {
     ...base.colors,

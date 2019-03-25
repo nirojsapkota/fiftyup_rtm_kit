@@ -66,6 +66,11 @@ const variants = Object.assign(baseVariants, {
 
 export default {
   ...base,
+  logoGlyph: 'ninesaver',
+  fonts: {
+    serif: 'Proxima',
+    sansSerif: 'Proxima',
+  },
   colors: {
     ...base.colors,
     variants,

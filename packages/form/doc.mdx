@@ -97,7 +97,6 @@ to show/hide each form.
 <Playground>
     <StepForm {...stepInputs} renderForm={formProps => formProps}>
       {({ activeFormId, forms }) => {
-        console.log(forms);
         return (
           <Accordion
             items={forms}

@@ -18,9 +18,6 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/entity": "file:../entity",
-    "@rtm-ui/footer": "file:../footer",
-    "@rtm-ui/header": "file:../header",
     "@rtm-ui/how-it-works": "file:../how-it-works",
     "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",

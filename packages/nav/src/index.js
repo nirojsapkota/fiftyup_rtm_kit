@@ -1,14 +1,43 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Pane } from '@rtm-ui/layout';
+import { Box, Pane } from '@rtm-ui/layout';
 import Icon, { Logo } from '@rtm-ui/icon';
+import Button from '@rtm-ui/button';
+import { Header, Small, Paragraph } from '@rtm-ui/typography';
 import Sheet from './sheet';
+import { useWindowSize } from './useWindowSize';
 
-const A = styled.a`
+const ProfileStatus = ({ user, signOutPath, signInPath }) => {
+  return user ? (
+    <Box style={{ display: 'flex', alignItems: 'center' }}>
+      <Icon fill="tertiary" glyph="profile" />
+      <Box
+        pl={10}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Small color="primary">{user.email}</Small>
+        <Button data-testid="sign-out" as="a" asWrapper href={signOutPath}>
+          <Header tag="h5">SIGN OUT</Header>
+        </Button>
+      </Box>
+    </Box>
+  ) : (
+    <Button data-testid="sign-in" as="a" href={signInPath}>
+      Sign Up
+    </Button>
+  );
+};
+
+const A = styled(Paragraph)`
   cursor: pointer;
   display: block;
+  text-transform: uppercase;
 
   &:hover {
     background: ${props => props.showHover && '#eee'};
@@ -22,16 +51,71 @@ const Flex = styled(Pane)`
   align-items: center;
 `;
 
+const NavList = styled(Box)`
+  display: flex;
+  align-items: center;
+`;
+
+const ToggleList = styled(Box)`
+  display: flex;
+  align-items: center;
+
+  /* FIXME: this is overridden here due to the mockup */
+  button {
+    padding: 18px 14px;
+  }
+`;
+
+const NavGroup = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const Navbar = props => {
+  const { logoGlyph } = React.useContext(ThemeContext);
   return (
-    <Flex p={20} elevation={1}>
-      {props.desktop && <div />}
-      <A style={{ display: 'flex' }} onClick={props.onHomeClick}>
-        <Logo entityBrand={props.logo} width={100} />
-      </A>
-      <A showHover data-testid="toggle-nav" onClick={() => props.onNavClick()}>
-        <Icon size={48} glyph="menu" />
-      </A>
+    <Flex p={[10, 20]} elevation={1}>
+      {props.isDesktop && <div />}
+      <NavGroup style={{ minWidth: props.isDesktop ? `800px` : `0` }}>
+        {props.isDesktop &&
+          props.tagline && (
+            <Paragraph weight="bold" color="tertiary" tag="h6">
+              {props.tagline}
+            </Paragraph>
+          )}
+        <A style={{ display: 'flex' }} href="/">
+          <Logo entityBrand={logoGlyph} width={props.isDesktop ? 150 : 100} />
+        </A>
+        <NavList>
+          {props.isDesktop ? (
+            <NavGroup style={{ minWidth: '350px' }}>
+              {props.items
+                .filter(item => item.navbar)
+                .map(({ label, id, ...item }) => {
+                  return (
+                    <A key={id} color="primary" weight="bold" {...item}>
+                      {label}
+                    </A>
+                  );
+                })}
+            </NavGroup>
+          ) : (
+            <div />
+          )}
+        </NavList>
+      </NavGroup>
+      <ToggleList>
+        {props.children}
+        <A
+          ml="5px"
+          showHover
+          data-testid="toggle-nav"
+          onClick={() => props.onNavClick()}
+        >
+          <Icon size={48} fill="primary" glyph="menu" />
+        </A>
+      </ToggleList>
     </Flex>
   );
 };
@@ -44,16 +128,52 @@ const Portal = props => {
 };
 
 const Nav = props => {
+  const size = useWindowSize();
+  const [isDesktop, setIsDesktop] = React.useState();
+
+  React.useEffect(
+    function() {
+      setIsDesktop(size.width > 1200);
+    },
+    [size.width]
+  );
+
   const [isClosed, toggleClosed] = React.useState(true);
   const toggle = () => toggleClosed(!isClosed);
   return (
     <React.Fragment>
       <Navbar
+        isDesktop={isDesktop}
         logo={props.logo}
         onHomeClick={props.onHomeClick}
+        tagline={props.tagline}
         onNavClick={toggle}
-      />
-      {!isClosed && <Portal {...props} isClosed={isClosed} toggle={toggle} />}
+        items={props.items}
+      >
+        {!props.user && props.children}
+      </Navbar>
+      {props.subHeader && (
+        <Box variant="c">
+          <Paragraph p="5px" pl={[10, 20, 30]}>
+            {props.subHeader}
+          </Paragraph>
+        </Box>
+      )}
+      {!isClosed && (
+        <Portal
+          {...props}
+          header={() => (
+            <ProfileStatus
+              user={props.user}
+              signInPath={props.signInPath}
+              signOutPath={props.signOutPath}
+            />
+          )}
+          isDesktop={isDesktop}
+          isClosed={isClosed}
+          toggle={toggle}
+        />
+      )}
     </React.Fragment>
   );
 };

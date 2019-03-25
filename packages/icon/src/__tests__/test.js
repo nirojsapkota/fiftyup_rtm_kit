@@ -33,15 +33,15 @@ describe('<Logo />', () => {
     // expect(container).toMatchSnapshot();
   });
 
+  it('renders the 50Up logo', () => {
+    render(<Logo customLogo="fiftyup" />);
+    // expect(getByAltText('logo')).toBeInTheDocument();
+  });
+
   it('renders custom logo', () => {
     const { getByAltText } = render(
       <Logo customLogo="https://placehold.it/100x100" />
     );
     expect(getByAltText('logo')).toBeInTheDocument();
-  });
-
-  it('does not render', () => {
-    const { queryByAltText } = render(<Logo />);
-    expect(queryByAltText('logo')).not.toBeInTheDocument();
   });
 });

@@ -15,7 +15,7 @@ describe(`<BaseField />`, async () => {
       const handleSubmit = jest.fn(fields => {
         return [{ ...fields[0], disabled: 'disabled' }];
       });
-      const { getByLabelText, getByTestId, debug } = await render(
+      const { getByLabelText, getByTestId } = await render(
         <Form onSubmit={handleSubmit} {...form} />
       );
       const itemInput = await getByLabelText(form.fields[0].label);
@@ -26,7 +26,6 @@ describe(`<BaseField />`, async () => {
       const submit = await getByTestId(`submit-test-form`);
       await fireEvent.click(submit);
 
-      debug();
       await wait(async () => {
         await expect(itemInput).toHaveAttribute('disabled');
       });

@@ -7,7 +7,7 @@ describe(`<TextField />`, async () => {
   describe(`when submitting immediately`, async () => {
     const handleSubmit = jest.fn();
     it(`prevents submission and shows an error`, async () => {
-      const { queryAllByTestId, getByTestId, debug } = render(
+      const { queryAllByTestId, getByTestId } = render(
         <Form
           id="test"
           onSubmit={handleSubmit}

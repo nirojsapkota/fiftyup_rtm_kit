@@ -15,9 +15,9 @@ const Variant = ({ theme, variant, children }) => {
   );
 };
 
-export const BootstrapTheme = ({ children, brand, ...props }) => {
+export const BootstrapTheme = ({ children, theme, variant }) => {
   return (
-    <Variant theme={themeMap[brand]} {...props}>
+    <Variant variant={variant} theme={theme}>
       <React.Fragment>
         <CssReset />
         <Fonts />
@@ -32,12 +32,7 @@ BootstrapTheme.propTypes = {
   brand: PropTypes.string,
 };
 
-BootstrapTheme.defaultProps = {
-  brand: 'obs',
-};
-
 Variant.defaultProps = {
-  theme: obs,
   variant: 'a',
 };
 
