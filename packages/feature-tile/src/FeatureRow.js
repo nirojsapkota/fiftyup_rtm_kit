@@ -18,17 +18,22 @@ const StyledInnerFlex = styled(Flex)`
 export const FeatureRowWrapper = styled(Box)`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center
+  justify-content: center;
   margin: auto;
   max-width: 1280px;
   padding: 30px 10px;
   width: 100%;
 `;
 
-const ImgContainer = styled.div`
-  display: block
-  overflow: hidden;
+const ImgContainer = styled(Box)`
+  display: flex
+  justify-content: flex-end;
+  align-items: baseline;
 `;
+
+const StyledImg = styled(Img)`
+  justify-content: flex-end;
+`
 
 const StyledCardHeader = styled(Box)`
   background: ${({ theme }) => getColor('secondary', theme)};
@@ -65,18 +70,16 @@ export const FeatureRow = ({
 }) => (
   <FeatureWrapper>
     <Feature flexDirection={['column', 'column', 'initial']}>
-      <Box width={[1, 1, '80%']}>
-        <ImgContainer>
-          <Img src={image} alt="" />
-        </ImgContainer>
-      </Box>
+      <ImgContainer width={[1, 1, '80%']}>
+        <StyledImg src={image} alt="" />
+      </ImgContainer>
       <FeatureContent ml={[0, 0, '-30px']}>
-        <StyledCardHeader pl={[0, 0, '25%']}>
+        <StyledCardHeader pl={[0, 0, '20%']}>
           <Paragraph align="left" weight="bold" color="inverseText">
             {headerText}
           </Paragraph>
         </StyledCardHeader>
-        <StyledInnerFlex pl={[0, 0, '25%']}>
+        <StyledInnerFlex pl={[0, 0, '20%']}>
           <Paragraph color="primary" weight="bold">
             {flagText}
           </Paragraph>
