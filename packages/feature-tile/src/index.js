@@ -26,12 +26,12 @@ export const ContentWrapper = styled(Box)`
 const ImgContainer = styled.div`
   display: block
   overflow: hidden;
-  max-height: 160px;
+  max-height: 185px;
 `;
 
 const StyledCardHeader = styled(Box)`
   background: ${({ theme }) => getColor('secondary', theme)};
-  p {
+  h6 {
     line-height: 1.5;
   }
 `;
@@ -60,16 +60,16 @@ const FeatureTile = ({
   image,
   headerText,
   descriptionText,
-  focalText,
-  moreInfoLink,
+  titleText,
+  ctaLink,
   ctaText,
 }) => (
   <StyledCard>
     <Box>
       <StyledCardHeader>
-        <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
+        <Header tag="h6" pt="4px" align="center" weight="bold" color="inverseText">
           {headerText}
-        </Paragraph>
+        </Header>
       </StyledCardHeader>
 
       <PendantPositioner>
@@ -82,22 +82,20 @@ const FeatureTile = ({
       </PendantPositioner>
     </Box>
 
-    <Box p="10px">
+    <Box p="20px">
       <Header color="text" align="left" tag="h6">
-        {focalText}
+        {titleText}
       </Header>
-      <Paragraph color="tertiary" align="left" py={[2, 3]}>
-        {descriptionText}
-      </Paragraph>
+      <Paragraph color="tertiary" align="left" py={[2, 3]} dangerousHTML={descriptionText} />
     </Box>
-    <Box p="10px">
+    <Box p="20px">
       <Button
         width="100%"
         color="accent"
         weight="bold"
         align="center"
         as="a"
-        href={moreInfoLink}
+        href={ctaLink}
       >
       {ctaText}
       </Button>
@@ -112,8 +110,8 @@ const featureTileShape = {
   headerText: t.string.isRequired,
   descriptionText: t.string.isRequired,
   /** Accented text area. */
-  focalText: t.string,
-  moreInfoLink: t.string.isRequired,
+  titleText: t.string,
+  ctaLink: t.string.isRequired,
   ctaText: t.string.isRequired,
 };
 

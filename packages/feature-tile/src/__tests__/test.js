@@ -19,7 +19,7 @@ describe('<FeatureTile />', () => {
       expect(getByText(data.flagText)).toBeInTheDocument();
       expect(getByText(data.headerText)).toBeInTheDocument();
       expect(getByText(data.descriptionText)).toBeInTheDocument();
-      expect(getByText(data.focalText)).toBeInTheDocument();
+      expect(getByText(data.titleText)).toBeInTheDocument();
       expect(getByText(data.ctaText)).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     })
@@ -36,7 +36,7 @@ describe("<FeatureRow />", () => {
     await expect(getByText(data.flagText)).toBeInTheDocument();
     await expect(getByText(data.headerText)).toBeInTheDocument();
     await expect(getByText(data.descriptionText)).toBeInTheDocument();
-    await expect(getByText(data.focalText)).toBeInTheDocument();
+    await expect(getByText(data.titleText)).toBeInTheDocument();
     await expect(getByText(data.ctaText)).toBeInTheDocument();
     await expect(container).toMatchSnapshot();
   });

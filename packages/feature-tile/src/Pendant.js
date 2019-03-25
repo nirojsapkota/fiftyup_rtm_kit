@@ -2,7 +2,7 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import { Paragraph } from '@rtm-ui/typography';
+import { Header } from '@rtm-ui/typography';
 import { getColor } from '@rtm-ui/theme';
 
 const PendantWrapper = styled(Box)`
@@ -27,9 +27,16 @@ export const PendantPositioner = props => (
 
 const Pendant = ({ children, ...props }) => (
   <PendantWrapper {...props}>
-    <Paragraph align="left" py="5px" px="10px" weight="bold">
+    <Header
+      color="inverseText"
+      align="left"
+      py="5px"
+      px="20px"
+      weight="bold"
+      tag="h6"
+    >
       {children}
-    </Paragraph>
+    </Header>
   </PendantWrapper>
 );
 

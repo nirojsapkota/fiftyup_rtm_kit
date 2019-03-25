@@ -13,6 +13,12 @@ const StyledInnerFlex = styled(Flex)`
   flex: 1 1 0%;
   min-height: 240px;
   padding-top: 10px;
+  padding-right: 10px;
+
+  > * {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 `;
 
 export const FeatureRowWrapper = styled(Box)`
@@ -28,7 +34,7 @@ export const FeatureRowWrapper = styled(Box)`
 const ImgContainer = styled(Box)`
   display: flex
   justify-content: flex-end;
-  align-items: baseline;
+  align-items: center;
 `;
 
 const StyledImg = styled(Img)`
@@ -38,9 +44,9 @@ const StyledImg = styled(Img)`
 const StyledCardHeader = styled(Box)`
   background: ${({ theme }) => getColor('secondary', theme)};
   margin-top: 0;
-  p {
+  h6 {
     line-height: 1.5;
-    padding: 2px 0 0;
+    padding: 2px 5px 0 0;
   }
 `;
 
@@ -64,8 +70,8 @@ export const FeatureRow = ({
   image,
   headerText,
   descriptionText,
-  focalText,
-  moreInfoLink,
+  titleText,
+  ctaLink,
   ctaText,
 }) => (
   <FeatureWrapper>
@@ -75,27 +81,25 @@ export const FeatureRow = ({
       </ImgContainer>
       <FeatureContent ml={[0, 0, '-30px']}>
         <StyledCardHeader pl={[0, 0, '20%']}>
-          <Paragraph align="left" weight="bold" color="inverseText">
+          <Header align="left" weight="bold" color="inverseText" tag="h6">
             {headerText}
-          </Paragraph>
+          </Header>
         </StyledCardHeader>
         <StyledInnerFlex pl={[0, 0, '20%']}>
-          <Paragraph color="primary" weight="bold">
+          <Header color="primary" weight="bold" tag="h6">
             {flagText}
-          </Paragraph>
-          <Header color="text" align="left" tag="h6">
-            {focalText}
           </Header>
-          <Paragraph color="tertiary" align="left" mb="10px">
-            {descriptionText}
-          </Paragraph>
+          <Header color="text" align="left" tag="h6">
+            {titleText}
+          </Header>
+          <Paragraph color="tertiary" align="left" mb="10px" dangerousHTML={descriptionText} />
           <Button
             width="100%"
             color="accent"
             weight="bold"
             align="center"
             as="a"
-            href={moreInfoLink}
+            href={ctaLink}
           >
             {ctaText}
           </Button>
@@ -112,8 +116,8 @@ const featureTileShape = {
   headerText: t.string.isRequired,
   descriptionText: t.string.isRequired,
   /** Accented text area. */
-  focalText: t.string,
-  moreInfoLink: t.string.isRequired,
+  titleText: t.string,
+  ctaLink: t.string.isRequired,
   ctaText: t.string.isRequired,
 };
 
