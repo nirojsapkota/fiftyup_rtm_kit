@@ -27,7 +27,7 @@ export const PendantPositioner = props => (
 
 const Pendant = ({ children, ...props }) => (
   <PendantWrapper {...props}>
-    <Paragraph align="left" p="5px" weight="bold">
+    <Paragraph align="left" py="5px" px="10px" weight="bold">
       {children}
     </Paragraph>
   </PendantWrapper>

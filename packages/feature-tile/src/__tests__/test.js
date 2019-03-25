@@ -1,21 +1,16 @@
 import React from 'react';
-import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
-import FeatureTile, { FeatureTileGroup } from '../index';
+import { render } from '../../../bootstrap/setup/testSetup';
+import FeatureTile, { FeatureRow } from '../index';
 import { dummyData } from '../../dummyData'
 
 describe('<FeatureTile />', () => {
-  Object.defineProperty(window.location, 'assign', {
-    configurable: true,
-  });
-  window.location.assign = jest.fn();
-
   it('matches expected output', async() => {
     const { getByText, container } = await render(
-      <FeatureTileGroup width={[1, 1, 1/3]}>
+      <React.Fragment>
         <FeatureTile {...dummyData[0]} />
         <FeatureTile {...dummyData[1]} />
         <FeatureTile {...dummyData[2]} />
-      </FeatureTileGroup>
+      </React.Fragment>
     );
 
     dummyData.forEach(data => {
@@ -26,8 +21,23 @@ describe('<FeatureTile />', () => {
       expect(getByText(data.descriptionText)).toBeInTheDocument();
       expect(getByText(data.focalText)).toBeInTheDocument();
       expect(getByText(data.ctaText)).toBeInTheDocument();
-      fireEvent.click(getByText(data.ctaText));
-      expect(window.location.assign).toHaveBeenCalled();
+      expect(container).toMatchSnapshot();
     })
+  });
+})
+
+describe("<FeatureRow />", () => {
+  it('matches expected output', async() => {
+    const data = dummyData[0];
+    const { getByText, container } = await render(<FeatureRow {...data} />);
+    const img = container.querySelector(`img[src="${data.image}"]`)
+
+    await expect(img).toBeInTheDocument();
+    await expect(getByText(data.flagText)).toBeInTheDocument();
+    await expect(getByText(data.headerText)).toBeInTheDocument();
+    await expect(getByText(data.descriptionText)).toBeInTheDocument();
+    await expect(getByText(data.focalText)).toBeInTheDocument();
+    await expect(getByText(data.ctaText)).toBeInTheDocument();
+    await expect(container).toMatchSnapshot();
   });
 })

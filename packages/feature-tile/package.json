@@ -8,6 +8,7 @@
     "namespace": "feature-tile",
     "defaultExport": "FeatureTile",
     "namedExports": [
+      "FeatureRow"
     ]
   },
   "main": "build/main.js",

@@ -5,21 +5,26 @@ menu: Packages
 ---
 
 import { Playground, PropsTable } from 'docz'
-import FeatureTile, { FeatureTileGroup } from './src'
-import { dummyData } from './dummyData'
+import FeatureTile, { FeatureRow } from './src'
+import { FeatureRowWrapper } from './src/FeatureRow';
+import { dummyData } from './dummyData';
 
 # Feature Tile
 
 ## Usage
 
 <Playground>
-  <FeatureTileGroup width={[1,1,1/3]}>
-    <FeatureTile {...dummyData[0]} />
-    <FeatureTile {...dummyData[1]} />
-    <FeatureTile {...dummyData[2]} />
-  </FeatureTileGroup>
+  <FeatureTile {...dummyData[0]} />
+  <FeatureTile {...dummyData[1]} />
+  <FeatureTile {...dummyData[2]} />
 </Playground>
 
-# Props
+# FeatureRow
+
+<Playground>
+  <FeatureRowWrapper>
+    <FeatureRow {...dummyData[0]} />
+  </FeatureRowWrapper>
+</Playground>
 
 <PropsTable of={FeatureTile} />

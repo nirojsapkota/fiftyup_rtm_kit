@@ -7,38 +7,21 @@ import Button from '@rtm-ui/button';
 import Img from '@rtm-ui/img';
 import { getColor } from '@rtm-ui/theme';
 import Pendant, { PendantPositioner } from './Pendant';
+import { FeatureRow } from './FeatureRow';
 
-const TileWrapper = styled(Box)`
-  display: block;
-  margin: 10px 4px;
-`;
+export const ContentWrapper = styled(Box)`
+  max-width: 1280px;
+  width: 100%;
+  margin: auto;
+  padding: 30px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid;
 
-const StyledInnerFlex = styled(Flex)`
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1 1 0%;
-  min-height: 240px;
-`;
-
-const TileGroupFlex = styled(Flex)`
-  > * {
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      transform: translateY(-10px);
-    }
+  @media (max-width: 664px) {
+    justify-content: center
   }
 `;
-
-export const FeatureTileGroup = ({ children, ...props }) => (
-  <TileGroupFlex flexDirection={['column', 'column', 'row', 'row']}>
-    {children.map((tile, index) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <TileWrapper key={index} width={[1, 1, 1 / 3]} {...props}>
-        {tile}
-      </TileWrapper>
-    ))}
-  </TileGroupFlex>
-);
 
 const ImgContainer = styled.div`
   display: block
@@ -63,6 +46,15 @@ const StyledPendant = styled(Pendant)`
   }
 `;
 
+const StyledCard = styled(Card)`
+  max-width: 316px;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const FeatureTile = ({
   flagText,
   image,
@@ -72,42 +64,45 @@ const FeatureTile = ({
   moreInfoLink,
   ctaText,
 }) => (
-  <Card>
-    <StyledCardHeader>
-      <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
-        {headerText}
-      </Paragraph>
-    </StyledCardHeader>
+  <StyledCard>
+    <Box>
+      <StyledCardHeader>
+        <Paragraph pt="4px" align="center" weight="bold" color="inverseText">
+          {headerText}
+        </Paragraph>
+      </StyledCardHeader>
 
-    <PendantPositioner>
-      <ImgContainer>
-        <Img src={image} alt="" />
-      </ImgContainer>
-      {flagText.length > 0 && (
-        <StyledPendant color="secondary">{flagText}</StyledPendant>
-      )}
-    </PendantPositioner>
+      <PendantPositioner>
+        <ImgContainer>
+          <Img src={image} alt="" />
+        </ImgContainer>
+        {flagText.length > 0 && (
+          <StyledPendant color="secondary">{flagText}</StyledPendant>
+        )}
+      </PendantPositioner>
+    </Box>
 
-    <StyledInnerFlex p={3}>
+    <Box p="10px">
       <Header color="text" align="left" tag="h6">
         {focalText}
       </Header>
       <Paragraph color="tertiary" align="left" py={[2, 3]}>
         {descriptionText}
       </Paragraph>
+    </Box>
+    <Box p="10px">
       <Button
         width="100%"
         color="accent"
         weight="bold"
         align="center"
-        onClick={() => {
-          window.location.assign(moreInfoLink);
-        }}
+        as="a"
+        href={moreInfoLink}
       >
-        {ctaText}
+      {ctaText}
       </Button>
-    </StyledInnerFlex>
-  </Card>
+    </Box>
+  </StyledCard>
 );
 
 const featureTileShape = {
@@ -122,10 +117,7 @@ const featureTileShape = {
   ctaText: t.string.isRequired,
 };
 
-FeatureTileGroup.propTypes = {
-  children: t.node.isRequired,
-};
-
 FeatureTile.propTypes = featureTileShape;
 
+export { FeatureRow };
 export default FeatureTile;
