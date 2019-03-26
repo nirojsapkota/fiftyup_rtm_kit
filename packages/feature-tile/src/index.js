@@ -1,7 +1,7 @@
 import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
-import { Box, Card, Flex } from '@rtm-ui/layout';
+import { Box, Card } from '@rtm-ui/layout';
 import { Header, Paragraph } from '@rtm-ui/typography';
 import Button from '@rtm-ui/button';
 import Img from '@rtm-ui/img';
@@ -104,12 +104,10 @@ const FeatureTile = ({
 );
 
 const featureTileShape = {
-  /** Text used by pendant flag. */
   flagText: t.string,
   image: t.string.isRequired,
   headerText: t.string.isRequired,
   descriptionText: t.string.isRequired,
-  /** Accented text area. */
   titleText: t.string,
   ctaLink: t.string.isRequired,
   ctaText: t.string.isRequired,
