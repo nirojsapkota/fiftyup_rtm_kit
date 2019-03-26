@@ -9,7 +9,7 @@ const baseVariants = {
   a: {
     primary: '#00b1ff',
     secondary: '#00b1ff',
-    tertiary: '#0590ce',
+    tertiary: '#00b1ff',
     accent: '#e0107b',
     accentAccent: '#b91067',
     background: '#FFF',

@@ -72,12 +72,16 @@ const NavGroup = styled(Box)`
   justify-content: space-between;
 `;
 
+const NavGroupWrapper = styled(NavGroup)`
+  max-width: ${props => props.theme.grid.lg}em;
+`;
+
 const Navbar = props => {
   const { logoGlyph } = React.useContext(ThemeContext);
   return (
     <Flex p={[10, 20]} elevation={1}>
       {props.isDesktop && <div />}
-      <NavGroup style={{ minWidth: props.isDesktop ? `800px` : `0` }}>
+      <NavGroupWrapper width={[1, 1, "800px"]} style={{ minWidth: props.isDesktop ? `800px` : `0` }}>
         {props.isDesktop &&
           props.tagline && (
             <Paragraph weight="bold" color="tertiary" tag="h6">
@@ -94,7 +98,7 @@ const Navbar = props => {
                 .filter(item => item.navbar)
                 .map(({ label, id, ...item }) => {
                   return (
-                    <A key={id} color="primary" weight="bold" {...item}>
+                    <A key={id} color="primary" weight="bold" mx="10px" {...item}>
                       {label}
                     </A>
                   );
@@ -104,7 +108,7 @@ const Navbar = props => {
             <div />
           )}
         </NavList>
-      </NavGroup>
+      </NavGroupWrapper>
       <ToggleList>
         {props.children}
         <A
@@ -127,6 +131,10 @@ const Portal = props => {
   );
 };
 
+const SubHeaderWrapper = styled(Box)`
+  max-width: ${props => props.theme.grid.lg}em;
+  margin: auto;
+`
 const Nav = props => {
   const size = useWindowSize();
   const [isDesktop, setIsDesktop] = React.useState();
@@ -154,9 +162,11 @@ const Nav = props => {
       </Navbar>
       {props.subHeader && (
         <Box variant="c">
-          <Paragraph p="5px" pl={[10, 20, 30]}>
-            {props.subHeader}
-          </Paragraph>
+          <SubHeaderWrapper>
+            <Paragraph p="5px" pl={[10, 20, 30]}>
+              {props.subHeader}
+            </Paragraph>
+          </SubHeaderWrapper>
         </Box>
       )}
       {!isClosed && (
