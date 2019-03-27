@@ -1,0 +1,47 @@
+---
+name: Theme
+route: /packages/theme
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import Variant from './src'
+import DocWrapper from '../bootstrap/setup/docWrapper'
+import Grid from './grid'
+
+# Theme
+
+The theme package is responsible for setting up all brand-specific styling. It does this
+via a JSON object which is passed into the `<Bootstrap>` or `<Variant>` components which
+then make the theme available to all child elements.
+
+## Variants
+
+Since the theme is locally scoped to it's children only, we can override some or all of the theme
+from any nested element without affecting adjacent items. This is useful to switch contrasts
+from a light background with dark text to a dark background with light text. We do this by
+providing a `variants` key in the theme object with a list of color combinations. The important
+thing to note about variants is that they all have the exact same keys. This is so nested
+child items don't need to know about its parent container's theme, it just renders
+the desired color key.
+
+For example the `Paragraph` paragraph component uses the `text`
+color key, and depending on the theme provided that may be white or a dark gray.
+
+### Maintaining theme variants
+
+Variants are given an intentionally generic key like `a` or `b` with the idea that once we
+get a full-fledged design system we can then give these names that actually mean something useful.
+If we called variant `a` `light` instead, things would get confusing when we get to a 'light' variant
+with slightly different keys. In the near future, we might come up with a pattern that's similar
+to this, something like:
+
+```js
+<Box variant="light.secondary">Hello, World!</Box>
+```
+
+Which would have subtle adjustments based on the second key.
+
+<DocWrapper>
+  <Grid />
+</DocWrapper>

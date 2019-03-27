@@ -16,10 +16,24 @@ phases:
       - npm set unsafe-perm true
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
       - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+      - mkdir ./aws/tmp
+      - cd ./aws/GithubDocumentationFunction/ && npm install
+      - zip -r ../tmp/GithubDocumentationFunction.zip . && cd ../../
+      - aws lambda update-function-code --function-name GithubDocumentationFunction --zip-file fileb://./aws/tmp/GithubDocumentationFunction.zip --publish
+
   pre_build:
     commands:
+      - npm install
       - lerna bootstrap --no-ci
       - lerna run build --parallel
   build:
     commands:
+      - export DOCZ_BASE=/$CODEBUILD_WEBHOOK_TRIGGER/
+      - echo $DOCZ_BASE
       - npm run test
+      - npm run build
+  post_build:
+    commands:
+      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
+      - aws s3 cp ./.docz/dist s3://$DOCS_BUCKET_NAME/$CODEBUILD_WEBHOOK_TRIGGER --acl public-read --recursive
+      - aws lambda invoke --function-name GithubDocumentationFunction --payload '{"bucket":"'"${DOCS_BUCKET_NAME}"'", "codebuild_trigger":"'"${CODEBUILD_WEBHOOK_TRIGGER}"'"}' response6.txt

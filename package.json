@@ -9,6 +9,7 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "build": "docz build",
     "commit": "npx git-cz",
     "serve": "curl pad.js.org | node",
     "dev": "docz dev",

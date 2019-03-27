@@ -6,13 +6,13 @@ menu: Packages
 
 import { Playground } from 'docz'
 import Nav from './src'
-import Hero from '../hero/src'
 import Button from '../button/src'
+import DocWrapper from '../bootstrap/setup/docWrapper'
 
 # Nav
 
 When there is no user:
-<Playground style={{minHeight: '500px'}}>
+<DocWrapper>
   <Nav
     user={false}
     header={toggle => 'Hello'}
@@ -69,12 +69,11 @@ When there is no user:
   >
     <Button>join for free</Button>
   </Nav>
-  <Hero title="You have successfully signed up!" icon="thumbs-up">Hello</Hero>
-</Playground>
+</DocWrapper>
 
 When a user is signed in:
 
-<Playground style={{minHeight: '500px'}}>
+<DocWrapper>
   <Nav
     user={{email: 'user@example.com'}}
     signOutPath="https://example.com"
@@ -133,5 +132,4 @@ When a user is signed in:
   >
     <Button>join for free</Button>
   </Nav>
-  <Hero title="You have successfully signed up!" icon="thumbs-up">Hello</Hero>
-</Playground>
+</DocWrapper>
