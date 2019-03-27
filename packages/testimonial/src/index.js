@@ -23,7 +23,7 @@ const ImgStyle = styled(Img)`
 
 const Item = ({ item, align }) => (
   <Box key={item.author} py="10px">
-    <Paragraph pb={[2, 3]} align={align}>
+    <Paragraph align={align} style={{ lineHeight: '1.8' }}>
       {item.body}
     </Paragraph>
     <Flex alignItems="center">
@@ -38,12 +38,12 @@ const Item = ({ item, align }) => (
   </Box>
 );
 
-const Testimonial = ({ items, align, animate }) => {
+const Testimonial = ({ items, align, animate, ...props }) => {
   const itemsList = items.map(item => (
     <Item item={item} align={align} key={item.id} />
   ));
   return (
-    <Wrapper px={[2, 3]} py={[2]}>
+    <Wrapper {...props}>
       {animate ? <Animate>{itemsList}</Animate> : itemsList}
     </Wrapper>
   );
