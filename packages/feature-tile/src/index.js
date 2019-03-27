@@ -67,7 +67,7 @@ const FeatureTile = ({
   <StyledCard>
     <Box>
       <StyledCardHeader>
-        <Header tag="h6" pt="4px" align="center" weight="bold" color="inverseText">
+        <Header tag="h6" align="center" weight="bold" color="inverseText">
           {headerText}
         </Header>
       </StyledCardHeader>

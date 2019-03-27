@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Box, Pane } from '@rtm-ui/layout';
 import Icon, { Logo } from '@rtm-ui/icon';
 import Button from '@rtm-ui/button';
+import A from '@rtm-ui/a';
 import { Header, Small, Paragraph } from '@rtm-ui/typography';
 import Sheet from './sheet';
 import { useWindowSize } from './useWindowSize';
@@ -34,7 +35,7 @@ const ProfileStatus = ({ user, signOutPath, signInPath }) => {
   );
 };
 
-const A = styled(Paragraph)`
+const StyledParagraph = styled(Paragraph)`
   cursor: pointer;
   display: block;
   text-transform: uppercase;
@@ -88,9 +89,9 @@ const Navbar = props => {
               {props.tagline}
             </Paragraph>
           )}
-        <A style={{ display: 'flex' }} href="/">
-          <Logo entityBrand={logoGlyph} width={props.isDesktop ? 150 : 100} />
-        </A>
+        <StyledParagraph style={{ display: 'flex' }}>
+          <A href="/"><Logo entityBrand={logoGlyph} width={props.isDesktop ? 150 : 100} /></A>
+        </StyledParagraph>
         <NavList>
           {props.isDesktop ? (
             <NavGroup style={{ minWidth: '350px' }}>
@@ -111,13 +112,14 @@ const Navbar = props => {
       </NavGroupWrapper>
       <ToggleList>
         {props.children}
-        <A
-          ml="5px"
-          showHover
-          data-testid="toggle-nav"
-          onClick={() => props.onNavClick()}
-        >
-          <Icon size={48} fill="primary" glyph="menu" />
+        <A onClick={() => props.onNavClick()}>
+          <StyledParagraph
+            ml="5px"
+            showHover
+            data-testid="toggle-nav"
+          >
+            <Icon size={48} fill="primary" glyph="menu" />
+          </StyledParagraph>
         </A>
       </ToggleList>
     </Flex>
@@ -163,7 +165,7 @@ const Nav = props => {
       {props.subHeader && (
         <Box variant="c">
           <SubHeaderWrapper>
-            <Paragraph p="5px" pl={[10, 20, 30]}>
+            <Paragraph p="5px" pl="10px">
               {props.subHeader}
             </Paragraph>
           </SubHeaderWrapper>

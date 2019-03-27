@@ -17,6 +17,7 @@
     "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
+    "@rtm-ui/a": "file:../a",
     "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",

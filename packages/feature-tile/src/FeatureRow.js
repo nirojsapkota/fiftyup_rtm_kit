@@ -46,7 +46,6 @@ const StyledCardHeader = styled(Box)`
   margin-top: 0;
   h6 {
     line-height: 1.5;
-    padding: 2px 5px 0 0;
   }
 `;
 
