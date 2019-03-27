@@ -23,7 +23,7 @@ const ImgStyle = styled(Img)`
 
 const Item = ({ item, align }) => (
   <Box key={item.author} py="10px">
-    <Paragraph align={align} style={{ lineHeight: '1.8' }}>
+    <Paragraph align={align}>
       {item.body}
     </Paragraph>
     <Flex alignItems="center">
