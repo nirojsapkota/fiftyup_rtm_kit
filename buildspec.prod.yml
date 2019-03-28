@@ -30,7 +30,6 @@ phases:
   build:
     commands:
       - npm run test
-      - git diff
       - npm run release
   post_build:
     commands:
