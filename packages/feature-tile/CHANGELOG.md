@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@1.1.0...@rtm-ui/feature-tile@1.2.0) (2019-03-28)
+
+
+### Features
+
+* **FeatureTile/FeatureRow:** FeatureRow component as another variant of feature tile ([7608199](https://github.com/OBSAU/rtm-kit/commit/7608199)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
+
+
+
+
+
 # 1.1.0 (2019-03-25)
 
 
