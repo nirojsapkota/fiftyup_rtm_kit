@@ -113,7 +113,7 @@ describe(`<Nav />`, () => {
   });
   describe(`for desktop views`, () => {
     it(`shows the tagline and menu items where 'navbar' is true`, async () => {
-      window.innerWidth = 1201;
+      window.innerWidth = 1301;
       const { getByText, queryByText } = await setup();
 
       await wait(() => {
@@ -124,7 +124,7 @@ describe(`<Nav />`, () => {
     });
     describe(`when resized`, () => {
       it(`hides the tagline and menu items`, async () => {
-        window.innerWidth = 1201;
+        window.innerWidth = 1301;
         const { getByText, queryByText } = await setup();
 
         await wait(async () => {

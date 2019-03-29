@@ -17,8 +17,8 @@ When there is no user:
     user={false}
     header={toggle => 'Hello'}
     onHomeClick={() => console.log("/")}
-    subHeader="Australia's top money-saving destination"
-    tagline="1,000,000 Members"
+    subHeader="Australia's money-saving destination"
+    tagline="Australia's money-saving destination"
     isClosed={true}
     logo="fiftyup"
     items={[
@@ -43,7 +43,8 @@ When there is no user:
       {
         id: "menu-1",
         href: '/menu-1',
-        label: "Menu option 1"
+        label: "Menu option 1",
+        navbar: true
       },
       {
         id: "menu-2",
@@ -107,6 +108,128 @@ When a user is signed in:
         id: "menu-1",
         href: '/menu-1',
         label: "Menu option 1"
+      },
+      {
+        id: "menu-2",
+        href: '/menu-2',
+        label: "Menu option 2"
+      },
+      {
+        id: "menu-3",
+        href: '/menu-3',
+        label: "Menu option 3"
+      },
+      {
+        id: "menu-4",
+        href: '/menu-4',
+        label: "Menu option 4"
+      },
+      {
+        id: "menu-5",
+        href: '/menu-5',
+        label: "Menu option 5"
+      },
+    ]}
+  >
+    <Button>join for free</Button>
+  </Nav>
+</DocWrapper>
+
+## With color variants
+
+<DocWrapper>
+  <Nav
+    variant="b"
+    user={false}
+    header={toggle => 'Hello'}
+    onHomeClick={() => console.log("/")}
+    tagline="Australia's money-saving destination"
+    isClosed={true}
+    logo="fiftyup"
+    items={[
+      {
+        id: "news",
+        href: '/',
+        label: "News",
+        navbar: true,
+      },
+      {
+        id: "our-story",
+        href: '/our-story',
+        label: "Our Story",
+        navbar: true,
+      },
+      {
+        id: "how-it-works",
+        href: '/how-it-works',
+        label: "How it works",
+        navbar: true,
+      },
+      {
+        id: "menu-1",
+        href: '/menu-1',
+        label: "Menu option 1",
+        navbar: true
+      },
+      {
+        id: "menu-2",
+        href: '/menu-2',
+        label: "Menu option 2"
+      },
+      {
+        id: "menu-3",
+        href: '/menu-3',
+        label: "Menu option 3"
+      },
+      {
+        id: "menu-4",
+        href: '/menu-4',
+        label: "Menu option 4"
+      },
+      {
+        id: "menu-5",
+        href: '/menu-5',
+        label: "Menu option 5"
+      },
+    ]}
+  >
+    <Button>join for free</Button>
+  </Nav>
+</DocWrapper>
+
+<DocWrapper>
+  <Nav
+    variant="c"
+    user={false}
+    header={toggle => 'Hello'}
+    onHomeClick={() => console.log("/")}
+    tagline="Australia's money-saving destination"
+    isClosed={true}
+    logo="fiftyup"
+    items={[
+      {
+        id: "news",
+        href: '/',
+        label: "News",
+        navbar: true,
+      },
+      {
+        id: "our-story",
+        href: '/our-story',
+        label: "Our Story",
+        navbar: true,
+      },
+      {
+        id: "how-it-works",
+        href: '/how-it-works',
+        label: "How it works",
+        navbar: true,
+      },
+      {
+        id: "menu-1",
+        href: '/menu-1',
+        label: "Menu option 1",
+        navbar: true
       },
       {
         id: "menu-2",

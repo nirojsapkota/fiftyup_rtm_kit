@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
 import Icon, { ICONS, Logo } from '../index';
+import { Box } from '../../../layout/src';
 
 describe('<Icon />', () => {
   [
@@ -25,17 +26,30 @@ describe('<Icon />', () => {
 describe('<Logo />', () => {
   it('renders the ninsaver logo', () => {
     render(<Logo entityBrand="ninesaver" />);
-    // expect(container).toMatchSnapshot();
   });
 
   it('renders the obs logo', () => {
     render(<Logo entityBrand="obs" />);
-    // expect(container).toMatchSnapshot();
+  });
+
+  it('renders the OBS logo when the background is dark', () => {
+    render(
+      <Box variant="b">
+        <Logo entityBrand="obs" />
+      </Box>
+    );
   });
 
   it('renders the 50Up logo', () => {
-    render(<Logo customLogo="fiftyup" />);
-    // expect(getByAltText('logo')).toBeInTheDocument();
+    render(<Logo entityBrand="fiftyup" />);
+  });
+
+  it('renders the 50Up logo when the background is dark', () => {
+    render(
+      <Box variant="b">
+        <Logo entityBrand="fiftyup" />
+      </Box>
+    );
   });
 
   it('renders custom logo', () => {
