@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/theme",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "rtmRollup": {
     "namespace": "theme",
     "defaultExport": "Theme",
