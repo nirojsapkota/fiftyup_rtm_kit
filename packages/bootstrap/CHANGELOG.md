@@ -7,17 +7,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/bootstrap
 
-
-
-
-
 ## [3.0.19](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@3.0.18...@rtm-ui/bootstrap@3.0.19) (2019-03-25)
 
 **Note:** Version bump only for package @rtm-ui/bootstrap
-
-
-
-
 
 ## [3.0.18](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@3.0.17...@rtm-ui/bootstrap@3.0.18) (2019-03-14)
 

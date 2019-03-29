@@ -1,32 +1,56 @@
 ---
 name: Text
-route: /packages/text
-menu: Packages
+route: /typography/text
+menu: Typography
 ---
 
 import { Playground, PropsTable } from 'docz'
+import DocWrapper from '../../bootstrap/setup/docWrapper'
+import { Box} from '../../layout/src'
 import { Header, Paragraph, Text, Small } from '../src'
+import Grid from './grid'
 import { GeneratedStyles } from './generator'
 
 # Text
 
 ## Basic usage
 <Playground>
-  <Header p={20}>Hello, World</Header>
-  <Header color="secondary" p={20}>Hello, World</Header>
+  <Box p={10}>
+    <Header>Hello, World</Header>
+    <Header tag="h5" weight="thin" color="accent">Here is a subheader</Header>
+    <Paragraph>The quick brown fox jumped over the lazy dog.</Paragraph>
+    <Small>The quick brown fox jumped over the lazy dog.</Small>
+  </Box>
 </Playground>
 
-<Playground>
-  <Paragraph p={20}>Hello, World.<Small p={20}>Here is a nested small tag padded</Small></Paragraph>
-</Playground>
+Text is colored based on the theme context, here is the same text applied within the
+'b' variant:
 
 <Playground>
-  <Paragraph dangerousHTML="<p>Hello, world<ul><li>Hi</li></ul></p>" />
+  <Box variant="b" p={10}>
+    <Header>Hello, World</Header>
+    <Header tag="h5" weight="thin" color="accent">Here is a subheader</Header>
+    <Paragraph>The quick brown fox jumped over the lazy dog.</Paragraph>
+    <Small>The quick brown fox jumped over the lazy dog.</Small>
+  </Box>
 </Playground>
 
+
+
+### Raw HTML:
+> Note: this is not recommended and should only be used for rendering legacy content
+
 <Playground>
-  <GeneratedStyles />
+    <Paragraph dangerousHTML="<p>Hello, world<ul><li>Hi</li></ul></p>" />
 </Playground>
+
+### All variants:
+
+<DocWrapper>
+  <Grid>
+    <GeneratedStyles />
+  </Grid>
+</DocWrapper>
 
 ## PropsTable
 

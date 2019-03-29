@@ -52,7 +52,7 @@ const sizeChart = [
   {
     element: 'a',
     sizes: [16, 16, 16, 16],
-  }
+  },
 ];
 
 export const labelTextStyles = css`
@@ -99,11 +99,9 @@ function createMarkup(html) {
   return { __html: html };
 }
 
-const H1 = styled(
-  ({ color, tag, weight, font, align, scale, boxParams, ...rest }) => (
-    <Box {...boxParams} {...rest} as={tag} />
-  )
-)`
+const H1 = styled(({ color, tag, weight, font, align, boxParams, ...rest }) => (
+  <Box {...boxParams} {...rest} as={tag} />
+))`
   ${headerStyles};
   ${rest => headerFontSize(rest.tag)};
 `;
@@ -133,7 +131,6 @@ Text.defaultProps = {
   align: 'left',
   weight: 'normal',
   font: 'sansSerif',
-  scale: 1,
   color: null,
   p: undefined,
   pl: undefined,
@@ -164,7 +161,6 @@ Text.propTypes = {
   align: PropTypes.oneOf(alignmentProps),
   weight: PropTypes.oneOf(weightProps),
   font: PropTypes.oneOf(fontStyles),
-  scale: PropTypes.oneOf([1, 2, 3, 4]),
   color: PropTypes.string,
   p: PropTypes.oneOfType([
     PropTypes.number,

@@ -1,0 +1,33 @@
+---
+name: Headers
+route: /typography/headers
+menu: Typography
+---
+
+import { Playground, PropsTable } from 'docz'
+import { Header, Paragraph, Text, Small } from '../src'
+import { GeneratedStyles } from './generator'
+
+# Text
+
+## Basic usage
+<Playground>
+  <Header p={20}>Hello, World</Header>
+  <Header color="secondary" p={20}>Hello, World</Header>
+</Playground>
+
+<Playground>
+  <Paragraph p={20}>Hello, World.<Small p={20}>Here is a nested small tag padded</Small></Paragraph>
+</Playground>
+
+<Playground>
+  <Paragraph dangerousHTML="<p>Hello, world<ul><li>Hi</li></ul></p>" />
+</Playground>
+
+<Playground>
+  <GeneratedStyles />
+</Playground>
+
+## PropsTable
+
+<PropsTable of={Text} />

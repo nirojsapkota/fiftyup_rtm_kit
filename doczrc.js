@@ -6,6 +6,7 @@ export default {
   htmlContext: {
     favicon: 'http://revtech.media/img/favicons/favicon-32x32.png',
   },
+  showPlaygroundEditor: true,
   themeConfig: {
     colors: {
       primary: '#828282',

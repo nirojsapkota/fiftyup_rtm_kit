@@ -5,18 +5,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@1.1.0...@rtm-ui/feature-tile@1.2.0) (2019-03-28)
 
-
 ### Features
 
-* **FeatureTile/FeatureRow:** FeatureRow component as another variant of feature tile ([7608199](https://github.com/OBSAU/rtm-kit/commit/7608199)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
-
-
-
-
+- **FeatureTile/FeatureRow:** FeatureRow component as another variant of feature tile ([7608199](https://github.com/OBSAU/rtm-kit/commit/7608199)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
 
 # 1.1.0 (2019-03-25)
 
-
 ### Features
 
-* **FeatureTile/FeatureRow:** FeatureRow component  ([#60](https://github.com/OBSAU/rtm-kit/issues/60)) ([1904346](https://github.com/OBSAU/rtm-kit/commit/1904346)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
+- **FeatureTile/FeatureRow:** FeatureRow component ([#60](https://github.com/OBSAU/rtm-kit/issues/60)) ([1904346](https://github.com/OBSAU/rtm-kit/commit/1904346)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)

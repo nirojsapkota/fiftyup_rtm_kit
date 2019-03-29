@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
 import FeatureTile, { FeatureRow } from '../index';
-import { dummyData } from '../../dummyData'
+import { dummyData } from '../../dummyData';
 
 describe('<FeatureTile />', () => {
-  it('matches expected output', async() => {
+  it('matches expected output', async () => {
     const { getByText, container } = await render(
       <React.Fragment>
         <FeatureTile {...dummyData[0]} />
@@ -21,16 +21,15 @@ describe('<FeatureTile />', () => {
       expect(getByText(data.descriptionText)).toBeInTheDocument();
       expect(getByText(data.titleText)).toBeInTheDocument();
       expect(getByText(data.ctaText)).toBeInTheDocument();
-      expect(container).toMatchSnapshot();
-    })
+    });
   });
-})
+});
 
-describe("<FeatureRow />", () => {
-  it('matches expected output', async() => {
+describe('<FeatureRow />', () => {
+  it('matches expected output', async () => {
     const data = dummyData[0];
     const { getByText, container } = await render(<FeatureRow {...data} />);
-    const img = container.querySelector(`img[src="${data.image}"]`)
+    const img = container.querySelector(`img[src="${data.image}"]`);
 
     await expect(img).toBeInTheDocument();
     await expect(getByText(data.flagText)).toBeInTheDocument();
@@ -38,6 +37,5 @@ describe("<FeatureRow />", () => {
     await expect(getByText(data.descriptionText)).toBeInTheDocument();
     await expect(getByText(data.titleText)).toBeInTheDocument();
     await expect(getByText(data.ctaText)).toBeInTheDocument();
-    await expect(container).toMatchSnapshot();
   });
-})
+});

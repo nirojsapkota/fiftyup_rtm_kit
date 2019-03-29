@@ -1,0 +1,82 @@
+[
+  {
+    "name": "A",
+    "route": "/typography/a",
+    "menu": "Typography"
+  },
+  {
+    "name": "Animate",
+    "route": "/utilities/animate",
+    "menu": "Utilities"
+  },
+  {
+    "name": "Button",
+    "route": "/components/button",
+    "menu": "Components"
+  },
+  {
+    "name": "Dialog",
+    "route": "/utilities/dialog",
+    "menu": "Utilities"
+  },
+  {
+    "name": "Feature Tile",
+    "route": "/components/feature-tile",
+    "menu": "Components"
+  },
+  {
+    "name": "Form",
+    "route": "/form",
+    "menu": "Form"
+  },
+  {
+    "name": "HowItWorks",
+    "route": "/components/how-it-works",
+    "menu": "Components"
+  },
+  {
+    "name": "HybridLoginView",
+    "route": "/pages/hybrid-login-view",
+    "menu": "Pages"
+  },
+  {
+    "name": "Logo",
+    "route": "/assets/logo",
+    "menu": "Assets"
+  },
+  {
+    "name": "Img",
+    "route": "/primitives/img",
+    "menu": "Primitives"
+  },
+  {
+    "name": "Layout",
+    "route": "/primitives/layout",
+    "menu": "Primitives"
+  },
+  {
+    "name": "LoginPanel",
+    "route": "/components/login-panel",
+    "menu": "Components"
+  },
+  {
+    "name": "Nav",
+    "route": "/components/nav",
+    "menu": "Components"
+  },
+  {
+    "name": "Testimonial",
+    "route": "/components/testimonial",
+    "menu": "Comoponents"
+  },
+  {
+    "name": "Theme",
+    "route": "/utilities/theme",
+    "menu": "Utilities"
+  },
+  {
+    "name": "Tracker",
+    "route": "/utilities/tracker",
+    "menu": "Utilities"
+  }
+]

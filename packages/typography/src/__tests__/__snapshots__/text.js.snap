@@ -40,6 +40,7 @@ exports[`<Text /> matches expected output 1`] = `
 
 <h1
   class="c0 c1"
+  scale="1"
   title="testing"
 >
   Hello, World!

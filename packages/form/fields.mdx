@@ -1,0 +1,248 @@
+---
+name: Fields
+route: /form/fields
+menu: Form
+---
+
+import { Playground, PropsTable } from 'docz'
+import { stepInputs, formInputs, presignupInputs } from './sampleInputs'
+import StepForm from './src/stepForm'
+import Form, { FormError } from './src/form'
+import BaseField from './src/fields/baseField'
+import { Header, Small } from '@rtm-ui/typography';
+import Button from '@rtm-ui/button'
+import Accordion from './src/accordion'
+
+# Fields
+
+## Basic Usage
+
+Most of the time you won't need to interact with the field components directly
+and instead should pass in a form configuration which calls the right component
+under the hood:
+
+```js
+import Form from '@rtm-ui/form'
+
+...
+
+<Form
+  onSubmit={myHandler}
+  fields={[
+    {
+      label: 'My Email:',
+      name: 'email',
+      type: 'text',
+      config: {
+        validator: 'email',
+      },
+    },
+  ]}
+/>
+```
+
+## Field props
+
+All fields accept identical props. Anything besides the `label`, `hint`,
+`options` and `config` props should be expected to get passed down the
+DOM, so they must be valid html attributes for the given html element
+
+### Config
+
+Each field accepts a `config` prop which is where custom functionality
+can be defined. In some cases a custom prop is necessary:
+
+```js
+// the credit card field config
+config: {
+  component: 'stripePayment',
+  apiKey: '...',
+  validator: 'required',
+  sensitive: true,
+}
+```
+
+### Validators & Error messages
+
+We use [Yup](https://github.com/jquense/yup) to define our validation schema.
+Yup allows use to define a set of constraints along with an error message
+
+```js
+// eg. zipcodeValidator
+export const zipcodeValidator = Yup.string()
+  .required('Required')
+  .min(4, 'Must be 4 digits');
+```
+
+#### Mask Validator
+
+The mask validator is special case that both validates and formats
+numeric inputs. The config for a phone number might look like this:
+
+```js
+config: {
+  mask: 'phoneUS',
+  validator: 'mask',
+  validatorArgs: ['phoneUS', 'Phone Number'],
+}
+```
+
+Mask validators use the provided pattern (eg. phoneUS) not only to determine
+the format of the input but also to verify that the length of the input
+is what's required. See the [phone input field](http://127.0.0.1:3000/form/fields#numbers)
+below
+
+Error messages are derived from the `validator` prop passed in with the config.
+To provide a new error message you'll need to define a new validator
+
+## Email
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'My Email:',
+          name: 'email',
+          type: 'text',
+          config: {
+            validator: 'email',
+          },
+        },
+      ]}
+    />
+</Playground>
+
+## Credit Card
+
+Integrate with Stripe by providing a custom `stripeComponent` field along with
+an apiKey.
+
+> Note the `apiKey` prop is for the public key, NOT the private one.
+
+Use `4111111111111111`, any cvc, and any date in the future for a valid response
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'Payment:',
+          name: 'cc_token',
+          type: 'text',
+          config: {
+            component: 'stripePayment',
+            apiKey: 'pk_test_82Xn9YM3wF2LVCLD0kPewINf',
+            validator: 'required',
+            sensitive: true,
+          },
+        }
+      ]}
+    />
+</Playground>
+
+## Autocomplete
+
+The autocomplete field accepts a function which is responsible for querying a database
+or local dataset. This component is only responsible for triggering the function with the
+provided data and controlling the display and selection of the options
+
+The function below does no filtering, so any text will return the dataset.
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'My Zipcode:',
+          name: 'zipcode',
+          type: 'text',
+          hint: 'Ex. 2000, Barangaroo',
+          autoComplete: 'off',
+          config: {
+            component: 'autocomplete',
+            searchFunction: async function () {
+              return [
+                { label: "2000, Sydney" },
+                { label: "2000, Barangaroo" },
+              ];
+            },
+            validator: 'zipcode',
+          },
+        }
+      ]}
+    />
+</Playground>
+
+## Numbers
+
+Number fields accept a mask validator which formats the input as desired. New formats
+can be added as needed.
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'Phone Number:',
+          hint: 'US numbers only',
+          name: 'phone_number',
+          type: 'tel',
+          config: {
+            mask: 'phoneUS',
+            validator: 'mask',
+            validatorArgs: ['phoneUS', 'Phone Number'],
+          },
+        }
+      ]}
+    />
+</Playground>
+
+## Radio
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'Are you currently under contract with your provider?',
+          config: {
+            validator: 'requiredRadio',
+          },
+          name: 'currently_with_provider',
+          value: '',
+          type: 'radio',
+          options: [
+            { label: 'Yes', value: 'yes' },
+            { label: 'No', value: 'no' },
+            { label: 'Not Sure', value: 'notSure' },
+          ],
+        }
+      ]}
+    />
+</Playground>
+
+## Checkbox
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'Some preference',
+          config: {
+            validator: 'requiredRadio',
+          },
+          hint: 'Select yes for some reason',
+          name: 'some_pref',
+          value: '',
+          type: 'checkbox',
+          options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+        }
+      ]}
+    />
+</Playground>
+
+## PropTypes
+
+<PropsTable of={BaseField} />

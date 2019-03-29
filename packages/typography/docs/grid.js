@@ -1,8 +1,6 @@
 import React from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import { Card } from '../layout/src';
-import { Header, Paragraph, Small } from '../typography/src';
-import Button, { ButtonGroup } from '../button/src';
+import { Card } from '../../layout/src';
 
 const Container = styled.div`
   display: grid;
@@ -14,19 +12,12 @@ const Container = styled.div`
 const Grid = ({ children }) => {
   const theme = React.useContext(ThemeContext);
   const variants = Object.keys(theme.colors.variants);
-  console.log(variants);
   return (
     <Container>
       {variants.map(variant => {
         return (
           <Card p={10} variant={variant}>
-            <Header tag="h3">Hello, World</Header>
-            <Paragraph>This is a test</Paragraph>
-            <Small>Here is some disclaimer text</Small>
-            <ButtonGroup>
-              <Button primary>Click Me!</Button>
-              <Button secondary>Click Me!</Button>
-            </ButtonGroup>
+            {children}
           </Card>
         );
       })}

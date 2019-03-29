@@ -7,25 +7,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @rtm-ui/nav
 
-
-
-
-
 ## [5.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@4.0.15...@rtm-ui/nav@5.0.1) (2019-03-25)
 
 **Note:** Version bump only for package @rtm-ui/nav
 
-
-
-
-
 ## [4.0.15](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@4.0.14...@rtm-ui/nav@4.0.15) (2019-03-25)
 
 **Note:** Version bump only for package @rtm-ui/nav
-
-
-
-
 
 ## [4.0.14](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@4.0.13...@rtm-ui/nav@4.0.14) (2019-03-14)
 

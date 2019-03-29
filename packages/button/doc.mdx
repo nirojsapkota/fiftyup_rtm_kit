@@ -1,16 +1,92 @@
 ---
 name: Button
-route: /packages/button
-menu: Packages
+route: /components/button
+menu: Components
 ---
 
 import { Playground } from 'docz'
-import Button from './src'
+import Button, { ButtonGroup } from './src'
+import Icon from '../icon/src'
+import { Box } from '../layout/src'
+import { Paragraph } from '../typography/src'
 
 # Button
 
-## Basic usage
+<ButtonGroup>
+  <Button>Hello, World</Button>
+  <Button secondary>Hello, World</Button>
+</ButtonGroup>
+
+## Basic Usage
+
+```js
+import Button from '@rtm-ui/button'
+
+...
+
+<Button>Sign In</Button>
+```
+
+## Styles
+
+`<Button>` takes a `secondary` prop for alternate backgrounds
 
 <Playground>
-  <Button>Hello, World</Button>
+  <Button secondary>Hello, World</Button>
+</Playground>
+
+## Variants
+
+The colors for a button depend on the variant
+
+<Playground>
+  <Box variant="b" p={10}>
+    <Button >Hello, World</Button>
+  </Box>
+</Playground>
+
+## Tracking
+
+Button clicks of any kind can be tracked by providing a `track` prop. Read more about tracking [here](/utilities/tracker).
+
+```js
+<Button track="signin">Sign In</Button>
+```
+
+## As an A tag
+
+Buttons can be rendered as an `a` tag and given an `href`
+
+<Playground>
+  <Button as="a" href="https://example.com" track="signin">Sign In</Button>
+</Playground>
+
+## As a Wrapper
+
+Buttons can be rendered as an invisible wrapper
+
+<Playground>
+  <Button onClick={() => alert('clicked')} asWrapper><Paragraph>Sign In</Paragraph></Button>
+</Playground>
+
+## With Icons
+
+Using an icon in a button requires the `inline` prop, which takes the icon's
+height out of the equation so the button doesn't occupy more space than it should.
+
+<Playground>
+  <Button><Icon inline glyph="double-check" />Hello, World</Button>
+</Playground>
+
+## Button Group
+
+The `ButtonGroup` component will handle spacing and collapsing the list
+of buttons
+
+<Playground>
+  <ButtonGroup>
+    <Button>Hello, World</Button>
+    <Button>Hello, World</Button>
+    <Button>Hello, World</Button>
+  </ButtonGroup>
 </Playground>

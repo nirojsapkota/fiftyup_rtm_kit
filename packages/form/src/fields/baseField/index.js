@@ -87,9 +87,10 @@ export default class BaseField extends React.Component {
   }
 }
 
-BaseField.propTypes = {
-  label: PropTypes.string.isRequired,
+const inputHtmlProps = {
+  autoComplete: PropTypes.bool,
   name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   type: PropTypes.oneOf([
     'text',
     'tel',
@@ -98,6 +99,11 @@ BaseField.propTypes = {
     'checkbox',
     'hidden',
   ]).isRequired,
+};
+
+BaseField.propTypes = {
+  ...inputHtmlProps,
+  label: PropTypes.string.isRequired,
   config: PropTypes.shape({
     component: PropTypes.string,
     validator: PropTypes.string,

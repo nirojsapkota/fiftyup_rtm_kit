@@ -1,30 +1,33 @@
 ---
 name: Feature Tile
-route: /packages/feature-tile
-menu: Packages
+route: /components/feature-tile
+menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz'
 import FeatureTile, { FeatureRow } from './src'
 import { FeatureRowWrapper } from './src/FeatureRow';
+import DocWrapper from '../bootstrap/setup/docWrapper'
 import { dummyData } from './dummyData';
 
 # Feature Tile
 
 ## Usage
 
-<Playground>
-  <FeatureTile {...dummyData[0]} />
-  <FeatureTile {...dummyData[1]} />
-  <FeatureTile {...dummyData[2]} />
-</Playground>
+<DocWrapper>
+  <FeatureRowWrapper>
+    <FeatureTile {...dummyData[0]} />
+    <FeatureTile {...dummyData[1]} />
+    <FeatureTile {...dummyData[2]} />
+  </FeatureRowWrapper>
+</DocWrapper>
 
 # FeatureRow
 
-<Playground>
+<DocWrapper>
   <FeatureRowWrapper>
     <FeatureRow {...dummyData[0]} />
   </FeatureRowWrapper>
-</Playground>
+</DocWrapper>
 
 <PropsTable of={FeatureTile} />
