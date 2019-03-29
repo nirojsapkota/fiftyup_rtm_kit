@@ -10,6 +10,17 @@ import { Header, Small, Paragraph } from '@rtm-ui/typography';
 import Sheet from './sheet';
 import { useWindowSize } from './useWindowSize';
 
+const NavA = styled(A)`
+  white-space: pre;
+  padding: 0 10px;
+  text-transform: uppercase;
+`;
+
+const LogoA = styled(A)`
+  display: flex;
+  padding: 5px;
+`;
+
 const ProfileStatus = ({ user, signOutPath, signInPath }) => {
   return user ? (
     <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -24,7 +35,7 @@ const ProfileStatus = ({ user, signOutPath, signInPath }) => {
       >
         <Small color="primary">{user.email}</Small>
         <Button data-testid="sign-out" as="a" asWrapper href={signOutPath}>
-          <Header tag="h5">SIGN OUT</Header>
+          <Header tag="h6">SIGN OUT</Header>
         </Button>
       </Box>
     </Box>
@@ -74,34 +85,36 @@ const NavGroup = styled(Box)`
 `;
 
 const NavGroupWrapper = styled(NavGroup)`
-  max-width: ${props => props.theme.grid.lg}em;
+  width: 1216px;
 `;
 
-const Navbar = props => {
+const Navbar = ({ variant, ...props }) => {
   const { logoGlyph } = React.useContext(ThemeContext);
   return (
-    <Flex p={[10, 20]} elevation={1}>
-      {props.isDesktop && <div />}
-      <NavGroupWrapper width={[1, 1, "800px"]} style={{ minWidth: props.isDesktop ? `800px` : `0` }}>
+    <Flex variant={variant} px={[10, 20]} elevation={1}>
+      {props.isDesktop && <div style={{ wdith: '32px' }} />}
+      <NavGroupWrapper px={[0, 0, 32]}>
         {props.isDesktop &&
           props.tagline && (
-            <Paragraph weight="bold" color="tertiary" tag="h6">
+            <Paragraph pr={10} weight="bold" color="tertiary" tag="h6">
               {props.tagline}
             </Paragraph>
           )}
         <StyledParagraph style={{ display: 'flex' }}>
-          <A href="/"><Logo entityBrand={logoGlyph} width={props.isDesktop ? 150 : 100} /></A>
+          <LogoA href="/">
+            <Logo entityBrand={logoGlyph} width={props.isDesktop ? 200 : 100} />
+          </LogoA>
         </StyledParagraph>
         <NavList>
           {props.isDesktop ? (
-            <NavGroup style={{ minWidth: '350px' }}>
+            <NavGroup>
               {props.items
                 .filter(item => item.navbar)
                 .map(({ label, id, ...item }) => {
                   return (
-                    <A key={id} color="primary" weight="bold" mx="10px" {...item}>
+                    <NavA key={id} color="primary" weight="bold" {...item}>
                       {label}
-                    </A>
+                    </NavA>
                   );
                 })}
             </NavGroup>
@@ -110,14 +123,10 @@ const Navbar = props => {
           )}
         </NavList>
       </NavGroupWrapper>
-      <ToggleList>
+      <ToggleList p={10}>
         {props.children}
         <A onClick={() => props.onNavClick()}>
-          <StyledParagraph
-            ml="5px"
-            showHover
-            data-testid="toggle-nav"
-          >
+          <StyledParagraph ml="5px" showHover data-testid="toggle-nav">
             <Icon size={48} fill="primary" glyph="menu" />
           </StyledParagraph>
         </A>
@@ -136,14 +145,14 @@ const Portal = props => {
 const SubHeaderWrapper = styled(Box)`
   max-width: ${props => props.theme.grid.lg}em;
   margin: auto;
-`
+`;
 const Nav = props => {
   const size = useWindowSize();
   const [isDesktop, setIsDesktop] = React.useState();
 
   React.useEffect(
     function() {
-      setIsDesktop(size.width > 1200);
+      setIsDesktop(size.width > 1300);
     },
     [size.width]
   );
@@ -153,6 +162,7 @@ const Nav = props => {
   return (
     <React.Fragment>
       <Navbar
+        variant={props.variant}
         isDesktop={isDesktop}
         logo={props.logo}
         onHomeClick={props.onHomeClick}
