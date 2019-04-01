@@ -5,21 +5,26 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz'
-import FeatureTile, { FeatureRow } from './src'
+import FeatureTile, { FeatureRow, GroupedFeatureTiles } from './src'
 import { FeatureRowWrapper } from './src/FeatureRow';
+import { Box } from '@rtm-ui/layout';
 import DocWrapper from '../bootstrap/setup/docWrapper'
 import { dummyData } from './dummyData';
 
-# Feature Tile
-
 ## Usage
 
+# Single Feature Tile
 <DocWrapper>
-  <FeatureRowWrapper>
-    <FeatureTile {...dummyData[0]} />
-    <FeatureTile {...dummyData[1]} />
-    <FeatureTile {...dummyData[2]} />
-  </FeatureRowWrapper>
+  <FeatureTile {...dummyData[0]} />
+</DocWrapper>
+
+# GroupedFeatureTiles
+### Responsive design
+<DocWrapper>
+  <GroupedFeatureTiles
+    featureTiles={dummyData}
+    justifyContent={['center', 'center', 'center']}
+    style={{maxWidth: '1400px'}}/>
 </DocWrapper>
 
 # FeatureRow

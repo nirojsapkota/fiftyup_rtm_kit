@@ -32,7 +32,7 @@ const Pendant = ({ children, ...props }) => (
       align="left"
       py="5px"
       px="20px"
-      weight="bold"
+      weight="normal"
       tag="h6"
     >
       {children}

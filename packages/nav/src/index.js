@@ -143,7 +143,7 @@ const Portal = props => {
 };
 
 const SubHeaderWrapper = styled(Box)`
-  max-width: ${props => props.theme.grid.lg}em;
+  max-width: 1400px;
   margin: auto;
 `;
 const Nav = props => {

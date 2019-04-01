@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import FeatureTile, { FeatureRow } from '../index';
+import FeatureTile, { FeatureRow, GroupedFeatureTiles } from '../index';
 import { dummyData } from '../../dummyData';
 
 describe('<FeatureTile />', () => {
@@ -39,3 +39,18 @@ describe('<FeatureRow />', () => {
     await expect(getByText(data.ctaText)).toBeInTheDocument();
   });
 });
+
+describe('<GroupedFeatureTiles />', () => {
+  it('matches expected output', async () => {
+    const { getByText, container } = await render(<GroupedFeatureTiles featureTiles={dummyData} />);
+    dummyData.forEach(data => {
+      const img = container.querySelector(`img[src="${data.image}"]`);
+      expect(img).toBeInTheDocument();
+      expect(getByText(data.flagText)).toBeInTheDocument();
+      expect(getByText(data.headerText)).toBeInTheDocument();
+      expect(getByText(data.descriptionText)).toBeInTheDocument();
+      expect(getByText(data.titleText)).toBeInTheDocument();
+      expect(getByText(data.ctaText)).toBeInTheDocument();
+    });
+  })
+})

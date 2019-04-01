@@ -1,7 +1,7 @@
 import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
-import { Box, Card } from '@rtm-ui/layout';
+import { Box, Card, Flex } from '@rtm-ui/layout';
 import { Header, Paragraph } from '@rtm-ui/typography';
 import Button from '@rtm-ui/button';
 import Img from '@rtm-ui/img';
@@ -55,6 +55,11 @@ const StyledCard = styled(Card)`
   justify-content: space-between;
 `;
 
+const TileContentWrapper = styled(Box)`
+  padding: 20px;
+  flex: 1;
+`
+
 const FeatureTile = ({
   flagText,
   image,
@@ -82,12 +87,12 @@ const FeatureTile = ({
       </PendantPositioner>
     </Box>
 
-    <Box p="20px">
+    <TileContentWrapper>
       <Header color="text" align="left" tag="h6">
         {titleText}
       </Header>
       <Paragraph color="tertiary" align="left" py={[2, 3]} dangerousHTML={descriptionText} />
-    </Box>
+    </TileContentWrapper>
     <Box p="20px">
       <Button
         width="100%"
@@ -103,6 +108,27 @@ const FeatureTile = ({
   </StyledCard>
 );
 
+const GroupedTilesWrapper = styled(Flex)`
+  max-width: 1400px;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 100%;
+`;
+
+const GroupedFeatureTiles = ({featureTiles, ...props}) => (
+  <GroupedTilesWrapper justifyContent={['center', 'center', 'unset']} {...props}>
+    {featureTiles && featureTiles.map(featureTile => (
+      <Box
+        width={['auto', 'auto', 1 / 3, 1 / 4]}
+        style={{flexDirection: 'column', display: 'flex'}}
+        p={10}
+      >
+        <FeatureTile {...featureTile} />
+      </Box>
+    ))}
+  </GroupedTilesWrapper>
+)
+
 const featureTileShape = {
   flagText: t.string,
   image: t.string.isRequired,
@@ -115,5 +141,5 @@ const featureTileShape = {
 
 FeatureTile.propTypes = featureTileShape;
 
-export { FeatureRow };
+export { FeatureRow, GroupedFeatureTiles };
 export default FeatureTile;
