@@ -114,7 +114,7 @@ class LoginForm extends React.Component {
           placeholder: postCodeField.placeholder || 'Postcode',
           autoComplete: 'off',
           hint: postCodeField.hint || '5000, Adelaide',
-          config: {
+          config: postCodeField.config || {
             component: 'autocomplete',
             validator: 'zipcode',
             searchFunction: this.autoCompleteSearch,
