@@ -109,7 +109,7 @@ class LoginForm extends React.Component {
       fields: [
         {
           label: postCodeField.label || 'My Postcode:',
-          name: 'postcode_suburb',
+          name: postCodeField.name || 'postcode_suburb',
           type: 'text',
           placeholder: postCodeField.placeholder || 'Postcode',
           autoComplete: 'off',
