@@ -33,7 +33,7 @@ describe('<LoginPanel />', () => {
     const { getByText, getByValue } = render(
       <LoginPanel
         {...loginPanelProps}
-        postCodeField={postCodeField}
+        stateField={postCodeField}
         emailField={emailField}
       />
     );
@@ -171,7 +171,9 @@ describe('<LoginPanel />', () => {
       data,
     });
 
-    const { getByLabelText, container } = render(<LoginPanel {...loginPanelProps} />);
+    const { getByLabelText, container } = render(
+      <LoginPanel {...loginPanelProps} />
+    );
 
     const postcode = getByLabelText('My Postcode:');
     await fireEvent.change(postcode, {
@@ -207,11 +209,50 @@ describe('<LoginPanel />', () => {
       await fireEvent.change(postcode, {
         target: { value: '5000, ADELAIDE' },
       });
-  
+
       await wait(async () => {
         expect(axios.get).toHaveBeenCalled();
         expect(container).not.toHaveTextContent('5000, ADELAIDE BC');
       });
+    });
+  });
+
+  it('state field with pre-populate data', async () => {
+    // set Up
+    axios.post.mockResolvedValue({ data: { redirectPath: '/' } });
+
+    const stateField = {
+      label: 'My County:',
+      fieldName: 'state',
+      placeholder: 'County',
+      hint: 'E.g: Carlow',
+      options: [
+        { label: 'Carlow', value: 'CW' },
+        { label: 'Kilkenny', value: 'KK' },
+      ],
+    };
+
+    const { getByLabelText, getByText, queryAllByTestId } = render(
+      <LoginPanel {...loginPanelProps} stateField={stateField} />
+    );
+
+    const email = getByLabelText('My Email:');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+
+    const state = getByLabelText(stateField.label);
+    await fireEvent.change(state, {
+      target: { value: 'Carlow' },
+    });
+
+    await wait(async () => {
+      // Wait until popup arrives
+      const item = await getByLabelText(stateField.options[0].label);
+      expect(item).toBeInTheDocument();
+
+      await fireEvent.click(item);
+      expect(state.value).toEqual(stateField.options[0].label)
     });
   });
 });

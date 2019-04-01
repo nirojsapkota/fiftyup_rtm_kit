@@ -28,6 +28,11 @@ const loginPanel = {
     },
   },
   buttonIcon: 'view-forward',
+  stateField: {
+    fieldName: 'postcode_suburb',
+    validator: 'zipcode',
+    errorValue: 'postcode',
+  },
 };
 
 export default loginPanel;

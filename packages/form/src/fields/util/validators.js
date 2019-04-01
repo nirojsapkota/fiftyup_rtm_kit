@@ -36,4 +36,10 @@ export const passwordConfirmValidator = passwordFieldName =>
     .oneOf([Yup.ref(passwordFieldName), null], "Passwords don't match")
     .required(`Confirm ${passwordFieldName} is required`);
 
+export const dropdownValidator = options => {
+  return Yup.string()
+    .oneOf(options, 'Please select from the dropdown list')
+    .required('Required');
+};
+
 export const passwordComplexityValidator = Yup.string();

@@ -7,6 +7,7 @@ import {
   passwordConfirmValidator,
   passwordComplexityValidator,
   zipcodeValidator,
+  dropdownValidator,
 } from '../fields/util/validators';
 
 const validatorMap = {
@@ -17,6 +18,7 @@ const validatorMap = {
   passwordConfirmValidator,
   passwordComplexityValidator,
   zipcodeValidator,
+  dropdownValidator,
 };
 
 export const getSchema = fields => {

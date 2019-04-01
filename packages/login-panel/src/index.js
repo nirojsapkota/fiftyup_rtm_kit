@@ -30,12 +30,20 @@ class LoginForm extends React.Component {
   }
 
   async handleSubmit(fieldsWithValues) {
-    const { loginUrl, authenticityToken } = this.props;
+    const { loginUrl, authenticityToken, stateField } = this.props;
 
     const values = { user: {} };
     fieldsWithValues.forEach(field => {
-      if (field.name === 'postcode_suburb' || field.name === 'email') {
+      if (field.name === 'email') {
         values['user'][field.name] = field.value;
+      } else if (field.name === stateField.fieldName) {
+        if (stateField.options) {
+          values['user'][field.name] = stateField.options.filter(
+            option => option['label'] === field.value
+          )[0]['value'];
+        } else {
+          values['user'][field.name] = field.value;
+        }
       } else {
         values[field.name] = field.value;
       }
@@ -47,8 +55,8 @@ class LoginForm extends React.Component {
     if (data.errors) {
       const fieldErrors = {};
       data.errors.forEach(error => {
-        if (error.toLowerCase().indexOf('postcode') !== -1) {
-          fieldErrors['postcode_suburb'] = error;
+        if (error.toLowerCase().indexOf(stateField.errorValue) !== -1) {
+          fieldErrors[stateField.fieldName] = error;
         } else if (error.toLowerCase().indexOf('email') !== -1) {
           fieldErrors['email'] = error;
         }
@@ -80,16 +88,24 @@ class LoginForm extends React.Component {
   }
 
   async autoCompleteSearch(searchTerm) {
-    const { autocompletePostcodeUrl, authenticityToken } = this.props;
-    const results = await getAutoCompletePostcode(
-      autocompletePostcodeUrl,
-      searchTerm,
-      authenticityToken
-    );
+    const { stateField } = this.props;
+    if (stateField.options) {
+      return stateField.options.filter(
+        option =>
+          option['label'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+      );
+    } else {
+      const { autocompletePostcodeUrl, authenticityToken } = this.props;
+      const results = await getAutoCompletePostcode(
+        autocompletePostcodeUrl,
+        searchTerm,
+        authenticityToken
+      );
 
-    return results.map(item => {
-      return { label: item };
-    });
+      return results.map(item => {
+        return { label: item };
+      });
+    }
   }
 
   render() {
@@ -100,7 +116,7 @@ class LoginForm extends React.Component {
       buttonText,
       buttonIcon,
       gdprProps,
-      postCodeField,
+      stateField,
       emailField,
     } = this.props;
 
@@ -108,15 +124,18 @@ class LoginForm extends React.Component {
       id: 'signup',
       fields: [
         {
-          label: postCodeField.label || 'My Postcode:',
-          name: postCodeField.name || 'postcode_suburb',
+          label: stateField.label || 'My Postcode:',
+          name: stateField.fieldName,
           type: 'text',
-          placeholder: postCodeField.placeholder || 'Postcode',
+          placeholder: stateField.placeholder || 'Postcode',
           autoComplete: 'off',
-          hint: postCodeField.hint || '5000, Adelaide',
-          config: postCodeField.config || {
+          hint: stateField.hint || '5000, Adelaide',
+          config: {
             component: 'autocomplete',
-            validator: 'zipcode',
+            validator: stateField.validator,
+            validatorArgs: stateField.options
+              ? [stateField.options.map(option => option['label'])]
+              : undefined,
             searchFunction: this.autoCompleteSearch,
           },
         },
@@ -211,10 +230,14 @@ LoginPanel.propTypes = {
   buttonText: t.string,
   buttonIcon: t.string,
   autocompletePostcodeUrl: t.string,
-  postCodeField: t.shape({
+  stateField: t.shape({
     label: t.string,
     placeholder: t.string,
     hint: t.string,
+    fieldName: t.string,
+    options: t.array,
+    validator: t.string,
+    errorValue: t.string,
   }),
   emailField: t.shape({
     label: t.string,
@@ -227,7 +250,7 @@ LoginPanel.defaultProps = {
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'See the offers',
   buttonIcon: null,
-  postCodeField: {},
+  stateField: {},
   emailField: {},
 };
 
