@@ -10,8 +10,7 @@ const InlineSvg = styled.svg`
   height: 100%;
   width: 100%;
   color: ${props => props.color || 'inherit'};
-  fill: ${props =>
-    props.fill ? getColor(props.fill, props.theme) : 'currentColor'};
+  fill: ${props => getColor(props.fill || 'text', props.theme)};
   transition: all 0.2s ease;
   ${props =>
     props.rotate &&
