@@ -8,23 +8,35 @@ import { Playground, PropsTable } from 'docz'
 import FeatureTile, { FeatureRow, GroupedFeatureTiles } from './src'
 import { FeatureRowWrapper } from './src/FeatureRow';
 import { Box } from '@rtm-ui/layout';
+import Variant from '@rtm-ui/theme';
 import DocWrapper from '../bootstrap/setup/docWrapper'
 import { dummyData } from './dummyData';
 
 ## Usage
 
 # Single Feature Tile
+## Without specifying a variant
 <DocWrapper>
   <FeatureTile {...dummyData[0]} />
+</DocWrapper>
+
+## With variant.
+### This is currently using a 'regular' variant. Customize/change the colors by specifying or creating a new variant from our themes.
+<DocWrapper>
+  <Variant variant="regular">
+    <FeatureTile {...dummyData[0]} />
+  </Variant>
 </DocWrapper>
 
 # GroupedFeatureTiles
 ### Responsive design
 <DocWrapper>
-  <GroupedFeatureTiles
-    featureTiles={dummyData}
-    justifyContent={['center', 'center', 'center']}
-    style={{maxWidth: '1400px'}}/>
+  <Variant variant="regular">
+    <GroupedFeatureTiles
+      featureTiles={dummyData}
+      justifyContent={['center', 'center', 'center']}
+      style={{maxWidth: '1400px'}}/>
+  </Variant>
 </DocWrapper>
 
 # FeatureRow
