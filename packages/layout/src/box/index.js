@@ -9,6 +9,7 @@ const Wrapper = styled(GridBox)`
   ${props =>
     props.backgroundColor &&
     `background: ${getColor(props.backgroundColor, props.theme)}`};
+  color: ${props => getColor(props.backgroundColor, props.theme)};
 `;
 
 const Box = ({ children, variant, ...gridProps }) => {
