@@ -1,0 +1,50 @@
+import React from 'react';
+import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
+import SwitchConfirmPage from '../index';
+import { dummyData } from '../__fixtures__/dummyData';
+
+describe('<SwitchConfirmPage />', () => {
+  it('matches expected output', () => {
+    const { queryByText } = render(<SwitchConfirmPage {...dummyData} />);
+    expect(queryByText(/Confirm and agreement/i)).toBeInTheDocument();
+    expect(queryByText(/Review your plan below/i)).toBeInTheDocument();
+    expect(queryByText(/0909887778/i)).not.toBeInTheDocument();
+    expect(queryByText(/Switch Now/i)).toBeInTheDocument();
+  });
+
+  it('Display review details when fireevent on tab', () => {
+    const { queryByText, getByText } = render(
+      <SwitchConfirmPage {...dummyData} />
+    );
+    const headerElement = getByText('Your Plan Details');
+    fireEvent.click(headerElement);
+
+    expect(queryByText(/Contact Name/i)).toBeInTheDocument();
+  });
+
+  it('Display accordion details when fireevent on tab', () => {
+    const { queryByText, getByText } = render(
+      <SwitchConfirmPage {...dummyData} />
+    );
+    const headerElement = getByText('Confirm and agreement');
+    fireEvent.click(headerElement);
+
+    expect(queryByText(/Your Plan Details/i)).toBeInTheDocument();
+    expect(queryByText(/Lorem ipsum dolor sit amet/i)).toBeInTheDocument();
+  });
+
+  it('Submit to sever when form valid', async () => {
+    const { queryByText, getByText } = render(
+      <SwitchConfirmPage {...dummyData} />
+    );
+    const headerElement = getByText('Yes, I agree');
+    const btnSubmit = getByText('Switch Now');
+    fireEvent.click(headerElement);
+    fireEvent.click(btnSubmit);
+    await wait(() => {
+      expect(queryByText('Please select an option')).not.toBeInTheDocument();
+    })
+    
+  });
+});
+

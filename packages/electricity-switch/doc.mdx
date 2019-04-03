@@ -1,0 +1,47 @@
+---
+name: Electricity Switch
+route: /components/electricitySwitch
+menu: Components
+---
+
+import { Playground, PropsTable } from 'docz'
+import Variant, { backgroundStyle } from '@rtm-ui/theme';
+import {ConfirmHeader, PlanDetails, Disclaimer, ConfirmSwitch} from './src'
+import {dummyData} from './src/__fixtures__/dummyData';
+
+# Electricity Switch components
+
+## Header
+<Playground>
+  <Variant variant='c'>
+    <ConfirmHeader {...dummyData.confirmHeaderProps}/>
+  </Variant>
+</Playground>
+
+<Playground>
+  <Variant variant='c'>
+    <ConfirmHeader {...dummyData.confirmHeaderProps} orientation='vertical'/>
+  </Variant>
+</Playground>
+
+## Plan details
+<Playground>
+  <PlanDetails {...dummyData.planDetailsProps}/>
+</Playground>
+
+<Playground> 
+  <PlanDetails {...dummyData.planDetailsProps} orientation='vertical'/>
+</Playground>
+
+## Disclaimer Text
+<Playground>
+  <Disclaimer {...dummyData.disclaimerProps}/>
+</Playground>
+
+## Action
+<Playground>
+<ConfirmSwitch {...dummyData.confirmActionProps}  handleSubmit={()=>{}}></ConfirmSwitch>
+</Playground>
+
+## ConfirmSwitch Props
+<PropsTable of={ConfirmSwitch}/>

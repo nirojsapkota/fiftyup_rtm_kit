@@ -70,7 +70,7 @@ const variants = Object.assign(baseVariants, {
     text: '#1b1d39',
     tertiary: '#646464',
   },
-})
+});
 
 export default {
   logoGlyph: 'fiftyup',

@@ -62,7 +62,7 @@ const variants = Object.assign(baseVariants, {
     text: '#000',
     tertiary: '#616461',
   },
-})
+});
 
 export default {
   ...base,

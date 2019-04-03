@@ -1,12 +1,12 @@
 {
-  "name": "@rtm-ui/hybrid-login-view",
-  "version": "3.0.16",
-  "description": "hybrid login view",
+  "name": "@rtm-ui/electricity-switch",
+  "version": "1.0.0",
+  "description": "Description for electricity switch",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
-    "namespace": "hybrid-login-view",
-    "defaultExport": "HybridLoginView",
+    "namespace": "electricity-switch",
+    "defaultExport": "ElectricitySwitch",
     "namedExports": []
   },
   "main": "build/main.js",
@@ -17,14 +17,12 @@
     "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
-    "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/how-it-works": "file:../how-it-works",
-    "@rtm-ui/img": "file:../img",
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/form": "file:../form",
     "@rtm-ui/icon": "file:../icon",
+    "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",
-    "@rtm-ui/login-panel": "file:../login-panel",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {

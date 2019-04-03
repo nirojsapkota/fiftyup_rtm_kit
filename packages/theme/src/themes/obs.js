@@ -69,7 +69,7 @@ const variants = Object.assign(baseVariants, {
     text: '#1566ad',
     tertiary: '#565656',
   },
-})
+});
 
 export default {
   logoGlyph: 'obs',

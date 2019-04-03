@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, act } from '../../../bootstrap/setup/testSetup';
+import { render, act, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { Card, Pane, Flex, useWindowSize } from '../index';
+import Icon from '../../../icon';
 
 const text = 'Hello, World';
 
@@ -42,18 +43,23 @@ describe('<Flex />', () => {
   });
 
   it('sets the background when backgroundColor props is provided', () => {
-    const { getByText } = render(<Flex variant="c" backgroundColor="primary">{text}</Flex>, {
-      themeOverrides: { 'colors.variants.c.primary': 'yellow' },
-    });
+    const { getByText } = render(
+      <Flex variant="c" backgroundColor="primary">
+        {text}
+      </Flex>,
+      {
+        themeOverrides: { 'colors.variants.c.primary': 'yellow' },
+      }
+    );
 
     expect(getByText(text)).toHaveStyleRule('background', 'yellow');
-  })
+  });
 
   it('displays the children even when no variant prop', () => {
     const { getByText } = render(<Flex>{text}</Flex>);
     expect(getByText(text)).toBeInTheDocument();
-  })
-})
+  });
+});
 
 describe('useWindowSize', () => {
   const TestFn = () => {

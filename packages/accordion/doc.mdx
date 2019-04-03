@@ -1,0 +1,64 @@
+---
+name: Accordion
+route: /packages/accordion
+menu: Packages
+---
+
+import { Playground, PropsTable } from 'docz'
+import Accordion from './src'
+import Variant from '@rtm-ui/theme';
+
+
+# Accordion
+
+Anything can be rendered in the body of the accordion panel item, that's left up to the defining component via a render prop. This keeps the accordion panel focused on only doing one thing. See the render props example below for usage
+
+## Basic Usage
+
+<Playground>
+  <Variant variant='c'>
+    <Accordion
+      activeItemIndex={0}
+      items={[
+        {
+          header: 'Heading 1',
+          body: [
+            {
+              title: 'What is Lorem Ipsum?',
+              body: {
+                type: 'text',
+                value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+              },
+            },
+          ],
+        },
+                {
+          header: 'Heading 2',
+          body: [
+            {
+              title: 'What is Lorem Ipsum?',
+              body: {
+                type: 'text',
+                value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+              },
+            },
+          ],
+        },
+        ]}
+        renderItem={item => {
+          return (
+            <div>
+              <h5>{item.body[0].title}</h5>
+              <div>{item.body[0].body.value}</div>
+            </div>
+          );
+        }}
+        renderHeader={h => {
+          return <div>{h.header}</div>;
+        }}
+    />
+  </Variant>
+</Playground>
+
+## Props
+<PropsTable of={Accordion} />
