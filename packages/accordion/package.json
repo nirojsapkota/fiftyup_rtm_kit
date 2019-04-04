@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/accordion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description for accordion",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -20,10 +20,10 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/tracker": "file:../tracker",
-    "@rtm-ui/icon": "file:../icon"
+    "@rtm-ui/tracker": "file:../tracker"
   },
   "peerDependencies": {
     "prop-types": "15.x",
