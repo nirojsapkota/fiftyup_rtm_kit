@@ -26,13 +26,13 @@ phases:
   pre_build:
     commands:
       - lerna bootstrap --no-ci
-      - lerna run build --parallel
   build:
+    commands:
+      - lerna run build --parallel
+  post_build:
     commands:
       - npm run test
       - npm run release
-  post_build:
-    commands:
       - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
       - aws s3 cp ./dist/ s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read --exclude "*" --include "*.min.js" --recursive
 cache:
