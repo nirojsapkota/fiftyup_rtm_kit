@@ -97,6 +97,7 @@
     "@rtm-ui/animate": "file:packages/animate",
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
+    "@rtm-ui/dashboard": "file:packages/dashboard",
     "@rtm-ui/dialog": "file:packages/dialog",
     "@rtm-ui/electricity-switch": "file:packages/electricity-switch",
     "@rtm-ui/feature-tile": "file:packages/feature-tile",

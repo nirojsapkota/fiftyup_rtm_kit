@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, act, fireEvent } from '../../../bootstrap/setup/testSetup';
-import { Card, Pane, Flex, useWindowSize } from '../index';
-import Icon from '../../../icon';
+import { render, act } from '../../../bootstrap/setup/testSetup';
+import { Block, Card, Pane, Flex, useWindowSize } from '../index';
 
 const text = 'Hello, World';
 
@@ -14,6 +13,28 @@ describe('<Pane />', () => {
     expect(getByText(text)).toHaveStyleRule('background', 'blue');
   });
 });
+
+describe('<Block />', () => {
+  const sampleText = 'Hello World!';
+
+  it('shows content at specified screen size', () => {
+    const { getByText } = render(<Block showAt="md">{sampleText}</Block>);
+    window.innerWidth = 10;
+    expect(getByText(sampleText)).not.toBeVisible;
+
+    window.innerWidth = 2500;
+    expect(getByText(sampleText)).toBeVisible;
+  })
+
+  it('hides content at specified screen size', () => {
+    const { getByText } = render(<Block hideAt="sm">{sampleText}</Block>);
+    window.innerWidth = 10;
+    expect(getByText(sampleText)).not.toBeVisible;
+
+    window.innerWidth = 1400;
+    expect(getByText(sampleText)).not.toBeVisible;
+  })
+})
 
 describe('<Card />', () => {
   it('renders the background color of the variant provided', () => {

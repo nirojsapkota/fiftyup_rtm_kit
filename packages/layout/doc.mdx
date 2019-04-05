@@ -5,7 +5,7 @@ menu: Primitives
 ---
 
 import { Playground, PropsTable } from 'docz'
-import { Pane, Box, Card } from './src'
+import { Block, Pane, Box, Card } from './src'
 import { Header, Paragraph } from '../typography';
 import Icon from '../icon';
 import Button from '../button';
@@ -20,6 +20,17 @@ The primary purpose of a pane is to group layouts
 
 <Playground>
   <Pane>Hello World</Pane>
+</Playground>
+
+## Block
+
+Shows or hides content
+
+## Usage
+
+<Playground>
+  <Block showAt="md">I will be shown from medium width and up</Block>
+  <Block hideAt="md">I will hidden from medium width down</Block>
 </Playground>
 
 ## Card

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
 import FeatureTile, { FeatureRow, GroupedFeatureTiles } from '../index';
-import { dummyData } from '../../dummyData';
+import { dummyData } from '../fixtures/dummyData';
 
 describe('<FeatureTile />', () => {
   it('matches expected output', async () => {

@@ -1,30 +1,27 @@
 {
-  "name": "@rtm-ui/layout",
-  "version": "3.1.10",
-  "description": "Description for Layout",
-  "rtmRollup": {
-    "namespace": "layout",
-    "defaultExport": "Layout",
-    "namedExports": [
-      "Pane",
-      "Block",
-      "Box",
-      "Flex",
-      "Card"
-    ]
-  },
+  "name": "@rtm-ui/dashboard",
+  "version": "1.0.0",
+  "description": "Description for dashboard",
   "author": "RevTech Media",
   "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "dashboard",
+    "defaultExport": "Dashboard",
+    "namedExports": [
+    ]
+  },
   "main": "build/main.js",
-  "module": "build/module.js",
+  "module": "src/index.js",
   "_module": "src/index",
   "scripts": {
     "build": "node ../rtm-scripts/scripts/rollup",
     "test": "node ../rtm-scripts/scripts/test"
   },
   "dependencies": {
-    "@rebass/grid": "^6.0.0-4",
     "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/feature-tile": "file:../feature-tile",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/typography": "file:../typography",
     "@rtm-ui/theme": "file:../theme"
   },
   "peerDependencies": {

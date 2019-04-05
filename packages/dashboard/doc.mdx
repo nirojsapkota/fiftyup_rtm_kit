@@ -1,0 +1,22 @@
+---
+name: Dashboard
+route: /pages/dashboard
+menu: Pages
+---
+
+import { Playground, PropsTable } from 'docz'
+import DocWrapper from '../bootstrap/setup/docWrapper'
+import Dashboard from './src'
+import { dummyData } from './src/fixtures/dummyData';
+
+# Dashboard
+
+## Basic usage
+
+<DocWrapper>
+  <Dashboard {...dummyData} />
+</DocWrapper>
+
+## Props
+See sample data from the fixtures
+<PropsTable of={Dashboard} />
