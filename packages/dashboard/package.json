@@ -1,14 +1,13 @@
 {
   "name": "@rtm-ui/dashboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description for dashboard",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "dashboard",
     "defaultExport": "Dashboard",
-    "namedExports": [
-    ]
+    "namedExports": []
   },
   "main": "build/main.js",
   "module": "src/index.js",
@@ -21,8 +20,8 @@
     "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/feature-tile": "file:../feature-tile",
     "@rtm-ui/layout": "file:../layout",
-    "@rtm-ui/typography": "file:../typography",
-    "@rtm-ui/theme": "file:../theme"
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
     "prop-types": "15.x",
