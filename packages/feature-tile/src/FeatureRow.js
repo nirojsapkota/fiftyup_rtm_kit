@@ -74,7 +74,7 @@ export const FeatureRow = ({
   ctaText,
 }) => (
   <FeatureWrapper>
-    <Feature flexDirection={['column', 'column', 'initial']}>
+    <Feature flexDirection={['column', 'column', 'row']}>
       <ImgContainer width={[1, 1, '80%']}>
         <StyledImg src={image} alt="" />
       </ImgContainer>

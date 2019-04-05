@@ -19,7 +19,7 @@ export const ContentWrapper = styled(Box)`
   border: 1px solid;
 
   @media (max-width: 664px) {
-    justify-content: center
+    justify-content: center;
   }
 `;
 
@@ -31,9 +31,20 @@ const ImgContainer = styled.div`
 
 const StyledCardHeader = styled(Box)`
   background: ${({ theme }) => getColor('secondary', theme)};
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
   h6 {
     line-height: 1.5;
   }
+`;
+
+const StyledPendantPositioner = styled(PendantPositioner)`
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 const StyledPendant = styled(Pendant)`
@@ -52,13 +63,15 @@ const StyledCard = styled(Card)`
   height: 100%;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap-reverse;
   justify-content: space-between;
 `;
 
 const TileContentWrapper = styled(Box)`
   padding: 20px;
   flex: 1;
-`
+  flex-basis: auto;
+`;
 
 const FeatureTile = ({
   flagText,
@@ -70,28 +83,33 @@ const FeatureTile = ({
   ctaText,
 }) => (
   <StyledCard>
-    <Box>
+    <Box style={{ position: 'relative' }}>
       <StyledCardHeader>
         <Header tag="h6" align="center" weight="bold" color="inverseText">
           {headerText}
         </Header>
       </StyledCardHeader>
 
-      <PendantPositioner>
+      <StyledPendantPositioner>
         <ImgContainer>
           <Img src={image} alt="" />
         </ImgContainer>
         {flagText.length > 0 && (
           <StyledPendant color="secondary">{flagText}</StyledPendant>
         )}
-      </PendantPositioner>
+      </StyledPendantPositioner>
     </Box>
 
     <TileContentWrapper>
       <Header color="text" align="left" tag="h6">
         {titleText}
       </Header>
-      <Paragraph color="tertiary" align="left" py={[2, 3]} dangerousHTML={descriptionText} />
+      <Paragraph
+        color="tertiary"
+        align="left"
+        py={[2, 3]}
+        dangerousHTML={descriptionText}
+      />
     </TileContentWrapper>
     <Box p="20px">
       <Button
@@ -102,7 +120,7 @@ const FeatureTile = ({
         as="a"
         href={ctaLink}
       >
-      {ctaText}
+        {ctaText}
       </Button>
     </Box>
   </StyledCard>
@@ -115,19 +133,23 @@ const GroupedTilesWrapper = styled(Flex)`
   width: 100%;
 `;
 
-const GroupedFeatureTiles = ({featureTiles, ...props}) => (
-  <GroupedTilesWrapper justifyContent={['center', 'center', 'unset']} {...props}>
-    {featureTiles && featureTiles.map(featureTile => (
-      <Box
-        width={['auto', 'auto', 1 / 3, 1 / 4]}
-        style={{flexDirection: 'column', display: 'flex'}}
-        p={10}
-      >
-        <FeatureTile {...featureTile} />
-      </Box>
-    ))}
+const GroupedFeatureTiles = ({ featureTiles, ...props }) => (
+  <GroupedTilesWrapper
+    justifyContent={['center', 'center', 'unset']}
+    {...props}
+  >
+    {featureTiles &&
+      featureTiles.map(featureTile => (
+        <Box
+          width={['auto', 'auto', 1 / 3, 1 / 4]}
+          style={{ flexDirection: 'column', flexWrap: 'wrap-reverse' }}
+          p={10}
+        >
+          <FeatureTile {...featureTile} />
+        </Box>
+      ))}
   </GroupedTilesWrapper>
-)
+);
 
 const featureTileShape = {
   flagText: t.string,
