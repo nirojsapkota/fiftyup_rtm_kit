@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@1.3.2...@rtm-ui/feature-tile@1.3.3) (2019-04-05)
+
+
+### Bug Fixes
+
+* **FeatureTile:** CSS fix for IE and ios ([#82](https://github.com/OBSAU/rtm-kit/issues/82)) ([9d85f78](https://github.com/OBSAU/rtm-kit/commit/9d85f78)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
+
+
+
+
+
 ## [1.3.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@1.3.1...@rtm-ui/feature-tile@1.3.2) (2019-04-04)
 
 **Note:** Version bump only for package @rtm-ui/feature-tile
