@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@5.1.3...@rtm-ui/nav@5.1.4) (2019-04-17)
+
+
+### Bug Fixes
+
+* **FeatureRow:** Fix overlapping heading in hero section ([#87](https://github.com/OBSAU/rtm-kit/issues/87)) ([d03fc63](https://github.com/OBSAU/rtm-kit/commit/d03fc63)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
+
+
+
+
+
 ## [5.1.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@5.1.2...@rtm-ui/nav@5.1.3) (2019-04-05)
 
 **Note:** Version bump only for package @rtm-ui/nav
