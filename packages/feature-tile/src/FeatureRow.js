@@ -34,11 +34,12 @@ export const FeatureRowWrapper = styled(Box)`
 const ImgContainer = styled(Box)`
   display: flex
   justify-content: flex-end;
-  align-items: center;
+  align-items: baseline;
 `;
 
 const StyledImg = styled(Img)`
   justify-content: flex-end;
+  align-items: baseline;
 `
 
 const StyledCardHeader = styled(Box)`
@@ -56,10 +57,11 @@ const Feature = styled(Flex)`
 const FeatureWrapper = styled(Box)`
   display: flex;
   justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 const FeatureContent = styled(Box)`
-  padding-bottom: 20px;
   width: 350px;
   z-index: 9999;
 `;
