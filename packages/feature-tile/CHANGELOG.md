@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@1.3.5...@rtm-ui/feature-tile@1.3.6) (2019-04-17)
+
+
+### Bug Fixes
+
+* **FeatureRow:** Adjust spacing/alignments of items in the featurerow ([#88](https://github.com/OBSAU/rtm-kit/issues/88)) ([6ac5e7e](https://github.com/OBSAU/rtm-kit/commit/6ac5e7e)), closes [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
+
+
+
+
+
 ## [1.3.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@1.3.4...@rtm-ui/feature-tile@1.3.5) (2019-04-17)
 
 
