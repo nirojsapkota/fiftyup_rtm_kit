@@ -60,8 +60,8 @@ const FeatureWrapper = styled(Box)`
 
 const FeatureContent = styled(Box)`
   padding-bottom: 20px;
-  padding-top: 20px;
   width: 350px;
+  z-index: 9999;
 `;
 
 export const FeatureRow = ({

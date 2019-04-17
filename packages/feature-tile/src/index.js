@@ -31,7 +31,6 @@ const ImgContainer = styled.div`
 
 const StyledCardHeader = styled(Box)`
   background: ${({ theme }) => getColor('secondary', theme)};
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 9999;

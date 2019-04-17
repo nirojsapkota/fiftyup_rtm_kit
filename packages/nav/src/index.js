@@ -175,9 +175,9 @@ const Nav = props => {
       {props.subHeader && (
         <Box variant="c">
           <SubHeaderWrapper>
-            <Paragraph p="5px" pl="10px">
+            <Header tag="h6" p="5px" pl="10px" align="center" weight="bold">
               {props.subHeader}
-            </Paragraph>
+            </Header>
           </SubHeaderWrapper>
         </Box>
       )}
