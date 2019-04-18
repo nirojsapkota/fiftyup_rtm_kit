@@ -4,16 +4,25 @@ exports[`<Text /> matches expected output 1`] = `
 .c1 {
   box-sizing: border-box;
   padding: 10px;
-  background: #1566ad;
 }
 
 .c0 {
   font-family: MuseoSans;
   font-weight: 900;
-  line-height: 1.2;
   text-align: left;
-  color: #1566ad;
+  color: #ef8612;
   font-size: 32px;
+  line-height: 1.2;
+}
+
+.c0 sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.c0 sup {
+  vertical-align: super;
+  font-size: smaller;
 }
 
 .c0 strong {
@@ -23,18 +32,21 @@ exports[`<Text /> matches expected output 1`] = `
 @media (min-width:32em) {
   .c0 {
     font-size: 36px;
+    line-height: 1.2;
   }
 }
 
 @media (min-width:46em) {
   .c0 {
     font-size: 42px;
+    line-height: 1.2;
   }
 }
 
 @media (min-width:76em) {
   .c0 {
     font-size: 57px;
+    line-height: 1.2;
   }
 }
 
@@ -51,16 +63,25 @@ exports[`<Text /> matches expected output 2`] = `
 .c1 {
   box-sizing: border-box;
   padding: 10px;
-  background: #1566ad;
 }
 
 .c0 {
   font-family: MuseoSans;
   font-weight: 400;
-  line-height: 1.2;
   text-align: left;
-  color: #565656;
+  color: #ef8612;
   font-size: 16px;
+  line-height: 1.2;
+}
+
+.c0 sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.c0 sup {
+  vertical-align: super;
+  font-size: smaller;
 }
 
 .c0 strong {
@@ -70,18 +91,21 @@ exports[`<Text /> matches expected output 2`] = `
 @media (min-width:32em) {
   .c0 {
     font-size: 16px;
+    line-height: 1.2;
   }
 }
 
 @media (min-width:46em) {
   .c0 {
     font-size: 16px;
+    line-height: 1.2;
   }
 }
 
 @media (min-width:76em) {
   .c0 {
     font-size: 16px;
+    line-height: 1.2;
   }
 }
 
@@ -97,16 +121,25 @@ exports[`<Text /> matches expected output 3`] = `
 .c1 {
   box-sizing: border-box;
   padding: 10px;
-  background: #1566ad;
 }
 
 .c0 {
   font-family: MuseoSans;
   font-weight: 400;
-  line-height: 1.2;
   text-align: left;
-  color: #565656;
+  color: #ef8612;
   font-size: 12px;
+  line-height: 1.6;
+}
+
+.c0 sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.c0 sup {
+  vertical-align: super;
+  font-size: smaller;
 }
 
 .c0 strong {
@@ -116,18 +149,21 @@ exports[`<Text /> matches expected output 3`] = `
 @media (min-width:32em) {
   .c0 {
     font-size: 12px;
+    line-height: 1.6;
   }
 }
 
 @media (min-width:46em) {
   .c0 {
     font-size: 12px;
+    line-height: 1.6;
   }
 }
 
 @media (min-width:76em) {
   .c0 {
     font-size: 12px;
+    line-height: 1.6;
   }
 }
 
@@ -143,16 +179,25 @@ exports[`<Text /> matches expected output 4`] = `
 .c1 {
   box-sizing: border-box;
   padding: 10px;
-  background: #1566ad;
 }
 
 .c0 {
   font-family: MuseoSans;
   font-weight: 400;
-  line-height: 1.2;
   text-align: left;
-  color: #565656;
+  color: #ef8612;
   font-size: 14px;
+  line-height: 1.2;
+}
+
+.c0 sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.c0 sup {
+  vertical-align: super;
+  font-size: smaller;
 }
 
 .c0 strong {
@@ -162,18 +207,21 @@ exports[`<Text /> matches expected output 4`] = `
 @media (min-width:32em) {
   .c0 {
     font-size: 14px;
+    line-height: 1.2;
   }
 }
 
 @media (min-width:46em) {
   .c0 {
     font-size: 14px;
+    line-height: 1.2;
   }
 }
 
 @media (min-width:76em) {
   .c0 {
     font-size: 14px;
+    line-height: 1.2;
   }
 }
 

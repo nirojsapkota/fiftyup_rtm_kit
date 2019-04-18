@@ -8,6 +8,17 @@ const colorStyles = css`
   color: ${props => getColor(props.color || 'text', props.theme)};
 `;
 
+const subStyles = css`
+  sub {
+    vertical-align: sub;
+    font-size: smaller;
+  }
+  sup {
+    vertical-align: super;
+    font-size: smaller;
+  }
+`;
+
 const sizeChart = [
   {
     element: 'h1',
@@ -55,6 +66,17 @@ const sizeChart = [
   },
 ];
 
+const lineHeightChart = tag => {
+  switch (tag) {
+    case 'small':
+      return [1.6, 1.6, 1.6, 1.6];
+    case 'p':
+      return [1.2, 1.2, 1.2, 1.2];
+    default:
+      return [1.2, 1.2, 1.2, 1.2];
+  }
+};
+
 export const labelTextStyles = css`
   font-size: 13px;
   letter-spacing: 1px;
@@ -64,32 +86,36 @@ export const labelTextStyles = css`
   font-weight: 900;
 `;
 
-function headerFontSize(tag) {
+function displayByEachScreen(tag) {
   const { sizes } = sizeChart.find(({ element }) => element === tag);
-
+  const lineHeight = lineHeightChart(tag);
   return css`
     font-size: ${sizes[0]}px;
+    line-height: ${lineHeight[0]};
     @media (min-width: ${props => props.theme.grid.sm}em) {
       font-size: ${sizes[1]}px;
+      line-height: ${lineHeight[1]};
     }
     @media (min-width: ${props => props.theme.grid.md}em) {
       font-size: ${sizes[2]}px;
+      line-height: ${lineHeight[2]};
     }
     @media (min-width: ${props => props.theme.grid.lg}em) {
       font-size: ${sizes[3]}px;
+      line-height: ${lineHeight[3]};
     }
   `;
 }
 
-const headerStyles = css`
+const generalStyleForText = css`
   font-family: ${props =>
     props.font === 'serif'
       ? props.theme.fonts.serif
       : props.theme.fonts.sansSerif};
   font-weight: ${props => getWeight(props.weight)};
-  line-height: 1.2;
   text-align: ${props => props.align};
   ${colorStyles};
+  ${subStyles};
   strong {
     font-weight: bold;
   }
@@ -102,8 +128,8 @@ function createMarkup(html) {
 const H1 = styled(({ color, tag, weight, font, align, boxParams, ...rest }) => (
   <Box {...boxParams} {...rest} as={tag} />
 ))`
-  ${headerStyles};
-  ${rest => headerFontSize(rest.tag)};
+  ${generalStyleForText};
+  ${rest => displayByEachScreen(rest.tag)};
 `;
 
 export function Text({
@@ -154,7 +180,7 @@ export const alignmentProps = [
 ];
 
 Text.propTypes = {
-  tag: PropTypes.oneOf([...headerTags, 'p', 'small', 'a', 'label', 'input'])
+  tag: PropTypes.oneOf([...headerTags, ...primitiveTags])
     .isRequired,
   dangerousHTML: PropTypes.string,
   children: PropTypes.node,

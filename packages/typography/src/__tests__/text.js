@@ -1,19 +1,21 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
 import { Header, Paragraph, Label, Small } from '../index';
-import { weightProps, fontStyles, alignmentProps } from '../text';
+import { weightProps, fontStyles, alignmentProps, labelTextStyles } from '../text';
+import styled from 'styled-components';
 
 describe('<Text />', () => {
   [Header, Paragraph, Small, Label].map(Component => {
     // FIXME: output name of component in test
     it('matches expected output', () => {
       const { getByText } = render(
-        <Component variant="b" title="testing" p={10}>
+        <Component title="testing" p={10} color="accent">
           Hello, World!
         </Component>
       );
       expect(getByText('Hello, World!')).toBeInTheDocument();
       expect(getByText('Hello, World!')).toMatchSnapshot();
+      expect(getByText('Hello, World!')).toHaveStyleRule('color', '#ef8612');
     });
 
     it('provides box-styling when box props are provided', () => {
@@ -57,6 +59,14 @@ describe('<Text />', () => {
         fontStyleAssertions[index]
       );
     });
+  });
+
+  it('matchs the lableTextStyles', () => {
+    const LabelTextStyles = styled(Label)`
+      ${labelTextStyles};
+    `;
+    const { getByText } = render(<LabelTextStyles>Hello, World!</LabelTextStyles>);
+    expect(getByText('Hello, World!')).toHaveStyleRule('font-family', 'MuseoSans');
   });
 
   alignmentProps.map(alignment => {
