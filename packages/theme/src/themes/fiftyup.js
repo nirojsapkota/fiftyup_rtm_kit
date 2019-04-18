@@ -61,6 +61,22 @@ const baseVariants = {
     ...notices,
     ...iconColors,
   },
+  d: {
+    primary: '#00005e',
+    secondary: '#cacaca',
+    tertiary: '#1b1d39',
+    accent: '#f4b534',
+    accentAccent: '#bc8a23',
+    background: '#171831',
+    link: colors.lightest,
+    text: colors.white,
+    inverseText: colors.white,
+    linkHover: '#eab039',
+    shape: colors.darkBlue,
+    ...grayscale,
+    ...notices,
+    ...iconColors,
+  },
 };
 
 const variants = Object.assign(baseVariants, {
