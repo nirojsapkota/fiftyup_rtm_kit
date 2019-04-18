@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@3.1.7...@rtm-ui/theme@3.1.8) (2019-04-18)
+
+
+### Bug Fixes
+
+* **Theme:** Make themes consistent with OBS app themes ([#90](https://github.com/OBSAU/rtm-kit/issues/90)) ([9522dbb](https://github.com/OBSAU/rtm-kit/commit/9522dbb)), closes [#OB-2329](https://github.com/OBSAU/rtm-kit/issues/OB-2329) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327) [#OB-2327](https://github.com/OBSAU/rtm-kit/issues/OB-2327)
+
+
+
+
+
 ## [3.1.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@3.1.6...@rtm-ui/theme@3.1.7) (2019-04-04)
 
 **Note:** Version bump only for package @rtm-ui/theme
