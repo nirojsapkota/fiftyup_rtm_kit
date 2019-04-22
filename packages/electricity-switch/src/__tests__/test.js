@@ -1,26 +1,19 @@
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  wait,
-  act,
-} from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import {
   ConfirmHeader,
   Disclaimer,
   PlanDetails,
   ConfirmSwitch,
 } from '../index';
+import { dummyData } from '../__fixtures__/dummyData';
 
 describe('<ConfirmHeader />', () => {
   it('Matches content expected output', () => {
-    const { getByText } = render(
-      <ConfirmHeader
-        icon="light-bulb-obs"
-        confirmationHeader="<ul><li>Accept the terms and conditions</li></ul>"
-      />
-    );
-    expect(getByText('Accept the terms and conditions')).toBeInTheDocument();
+    const icon = dummyData.confirmHeaderProps.icon;
+    const header = dummyData.confirmHeaderProps.confirmationHeader;
+    const { getByText } = render(<ConfirmHeader icon={icon} confirmationHeader={header} />);
+    expect(getByText('Review your plan below')).toBeInTheDocument();
   });
   it('should render content match the props', () => {
     const { getByText } = render(
@@ -70,7 +63,12 @@ describe('<PlanDetails />', () => {
   it('Matches expected content output', () => {
     const { header, merchantLogo, plan } = planProps;
     const { getByText } = render(
-      <PlanDetails {...header} {...merchantLogo} orientation="vertical" {...plan}/>
+      <PlanDetails
+        {...header}
+        {...merchantLogo}
+        orientation="vertical"
+        plan={plan}
+      />
     );
     expect(getByText('You have selected this offer:')).toBeInTheDocument();
   });
@@ -79,9 +77,12 @@ describe('<PlanDetails />', () => {
     const { getByText, queryByText } = render(<PlanDetails {...planProps} />);
 
     expect(getByText('You have selected this offer:')).toBeInTheDocument();
-    expect(getByText('42% pay on time discount off Click Energy')).toBeInTheDocument();
-    expect(getByText('18% pay on time discount off Click Energy')).toBeInTheDocument();
-
+    expect(
+      getByText('42% pay on time discount off Click Energy')
+    ).toBeInTheDocument();
+    expect(
+      getByText('18% pay on time discount off Click Energy')
+    ).toBeInTheDocument();
   });
 });
 

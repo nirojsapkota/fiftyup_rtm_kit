@@ -7,49 +7,57 @@ import { Header, Paragraph } from '@rtm-ui/typography';
 
 const ItemHorizontal = styled(Box)`
   display: flex;
-  flex-direction: row-reverse;
-  align-items: flex-end;
-  padding: 20px;
-`;
-
-const ItemVertical = styled(Box)`
-  display: flex;
+  flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
+  vertical-algin: center;
 `;
 
+const BriefsContainer = ({ content }) => (
+  <React.Fragment>
+    {content.length > 0 && (
+      <Box py={10}>
+        {content.map(value => (
+          <Paragraph color="text" dangerousHTML={value} />
+        ))}
+      </Box>
+    )}
+  </React.Fragment>
+);
+
+const Logo = ({ url }) => (
+  <Box py={10} style={{ minWidth: '150px', maxWidth: '200px' }}>
+    <Img alt="Merchant logo" src={url || ''} />
+  </Box>
+);
+
+const HeaderTitle = ({ title }) => (
+  <Header py={10} tag="h4">
+    {title}
+  </Header>
+);
 const PlanDetails = ({ orientation, header, merchantLogo, plan }) => {
-  const Container = orientation === 'vertical' ? ItemVertical : ItemHorizontal;
+  let energyBriefs = [];
+  Object.values(plan).map(val => {
+    val ? energyBriefs.push(val) : null;
+  });
 
   return (
     <React.Fragment>
-      {orientation === 'horizontal' && (
-        <Header tag="h4" pl={20}>
-          {header}
-        </Header>
+      {orientation == 'horizontal' ? (
+        <Box>
+          <HeaderTitle title={header} />
+          <ItemHorizontal>
+            <BriefsContainer content={energyBriefs} />
+            <Logo url={merchantLogo} />
+          </ItemHorizontal>
+        </Box>
+      ) : (
+        <Box>
+          <Logo url={merchantLogo} />
+          <HeaderTitle title={header} />
+          <BriefsContainer content={energyBriefs} />
+        </Box>
       )}
-      <Container>
-        <Box style={{ minWidth: '150px' }}>
-          <Img alt="Merchant logo" src={merchantLogo || ''} />
-        </Box>
-        <Box pr={orientation === 'vertical' ? 0 : 10}>
-          {orientation === 'vertical' && (
-            <Header tag="h5" py={20}>
-              {header}
-            </Header>
-          )}
-          {plan && (
-            <Box px={[3, 2]}>
-            {plan.electricity_brief && (
-              <Paragraph color="text" dangerousHTML={plan.electricity_brief} />
-            )}
-            {plan.gas_brief && <Paragraph color="text" dangerousHTML={plan.gas_brief} />}
-          </Box>
-          )}
-          
-        </Box>
-      </Container>
     </React.Fragment>
   );
 };
@@ -62,7 +70,7 @@ PlanDetails.defaultProps = {
 PlanDetails.propTypes = {
   orientation: t.string.isRequired,
   header: t.string,
-  plan: t.shape({}),
+  plan: t.shape({}).isRequired,
   merchantLogo: t.string,
 };
 

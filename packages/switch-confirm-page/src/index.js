@@ -206,7 +206,7 @@ class ConfirmationWrapper extends React.Component {
         <DesktopView>
           <HeaderWrapper orientation="vertical" headerProps={res} />
           <HorizontalWrapper m="auto" py={30}>
-            <Box pr={3} style={{ flex: '0 0 50%' }}>
+            <Box pr={3} style={{ width: '50%' }}>
               <Box pl={3}>
                 <PlanDetails
                   orientation="vertical"
@@ -220,7 +220,7 @@ class ConfirmationWrapper extends React.Component {
                 footer={accordion.footNote}
               />
             </Box>
-            <Box>
+            <Box style={{ width: '50%' }}>
               <Disclaimer items={disclaimers} />
               <ConfirmSwitch
                 completeUrl={res.completeUrl}

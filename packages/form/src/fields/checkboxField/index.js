@@ -7,6 +7,7 @@ import BaseRadioCheckboxField from '../baseRadioCheckboxField';
 
 const IconContainer = styled(Box)`
   position: relative;
+  width: 22px;
 `;
 
 const AbsoluteIcon = styled(Box)`

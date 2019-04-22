@@ -63,7 +63,7 @@ export const dummyData = {
   
     merchant: {
       logoUrl:
-        'https://obs-development.s3.amazonaws.com/merchants/44/logo/original.png?1369355035',
+        'https://obs-development.s3.amazonaws.com/merchants/655/logo/original.png?1369354263',
       name: 'Simply Energy',
     },
   
@@ -79,8 +79,9 @@ export const dummyData = {
       {
         type: 'confirm',
         body: 'Welcome to react. this is a content of disclaimer box',
-        label: 'Yes, I agree',
+        label: "Yes, I agree",
       },
+
     ],
 
     plan: {
