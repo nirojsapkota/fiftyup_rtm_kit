@@ -1,0 +1,24 @@
+---
+name: Blurb
+route: /typography/blurb
+menu: Typography
+---
+
+import { Playground, PropsTable } from 'docz'
+import { Blurb } from '../src/index'
+
+# Blurb
+
+The `Blurb` component doesn't do much, it's sort of similar to the `Card` component in that it does very little but can help to reduce ad-hoc components. It's likely better to try and extends it's usage rather than to use `Header` and `Paragraph` elements directly.
+
+<Playground>
+  <div style={{maxWidth: '275px', margin: '0 auto'}}>
+      <Blurb right variant="b" serif header="Did you know?" />
+      <Blurb right variant="c" header="97 Members" body="have shopped around in your postcode this week!" />
+      <Blurb right header="264,245 Members" body="From Sydney have switch so far this year!" />
+  </div>
+</Playground>
+
+## PropTypes
+
+<PropsTable of={Blurb} />

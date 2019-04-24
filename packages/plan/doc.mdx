@@ -1,0 +1,27 @@
+---
+name: Plan
+route: /pages/plan
+menu: Pages
+---
+
+import { Playground, PropsTable } from 'docz'
+import Plan from './src'
+import planProps, { actions } from './src/__fixtures__/plans';
+import energyPlanProps from './src/__fixtures__/energyPlans';
+import DocWrapper from '../bootstrap/setup/docWrapper'
+
+# Plan
+
+<DocWrapper>
+  <Plan {...planProps} actions={[actions.get_started]} />
+</DocWrapper>
+
+## Energy Plan
+
+<DocWrapper>
+  <Plan {...energyPlanProps} />
+</DocWrapper>
+
+### Props
+
+<PropsTable of={Plan} />

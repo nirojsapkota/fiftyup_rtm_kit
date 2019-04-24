@@ -1,0 +1,34 @@
+{
+  "name": "@rtm-ui/plan",
+  "version": "1.0.0",
+  "description": "Description for plan",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "plan",
+    "defaultExport": "Plan",
+    "namedExports": [
+    ]
+  },
+  "main": "build/main.js",
+  "module": "build/module.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
+  },
+  "dependencies": {
+    "@rtm-ui/a": "file:../a",
+    "@rtm-ui/accordion": "file:../accordion",
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/list": "file:../list",
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/typography": "file:../typography"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}
