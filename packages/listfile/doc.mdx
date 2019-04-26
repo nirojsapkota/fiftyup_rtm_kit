@@ -1,0 +1,17 @@
+---
+name: Listfile
+route: /packages/listfile
+menu: Packages
+---
+
+import { Playground } from 'docz';
+import { Listfile } from './src';
+import { readFile, downloadFile } from './api.js';
+
+# Readfile
+
+## Basic usage
+
+<Playground>
+  <Listfile readFile={readFile} downloadFile={downloadFile} />
+</Playground>

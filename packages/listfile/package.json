@@ -1,0 +1,28 @@
+{
+  "name": "@rtm-ui/listfile",
+  "version": "1.0.0",
+  "description": "Description for listfile",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "listfile",
+    "namedExports": [
+      "Listfile"
+    ]
+  },
+  "main": "build/main.js",
+  "module": "build/module.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "node ../rtm-scripts/scripts/rollup",
+    "test": "node ../rtm-scripts/scripts/test"
+  },
+  "dependencies": {
+    "@rtm-ui/bootstrap": "file:../bootstrap"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}
