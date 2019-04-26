@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Paragraph } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
-import Button from '@rtm-ui/button';
+import { Button } from '@rtm-ui/button';
 
 import ClickToCall from './ClickToCall';
 import Share from './Share';

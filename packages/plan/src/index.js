@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Block } from '@rtm-ui/layout';
-import Img from '@rtm-ui/img';
+import { Img } from '@rtm-ui/img';
 import { Blurb } from '@rtm-ui/typography';
 import Sidebar from './Sidebar';
 import Cta from './Cta';
@@ -71,7 +71,7 @@ const ContentWrapper = styled(Box)`
   width: 100%;
 `;
 
-const Plan = ({
+export const Plan = ({
   authenticityToken,
   entity,
   plan,
@@ -128,8 +128,6 @@ const Plan = ({
     </StyledWrapper>
   );
 };
-
-export default Plan;
 
 PlanWrapper.propTypes = {
   children: PropTypes.node,

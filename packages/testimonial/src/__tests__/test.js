@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import Testimonial from '../index';
+import { Testimonial } from '../index';
 
-describe('<Testimonial />', async () => {
+describe('<Testimonial />', () => {
   const items = [
     {
       id: 1,
@@ -45,10 +45,8 @@ describe('<Testimonial />', async () => {
     });
   });
 
-  it('it can animate', async() => {
-    await render(
-      <Testimonial items={items} animate />
-    );
+  it('it can animate', async () => {
+    await render(<Testimonial items={items} animate />);
     expect(document.querySelector('.slider-mask')).toBeInTheDocument();
-  })
+  });
 });

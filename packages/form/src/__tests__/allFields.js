@@ -1,9 +1,9 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import Form, { StepForm, Accordion } from '../index';
-import Button from '@rtm-ui/button';
 import { Header } from '@rtm-ui/typography';
+import { Button } from '@rtm-ui/button';
+import { Form, StepForm, Accordion } from '../index';
 import { formInputs } from './fieldSetup';
 
 const mockSuccessResponse = ['2000, BARANGAROO'];
@@ -22,7 +22,7 @@ const fireSubmitEvent = (fireEvent, formId, { getByTestId }) => {
 };
 
 const fireFieldEvents = async (field, value, util) => {
-  const { queryByLabelText, getByLabelText } = util;
+  const { getByLabelText } = util;
   let input;
 
   if (field.type === 'radio' || field.type === 'checkbox') {
@@ -129,11 +129,11 @@ formInputs.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
   const validatorDescription =
     validator === 'mask' ? `${mask} mask` : validator;
 
-  describe(`For an input of type ${type} and ${validatorDescription} validator`, async () => {
+  describe(`For an input of type ${type} and ${validatorDescription} validator`, () => {
     const validEntries = Array.isArray(validEntry) ? validEntry : [validEntry];
     validEntries.map(valid => {
-      describe(`with valid input of ${valid.entry}`, async () => {
-        describe(`for regular forms`, async () => {
+      describe(`with valid input of ${valid.entry}`, () => {
+        describe(`for regular forms`, () => {
           const submitValidForm = async form => {
             const util = await setup(form);
             await fireEvents(valid.entry, form, util);
@@ -182,15 +182,8 @@ formInputs.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
       ? invalidEntry
       : [invalidEntry];
     invalidEntries.map(invalid => {
-      describe(`with invalid input of ${invalid.entry}`, async () => {
-        describe(`for regular forms`, async () => {
-          const submitValidForm = async form => {
-            const util = await setup(form);
-            await fireEvents(invalid.entry, form, util);
-
-            return util;
-          };
-
+      describe(`with invalid input of ${invalid.entry}`, () => {
+        describe(`for regular forms`, () => {
           it(`does not call submit and shows an error`, async () => {
             const handleSubmit = jest.fn(value => value);
             const handleSuccess = jest.fn();
@@ -227,11 +220,11 @@ firstForm.map(({ valid: validEntry, invalid: invalidEntry = [], form }) => {
   const validatorDescription =
     validator === 'mask' ? `${mask} mask` : validator;
 
-  describe(`For an input of type ${type} and ${validatorDescription} validator`, async () => {
+  describe(`For an input of type ${type} and ${validatorDescription} validator`, () => {
     const validEntries = Array.isArray(validEntry) ? validEntry : [validEntry];
     validEntries.map(valid => {
-      describe(`with valid input of ${valid.entry}`, async () => {
-        describe(`for step forms`, async () => {
+      describe(`with valid input of ${valid.entry}`, () => {
+        describe(`for step forms`, () => {
           it(`calls the success handlers`, async () => {
             const handleSubmit = jest.fn(fields => fields);
             const handleEachSuccess = jest.fn();

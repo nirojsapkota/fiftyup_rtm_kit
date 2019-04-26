@@ -9,7 +9,7 @@
     },
     "publish": {
       "registry": "https://repo.revtech.media/dev/registry/",
-      "allowBranch": "master",
+      "allowBranch": "*/*",
       "conventionalCommits": true,
       "verifyAccess": false,
       "ignoreChanges": [

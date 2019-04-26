@@ -3,8 +3,8 @@ import t from 'prop-types';
 import styled from 'styled-components';
 import { Box, Flex } from '@rtm-ui/layout';
 import { Header, Paragraph } from '@rtm-ui/typography';
-import Button from '@rtm-ui/button';
-import Img from '@rtm-ui/img';
+import { Button } from '@rtm-ui/button';
+import { Img } from '@rtm-ui/img';
 import { getColor } from '@rtm-ui/theme';
 
 const StyledInnerFlex = styled(Flex)`
@@ -32,7 +32,7 @@ export const FeatureRowWrapper = styled(Box)`
 `;
 
 const ImgContainer = styled(Box)`
-  display: flex
+  display: flex;
   justify-content: flex-end;
   align-items: baseline;
 `;
@@ -40,7 +40,7 @@ const ImgContainer = styled(Box)`
 const StyledImg = styled(Img)`
   justify-content: flex-end;
   align-items: baseline;
-`
+`;
 
 const StyledCardHeader = styled(Box)`
   background: ${({ theme }) => getColor('secondary', theme)};
@@ -93,7 +93,12 @@ export const FeatureRow = ({
           <Header color="text" align="left" tag="h6">
             {titleText}
           </Header>
-          <Paragraph color="tertiary" align="left" mb="10px" dangerousHTML={descriptionText} />
+          <Paragraph
+            color="tertiary"
+            align="left"
+            mb="10px"
+            dangerousHTML={descriptionText}
+          />
           <Button
             width="100%"
             color="accent"

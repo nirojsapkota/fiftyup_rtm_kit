@@ -6,22 +6,26 @@
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "form",
-    "defaultExport": "Form",
     "namedExports": [
-      "StepForm"
+      "Accordion",
+      "Form",
+      "StepForm",
+      "FormError",
+      "getFormValues"
     ]
   },
-  "main": "build/main.js",
-  "module": "build/module.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "_module": "src/index",
   "scripts": {
-    "build": "node ../rtm-scripts/scripts/rollup",
-    "test": "node ../rtm-scripts/scripts/test"
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
     "@rtm-ui/button": "file:../button",
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/typography": "file:../typography",
     "date-fns": "^1.30.1",
     "formik": "^1.4.1",

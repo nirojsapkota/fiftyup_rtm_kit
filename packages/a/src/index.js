@@ -10,7 +10,7 @@ const TextStyle = styled(Text)`
   text-decoration: none;
   font-weight: ${props => (props.weight ? getWeight(props.weight) : 400)};
   color: ${props => getColor(props.color || 'link', props.theme)};
-  &:hover{
+  &:hover {
     color: ${props => getColor('linkHover', props.theme)};
     cursor: pointer;
   }
@@ -29,12 +29,12 @@ const A = ({ track, onClick, ...props }) => {
 };
 
 A.defaultProps = {
-  tag: 'a'
-}
+  tag: 'a',
+};
 
 A.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
 };
 
-export default A;
+export { A };

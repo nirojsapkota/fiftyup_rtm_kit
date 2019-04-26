@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import A from '../index';
+import { A } from '../index';
 
 afterEach(cleanup);
 

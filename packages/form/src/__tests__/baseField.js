@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import Form from '../index';
+import { Form } from '../index';
 import { getFieldProps } from './fieldSetup';
 
 const form = {
@@ -9,8 +9,8 @@ const form = {
   fields: [getFieldProps('email')],
 };
 
-describe(`<BaseField />`, async () => {
-  describe(`with an error`, async () => {
+describe(`<BaseField />`, () => {
+  describe(`with an error`, () => {
     it(`can mutate fields from the submit handler`, async () => {
       const handleSubmit = jest.fn(fields => {
         return [{ ...fields[0], disabled: 'disabled' }];

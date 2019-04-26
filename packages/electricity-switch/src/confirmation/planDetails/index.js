@@ -2,14 +2,14 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Img from '@rtm-ui/img';
+import { Img } from '@rtm-ui/img';
 import { Header, Paragraph } from '@rtm-ui/typography';
 
 const ItemHorizontal = styled(Box)`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  vertical-algin: center;
+  vertical-align: center;
 `;
 
 const BriefsContainer = ({ content }) => (
@@ -43,7 +43,7 @@ const PlanDetails = ({ orientation, header, merchantLogo, plan }) => {
 
   return (
     <React.Fragment>
-      {orientation == 'horizontal' ? (
+      {orientation === 'horizontal' ? (
         <Box>
           <HeaderTitle title={header} />
           <ItemHorizontal>

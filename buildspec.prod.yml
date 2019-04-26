@@ -19,7 +19,7 @@ phases:
       - npm set always-auth true
       - npm set unsafe-perm true
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
-      - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+      - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
@@ -29,6 +29,7 @@ phases:
   build:
     commands:
       - lerna run build --parallel
+      - npm run copy:builds # this copies the build files and places in the dist/ folder for the component CDN
   post_build:
     commands:
       - npm run test

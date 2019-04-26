@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TrackingProvider } from '@rtm-ui/tracker';
-import Button, { ButtonGroup } from '../../button/src';
+import { Button, ButtonGroup } from '../../button/src';
 import { Logo } from '../../icon/src';
-import Bootstrap from '../src';
+import { Bootstrap } from '../src';
 import { useLocalStorage } from './useLocalStorage';
-import DocWrapper from './docWrapper';
+import { DocWrapper } from './docWrapper';
 
 // This is used by jest and Docz
 const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
@@ -73,4 +73,6 @@ TestBootstrap.propTypes = {
   children: PropTypes.node,
 };
 
+export { TestBootstrap };
+// Docz needs a default export
 export default TestBootstrap;

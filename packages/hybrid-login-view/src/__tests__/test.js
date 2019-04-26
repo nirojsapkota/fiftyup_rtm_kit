@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import HybridLoginView from '../index';
+import { HybridLoginView } from '../index';
 
 import hybridLoginViewProps from '../__fixtures__/hybridLoginView';
 

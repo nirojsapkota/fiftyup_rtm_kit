@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from '@rtm-ui/button';
+import { Button } from '@rtm-ui/button';
 import { Header, Paragraph, Small } from '@rtm-ui/typography';
 import { Block, Box } from '@rtm-ui/layout';
-import Img from '@rtm-ui/img';
-import List from '@rtm-ui/list';
-import A from '@rtm-ui/a';
-import Variant from '@rtm-ui/theme';
-import Accordion from '@rtm-ui/accordion';
+import { Img } from '@rtm-ui/img';
+import { List } from '@rtm-ui/list';
+import { A } from '@rtm-ui/a';
+import { Theme as Variant } from '@rtm-ui/theme';
+import { Accordion } from '@rtm-ui/accordion';
 import { Share } from './Action';
 
 // FIXME: Add CallbackFormDialog and add more unit test later
@@ -58,16 +58,15 @@ const ActionButton = ({
         {callAction.cta}
       </Button>
     )}
-    {callbackAction &&
-      !callAction && (
-        <CallbackFormDialog
-          authenticityToken={authenticityToken}
-          campaignId={campaignId}
-          entity={entity}
-          {...callbackFormProps}
-          {...callbackAction}
-        />
-      )}
+    {callbackAction && !callAction && (
+      <CallbackFormDialog
+        authenticityToken={authenticityToken}
+        campaignId={campaignId}
+        entity={entity}
+        {...callbackFormProps}
+        {...callbackAction}
+      />
+    )}
   </React.Fragment>
 );
 
@@ -87,17 +86,16 @@ const ActionImage = ({
         <Img src={src} alt={main_header_text} />
       </A>
     )}
-    {callbackAction &&
-      !callAction && (
-        <CallbackFormDialog
-          authenticityToken={authenticityToken}
-          campaignId={campaignId}
-          entity={entity}
-          {...callbackFormProps}
-          {...callbackAction}
-          cta={<Img src={src} alt={main_header_text} />}
-        />
-      )}
+    {callbackAction && !callAction && (
+      <CallbackFormDialog
+        authenticityToken={authenticityToken}
+        campaignId={campaignId}
+        entity={entity}
+        {...callbackFormProps}
+        {...callbackAction}
+        cta={<Img src={src} alt={main_header_text} />}
+      />
+    )}
   </React.Fragment>
 );
 

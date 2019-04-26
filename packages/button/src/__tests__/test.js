@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import Button, { ButtonGroup } from '../index';
+import { Button, ButtonGroup } from '../index';
 
 afterEach(cleanup);
 
@@ -16,19 +16,18 @@ jest.mock('@rtm-ui/tracker', () => {
 
 describe(`<Button />`, () => {
   it(`renders welcome message`, () => {
-    const { getByText, container } = render(<Button>Welcome to React</Button>);
+    const { getByText } = render(<Button>Welcome to React</Button>);
 
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
     // expect(container).toMatchSnapshot();
   });
 
   it(`renders welcome a secondary color`, () => {
-    const { getByText, container } = render(
+    const { getByText } = render(
       <Button secondary>Welcome to React</Button>
     );
 
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
-    // expect(container).toMatchSnapshot();
   });
 
   it(`renders welcome as a block`, () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 // eslint-disable-next-line
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import Nav from '../index';
-import Button from '@rtm-ui/button';
+import { Nav } from '../index';
+import { Button } from '@rtm-ui/button';
 
 const setup = async props => {
   return render(

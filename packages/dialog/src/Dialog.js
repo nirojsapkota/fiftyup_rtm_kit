@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import Button from '@rtm-ui/button';
-import { Box, Card } from '@rtm-ui/layout'
-import { Header } from '@rtm-ui/typography'
-import Icon from '@rtm-ui/icon';
+import { Button } from '@rtm-ui/button';
+import { Box, Card } from '@rtm-ui/layout';
+import { Header } from '@rtm-ui/typography';
+import { Icon } from '@rtm-ui/icon';
 import Modal from './Modal';
 
 const CloseDialogWrapper = styled(Box)`
@@ -29,11 +28,11 @@ class Dialog extends React.Component {
 
   close() {
     this.setState({ isOpen: false });
-  };
+  }
 
   open() {
     this.setState({ isOpen: true });
-  };
+  }
 
   render() {
     return (
@@ -44,12 +43,13 @@ class Dialog extends React.Component {
             <Card>
               <CloseDialogWrapper>
                 <Button asWrapper onClick={this.close}>
-                  <Header weight='normal' color='text' tag='h6' align="right">
-                    Close<Icon center glyph='view-close' />
+                  <Header weight="normal" color="text" tag="h6" align="right">
+                    Close
+                    <Icon center glyph="view-close" />
                   </Header>
                 </Button>
               </CloseDialogWrapper>
-              { this.props.renderContainer({triggerClose: this.close}) }
+              {this.props.renderContainer({ triggerClose: this.close })}
             </Card>
           </Modal>
         )}
@@ -59,10 +59,10 @@ class Dialog extends React.Component {
 }
 
 Dialog.defaultProps = {
-  renderTrigger: (open) => {
-    return <Button onClick={open}>Show Dialog</Button>
-  }
-}
+  renderTrigger: open => {
+    return <Button onClick={open}>Show Dialog</Button>;
+  },
+};
 
 Dialog.propTypes = {
   renderContainer: PropTypes.func,

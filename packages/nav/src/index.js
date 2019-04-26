@@ -3,12 +3,12 @@ import styled, { ThemeContext } from 'styled-components';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Box, Pane } from '@rtm-ui/layout';
-import Icon, { Logo } from '@rtm-ui/icon';
-import Button from '@rtm-ui/button';
-import A from '@rtm-ui/a';
+import { Icon, Logo } from '@rtm-ui/icon';
+import { Button } from '@rtm-ui/button';
+import { A } from '@rtm-ui/a';
 import { Header, Small, Paragraph } from '@rtm-ui/typography';
-import Sheet from './sheet';
 import { useWindowSize } from './useWindowSize';
+import Sheet from './sheet';
 
 const NavA = styled(A)`
   white-space: pre;
@@ -220,5 +220,4 @@ Navbar.propTypes = {
   onNavClick: PropTypes.func,
 };
 
-export { Sheet };
-export default Nav;
+export { Nav };

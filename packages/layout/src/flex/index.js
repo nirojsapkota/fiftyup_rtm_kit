@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Flex as GridFlex } from '@rebass/grid';
-import Variant, { getColor, backgroundStyle } from '@rtm-ui/theme';
+import { Theme as Variant, getColor, backgroundStyle } from '@rtm-ui/theme';
 
 const Wrapper = styled(GridFlex)`
   ${props => props.showBackground && backgroundStyle};

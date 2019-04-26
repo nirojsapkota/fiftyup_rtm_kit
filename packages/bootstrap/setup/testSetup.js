@@ -7,7 +7,6 @@ import 'jest-styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { render } from 'react-testing-library';
 import React from 'react';
-import { obs, fuc, ninesaver, setIn } from '@rtm-ui/theme';
 import TestBootstrap from './docSetup';
 
 const bootstrapRender = (

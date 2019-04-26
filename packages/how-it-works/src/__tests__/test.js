@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import HowItWorks from '../index';
+import { HowItWorks } from '../index';
 
 describe('<HowItWork />', () => {
   it('matches expected snapshot', () => {
@@ -22,7 +22,7 @@ describe('<HowItWork />', () => {
         },
       ],
     };
-    const { getByText, container } = render(<HowItWorks {...defaultProps}/>);
+    const { getByText } = render(<HowItWorks {...defaultProps} />);
 
     expect(getByText(defaultProps.header)).toBeInTheDocument();
     expect(getByText(defaultProps.icons[0].title)).toBeInTheDocument();

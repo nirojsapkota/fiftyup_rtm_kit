@@ -1,6 +1,0 @@
-packages/**/build/**/*.js
-packages/**/coverage
-packages/**/*.md
-packages/**/node_modules/*.js
-packages/rtm-scripts/**/**/*.js
-templates/plopfile.js

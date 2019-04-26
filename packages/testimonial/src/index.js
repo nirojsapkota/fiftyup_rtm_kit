@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Animate from '@rtm-ui/animate';
+import { Animate } from '@rtm-ui/animate';
 import { Box } from '@rtm-ui/layout';
 import { backgroundStyle } from '@rtm-ui/theme';
-import Img from '@rtm-ui/img';
+import { Img } from '@rtm-ui/img';
 import { Header, Paragraph } from '@rtm-ui/typography';
 
 const Wrapper = styled(Box)`
@@ -23,9 +23,7 @@ const ImgStyle = styled(Img)`
 
 const Item = ({ item, align }) => (
   <Box key={item.author} py="10px">
-    <Paragraph align={align}>
-      {item.body}
-    </Paragraph>
+    <Paragraph align={align}>{item.body}</Paragraph>
     <Flex alignItems="center">
       {item.selfie && (
         <ImgStyle shape="circle" mr={2} src={item.selfie} alt={item.author} />
@@ -66,4 +64,4 @@ Testimonial.propTypes = {
   align: PropTypes.oneOf(['left', 'center', 'right']),
 };
 
-export default Testimonial;
+export { Testimonial };

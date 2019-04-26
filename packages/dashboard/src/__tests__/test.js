@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import Dashboard from '../index';
+import { Dashboard } from '../index';
 import { dummyData } from '../fixtures/dummyData';
 
 describe('<Dashboard />', () => {
@@ -19,7 +19,6 @@ describe('<Dashboard />', () => {
       expect(getByText(tile.flagText)).toBeInTheDocument();
       expect(getByText(tile.ctaText)).toBeInTheDocument();
       expect(getByText(tile.titleText)).toBeInTheDocument();
-    })
-
+    });
   });
-})
+});

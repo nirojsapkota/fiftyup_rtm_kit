@@ -6,17 +6,18 @@
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "a",
-    "defaultExport": "A",
-    "namedExports": []
+    "namedExports": [
+      "A"
+    ]
   },
-  "main": "build/main.js",
-  "module": "build/module.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "_module": "src/index",
   "scripts": {
     "start": "node ../rtm-scripts/scripts/start",
-    "build": "node ../rtm-scripts/scripts/rollup",
+    "build": "rtm-scripts rollup --f umd",
     "prepare": "node ../rtm-scripts/scripts/rollup",
-    "test": "node ../rtm-scripts/scripts/test"
+    "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",

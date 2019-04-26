@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import Icon, { ICONS, Logo } from '../index';
+import { Icon, ICONS, Logo } from '../index';
 import { Box } from '../../../layout/src';
 
 describe('<Icon />', () => {

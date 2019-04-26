@@ -12,7 +12,9 @@ describe('<ConfirmHeader />', () => {
   it('Matches content expected output', () => {
     const icon = dummyData.confirmHeaderProps.icon;
     const header = dummyData.confirmHeaderProps.confirmationHeader;
-    const { getByText } = render(<ConfirmHeader icon={icon} confirmationHeader={header} />);
+    const { getByText } = render(
+      <ConfirmHeader icon={icon} confirmationHeader={header} />
+    );
     expect(getByText('Review your plan below')).toBeInTheDocument();
   });
   it('should render content match the props', () => {
@@ -74,7 +76,7 @@ describe('<PlanDetails />', () => {
   });
 
   it('should render content match the props', () => {
-    const { getByText, queryByText } = render(<PlanDetails {...planProps} />);
+    const { getByText } = render(<PlanDetails {...planProps} />);
 
     expect(getByText('You have selected this offer:')).toBeInTheDocument();
     expect(
@@ -113,7 +115,7 @@ describe('<ConfirmSwitch/>', () => {
   it('Form should submit to server', async () => {
     const handleSubmit = jest.fn();
 
-    const { getByText, container } = render(
+    const { getByText } = render(
       <ConfirmSwitch {...props} handleSubmit={handleSubmit} />
     );
     const ckHeading1 = getByText('heading 1');
@@ -131,7 +133,6 @@ describe('<ConfirmSwitch/>', () => {
   it('Form does not submit when invalid', () => {
     const { getByText } = render(<ConfirmSwitch {...props} />);
     const ckHeading1 = getByText('heading 1');
-    const ckHeading2 = getByText('heading 2');
     const submit = getByText('Switch Now');
     fireEvent.click(ckHeading1);
     fireEvent.click(submit);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import SwitchConfirmPage from '../index';
+import { SwitchConfirmPage } from '../index';
 import { dummyData } from '../__fixtures__/dummyData';
 
 describe('<SwitchConfirmPage />', () => {
@@ -43,8 +43,6 @@ describe('<SwitchConfirmPage />', () => {
     fireEvent.click(btnSubmit);
     await wait(() => {
       expect(queryByText('Please select an option')).not.toBeInTheDocument();
-    })
-    
+    });
   });
 });
-

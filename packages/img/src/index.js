@@ -50,4 +50,4 @@ Img.propTypes = {
   height: PropTypes.number,
 };
 
-export default Img;
+export { Img };

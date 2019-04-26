@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, Pane } from '@rtm-ui/layout';
 import { Header } from '@rtm-ui/typography';
 import { getColor } from '@rtm-ui/theme';
-import Icon from '@rtm-ui/icon';
+import { Icon } from '@rtm-ui/icon';
 
 const A = styled.a`
   cursor: pointer;

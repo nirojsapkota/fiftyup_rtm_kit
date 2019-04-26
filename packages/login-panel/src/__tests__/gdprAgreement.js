@@ -33,7 +33,7 @@ describe(`<GdprAgreement/>`, () => {
   };
 
   it(`renders Gdpr link confirmation`, () => {
-    const { getByText, container } = render(<GdprAgreement {...props} />);
+    const { getByText, } = render(<GdprAgreement {...props} />);
     const elConfirmationOfconsent = getByText(props.confirmationOfConsent.text);
     const elTermsCondition = getByText(props.termsAndConditions.text);
     const elPrivacyPolicy = getByText(props.privacyPolicy.text);
@@ -41,7 +41,6 @@ describe(`<GdprAgreement/>`, () => {
     expect(elConfirmationOfconsent).toBeInTheDocument();
     expect(elTermsCondition).toBeInTheDocument();
     expect(elPrivacyPolicy).toBeInTheDocument();
-    // expect(container).toMatchSnapshot();
   });
 
   it('renders checkbox event tracking', () => {

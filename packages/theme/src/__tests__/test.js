@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-dom/extend-expect';
 import { render } from 'react-testing-library';
-import Theme, { BootstrapTheme } from '../index';
+import { Theme, BootstrapTheme } from '../index';
 import { obs, fuc, ninesaver } from '../themes';
 import { getColor, setIn, getWeight } from '../util';
 import { MockWrapper } from '../__mocks__/backgroundExample';
@@ -89,12 +89,12 @@ describe('getColor', () => {
 
 describe('getWeight', () => {
   it('gets the weight specified from the mapping', () => {
-    expect(getWeight('thin')).toBe('100')
-    expect(getWeight('normal')).toBe('400')
-    expect(getWeight('bold')).toBe('900')
-  })
+    expect(getWeight('thin')).toBe('100');
+    expect(getWeight('normal')).toBe('400');
+    expect(getWeight('bold')).toBe('900');
+  });
 
   it('defaults to 400', () => {
-    expect(getWeight('unknownKey')).toBe('400')
-  })
-})
+    expect(getWeight('unknownKey')).toBe('400');
+  });
+});

@@ -15,15 +15,13 @@ phases:
       - npm set always-auth true
       - npm set unsafe-perm true
       - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
-      - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
-      - mkdir ./aws/tmp
-      - cd ./aws/GithubDocumentationFunction/ && npm install
-      - zip -r ../tmp/GithubDocumentationFunction.zip . && cd ../../
-      - aws lambda update-function-code --function-name GithubDocumentationFunction --zip-file fileb://./aws/tmp/GithubDocumentationFunction.zip --publish
+      - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
 
   pre_build:
     commands:
       - npm install
+      - npm run zip
+      - aws lambda update-function-code --function-name GithubDocumentationFunction --zip-file fileb://./aws/GithubDocumentationFunction.zip --publish
       - lerna bootstrap --no-ci
       - lerna run build --parallel
   build:
@@ -32,6 +30,7 @@ phases:
       - echo $DOCZ_BASE
       - npm run test
       - npm run build
+      - npm run copy:builds
   post_build:
     commands:
       - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi

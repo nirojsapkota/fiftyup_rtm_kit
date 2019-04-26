@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Variant, { backgroundStyle, getColor } from '@rtm-ui/theme';
+import { Theme as Variant, backgroundStyle, getColor } from '@rtm-ui/theme';
 import Header from './header';
 import Paragraph from './paragraph';
 

@@ -5,6 +5,7 @@ build
 .DS_Store
 .docz
 dist
+aws/GithubDocumentationFunction.zip
 packages/*/package-lock.json
 packages/*/coverage
 packages/*/build

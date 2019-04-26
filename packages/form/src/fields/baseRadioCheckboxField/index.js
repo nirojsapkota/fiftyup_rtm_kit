@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Label } from '@rtm-ui/typography';
-import Button, { ButtonGroup } from '@rtm-ui/button';
+import { Button, ButtonGroup } from '@rtm-ui/button';
 import { focusStyle } from '../textField';
 
 const StyledButton = styled(Button)`

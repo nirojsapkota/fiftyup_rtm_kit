@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Paragraph, Small } from '../src';
+import { Header, Small } from '../src';
 import { headerTags, weightProps, fontStyles } from '../src/text';
 
 export function GeneratedStyles() {

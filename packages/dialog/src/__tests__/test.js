@@ -1,11 +1,11 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
-import Dialog from '../index';
-import Button from '../../../button';
+import { Dialog } from '../index';
+import { Button } from '../../../button';
 
-const triggerFn = jest.fn((open) => {
-  return <Button onClick={open}>Dialog Trigger</Button>
+const triggerFn = jest.fn(open => {
+  return <Button onClick={open}>Dialog Trigger</Button>;
 });
 
 describe('<Dialog />', () => {
@@ -14,9 +14,9 @@ describe('<Dialog />', () => {
       renderTrigger: triggerFn,
       // eslint-disable-next-line react/prop-types
       renderContainer: () => {
-        return <div>Hello World!</div>
-      }
-    }
+        return <div>Hello World!</div>;
+      },
+    };
 
     const { getByText } = render(<Dialog {...props} />);
     const dialogTrigger = getByText('Dialog Trigger');
@@ -38,14 +38,13 @@ describe('<Dialog />', () => {
     const props = {
       // eslint-disable-next-line react/prop-types
       renderContainer: () => {
-        return <div>Hello World!</div>
-      }
-    }
+        return <div>Hello World!</div>;
+      },
+    };
 
     const { getByText } = render(<Dialog {...props} />);
     const dialogTrigger = getByText('Show Dialog');
 
     expect(dialogTrigger).toBeInTheDocument();
-  })
-
-})
+  });
+});

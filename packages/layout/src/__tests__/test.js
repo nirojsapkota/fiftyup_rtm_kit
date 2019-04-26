@@ -24,7 +24,7 @@ describe('<Block />', () => {
 
     window.innerWidth = 2500;
     expect(getByText(sampleText)).toBeVisible;
-  })
+  });
 
   it('hides content at specified screen size', () => {
     const { getByText } = render(<Block hideAt="sm">{sampleText}</Block>);
@@ -33,8 +33,8 @@ describe('<Block />', () => {
 
     window.innerWidth = 1400;
     expect(getByText(sampleText)).not.toBeVisible;
-  })
-})
+  });
+});
 
 describe('<Card />', () => {
   it('renders the background color of the variant provided', () => {

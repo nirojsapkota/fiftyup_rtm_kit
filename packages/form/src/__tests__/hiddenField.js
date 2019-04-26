@@ -1,9 +1,9 @@
 import React from 'react';
 // eslint-disable-next-line import/named
-import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import Form from '../index';
+import { render } from '../../../bootstrap/setup/testSetup';
+import { Form } from '../index';
 
-describe(`<HiddenField />`, async () => {
+describe(`<HiddenField />`, () => {
   it(`matches expected output`, async () => {
     const handleSubmit = jest.fn();
     const { getByValue } = render(

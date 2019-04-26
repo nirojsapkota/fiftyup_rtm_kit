@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
-import Accordion from '../index';
+import { Accordion } from '../index';
 
 describe('<Accordion/>', () => {
   const props = {
@@ -35,7 +35,7 @@ describe('<Accordion/>', () => {
   });
 
   it('calls onClick to display content', () => {
-    const { getByText, container } = render(
+    const { getByText } = render(
       <Accordion
         {...props}
         renderItem={item => {
@@ -76,13 +76,12 @@ describe('<Accordion/>', () => {
         }}
       />
     );
-    const headingText = getByText('Heading 1');
     expect(getByText('Welcome to react')).toBeInTheDocument();
     expect(getByText('Title item 1')).toBeInTheDocument();
   });
 
   it('Double click on header tab to hidden the content', () => {
-    const firstItem = props.items[0]
+    const firstItem = props.items[0];
     const { queryByText, getByText } = render(
       <Accordion
         {...props}

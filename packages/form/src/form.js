@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { Small } from '@rtm-ui/typography';
-import Button from '@rtm-ui/button';
+import { Button } from '@rtm-ui/button';
 import BaseField from './fields/baseField';
 import { setupForm, getFieldErrors } from './util/helpers';
 import { FormContext } from './formContext';
@@ -63,7 +63,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
   };
 
   // Pass these values straight through with no submission
-  React.useEffect(function() {
+  React.useEffect(function () {
     if (props.passThru) {
       validationSchema.isValid(initialValues).then(valid => {
         if (valid) {
@@ -123,30 +123,30 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
             {typeof props.renderFooter === 'function'
               ? props.renderFooter({ formError: serverErrors.formError })
               : props.renderFooter || (
-                  <FooterBox>
-                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                      <Box
-                        mb={10}
-                        style={{ display: 'flex', alignSelf: 'flex-end' }}
-                      >
-                        <Button data-testid={`submit-${id}`} type="submit">
-                          Submit
+                <FooterBox>
+                  <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Box
+                      mb={10}
+                      style={{ display: 'flex', alignSelf: 'flex-end' }}
+                    >
+                      <Button data-testid={`submit-${id}`} type="submit">
+                        Submit
                         </Button>
-                      </Box>
-                      <Box
-                        style={{
-                          height: '12px',
-                          display: 'flex',
-                          alignSelf: 'flex-end',
-                        }}
-                      >
-                        <Small align="left" color="error">
-                          {serverErrors.formError}
-                        </Small>
-                      </Box>
                     </Box>
-                  </FooterBox>
-                )}
+                    <Box
+                      style={{
+                        height: '12px',
+                        display: 'flex',
+                        alignSelf: 'flex-end',
+                      }}
+                    >
+                      <Small align="left" color="error">
+                        {serverErrors.formError}
+                      </Small>
+                    </Box>
+                  </Box>
+                </FooterBox>
+              )}
           </form>
         );
       }}

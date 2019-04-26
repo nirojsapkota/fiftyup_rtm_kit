@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { Card } from '../layout/src';
 import { Header, Paragraph, Small } from '../typography/src';
-import Button, { ButtonGroup } from '../button/src';
+import { Button, ButtonGroup } from '../button/src';
 
 const Container = styled.div`
   display: grid;
@@ -34,4 +34,4 @@ const Grid = ({ children }) => {
   );
 };
 
-export default Grid;
+export { Grid };

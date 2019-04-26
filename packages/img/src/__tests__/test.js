@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import Img from '../index';
+import { Img } from '../index';
 
 const setup = () => {
   const { container } = render(

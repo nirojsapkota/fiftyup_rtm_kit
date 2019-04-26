@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, wait } from '../../../bootstrap/setup/testSetup';
-import Form from '../index';
+import { Form } from '../index';
 import { getFieldProps } from './fieldSetup';
 
 const form = {
@@ -9,7 +9,7 @@ const form = {
   fields: [getFieldProps('cc_token')],
 };
 
-describe(`For a stripePayment component`, async () => {
+describe(`For a stripePayment component`, () => {
   it(`presents a notice when stripe can't be reached`, async () => {
     const handleSubmit = jest.fn();
     const { getByTestId } = render(<Form onSubmit={handleSubmit} {...form} />);

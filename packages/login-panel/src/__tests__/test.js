@@ -10,7 +10,7 @@ import {
   // eslint-disable-next-line import/named
   cleanup,
 } from '../../../bootstrap/setup/testSetup';
-import LoginPanel from '../index';
+import { LoginPanel } from '../index';
 import loginPanelProps from '../__fixtures__/loginPanel';
 
 jest.mock('axios');
@@ -232,7 +232,7 @@ describe('<LoginPanel />', () => {
       ],
     };
 
-    const { getByLabelText, getByText, queryAllByTestId } = render(
+    const { getByLabelText } = render(
       <LoginPanel {...loginPanelProps} stateField={stateField} />
     );
 
@@ -252,7 +252,7 @@ describe('<LoginPanel />', () => {
       expect(item).toBeInTheDocument();
 
       await fireEvent.click(item);
-      expect(state.value).toEqual(stateField.options[0].label)
+      expect(state.value).toEqual(stateField.options[0].label);
     });
   });
 });

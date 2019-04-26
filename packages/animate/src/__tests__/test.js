@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, wait, act, cleanup } from '../../../bootstrap/setup/testSetup';
-import Animate from '../index';
+import { Animate } from '../index';
 
 function runPendingTimer() {
   act(() => {
@@ -10,7 +10,7 @@ function runPendingTimer() {
 
 afterEach(cleanup);
 
-describe('<Animate />', async () => {
+describe('<Animate />', () => {
   const slidesContents = ['Slide1', 'Slide2', 'Slide3', 'Slide4'];
   const animateDom = (
     <Animate>
@@ -89,7 +89,6 @@ describe('<Animate />', async () => {
         const { container } = render(animateDom);
 
         wait(async () => {
-          await expect(windowSize).toHaveBeenCalled;
           await expect(
             container.firstChild.getAttribute('data-windowwidth')
           ).toBe('100');

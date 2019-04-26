@@ -1,4 +1,5 @@
 const axios = require('axios');
+const LogRocket = require('logrocket');
 
 const sendDataToServer = (data, authenticityToken) => {
   const config = {

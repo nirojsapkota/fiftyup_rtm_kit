@@ -6,19 +6,19 @@
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "feature-tile",
-    "defaultExport": "FeatureTile",
     "namedExports": [
-      "FeatureRow"
+      "FeatureTile",
+      "FeatureRow",
+      "ContentWrapper",
+      "GroupedFeatureTiles"
     ]
   },
-  "main": "build/main.js",
-  "module": "build/module.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "_module": "src/index",
   "scripts": {
-    "start": "node ../rtm-scripts/scripts/start",
-    "build": "node ../rtm-scripts/scripts/rollup",
-    "prepare": "node ../rtm-scripts/scripts/rollup",
-    "test": "node ../rtm-scripts/scripts/test"
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
     "@rtm-ui/a": "file:../a",

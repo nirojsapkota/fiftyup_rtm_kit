@@ -6,15 +6,19 @@
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "electricity-switch",
-    "defaultExport": "ElectricitySwitch",
-    "namedExports": []
+    "namedExports": [
+      "ConfirmHeader",
+      "ConfirmSwitch",
+      "Disclaimer",
+      "PlanDetails"
+    ]
   },
-  "main": "build/main.js",
-  "module": "build/module.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "_module": "src/index",
   "scripts": {
-    "build": "node ../rtm-scripts/scripts/rollup",
-    "test": "node ../rtm-scripts/scripts/test"
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
     "@rtm-ui/button": "file:../button",

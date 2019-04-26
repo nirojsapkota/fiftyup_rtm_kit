@@ -18,7 +18,7 @@ import Action, { ClickToCall, Share } from '../Action';
 import Cta from '../Cta';
 import Sidebar from '../Sidebar';
 import Summary from '../Summary';
-import Plan from '../index';
+import { Plan } from '../index';
 
 const mockTrackEvent = jest.fn();
 jest.mock('@rtm-ui/tracker', () => {

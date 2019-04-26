@@ -1,8 +1,8 @@
 import React from 'react';
 import t from 'prop-types';
-import Img from '@rtm-ui/img';
-import { getColor } from '@rtm-ui/theme';
 import styled, { ThemeContext } from 'styled-components';
+import { Img } from '@rtm-ui/img';
+import { getColor } from '@rtm-ui/theme';
 import InlineSvg from './InlineSvg';
 import SvgWrapper from './SvgWrapper';
 import { Glyph } from './Icon';

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import A from '@rtm-ui/a';
+import { A } from '@rtm-ui/a';
 import { Header, Paragraph } from '@rtm-ui/typography';
-import Icon from '@rtm-ui/icon';
+import { Icon } from '@rtm-ui/icon';
 
 const ClickToCall = ({ header, link, footer, track }) => {
   return (

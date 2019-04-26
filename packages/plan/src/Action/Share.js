@@ -2,8 +2,8 @@ import React from 'react';
 import t from 'prop-types';
 import { Box } from '@rtm-ui/layout';
 import { Paragraph } from '@rtm-ui/typography';
-import A from '@rtm-ui/a';
-import Icon from '@rtm-ui/icon';
+import { A } from '@rtm-ui/a';
+import { Icon } from '@rtm-ui/icon';
 
 const Share = props => {
   return (

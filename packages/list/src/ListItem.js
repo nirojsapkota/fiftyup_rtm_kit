@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Icon from '@rtm-ui/icon';
+import { Icon } from '@rtm-ui/icon';
 
 const Wrapper = styled(Box)`
   display: flex;

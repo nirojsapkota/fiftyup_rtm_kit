@@ -28,9 +28,7 @@ const List = ({ renderItem, children }) => {
   );
 };
 
-export default List;
-
-export { ListItem };
+export { List, ListItem };
 
 List.propTypes = {
   renderItem: PropTypes.func,

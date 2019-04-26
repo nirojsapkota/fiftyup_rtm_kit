@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card } from '@rtm-ui/layout';
 import { Header, Label } from '@rtm-ui/typography';
+import { Button } from '@rtm-ui/button';
 import TextField from '../textField';
-import Button from '@rtm-ui/button';
 import { useOnClickOutside } from './useOnClickOutside';
 import { useDebounce } from './useDebounce';
 
@@ -110,11 +110,9 @@ const AutocompleteField = ({
                   key={result.label}
                 >
                   <ResultItem
-                    role="option"
                     aria-selected={result.label === inputProps.value}
                     asWrapper
                     id={`result-${inputProps.name}-${index}`}
-                    role="radio"
                     type="button"
                     block
                     style={{ width: '100%' }}

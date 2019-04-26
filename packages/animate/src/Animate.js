@@ -24,7 +24,7 @@ const SliderWrapper = styled.div`
 
 const Slide = styled.div`
   display: block;
-  width: 100%
+  width: 100%;
   width: ${props =>
     /* istanbul ignore else  */
     props.slideWidth === 0 ? `auto` : `${props.slideWidth}px`};

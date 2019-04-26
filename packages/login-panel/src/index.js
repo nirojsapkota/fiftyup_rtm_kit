@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 import { Card, Box } from '@rtm-ui/layout';
 import { Header, Small } from '@rtm-ui/typography';
-import Form, { FormError } from '@rtm-ui/form';
-import Button from '@rtm-ui/button';
-import Icon from '@rtm-ui/icon';
+import { Form, FormError } from '@rtm-ui/form';
+import { Button } from '@rtm-ui/button';
+import { Icon } from '@rtm-ui/icon';
 
 import { submitLogin, getAutoCompletePostcode } from './actions';
 import GdprAgreement from './GdprAgreement';
@@ -254,4 +254,4 @@ LoginPanel.defaultProps = {
   emailField: {},
 };
 
-export default LoginPanel;
+export { LoginPanel };

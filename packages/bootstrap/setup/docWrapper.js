@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 import { useWindowSize } from '../../nav/src/useWindowSize';
 
 const Wrapper = styled.div`
@@ -43,4 +43,4 @@ const DocWrapper = ({ children }) => {
   );
 };
 
-export default DocWrapper;
+export { DocWrapper };

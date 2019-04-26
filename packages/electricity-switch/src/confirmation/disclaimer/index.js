@@ -31,7 +31,7 @@ const Disclaimer = ({ title, items }) => {
 };
 Disclaimer.defaultProps = {
   title: 'Explicit Informed Consent of Offer'
-}
+};
 
 Disclaimer.propTypes = {
   title: t.string,

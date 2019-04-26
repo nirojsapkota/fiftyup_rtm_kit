@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import A from '@rtm-ui/a';
-import Accordion from '@rtm-ui/accordion';
+import { A } from '@rtm-ui/a';
+import { Accordion } from '@rtm-ui/accordion';
 import { Box } from '@rtm-ui/layout';
 import { Header, Small } from '@rtm-ui/typography';
-import Variant, { backgroundStyle, getColor } from '@rtm-ui/theme';
+import { Theme as Variant, getColor } from '@rtm-ui/theme';
 import {
   ConfirmHeader,
   PlanDetails,
@@ -33,10 +33,6 @@ const HorizontalWrapper = styled(Box)`
   display: flex;
   flex-direction: row;
   max-width: 1080px;
-`;
-
-const FooterWrapper = styled(Box)`
-  ${backgroundStyle};
 `;
 
 const ReviewItem = styled(Box)`
@@ -259,4 +255,4 @@ const SwitchConfirmPage = props => {
   );
 };
 
-export default SwitchConfirmPage;
+export { SwitchConfirmPage };

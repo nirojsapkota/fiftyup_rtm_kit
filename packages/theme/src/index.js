@@ -88,4 +88,6 @@ const variantPropTypes = {
 
 Variant.propTypes = variantPropTypes;
 
-export default withTheme(Variant);
+const Theme = withTheme(Variant);
+
+export { Theme };

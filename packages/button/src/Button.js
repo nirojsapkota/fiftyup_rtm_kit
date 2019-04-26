@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box } from '@rtm-ui/layout';
 import styled from 'styled-components';
+import { Box } from '@rtm-ui/layout';
 import { Base } from './base';
 
 const GroupWrapper = styled.div`

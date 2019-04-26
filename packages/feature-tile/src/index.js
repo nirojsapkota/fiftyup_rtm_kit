@@ -3,8 +3,8 @@ import t from 'prop-types';
 import styled from 'styled-components';
 import { Box, Card, Flex } from '@rtm-ui/layout';
 import { Header, Paragraph } from '@rtm-ui/typography';
-import Button from '@rtm-ui/button';
-import Img from '@rtm-ui/img';
+import { Button } from '@rtm-ui/button';
+import { Img } from '@rtm-ui/img';
 import { getColor } from '@rtm-ui/theme';
 import Pendant, { PendantPositioner } from './Pendant';
 import { FeatureRow } from './FeatureRow';
@@ -24,7 +24,7 @@ export const ContentWrapper = styled(Box)`
 `;
 
 const ImgContainer = styled.div`
-  display: block
+  display: block;
   overflow: hidden;
   max-height: 185px;
 `;
@@ -162,5 +162,4 @@ const featureTileShape = {
 
 FeatureTile.propTypes = featureTileShape;
 
-export { FeatureRow, GroupedFeatureTiles };
-export default FeatureTile;
+export { FeatureTile, FeatureRow, GroupedFeatureTiles };

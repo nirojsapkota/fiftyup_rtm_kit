@@ -181,7 +181,7 @@ RTM Scripts acts as a single source of truth for how we build and test things. Y
 ```json
 "scripts": {
   "build": "node ../rtm-scripts/scripts/rollup",
-  "test": "node ../rtm-scripts/scripts/test"
+  "test": "rtm-scripts test --p '../../setupTests.js'"
 }
 ```
 

@@ -2,10 +2,9 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Button from '@rtm-ui/button';
-import Icon from '@rtm-ui/icon';
+import { Button } from '@rtm-ui/button';
 import { Small } from '@rtm-ui/typography';
-import Form, { StepForm, formError } from '@rtm-ui/form';
+import { Form } from '@rtm-ui/form';
 import { getColor } from '@rtm-ui/theme';
 
 const ButtonWrapper = styled(Box)`

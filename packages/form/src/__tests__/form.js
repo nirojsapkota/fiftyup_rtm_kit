@@ -1,10 +1,9 @@
 import React from 'react';
-// eslint-disable-next-line import/named
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import Form, { FormError } from '../index';
 import { Box } from '@rtm-ui/layout';
 import { Small } from '@rtm-ui/typography';
-import Button from '@rtm-ui/button';
+import { Button } from '@rtm-ui/button';
+import { Form, FormError } from '../index';
 import { getFieldProps } from './fieldSetup';
 
 const mockSuccessResponse = ['2000, BARANGAROO'];
@@ -22,7 +21,7 @@ const form = {
   fields: [getFieldProps('email'), getFieldProps('zipcode')],
 };
 
-describe(`<Form />`, async () => {
+describe(`<Form />`, () => {
   it(`renderFooter is a function`, async () => {
     const handleSubmit = jest.fn(() => {
       throw new FormError({

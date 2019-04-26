@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { FeatureRow, GroupedFeatureTiles } from '@rtm-ui/feature-tile';
-import { Block, Box, Flex } from '@rtm-ui/layout'
-import { Paragraph } from '@rtm-ui/typography'
-import Variant, { getColor } from '@rtm-ui/theme';
-
+import { Block, Box, Flex } from '@rtm-ui/layout';
+import { Paragraph } from '@rtm-ui/typography';
+import { Theme as Variant, getColor } from '@rtm-ui/theme';
 
 const MainWrapper = styled(Box)`
   background: #f1f1f1;
@@ -46,7 +45,7 @@ const HeroHeadingWrapper = styled(HeroContentWrapper)`
 
 export const Dashboard = ({ campaigns, dashboardBanner }) => {
   const featuredCampaign = campaigns.filter(
-    campaign => campaign.isFeatured === true,
+    campaign => campaign.isFeatured === true
   )[0];
   const unfeaturedCampaigns = featuredCampaign
     ? campaigns.filter(campaign => campaign.id !== featuredCampaign.id)
@@ -105,13 +104,10 @@ Dashboard.propTypes = {
       descriptionText: PropTypes.string,
       ctaText: PropTypes.string,
       ctaLink: PropTypes.string,
-    }),
+    })
   ),
   dashboardBanner: PropTypes.shape({
     content: PropTypes.string,
     link: PropTypes.string,
   }),
 };
-
-
-export default Dashboard;

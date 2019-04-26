@@ -2,12 +2,12 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Icon from '@rtm-ui/icon';
+import { Icon } from '@rtm-ui/icon';
 import { Paragraph } from '@rtm-ui/typography';
 import { backgroundStyle } from '@rtm-ui/theme';
 
 const Wrapper = styled(Box)`
-  ${backgroundStyle}
+  ${backgroundStyle};
 `;
 const Content = styled(Box)`
   max-width: 1080px;
@@ -46,7 +46,7 @@ const ConfirmHeader = ({ icon, orientation, confirmationHeader }) => {
         <HeaderContainer
           style={{ marginLeft: orientation === 'vertical' ? 0 : 150 }}
         >
-          <Paragraph color='light' dangerousHTML={confirmationHeader} />
+          <Paragraph color="light" dangerousHTML={confirmationHeader} />
         </HeaderContainer>
       </Content>
     </Wrapper>

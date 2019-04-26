@@ -2,12 +2,12 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import { backgroundStyle, getColor } from '@rtm-ui/theme';
-import LoginPanel from '@rtm-ui/login-panel';
-import Bootstrap from '@rtm-ui/bootstrap';
+import { getColor } from '@rtm-ui/theme';
+import { LoginPanel } from '@rtm-ui/login-panel';
+import { Bootstrap } from '@rtm-ui/bootstrap';
 import { Small } from '@rtm-ui/typography';
-import Img from '@rtm-ui/img';
-import HowItWorks from '@rtm-ui/how-it-works';
+import { Img } from '@rtm-ui/img';
+import { HowItWorks } from '@rtm-ui/how-it-works';
 import { track } from '@rtm-ui/tracker';
 import BasicHeader from './header';
 
@@ -55,10 +55,6 @@ const LoginPanelWrapper = styled(Box)`
 const StyledDisclaimer = styled(Small)`
   background: inherit;
   text-align: justify;
-`;
-
-const FooterWrapper = styled(Box)`
-  ${backgroundStyle};
 `;
 
 const HeroImageWrapper = styled(Box)`
@@ -152,4 +148,4 @@ WrappedHybridLoginView.propTypes = {
   }),
 };
 
-export default WrappedHybridLoginView;
+export { WrappedHybridLoginView as HybridLoginView };

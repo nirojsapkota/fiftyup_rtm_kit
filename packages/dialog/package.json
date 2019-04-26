@@ -4,21 +4,21 @@
   "description": "Description for dialog",
   "author": "RevTech Media",
   "license": "UNLICENSED",
-  "main": "build/main.js",
-  "module": "build/module.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "_module": "src/index",
   "rtmRollup": {
     "namespace": "dialog",
-    "defaultExport": "Dialog",
     "namedExports": [
+      "Dialog",
       "Modal"
     ]
   },
   "scripts": {
     "start": "node ../rtm-scripts/scripts/start",
-    "build": "node ../rtm-scripts/scripts/rollup",
+    "build": "rtm-scripts rollup --f umd",
     "prepare": "node ../rtm-scripts/scripts/rollup",
-    "test": "node ../rtm-scripts/scripts/test"
+    "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
     "@rtm-ui/button": "file:../button",

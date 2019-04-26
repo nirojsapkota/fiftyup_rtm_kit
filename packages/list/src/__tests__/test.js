@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import List from '../index';
+import { List } from '../index';
 
 describe('<List />', () => {
   const dataList = [

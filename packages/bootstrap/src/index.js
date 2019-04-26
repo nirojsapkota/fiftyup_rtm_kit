@@ -35,4 +35,4 @@ Bootstrap.propTypes = {
   trackingProvider: PropTypes.func,
 };
 
-export default Bootstrap;
+export { Bootstrap };

@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
-import Icon from '@rtm-ui/icon';
+import { Icon } from '@rtm-ui/icon';
 import { backgroundStyle, getColor } from '@rtm-ui/theme';
 
 const HeaderWrapper = styled.a`
   ${backgroundStyle};
-  color: ${props => getColor('text', props.theme)}
+  color: ${props => getColor('text', props.theme)};
   padding: 15px;
   border-radius: 3px;
   margin-top: 10px;
@@ -69,14 +69,14 @@ class Accordion extends React.Component {
 }
 
 Accordion.defaultProps = {
-  activeItemIndex: null
-}
+  activeItemIndex: null,
+};
 
 Accordion.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
   renderItem: PropTypes.func,
   renderHeader: PropTypes.func,
-  activeItemIndex: PropTypes.number
+  activeItemIndex: PropTypes.number,
 };
 
-export default Accordion;
+export { Accordion };

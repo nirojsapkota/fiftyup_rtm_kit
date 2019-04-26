@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '@rtm-ui/icon';
+import { Icon } from '@rtm-ui/icon';
 import BaseRadioCheckboxField from '../baseRadioCheckboxField';
 
 const RadioField = ({
