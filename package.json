@@ -82,6 +82,7 @@
     "@rtm-ui/login-panel": "file:packages/login-panel",
     "@rtm-ui/nav": "file:packages/nav",
     "@rtm-ui/switch-confirm-page": "file:packages/switch-confirm-page",
+    "@rtm-ui/readfile": "file:packages/readfile",
     "@rtm-ui/plan": "file:packages/plan",
     "@rtm-ui/testimonial": "file:packages/testimonial",
     "@rtm-ui/theme": "file:packages/theme",

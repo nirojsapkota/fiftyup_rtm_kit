@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Button from '@rtm-ui/button';
+import { Button } from '@rtm-ui/button';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import Icon from '@rtm-ui/icon';
+import { Icon } from '@rtm-ui/icon';
 import { Header } from '@rtm-ui/typography';
 
 const StyleBox = styled(Box)`

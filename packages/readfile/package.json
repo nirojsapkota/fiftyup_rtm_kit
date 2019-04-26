@@ -7,7 +7,9 @@
   "rtmRollup": {
     "namespace": "readfile",
     "namedExports": [
-      "Readfile"
+      "Readfile",
+      "Button",
+      "Icon"
     ]
   },
   "main": "build/index.js",
@@ -18,7 +20,9 @@
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
-    "@rtm-ui/bootstrap": "file:../bootstrap"
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/icon": "file:../icon"
   },
   "peerDependencies": {
     "prop-types": "15.x",
