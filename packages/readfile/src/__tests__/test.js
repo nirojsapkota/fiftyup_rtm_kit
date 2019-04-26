@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, wait, fireEvent } from '../../../bootstrap/setup/testSetup';
-import Readfile from '../index';
+import { Readfile } from '../index';
 import axios from 'axios';
 //import readFileUrl from '../api.js';
 

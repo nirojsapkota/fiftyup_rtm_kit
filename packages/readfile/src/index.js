@@ -64,4 +64,4 @@ const ReadFile = props => {
   );
 };
 
-export default ReadFile;
+export { ReadFile };
