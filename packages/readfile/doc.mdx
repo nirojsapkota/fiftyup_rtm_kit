@@ -1,11 +1,11 @@
 ---
-name: Listfile
-route: /packages/listfile
+name: Readfile
+route: /packages/readfile
 menu: Packages
 ---
 
 import { Playground } from 'docz';
-import { Listfile } from './src';
+import Readfile from './src';
 import { readFile, downloadFile } from './api.js';
 
 # Readfile
@@ -13,5 +13,5 @@ import { readFile, downloadFile } from './api.js';
 ## Basic usage
 
 <Playground>
-  <Listfile readFile={readFile} downloadFile={downloadFile} />
+  <Readfile readFile={readFile} downloadFile={downloadFile} />
 </Playground>

@@ -1,13 +1,13 @@
 {
-  "name": "@rtm-ui/listfile",
+  "name": "@rtm-ui/readfile",
   "version": "1.0.0",
-  "description": "Description for listfile",
+  "description": "Description for Readfile",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
-    "namespace": "listfile",
+    "namespace": "readfile",
     "namedExports": [
-      "Listfile"
+      "Readfile"
     ]
   },
   "main": "build/index.js",

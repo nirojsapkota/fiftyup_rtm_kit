@@ -15,7 +15,7 @@ const StyleBox = styled(Box)`
   justify-content: space-between;
 `;
 
-const Listfile = props => {
+const ReadFile = props => {
   const { useState, useEffect } = React;
   const [list, setList] = useState([]);
 
@@ -64,4 +64,4 @@ const Listfile = props => {
   );
 };
 
-export { Listfile };
+export default ReadFile;
