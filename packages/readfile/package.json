@@ -7,7 +7,7 @@
   "rtmRollup": {
     "namespace": "readfile",
     "namedExports": [
-      "Readfile"
+      "ReadFile"
     ]
   },
   "main": "build/index.js",
