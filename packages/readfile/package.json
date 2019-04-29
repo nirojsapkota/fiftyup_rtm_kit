@@ -20,7 +20,9 @@
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/button": "file:../button",
-    "@rtm-ui/icon": "file:../icon"
+    "@rtm-ui/icon": "file:../icon",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
     "prop-types": "15.x",

@@ -78,5 +78,10 @@
     "name": "Tracker",
     "route": "/utilities/tracker",
     "menu": "Utilities"
+  },
+  {
+    "name": "Readfile",
+    "route": "/packages/readfile",
+    "menu": "Packages"
   }
 ]
