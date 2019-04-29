@@ -43,7 +43,7 @@ const ReadFile = props => {
 
   return (
     <Box>
-      <StyleBox pr={['45px']}>
+      <StyleBox pr={['45px']} pt={['45px']}>
         <Header tag="h6">ID</Header>
         <Header tag="h6">List of Files</Header>
         <Header tag="h6">Download</Header>
