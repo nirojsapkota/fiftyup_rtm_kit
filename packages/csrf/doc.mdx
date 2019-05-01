@@ -1,0 +1,34 @@
+---
+name: Csrf
+route: /utilities/csrf
+menu: Utilities
+---
+
+import { Playground, PropsTable } from 'docz'
+import { Csrf } from './src'
+
+# Csrf
+
+The Csrf component is responsible for validating input csrf token and generating new csrf token when invalid
+
+## Basic usage
+
+```js
+  <Csrf authenticityToken='input_token_string' validateUrl='/csrf/validate' generateTokenUrl='/csrf/generate'>
+    {({ authenticityToken }) => (
+      <div data-testid="id-token">Hello world!</div>
+    )}
+  </Csrf>
+```
+
+<Playground>
+  <Csrf authenticityToken='input_token_string' validateUrl='/csrf/validate' generateTokenUrl='/csrf/generate'>
+    {({ authenticityToken }) => (
+      <div data-testid="id-token">Hello world!</div>
+    )}
+  </Csrf>
+</Playground>
+
+### Props
+
+<PropsTable of={Csrf} />
