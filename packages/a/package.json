@@ -14,9 +14,7 @@
   "module": "build/index.js",
   "_module": "src/index",
   "scripts": {
-    "start": "node ../rtm-scripts/scripts/start",
     "build": "rtm-scripts rollup --f umd",
-    "prepare": "node ../rtm-scripts/scripts/rollup",
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
