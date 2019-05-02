@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@4.0.0...@rtm-ui/theme@4.0.1) (2019-05-02)
+
+**Note:** Version bump only for package @rtm-ui/theme
+
+
+
+
+
 # [4.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@3.1.8...@rtm-ui/theme@4.0.0) (2019-04-29)
 
 
