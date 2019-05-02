@@ -244,3 +244,29 @@ Whenever a commit to `master` is made, AWS Codebuild picks up the change from a 
 - Lerna is responsible for bumping the version of each package and will commit the change back to Github. This is where our "conventional commits" come in handy.
 - The content of each pacakge is stored in an S3 bucket, which is used by our private npm registry whenever you run `npm install @rtm-ui/foo`.
 - Additionally, Codebuild runs `npm run build`, the result of the build process is also stored as an artifact (a separate S3 bucket). The contents of this bucket, which in most cases is a just a minified build file, are synced across to yet another S3 bucket which serve as a CDN via AWS Cloudfront (work in progress).
+
+var params = {
+  SecretId: "sfmc-ftp",
+  VersionStage: "AWSCURRENT"
+ };
+
+  secretsmanager.getSecretValue(params, function(err, data) {
+   if (err) {
+     console.log(err, err.stack); // an error occurred
+   } else {
+    const res = JSON.parse(data.SecretString)
+    console.log(res);
+   }
+   /*
+   data = {
+    ARN: "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
+    CreatedDate: <Date Representation>,
+    Name: "MyTestDatabaseSecret",
+    SecretString: "{\n  \"username\":\"david\",\n  \"password\":\"BnQw&XDWgaEeT9XGTT29\"\n}\n",
+    VersionId: "EXAMPLE1-90ab-cdef-fedc-ba987SECRET1",
+    VersionStages: [
+       "AWSPREVIOUS"
+    ]
+   }
+   */
+ });
