@@ -1,0 +1,41 @@
+---
+name: Phoneback
+route: /phoneback
+menu: Packages
+---
+
+import { Playground } from 'docz'
+import { Phoneback, PhonebackBox, PhonebackForm } from './src'
+import sample from './sample'
+
+# Phoneback
+
+## Basic usage
+
+In most cases the Phoneback can be used as a dialog popup:
+
+<Playground>
+  <Phoneback {...sample} />
+</Playground>
+
+This package exports a standalone phoneback box:
+
+<Playground>
+  <PhonebackBox {...sample} />
+</Playground>
+
+The standalone form is exported as well:
+
+<Playground>
+  <PhonebackForm text={sample.text} form={sample.form} />
+</Playground>
+
+Form errors are shown above the disclaimer, the following form will
+throw an error on submission:
+
+<Playground>
+  <PhonebackForm
+    text={sample.text}
+    form={{...sample.form, onSubmit: async () => 'some error'}}
+  />
+</Playground>
