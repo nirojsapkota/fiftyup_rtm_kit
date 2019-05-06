@@ -15,11 +15,11 @@ const Variant = ({ theme, variant, children }) => {
   );
 };
 
-export const BootstrapTheme = ({ children, theme, variant }) => {
+export const BootstrapTheme = ({ children, theme, variant, cssReset }) => {
   return (
     <Variant variant={variant} theme={theme}>
       <React.Fragment>
-        <CssReset />
+        {cssReset && <CssReset />}
         <Fonts />
         {children}
       </React.Fragment>
@@ -30,6 +30,11 @@ export const BootstrapTheme = ({ children, theme, variant }) => {
 BootstrapTheme.propTypes = {
   children: PropTypes.node.isRequired,
   brand: PropTypes.string,
+  cssReset: PropTypes.bool,
+};
+
+BootstrapTheme.defaultProps = {
+  cssReset: true,
 };
 
 Variant.defaultProps = {

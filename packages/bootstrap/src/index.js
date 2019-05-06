@@ -7,6 +7,7 @@ const Bootstrap = ({
   overrides,
   children,
   trackingData = { category: 'default' },
+  cssReset,
   ...props
 }) => {
   const Tracking = props.trackingProvider
@@ -24,7 +25,9 @@ const Bootstrap = ({
 
   return (
     <Tracking trackingData={trackingData}>
-      <BootstrapTheme theme={themeWithOverrides}>{children}</BootstrapTheme>
+      <BootstrapTheme theme={themeWithOverrides} cssReset={cssReset}>
+        {children}
+      </BootstrapTheme>
     </Tracking>
   );
 };

@@ -17,6 +17,16 @@ describe('<BootstrapTheme />', () => {
     );
     expect(getByText('Welcome to React')).toBeInTheDocument();
   });
+
+  it('do not render CssReset', () => {
+    const { getByTestId } = render(
+      <BootstrapTheme theme={obs} cssReset={false}>
+        <img href='/' data-testid='img' alt='testing'/>
+      </BootstrapTheme>
+    );
+    // inside CssReset: image display block
+    expect(getByTestId('img')).not.toHaveStyle("display: block");
+  });
 });
 
 describe('<Theme />', () => {
