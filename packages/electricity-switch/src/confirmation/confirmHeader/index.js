@@ -9,6 +9,7 @@ import { backgroundStyle } from '@rtm-ui/theme';
 const Wrapper = styled(Box)`
   ${backgroundStyle};
 `;
+
 const Content = styled(Box)`
   max-width: 1080px;
   position: relative;
@@ -25,6 +26,7 @@ const ImgVertical = styled(Box)`
   top: 20px;
   right: 0;
 `;
+
 const HeaderContainer = styled(Box)`
   min-height: 90px;
   display: flex;
@@ -34,14 +36,10 @@ const HeaderContainer = styled(Box)`
 const ConfirmHeader = ({ icon, orientation, confirmationHeader }) => {
   const ImgContainer = orientation === 'vertical' ? ImgVertical : ImgHorizontal;
   return (
-    <Wrapper>
-      <Content m="auto" py={20} px={10}>
+    <Wrapper pt={orientation === 'vertical' ? 10 : 20}>
+      <Content m="auto" py={orientation === 'vertical' ? 20 : 10} px={10}>
         <ImgContainer>
-          <Icon
-            fill="primary"
-            glyph={icon}
-            size={orientation === 'vertical' ? 150 : 170}
-          />{' '}
+          <Icon fill="primary" glyph={icon} size={150} />{' '}
         </ImgContainer>
         <HeaderContainer
           style={{ marginLeft: orientation === 'vertical' ? 0 : 150 }}

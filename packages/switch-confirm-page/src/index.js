@@ -164,29 +164,29 @@ class ConfirmationWrapper extends React.Component {
       merchant,
       plan,
       switchLinkText,
-      ...res
+      ...rest
     } = this.props;
 
     return (
       <PageWrapper>
         <MobileView>
-          <HeaderWrapper orientation="horizontal" headerProps={res} />
-          <Box pt={30}>
+          <HeaderWrapper orientation="horizontal" headerProps={rest} />
+          <Box pt={30} px={3}>
             <PlanDetails
               orientation="horizontal"
               plan={plan}
               merchantLogo={merchant.logoUrl}
             />
-          </Box>
+          </Box>  
           <Disclaimer items={disclaimers} />
           <ConfirmSwitch
-            completeUrl={res.completeUrl}
-            editUrl={res.editUrl}
+            completeUrl={rest.completeUrl}
+            editUrl={rest.editUrl}
             agreementItems={disclaimers}
-            authenticityToken={res.authenticityToken}
+            authenticityToken={rest.authenticityToken}
             handleSubmit={this.handleSubmit}
-            buttonId={res.switchButtonId}
-            buttonText={res.switchButtonText}
+            buttonId={rest.switchButtonId}
+            buttonText={rest.switchButtonText}
           />
           <AccordionSection
             items={accordion.items}
@@ -200,7 +200,7 @@ class ConfirmationWrapper extends React.Component {
           </Box>
         </MobileView>
         <DesktopView>
-          <HeaderWrapper orientation="vertical" headerProps={res} />
+          <HeaderWrapper orientation="vertical" headerProps={rest} />
           <HorizontalWrapper m="auto" py={30}>
             <Box pr={3} style={{ width: '50%' }}>
               <Box pl={3}>
@@ -216,16 +216,16 @@ class ConfirmationWrapper extends React.Component {
                 footer={accordion.footNote}
               />
             </Box>
-            <Box style={{ width: '50%' }}>
+            <Box style={{ width: '50%' }} pt={20}>
               <Disclaimer items={disclaimers} />
               <ConfirmSwitch
-                completeUrl={res.completeUrl}
-                editUrl={res.editUrl}
+                completeUrl={rest.completeUrl}
+                editUrl={rest.editUrl}
                 agreementItems={disclaimers}
-                authenticityToken={res.authenticityToken}
+                authenticityToken={rest.authenticityToken}
                 handleSubmit={this.handleSubmit}
-                buttonId={res.switchButtonId}
-                buttonText={res.switchButtonText}
+                buttonId={rest.switchButtonId}
+                buttonText={rest.switchButtonText}
               />
             </Box>
           </HorizontalWrapper>

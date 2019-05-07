@@ -16,8 +16,8 @@ const BriefsContainer = ({ content }) => (
   <React.Fragment>
     {content.length > 0 && (
       <Box py={10}>
-        {content.map(value => (
-          <Paragraph color="text" dangerousHTML={value} />
+        {content.map((value, index) => (
+          <Paragraph key={index} py={1} color="text" dangerousHTML={value} />
         ))}
       </Box>
     )}

@@ -46,10 +46,10 @@ class Accordion extends React.Component {
 
   render() {
     return (
-      <Box py={[1]}>
+      <Box>
         {this.state.items.map((item, index) => {
           return (
-            <div key={index}>
+            <Box key={index}>
               <HeaderWrapper onClick={() => this.chooseItem(index)}>
                 <Box>{this.props.renderHeader(item)}</Box>
                 <Icon
@@ -60,7 +60,7 @@ class Accordion extends React.Component {
               {index === this.state.activeItemIndex ? (
                 <BodyWrapper>{this.props.renderItem(item)}</BodyWrapper>
               ) : null}
-            </div>
+            </Box>
           );
         })}
       </Box>
