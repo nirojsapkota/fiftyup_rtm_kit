@@ -20,6 +20,7 @@ phases:
   pre_build:
     commands:
       - npm install
+      - cd aws/GithubDocumentationFunction && npm i && cd ../../
       - npm run zip
       - aws lambda update-function-code --function-name GithubDocumentationFunction --zip-file fileb://./aws/GithubDocumentationFunction.zip --publish
       - lerna bootstrap --no-ci
