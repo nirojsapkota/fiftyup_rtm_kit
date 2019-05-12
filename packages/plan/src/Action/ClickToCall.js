@@ -8,9 +8,13 @@ const ClickToCall = ({ header, link, footer, track }) => {
   return (
     <React.Fragment>
       {header && (
-        <Paragraph color="secondary" align="center" px={[2, 3]} pt={2}>
-          {header}
-        </Paragraph>
+        <Paragraph
+          color="secondary"
+          align="center"
+          px={[2, 3]}
+          pt={2}
+          dangerousHTML={header}
+        />
       )}
       <A track={track} href={`tel:${link}`}>
         <Header py={[1]} align="center" tag="h3">

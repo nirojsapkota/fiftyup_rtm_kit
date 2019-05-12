@@ -6,6 +6,17 @@ export const actions = {
     track: 'get_started',
     link: 'http://localhost/get_started_action',
   },
+  click_to_call: {
+    track: 'click_to_call',
+    header: '',
+    footer: '<p>Open 9:30am - 6pm, Mon - Fri</p>\r\n',
+    link: '08 8115 9415',
+  },
+  back: {
+    actionType: 'back',
+    cta: 'Prev',
+    link: '#screen-1',
+  },
 };
 
 const planInput = {
@@ -106,7 +117,7 @@ const planInput = {
       bio: '',
     },
   ],
-  actions: [actions.get_started],
+  actions: [actions.get_started, actions.click_to_call, actions.back],
   tracking_meta: {
     merchant_code: 'alinta',
     tracking_id: 3227,

@@ -14,8 +14,8 @@ export const primary = css`
   background: ${props => getColor('accent', props.theme)};
   border-bottom-color: ${props => getColor('accentAccent', props.theme)};
 
-  &:hover,
-  &:focus {
+  &:hover {
+    color: ${props => getColor('inverseText', props.theme)};
     background: ${props => getColor('accentAccent', props.theme)};
     border-bottom-color: ${props => getColor('accent', props.theme)};
   }
@@ -26,8 +26,8 @@ export const secondary = css`
   background: ${props => props.theme.colors.grayscale.slightlyDarker};
   border-bottom-color: ${props => props.theme.colors.grayscale.darker};
 
-  &:hover,
-  &:focus {
+  &:hover {
+    color: ${props => props.theme.colors.grayscale.white};
     background: ${props => props.theme.colors.grayscale.darker};
     border-bottom-color: ${props =>
       props.theme.colors.grayscale.slightlyDarker};

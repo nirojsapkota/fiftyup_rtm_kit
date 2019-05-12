@@ -54,7 +54,15 @@ const ActionButton = ({
 }) => (
   <React.Fragment>
     {callAction && (
-      <Button as="a" track={callAction.track} href={callAction.link}>
+      <Button
+        style={{
+          'marginLeft': 'auto',
+        }}
+        as="a"
+        track={callAction.track}
+        href={callAction.link}
+        target={callAction.target}
+      >
         {callAction.cta}
       </Button>
     )}
@@ -104,6 +112,7 @@ const Summary = props => {
   const callbackAction = props.actions.find(
     ({ track }) => track === 'request_call_back'
   );
+  const backAction = props.actions.find(({ actionType }) => actionType === 'back');
 
   return (
     <Box p={[0, 0, 0, 2]}>
@@ -113,20 +122,24 @@ const Summary = props => {
         </Header>
       </Box>
       <Block showAt="md">
-        <ActionImage
-          callAction={callAction}
-          callbackAction={callbackAction}
-          {...props}
-          src={props.main_image_file_url}
-        />
+        {props.main_image_file_url && (
+          <ActionImage
+            callAction={callAction}
+            callbackAction={callbackAction}
+            {...props}
+            src={props.main_image_file_url}
+          />
+        )}
       </Block>
       <Block hideAt="md">
-        <ActionImage
-          callAction={callAction}
-          callbackAction={callbackAction}
-          {...props}
-          src={props.mobile_image_file_url}
-        />
+        {props.mobile_image_file_url && (
+          <ActionImage
+            callAction={callAction}
+            callbackAction={callbackAction}
+            {...props}
+            src={props.mobile_image_file_url}
+          />
+        )}
       </Block>
       <Box px={[2, 2, 3, 0]} pt={[3]}>
         <Box width={1}>
@@ -136,9 +149,13 @@ const Summary = props => {
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'flex-end',
           }}
         >
+          {backAction && (
+            <Button as="a" href={backAction.link} onClick={backAction.onClick} secondary>
+              {backAction.cta}
+            </Button>
+          )}
           <ActionButton
             callAction={callAction}
             callbackAction={callbackAction}
