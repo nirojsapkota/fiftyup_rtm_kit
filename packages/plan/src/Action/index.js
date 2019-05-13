@@ -11,7 +11,7 @@ const Action = props => {
   return (
     <Box style={{ display: 'flex' }}>
       <Box flex={1} p={[2, 3]}>
-        <Paragraph py={[2, 3]} dangerousHTML={props.message} />
+        {props.message && <Paragraph py={[2, 3]} dangerousHTML={props.message} />}
         <Button as="a" track={props.track} href={props.link} block>
           {props.cta}
         </Button>

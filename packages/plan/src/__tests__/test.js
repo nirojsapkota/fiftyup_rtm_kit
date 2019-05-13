@@ -35,7 +35,7 @@ afterEach(cleanup);
 describe('<Plan />', () => {
   describe('Action', () => {
     it(`default action`, async () => {
-      const data = energyPlanActions.get_started;
+      const data = planActions.get_started;
 
       const { getByText } = render(<Action {...data} />);
 

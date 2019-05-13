@@ -1,7 +1,6 @@
 export const actions = {
   get_started: {
     header: 'Get started',
-    message: 'Get a quote now',
     cta: 'Get Started',
     track: 'get_started',
     link: 'http://localhost/get_started_action',
