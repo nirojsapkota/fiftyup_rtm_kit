@@ -24,13 +24,13 @@ phases:
       - npm run zip
       - aws lambda update-function-code --function-name GithubDocumentationFunction --zip-file fileb://./aws/GithubDocumentationFunction.zip --publish
       - lerna bootstrap --no-ci
-      - lerna run build --parallel
+      - npm run build:ci --parallel
   build:
     commands:
       - export DOCZ_BASE=/$CODEBUILD_WEBHOOK_TRIGGER/
       - echo $DOCZ_BASE
-      - npm run test
-      - npm run build
+      - npm run test:ci
+      - npm run build:docs
       - npm run copy:builds
   post_build:
     commands:

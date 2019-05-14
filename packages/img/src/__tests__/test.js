@@ -5,7 +5,6 @@ import { Img } from '../index';
 const setup = () => {
   const { container } = render(
     <Img
-      backgroundColor
       title="Title for the image"
       src="test_image.jpg"
       alt="Alt text for the image"

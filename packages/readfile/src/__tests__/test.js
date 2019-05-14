@@ -27,12 +27,11 @@ describe('<ReadFile/>', () => {
         },
       })
     );
-    const { getByText, debug } = render(
+    const { getByText } = render(
       <ReadFile readFile={readFile} downloadFile={downloadFile} />
     );
 
     await wait(async () => {
-      debug();
       var text = getByText('k6c3zh83w1_1554426811442.csv');
       expect(text).toBeInTheDocument();
       var buttonText = getByText(/SAVE Files/i);

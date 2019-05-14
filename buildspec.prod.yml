@@ -28,11 +28,11 @@ phases:
       - lerna bootstrap --no-ci
   build:
     commands:
-      - lerna run build --parallel
+      - npm run build:ci --parallel
       - npm run copy:builds # this copies the build files and places in the dist/ folder for the component CDN
   post_build:
     commands:
-      - npm run test
+      - npm run test:ci
       - npm run release
       - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
       - aws s3 cp ./dist/ s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read --exclude "*" --include "*.min.js" --recursive

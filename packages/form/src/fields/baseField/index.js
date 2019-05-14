@@ -88,7 +88,7 @@ export default class BaseField extends React.Component {
 }
 
 const inputHtmlProps = {
-  autoComplete: PropTypes.bool,
+  autoComplete: PropTypes.oneOf(['off', 'on', 'new-password']),
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.oneOf([

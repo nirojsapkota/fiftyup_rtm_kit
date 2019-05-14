@@ -140,6 +140,7 @@ const GroupedFeatureTiles = ({ featureTiles, ...props }) => (
     {featureTiles &&
       featureTiles.map(featureTile => (
         <Box
+          key={featureTile.descriptionText}
           width={['auto', 'auto', 1 / 3, 1 / 4]}
           style={{ flexDirection: 'column', flexWrap: 'wrap-reverse' }}
           p={10}

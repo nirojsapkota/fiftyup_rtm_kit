@@ -23,10 +23,12 @@ describe('<LoginPanel />', () => {
     const postCodeField = {
       label: 'My Postcode:',
       placeholder: 'Postcode',
+      name: 'postcode',
       hint: '10001, New York',
     };
     const emailField = {
       label: 'My Email:',
+      name: 'email',
       placeholder: 'Email',
     };
 
@@ -224,6 +226,7 @@ describe('<LoginPanel />', () => {
     const stateField = {
       label: 'My County:',
       fieldName: 'state',
+      name: 'state',
       placeholder: 'County',
       hint: 'E.g: Carlow',
       options: [

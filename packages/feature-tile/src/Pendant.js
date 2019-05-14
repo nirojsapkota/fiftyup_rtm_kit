@@ -21,9 +21,7 @@ const PositionWrapper = styled(Box)`
   position: relative;
 `;
 
-export const PendantPositioner = props => (
-  <PositionWrapper>{props.children}</PositionWrapper>
-);
+export const PendantPositioner = props => <PositionWrapper {...props} />;
 
 const Pendant = ({ children, ...props }) => (
   <PendantWrapper {...props}>

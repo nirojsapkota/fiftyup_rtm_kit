@@ -27,6 +27,7 @@ const Box = ({ children, variant, ...gridProps }) => {
 Box.propTypes = {
   children: PropTypes.node,
   variant: PropTypes.string,
+  backgroundColor: PropTypes.string,
 };
 
 export default Box;

@@ -16,7 +16,7 @@ const StyleBox = styled(Box)`
 `;
 
 const ReadFile = props => {
-  const { useState, useEffect } = React;
+  const { useState } = React;
   const [list, setList] = useState([]);
 
   React.useEffect(() => {

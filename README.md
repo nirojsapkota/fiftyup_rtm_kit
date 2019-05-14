@@ -42,7 +42,14 @@ This step will ensure that each package has linked together.
 ### Run tests
 
 ```
-npm run test
+npm run test:watch
+```
+
+This will watch all files for changes and run tests in the package that contains
+the changed file only.
+
+```
+npm run test:coverage
 ```
 
 This will run all the tests and dump out coverage reports for each of them. All tests should be passing and at this point you're ready to start working. Read more about [testing](#testing)
@@ -50,10 +57,13 @@ This will run all the tests and dump out coverage reports for each of them. All 
 To run a test in an individual package:
 
 ```sh
-cd package/myPackage
-npm run test # run tests with autoreload
-# or
-npm run test -- --coverage # run coverage report on this package only
+lerna run test --stream --scope @rtm-ui/phoneback -- -- --watch
+```
+
+Or:
+
+```sh
+lerna run test --stream --scope @rtm-ui/phoneback -- -- --coverage
 ```
 
 ---
@@ -152,13 +162,11 @@ dependencies, as it's webpack config will automatically pick up changes. However
 npm run watch
 ```
 
-To run anything on an individual package:
+Running commands on individual packages
 
 ```sh
-# For builds
-lerna run build --scope @rtm-ui/my-package
-# Or for tests
-lerna run test --scope @rtm-ui/my-package
+# Specify stream to view the output of each command
+lerna run build --scope @rtm-ui/my-package --stream
 ```
 
 ---
@@ -176,8 +184,7 @@ There are several examples of how to mock a module, and in ideal scenarios you c
 ---
 
 # RTM Scripts
-The development process for this project consists of 3 parts: `test`, `dev`, & `build:packages`. For `dev` we use Docz, but for the other two, we rely on a separate package called `@rtm/core`. It's heavily inspired by [React scripts](https://github.com/facebook/create-react-app/tree/master/packages/react-scripts) and it bundles the build, test, and linting processes so any package doesn't
-need to add these things itself.
+The development process for this project consists of 3 parts: testing, development, & builds. For local development we use Docz, a static site generator that's build on top of MDX so we can mix markdown and JSX. For the other two tasks we rely on a separate package called `@rtm/core`. It's heavily inspired by [React scripts](https://github.com/facebook/create-react-app/tree/master/packages/react-scripts) and it bundles the build, test, and linting processes so any package doesn't need to add these things itself.
 
 RTM Scripts acts as a single source of truth for how we build and test things. You'll notice that the root of this repo and all of the other packages don't contain much build or test configuration, that's the job of `@rtm/core`.
 
@@ -244,29 +251,3 @@ Whenever a commit to `master` is made, AWS Codebuild picks up the change from a 
 - Lerna is responsible for bumping the version of each package and will commit the change back to Github. This is where our "conventional commits" come in handy.
 - The content of each pacakge is stored in an S3 bucket, which is used by our private npm registry whenever you run `npm install @rtm-ui/foo`.
 - Additionally, Codebuild runs `npm run build`, the result of the build process is also stored as an artifact (a separate S3 bucket). The contents of this bucket, which in most cases is a just a minified build file, are synced across to yet another S3 bucket which serve as a CDN via AWS Cloudfront (work in progress).
-
-var params = {
-  SecretId: "sfmc-ftp",
-  VersionStage: "AWSCURRENT"
- };
-
-  secretsmanager.getSecretValue(params, function(err, data) {
-   if (err) {
-     console.log(err, err.stack); // an error occurred
-   } else {
-    const res = JSON.parse(data.SecretString)
-    console.log(res);
-   }
-   /*
-   data = {
-    ARN: "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
-    CreatedDate: <Date Representation>,
-    Name: "MyTestDatabaseSecret",
-    SecretString: "{\n  \"username\":\"david\",\n  \"password\":\"BnQw&XDWgaEeT9XGTT29\"\n}\n",
-    VersionId: "EXAMPLE1-90ab-cdef-fedc-ba987SECRET1",
-    VersionStages: [
-       "AWSPREVIOUS"
-    ]
-   }
-   */
- });

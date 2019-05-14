@@ -94,17 +94,16 @@ const Navbar = ({ variant, ...props }) => {
     <Flex variant={variant} px={[10, 20]} elevation={1}>
       {props.isDesktop && <div style={{ wdith: '32px' }} />}
       <NavGroupWrapper px={[0, 0, 32]}>
-        {props.isDesktop &&
-          props.tagline && (
-            <Paragraph pr={10} weight="bold" color="tertiary" tag="h6">
-              {props.tagline}
-            </Paragraph>
-          )}
-        <StyledParagraph style={{ display: 'flex' }}>
+        {props.isDesktop && props.tagline && (
+          <Paragraph pr={10} weight="bold" color="tertiary" tag="h6">
+            {props.tagline}
+          </Paragraph>
+        )}
+        <Box style={{ display: 'flex' }}>
           <LogoA href="/">
             <Logo entityBrand={logoGlyph} width={props.isDesktop ? 200 : 100} />
           </LogoA>
-        </StyledParagraph>
+        </Box>
         <NavList>
           {props.isDesktop ? (
             <NavGroup>

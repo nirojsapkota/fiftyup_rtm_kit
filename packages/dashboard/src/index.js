@@ -96,7 +96,7 @@ export const Dashboard = ({ campaigns, dashboardBanner }) => {
 Dashboard.propTypes = {
   campaigns: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.number,
       headerText: PropTypes.string,
       image: PropTypes.string,
       flagText: PropTypes.string,
