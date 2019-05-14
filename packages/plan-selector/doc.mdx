@@ -1,0 +1,25 @@
+---
+name: PlanSelector
+route: /pages/planSelector
+menu: Pages
+---
+
+import { Playground } from 'docz'
+import { PlanSelector, Plan } from './src'
+import energyPlanProps from './src/__fixtures__/energyPlans';
+
+# PlanSelector
+
+## Basic usage
+
+<Playground>
+  <PlanSelector>Hello, World!</PlanSelector>
+</Playground>
+
+# Plan
+
+## Basic usage
+
+<Playground>
+  <Plan {...energyPlanProps.plans[0]}/>
+</Playground>
