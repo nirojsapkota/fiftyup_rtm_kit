@@ -15,7 +15,7 @@ const DisclaimerBox = styled(Box)`
 `;
 
 const Disclaimer = ({ title, items }) => {
-  const disclaimers = items && items.filter(({ body }) => body !== '' || body !== null);
+  const disclaimers = items && items.filter(({ body }) => body !== '' && body !== null);
   return (
     <Box>
       <Header pl={20} mb={20} tag="h6">
