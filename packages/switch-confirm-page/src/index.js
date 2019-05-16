@@ -16,21 +16,22 @@ import {
 const PageWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
 `;
-
-const MobileView = styled(Box)`
-  display: block;
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    display: none;
+const CssReset = styled.div`
+  em,
+  i {
+    font-style: italic;
   }
-`;
-
-const DesktopView = styled(Box)`
-  display: block;
-  @media (max-width: ${props => props.theme.grid.md}em) {
-    display: none;
+  p {
+    line-height: 1.2;
+    font-size: 16px;
   }
+  small {
+    line-height: 1.6;
+    font-size: 12px;
+  }
+  ul {
+    list-style-position: inside;
 `;
-
 const HorizontalWrapper = styled(Box)`
   display: flex;
   flex-direction: row;
@@ -179,7 +180,7 @@ class ConfirmationWrapper extends React.Component {
               plan={plan}
               merchantLogo={merchant.logoUrl}
             />
-          </Box>  
+          </Box>
           <Disclaimer items={disclaimers} />
           <ConfirmSwitch
             completeUrl={rest.completeUrl}
@@ -238,7 +239,7 @@ class ConfirmationWrapper extends React.Component {
 }
 ConfirmationWrapper.defaultProps = {
   switchLinkText: 'Click here to continue Your switch',
-  switchButtonId: 'btn-switches-submit'
+  switchButtonId: 'btn-switches-submit',
 };
 ConfirmationWrapper.propTypes = {
   accordion: PropTypes.shape({}),
@@ -253,7 +254,9 @@ ConfirmationWrapper.propTypes = {
 const SwitchConfirmPage = props => {
   return (
     <React.Fragment>
-      <ConfirmationWrapper {...props} />
+      <CssReset>
+        <ConfirmationWrapper {...props} />
+      </CssReset>
     </React.Fragment>
   );
 };

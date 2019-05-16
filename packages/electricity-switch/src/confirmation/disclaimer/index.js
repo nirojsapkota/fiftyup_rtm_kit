@@ -25,7 +25,7 @@ const Disclaimer = ({ title, items }) => {
         <DisclaimerBox p={2}>
           {disclaimers.map(({ body }) => body).map((d, index) => {
             // eslint-disable-next-line react/no-array-index-key
-            return d && <Small key={index} py={2} dangerousHTML={d} />;
+            return d &&(<div><Small key={index} py={2} dangerousHTML={d} /></div>)
           })}
         </DisclaimerBox>
       )}
