@@ -49,6 +49,10 @@ const sizeChart = [
     sizes: [16, 16, 16, 16],
   },
   {
+    element: 'span',
+    sizes: [16, 16, 16, 16],
+  },
+  {
     element: 'input',
     sizes: [16, 16, 16, 16],
   },
@@ -168,7 +172,7 @@ Text.defaultProps = {
 };
 
 export const headerTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-export const primitiveTags = ['p', 'small', 'a', 'label', 'input'];
+export const primitiveTags = ['p', 'span', 'small', 'a', 'label', 'input'];
 export const weightProps = ['thin', 'normal', 'bold'];
 export const fontStyles = ['serif', 'sansSerif'];
 export const alignmentProps = [

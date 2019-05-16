@@ -15,7 +15,12 @@
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
+    "@rtm-ui/a": "file:../a",
     "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/icon": "file:../icon",
+    "@rtm-ui/img": "file:../img",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {

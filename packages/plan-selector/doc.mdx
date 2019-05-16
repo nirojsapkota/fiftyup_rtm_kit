@@ -7,19 +7,24 @@ menu: Pages
 import { Playground } from 'docz'
 import { PlanSelector, Plan } from './src'
 import energyPlanProps from './src/__fixtures__/energyPlans';
+import { DocWrapper } from '../bootstrap/setup/docWrapper'
 
 # PlanSelector
 
 ## Basic usage
 
-<Playground>
-  <PlanSelector>Hello, World!</PlanSelector>
-</Playground>
+<DocWrapper>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <PlanSelector {...energyPlanProps}/>
+  </div>
+</DocWrapper>
 
 # Plan
 
 ## Basic usage
 
 <Playground>
-  <Plan {...energyPlanProps.plans[0]}/>
+  <div style={{maxWidth: '250px', margin: '0 auto'}}>
+    <Plan {...energyPlanProps.plans[1]}/>
+  </div>
 </Playground>

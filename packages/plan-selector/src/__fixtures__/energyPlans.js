@@ -17,7 +17,8 @@ export default {
         campaignId: 268,
         displayName: 'Group Discounted En...',
         productName: 'energy',
-        planRate: '',
+        planRate:
+          '\u003cspan class="no-rate"\u003eRate Not Available\u003c/span\u003e',
         planBrief: '',
         displaySpecialTag: null,
       },
@@ -26,7 +27,7 @@ export default {
           'https://obs-development.s3.amazonaws.com/merchants/939/logo/deal.gif?1472177743',
         fullName: 'Powershop',
       },
-      buttonSelect: { text: 'Select', icon: 'arrow' },
+      button: { text: 'Select', icon: 'view-forward' },
     },
     {
       data: {
@@ -45,7 +46,7 @@ export default {
         displayName: 'Group Discounted En...',
         productName: 'energy',
         planRate:
-          '\u003ch2\u003e3.5e-05\u003csub\u003e%\u003c/sub\u003e\u003cspan\u003ediscount\u003c/span\u003e\u003c/h2\u003e',
+          '\u003cp\u003e3.5e-05\u003csup\u003e%\u003c/sup\u003e\u003cspan\u003ediscount\u003c/span\u003e\u003c/p\u003e',
         planBrief: '',
         displaySpecialTag: null,
       },
@@ -54,7 +55,7 @@ export default {
           'https://obs-development.s3.amazonaws.com/merchants/44/logo/deal.png?1369355035',
         fullName: 'Simply Energy',
       },
-      buttonSelect: { text: 'Select', icon: 'arrow' },
+      button: { text: 'Select', icon: 'view-forward' },
     },
   ],
 };
