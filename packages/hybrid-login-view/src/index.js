@@ -108,12 +108,10 @@ class WrappedHybridLoginView extends React.Component {
     const { trackingData, entity, ...rest } = this.props;
 
     return (
-      <Bootstrap trackingData={trackingData}>
-        <React.Fragment>
-          <BasicHeader py={2} />
-          <HybridLoginView {...rest} />
-        </React.Fragment>
-      </Bootstrap>
+      <React.Fragment>
+        <BasicHeader py={2} />
+        <HybridLoginView {...rest} />
+      </React.Fragment>
     );
   }
 }
