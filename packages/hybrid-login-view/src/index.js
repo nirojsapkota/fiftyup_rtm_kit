@@ -109,8 +109,8 @@ class WrappedHybridLoginView extends React.Component {
 
     return (
       <React.Fragment>
-        <BasicHeader py={2} />
-        <HybridLoginView {...rest} />
+          <BasicHeader py={2} />
+          <HybridLoginView {...rest} />
       </React.Fragment>
     );
   }
