@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { getColor } from '@rtm-ui/theme';
 import { LoginPanel } from '@rtm-ui/login-panel';
-import { Bootstrap } from '@rtm-ui/bootstrap';
-import { Small } from '@rtm-ui/typography';
 import { Img } from '@rtm-ui/img';
 import { HowItWorks } from '@rtm-ui/how-it-works';
 import { track } from '@rtm-ui/tracker';
@@ -109,8 +107,8 @@ class WrappedHybridLoginView extends React.Component {
 
     return (
       <React.Fragment>
-          <BasicHeader py={2} />
-          <HybridLoginView {...rest} />
+        <BasicHeader py={2} />
+        <HybridLoginView {...rest} />
       </React.Fragment>
     );
   }
