@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Paragraph, Span } from '@rtm-ui/typography';
-import { Box, Card } from '@rtm-ui/layout';
+import { Box, Card, Block } from '@rtm-ui/layout';
 import { Img } from '@rtm-ui/img';
 import { A } from '@rtm-ui/a';
 import { Icon } from '@rtm-ui/icon';
-import { Theme, getColor } from '@rtm-ui/theme';
+import { getColor } from '@rtm-ui/theme';
 
 const MerchantBox = styled(Box)`
   height: 86px;
   display: flex;
   align-items: center;
-  overflow: hidden;
   margin: 0 auto;
   padding: 10px;
 `;
@@ -25,17 +24,34 @@ const PlanRateBox = styled(Box)`
   height: 90px;
   display: flex;
   justify-content: center;
+  min-width: 140px;
+
+  @media (max-width: ${props => props.theme.grid.sm}em) {
+    height: auto;
+    align-items: center;
+    width: 140px;
+  }
 `;
 
 const StyledPlanRate = styled(Paragraph)`
   p {
+    text-align: center;
     position: relative;
     font-size: 50px;
     margin-left: -12px;
     font-weight: 500;
+
+    @media (max-width: ${props => props.theme.grid.sm}em) {
+      font-size: 40px;
+    }
+
     sup {
       font-size: 40px;
       font-weight: 100;
+
+      @media (max-width: ${props => props.theme.grid.sm}em) {
+        font-size: 30px;
+      }
     }
     span {
       position: absolute;
@@ -43,15 +59,19 @@ const StyledPlanRate = styled(Paragraph)`
       right: -15px;
       font-size: 28px;
       font-weight: 300;
+
+      @media (max-width: ${props => props.theme.grid.sm}em) {
+        right: 5px;
+        text-align: right;
+        bottom: -25px;
+      }
     }
   }
 
   span {
-    &.no-rate {
-      font-size: 28px;
-      display: flex;
-      margin-top: 25px;
-    }
+    font-size: 28px;
+    display: flex;
+    margin-top: 25px;
   }
 `;
 
@@ -64,7 +84,6 @@ const PlanRate = ({ planRate }) => (
 const PlanBriefBox = styled(Box)`
   height: 92px;
   align-items: center;
-  overflow: hidden;
 `;
 
 const PlanBrief = ({ planBrief }) => (
@@ -96,17 +115,6 @@ const Button = ({ text, icon }) => (
   </StyledButton>
 );
 
-const StyledCard = styled(Card)`
-  display: inherit;
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 479px) {
-    width: 100%;
-  }
-`;
-
 const StyledPlanName = styled(Paragraph)`
   align-self: center;
   padding: 10px 10px 5px 10px;
@@ -115,21 +123,51 @@ const StyledPlanName = styled(Paragraph)`
   max-height: 105px;
 `;
 
-const EnergyPlan = ({ plan, merchant, button, data, ...rest }) => {
-  console.log(plan);
-  console.log(merchant);
-  console.log(button);
-  console.log(data);
+const StyledCard = styled(Card)`
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: ${props => props.theme.grid.sm}em) {
+    width: 100%;
+    flex-direction: row;
+  }
+`;
+
+const MobileWrapper = styled(Box)`
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: ${props => props.theme.grid.sm}em) {
+    width: 100%;
+  }
+`;
+
+const EnergyPlan = ({
+  displaySpecialTag,
+  merchant,
+  planRate,
+  displayName,
+  planBrief,
+  button,
+  data,
+}) => {
   return (
     <A {...data}>
-      <StyledCard {...rest}>
-        <Merchant {...merchant} />
-        <PlanRate planRate={plan.planRate} />
-        {plan.displayName && (
-          <StyledPlanName dangerousHTML={plan.displayName} />
-        )}
-        <PlanBrief planBrief={plan.planBrief} />
-        <Button {...button} />
+      {displaySpecialTag && <Paragraph dangerousHTML={displaySpecialTag} />}
+      <StyledCard>
+        <Block showAt="sm">
+          <Merchant {...merchant} />
+        </Block>
+        <PlanRate planRate={planRate} />
+        <MobileWrapper>
+          <Block hideAt="sm">
+            <Merchant {...merchant} />
+          </Block>
+          {displayName && <StyledPlanName dangerousHTML={displayName} />}
+          <PlanBrief planBrief={planBrief} />
+          <Button {...button} />
+        </MobileWrapper>
       </StyledCard>
     </A>
   );

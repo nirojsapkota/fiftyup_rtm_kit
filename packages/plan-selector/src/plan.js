@@ -4,20 +4,25 @@ import PropTypes from 'prop-types';
 import { EnergyPlan } from './energyPlan';
 import { GenericPlan } from './genericPlan';
 
-const plans = {
+const planComponents = {
   energy: EnergyPlan,
   generic: GenericPlan,
 };
 
-const Plan = props => {
-  const productName = (props.plan && props.plan.productName) || 'generic';
-  const Component = plans[productName];
+const Plan = ({ plan, ...rest }) => {
+  const Component = planComponents[plan.productName || 'generic'];
 
-  return <Component {...props} />;
+  return <Component {...plan} {...rest} />;
 };
 
 Plan.propTypes = {
-  productName: PropTypes.string,
+  plan: PropTypes.shape({
+    productName: PropTypes.string,
+  }),
+};
+
+Plan.defaultProps = {
+  plan: {},
 };
 
 export { Plan };
