@@ -15,19 +15,35 @@ jest.mock('@rtm-ui/tracker', () => {
 });
 
 describe(`<Button />`, () => {
+  const welcomeMessage = 'Welcome to React';
   it(`renders welcome message`, () => {
-    const { getByText } = render(<Button>Welcome to React</Button>);
+    const { getByText } = render(<Button>{welcomeMessage}</Button>, {
+      themeOverrides: { 'colors.variants.a.accent': 'orange' },
+    });
 
-    expect(getByText(`Welcome to React`)).toBeInTheDocument();
-    // expect(container).toMatchSnapshot();
+    const buttonNode = getByText(welcomeMessage);
+    expect(buttonNode).toBeInTheDocument();
+    expect(buttonNode).toHaveStyleRule('background', 'orange');
   });
 
   it(`renders welcome a secondary color`, () => {
-    const { getByText } = render(
-      <Button secondary>Welcome to React</Button>
-    );
+    const { getByText } = render(<Button secondary>{welcomeMessage}</Button>, {
+      themeOverrides: { 'colors.grayscale.slightlyDarker': 'gray' },
+    });
 
-    expect(getByText(`Welcome to React`)).toBeInTheDocument();
+    const buttonNode = getByText(welcomeMessage);
+    expect(buttonNode).toBeInTheDocument();
+    expect(buttonNode).toHaveStyleRule('background', 'gray');
+  });
+
+  it(`renders welcome a tertiary color`, () => {
+    const { getByText } = render(<Button tertiary>{welcomeMessage}</Button>, {
+      themeOverrides: { 'colors.variants.a.tertiary': 'green' },
+    });
+
+    const buttonNode = getByText(welcomeMessage);
+    expect(buttonNode).toBeInTheDocument();
+    expect(buttonNode).toHaveStyleRule('background', 'green');
   });
 
   it(`renders welcome as a block`, () => {

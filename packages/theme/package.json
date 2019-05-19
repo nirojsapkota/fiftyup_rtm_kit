@@ -9,6 +9,7 @@
       "backgroundStyle",
       "getColor",
       "getWeight",
+      "tintColor",
       "themeMap",
       "setIn",
       "fiftyup",

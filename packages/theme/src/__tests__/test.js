@@ -3,7 +3,7 @@ import 'jest-dom/extend-expect';
 import { render } from 'react-testing-library';
 import { Theme, BootstrapTheme } from '../index';
 import { obs, fuc, ninesaver } from '../themes';
-import { getColor, setIn, getWeight } from '../util';
+import { tintColor, getColor, setIn, getWeight } from '../util';
 import { MockWrapper } from '../__mocks__/backgroundExample';
 
 const themes = [obs, fuc, ninesaver];
@@ -21,11 +21,11 @@ describe('<BootstrapTheme />', () => {
   it('do not render CssReset', () => {
     const { getByTestId } = render(
       <BootstrapTheme theme={obs} cssReset={false}>
-        <img href='/' data-testid='img' alt='testing'/>
+        <img href="/" data-testid="img" alt="testing" />
       </BootstrapTheme>
     );
     // inside CssReset: image display block
-    expect(getByTestId('img')).not.toHaveStyle("display: block");
+    expect(getByTestId('img')).not.toHaveStyle('display: block');
   });
 });
 
@@ -106,5 +106,14 @@ describe('getWeight', () => {
 
   it('defaults to 400', () => {
     expect(getWeight('unknownKey')).toBe('400');
+  });
+});
+
+describe('tintColor', () => {
+  it('lightens the color provided when the value is positive', () => {
+    expect(tintColor('#eee', 10)).toBe('#fff');
+  });
+  it('darkens the color provided when the value is negative', () => {
+    expect(tintColor('#eee', -10)).toBe('#d5d5d5');
   });
 });
