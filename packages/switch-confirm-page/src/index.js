@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { A } from '@rtm-ui/a';
 import { Accordion } from '@rtm-ui/accordion';
-import { Box } from '@rtm-ui/layout';
+import { Box, Block } from '@rtm-ui/layout';
 import { Header, Small } from '@rtm-ui/typography';
 import { Theme as Variant, getColor } from '@rtm-ui/theme';
 import {
@@ -15,18 +15,6 @@ import {
 
 const PageWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
-`;
-
-const MobileView = styled(Box)`
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    display: none;
-  }
-`;
-
-const DesktopView = styled(Box)`
-  @media (max-width: ${props => props.theme.grid.md}em) {
-    display: none;
-  }
 `;
 
 const HorizontalWrapper = styled(Box)`
@@ -169,7 +157,7 @@ class ConfirmationWrapper extends React.Component {
 
     return (
       <PageWrapper>
-        <MobileView>
+        <Block hideAt="md" width="100%">
           <HeaderWrapper orientation="horizontal" headerProps={rest} />
           <Box pt={30} px={3}>
             <PlanDetails
@@ -177,7 +165,7 @@ class ConfirmationWrapper extends React.Component {
               plan={plan}
               merchantLogo={merchant.logoUrl}
             />
-          </Box>  
+          </Box>
           <Disclaimer items={disclaimers} />
           <ConfirmSwitch
             completeUrl={rest.completeUrl}
@@ -198,8 +186,8 @@ class ConfirmationWrapper extends React.Component {
               {switchLinkText}
             </SwitchLink>
           </Box>
-        </MobileView>
-        <DesktopView>
+        </Block>
+        <Block showAt="md" width="100%">
           <HeaderWrapper orientation="vertical" headerProps={rest} />
           <HorizontalWrapper m="auto" py={30}>
             <Box pr={3} style={{ width: '50%' }}>
@@ -229,13 +217,14 @@ class ConfirmationWrapper extends React.Component {
               />
             </Box>
           </HorizontalWrapper>
-        </DesktopView>
+        </Block>
       </PageWrapper>
     );
   }
 }
 ConfirmationWrapper.defaultProps = {
   switchLinkText: 'Click here to continue Your switch',
+  switchButtonId: 'btn-switches-submit',
 };
 ConfirmationWrapper.propTypes = {
   accordion: PropTypes.shape({}),

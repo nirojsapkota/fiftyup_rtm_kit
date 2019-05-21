@@ -14,7 +14,6 @@ describe('<Text />', () => {
         </Component>
       );
       expect(getByText('Hello, World!')).toBeInTheDocument();
-      expect(getByText('Hello, World!')).toMatchSnapshot();
       expect(getByText('Hello, World!')).toHaveStyleRule('color', '#ef8612');
     });
 
