@@ -36,9 +36,11 @@ export const CssReset = createGlobalStyle`
     list-style: none;
     list-style-position: inside;
   }
+  
   em, i {
     font-style: italic;
   }
+
   blockquote, q {
     quotes: none;
   }
