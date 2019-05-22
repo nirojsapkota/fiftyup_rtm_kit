@@ -10,7 +10,8 @@
       "Box",
       "Flex",
       "Card",
-      "useWindowSize"
+      "useWindowSize",
+      "TopBorderCard"
     ]
   },
   "author": "RevTech Media",
