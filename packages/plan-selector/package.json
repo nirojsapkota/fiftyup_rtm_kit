@@ -6,7 +6,10 @@
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "plan-selector",
-    "namedExports": ["PlanSelector"]
+    "namedExports": [
+      "PlanSelector",
+      "Plan"
+    ]
   },
   "main": "build/index.js",
   "_module": "src/index",

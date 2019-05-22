@@ -72,6 +72,9 @@ const StyledPlanRate = styled(Paragraph)`
     font-size: 28px;
     display: flex;
     margin-top: 25px;
+    @media (max-width: ${props => props.theme.grid.sm}em) {
+      margin-left: 10px;
+    }
   }
 `;
 
@@ -84,6 +87,7 @@ const PlanRate = ({ planRate }) => (
 const PlanBriefBox = styled(Box)`
   height: 92px;
   align-items: center;
+  padding: 0 10px;
 `;
 
 const PlanBrief = ({ planBrief }) => (
@@ -116,7 +120,6 @@ const Button = ({ text, icon }) => (
 );
 
 const StyledPlanName = styled(Paragraph)`
-  align-self: center;
   padding: 10px 10px 5px 10px;
   font-size: 19px;
   font-weight: 100;
@@ -144,18 +147,17 @@ const MobileWrapper = styled(Box)`
 `;
 
 const EnergyPlan = ({
-  displaySpecialTag,
   merchant,
   planRate,
   displayName,
   planBrief,
   button,
+  onClick,
   data,
 }) => {
   return (
-    <A {...data}>
-      {displaySpecialTag && <Paragraph dangerousHTML={displaySpecialTag} />}
-      <StyledCard>
+    <A onClick={onClick} {...data} className={`plan-select`}>
+      <StyledCard className={`plan`}>
         <Block showAt="sm">
           <Merchant {...merchant} />
         </Block>
@@ -173,6 +175,20 @@ const EnergyPlan = ({
   );
 };
 
-EnergyPlan.propTypes = {};
+EnergyPlan.propTypes = {
+  onClick: PropTypes.func,
+  data: PropTypes.shape({}),
+  merchant: PropTypes.shape({
+    logo: PropTypes.string,
+    fullName: PropTypes.string,
+  }),
+  planRate: PropTypes.string,
+  displayName: PropTypes.string,
+  planBrief: PropTypes.string,
+  button: PropTypes.shape({
+    text: PropTypes.string,
+    icon: PropTypes.string,
+  }),
+};
 
 export { EnergyPlan };
