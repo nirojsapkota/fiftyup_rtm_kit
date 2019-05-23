@@ -33,7 +33,6 @@ export const CssReset = createGlobalStyle`
   }
 
   ol, ul {
-    list-style: none;
     list-style-position: inside;
   }
   

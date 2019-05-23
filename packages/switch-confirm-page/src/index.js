@@ -28,9 +28,8 @@ const ReviewItem = styled(Box)`
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
-  align-items: center;
-  span:nth-child(2n) {
-    text-align: right;
+  > small {
+    flex-basis: 50%;
   }
 `;
 
@@ -90,7 +89,7 @@ const ReviewContent = ({ items }) => {
         return (
           <ReviewItem p={[10, 10]} key={key}>
             <Small color="dark">{item.title}</Small>
-            <Small color="dark">{item.value}</Small>
+            <Small pl={3} color="dark" dangerousHTML={item.value} />
           </ReviewItem>
         );
       })}
