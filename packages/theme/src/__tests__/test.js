@@ -58,7 +58,7 @@ describe('backgroundStyle', () => {
         <MockWrapper variant="b">Welcome to React</MockWrapper>
       </Theme>
     );
-    expect(getByText).toMatchSnapshot();
+    expect(getByText('Welcome to React')).toBeInTheDocument();
   });
 });
 
