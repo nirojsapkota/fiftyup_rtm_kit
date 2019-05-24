@@ -16,7 +16,10 @@ const ContentWrapper = styled(Box)`
 
 const ListItem = ({ icon, fill, children }) => {
   return (
-    <Box my={[2]}>
+    <Box 
+      style={{
+        height: '100%',
+      }} my={[2]}>
       <Wrapper>
         {icon && (
           <Box pr={[1, 2, 3]}>
