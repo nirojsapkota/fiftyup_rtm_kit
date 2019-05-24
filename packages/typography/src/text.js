@@ -120,6 +120,11 @@ const generalStyleForText = css`
   text-align: ${props => props.align};
   ${colorStyles};
   ${subStyles};
+
+  em, i {
+    font-style: italic;
+  }
+
   strong {
     font-weight: bold;
   }

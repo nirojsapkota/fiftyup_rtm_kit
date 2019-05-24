@@ -12,8 +12,6 @@ const Wrapper = styled(Box)`
 
 const ContentWrapper = styled(Box)`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 `;
 
 const ListItem = ({ icon, fill, children }) => {

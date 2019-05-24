@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { getColor } from '@rtm-ui/theme';
 import { LoginPanel } from '@rtm-ui/login-panel';
-import { Bootstrap } from '@rtm-ui/bootstrap';
-import { Small } from '@rtm-ui/typography';
 import { Img } from '@rtm-ui/img';
 import { HowItWorks } from '@rtm-ui/how-it-works';
 import { track } from '@rtm-ui/tracker';
@@ -52,18 +50,12 @@ const LoginPanelWrapper = styled(Box)`
   background: inherit;
 `;
 
-const StyledDisclaimer = styled(Small)`
-  background: inherit;
-  text-align: justify;
-`;
-
 const HeroImageWrapper = styled(Box)`
   max-width: 1080px;
 `;
 
 const HybridLoginView = ({
   howItWorksProps,
-  disclaimerProps,
   heroImageUrl,
   ...props
 }) => {
@@ -79,10 +71,6 @@ const HybridLoginView = ({
               <LoginPanelWrapper px={[10, 10, 15, 20]}>
                 <LoginPanel {...props} />
               </LoginPanelWrapper>
-              <StyledDisclaimer
-                p={50}
-                dangerousHTML={disclaimerProps.disclaimerText || ''}
-              />
             </Column>
             <Column width={1 / 2}>
               <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
@@ -97,10 +85,6 @@ const HybridLoginView = ({
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
               <HowItWorks {...howItWorksProps} />
             </HowItWorksWrapper>
-            <StyledDisclaimer
-              p={30}
-              dangerousHTML={disclaimerProps.disclaimerText || ''}
-            />
           </MobileShow>
         </ContentWrapper>
       </BodyWrapper>
@@ -110,9 +94,6 @@ const HybridLoginView = ({
 
 HybridLoginView.propTypes = {
   howItWorksProps: t.shape({}),
-  disclaimerProps: t.shape({
-    disclaimerText: t.string,
-  }),
   heroImageUrl: t.string,
 };
 
@@ -125,12 +106,10 @@ class WrappedHybridLoginView extends React.Component {
     const { trackingData, entity, ...rest } = this.props;
 
     return (
-      <Bootstrap trackingData={trackingData}>
-        <React.Fragment>
-          <BasicHeader py={2} />
-          <HybridLoginView {...rest} />
-        </React.Fragment>
-      </Bootstrap>
+      <React.Fragment>
+        <BasicHeader py={2} />
+        <HybridLoginView {...rest} />
+      </React.Fragment>
     );
   }
 }

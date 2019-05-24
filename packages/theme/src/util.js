@@ -2,6 +2,7 @@
 import { css } from 'styled-components';
 import cloneDeep from 'lodash.clonedeep';
 import toPath from 'lodash.topath';
+import { lighten, darken } from 'polished';
 
 export const getColor = (color, theme) => {
   const variantColor = theme.colors.variants[theme.variant][color];
@@ -56,3 +57,11 @@ export function getWeight(weight) {
 
   return weightMap[weight] || '400';
 }
+
+export const tintColor = (colorHex, amt) => {
+  if (amt > 0) {
+    return lighten(amt / 100, colorHex);
+  } else {
+    return darken((amt / 100) * -1, colorHex);
+  }
+};

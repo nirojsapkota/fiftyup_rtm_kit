@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/theme",
-  "version": "4.0.4",
+  "version": "4.1.1",
   "rtmRollup": {
     "namespace": "theme",
     "namedExports": [
@@ -9,6 +9,7 @@
       "backgroundStyle",
       "getColor",
       "getWeight",
+      "tintColor",
       "themeMap",
       "setIn",
       "fiftyup",

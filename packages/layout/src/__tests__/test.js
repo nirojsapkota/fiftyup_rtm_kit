@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, act } from '../../../bootstrap/setup/testSetup';
-import { Block, Card, Pane, Flex, useWindowSize } from '../index';
+import { Block, Card, Pane, Flex, useWindowSize, TopBorderCard } from '../index';
 
 const text = 'Hello, World';
 
@@ -112,4 +112,25 @@ describe('useWindowSize', () => {
     expect(getByTestId('width')).toHaveTextContent('200');
     expect(getByTestId('height')).toHaveTextContent('300');
   });
+
+  /* ****************************************** */
+  describe('<TopBorderCard />', () => {
+    it('renders the border color of the variant provided', () => {
+      const { getByText } = render(
+      <TopBorderCard variant="c" bordercolor="primary">{text}</TopBorderCard>, {
+        themeOverrides: { 'colors.variants.c.primary': '#1566ad' },
+      });
+  
+      expect(getByText(text)).toHaveStyleRule('border-top-color', '#1566ad');
+    });
+  
+    it('provides the theme border color to the Card', () => {
+      const { getByText } = render(<TopBorderCard variant="c" bordercolor="accent">{text}</ TopBorderCard>, {
+        themeOverrides: { 'colors.variants.c.accent': '#ef8612' },
+      });
+  
+      expect(getByText(text)).toHaveStyleRule('border-top-color', '#ef8612');
+    });
+  });
+
 });

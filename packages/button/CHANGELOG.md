@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@4.1.1...@rtm-ui/button@4.1.2) (2019-05-22)
+
+**Note:** Version bump only for package @rtm-ui/button
+
+
+
+
+
+## [4.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@4.1.0...@rtm-ui/button@4.1.1) (2019-05-21)
+
+**Note:** Version bump only for package @rtm-ui/button
+
+
+
+
+
+# [4.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@4.0.6...@rtm-ui/button@4.1.0) (2019-05-20)
+
+
+### Features
+
+* **button:** Add tertiary prop to button ([#114](https://github.com/OBSAU/rtm-kit/issues/114)) ([f5d15f5](https://github.com/OBSAU/rtm-kit/commit/f5d15f5))
+
+
+
+
+
 ## [4.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@4.0.5...@rtm-ui/button@4.0.6) (2019-05-14)
 
 **Note:** Version bump only for package @rtm-ui/button

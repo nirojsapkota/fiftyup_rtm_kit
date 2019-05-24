@@ -15,7 +15,7 @@ const DisclaimerBox = styled(Box)`
 `;
 
 const Disclaimer = ({ title, items }) => {
-  const disclaimers = items && items.filter(({ body }) => body !== '' || body !== null);
+  const disclaimers = items && items.filter(({ body }) => body !== '' && body !== null);
   return (
     <Box>
       <Header pl={20} mb={20} tag="h6">
@@ -25,7 +25,7 @@ const Disclaimer = ({ title, items }) => {
         <DisclaimerBox p={2}>
           {disclaimers.map(({ body }) => body).map((d, index) => {
             // eslint-disable-next-line react/no-array-index-key
-            return d && <Small key={index} py={2} dangerousHTML={d} />;
+            return d &&(<div><Small key={index} py={2} dangerousHTML={d} /></div>)
           })}
         </DisclaimerBox>
       )}
