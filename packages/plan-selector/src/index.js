@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Header, Paragraph } from '@rtm-ui/typography';
+import { Header } from '@rtm-ui/typography';
 import { Box, Pane } from '@rtm-ui/layout';
-import { getColor } from '@rtm-ui/theme';
 import { A } from '@rtm-ui/a';
 
 import { Plan } from './plan';

@@ -84,18 +84,18 @@ describe('<PlanSelector />', () => {
   it('custom render component', async () => {
     const plans = energyPlanProp.plans;
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <PlanSelector
         {...energyPlanProp}
         renderPlan={({ plan, index }) => (
-          <div key={`plan-${index}`}>{plan.id}</div>
+          <div key={`plan-${index}`} data-testid={`plan-${plan.id}`}>{plan.id}</div>
         )}
       />
     );
 
     await wait(async () => {
-      await plans.forEach(async plan => {
-        const el = await getByText(plan.id);
+      plans.map(async plan => {
+        const el = await getByTestId(`plan-${plan.id}`);
         expect(el).toBeInTheDocument();
       });
     });
