@@ -31,8 +31,10 @@ export default {
       campaignId: 268,
       displayName: 'Group Discounted En...',
       productName: 'energy',
-      planRate:
-        '\u003cp class="plan-rate"\u003e3.5e-05\u003csup\u003e%\u003c/sup\u003e\u003cspan\u003ediscount\u003c/span\u003e\u003c/p\u003e',
+      planRate: {
+        discount: '40.5<sup>%</sup>',
+        text: 'discount',
+      },
       planBrief:
         '<p>• Exclusively Available to One Big Switch members</p><p>• Average price of 10.1c/kWh for 2,000 kWh monthly use</p><p>• Fixed rate plan</p>',
       merchant: {

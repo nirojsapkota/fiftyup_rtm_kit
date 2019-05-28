@@ -24,23 +24,24 @@ const PlanRateBox = styled(Box)`
   height: 90px;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
   min-width: 140px;
-
   @media (max-width: ${props => props.theme.grid.sm}em) {
     height: auto;
     align-items: center;
     width: 140px;
   }
-`;
+  >div p {
+    font-size: 28px;
+    font-weight: 300;
+  }
 
-const StyledPlanRate = styled(Paragraph)`
-  p {
-    text-align: center;
-    position: relative;
-    font-size: 50px;
-    margin-left: -12px;
+  >p {
+    font-size: 47px;
     font-weight: 500;
-
+    align-self: flex-start;
+    line-height: 0.7;
     @media (max-width: ${props => props.theme.grid.sm}em) {
       font-size: 40px;
     }
@@ -52,35 +53,15 @@ const StyledPlanRate = styled(Paragraph)`
       @media (max-width: ${props => props.theme.grid.sm}em) {
         font-size: 30px;
       }
-    }
-    span {
-      position: absolute;
-      bottom: -15px;
-      right: -15px;
-      font-size: 28px;
-      font-weight: 300;
-
-      @media (max-width: ${props => props.theme.grid.sm}em) {
-        right: 5px;
-        text-align: right;
-        bottom: -25px;
-      }
-    }
-  }
-
-  span {
-    font-size: 28px;
-    display: flex;
-    margin-top: 25px;
-    @media (max-width: ${props => props.theme.grid.sm}em) {
-      margin-left: 10px;
-    }
   }
 `;
 
-const PlanRate = ({ planRate }) => (
+const PlanRate = ({ rate }) => (
   <PlanRateBox variant="c">
-    {planRate && <StyledPlanRate dangerousHTML={planRate} />}
+    <Paragraph ml={2} mt={2} dangerousHTML={rate.discount} />
+    <Box mr={2} mb={2}>
+      <Paragraph dangerousHTML={rate.text} />
+    </Box>
   </PlanRateBox>
 );
 
@@ -161,7 +142,7 @@ const EnergyPlan = ({
         <Block showAt="sm">
           <Merchant {...merchant} />
         </Block>
-        <PlanRate planRate={planRate} />
+        <PlanRate rate={planRate} />
         <MobileWrapper>
           <Block hideAt="sm">
             <Merchant {...merchant} />
