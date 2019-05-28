@@ -5,7 +5,7 @@ menu: Pages
 ---
 
 import { Playground } from 'docz'
-import { PlanSelector, Plan } from './src'
+import { PlanSelector, PlanCard } from './src'
 import energyPlanProp from './src/__fixtures__/energyPlan';
 import { DocWrapper } from '../bootstrap/setup/docWrapper'
 
@@ -23,6 +23,6 @@ import { DocWrapper } from '../bootstrap/setup/docWrapper'
 
 <Playground>
   <div style={{maxWidth: '250px', margin: '0 auto'}}>
-    <Plan {...energyPlanProp.plans[1]}/>
+    <PlanCard {...energyPlanProp.plans[1]}/>
   </div>
 </Playground>

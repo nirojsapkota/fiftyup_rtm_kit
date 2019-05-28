@@ -9,14 +9,14 @@ const planComponents = {
   generic: GenericPlan,
 };
 
-const Plan = props => {
-  const Component = planComponents[props.productName]  || planComponents.generic;
+const PlanCard = props => {
+  const Component = planComponents[props.productName] || planComponents.generic;
 
   return <Component {...props} />;
 };
 
-Plan.propTypes = {
+PlanCard.propTypes = {
   productName: PropTypes.string,
 };
 
-export { Plan };
+export { PlanCard };

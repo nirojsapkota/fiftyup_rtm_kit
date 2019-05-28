@@ -4,8 +4,6 @@ import { getColor, getWeight, obs } from '@rtm-ui/theme';
 import {
   render,
   // eslint-disable-next-line import/named
-  fireEvent,
-  // eslint-disable-next-line import/named
   wait,
   // eslint-disable-next-line import/named
   cleanup,
@@ -13,7 +11,7 @@ import {
 import { default as energyPlanProp } from '../__fixtures__/energyPlan';
 import { EnergyPlan } from '../energyPlan';
 import { GenericPlan } from '../genericPlan';
-import { PlanSelector, Plan } from '../index';
+import { PlanSelector, PlanCard } from '../index';
 
 afterEach(cleanup);
 
@@ -22,14 +20,14 @@ describe('<EnergyPlan />', () => {
     // get first energy plan from fixture to check
     const plan = {
       ...energyPlanProp.plans[0],
-      planRate: 'Plan rate data',
+      planRate: { discount: "43.5<sup>%</sup>", text: 'discount'},
       planBrief: 'Plan brief data',
     };
 
     const { getByText, getByAltText } = render(<EnergyPlan {...plan} />);
 
     expect(getByText(plan.displayName)).toBeInTheDocument();
-    expect(getByText(plan.planRate)).toBeInTheDocument();
+    expect(getByText(plan.planRate.text)).toBeInTheDocument();
     expect(getByText(plan.planBrief)).toBeInTheDocument();
     expect(getByText(plan.button.text)).toBeInTheDocument();
 
@@ -53,16 +51,16 @@ describe('<GenericPlan />', () => {
   });
 });
 
-describe('<Plan />', () => {
+describe('<PlanCard />', () => {
   it('fallback to default generic plan', async () => {
     const data = {
       productName: 'testProduct',
     };
     const testContent = 'Expectation test content';
     const { getByText } = render(
-      <Plan {...data}>
+      <PlanCard {...data}>
         <div>{testContent}</div>
-      </Plan>
+      </PlanCard>
     );
 
     expect(getByText(testContent)).toBeInTheDocument();
@@ -88,7 +86,9 @@ describe('<PlanSelector />', () => {
       <PlanSelector
         {...energyPlanProp}
         renderPlan={({ plan, index }) => (
-          <div key={`plan-${index}`} data-testid={`plan-${plan.id}`}>{plan.id}</div>
+          <div key={`plan-${index}`} data-testid={`plan-${plan.id}`}>
+            {plan.id}
+          </div>
         )}
       />
     );

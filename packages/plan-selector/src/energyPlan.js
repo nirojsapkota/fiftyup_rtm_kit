@@ -56,12 +56,16 @@ const PlanRateBox = styled(Box)`
   }
 `;
 
-const PlanRate = ({ rate }) => (
+const PlanRate = ({ planRate }) => (
   <PlanRateBox variant="c">
-    <Paragraph ml={2} mt={2} dangerousHTML={rate.discount} />
-    <Box mr={2} mb={2}>
-      <Paragraph dangerousHTML={rate.text} />
-    </Box>
+    {planRate && (
+      <React.Fragment>
+        <Paragraph ml={2} mt={2} dangerousHTML={planRate.discount} />
+        <Box mr={2} mb={2}>
+          <Paragraph dangerousHTML={planRate.text} />
+        </Box>
+      </React.Fragment>
+    )}
   </PlanRateBox>
 );
 
@@ -85,17 +89,21 @@ const StyledButton = styled(Paragraph)`
   color: ${props => getColor('link', props.theme)};
 `;
 
-const Button = ({ text, icon }) => (
+const ViewButton = ({ text, icon }) => (
   <StyledButton>
     {text}
     {icon && (
-      <Span
+      <Paragraph
         align="left"
         weight="normal"
-        style={{ marginBottom: '5px', marginLeft: '-10px', display: 'inline' }}
+        style={{
+          marginBottom: '5px',
+          marginLeft: '-10px',
+          display: 'inline',
+        }}
       >
         <Icon fill="link" inline glyph="view-forward" size={40} />
-      </Span>
+      </Paragraph>
     )}
   </StyledButton>
 );
@@ -142,14 +150,14 @@ const EnergyPlan = ({
         <Block showAt="sm">
           <Merchant {...merchant} />
         </Block>
-        <PlanRate rate={planRate} />
+        <PlanRate planRate={planRate} />
         <MobileWrapper>
           <Block hideAt="sm">
             <Merchant {...merchant} />
           </Block>
           {displayName && <StyledPlanName dangerousHTML={displayName} />}
           <PlanBrief planBrief={planBrief} />
-          <Button {...button} />
+          <ViewButton {...button} />
         </MobileWrapper>
       </StyledCard>
     </A>
@@ -163,7 +171,7 @@ EnergyPlan.propTypes = {
     logo: PropTypes.string,
     fullName: PropTypes.string,
   }),
-  planRate: PropTypes.string,
+  planRate: PropTypes.shape({}),
   displayName: PropTypes.string,
   planBrief: PropTypes.string,
   button: PropTypes.shape({

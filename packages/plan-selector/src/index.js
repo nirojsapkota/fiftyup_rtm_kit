@@ -5,7 +5,7 @@ import { Header } from '@rtm-ui/typography';
 import { Box, Pane } from '@rtm-ui/layout';
 import { A } from '@rtm-ui/a';
 
-import { Plan } from './plan';
+import { PlanCard } from './plan-card';
 
 const ContentWrapper = styled(Box)`
   display: flex;
@@ -79,7 +79,7 @@ const PlanSelector = ({ header, plans, renderPlan, callCentre }) => (
             renderPlan({ plan, index })
           ) : (
             <PlanWrapper style={style} key={`plan_${index}`}>
-              <Plan {...plan} />
+              <PlanCard {...plan} />
             </PlanWrapper>
           );
         })}
@@ -94,4 +94,4 @@ PlanSelector.propTypes = {
   renderPlan: PropTypes.func,
 };
 
-export { Plan, PlanSelector };
+export { PlanCard, PlanSelector };

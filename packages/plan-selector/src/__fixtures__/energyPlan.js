@@ -6,7 +6,7 @@ export default {
       campaignId: 268,
       displayName: 'Group Discounted En...',
       productName: 'energy',
-      planRate: '',
+      planRate: {},
       planBrief: '',
       merchant: {
         logo:
