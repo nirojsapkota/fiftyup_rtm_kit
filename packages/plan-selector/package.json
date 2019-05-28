@@ -8,7 +8,7 @@
     "namespace": "plan-selector",
     "namedExports": [
       "PlanSelector",
-      "Plan"
+      "PlanCard"
     ]
   },
   "main": "build/index.js",
