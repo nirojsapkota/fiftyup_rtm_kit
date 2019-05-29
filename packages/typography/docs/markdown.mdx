@@ -1,0 +1,21 @@
+---
+name: Markdown
+route: /typography/markdown
+menu: Typography
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Markdown } from '../src';
+import { content } from './content.md';
+
+# Text
+
+## Basic usage
+
+<Playground>
+  <Markdown raw="hello [world!](https://example.com) a[^#] sentence[^sentence as a footnote]. There is also **bold** and _emphasis_ support. And **_both can be used together_**" />
+</Playground>
+
+<Playground>
+  <Markdown raw={content} />
+</Playground>
