@@ -25,7 +25,11 @@
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/layout": "file:../layout",
-    "@rtm-ui/theme": "file:../theme"
+    "@rtm-ui/theme": "file:../theme",
+    "rehype-stringify": "^5.0.0",
+    "remark-parse": "^6.0.3",
+    "remark-rehype": "^4.0.0",
+    "unified": "^7.1.0"
   },
   "peerDependencies": {
     "prop-types": "15.x",
