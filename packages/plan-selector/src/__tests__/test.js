@@ -1,8 +1,8 @@
 import React from 'react';
-import { getColor, getWeight, obs } from '@rtm-ui/theme';
 // eslint-disable-next-line import/named
 import {
   render,
+  fireEvent,
   // eslint-disable-next-line import/named
   wait,
   // eslint-disable-next-line import/named
@@ -20,7 +20,7 @@ describe('<EnergyPlan />', () => {
     // get first energy plan from fixture to check
     const plan = {
       ...energyPlanProp.plans[0],
-      planRate: { discount: "43.5<sup>%</sup>", text: 'discount'},
+      planRate: { discount: '43.5<sup>%</sup>', text: 'discount' },
       planBrief: 'Plan brief data',
     };
 
@@ -98,6 +98,33 @@ describe('<PlanSelector />', () => {
         const el = await getByTestId(`plan-${plan.id}`);
         expect(el).toBeInTheDocument();
       });
+    });
+  });
+});
+
+describe('<PlanSelector />', () => {
+  it('shows the plan when the item is clicked', async () => {
+    const mockClickEvent = jest.fn();
+    const plan = {
+      ...energyPlanProp.plans[0],
+      planRate: { discount: '43.5<sup>%</sup>', text: 'discount' },
+      planBrief: 'Plan brief data',
+      onClick: mockClickEvent,
+    };
+    const planSelectorParams = {
+      ...energyPlanProp,
+      plans: [plan],
+    };
+    const { getByText, container } = render(
+      <PlanSelector {...planSelectorParams} />
+    );
+    const text = getByText(plan.button.text);
+    expect(text).toBeInTheDocument();
+    const elementClick = container.getElementsByClassName('plan-select');
+
+    await wait(async () => {
+      fireEvent.click(elementClick[0]);
+      expect(mockClickEvent).toHaveBeenCalled();
     });
   });
 });
