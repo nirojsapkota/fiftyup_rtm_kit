@@ -5,7 +5,8 @@ import { getColor, getWeight } from '@rtm-ui/theme';
 import { Box } from '@rtm-ui/layout';
 
 const colorStyles = css`
-  color: ${props => getColor(props.color || 'text', props.theme)};
+  ${props =>
+    props.color ? `color: ${getColor(props.color, props.theme)}` : null};
 `;
 
 const subStyles = css`
@@ -91,21 +92,25 @@ export const labelTextStyles = css`
 `;
 
 function displayByEachScreen(tag) {
-  const { sizes } = sizeChart.find(({ element }) => element === tag);
+  const sizeItem = sizeChart.filter(({ element }) => element === tag)[0];
+  let sizes;
+  if (sizeItem) {
+    sizes = sizeItem.sizes;
+  }
   const lineHeight = lineHeightChart(tag);
   return css`
-    font-size: ${sizes[0]}px;
+    ${sizes && `font-size: ${sizes[0]}px`};
     line-height: ${lineHeight[0]};
     @media (min-width: ${props => props.theme.grid.sm}em) {
-      font-size: ${sizes[1]}px;
+      font-size: ${sizes && `font-size: ${sizes[0]}px`};
       line-height: ${lineHeight[1]};
     }
     @media (min-width: ${props => props.theme.grid.md}em) {
-      font-size: ${sizes[2]}px;
+      font-size: ${sizes && `font-size: ${sizes[0]}px`};
       line-height: ${lineHeight[2]};
     }
     @media (min-width: ${props => props.theme.grid.lg}em) {
-      font-size: ${sizes[3]}px;
+      font-size: ${sizes && `font-size: ${sizes[0]}px`};
       line-height: ${lineHeight[3]};
     }
   `;
@@ -116,12 +121,13 @@ const generalStyleForText = css`
     props.font === 'serif'
       ? props.theme.fonts.serif
       : props.theme.fonts.sansSerif};
-  font-weight: ${props => getWeight(props.weight)};
+  ${props => (props.weight ? `font-weight: ${getWeight(props.weight)}` : null)};
   text-align: ${props => props.align};
   ${colorStyles};
   ${subStyles};
 
-  em, i {
+  em,
+  i {
     font-style: italic;
   }
 
@@ -164,7 +170,6 @@ Text.defaultProps = {
   dangerousHTML: undefined,
   children: undefined,
   align: 'left',
-  weight: 'normal',
   font: 'sansSerif',
   color: null,
   p: undefined,
@@ -177,7 +182,18 @@ Text.defaultProps = {
 };
 
 export const headerTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-export const primitiveTags = ['p', 'span', 'small', 'a', 'label', 'input'];
+
+export const primitiveTags = [
+  'p',
+  'small',
+  'a',
+  'label',
+  'input',
+  'span',
+  'strong',
+  'em',
+];
+
 export const weightProps = ['thin', 'normal', 'bold'];
 export const fontStyles = ['serif', 'sansSerif'];
 export const alignmentProps = [
@@ -189,8 +205,7 @@ export const alignmentProps = [
 ];
 
 Text.propTypes = {
-  tag: PropTypes.oneOf([...headerTags, ...primitiveTags])
-    .isRequired,
+  tag: PropTypes.oneOf([...headerTags, ...primitiveTags]).isRequired,
   dangerousHTML: PropTypes.string,
   children: PropTypes.node,
   align: PropTypes.oneOf(alignmentProps),

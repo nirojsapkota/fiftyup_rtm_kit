@@ -33,7 +33,6 @@ export const CssReset = createGlobalStyle`
   }
 
   ol, ul {
-    list-style: none;
     list-style-position: inside;
   }
   
@@ -77,5 +76,9 @@ export const CssReset = createGlobalStyle`
   img {
     display: block;
     max-width: 100%;
+  }
+
+  p {
+    line-height: 1.6;
   }
 `;

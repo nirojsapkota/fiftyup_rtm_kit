@@ -8,8 +8,6 @@ import { getFieldComponent } from '../util/getFieldComponent';
 
 const SmallText = styled(Paragraph)`
   font-size: 10px;
-  ${props =>
-    props.showErrorColor && `color: ${getColor('error', props.theme)}`};
 `;
 
 const Wrapper = styled(Box)`
@@ -75,7 +73,7 @@ export default class BaseField extends React.Component {
           <SmallText>{hint}</SmallText>
           <SmallText
             data-testid="fieldError"
-            showErrorColor={!this.state.focused && error}
+            color={!this.state.focused && error ? 'error' : 'text'}
           >
             {error || this.state.waiting}
           </SmallText>

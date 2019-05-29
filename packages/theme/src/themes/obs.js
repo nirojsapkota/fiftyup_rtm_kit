@@ -80,6 +80,39 @@ const baseVariants = {
 };
 
 const variants = Object.assign(baseVariants, {
+  e: {
+    ...baseVariants.a,
+    text: colors.orange,
+    secondary: colors.orangeAccent,
+  },
+  f: {
+    ...baseVariants.a,
+    secondary: colors.orange,
+  },
+  g: {
+    ...baseVariants.a,
+    accent: '#1566ad',
+    link: '#1566ad',
+    linkHover: '#ef8612',
+  },
+  h: {
+    ...baseVariants.a,
+    background: colors.orange,
+    text: colors.white,
+    primary: colors.white,
+  },
+  i: {
+    ...baseVariants.a,
+    background: colors.navy,
+    primary: colors.orange,
+    text: colors.white,
+  },
+  j: {
+    ...baseVariants.a,
+    background: '#f7a91c',
+    primary: colors.white,
+    text: '#0b4892',
+  },
   regular: {
     ...baseVariants.a,
     text: '#1566ad',
