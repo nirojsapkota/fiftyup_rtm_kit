@@ -98,15 +98,15 @@ function displayByEachScreen(tag) {
     ${sizes && `font-size: ${sizes[0]}px`};
     line-height: ${lineHeight[0]};
     @media (min-width: ${props => props.theme.grid.sm}em) {
-      font-size: ${sizes && `font-size: ${sizes[0]}px`};
+      ${sizes && `font-size: ${sizes[0]}px`};
       line-height: ${lineHeight[1]};
     }
     @media (min-width: ${props => props.theme.grid.md}em) {
-      font-size: ${sizes && `font-size: ${sizes[0]}px`};
+      ${sizes && `font-size: ${sizes[0]}px`};
       line-height: ${lineHeight[2]};
     }
     @media (min-width: ${props => props.theme.grid.lg}em) {
-      font-size: ${sizes && `font-size: ${sizes[0]}px`};
+      ${sizes && `font-size: ${sizes[0]}px`};
       line-height: ${lineHeight[3]};
     }
   `;
