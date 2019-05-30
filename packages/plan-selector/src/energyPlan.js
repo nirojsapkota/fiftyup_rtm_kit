@@ -60,9 +60,9 @@ const PlanRate = ({ planRate }) => (
   <PlanRateBox variant="c">
     {planRate && (
       <React.Fragment>
-        <Paragraph ml={2} mt={2} dangerousHTML={planRate.discount} />
+        <Paragraph color="text" ml={2} mt={2} dangerousHTML={planRate.discount} />
         <Box mr={2} mb={2}>
-          <Paragraph dangerousHTML={planRate.text} />
+          <Paragraph color="text" dangerousHTML={planRate.text} />
         </Box>
       </React.Fragment>
     )}
@@ -125,6 +125,11 @@ const StyledCard = styled(Card)`
     flex-direction: row;
   }
 `;
+const StytledA = styled(A)`
+  &:hover {
+    color: ${props => getColor('link', props.theme)};
+  }
+`;
 
 const MobileWrapper = styled(Box)`
   display: flex;
@@ -145,8 +150,8 @@ const EnergyPlan = ({
   data,
 }) => {
   return (
-    <A onClick={onClick} {...data} className={`plan-select`}>
-      <StyledCard className={`plan`}>
+    <StytledA onClick={onClick} {...data} className={`plan-select`}>
+      <StyledCard className={`plan`} pb={2}>
         <Block showAt="sm">
           <Merchant {...merchant} />
         </Block>
@@ -160,7 +165,7 @@ const EnergyPlan = ({
           <ViewButton {...button} />
         </MobileWrapper>
       </StyledCard>
-    </A>
+    </StytledA>
   );
 };
 
