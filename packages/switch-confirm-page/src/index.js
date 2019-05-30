@@ -33,6 +33,25 @@ const ReviewItem = styled(Box)`
   }
 `;
 
+const HeaderDetailWrapper = styled(Box)`
+  background: ${props => getColor('background', props.theme)};
+  color: ${props => getColor('text', props.theme)};
+  padding: 15px;
+  border-radius: 3px;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const BodyDetailsWrapper = styled(Box)`
+  border: 1px solid ${props => getColor('background', props.theme)};
+  border-radius: 3px;
+  position: relative;
+  top: -2px;
+  padding: 8px;
+`;
+
 const SwitchLink = styled(A)`
   text-transform: uppercase;
   color: ${props => getColor('text', props.theme)};
@@ -113,11 +132,14 @@ const AccordionSection = ({ items, reviewItems, footer }) => {
             );
           }}
         />
-        <Accordion
-          items={reviewItems}
-          renderHeader={item => <AccordionHeader header={item.header} />}
-          renderItem={item => <ReviewContent items={item.body} />}
-        />
+        <Box>
+          <HeaderDetailWrapper>
+            <AccordionHeader header={reviewItems[0].header} />
+          </HeaderDetailWrapper>
+          <BodyDetailsWrapper>
+            <ReviewContent items={reviewItems[0].body} />
+          </BodyDetailsWrapper>
+        </Box>
       </React.Fragment>
     </Variant>
   );
