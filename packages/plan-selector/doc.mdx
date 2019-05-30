@@ -1,0 +1,28 @@
+---
+name: PlanSelector
+route: /pages/planSelector
+menu: Pages
+---
+
+import { Playground } from 'docz'
+import { PlanSelector, PlanCard } from './src'
+import energyPlanProp from './src/__fixtures__/energyPlan';
+import { DocWrapper } from '../bootstrap/setup/docWrapper'
+
+# PlanSelector
+
+## Basic usage
+
+<DocWrapper>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <PlanSelector {...energyPlanProp}/>
+  </div>
+</DocWrapper>
+
+### Energy Plan
+
+<Playground>
+  <div style={{maxWidth: '250px', margin: '0 auto'}}>
+    <PlanCard {...energyPlanProp.plans[1]}/>
+  </div>
+</Playground>

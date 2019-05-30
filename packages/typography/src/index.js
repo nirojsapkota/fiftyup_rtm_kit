@@ -3,6 +3,7 @@ import Header from './header';
 import Small from './small';
 import Paragraph from './paragraph';
 import Label from './label';
+import Span from './span';
 import { Text, labelTextStyles } from './text';
 import { Blurb } from './blurb';
 const unified = require('unified');
@@ -94,4 +95,4 @@ export const Markdown = ({ raw }) => {
   return toComponent(meh);
 };
 
-export { Header, Small, Paragraph, Label, Text, Blurb, labelTextStyles };
+export { Header, Small, Paragraph, Span, Label, Text, Blurb, labelTextStyles };

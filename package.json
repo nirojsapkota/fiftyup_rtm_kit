@@ -90,6 +90,7 @@
     "@rtm-ui/nav": "file:packages/nav",
     "@rtm-ui/phoneback": "file:packages/phoneback",
     "@rtm-ui/plan": "file:packages/plan",
+    "@rtm-ui/plan-selector": "file:packages/plan-selector",
     "@rtm-ui/readfile": "file:packages/readfile",
     "@rtm-ui/switch-confirm-page": "file:packages/switch-confirm-page",
     "@rtm-ui/testimonial": "file:packages/testimonial",

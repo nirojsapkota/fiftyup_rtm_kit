@@ -77,4 +77,8 @@ export const CssReset = createGlobalStyle`
     display: block;
     max-width: 100%;
   }
+
+  p {
+    line-height: 1.6;
+  }
 `;

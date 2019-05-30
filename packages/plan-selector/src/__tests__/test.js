@@ -1,0 +1,130 @@
+import React from 'react';
+// eslint-disable-next-line import/named
+import {
+  render,
+  fireEvent,
+  // eslint-disable-next-line import/named
+  wait,
+  // eslint-disable-next-line import/named
+  cleanup,
+} from '../../../bootstrap/setup/testSetup';
+import { default as energyPlanProp } from '../__fixtures__/energyPlan';
+import { EnergyPlan } from '../energyPlan';
+import { GenericPlan } from '../genericPlan';
+import { PlanSelector, PlanCard } from '../index';
+
+afterEach(cleanup);
+
+describe('<EnergyPlan />', () => {
+  it('matches expected output', async () => {
+    // get first energy plan from fixture to check
+    const plan = {
+      ...energyPlanProp.plans[0],
+      planRate: { discount: '43.5<sup>%</sup>', text: 'discount' },
+      planBrief: 'Plan brief data',
+    };
+
+    const { getByText, getByAltText } = render(<EnergyPlan {...plan} />);
+
+    expect(getByText(plan.displayName)).toBeInTheDocument();
+    expect(getByText(plan.planRate.text)).toBeInTheDocument();
+    expect(getByText(plan.planBrief)).toBeInTheDocument();
+    expect(getByText(plan.button.text)).toBeInTheDocument();
+
+    const logo = getByAltText(plan.merchant.fullName);
+    expect(logo).toBeInTheDocument();
+    expect(logo.tagName).toEqual('IMG');
+    expect(logo.src).toEqual(plan.merchant.logo);
+  });
+});
+
+describe('<GenericPlan />', () => {
+  it('matches expected output', async () => {
+    const testContent = 'Expectation test content';
+    const { getByText } = render(
+      <GenericPlan>
+        <div>{testContent}</div>
+      </GenericPlan>
+    );
+
+    expect(getByText(testContent)).toBeInTheDocument();
+  });
+});
+
+describe('<PlanCard />', () => {
+  it('fallback to default generic plan', async () => {
+    const data = {
+      productName: 'testProduct',
+    };
+    const testContent = 'Expectation test content';
+    const { getByText } = render(
+      <PlanCard {...data}>
+        <div>{testContent}</div>
+      </PlanCard>
+    );
+
+    expect(getByText(testContent)).toBeInTheDocument();
+  });
+});
+
+describe('<PlanSelector />', () => {
+  it('matches expected output', async () => {
+    const callCentre = energyPlanProp.callCentre;
+    const { getByText } = render(<PlanSelector {...energyPlanProp} />);
+    expect(getByText(energyPlanProp.header)).toBeInTheDocument();
+
+    expect(getByText(callCentre.moreInfo)).toBeInTheDocument();
+    expect(getByText(callCentre.callMerchant)).toBeInTheDocument();
+    expect(getByText(callCentre.phoneNumber)).toBeInTheDocument();
+    expect(getByText(callCentre.officeHour)).toBeInTheDocument();
+  });
+
+  it('custom render component', async () => {
+    const plans = energyPlanProp.plans;
+
+    const { getByTestId } = render(
+      <PlanSelector
+        {...energyPlanProp}
+        renderPlan={({ plan, index }) => (
+          <div key={`plan-${index}`} data-testid={`plan-${plan.id}`}>
+            {plan.id}
+          </div>
+        )}
+      />
+    );
+
+    await wait(async () => {
+      plans.map(async plan => {
+        const el = await getByTestId(`plan-${plan.id}`);
+        expect(el).toBeInTheDocument();
+      });
+    });
+  });
+});
+
+describe('<PlanSelector />', () => {
+  it('shows the plan when the item is clicked', async () => {
+    const mockClickEvent = jest.fn();
+    const plan = {
+      ...energyPlanProp.plans[0],
+      planRate: { discount: '43.5<sup>%</sup>', text: 'discount' },
+      planBrief: 'Plan brief data',
+      onClick: mockClickEvent,
+    };
+    const planSelectorParams = {
+      ...energyPlanProp,
+      plans: [plan],
+    };
+    const { getByText, container } = render(
+      <PlanSelector {...planSelectorParams} />
+    );
+    const text = getByText(plan.button.text);
+    expect(text).toBeInTheDocument();
+    const elementClick = container.getElementsByClassName('plan-select');
+
+    await wait(async () => {
+      fireEvent.click(elementClick[0]);
+      expect(mockClickEvent).toHaveBeenCalled();
+    });
+  });
+});
