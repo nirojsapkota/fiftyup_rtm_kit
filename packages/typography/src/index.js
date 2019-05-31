@@ -77,7 +77,7 @@ const primitiveMap = {
   }),
   link: ({ children, ...rest }) => ({
     as: 'a',
-    tag: 'p',
+    tag: 'a',
     href: rest.url,
     children: renderChildren(children),
   }),

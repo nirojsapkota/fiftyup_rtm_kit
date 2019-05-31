@@ -50,10 +50,6 @@ const sizeChart = [
     sizes: [16, 16, 16, 16],
   },
   {
-    element: 'span',
-    sizes: [16, 16, 16, 16],
-  },
-  {
     element: 'input',
     sizes: [16, 16, 16, 16],
   },
@@ -64,10 +60,6 @@ const sizeChart = [
   {
     element: 'label',
     sizes: [14, 14, 14, 14],
-  },
-  {
-    element: 'a',
-    sizes: [16, 16, 16, 16],
   },
 ];
 
