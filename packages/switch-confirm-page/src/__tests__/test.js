@@ -8,7 +8,7 @@ describe('<SwitchConfirmPage />', () => {
     const { queryByText } = render(<SwitchConfirmPage {...dummyData} />);
     expect(queryByText(/Confirm and agreement/i)).toBeInTheDocument();
     expect(queryByText(/Review your plan below/i)).toBeInTheDocument();
-    expect(queryByText(/0909887778/i)).not.toBeInTheDocument();
+    expect(queryByText(/0909887778/i)).toBeInTheDocument();
     expect(queryByText(/Switch Now/i)).toBeInTheDocument();
   });
 
