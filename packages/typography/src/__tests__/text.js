@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { Header, Paragraph, Label, Text, Small, Markdown } from '../index';
 import {
   weightProps,
@@ -8,6 +8,17 @@ import {
   labelTextStyles,
 } from '../text';
 import styled from 'styled-components';
+
+const mockTrackEvent = jest.fn();
+jest.mock('@rtm-ui/tracker', () => {
+  const original = require.requireActual('@rtm-ui/tracker');
+  return {
+    ...original,
+    useTracker: () => ({
+      trackEvent: mockTrackEvent,
+    }),
+  };
+});
 
 describe('<Text />', () => {
   [Header, Paragraph, Small, Label].map(Component => {
@@ -104,6 +115,40 @@ describe('<Markdown />', () => {
       <Markdown raw="Hello [world!](https://example.com)" />
     );
     expect(container).toContainElement(document.querySelector('a'));
+  });
+  it('allows tracking to work when a track option is provided', () => {
+    const { getByText, container } = render(
+      <Markdown raw="Hello [world!|get_started](https://example.com)" />
+    );
+    expect(container).toContainElement(document.querySelector('a'));
+    fireEvent.click(getByText('world!'));
+    expect(mockTrackEvent).toHaveBeenCalled();
+  });
+  it('interpolates values when given a reference object', () => {
+    const { getByText } = render(
+      <Markdown
+        referenceObject={{
+          campaign: {
+            name: 'Origin BES',
+          },
+        }}
+        raw="This is the {{campaign.name}} campaign"
+      />
+    );
+    expect(getByText('Origin BES')).toBeInTheDocument();
+  });
+  it('renders "undefined" when the reference lookup doesn\'t exist', () => {
+    const { getByText } = render(
+      <Markdown
+        referenceObject={{
+          campaign: {
+            name: 'Origin BES',
+          },
+        }}
+        raw="This is the {{some.other.object.key}} campaign"
+      />
+    );
+    expect(getByText('undefined')).toBeInTheDocument();
   });
   it('renders superscripts properly', () => {
     const { container } = render(<Markdown raw="Hello [^test]" />);

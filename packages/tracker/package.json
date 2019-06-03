@@ -5,6 +5,7 @@
     "namespace": "tracker",
     "namedExports": [
       "TrackingProvider",
+      "useTracker",
       "Tracker",
       "track"
     ]

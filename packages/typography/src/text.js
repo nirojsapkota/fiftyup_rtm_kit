@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { getColor, getWeight } from '@rtm-ui/theme';
+import { useTracker } from '@rtm-ui/tracker';
 import { Box } from '@rtm-ui/layout';
 
 const colorStyles = css`
@@ -132,9 +133,9 @@ function createMarkup(html) {
   return { __html: html };
 }
 
-const H1 = styled(({ color, tag, weight, font, align, boxParams, ...rest }) => (
-  <Box {...boxParams} {...rest} as={tag} />
-))`
+const H1 = styled(({ color, tag, weight, font, align, boxParams, ...rest }) => {
+  return <Box {...boxParams} {...rest} as={tag} />;
+})`
   ${generalStyleForText};
   ${rest => displayByEachScreen(rest.tag)};
 `;
@@ -155,7 +156,20 @@ export function Text({
     ? { dangerouslySetInnerHTML: createMarkup(dangerousHTML) }
     : { children };
   const tagParams = { ...rest, ...textValue };
-  return <H1 boxParams={{ p, pl, pr, pt, pb, px, py }} {...tagParams} />;
+  const { trackEvent } = useTracker();
+  let onClickProps = {};
+  if (rest.as === 'a' && rest.track) {
+    onClickProps = {
+      onClick: e => trackEvent(e, rest.track, rest.onClick),
+    };
+  }
+  return (
+    <H1
+      boxParams={{ p, pl, pr, pt, pb, px, py }}
+      {...tagParams}
+      {...onClickProps} // FIXME: placing this before tagParams allows tracking to be overridden
+    />
+  );
 }
 
 Text.defaultProps = {

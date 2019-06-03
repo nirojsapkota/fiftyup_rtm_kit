@@ -2,11 +2,30 @@ import React from 'react';
 import LogRocket from 'logrocket';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import { Tracker, TrackingProvider, track } from '..';
+import { Tracker, TrackingProvider, useTracker, track } from '..';
 import Google from '../google';
 import Facebook from '../facebook';
 
 afterEach(cleanup);
+
+describe(`useTracker`, () => {
+  it(`exposes the trackEvent function and still calls the callback`, () => {
+    const SampleComponent = ({ text, onClick }) => {
+      const { trackEvent } = useTracker();
+
+      return (
+        <button onClick={e => trackEvent(e, 'trackit', onClick)}>{text}</button>
+      );
+    };
+    const mockOnClick = jest.fn();
+    const { getByText } = render(
+      <SampleComponent onClick={mockOnClick} text="Click Me" />
+    );
+    const buttonNode = getByText('Click Me');
+    fireEvent.click(buttonNode);
+    expect(mockOnClick).toHaveBeenCalled();
+  });
+});
 
 describe(`track`, () => {
   it(`alerts LogRocket on failure`, () => {

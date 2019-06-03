@@ -21,6 +21,8 @@ const safeSendTo = (service, data) => {
 export const track = (action, trackingData) => {
   const data = { ...trackingData, action };
 
+  console.log({ tracking: data });
+
   safeSendTo(Google, data);
   safeSendTo(Facebook, data);
   safeSendTo(Funnel, data);
@@ -37,6 +39,18 @@ const TrackingContext = React.createContext({
   trackingData: {},
   trackEvent,
 });
+
+export const useTracker = () => {
+  const { trackingData } = React.useContext(TrackingContext);
+  return {
+    trackEvent: (e, action, callback) => {
+      track(action, trackingData);
+      if (callback) {
+        callback(e);
+      }
+    },
+  };
+};
 
 export const TrackingProvider = ({ children, trackingData }) => {
   return (
