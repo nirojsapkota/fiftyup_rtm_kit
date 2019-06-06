@@ -7,8 +7,8 @@ export default {
       displayName: 'Group Discounted En...',
       productName: 'energy',
       planRate: {
-        discount: '30-40.5 <sup>%</sup>',
-        text: 'Discount'
+        discount: '30-50.5<sup>%</sup>',
+        text: 'discount'
       },
       planBrief: '',
       merchant: {
