@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Paragraph, Span } from '@rtm-ui/typography';
+import { Paragraph, Header } from '@rtm-ui/typography';
 import { Box, Card, Block } from '@rtm-ui/layout';
 import { Img } from '@rtm-ui/img';
 import { A } from '@rtm-ui/a';
@@ -23,47 +23,50 @@ const Merchant = ({ logo, fullName }) => (
 const PlanRateBox = styled(Box)`
   height: 90px;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
   flex-direction: column;
-  min-width: 140px;
-  @media (max-width: ${props => props.theme.grid.sm}em) {
-    height: auto;
-    align-items: center;
-    width: 140px;
-  }
-  >div p {
-    font-size: 28px;
-    font-weight: 300;
-  }
+  > p {
+    padding: 4px 0 0;
+    margin: 0;
+    line-height: 1;
+    :first-child {
+      font-size: 45px;
+      padding-left: 10px;
+      font-weight: 500;
+      sup {
+        font-size: 40px;
+        font-weight: 100;
 
-  >p {
-    font-size: 47px;
-    font-weight: 500;
-    align-self: flex-start;
-    line-height: 0.7;
-    @media (max-width: ${props => props.theme.grid.sm}em) {
-      font-size: 40px;
-    }
-
-    sup {
-      font-size: 40px;
-      font-weight: 100;
-
-      @media (max-width: ${props => props.theme.grid.sm}em) {
-        font-size: 30px;
+        @media (max-width: ${props => props.theme.grid.sm}em) {
+          font-size: 30px;
+        }
       }
+    }
+    :last-child {
+      font-size: 22px;
+      text-align: right;
+      padding-right: 10px;
+    }
   }
+`;
+const NoRate = styled(Header) `
+  text-align: center;
+  font-weight: normal;
 `;
 
 const PlanRate = ({ planRate }) => (
   <PlanRateBox variant="c">
     {planRate && (
       <React.Fragment>
-        <Paragraph color="text" ml={2} mt={2} dangerousHTML={planRate.discount} />
-        <Box mr={2} mb={2}>
-          <Paragraph color="text" dangerousHTML={planRate.text} />
-        </Box>
+        {planRate.discount ? (
+          <React.Fragment>
+            <Paragraph color="text" dangerousHTML={planRate.discount} />
+            {planRate.text && (
+              <Paragraph color="text" dangerousHTML={planRate.text} />
+            )}
+          </React.Fragment>
+        ) : (
+          <NoRate pt={2} tag="h4" color="text" dangerousHTML={planRate.text} />
+        )}
       </React.Fragment>
     )}
   </PlanRateBox>
