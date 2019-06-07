@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from './text';
 
-const Header = props => <Text {...props} />;
+const Header = props => <Text color="primary" {...props} />;
 
 Header.defaultProps = {
   tag: 'h1',

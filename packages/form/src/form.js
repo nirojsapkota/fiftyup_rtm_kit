@@ -58,6 +58,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
         await props.onSuccess({ id, values: getFormValues(response) });
       }
     } catch (e) {
+      console.log('e', e);
       setServerErrors(e.object);
     }
   };

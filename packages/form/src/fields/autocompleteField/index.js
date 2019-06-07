@@ -41,47 +41,38 @@ const AutocompleteField = ({
   useOnClickOutside(resultsRef, () => setModalOpen(false));
   const debouncedSearchTerm = useDebounce(inputProps.value, 500);
 
-  React.useEffect(
-    () => {
-      if (debouncedSearchTerm) {
-        !hasSelected && onWaiting('Searching pending...');
-        config.searchFunction(debouncedSearchTerm).then(results => {
-          isModalOpen && results.length > 0
-            ? onWaiting(`${results.length} results`)
-            : onWaiting(``);
-          setResults(results);
-        });
-      } else {
-        onWaiting('');
-        setResults([]);
-      }
-    },
-    [debouncedSearchTerm]
-  );
+  React.useEffect(() => {
+    if (debouncedSearchTerm) {
+      !hasSelected && onWaiting('Searching pending...');
+      config.searchFunction(debouncedSearchTerm).then(results => {
+        isModalOpen && results.length > 0
+          ? onWaiting(`${results.length} results`)
+          : onWaiting(``);
+        setResults(results);
+      });
+    } else {
+      onWaiting('');
+      setResults([]);
+    }
+  }, [debouncedSearchTerm]);
 
-  React.useEffect(
-    () => {
-      if (inputProps.value && !hasSelected) {
-        // onWaiting('Search pending');
-        setModalOpen(true);
-      } else {
-        setModalOpen(false);
-      }
-    },
-    [inputProps.value]
-  );
+  React.useEffect(() => {
+    if (inputProps.value && !hasSelected) {
+      // onWaiting('Search pending');
+      setModalOpen(true);
+    } else {
+      setModalOpen(false);
+    }
+  }, [inputProps.value]);
 
-  React.useEffect(
-    () => {
-      if (inputRef.current) {
-        const position = inputRef.current.getBoundingClientRect();
-        if (position) {
-          setResultsPosition(position.height + 20);
-        }
+  React.useEffect(() => {
+    if (inputRef.current) {
+      const position = inputRef.current.getBoundingClientRect();
+      if (position) {
+        setResultsPosition(position.height + 20);
       }
-    },
-    [inputRef]
-  );
+    }
+  }, [inputRef]);
 
   return (
     <div style={{ position: 'relative' }}>
@@ -120,6 +111,8 @@ const AutocompleteField = ({
                       setHasSelected(true);
                       setModalOpen(false);
                       onWaiting('');
+                      config.onDidSelect &&
+                        config.onDidSelect(inputProps.name, result.label);
                       fieldUtils.setFieldValue(inputProps.name, result.label);
                     }}
                   >

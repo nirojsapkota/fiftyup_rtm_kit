@@ -81,6 +81,7 @@
     "@rtm-ui/electricity-switch": "file:packages/electricity-switch",
     "@rtm-ui/feature-tile": "file:packages/feature-tile",
     "@rtm-ui/form": "file:packages/form",
+    "@rtm-ui/footer": "file:packages/footer",
     "@rtm-ui/how-it-works": "file:packages/how-it-works",
     "@rtm-ui/hybrid-login-view": "file:packages/hybrid-login-view",
     "@rtm-ui/icon": "file:packages/icon",

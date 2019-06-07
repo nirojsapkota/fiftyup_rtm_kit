@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from './text';
 
-const Label = props => <Text {...props} tag="label" />;
+const Label = props => <Text color="text" {...props} tag="label" />;
 
 const defaultBodyProps = {
   align: 'left',

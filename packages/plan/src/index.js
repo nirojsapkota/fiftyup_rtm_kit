@@ -8,6 +8,7 @@ import Sidebar from './Sidebar';
 import Cta from './Cta';
 import Summary from './Summary';
 import Action, { ClickToCall } from './Action';
+import PlanReferenceContext from './PlanReferenceContext';
 
 // FIXME: Add CallbackFormDialog and add more unit test later
 // import CallbackFormDialog from './CallbackFormDialog';
@@ -78,7 +79,9 @@ export const Plan = ({
   productTips,
   switchFacts,
   actions,
+  reference,
 }) => {
+  console.log({ reference });
   const callAction = actions.find(({ track }) => track === 'click_to_call');
   const callbackAction = actions.find(
     ({ track }) => track === 'request_call_back'
@@ -108,24 +111,26 @@ export const Plan = ({
   );
 
   return (
-    <StyledWrapper>
-      <ContentWrapper pt={[2, 2, 3]} px={[0, 0, 0, 48]}>
-        <PlanWrapper>
-          <Summary
-            {...plan}
-            campaignId={plan.campaign_id}
-            entity={entity}
-            actions={actions}
-            authenticityToken={authenticityToken}
-          >
-            <Block hideAt="lg">{planCta}</Block>
-          </Summary>
-        </PlanWrapper>
-        <PlanSidebar>
-          <Block showAt="lg">{planCta}</Block>
-        </PlanSidebar>
-      </ContentWrapper>
-    </StyledWrapper>
+    <PlanReferenceContext.Provider value={reference}>
+      <StyledWrapper>
+        <ContentWrapper pt={[2, 2, 3]} px={[0, 0, 0, 48]}>
+          <PlanWrapper>
+            <Summary
+              {...plan}
+              campaignId={plan.campaign_id}
+              entity={entity}
+              actions={actions}
+              authenticityToken={authenticityToken}
+            >
+              <Block hideAt="lg">{planCta}</Block>
+            </Summary>
+          </PlanWrapper>
+          <PlanSidebar>
+            <Block showAt="lg">{planCta}</Block>
+          </PlanSidebar>
+        </ContentWrapper>
+      </StyledWrapper>
+    </PlanReferenceContext.Provider>
   );
 };
 

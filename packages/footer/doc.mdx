@@ -1,0 +1,19 @@
+---
+name: Footer
+route: /footer
+menu: Packages
+---
+
+import { Playground } from 'docz';
+import { Footer } from './src';
+import entity from './src/__tests__/__fixtures__/entity';
+import disclaimers from './src/__tests__/__fixtures__/disclaimers';
+import { DocWrapper } from '../bootstrap/setup/docWrapper';
+
+# Footer
+
+## Basic usage
+
+<DocWrapper>
+  <Footer entity={entity} disclaimers={disclaimers} />
+</DocWrapper>

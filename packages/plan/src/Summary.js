@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from '@rtm-ui/button';
-import { Header, Paragraph, Small } from '@rtm-ui/typography';
+import { Header, Paragraph, Small, Markdown } from '@rtm-ui/typography';
 import { Block, Box } from '@rtm-ui/layout';
 import { Img } from '@rtm-ui/img';
 import { List } from '@rtm-ui/list';
@@ -10,6 +10,7 @@ import { A } from '@rtm-ui/a';
 import { Theme as Variant } from '@rtm-ui/theme';
 import { Accordion } from '@rtm-ui/accordion';
 import { Share } from './Action';
+import PlanReferenceContext from './PlanReferenceContext';
 
 // FIXME: Add CallbackFormDialog and add more unit test later
 // import CallbackFormDialog from './CallbackFormDialog';
@@ -22,27 +23,30 @@ const StyledAccordion = styled(Box)`
 const SubHeader = props => (
   <React.Fragment>
     <Box width={1} py={3}>
-      <Header ml={[48, 55, 64]} weight="normal" tag="h3">
+      <Header weight="normal" tag="h3">
         {props.sub_header_text}
       </Header>
     </Box>
   </React.Fragment>
 );
 
-const Main = props => (
-  <React.Fragment>
-    <Box width={1}>
-      <List>
-        {props.plan_features &&
-          props.plan_features.map(({ icon, body }) => ({
-            icon,
-            fill: 'primary',
-            body: <Paragraph dangerousHTML={body} />,
-          }))}
-      </List>
-    </Box>
-  </React.Fragment>
-);
+const Main = props => {
+  const refer = React.useContext(PlanReferenceContext);
+  return (
+    <React.Fragment>
+      <Box width={1} py={20}>
+        <List>
+          {props.plan_features &&
+            props.plan_features.map(({ icon, body }) => ({
+              icon,
+              fill: 'primary',
+              body: <Markdown referenceObject={refer} raw={body} />,
+            }))}
+        </List>
+      </Box>
+    </React.Fragment>
+  );
+};
 
 const ActionButton = ({
   callAction,
@@ -56,7 +60,7 @@ const ActionButton = ({
     {callAction && (
       <Button
         style={{
-          'marginLeft': 'auto',
+          marginLeft: 'auto',
         }}
         as="a"
         track={callAction.track}
@@ -112,7 +116,9 @@ const Summary = props => {
   const callbackAction = props.actions.find(
     ({ track }) => track === 'request_call_back'
   );
-  const backAction = props.actions.find(({ actionType }) => actionType === 'back');
+  const backAction = props.actions.find(
+    ({ actionType }) => actionType === 'back'
+  );
 
   return (
     <Box p={[0, 0, 0, 2]}>
@@ -141,7 +147,7 @@ const Summary = props => {
           />
         )}
       </Block>
-      <Box px={[2, 2, 3, 0]} pt={[3]}>
+      <Box px={[2, 2, 3, 0]} py={[20]}>
         <Box width={1}>
           <SubHeader {...props} />
         </Box>
@@ -152,7 +158,12 @@ const Summary = props => {
           }}
         >
           {backAction && (
-            <Button as="a" href={backAction.link} onClick={backAction.onClick} secondary>
+            <Button
+              as="a"
+              href={backAction.link}
+              onClick={backAction.onClick}
+              secondary
+            >
               {backAction.cta}
             </Button>
           )}
@@ -179,19 +190,21 @@ const Summary = props => {
           </Box>
           <Box width={[1, 1, 0.4, 1]}>{props.children}</Box>
         </Box>
-        <Variant variant="b">
-          <Accordion
-            items={props.accordion}
-            renderItem={item => (
-              <Variant variant="a">
-                <StyledAccordion p={[2, 2, 3]}>
-                  <Paragraph dangerousHTML={item.content} />
-                </StyledAccordion>
-              </Variant>
-            )}
-            renderHeader={item => <Header tag="h5">{item.name}</Header>}
-          />
-        </Variant>
+        <Box py={20}>
+          <Variant variant="b">
+            <Accordion
+              items={props.accordion}
+              renderItem={item => (
+                <Variant variant="a">
+                  <StyledAccordion p={[2, 2, 3]}>
+                    <Paragraph dangerousHTML={item.content} />
+                  </StyledAccordion>
+                </Variant>
+              )}
+              renderHeader={item => <Header tag="h5">{item.name}</Header>}
+            />
+          </Variant>
+        </Box>
         <Box py={2}>
           <Small dangerousHTML={props.disclaimer_html} />
         </Box>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from './text';
 
-const Paragraph = props => <Text {...props} tag="p" />;
+const Paragraph = props => <Text color="text" {...props} tag="p" />;
 
 const defaultBodyProps = {
   align: 'left',
