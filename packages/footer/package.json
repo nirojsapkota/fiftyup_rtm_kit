@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/footer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description for footer",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/typography": "file:../typography",
-    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",
-    "@rtm-ui/icon": "file:../icon"
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
     "prop-types": "15.x",
