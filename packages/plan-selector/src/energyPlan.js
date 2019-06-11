@@ -24,6 +24,12 @@ const PlanRateBox = styled(Box)`
   height: 90px;
   display: flex;
   flex-direction: column;
+  @media (max-width: ${props => props.theme.grid.sm}em) {
+    height: auto;
+    justify-content: center;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
   > p {
     padding: 4px 0 0;
     margin: 0;
@@ -73,7 +79,7 @@ const PlanRate = ({ planRate }) => (
 );
 
 const PlanBriefBox = styled(Box)`
-  height: 92px;
+  min-height: 92px;
   align-items: center;
   padding: 0 10px;
 `;
@@ -154,11 +160,11 @@ const EnergyPlan = ({
 }) => {
   return (
     <StytledA onClick={onClick} {...data} className={`plan-select`}>
-      <StyledCard className={`plan`} pb={2}>
+      <StyledCard className={`plan`}>
         <Block showAt="sm">
           <Merchant {...merchant} />
         </Block>
-        <PlanRate planRate={planRate} />
+        <PlanRate planRate={planRate}/>
         <MobileWrapper>
           <Block hideAt="sm">
             <Merchant {...merchant} />
