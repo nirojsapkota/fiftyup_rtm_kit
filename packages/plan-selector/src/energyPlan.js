@@ -73,7 +73,7 @@ const PlanRate = ({ planRate }) => (
 );
 
 const PlanBriefBox = styled(Box)`
-  height: 92px;
+  min-height: 92px;
   align-items: center;
   padding: 0 10px;
 `;
@@ -125,7 +125,6 @@ const StyledCard = styled(Card)`
 
   @media (max-width: ${props => props.theme.grid.sm}em) {
     width: 100%;
-    flex-direction: row;
   }
 `;
 const StytledA = styled(A)`
