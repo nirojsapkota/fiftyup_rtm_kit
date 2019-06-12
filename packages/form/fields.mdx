@@ -241,6 +241,31 @@ can be added as needed.
     />
 </Playground>
 
+## PanelCheckbox
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'Please select items',
+          config: {
+            component: 'panelCheck',
+            validator: 'requiredRadio',
+          },
+          hint: 'Select for some reason',
+          name: 'icon_radio',
+          value: '',
+          type: 'checkbox',
+          options: [
+            { label:'ELECTRICITY', value:'yes', icon:'electricity' },
+            { label:'ELECTRICITY + GAS', value:'no', icon:'electricgas' },
+          ]
+        }
+      ]}
+    />
+</Playground>
+
 ## PropTypes
 
 <PropsTable of={BaseField} />

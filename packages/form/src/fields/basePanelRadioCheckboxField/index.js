@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Label } from '@rtm-ui/typography';
 import { Button, ButtonGroup } from '@rtm-ui/button';
 import { focusStyle } from '../textField';
 
@@ -11,7 +10,7 @@ const StyledButton = styled(Button)`
   align-items: flex-start;
 `;
 
-const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
+const BasePanelRadioCheckboxField = ({ options, name, ...rest }) => {
   return (
     <ButtonGroup py={2}>
       {options.map(option => (
@@ -27,24 +26,16 @@ const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
           type="button"
           onClick={() => rest.onClick(name, option.value, rest.value)}
         >
-          {rest.icon({ itemValue: option.value, fieldValue: rest.value })}
-          <Label
-            id={`${name}_${option.value}-label`}
-            htmlFor={`${name}_${option.value}`}
-            pl={10}
-            pr={20}
-            pt="4px"
-          >
-            {option.label}
-          </Label>
+          {rest.children({ option, name, fieldValue: rest.value })}
         </StyledButton>
       ))}
     </ButtonGroup>
   );
 };
 
-BaseRadioCheckboxField.propTypes = {
+BasePanelRadioCheckboxField.propTypes = {
   autoComplete: PropTypes.string,
+  icon: PropTypes.func,
   name: PropTypes.string,
   onChange: PropTypes.func,
   setFieldValue: PropTypes.func,
@@ -55,4 +46,4 @@ BaseRadioCheckboxField.propTypes = {
   onBlur: PropTypes.func,
 };
 
-export default BaseRadioCheckboxField;
+export default BasePanelRadioCheckboxField;

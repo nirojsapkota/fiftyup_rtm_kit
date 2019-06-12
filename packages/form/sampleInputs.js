@@ -116,6 +116,18 @@ export const formInputs = {
       type: 'hidden',
       config: {},
     },
+    {
+      label: 'Please select items',
+      config: {
+        component: 'panelCheck',
+        validator: 'requiredRadio',
+      },
+      hint: 'Select for some reason',
+      name: 'icon_radio',
+      value: '',
+      type: 'checkbox',
+      options: [{ label: 'ELECTRICITY', value: 'yes', icon: 'electricity' }],
+    }
   ],
 };
 

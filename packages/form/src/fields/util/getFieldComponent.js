@@ -5,6 +5,7 @@ import StripeField from '../stripeField';
 import CheckboxField from '../checkboxField';
 import AutocompletField from '../autocompleteField';
 import HiddenField from '../hiddenField';
+import PanelCheckField from '../panelCheckField';
 
 export const getFieldComponent = (
   type,
@@ -13,7 +14,7 @@ export const getFieldComponent = (
   return type === 'radio'
     ? RadioField
     : type === 'checkbox'
-      ? CheckboxField
+      ? (component === 'panelCheck' ? PanelCheckField : CheckboxField)
       : type === 'hidden'
         ? HiddenField
         : component === 'stripePayment'

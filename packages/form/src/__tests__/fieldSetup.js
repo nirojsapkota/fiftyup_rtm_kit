@@ -61,6 +61,10 @@ const formSetup = [
     field: getFieldProps('some_pref'),
     valid: { entry: 'yes', expect: 'yes' },
   },
+  {
+    field: getFieldProps('icon_radio'),
+    valid: { entry: 'yes', expect: 'yes'}
+  },
 ];
 
 export const formInputs = formSetup.map(item => {
