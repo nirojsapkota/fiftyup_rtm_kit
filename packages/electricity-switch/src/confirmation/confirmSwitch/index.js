@@ -45,24 +45,26 @@ class ConfirmSwitch extends React.Component {
       },
     ];
 
-    agreementItems.map(({ label }) => label).map((val, index) => {
-      val &&
-        fields.push({
-          label: '',
-          config: {
-            validator: 'requiredRadio',
-          },
-          name: 'agreement' + index,
-          value: '',
-          type: 'checkbox',
-          options: [
-            {
-              label: <Small dangerousHTML={val} />,
-              value: 'agreement' + index,
+    agreementItems
+      .map(({ label }) => label)
+      .map((val, index) => {
+        val &&
+          fields.push({
+            label: '',
+            config: {
+              validator: 'requiredRadio',
             },
-          ],
-        });
-    });
+            name: 'agreement' + index,
+            value: '',
+            type: 'checkbox',
+            options: [
+              {
+                label: <Small dangerousHTML={val} />,
+                value: 'agreement' + index,
+              },
+            ],
+          });
+      });
 
     return (
       <Wrapper p={20}>
@@ -76,7 +78,7 @@ class ConfirmSwitch extends React.Component {
                 <Button as="a" href={editUrl} secondary={true}>
                   {backButtonText}
                 </Button>
-                <Button id={buttonId} type="submit">
+                <Button id={buttonId} type="submit" track="switch_confirm">
                   {buttonText}
                 </Button>
               </ButtonWrapper>
