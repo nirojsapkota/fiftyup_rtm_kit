@@ -62,6 +62,10 @@ const formSetup = [
     valid: { entry: 'yes', expect: 'yes' },
   },
   {
+    field: getFieldProps('icon_check'),
+    valid: { entry: 'yes', expect: 'yes'}
+  },
+  {
     field: getFieldProps('icon_radio'),
     valid: { entry: 'yes', expect: 'yes'}
   },

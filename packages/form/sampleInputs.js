@@ -123,9 +123,21 @@ export const formInputs = {
         validator: 'requiredRadio',
       },
       hint: 'Select for some reason',
-      name: 'icon_radio',
+      name: 'icon_check',
       value: '',
       type: 'checkbox',
+      options: [{ label: 'ELECTRICITY', value: 'yes', icon: 'electricity' }],
+    },
+    {
+      label: 'Please select an item',
+      config: {
+        component: 'panelRadio',
+        validator: 'requiredRadio',
+      },
+      hint: 'Select for some reason',
+      name: 'icon_radio',
+      value: '',
+      type: 'radio',
       options: [{ label: 'ELECTRICITY', value: 'yes', icon: 'electricity' }],
     }
   ],

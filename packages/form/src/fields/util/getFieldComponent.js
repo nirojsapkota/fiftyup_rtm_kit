@@ -6,13 +6,14 @@ import CheckboxField from '../checkboxField';
 import AutocompletField from '../autocompleteField';
 import HiddenField from '../hiddenField';
 import PanelCheckField from '../panelCheckField';
+import PanelRadioField from '../panelRadioField';
 
 export const getFieldComponent = (
   type,
   { component = null, validator = null }
 ) => {
   return type === 'radio'
-    ? RadioField
+    ? (component === 'panelRadio' ? PanelRadioField : RadioField)
     : type === 'checkbox'
       ? (component === 'panelCheck' ? PanelCheckField : CheckboxField)
       : type === 'hidden'

@@ -254,12 +254,37 @@ can be added as needed.
             validator: 'requiredRadio',
           },
           hint: 'Select for some reason',
-          name: 'icon_radio',
+          name: 'icon_check',
           value: '',
           type: 'checkbox',
           options: [
             { label:'ELECTRICITY', value:'yes', icon:'electricity' },
             { label:'ELECTRICITY + GAS', value:'no', icon:'electricgas' },
+          ]
+        }
+      ]}
+    />
+</Playground>
+
+## PanelRadio
+
+<Playground>
+    <Form
+      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
+      fields={[
+        {
+          label: 'Please select an item',
+          config: {
+            component: 'panelRadio',
+            validator: 'requiredRadio',
+          },
+          hint: 'Select for some reason',
+          name: 'icon_radio',
+          value: '',
+          type: 'radio',
+          options: [
+            { label:'SOLAR PANELS', value:'yes', icon:'solar-3' },
+            { label:'NO SOLAR PANELS', value:'no', icon:'nosolar' },
           ]
         }
       ]}

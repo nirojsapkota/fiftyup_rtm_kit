@@ -31,25 +31,19 @@ const StyledLabel = styled(Label)`
   height: 65px;
 `;
 
-const PanelCheckField = ({
+const PanelRadioField = ({
   config: _config,
   fieldUtils: { setFieldValue },
   ...props
 }) => {
-  const isSingle = props.options.length === 1;
+    const fillColorName = (itemValue, fieldValue) => {
+        return fieldValue.includes(itemValue) ? 'link' : 'linkHover';
+      };
+
   return (
     <BasePanelRadioCheckboxField
       {...props}
-      onClick={(name, value, fieldValues) => {
-        isSingle
-          ? setFieldValue(name, fieldValues === '' ? value : '')
-          : setFieldValue(
-              name,
-              fieldValues.includes(value)
-                ? fieldValues.filter(fieldValue => fieldValue !== value)
-                : [...fieldValues, value]
-            );
-      }}
+      onClick={(name, value) => setFieldValue(name, value)}
     >
       {({ option, name, fieldValue }) => {
         return (
@@ -57,26 +51,24 @@ const PanelCheckField = ({
             <StyledBox>
               <IconContainer>
                 <Icon
+                  fill={fillColorName(option.value, fieldValue)}
                   size={30}
-                  glyph={fieldValue.includes(option.value) ? 'check' : 'void'}
+                  glyph={fieldValue === option.value ? 'radio-active' : 'radio'}
                 />
               </IconContainer>
               {option.icon && (
                 <Icon
                   glyph={option.icon}
                   size={80}
-                  fill={
-                    fieldValue.includes(option.value) ? 'link' : 'linkHover'
-                  }
+                  fill={fillColorName(option.value, fieldValue)}
                 />
               )}
               <StyledLabel
-                htmlFor={`${name}_${option.value}`}
+                fillColor={fillColorName(option.value, fieldValue)}
                 px={10}
                 py={10}
-                fillColor={
-                  fieldValue.includes(option.value) ? 'link' : 'linkHover'
-                }
+                data-testid={`${name}-${option.value}-label`}
+                htmlFor={`${name}_${option.value}`}
               >
                 {option.label}
               </StyledLabel>
@@ -88,16 +80,16 @@ const PanelCheckField = ({
   );
 };
 
-PanelCheckField.propTypes = {
+PanelRadioField.propTypes = {
   autoComplete: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
   setFieldValue: PropTypes.func,
   options: PropTypes.array,
-  value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  value: PropTypes.string,
   id: PropTypes.string,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
 };
 
-export default PanelCheckField;
+export default PanelRadioField;
