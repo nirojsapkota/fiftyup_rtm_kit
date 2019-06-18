@@ -37,7 +37,7 @@ const PanelRadioField = ({
   ...props
 }) => {
     const fillColorName = (itemValue, fieldValue) => {
-        return fieldValue.includes(itemValue) ? 'link' : 'linkHover';
+        return (fieldValue === itemValue) ? 'link' : 'linkHover';
       };
 
   return (
