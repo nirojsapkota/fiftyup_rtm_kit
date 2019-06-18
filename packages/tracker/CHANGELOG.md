@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.0.4...@rtm-ui/tracker@4.1.0) (2019-06-18)
+
+
+### Features
+
+* **@rtm-ui/tracker:** OB-2492: add bing analytics UET to tracker ([#138](https://github.com/OBSAU/rtm-kit/issues/138)) ([55bd984](https://github.com/OBSAU/rtm-kit/commit/55bd984))
+
+
+
+
+
 ## [4.0.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.0.3...@rtm-ui/tracker@4.0.4) (2019-06-03)
 
 **Note:** Version bump only for package @rtm-ui/tracker
