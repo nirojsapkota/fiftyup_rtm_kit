@@ -5,6 +5,7 @@ import LogRocket from 'logrocket';
 import Google from './google';
 import Facebook from './facebook';
 import Funnel from './funnel';
+import Bing from './bing';
 
 const safeSendTo = (service, data) => {
   try {
@@ -26,6 +27,7 @@ export const track = (action, trackingData) => {
   safeSendTo(Google, data);
   safeSendTo(Facebook, data);
   safeSendTo(Funnel, data);
+  safeSendTo(Bing, data);
 };
 
 const trackEvent = trackingData => (action, callback) => {
