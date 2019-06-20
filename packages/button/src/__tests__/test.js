@@ -23,7 +23,8 @@ describe(`<Button />`, () => {
 
     const buttonNode = getByText(welcomeMessage);
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode).toHaveStyleRule('background', 'orange');
+    expect(buttonNode.parentNode.tagName).toEqual('BUTTON');
+    expect(buttonNode.parentNode).toHaveStyleRule('background', 'orange');
   });
 
   it(`renders welcome a secondary color`, () => {
@@ -33,7 +34,8 @@ describe(`<Button />`, () => {
 
     const buttonNode = getByText(welcomeMessage);
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode).toHaveStyleRule('background', 'gray');
+    expect(buttonNode.parentNode.tagName).toEqual('BUTTON');
+    expect(buttonNode.parentNode).toHaveStyleRule('background', 'gray');
   });
 
   it(`renders welcome a tertiary color`, () => {
@@ -43,7 +45,8 @@ describe(`<Button />`, () => {
 
     const buttonNode = getByText(welcomeMessage);
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode).toHaveStyleRule('background', 'green');
+    expect(buttonNode.parentNode.tagName).toEqual('BUTTON');
+    expect(buttonNode.parentNode).toHaveStyleRule('background', 'green');
   });
 
   it(`renders welcome as a block`, () => {
