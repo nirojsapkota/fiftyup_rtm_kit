@@ -21,10 +21,10 @@ describe(`<Button />`, () => {
       themeOverrides: { 'colors.variants.a.accent': 'orange' },
     });
 
-    const buttonNode = getByText(welcomeMessage);
+    const buttonNode = getByText(welcomeMessage).parentNode;
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode.parentNode.tagName).toEqual('BUTTON');
-    expect(buttonNode.parentNode).toHaveStyleRule('background', 'orange');
+    expect(buttonNode.tagName).toEqual('BUTTON');
+    expect(buttonNode).toHaveStyleRule('background', 'orange');
   });
 
   it(`renders welcome a secondary color`, () => {
@@ -32,10 +32,10 @@ describe(`<Button />`, () => {
       themeOverrides: { 'colors.grayscale.slightlyDarker': 'gray' },
     });
 
-    const buttonNode = getByText(welcomeMessage);
+    const buttonNode = getByText(welcomeMessage).parentNode;
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode.parentNode.tagName).toEqual('BUTTON');
-    expect(buttonNode.parentNode).toHaveStyleRule('background', 'gray');
+    expect(buttonNode.tagName).toEqual('BUTTON');
+    expect(buttonNode).toHaveStyleRule('background', 'gray');
   });
 
   it(`renders welcome a tertiary color`, () => {
@@ -43,10 +43,10 @@ describe(`<Button />`, () => {
       themeOverrides: { 'colors.variants.a.tertiary': 'green' },
     });
 
-    const buttonNode = getByText(welcomeMessage);
+    const buttonNode = getByText(welcomeMessage).parentNode;
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode.parentNode.tagName).toEqual('BUTTON');
-    expect(buttonNode.parentNode).toHaveStyleRule('background', 'green');
+    expect(buttonNode.tagName).toEqual('BUTTON');
+    expect(buttonNode).toHaveStyleRule('background', 'green');
   });
 
   it(`renders welcome as a block`, () => {
