@@ -30,6 +30,7 @@ const renderChildren = children => {
     ? children.map((child, i) => renderComponent(child, i))
     : null;
 };
+
 const primitiveMap = {
   heading: ({ children, depth }) => ({
     ...Header.defaultProps,

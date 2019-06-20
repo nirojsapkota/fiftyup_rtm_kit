@@ -23,14 +23,14 @@ export const aboutProvider = `
  \n Defined Benefit Period: 24 months from the commencement date.
  
 ##### Contract Features
- \n Contract Early Termination Fee: $0 \n there are no exit fees. 
+ \n Contract Early Termination Fee: $0 - there are no exit fees. 
  \n No Contract Term. If you wish to change, switch or cancel your Fair Deal 28
  \n plan, you can do so at any stage without incurring a cancellation fee.
  \n Tariffs: You will pay Alinta Energy's published Standing Tariffs for South Australia if you do not pay your account on time and in full.
 
 ##### Payment Frequency
 \n Electricity: Standard quarterly payments.
- \n Gas: Standard bi\nmonthly payments.
+ \n Gas: Standard bi-monthly payments.
  \n If you would like to pay your account in convenient monthly instalments then take advantage of our  \n Payment Smoothing option associated with this plan.
  
 ##### Billing Method & Frequency
