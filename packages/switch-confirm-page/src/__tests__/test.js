@@ -40,7 +40,7 @@ describe('<SwitchConfirmPage />', () => {
     const headerElement = getByText('Yes, I agree');
     const btnSubmit = getByText('Switch Now');
     fireEvent.click(headerElement);
-    fireEvent.click(btnSubmit);
+    fireEvent.click(btnSubmit.parentNode);
     await wait(() => {
       expect(queryByText('Please select an option')).not.toBeInTheDocument();
     });
