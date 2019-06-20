@@ -42,9 +42,8 @@ describe('<Plan />', () => {
       const message = getByText(data.message);
       expect(message).toBeInTheDocument();
 
-      const button = getByText(data.cta);
+      const button = getByText(data.cta).parentNode;
       expect(button).toBeInTheDocument();
-      expect(button.tagName).toEqual('A');
       expect(button.href).toEqual(data.link);
     });
 
@@ -208,9 +207,8 @@ describe('<Plan />', () => {
       expect(actionMainImage.tagName).toEqual('IMG');
       expect(actionMainImage.src).toEqual(plan.main_image_file_url);
 
-      const button = getByText(planActions.get_started.cta);
+      const button = getByText(planActions.get_started.cta).parentNode;
       expect(button).toBeInTheDocument();
-      expect(button.tagName).toEqual('A');
       expect(button.href).toEqual(planActions.get_started.link);
 
       await fireEvent.click(button);

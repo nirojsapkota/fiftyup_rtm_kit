@@ -23,7 +23,6 @@ describe(`<Button />`, () => {
 
     const buttonNode = getByText(welcomeMessage).parentNode;
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode.tagName).toEqual('BUTTON');
     expect(buttonNode).toHaveStyleRule('background', 'orange');
   });
 
@@ -34,7 +33,6 @@ describe(`<Button />`, () => {
 
     const buttonNode = getByText(welcomeMessage).parentNode;
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode.tagName).toEqual('BUTTON');
     expect(buttonNode).toHaveStyleRule('background', 'gray');
   });
 
@@ -45,7 +43,6 @@ describe(`<Button />`, () => {
 
     const buttonNode = getByText(welcomeMessage).parentNode;
     expect(buttonNode).toBeInTheDocument();
-    expect(buttonNode.tagName).toEqual('BUTTON');
     expect(buttonNode).toHaveStyleRule('background', 'green');
   });
 
