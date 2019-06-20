@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tracker } from '@rtm-ui/tracker';
-import { StyledButton, WrapperButton } from './style';
+import { StyledButton, WrapperButton, ContentWrapper } from './style';
 
 export const Base = ({
   track,
   onClick,
   children,
   asWrapper,
+  block,
   ...buttonProps
 }) => {
   const Component = asWrapper ? WrapperButton : StyledButton;
@@ -16,13 +17,17 @@ export const Base = ({
     <Tracker
       render={trackEvent => (
         <Component onClick={() => trackEvent(track, onClick)} {...buttonProps}>
-          {children}
+          <ContentWrapper block={block}>
+           {children}
+          </ContentWrapper>          
         </Component>
       )}
     />
   ) : (
     <Component onClick={onClick} {...buttonProps}>
-      {children}
+      <ContentWrapper block={block}>
+       {children}
+      </ContentWrapper> 
     </Component>
   );
 };
