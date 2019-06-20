@@ -197,7 +197,7 @@ const Summary = props => {
               renderItem={item => (
                 <Variant variant="a">
                   <StyledAccordion p={[2, 2, 3]}>
-                    <Paragraph dangerousHTML={item.content} />
+                    <Markdown raw={item.content} />
                   </StyledAccordion>
                 </Variant>
               )}
