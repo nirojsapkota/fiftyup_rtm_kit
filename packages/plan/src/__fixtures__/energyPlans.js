@@ -46,7 +46,7 @@ const planInput = {
     ],
     accordion: [
       {
-        name: 'lAbout This Provider',
+        name: 'About This Provider',
         content: about
       },
       {
