@@ -50,6 +50,16 @@ const primitiveMap = {
     weight: 'bold',
     children: renderChildren(children),
   }),
+  list: ({ children, ordered }) => ({
+    as: ordered === true ? 'ol':'ul',
+    tag: ordered === true ? 'ol':'ul',
+    children: renderChildren(children),
+  }),
+  listItem: ({ children }) => ({
+    as: 'li',
+    tag: 'li',
+    children: renderChildren(children),
+  }),
   emphasis: ({ children }) => ({
     as: 'em',
     tag: 'em',
@@ -109,6 +119,14 @@ const MarkdownBox = styled(Box)`
   > *:not(:last-child) {
     margin-bottom: 10px;
   }
+
+  ul, ol {
+    li {
+      p {
+        display: inline
+      }
+    }
+  }
 `;
 
 export const Markdown = ({ raw, referenceObject = {} }) => {
@@ -120,7 +138,7 @@ export const Markdown = ({ raw, referenceObject = {} }) => {
     .use(remark2rehype)
     .use(stringify)
     .parse(raw.toString());
-
+   
   return (
     <MarkdownBox>
       {ast.children.map((item, i) => toComponent(item, i))}
