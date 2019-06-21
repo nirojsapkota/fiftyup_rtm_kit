@@ -17,6 +17,7 @@ const ResultsContainer = styled(Card)`
 
 const ResultItem = styled(Button)`
   cursor: pointer;
+  font-size: 1em;
 
   :hover,
   :focus {

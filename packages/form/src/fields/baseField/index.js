@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
-import { getColor } from '@rtm-ui/theme';
 import { Paragraph, Label } from '@rtm-ui/typography';
 import { getFieldComponent } from '../util/getFieldComponent';
 
 const SmallText = styled(Paragraph)`
-  font-size: 10px;
+  font-size: 0.6em;
 `;
 
 const Wrapper = styled(Box)`
