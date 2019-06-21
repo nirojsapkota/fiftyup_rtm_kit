@@ -1,4 +1,4 @@
-export var aboutProvider = `
+export const about = `
 
 **Why Alinta Energy?**
 - Join over 790,000 Australian’s who have chosen Alinta Energy.

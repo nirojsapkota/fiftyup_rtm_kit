@@ -1,4 +1,4 @@
-export var faq = `
+export const faq = `
 
 **I want more details on this offer, who can I speak to?**
 

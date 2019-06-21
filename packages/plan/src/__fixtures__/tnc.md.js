@@ -1,4 +1,4 @@
-export var tnc = `
+export const tnc = `
 
 **Terms and Conditions**
 1. Alinta Energy's contract terms and the price and product information statement applicable to your supply will be provided to you shortly after the receipt of your application for supply. You should read this information carefully as it contains important details about your energy contract and Alinta Energy's respective rights and obligations.

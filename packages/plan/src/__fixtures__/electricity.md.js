@@ -1,4 +1,4 @@
-export var electricity = `
+export const electricity = `
 
 Electricity Rates
 

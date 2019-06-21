@@ -1,4 +1,4 @@
-export var gas = `
+export const gas = `
 
 Gas Rates
 

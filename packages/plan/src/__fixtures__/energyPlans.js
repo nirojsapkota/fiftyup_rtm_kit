@@ -1,4 +1,4 @@
-import { aboutProvider } from './about.md.js';
+import { about } from './about.md.js';
 import { faq } from './faq.md.js';
 import { tnc } from './tnc.md.js';
 import { electricity } from './electricity.md.js';
@@ -46,8 +46,8 @@ const planInput = {
     ],
     accordion: [
       {
-        name: 'About This Provider',
-        content: aboutProvider
+        name: 'lAbout This Provider',
+        content: about
       },
       {
         name: 'Terms & Conditions',
