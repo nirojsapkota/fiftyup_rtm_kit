@@ -1,26 +1,23 @@
 import LogRocket from 'logrocket';
 import { getKeys, getValues } from './pageViewHelper';
 
-class Google {
+class Bing {
   static sendData(tracking) {
     const keys = getKeys(tracking.category);
     const values = getValues(keys, tracking);
     if (!values.every(value => value !== undefined)) {
-      LogRocket.captureException('Missing keys for google analytics pageview', {
+      LogRocket.captureException('Missing keys for Bing Analytics UET page_view', {
         tags: {
-          service: 'google',
+          service: 'uet',
         },
       });
     } else {
       const eventPath = values.join('/');
-      if (typeof window.ga === 'function') {
-        window.ga('send', {
-          hitType: 'pageview',
-          page: `virtual/${eventPath}`,
-        });
+      if (window.uetq) {
+        window.uetq.push('event', 'page_view', { 'page_path': `/virtual/${eventPath}` });
       }
     }
   }
 }
 
-export default Google;
+export default Bing;

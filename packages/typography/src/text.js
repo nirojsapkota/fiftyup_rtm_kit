@@ -24,43 +24,43 @@ const subStyles = css`
 const sizeChart = [
   {
     element: 'h1',
-    sizes: [32, 36, 42, 57],
+    sizes: [2, 2.2, 2.5, 4],
   },
   {
     element: 'h2',
-    sizes: [32, 32, 36, 36],
+    sizes: [2, 2, 2.2, 2.2],
   },
   {
     element: 'h3',
-    sizes: [28, 28, 32, 32],
+    sizes: [1.75, 1.75, 2, 2],
   },
   {
     element: 'h4',
-    sizes: [24, 24, 28, 28],
+    sizes: [1.5, 1.5, 1.75, 1.75],
   },
   {
     element: 'h5',
-    sizes: [20, 20, 24, 24],
+    sizes: [1.25, 1.25, 1.5, 1.5],
   },
   {
     element: 'h6',
-    sizes: [16, 16, 20, 20],
+    sizes: [1, 1, 1.25, 1.25],
   },
   {
     element: 'p',
-    sizes: [16, 16, 16, 16],
+    sizes: [1, 1, 1, 1],
   },
   {
     element: 'input',
-    sizes: [16, 16, 16, 16],
+    sizes: [1, 1, 1, 1],
   },
   {
     element: 'small',
-    sizes: [12, 12, 12, 12],
+    sizes: [0.75, 0.75, 0.75, 0.75],
   },
   {
     element: 'label',
-    sizes: [14, 14, 14, 14],
+    sizes: [1, 1, 1, 1],
   },
 ];
 
@@ -76,7 +76,7 @@ const lineHeightChart = tag => {
 };
 
 export const labelTextStyles = css`
-  font-size: 13px;
+  font-size: 0.85em;
   letter-spacing: 1px;
   line-height: 1;
   text-transform: uppercase;
@@ -92,18 +92,18 @@ function displayByEachScreen(tag) {
   }
   const lineHeight = lineHeightChart(tag);
   return css`
-    ${sizes && `font-size: ${sizes[0]}px`};
+    ${sizes && `font-size: ${sizes[0]}em`};
     line-height: ${lineHeight[0]};
     @media (min-width: ${props => props.theme.grid.sm}em) {
-      ${sizes && `font-size: ${sizes[0]}px`};
+      ${sizes && `font-size: ${sizes[0]}em`};
       line-height: ${lineHeight[1]};
     }
     @media (min-width: ${props => props.theme.grid.md}em) {
-      ${sizes && `font-size: ${sizes[0]}px`};
+      ${sizes && `font-size: ${sizes[0]}em`};
       line-height: ${lineHeight[2]};
     }
     @media (min-width: ${props => props.theme.grid.lg}em) {
-      ${sizes && `font-size: ${sizes[0]}px`};
+      ${sizes && `font-size: ${sizes[0]}em`};
       line-height: ${lineHeight[3]};
     }
   `;

@@ -8,27 +8,38 @@ import BasePanelRadioCheckboxField from '../basePanelRadioCheckboxField';
 import { getColor } from '@rtm-ui/theme';
 import { Card } from '@rtm-ui/layout';
 
+const Wrapper = styled.div`
+  flex: 1;
+  padding: 5px;
+  max-width: 100%;
+`;
+
 const StyledBox = styled(Card)`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 170px;
+  flex: 1;
 `;
 
 const IconContainer = styled(Box)`
   position: relative;
+  margin-top: 5px;
+  margin-right: 5px;
   align-self: flex-end;
 `;
 
 const StyledLabel = styled(Label)`
   background: ${props => getColor(props.fillColor, props.theme)};
   color: ${props => getColor(props.color || 'inverseText', props.theme)};
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 600;
   width: 100%;
   text-align: center;
   margin-top: 3px;
   height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const PanelCheckField = ({
@@ -53,7 +64,7 @@ const PanelCheckField = ({
     >
       {({ option, name, fieldValue }) => {
         return (
-          <React.Fragment>
+          <Wrapper>
             <StyledBox>
               <IconContainer>
                 <Icon
@@ -81,7 +92,7 @@ const PanelCheckField = ({
                 {option.label}
               </StyledLabel>
             </StyledBox>
-          </React.Fragment>
+          </Wrapper>
         );
       }}
     </BasePanelRadioCheckboxField>

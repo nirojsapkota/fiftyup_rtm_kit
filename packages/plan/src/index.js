@@ -9,6 +9,7 @@ import Cta from './Cta';
 import Summary from './Summary';
 import Action, { ClickToCall } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
+import { Theme as Variant } from '@rtm-ui/theme';
 
 // FIXME: Add CallbackFormDialog and add more unit test later
 // import CallbackFormDialog from './CallbackFormDialog';
@@ -93,7 +94,9 @@ export const Plan = ({
         <Blurb right variant="b" serif header={clickAction.header} />
       )}
       <Merchant {...plan.merchant} />
-      {callAction && <ClickToCall {...callAction} />}
+      {callAction && (
+        <Variant variant="regular"><ClickToCall {...callAction} /></Variant>
+      )}
       {!callbackAction && clickAction && <Action {...clickAction} />}
       {callbackAction && (
         <Box p={[2, 3]} width={1}>

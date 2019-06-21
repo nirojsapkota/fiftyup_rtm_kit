@@ -1,20 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Button, ButtonGroup } from '@rtm-ui/button';
+import { Button } from '@rtm-ui/button';
+import { Box } from '@rtm-ui/layout';
 import { focusStyle } from '../textField';
 
 const StyledButton = styled(Button)`
   ${focusStyle};
   display: flex;
   align-items: flex-start;
+  flex: 1;
+  width: ${props => props.optionWidth}%;
+  min-width: 120px;
 `;
 
-const BasePanelRadioCheckboxField = ({ options, name, ...rest }) => {
+const Wrapper = styled(Box)`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const BasePanelRadioCheckboxField = ({
+  options,
+  name,
+  columns = 3,
+  ...rest
+}) => {
+  const optionWidth = 100 / columns;
   return (
-    <ButtonGroup py={2}>
+    <Wrapper py={10}>
       {options.map(option => (
         <StyledButton
+          optionWidth={optionWidth}
           key={option.value}
           name={name}
           value={option.value}
@@ -29,7 +45,7 @@ const BasePanelRadioCheckboxField = ({ options, name, ...rest }) => {
           {rest.children({ option, name, fieldValue: rest.value })}
         </StyledButton>
       ))}
-    </ButtonGroup>
+    </Wrapper>
   );
 };
 

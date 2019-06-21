@@ -39,7 +39,7 @@ describe(`track`, () => {
 
     track('get_started', { some: 'data' });
 
-    expect(logSpy).toHaveBeenCalledTimes(2);
+    expect(logSpy).toHaveBeenCalledTimes(3);
   });
 });
 
