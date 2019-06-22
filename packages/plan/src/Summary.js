@@ -120,6 +120,8 @@ const Summary = props => {
     ({ actionType }) => actionType === 'back'
   );
 
+  const refer = React.useContext(PlanReferenceContext);
+
   return (
     <Box p={[0, 0, 0, 2]}>
       <Box px={[2, 2, 3, 0]} py={3}>
@@ -197,7 +199,7 @@ const Summary = props => {
               renderItem={item => (
                 <Variant variant="a">
                   <StyledAccordion p={[2, 2, 3]}>
-                    <Markdown raw={item.content} />
+                    <Markdown referenceObject={refer} raw={item.content} />
                   </StyledAccordion>
                 </Variant>
               )}
