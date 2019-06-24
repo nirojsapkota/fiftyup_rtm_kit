@@ -5,7 +5,7 @@ import sample from '../../sample';
 
 const setup = form => {
   const rendered = render(<PhonebackBox form={form} text={sample.text} />);
-  const callbackButton = rendered.getByText(/request a callback/i);
+  const callbackButton = rendered.getByText(/request a callback/i).closest('button');
   fireEvent.click(callbackButton);
 
   const emailField = rendered.getByLabelText(/my email:/i);
@@ -17,7 +17,7 @@ const setup = form => {
     target: { value: '0422058679' },
   });
 
-  const formSubmitButton = rendered.getByText(/call me back/i);
+  const formSubmitButton = rendered.getByText(/call me back/i).closest('button');
   fireEvent.click(formSubmitButton);
 
   return rendered;
