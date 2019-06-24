@@ -120,7 +120,7 @@ describe('<ConfirmSwitch/>', () => {
     );
     const ckHeading1 = getByText('heading 1');
     const ckHeading2 = getByText('heading 2');
-    const submit = getByText('Switch Now');
+    const submit = getByText('Switch Now').closest('button');
     fireEvent.click(ckHeading1);
     fireEvent.click(ckHeading2);
     fireEvent.click(submit);

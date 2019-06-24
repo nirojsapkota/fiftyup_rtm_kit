@@ -76,7 +76,7 @@ describe('<LoginPanel />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText(loginPanelProps.buttonText);
+    const submit = getByText(loginPanelProps.buttonText).closest('button');
     fireEvent.click(submit);
 
     // expect props event was fired
@@ -125,7 +125,7 @@ describe('<LoginPanel />', () => {
       target: { value: '2000, Barangaroo' },
     });
 
-    const submit = getByText(loginPanelProps.buttonText);
+    const submit = getByText(loginPanelProps.buttonText).closest('button');
     fireEvent.click(submit);
 
     await wait(() => {
@@ -156,7 +156,7 @@ describe('<LoginPanel />', () => {
       target: { value: '2000' },
     });
 
-    const submit = getByText(loginPanelProps.buttonText);
+    const submit = getByText(loginPanelProps.buttonText).closest('button');
     fireEvent.click(submit);
 
     await wait(() => {
