@@ -33,7 +33,6 @@ class Accordion extends React.Component {
 
   componentDidMount() {
     this.setState({
-      items: this.props.items,
       activeItemIndex: this.props.activeItemIndex,
     });
   }
@@ -47,7 +46,7 @@ class Accordion extends React.Component {
   render() {
     return (
       <Box>
-        {this.state.items.map((item, index) => {
+        {this.props.items.map((item, index) => {
           return (
             <Box key={index}>
               <HeaderWrapper onClick={() => this.chooseItem(index)}>
