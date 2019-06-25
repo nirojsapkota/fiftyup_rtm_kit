@@ -137,6 +137,19 @@ describe('<Markdown />', () => {
     );
     expect(getByText('Origin BES')).toBeInTheDocument();
   });
+  it('interpolates link values when given a reference object', () => {
+    const { container } = render(
+      <Markdown
+        referenceObject={{
+          campaign: {
+            link: 'https://example.com',
+          },
+        }}
+        raw="This is the campaign [here]({{campaign.link}})"
+      />
+    );
+    expect(container).toContainElement(document.querySelector('a'));
+  });
   it('renders "undefined" when the reference lookup doesn\'t exist', () => {
     const { getByText } = render(
       <Markdown

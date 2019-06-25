@@ -24,6 +24,9 @@ export const actions = {
 
 const planInput = {
   entity: { name: 'FiftyUp Club' },
+  reference: {
+    elec_bpidUrl: 'https://example.com',
+  },
   plan: {
     id: 1066,
     main_header_text: 'main header text',
@@ -41,7 +44,7 @@ const planInput = {
         id: 51,
         plan_id: 1066,
         body:
-          'InsureandGo are offering 15% off any of their Travel Insurance policies.*',
+          'InsureandGo [are]({{elec_bpidUrl}}) offering 15% off any of their Travel Insurance policies.*',
         icon: 'percent',
         created_at: '2019-02-21T12:27:49.000+11:00',
         updated_at: '2019-03-07T11:11:54.000+11:00',

@@ -23,6 +23,39 @@ export default function inlinePlugin(referenceObject) {
     now.column += 1;
     now.offset += 1;
 
+    // FIXME: locator function does not return the value
+    // for the handlebar when it's nested inside a link.
+    // I think this is a bug so have created a ticket in
+    // here https://github.com/remarkjs/remark/issues/410
+    // If that's resolved we can remove this code
+    if (value.startsWith('[') && value.includes('{{')) {
+      const endPosition = value.indexOf(')') + 1;
+      const startHandlebarPosition = value.indexOf('{{') + 2;
+      const endHandlebarPosition = value.indexOf('}}');
+      const subbedValue = value.substring(
+        startHandlebarPosition,
+        endHandlebarPosition
+      );
+      const eatValue = value.substring(0, endPosition);
+      const subValue = get(referenceObject, subbedValue);
+      const linkValue = value.substring(
+        value.indexOf('[') + 1,
+        value.indexOf(']')
+      );
+      eat(eatValue)({
+        type: 'link',
+        url: subValue,
+        title: '',
+        children: [
+          {
+            type: 'text',
+            value: linkValue,
+          },
+        ],
+      });
+    }
+    // ENDFIXME
+
     if (value.startsWith('{{')) {
       // This will select the first one
       const endPosition = value.indexOf('}}');
@@ -59,5 +92,7 @@ export default function inlinePlugin(referenceObject) {
   const inlineTokenizers = Parser.prototype.inlineTokenizers;
   const inlineMethods = Parser.prototype.inlineMethods;
   inlineTokenizers.interpolator = inlineTokenizer;
-  inlineMethods.splice(inlineMethods.indexOf('text'), 0, 'interpolator');
+  // Getting in front of the link parser is key due to
+  // https://github.com/remarkjs/remark/issues/410
+  inlineMethods.splice(inlineMethods.indexOf('url'), 0, 'interpolator');
 }

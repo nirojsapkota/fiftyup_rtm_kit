@@ -39,14 +39,16 @@ You can write _emphasis_ and **bold** text like this.
 ## List
 
 ```md
-You can write list items like 
- - list item 1
- - list item 2
+You can write list items like
+
+- list item 1
+- list item 2
 ```
 
 Rendered as:
 
-You can write list items like 
+You can write list items like
+
 - list item 1
 - list item 2
 
@@ -92,6 +94,13 @@ Your offer is 15% below the standing offer
 
 <Playground showEditor={true}>
   <Markdown raw="{{hello}} [world!](https://example.com) a[^#] sentence[^sentence as a footnote]. There is also **bold** and _emphasis_ support. And **_both can be used together_**" />
+</Playground>
+
+<Playground showEditor={true}>
+  <Markdown
+    reference={{ link: 'https://google.com' }}
+    raw="{{[Hello world!]link}}"
+  />
 </Playground>
 
 ### Markdown naturally supports line breaks and treats them as separate paragraph tags
