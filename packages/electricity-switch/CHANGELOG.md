@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.33](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@2.0.32...@rtm-ui/electricity-switch@2.0.33) (2019-06-25)
+
+
+### Bug Fixes
+
+* **@rtm-ui/electricity-switch, @rtm-ui/login-panel:** OB-2376: Fix Unit test ([c9c15c2](https://github.com/OBSAU/rtm-kit/commit/c9c15c2))
+
+
+
+
+
 ## [2.0.32](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@2.0.31...@rtm-ui/electricity-switch@2.0.32) (2019-06-25)
 
 **Note:** Version bump only for package @rtm-ui/electricity-switch

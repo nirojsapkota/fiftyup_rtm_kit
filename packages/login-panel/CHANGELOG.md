@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.31](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@4.0.30...@rtm-ui/login-panel@4.0.31) (2019-06-25)
+
+
+### Bug Fixes
+
+* **@rtm-ui/electricity-switch, @rtm-ui/login-panel:** OB-2376: Fix Unit test ([c9c15c2](https://github.com/OBSAU/rtm-kit/commit/c9c15c2))
+
+
+
+
+
 ## [4.0.30](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@4.0.29...@rtm-ui/login-panel@4.0.30) (2019-06-25)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
