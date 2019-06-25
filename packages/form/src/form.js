@@ -126,7 +126,10 @@ const Form = ({
             });
 
             rest.setFieldValue(field, value);
-            autoSearch && autoSubmit();
+            autoSearch &&
+              validateForm().then(() => {
+                autoSubmit();
+              });
           },
           setFieldTouched: rest.setFieldTouched,
           setFieldError: rest.setFieldError,
