@@ -38,7 +38,10 @@ describe('<SwitchConfirmPage />', () => {
       <SwitchConfirmPage {...dummyData} />
     );
     const headerElement = getByText('Yes, I agree');
-    const btnSubmit = getByText('Switch Now');
+    
+    const divSubmit = getByText('Switch Now');
+    const btnSubmit = divSubmit.closest('button');
+
     fireEvent.click(headerElement);
     fireEvent.click(btnSubmit);
     await wait(() => {

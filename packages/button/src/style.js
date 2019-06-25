@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { labelTextStyles } from '@rtm-ui/typography';
 import { getColor, tintColor } from '@rtm-ui/theme';
+import { Box } from '@rtm-ui/layout';
 
 export const base = css`
   &:disabled {
@@ -36,6 +37,19 @@ export const secondary = css`
   }
 `;
 
+export const contentStyling = css`
+  display: ${props => (props.block ? 'flex' : 'inline-flex')};
+  ${props => props.block && 'flex: 1'};
+  align-self: center;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+`;
+
+export const ContentWrapper = styled(Box)`
+  ${contentStyling}
+`;
+
 export const tertiary = css`
   color: ${props => getColor('inverseText', props.theme)};
   background: ${props => getColor('tertiary', props.theme)};
@@ -64,21 +78,8 @@ export const buttonStyling = css`
   ${labelTextStyles};
   width: ${props => props.width || 'inherit'};
   padding: 18px 30px;
-
-  display: ${props => (props.block ? 'flex' : 'inline-flex')};
-  ${props =>
-    props.block &&
-    css`
-      flex: 1;
-    `} align-self: center;
-  align-items: center;
   white-space: nowrap;
   word-break: keep-all;
-  text-align: center;
-
-  align-items: center;
-  justify-content: center;
-
   border: none;
   border-radius: ${props => props.theme.button.borderRadius};
   border-bottom-width: ${props => props.theme.button.bottomBorderWidth};
@@ -90,6 +91,7 @@ export const buttonStyling = css`
 
 export const ButtonLink = styled.a`
   ${buttonStyling};
+  ${contentStyling};
 `;
 
 export const StyledButton = styled.button`

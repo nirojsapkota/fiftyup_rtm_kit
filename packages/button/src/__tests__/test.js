@@ -21,7 +21,9 @@ describe(`<Button />`, () => {
       themeOverrides: { 'colors.variants.a.accent': 'orange' },
     });
 
-    const buttonNode = getByText(welcomeMessage);
+    const divNode = getByText(welcomeMessage);
+    const buttonNode = divNode.closest('button');
+
     expect(buttonNode).toBeInTheDocument();
     expect(buttonNode).toHaveStyleRule('background', 'orange');
   });
@@ -31,7 +33,9 @@ describe(`<Button />`, () => {
       themeOverrides: { 'colors.grayscale.slightlyDarker': 'gray' },
     });
 
-    const buttonNode = getByText(welcomeMessage);
+    const divNode = getByText(welcomeMessage);
+    const buttonNode = divNode.closest('button');
+
     expect(buttonNode).toBeInTheDocument();
     expect(buttonNode).toHaveStyleRule('background', 'gray');
   });
@@ -41,7 +45,9 @@ describe(`<Button />`, () => {
       themeOverrides: { 'colors.variants.a.tertiary': 'green' },
     });
 
-    const buttonNode = getByText(welcomeMessage);
+    const divNode = getByText(welcomeMessage);
+    const buttonNode = divNode.closest('button');
+    
     expect(buttonNode).toBeInTheDocument();
     expect(buttonNode).toHaveStyleRule('background', 'green');
   });
