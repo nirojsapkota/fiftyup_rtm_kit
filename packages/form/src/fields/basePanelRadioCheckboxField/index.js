@@ -12,6 +12,9 @@ const StyledButton = styled(Button)`
   flex: 1;
   width: ${props => props.optionWidth}%;
   min-width: 120px;
+  & > * {
+    width: 100%;
+  }
 `;
 
 const Wrapper = styled(Box)`
