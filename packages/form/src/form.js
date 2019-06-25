@@ -26,7 +26,13 @@ const FooterBox = styled(Box)`
   justify-content: flex-end;
 `;
 
-const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
+const Form = ({
+  onSubmit,
+  autoSearch,
+  fields: providedFields,
+  id,
+  ...props
+}) => {
   const [fields, setFields] = React.useState(providedFields);
   const [serverErrors, setServerErrors] = React.useState({
     formError: props.formError || null,
@@ -63,6 +69,20 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
     }
   };
 
+  // NOTE: Autosubmit has some quirks, we don't have much of
+  // an ability to autosubmit text fields as they can possibly
+  // be any length - for now we're only supporting fields with
+  // explicity use 'setFieldValue', that's because we know when
+  // that function is called the value will be 100% complete
+  // this feels like a hack and can probably be improved with some
+  // field-level autosearch settings.
+  const autoSubmit = () => {
+    const submitNode = document.getElementById(`hidden-submit-${id}`);
+    if (submitNode) {
+      submitNode.click();
+    }
+  };
+
   // Pass these values straight through with no submission
   React.useEffect(function() {
     if (props.passThru) {
@@ -80,7 +100,13 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
       validationSchema={validationSchema}
       enableReinitialize
       onSubmit={submitWrapper}
-      render={({ handleSubmit, isSubmitting, isValidating, ...rest }) => {
+      render={({
+        handleSubmit,
+        zisSubmitting,
+        validateForm,
+        isValidating,
+        ...rest
+      }) => {
         const fieldUtils = {
           setFieldValue: (field, value) => {
             // filter out field's error message from server errors.
@@ -101,6 +127,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
             });
 
             rest.setFieldValue(field, value);
+            autoSearch && autoSubmit(e);
           },
           setFieldTouched: rest.setFieldTouched,
           setFieldError: rest.setFieldError,
@@ -108,6 +135,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
 
         return (
           <form onSubmit={handleSubmit}>
+            <button type="submit" hidden id={`hidden-submit-${id}`} />
             {fields.map(field => (
               <BaseField
                 key={field.name}
@@ -117,7 +145,7 @@ const Form = ({ onSubmit, fields: providedFields, id, ...props }) => {
                 onChange={rest.handleChange}
                 error={
                   serverErrors.fieldErrors[field.name] ||
-                  getFieldErrors(rest, field)
+                  (!autoSearch && getFieldErrors(rest, field))
                 }
               />
             ))}

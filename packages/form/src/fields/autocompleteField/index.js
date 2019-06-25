@@ -41,6 +41,7 @@ const AutocompleteField = ({
   const [resultsPosition, setResultsPosition] = React.useState();
   useOnClickOutside(resultsRef, () => setModalOpen(false));
   const debouncedSearchTerm = useDebounce(inputProps.value, 500);
+  const [hasInteracted, setHasInteracted] = React.useState(false);
 
   React.useEffect(() => {
     if (debouncedSearchTerm) {
@@ -58,7 +59,7 @@ const AutocompleteField = ({
   }, [debouncedSearchTerm]);
 
   React.useEffect(() => {
-    if (inputProps.value && !hasSelected) {
+    if (inputProps.value && !hasSelected && hasInteracted) {
       // onWaiting('Search pending');
       setModalOpen(true);
     } else {
@@ -83,11 +84,13 @@ const AutocompleteField = ({
           aria-haspopup="listbox"
           onFocus={() => {
             setModalOpen(true);
+            setHasInteracted(true);
             onFocus();
           }}
           onBlur={onBlur}
           onChange={e => {
             setHasSelected(false);
+            setHasInteracted(true);
             inputProps.onChange(e);
           }}
         />
