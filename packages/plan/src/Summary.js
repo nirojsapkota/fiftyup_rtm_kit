@@ -184,11 +184,13 @@ const Summary = props => {
         >
           <Box width={[1, 1, 0.6, 1]} pr={[0, 2, 2]}>
             <Main {...props} />
-            <Box pb={2}>
-              <Share
-                message={props.tweet_text ? props.tweet_text : undefined}
-              />
-            </Box>
+            {props.tweet_text &&
+              <Box pb={2}>
+                <Share
+                  message={props.tweet_text ? props.tweet_text : undefined}
+                />
+              </Box>
+            }
           </Box>
           <Box width={[1, 1, 0.4, 1]}>{props.children}</Box>
         </Box>

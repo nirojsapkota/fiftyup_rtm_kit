@@ -127,7 +127,7 @@ const planInput = {
         'https://d2v1ej1mp9x364.cloudfront.net/merchants/960/logo/original.png?1474512406',
       full_name: 'InsureandGo',
     },
-    tweet_text: '',
+    tweet_text: 'some text',
   },
   switch_facts: [],
   product_tips: [],

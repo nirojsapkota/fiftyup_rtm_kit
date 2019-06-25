@@ -220,6 +220,21 @@ describe('<Plan />', () => {
       expect(mockTrackEvent).toHaveBeenCalledWith('get_started', undefined);
       mockTrackEvent.mockReset();
     });
+
+    it('should not render Share', async () => {
+      plan.tweet_text = null;
+      const actions = [planActions.get_started, planActions.request_call_back];
+      const { queryByTestId } = render(
+        <Summary
+          {...plan}
+          campaignId={plan.campaign_id}
+          actions={actions}
+          entity={entity}
+        />
+      );
+      const fb = queryByTestId('share_facebook');
+      expect(fb).toBeNull();
+    });
   });
 
   describe('Plan', () => {
