@@ -64,7 +64,6 @@ const Form = ({
         await props.onSuccess({ id, values: getFormValues(response) });
       }
     } catch (e) {
-      console.log('e', e);
       setServerErrors(e.object);
     }
   };
@@ -127,7 +126,7 @@ const Form = ({
             });
 
             rest.setFieldValue(field, value);
-            autoSearch && autoSubmit(e);
+            autoSearch && autoSubmit();
           },
           setFieldTouched: rest.setFieldTouched,
           setFieldError: rest.setFieldError,

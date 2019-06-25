@@ -4,9 +4,9 @@ import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import { Form } from '../index';
 
 describe(`An autosearch form`, () => {
-  it(`can mutate fields from the submit handler`, async () => {
+  it(`can submit the form when valid`, async () => {
     const handleSubmit = jest.fn();
-    const { getByLabelText, debug, container } = await render(
+    const { getByLabelText } = await render(
       <Form
         onSubmit={handleSubmit}
         id="test"
