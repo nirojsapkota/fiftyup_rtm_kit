@@ -12,7 +12,7 @@ const Flex = styled(Box)`
 
 const Container = styled(Box)`
   margin: 0 auto;
-  padding-bottom: 20px;
+  line-height: 1.6;
   max-width: 1400px;
 `;
 
@@ -26,7 +26,7 @@ const GridBox = styled(Box)`
   grid-column-gap: 1em;
   grid-row-gap: 1em;
   grid-template-rows: auto 1fr;
-  padding: 20px;
+  padding: 92px 32px 32px 32px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas: 'logo logo' 'social social' 'list-0 list-1' 'right right';
   @media (min-width: 400px) {
@@ -61,7 +61,7 @@ export const Footer = ({ entity, disclaimers }) => {
         <Container>
           <GridBox>
             <A style={{ gridArea: 'logo' }} href="/" align="center">
-              <Logo width={200} entityBrand={entity.brand} />
+              <Logo width={150} entityBrand={entity.brand} />
             </A>
             <Box style={{ gridArea: 'social' }}>
               <Paragraph weight="bold" my={1}>
@@ -81,11 +81,10 @@ export const Footer = ({ entity, disclaimers }) => {
               <Box style={{ gridArea: `list-${index}` }} key={index}>
                 {subItems.map(item => (
                   <A
-                    style={{ display: 'block' }}
+                    style={{ display: 'block', 'font-weight': 'bold' }}
                     key={item.url}
                     py={5}
                     href={item.url}
-                    weight="bold"
                   >
                     {item.name}
                   </A>
@@ -100,7 +99,7 @@ export const Footer = ({ entity, disclaimers }) => {
               )}
               {businessHourInfo.hours && (
                 <Paragraph
-                  style={{ whiteSpace: 'pre-line', lineHeight: '1.2em' }}
+                  style={{ whiteSpace: 'pre', lineHeight: '1.2em' }}
                   dangerousHTML={businessHourInfo.hours}
                 />
               )}
