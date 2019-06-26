@@ -21,7 +21,7 @@
     "@rtm-ui/a": "file:../a",
     "@rtm-ui/accordion": "file:../accordion",
     "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/button": "4.1.15",
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",
