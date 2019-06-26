@@ -8,29 +8,17 @@ import { Icon, Logo } from '@rtm-ui/icon';
 
 const Flex = styled(Box)`
   display: flex;
-  font-family: Arial, sans-serif, MuseoSans, Roboto, Helvetica;
-  font-size: 16px;
-  line-height: 1.2;
-  padding: 32px;
 `;
 
 const Container = styled(Box)`
   margin: 0 auto;
+  line-height: 1.6;
   max-width: 1400px;
 `;
 
 const A = styled.a`
   text-decoration: none;
   color: ${props => getColor('text', props.theme)};
-  font-weight: 900;
-`;
-const Link = styled.a`
-  text-decoration: none;
-  color: ${props => getColor('text', props.theme)};
-  width: 135px;
-  height: 135px;
-  margin: auto;
-  font-family: Arial, sans-serif, MuseoSans, Roboto, Helvetica;
 `;
 
 const GridBox = styled(Box)`
@@ -38,9 +26,6 @@ const GridBox = styled(Box)`
   grid-column-gap: 1em;
   grid-row-gap: 1em;
   grid-template-rows: auto 1fr;
-  font-family: Arial, sans-serif, MuseoSans, Roboto, Helvetica;
-  font-size: 16px;
-  line-height: 1.2;
   padding: 92px 32px 32px 32px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas: 'logo logo' 'social social' 'list-0 list-1' 'right right';
@@ -75,15 +60,9 @@ export const Footer = ({ entity, disclaimers }) => {
       <Box variant="b">
         <Container>
           <GridBox>
-            <Link
-              style={{
-                gridArea: 'logo',
-              }}
-              href="/"
-              align="center"
-            >
-              <Logo width={200} entityBrand={entity.brand} />
-            </Link>
+            <A style={{ gridArea: 'logo' }} href="/" align="center">
+              <Logo width={150} entityBrand={entity.brand} />
+            </A>
             <Box style={{ gridArea: 'social' }}>
               <Paragraph weight="bold" my={1}>
                 FOLLOW US ON SOCIAL
@@ -99,15 +78,10 @@ export const Footer = ({ entity, disclaimers }) => {
             </Box>
             {main.map((subItems, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <Box
-                style={{
-                  gridArea: `list-${index}`,
-                }}
-                key={index}
-              >
+              <Box style={{ gridArea: `list-${index}` }} key={index}>
                 {subItems.map(item => (
                   <A
-                    style={{ display: 'block', 'padding-bottom': '8px' }}
+                    style={{ display: 'block', 'font-weight': 'bold' }}
                     key={item.url}
                     py={5}
                     href={item.url}
@@ -125,29 +99,18 @@ export const Footer = ({ entity, disclaimers }) => {
               )}
               {businessHourInfo.hours && (
                 <Paragraph
-                  style={{
-                    whiteSpace: 'pre',
-                    lineHeight: '1.2em',
-                    'padding-bottom': '16px',
-                  }}
+                  style={{ whiteSpace: 'pre', lineHeight: '1.2em' }}
                   dangerousHTML={businessHourInfo.hours}
                 />
               )}
-
+              <Box style={{ height: '30px' }} />
               {others.map(item =>
                 item.url ? (
                   <A key={item.name} href={item.url} target="_blank">
                     {item.name}
                   </A>
                 ) : (
-                  <Paragraph
-                    style={{
-                      'font-family':
-                        'Arial, sans-serif, MuseoSans, Roboto, Helvetica',
-                      'font-weight': 'bold',
-                    }}
-                    key={item.name}
-                  >
+                  <Paragraph key={item.name} weight="bold">
                     {item.name}
                   </Paragraph>
                 )
@@ -161,7 +124,7 @@ export const Footer = ({ entity, disclaimers }) => {
           <Flex p={10} style={{ justifyContent: 'flex-end' }}>
             {legals.map((item, index) => (
               <Box key={item.name} pb={2} mr={index === 0 ? 40 : 0}>
-                <Link href={item.url}>{item.name}</Link>
+                <A href={item.url}>{item.name}</A>
               </Box>
             ))}
           </Flex>
