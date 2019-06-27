@@ -49,7 +49,7 @@ const PanelRadioField = ({
 }) => {
 
   const fillColorName = (itemValue, fieldValue) => {
-    return fieldValue === itemValue ? 'link' : 'linkHover';
+    return fieldValue === itemValue ? 'accent' : 'primary';
   };
 
   return (
