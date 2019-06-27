@@ -22,7 +22,7 @@
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
-    "@rtm-ui/button": "4.1.15",
+    "@rtm-ui/button": "file:../button",
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
