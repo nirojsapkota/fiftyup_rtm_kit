@@ -77,7 +77,7 @@ const PanelCheckField = ({
                   glyph={option.icon}
                   size={80}
                   fill={
-                    fieldValue.includes(option.value) ? 'link' : 'linkHover'
+                    fieldValue.includes(option.value) ? 'accent' : 'primary'
                   }
                 />
               )}
@@ -86,7 +86,7 @@ const PanelCheckField = ({
                 px={10}
                 py={10}
                 fillColor={
-                  fieldValue.includes(option.value) ? 'link' : 'linkHover'
+                  fieldValue.includes(option.value) ? 'accent' : 'primary'
                 }
               >
                 {option.label}
