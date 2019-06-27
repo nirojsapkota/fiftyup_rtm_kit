@@ -78,6 +78,7 @@ export const buttonStyling = css`
   ${labelTextStyles};
   display: ${props => (props.block ? 'block' : 'inline-block')};
   width: ${props => props.width || 'inherit'};
+  ${props => props.block && 'flex: 1'};
   padding: 18px 30px;
   white-space: nowrap;
   word-break: keep-all;
