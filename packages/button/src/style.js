@@ -76,6 +76,7 @@ export const buttonStyling = css`
   ${resetStyling};
   ${base};
   ${labelTextStyles};
+  ${contentStyling};
   width: ${props => props.width || 'inherit'};
   padding: 18px 30px;
   white-space: nowrap;
@@ -90,8 +91,7 @@ export const buttonStyling = css`
 `;
 
 export const ButtonLink = styled.a`
-  ${buttonStyling};
-  ${contentStyling};
+  ${buttonStyling};  
 `;
 
 export const StyledButton = styled.button`
