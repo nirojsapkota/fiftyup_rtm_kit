@@ -47,10 +47,10 @@ const AutocompleteField = ({
     if (debouncedSearchTerm) {
       !hasSelected && onWaiting('Searching pending...');
       config.searchFunction(debouncedSearchTerm).then(results => {
-        isModalOpen && results.length > 0
-          ? onWaiting(`${results.length} results`)
-          : onWaiting(``);
-        setResults(results);
+        results.length > 0 ?
+        (isModalOpen ? onWaiting(`${results.length} results`) : onWaiting(``)) 
+        : (onWaiting(``), config.onEmptyResult());
+         setResults(results);
       });
     } else {
       onWaiting('');

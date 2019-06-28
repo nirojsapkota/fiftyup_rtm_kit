@@ -27,6 +27,7 @@ class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSuccess = this.handleSuccess.bind(this);
     this.autoCompleteSearch = this.autoCompleteSearch.bind(this);
+    this.handleEmptyResult = this.handleEmptyResult.bind(this);
   }
 
   async handleSubmit(fieldsWithValues) {
@@ -87,6 +88,10 @@ class LoginForm extends React.Component {
     }
   }
 
+  async handleEmptyResult() {
+    return 'Invalid Postcode';
+  }
+
   async autoCompleteSearch(searchTerm) {
     const { stateField } = this.props;
     if (stateField.options) {
@@ -137,6 +142,7 @@ class LoginForm extends React.Component {
               ? [stateField.options.map(option => option['label'])]
               : undefined,
             searchFunction: this.autoCompleteSearch,
+            onEmptyResult: this.handleEmptyResult
           },
         },
         {

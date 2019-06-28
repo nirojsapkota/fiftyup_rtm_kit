@@ -158,6 +158,7 @@ The function below does no filtering, so any text will return the dataset.
           hint: 'Ex. 2000, Barangaroo',
           autoComplete: 'off',
           config: {
+            onEmptyResult: () => { 'Invalid Postcode message' },
             component: 'autocomplete',
             searchFunction: async function () {
               return [
