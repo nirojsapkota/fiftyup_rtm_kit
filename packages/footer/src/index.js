@@ -81,7 +81,7 @@ export const Footer = ({ entity, disclaimers }) => {
               <Box style={{ gridArea: `list-${index}` }} key={index}>
                 {subItems.map(item => (
                   <A
-                    style={{ display: 'block', 'font-weight': 'bold' }}
+                    style={{ display: 'block', fontWeight: 'bold' }}
                     key={item.url}
                     py={5}
                     href={item.url}
