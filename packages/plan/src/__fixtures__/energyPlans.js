@@ -2,7 +2,6 @@ import { about } from './about.md.js';
 import { faq } from './faq.md.js';
 import { tnc } from './tnc.md.js';
 import { electricity } from './electricity.md.js';
-import { gas } from './gas.md.js';
 
 export const actions = {
   get_started: {
@@ -26,6 +25,10 @@ export const actions = {
 
 const planInput = {
   entity: { name: 'One Big Switch' },
+  reference: {
+    gas_distributor: "Jemena Gas Networks",
+    state: "NSW"
+  },
   plan: {
     id: 3227,
     main_header_text: 'first header text',
@@ -63,7 +66,7 @@ const planInput = {
       },
       {
         name: 'Gas Rates Tables',
-        content: gas
+        content: 'Basic Plan Information Documents are information sheets that contain all the key details about a plan and are available here.  \r\n\r\n**{{gas_distributor}} Distribution Zone in {{state}}**  \r\n\r\nBasic Plan Document - [click here]({{gas_bpid}})\r\n'
       },
     ],
     merchant: {
@@ -72,6 +75,16 @@ const planInput = {
       full_name: 'Alinta Energy',
     },
     tweet_text: 'tweet tweet tweet tweet tweet',
+    disclaimers: [
+      {
+        body: "^Approximate quarterly gas costs for a medium household in the {{gas_distributor}} distribution area with a 35,000MJ peak/off-peak average usage over a 365 day period. Actual costs may differ.",
+        kind: "gas"
+      },
+      {
+        body: "Residential customers only. Not available for all areas or property types. Terms and conditions apply.  \r\n\r\nAvailable for a limited time only.  You should check about any exit fees from your current retailer.  \r\n\r\nFiftyUp Club earns a fee for each customer that takes up the offer.\r\n\r\n",
+        kind: "general"
+      }
+    ],
     callbackFormProps: {
       agreementProps: {
         showAgreementCheckBox: false,
