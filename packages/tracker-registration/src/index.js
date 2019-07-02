@@ -79,7 +79,7 @@ class TrackerRegistration extends React.Component {
 
     const zd2 = document.createElement('script');
     zd2.id = 'ze-snippet';
-    zd2.src = "https://static.zdassets.com/ekr/snippet.js?key='"+`${this.props.zendesk_id}`+"'";
+    zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${this.props.zendesk_id}`;
     this.instance.appendChild(zd2);
 
   }
