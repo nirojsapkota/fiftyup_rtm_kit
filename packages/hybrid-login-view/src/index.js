@@ -54,18 +54,14 @@ const HeroImageWrapper = styled(Box)`
   max-width: 1080px;
 `;
 
-const HybridLoginView = ({
-  howItWorksProps,
-  heroImageUrl,
-  ...props
-}) => {
+const HybridLoginView = ({ howItWorksProps, heroImageUrl, ...props }) => {
   return (
     <React.Fragment>
       <BodyWrapper>
         <HeroImageWrapper m="auto">
           <Img src={heroImageUrl} alt="Hero image" />
         </HeroImageWrapper>
-        <ContentWrapper mt={-30} m="auto">
+        <ContentWrapper mt={-20} m="auto">
           <MobileHide>
             <Column width={1 / 2}>
               <LoginPanelWrapper px={[10, 10, 15, 20]}>
