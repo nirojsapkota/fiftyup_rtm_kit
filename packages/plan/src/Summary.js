@@ -125,7 +125,7 @@ const Summary = props => {
   return (
     <Box p={[0, 0, 0, 2]}>
       <Box px={[2, 2, 3, 0]} py={3}>
-        <Header color="secondary" tag="h1" pb={[2, 3]}>
+        <Header color="primary" tag="h1" pb={[2, 3]}>
           {props.main_header_text}
         </Header>
       </Box>
