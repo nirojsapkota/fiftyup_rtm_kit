@@ -164,7 +164,7 @@ describe('<Plan />', () => {
       const mainHeader = getByText(props.plan.main_header_text);
       expect(mainHeader).toBeInTheDocument();
       expect(mainHeader.tagName).toEqual('H1');
-      expect(mainHeader).toHaveStyleRule('color', getColor('secondary', obs));
+      expect(mainHeader).toHaveStyleRule('color', getColor('primary', obs));
 
       const subHeader = getByText(props.plan.sub_header_text);
       expect(subHeader).toBeInTheDocument();
