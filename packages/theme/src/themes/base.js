@@ -36,4 +36,5 @@ export const base = {
     borderRadius: '3px',
     bottomBorderWidth: '4px',
   },
+  basePx: 16,
 };
