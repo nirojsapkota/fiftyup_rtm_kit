@@ -129,7 +129,7 @@ const MarkdownBox = styled(Box)`
   }
 `;
 
-export const Markdown = ({ raw, referenceObject = {}, ...boxProps }) => {
+export const Markdown = ({ raw, scale = 1, referenceObject = {}, ...boxProps }) => {
   // Commentary on the limits of markdown for rendering data models
   // https://github.com/gatsbyjs/gatsby/issues/444#issuecomment-247350970
   const ast = unified()
@@ -139,8 +139,10 @@ export const Markdown = ({ raw, referenceObject = {}, ...boxProps }) => {
     .use(stringify)
     .parse(raw.toString());
    
+    const fontSize = 16 * scale;
+
   return (
-    <MarkdownBox {...boxProps}>
+    <MarkdownBox {...boxProps} style={{ fontSize }} >
       {ast.children.map((item, i) => toComponent(item, i))}
     </MarkdownBox>
   );
