@@ -215,7 +215,9 @@ const Summary = props => {
               // since fonts are em, this will result in the new
               // base being 12px and the <Small> tag will
               // handle applying base colors to text blocks
+              <Small>
                 <Markdown pb={10} referenceObject={refer} raw={disclaimer.body} scale={0.75} />
+              </Small>
             ))}
           <Small dangerousHTML={props.disclaimer_html} />
         </Box>
