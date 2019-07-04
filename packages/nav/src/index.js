@@ -172,7 +172,7 @@ const Nav = props => {
         {!props.user && props.children}
       </Navbar>
       {props.subHeader && (
-        <Box variant="c">
+        <Box variant="b">
           <SubHeaderWrapper>
             <Header tag="h6" p="5px" pl="10px" align="center" weight="bold">
               {props.subHeader}
