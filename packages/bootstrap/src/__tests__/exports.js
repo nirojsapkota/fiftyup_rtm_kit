@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const packages = fs.readdirSync('../');
 packages
-  .filter(pkg => pkg !== 'rtm-scripts')
+  .filter(pkg => pkg !== 'rtm-scripts' && pkg !== '.DS_Store')
   .map(pkg => {
     const packageJson = require(require.resolve(
       `../../../${pkg}/package.json`
