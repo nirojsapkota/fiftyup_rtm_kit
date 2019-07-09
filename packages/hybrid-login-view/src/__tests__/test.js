@@ -7,11 +7,11 @@ import hybridLoginViewProps from '../__fixtures__/hybridLoginView';
 describe('<HybridLoginView />', () => {
   const props = hybridLoginViewProps;
   it('matches expected output', () => {
-    const { queryByText } = render(<HybridLoginView {...props} />);
-
-    expect(
-      queryByText(/One Big Switch takes the stress out of getting value on your household bills/i)
-    ).toBeInTheDocument();
+    const { queryByText } = render(
+      <HybridLoginView component="how" {...props} />
+    );
+    expect(queryByText(props.title)).toBeInTheDocument();
+    expect(queryByText(props.howItWorksProps.header)).toBeInTheDocument();
   });
 
   it('entity brand ninesaver button icon will not rendered', () => {

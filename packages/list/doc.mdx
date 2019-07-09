@@ -4,23 +4,49 @@ route: /components/list
 menu: Components
 ---
 
-import { Playground, PropsTable } from 'docz'
-import { Header, Paragraph } from '@rtm-ui/typography'
-import { List, ListItem } from './src/index'
+import { Playground, PropsTable } from 'docz';
+import { Header, Paragraph } from '@rtm-ui/typography';
+import { List, ListItem } from './src/index';
 
 # List
 
 ## Usage
 
 <Playground>
-  <ListItem icon="void"><Header color="primary" weight="normal" tag="h5">What's the offer?</Header></ListItem>
-  <List renderItem={body => (
-    <div>{body}</div>
-  )}>
+  <ListItem icon="void">
+    <Header color="primary" weight="normal" tag="h5">
+      What's the offer?
+    </Header>
+  </ListItem>
+  <List renderItem={body => <div>{body}</div>}>
     {[
-      {icon: 'double-check', body: <Paragraph>28% discount off Origin’s Electricity usage charges for 12 months if you pay your bills on time.*</Paragraph>},
-      {icon: 'double-check', body: <Paragraph>32% discount off Origin’s Natural gas usage charges for 12 months if you pay your bills on time.*</Paragraph>},
-      {icon: 'double-check', body: <Paragraph>A Solar Feed-in Tariff of 9c per kWh exported (on top of any Govt Feed-in you receive). </Paragraph>}
+      {
+        icon: 'double-check',
+        body: (
+          <Paragraph>
+            28% discount off Origin’s Electricity usage charges for 12 months if
+            you pay your bills on time.*
+          </Paragraph>
+        ),
+      },
+      {
+        icon: 'double-check',
+        body: (
+          <Paragraph>
+            32% discount off Origin’s Natural gas usage charges for 12 months if
+            you pay your bills on time.*
+          </Paragraph>
+        ),
+      },
+      {
+        icon: 'double-check',
+        body: (
+          <Paragraph>
+            A Solar Feed-in Tariff of 9c per kWh exported (on top of any Govt
+            Feed-in you receive).{' '}
+          </Paragraph>
+        ),
+      },
     ]}
   </List>
 </Playground>
@@ -28,11 +54,46 @@ import { List, ListItem } from './src/index'
 ## Example
 
 <Playground>
-  <List renderItem={body => (
-    <div>{body}</div>
-  )}>
+  <List renderItem={body => <div>{body}</div>}>
+    {[{ icon: 'view-forward', body: <Header tag="h3">Hello World</Header> }]}
+  </List>
+</Playground>
+
+<Playground>
+  <List
+    header={
+      <Header align="center" tag="h5">
+        Why Join One Big Switch?
+      </Header>
+    }
+    renderItem={body => <div align="center">{body}</div>}
+  >
     {[
-      {icon: 'view-forward', body: <Header tag="h3">Hello World</Header>}
+      {
+        icon: 'build',
+        size: 70,
+        strokePrimary: 'primary',
+        strokeSecondary: 'accent',
+        fill: 'none',
+        body: '1.06 miilion Australians have joined the movement since 2011',
+      },
+      {
+        icon: 'bright-idea',
+        size: 70,
+        strokePrimary: 'primary',
+        strokeSecondary: 'accent',
+        fill: 'none',
+        body:
+          ' We have helped more than 300,000 households switch their Energy plan',
+      },
+      {
+        icon: 'free-to-join',
+        size: 70,
+        strokePrimary: 'primary',
+        strokeSecondary: 'accent',
+        fill: 'none',
+        body: 'Its free to join and its obligation-free',
+      },
     ]}
   </List>
 </Playground>
