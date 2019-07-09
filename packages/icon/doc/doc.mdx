@@ -4,21 +4,50 @@ route: /assets/icon
 menu: Assets
 ---
 
-import { Playground, PropsTable } from 'docz'
-import { Icon, ICONS, Logo } from '../src'
-import { Grid, IconWrapper } from './grid'
-import { Header, Paragraph } from '../../typography'
+import { Playground, PropsTable } from 'docz';
+import { Icon, ICONS, Logo } from '../src';
+import { Grid, IconWrapper } from './grid';
+import { Header, Paragraph } from '../../typography';
 
 # Icon
 
-<Grid size={36}>{Object.keys(ICONS).map((icon) => <IconWrapper key={icon}><Icon glyph={icon} size={36} /><Paragraph align="center" pt={3}>{icon}</Paragraph></IconWrapper>)}</Grid>
+<Grid size={36}>
+  {Object.keys(ICONS).map(icon => (
+    <IconWrapper key={icon}>
+      <Icon glyph={icon} size={36} />
+      <Paragraph align="center" pt={3}>
+        {icon}
+      </Paragraph>
+    </IconWrapper>
+  ))}
+</Grid>
 
 ---
 
 ## Basic usage
 
 <Playground>
-  <Icon glyph="profile" />
+  <Icon
+    glyph="free-to-join"
+    strokePrimary="primary"
+    strokeSecondary="accent"
+    fill="none"
+    size={90}
+  />
+</Playground>
+
+<Playground>
+  <Icon
+    glyph="bright-idea"
+    strokePrimary="primary"
+    strokeSecondary="accent"
+    fill="none"
+    size={90}
+  />
+</Playground>
+
+<Playground>
+  <Icon glyph="profile" fill="accent" size={90} />
 </Playground>
 
 ## PropsTable
