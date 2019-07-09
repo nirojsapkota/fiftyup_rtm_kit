@@ -2,7 +2,7 @@ import React from 'react';
 import LogRocket from 'logrocket';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import { Tracker, TrackingProvider, useTracker, track } from '..';
+import { Tracker, TrackingProvider, useTracker, track, TrackerRegistration } from '..';
 import Google from '../google';
 import Facebook from '../facebook';
 
@@ -129,5 +129,26 @@ describe(`<Tracker />`, () => {
     fireEvent.click(getByText('Hello'));
 
     expect(buttonEvent).toHaveBeenCalled();
+  });
+});
+
+describe('<TrackerRegistration />', () => {
+
+  it(`renders the script with given IDs`, () => {
+
+    const ga_code = 'UA-121324450-2';
+    const bing_uet_tag_code = '25041030';
+    const google_adwords_id = 'AW-964414963';
+    const facebook_pixel_id = '1111111111';
+    const zendesk_id = 'a85c71b0-2af3-4bb0-9cd3-3a9eb0ebcb67';
+
+    const { getByTestId } = render(<TrackerRegistration ga_code={ga_code} bing_uet_tag_code={bing_uet_tag_code} google_adwords_id={google_adwords_id} facebook_pixel_id={facebook_pixel_id} zendesk_id={zendesk_id} />);
+
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(ga_code);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(bing_uet_tag_code);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(google_adwords_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(facebook_pixel_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
+
   });
 });
