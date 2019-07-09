@@ -14,6 +14,14 @@ describe('<HybridLoginView />', () => {
     expect(queryByText(props.howItWorksProps.header)).toBeInTheDocument();
   });
 
+  it('verifies the  expected why join component', () => {
+    const { queryByText } = render(
+      <HybridLoginView component="why" {...props} />
+    );
+
+    expect(queryByText(props.children[0].body)).toBeInTheDocument();
+  });
+
   it('entity brand ninesaver button icon will not rendered', () => {
     const entity = { ...props.entity, brand: 'ninesaver' };
     const updateMockData = { ...props, entity };
