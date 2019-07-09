@@ -17,7 +17,7 @@ describe('<HybridLoginView />', () => {
   it('entity brand ninesaver button icon will not rendered', () => {
     const entity = { ...props.entity, brand: 'ninesaver' };
     const updateMockData = { ...props, entity };
-    render(<HybridLoginView {...updateMockData} />);
+    render(<HybridLoginView component="how" {...updateMockData} />);
     // TODO - write a real assertion here due to removing snapshot
   });
 });
