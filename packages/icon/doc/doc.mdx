@@ -12,8 +12,8 @@ import { Header, Paragraph } from '../../typography';
 # Icon
 
 <Grid size={36}>
-  {Object.keys(ICONS).map(icon => (
-    <IconWrapper key={icon}>
+  {Object.keys(ICONS).map((icon, index) => (
+    <IconWrapper key={index}>
       <Icon glyph={icon} size={36} />
       <Paragraph align="center" pt={3}>
         {icon}

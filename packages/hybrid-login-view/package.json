@@ -25,7 +25,8 @@
     "@rtm-ui/login-panel": "file:../login-panel",
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
-    "@rtm-ui/typography": "file:../typography"
+    "@rtm-ui/typography": "file:../typography",
+    "@rtm-ui/list": "file:../list"
   },
   "peerDependencies": {
     "prop-types": "15.x",

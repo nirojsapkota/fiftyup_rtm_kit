@@ -8,6 +8,8 @@ import { Img } from '@rtm-ui/img';
 import { HowItWorks } from '@rtm-ui/how-it-works';
 import { track } from '@rtm-ui/tracker';
 import BasicHeader from './header';
+import { List } from '@rtm-ui/list';
+import { Header } from '@rtm-ui/typography';
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -37,6 +39,7 @@ const MobileShow = styled(Box)`
   background: inherit;
   display: flex;
   flex-flow: column;
+  padding-top: 8px;
   @media (min-width: ${props => props.theme.grid.md}em) {
     display: none;
   }
@@ -54,7 +57,14 @@ const HeroImageWrapper = styled(Box)`
   max-width: 1080px;
 `;
 
-const HybridLoginView = ({ howItWorksProps, heroImageUrl, ...props }) => {
+const HybridLoginView = ({
+  howItWorksProps,
+  children,
+  whyJoinheader,
+  heroImageUrl,
+  component,
+  ...props
+}) => {
   return (
     <React.Fragment>
       <BodyWrapper>
@@ -69,8 +79,20 @@ const HybridLoginView = ({ howItWorksProps, heroImageUrl, ...props }) => {
               </LoginPanelWrapper>
             </Column>
             <Column width={1 / 2}>
-              <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-                <HowItWorks orientation="vertical" {...howItWorksProps} />
+              <HowItWorksWrapper px={10} mt={[20, 20, 40, 40]}>
+                {component === 'how' ? (
+                  <HowItWorks orientation="vertical" {...howItWorksProps} />
+                ) : (
+                  <List
+                    header={
+                      <Header align="center" tag="h5">
+                        {whyJoinheader}
+                      </Header>
+                    }
+                  >
+                    {children}
+                  </List>
+                )}
               </HowItWorksWrapper>
             </Column>
           </MobileHide>
@@ -79,7 +101,19 @@ const HybridLoginView = ({ howItWorksProps, heroImageUrl, ...props }) => {
               <LoginPanel {...props} />
             </LoginPanelWrapper>
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-              <HowItWorks {...howItWorksProps} />
+              {component === 'how' ? (
+                <HowItWorks orientation="vertical" {...howItWorksProps} />
+              ) : (
+                <List
+                  header={
+                    <Header align="center" tag="h6">
+                      {whyJoinheader}
+                    </Header>
+                  }
+                >
+                  {children}
+                </List>
+              )}
             </HowItWorksWrapper>
           </MobileShow>
         </ContentWrapper>
@@ -91,6 +125,7 @@ const HybridLoginView = ({ howItWorksProps, heroImageUrl, ...props }) => {
 HybridLoginView.propTypes = {
   howItWorksProps: t.shape({}),
   heroImageUrl: t.string,
+  component: t.oneOf(['why', 'how']),
 };
 
 class WrappedHybridLoginView extends React.Component {

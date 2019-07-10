@@ -14,16 +14,31 @@ const ContentWrapper = styled(Box)`
   display: flex;
 `;
 
-const ListItem = ({ icon, fill, children }) => {
+const ListItem = ({
+  icon,
+  fill,
+  size,
+  strokePrimary,
+  strokeSecondary,
+  children,
+}) => {
   return (
-    <Box 
+    <Box
       style={{
         height: '100%',
-      }} my={[2]}>
+      }}
+      my={[2]}
+    >
       <Wrapper>
         {icon && (
           <Box pr={[1, 2, 3]}>
-            <Icon glyph={icon} size={48} fill={fill} />
+            <Icon
+              glyph={icon}
+              size={size}
+              fill={fill}
+              strokePrimary={strokePrimary}
+              strokeSecondary={strokeSecondary}
+            />
           </Box>
         )}
         <ContentWrapper>{children}</ContentWrapper>
@@ -38,4 +53,7 @@ ListItem.propTypes = {
   icon: PropTypes.string,
   children: PropTypes.node.isRequired,
   fill: PropTypes.string,
+  strokePrimary: PropTypes.string,
+  strokeSecondary: PropTypes.string,
+  size: PropTypes.number,
 };
