@@ -1,42 +1,33 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
 import { List } from '../index';
+import dataProps from '../__fixtures__/sampleApi.js';
 
 describe('<List />', () => {
-  const dataList = [
+  const items = [
     {
-      icon: 'double-check',
-      body:
-        '28% discount off Origin’s Electricity usage charges for 12 months if you pay your bills on time.*',
-    },
-    {
-      icon: 'double-check',
-      body:
-        '32% discount off Origin’s Natural gas usage charges for 12 months if you pay your bills on time.*',
-    },
-    {
-      icon: 'double-check',
-      body:
-        'A Solar Feed-in Tariff of 9c per kWh exported (on top of any Govt Feed-in you receive).',
+      icon: 'build',
+      size: 70,
+      strokePrimary: 'primary',
+      strokeSecondary: 'accent',
+      fill: 'none',
+      body: '1.06 miilion Australians have joined the movement since 2011',
     },
   ];
 
   it('custom render Item', () => {
-    const { getByText } = render(
-      <List renderItem={body => <a>{body}</a>}>{dataList}</List>
-    );
-
-    dataList.forEach(data => {
+    const { getByText } = render(<List {...dataProps}>{items}</List>);
+    items.forEach(data => {
       const el = getByText(data.body);
       expect(el).toBeInTheDocument();
-      expect(el.tagName).toEqual('A');
+      expect(el.tagName).toEqual('DIV');
     });
   });
 
   it('default render Item', () => {
-    const { getByText } = render(<List>{dataList}</List>);
+    const { getByText } = render(<List {...dataProps}>{items}</List>);
 
-    dataList.forEach(data => {
+    items.forEach(data => {
       expect(getByText(data.body)).toBeInTheDocument();
     });
   });
