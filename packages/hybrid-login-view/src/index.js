@@ -84,8 +84,11 @@ const HybridLoginView = ({
                   <HowItWorks orientation="vertical" {...howItWorksProps} />
                 ) : (
                   <List
-                    header={<Header tag="h5">{whyJoinheader}</Header>}
-                    renderItem={body => <div>{body}</div>}
+                    header={
+                      <Header align="center" tag="h5">
+                        {whyJoinheader}
+                      </Header>
+                    }
                   >
                     {children}
                   </List>
@@ -102,8 +105,11 @@ const HybridLoginView = ({
                 <HowItWorks orientation="vertical" {...howItWorksProps} />
               ) : (
                 <List
-                  header={<Header tag="h5">{whyJoinheader}</Header>}
-                  renderItem={body => <div>{body}</div>}
+                  header={
+                    <Header align="center" tag="h6">
+                      {whyJoinheader}
+                    </Header>
+                  }
                 >
                   {children}
                 </List>

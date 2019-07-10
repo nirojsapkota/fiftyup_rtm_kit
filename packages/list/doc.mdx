@@ -7,6 +7,7 @@ menu: Components
 import { Playground, PropsTable } from 'docz';
 import { Header, Paragraph } from '@rtm-ui/typography';
 import { List, ListItem } from './src/index';
+import data from './src/__fixtures__/sampleApi.js';
 
 # List
 
@@ -18,7 +19,7 @@ import { List, ListItem } from './src/index';
       What's the offer?
     </Header>
   </ListItem>
-  <List renderItem={body => <div>{body}</div>}>
+  <List>
     {[
       {
         icon: 'double-check',
@@ -43,7 +44,7 @@ import { List, ListItem } from './src/index';
         body: (
           <Paragraph>
             A Solar Feed-in Tariff of 9c per kWh exported (on top of any Govt
-            Feed-in you receive).{' '}
+            Feed-in you receive).
           </Paragraph>
         ),
       },
@@ -54,47 +55,22 @@ import { List, ListItem } from './src/index';
 ## Example
 
 <Playground>
-  <List renderItem={body => <div>{body}</div>}>
+  <List>
     {[{ icon: 'view-forward', body: <Header tag="h3">Hello World</Header> }]}
   </List>
 </Playground>
+
+## Why Join Component
 
 <Playground>
   <List
     header={
       <Header align="center" tag="h5">
-        Why Join One Big Switch?
+        {data.header}
       </Header>
     }
-    renderItem={body => <div align="center">{body}</div>}
   >
-    {[
-      {
-        icon: 'build',
-        size: 70,
-        strokePrimary: 'primary',
-        strokeSecondary: 'accent',
-        fill: 'none',
-        body: '1.06 miilion Australians have joined the movement since 2011',
-      },
-      {
-        icon: 'bright-idea',
-        size: 70,
-        strokePrimary: 'primary',
-        strokeSecondary: 'accent',
-        fill: 'none',
-        body:
-          ' We have helped more than 300,000 households switch their Energy plan',
-      },
-      {
-        icon: 'free-to-join',
-        size: 70,
-        strokePrimary: 'primary',
-        strokeSecondary: 'accent',
-        fill: 'none',
-        body: 'Its free to join and its obligation-free',
-      },
-    ]}
+    {data.items}
   </List>
 </Playground>
 
