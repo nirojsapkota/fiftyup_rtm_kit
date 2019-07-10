@@ -7,7 +7,8 @@
       "TrackingProvider",
       "useTracker",
       "Tracker",
-      "track"
+      "track",
+      "TrackerRegistration"
     ]
   },
   "description": "Description for Bootstrap",

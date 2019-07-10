@@ -11,6 +11,16 @@ const InlineSvg = styled.svg`
   width: 100%;
   color: ${props => props.color || 'inherit'};
   fill: ${props => getColor(props.fill || 'text', props.theme)};
+
+  #secondary {
+    stroke: ${props => getColor(props.strokeSecondary || 'text', props.theme)};
+    fill: ${props => getColor(props.fill || 'text', props.theme)};
+  }
+  #primary {
+    stroke: ${props => getColor(props.strokePrimary || 'text', props.theme)};
+    fill: ${props => getColor(props.fill || 'text', props.theme)};
+  }
+
   transition: all 0.2s ease;
   ${props =>
     props.rotate &&

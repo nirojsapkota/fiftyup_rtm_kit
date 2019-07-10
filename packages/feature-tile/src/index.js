@@ -91,7 +91,9 @@ const FeatureTile = ({
 
       <StyledPendantPositioner>
         <ImgContainer>
-          <Img src={image} alt="" />
+          <a href={ctaLink}>
+            <Img src={image} alt="" />
+          </a>
         </ImgContainer>
         {flagText.length > 0 && (
           <StyledPendant color="secondary">{flagText}</StyledPendant>
