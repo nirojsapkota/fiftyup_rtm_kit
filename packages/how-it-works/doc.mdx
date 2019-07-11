@@ -4,33 +4,20 @@ route: /components/how-it-works
 menu: Components
 ---
 
-import { Playground, PropsTable } from 'docz'
-import { HowItWorks } from './src'
+import { Playground, PropsTable } from 'docz';
+import { HowItWorks } from './src';
+import { WorkFlow } from './src/WorkFlow.js';
+import sampleWorkFlow from './src/__fixtures__/sampleWorkFlow.js';
 
 # HowItWorks
 
 ## Basic usage
 
 <Playground>
-  <HowItWorks orientation="horizontal" header="How it works" icons={[
-    {
-      glyph: 'user-help',
-      title: 'You join the movement for free',
-    },
-    {
-      glyph: 'balance',
-      title: 'We negotiate Group Discounts',
-    },
-    {
-      glyph: 'hands-shake-2',
-      title: 'You decide what’s right for you',
-    }
-    ]}
-  />
-</Playground>
-
-<Playground>
-  <HowItWorks orientation="vertical" header="How it works" icons={[
+  <HowItWorks
+    orientation="horizontal"
+    header="### How it works"
+    items={[
       {
         glyph: 'user-help',
         title: 'You join the movement for free',
@@ -42,9 +29,38 @@ import { HowItWorks } from './src'
       {
         glyph: 'hands-shake-2',
         title: 'You decide what’s right for you',
-      }
+      },
     ]}
   />
+</Playground>
+
+<Playground>
+  <HowItWorks
+    orientation="vertical"
+    header="### How it works"
+    items={[
+      {
+        glyph: 'user-help',
+        title: 'You join the movement for free',
+      },
+      {
+        glyph: 'balance',
+        title: 'We negotiate Group Discounts',
+      },
+      {
+        glyph: 'hands-shake-2',
+        title: 'You decide what’s right for you',
+      },
+    ]}
+  />
+</Playground>
+
+## Basic WorkFlow of how campaign works
+
+### To be used inside the Dashboard
+
+<Playground>
+  <WorkFlow {...sampleWorkFlow} />
 </Playground>
 
 <PropsTable of={HowItWorks} />

@@ -2,7 +2,7 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from '@rtm-ui/icon';
-import { Header, Small, Paragraph } from '@rtm-ui/typography';
+import { Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
 
 const VerticalTitle = styled(Paragraph)`
@@ -53,7 +53,7 @@ const HorizontalItem = styled(Box)`
   flex-direction: column;
 `;
 
-const HowItWorks = ({ header, icons, orientation }) => {
+const HowItWorks = ({ header, subHeader, items, orientation }) => {
   const Container =
     orientation === 'vertical' ? VerticalContainer : HorizontalContainer;
   const Item = orientation === 'vertical' ? VerticalItem : HorizontalItem;
@@ -67,12 +67,11 @@ const HowItWorks = ({ header, icons, orientation }) => {
         justifyContent: 'center',
       }}
     >
-      <Header align="center" py={2} tag="h6">
-        {header}
-      </Header>
+      <Markdown raw={header} />
+      <Paragraph>{subHeader}</Paragraph>
       <Container>
-        {icons &&
-          icons.map((s, index) => (
+        {items &&
+          items.map((s, index) => (
             <React.Fragment key={s.title}>
               <Item>
                 <Box my={10}>
@@ -84,7 +83,7 @@ const HowItWorks = ({ header, icons, orientation }) => {
                 </Box>
                 <IconTitle px={2}>{s.title}</IconTitle>
               </Item>
-              {index < icons.length - 1 && (
+              {index < items.length - 1 && (
                 <Box
                   p={10}
                   style={{
@@ -114,7 +113,8 @@ HowItWorks.defaultProps = {
 
 HowItWorks.propTypes = {
   header: t.string.isRequired,
-  icons: t.arrayOf(t.shape({ title: t.string, glyph: t.string })).isRequired,
+  subHeader: t.string,
+  items: t.arrayOf(t.shape({ title: t.string, glyph: t.string })).isRequired,
   orientation: t.oneOf(['vertical', 'horizontal']),
 };
 
