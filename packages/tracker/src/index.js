@@ -72,82 +72,115 @@ export const Tracker = props => {
   );
 };
 
-export const TrackerRegistration = props => {
-  
-  return (<div data-testid="TrackingRegister" {...props} >
-    
-    <script>
-      {
-        `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', '${props.ga_code}', 'auto');
-        ga('send', 'pageview');`
-    }
-    </script>
+class TrackerRegistration extends React.Component {
+  componentDidMount() {
+    //FOR GOOGLE ANALYTICS
+    const googleAnalytics = document.createElement('script');
+    googleAnalytics.type = 'text/javascript';
+    googleAnalytics.innerHTML =
+      "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" +
+      '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),' +
+      'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)' +
+      "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" +
+      "ga('create', '" +
+      `${this.props.ga_code}` +
+      "', 'auto');" +
+      "ga('send', 'pageview');";
+    this.instance.appendChild(googleAnalytics);
 
-    <script>
-      {
-        `(function (w, d, t, r, u) {
-          var f, n, i;
-          w[u] = w[u] || [], f = function () {
-            var o = {ti: '${props.bing_uet_tag_code}'};
-            o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad")
-          }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {
-            var s = this.readyState;
-            s && s !== "loaded" && s !== "complete" || (f(), n.onload = n.onreadystatechange = null)
-          }, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i)
-        })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
-        window.uetq = window.uetq || [];
-        window.uetq.push ('event', 'pageview');`
-      }
-    </script>
-    
-   
-    <script async src={`https://www.googletagmanager.com/gtag/js?id='${props.google_adwords_id}'`}></script>
-    <script>
-      {
-        `window.dataLayer = window.dataLayer || [];
-        function gtag() {" dataLayer.push(arguments);"}
-        gtag('js', new Date());
-        gtag('config', '${props.google_adwords_id}');`
-      }
-    </script>
+    //FOR BING
+    const bing = document.createElement('script');
+    bing.type = 'text/javascript';
+    bing.innerHTML =
+      '(function (w, d, t, r, u) { ' +
+      'var f, n, i;' +
+      'w[u] = w[u] || [], f = function () {' +
+      " var o = {ti: '" +
+      `${this.props.bing_uet_tag_code}` +
+      "'};" +
+      ' o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad")' +
+      ' }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {' +
+      ' var s = this.readyState;' +
+      ' s && s !== "loaded" && s !== "complete" || (f(), n.onload = n.onreadystatechange = null)' +
+      '}, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i)' +
+      '})(window, document, "script", "//bat.bing.com/bat.js", "uetq");' +
+      'window.uetq = window.uetq || [];' +
+      " window.uetq.push ('event', 'pageview');";
+    this.instance.appendChild(bing);
 
-    <script type="text/javascript">
-      {
-        `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '${props.facebook_pixel_id}');
-        fbq('track', 'PageView');`
-      }
-    </script>
-    <noscript dangerouslySetInnerHTML={{ __html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${props.facebook_pixel_id}&amp;ev=PageView&amp;noscript=1" />` }} />
+    //FOR GOOGLE ADWORDS
+    const adwords1 = document.createElement('script');
+    adwords1.async = true;
+    adwords1.src =
+      "https://www.googletagmanager.com/gtag/js?id='" +
+      `${this.props.google_adwords_id}` +
+      "'";
+    this.instance.appendChild(adwords1);
 
-    <script type="text/javascript">
-      {
-        `window.zESettings = {
-          webWidget: {
-            contactOptions: {
-              enabled: true,
-            contactButton: { '*': 'Contact Button' },
-            chatLabelOnline: { '*': 'Live Chat' },
-            chatLabelOffline: { '*': 'Chat is unavailable' },
-            contactFormLabel: { '*': 'Leave us a message' }
-            }
-          }
-        };`
-      }
-    </script>
-    <script id="ze-snippet" src={`https://static.zdassets.com/ekr/snippet.js?key='${props.zendesk_id}'`}></script>
+    const adwords2 = document.createElement('script');
+    adwords2.innerHTML =
+      'window.dataLayer = window.dataLayer || [];' +
+      'function gtag() {' +
+      'dataLayer.push(arguments);' +
+      '}' +
+      "gtag('js', new Date());" +
+      "gtag('config', '" +
+      `${this.props.google_adwords_id}` +
+      "');";
+    this.instance.appendChild(adwords2);
 
-  </div>)
-  
-};
+    //FOR FACEBOOK PIXEL
+    const fb1 = document.createElement('script');
+    fb1.innerHTML =
+      '!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?' +
+      'n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;' +
+      "n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;" +
+      't.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,' +
+      "document,'script','https://connect.facebook.net/en_US/fbevents.js');" +
+      "fbq('init', '" +
+      `${this.props.facebook_pixel_id}` +
+      "');" +
+      "fbq('track', 'PageView');";
+    this.instance.appendChild(fb1);
+
+    const fb2 = document.createElement('noscript');
+    const fbimage = document.createElement('img');
+    fbimage.height = '1';
+    fbimage.width = '1';
+    fbimage.style = 'display:none';
+    fbimage.src =
+      'https://www.facebook.com/tr?id=' +
+      `${this.props.facebook_pixel_id}` +
+      '&amp;ev=PageView&amp;noscript=1';
+    fb2.appendChild(fbimage);
+    this.instance.appendChild(fb2);
+
+    //FOR ZENDESK
+    const zd1 = document.createElement('script');
+    zd1.type = 'text/javascript';
+    zd1.innerHTML =
+      "window.zESettings = {webWidget: {contactOptions: { enabled: true, contactButton: { '*': 'Contact Button' }, chatLabelOnline: { '*': 'Live Chat' },    chatLabelOffline: { '*': 'Chat is unavailable' },  contactFormLabel: { '*': 'Leave us a message' } } } };";
+    this.instance.appendChild(zd1);
+
+    const zd2 = document.createElement('script');
+    zd2.id = 'ze-snippet';
+    zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${
+      this.props.zendesk_id
+    }`;
+    this.instance.appendChild(zd2);
+  }
+
+  render() {
+    return (
+      <div
+        data-testid="TrackingRegister"
+        ref={el => (this.instance = el)}
+      />
+    );
+  }
+}
+
+export { TrackerRegistration };
 
 Tracker.propTypes = {
   render: PropTypes.func,
