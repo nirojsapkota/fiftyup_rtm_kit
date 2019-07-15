@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.36](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@6.0.35...@rtm-ui/nav@6.0.36) (2019-07-15)
+
+**Note:** Version bump only for package @rtm-ui/nav
+
+
+
+
+
 ## [6.0.35](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@6.0.34...@rtm-ui/nav@6.0.35) (2019-07-04)
 
 **Note:** Version bump only for package @rtm-ui/nav
