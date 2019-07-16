@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Icon } from '@rtm-ui/icon';
 import { Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
+import { WorkFlow } from './WorkFlow';
 
 const VerticalTitle = styled(Paragraph)`
   max-width: auto;
@@ -118,4 +119,4 @@ HowItWorks.propTypes = {
   orientation: t.oneOf(['vertical', 'horizontal']),
 };
 
-export { HowItWorks };
+export { HowItWorks, WorkFlow };

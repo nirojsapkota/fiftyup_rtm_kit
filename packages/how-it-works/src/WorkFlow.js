@@ -24,7 +24,7 @@ const List = styled(Box)`
   padding-top: 16px;
 `;
 
-const WorkFlow = ({ header, subHeader, items }) => {
+export const WorkFlow = ({ header, subHeader, items }) => {
   return (
     <Box>
       <Markdown raw={header} />
@@ -54,8 +54,6 @@ const WorkFlow = ({ header, subHeader, items }) => {
     </Box>
   );
 };
-
-export { WorkFlow };
 
 WorkFlow.propTypes = {
   header: PropTypes.string,

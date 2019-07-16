@@ -7,7 +7,8 @@
   "rtmRollup": {
     "namespace": "how-it-works",
     "namedExports": [
-      "HowItWorks"
+      "HowItWorks",
+      "WorkFlow"
     ]
   },
   "main": "build/index.js",
