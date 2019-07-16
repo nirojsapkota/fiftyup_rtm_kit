@@ -1,0 +1,27 @@
+{
+  "name": "@rtm-ui/hero",
+  "version": "1.0.0",
+  "description": "Description for hero",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "hero",
+    "namedExports": ["Hero"]
+  },
+  "main": "build/index.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
+  },
+  "dependencies": {
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/typography": "file:../typography"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}
