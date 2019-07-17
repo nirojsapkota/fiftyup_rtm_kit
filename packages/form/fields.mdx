@@ -278,6 +278,7 @@ can be added as needed.
           config: {
             component: 'panelRadio',
             validator: 'requiredRadio',
+            justifyContent: 'flex-start',
           },
           hint: 'Select for some reason',
           name: 'icon_radio',
@@ -286,6 +287,38 @@ can be added as needed.
           options: [
             { label:'SOLAR PANELS', value:'solar', icon:'solar-3' },
             { label:'NO SOLAR PANELS', value:'nonsolar', icon:'nonsolar' },
+          ]
+        },
+        {
+          label: 'Center items via justifyContent attribute',
+          config: {
+            component: 'panelRadio',
+            validator: 'requiredRadio',
+            justifyContent: 'center',
+          },
+          hint: 'Select for some reason',
+          name: 'icon_radio',
+          value: '',
+          type: 'radio',
+          options: [
+            { label:'ALWAYS HOME', value:'always-home', icon:'person-at-home' },
+            { label:'RARELY HOME', value:'rarely-home', icon:'home-1' },
+          ]
+        },
+        {
+          label: 'Please select a household size',
+          config: {
+            component: 'panelRadio',
+            validator: 'requiredRadio',
+          },
+          hint: 'Select for some reason',
+          name: 'icon_radio',
+          value: '',
+          type: 'radio',
+          options: [
+            { label:'1-2 PERSONS', value:'sm', icon:'single-person' },
+            { label:'2-4 PERSONS', value:'md', icon:'double-person' },
+            { label:'4+ PERSONS', value:'lg', icon:'multiple-person' },
           ]
         }
       ]}

@@ -7,11 +7,10 @@ import { focusStyle } from '../textField';
 
 const StyledButton = styled(Button)`
   ${focusStyle};
-  display: flex;
+  display: contents;
   align-items: flex-start;
   flex: 1;
-  width: ${props => props.optionWidth}%;
-  min-width: 120px;
+
   & > * {
     width: 100%;
   }
@@ -20,17 +19,19 @@ const StyledButton = styled(Button)`
 const Wrapper = styled(Box)`
   display: flex;
   flex-wrap: wrap;
+  justify-content: ${props => props.justifyContent};
 `;
 
 const BasePanelRadioCheckboxField = ({
   options,
   name,
   columns = 3,
+  justifyContent = 'flex-start',
   ...rest
 }) => {
   const optionWidth = 100 / columns;
   return (
-    <Wrapper py={10}>
+    <Wrapper py={10} justifyContent={justifyContent}>
       {options.map(option => (
         <StyledButton
           optionWidth={optionWidth}

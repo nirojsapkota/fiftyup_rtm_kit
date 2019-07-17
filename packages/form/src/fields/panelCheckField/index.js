@@ -11,14 +11,31 @@ import { Card } from '@rtm-ui/layout';
 const Wrapper = styled.div`
   flex: 1;
   padding: 5px;
-  max-width: 100%;
+  min-width: 120px;
+  max-width: 120px;
+
+  @media (min-width: ${props => props.theme.grid.sm}em) {
+    min-width: 120px;
+    max-width: 120px;
+  }
+
+  @media (max-width: ${props => props.theme.grid.sm}em) {
+    max-width: 120px;
+    min-width: 100px;
+  }
 `;
 
 const StyledBox = styled(Card)`
   display: flex;
   align-items: center;
+  box-shadow: 0px 1px 5px rgba(35, 34, 33, 0.47);
   flex-direction: column;
   flex: 1;
+
+  &.active {
+    border: 1px solid ${props => getColor('accent', props.theme)};
+    box-shadow: none;
+  }
 `;
 
 const IconContainer = styled(Box)`
@@ -31,25 +48,26 @@ const IconContainer = styled(Box)`
 const StyledLabel = styled(Label)`
   background: ${props => getColor(props.fillColor, props.theme)};
   color: ${props => getColor(props.color || 'inverseText', props.theme)};
-  font-size: 18px;
+  font-size: 1.2em;
   font-weight: 600;
   width: 100%;
   text-align: center;
-  margin-top: 3px;
-  height: 65px;
+  margin-top: 1px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const PanelCheckField = ({
-  config: _config,
+  config,
   fieldUtils: { setFieldValue },
   ...props
 }) => {
   const isSingle = props.options.length === 1;
   return (
     <BasePanelRadioCheckboxField
+      {...config}
       {...props}
       onClick={(name, value, fieldValues) => {
         isSingle
@@ -65,17 +83,19 @@ const PanelCheckField = ({
       {({ option, name, fieldValue }) => {
         return (
           <Wrapper>
-            <StyledBox>
+            <StyledBox
+              className={fieldValue.includes(option.value) ? 'active' : ''}
+            >
               <IconContainer>
                 <Icon
-                  size={30}
+                  size={18}
                   glyph={fieldValue.includes(option.value) ? 'check' : 'void'}
                 />
               </IconContainer>
               {option.icon && (
                 <Icon
                   glyph={option.icon}
-                  size={80}
+                  size={46}
                   fill={
                     fieldValue.includes(option.value) ? 'accent' : 'primary'
                   }
