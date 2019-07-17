@@ -1,12 +1,14 @@
 {
   "name": "@rtm-ui/hero",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description for hero",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "hero",
-    "namedExports": ["Hero"]
+    "namedExports": [
+      "Hero"
+    ]
   },
   "main": "build/index.js",
   "_module": "src/index",
