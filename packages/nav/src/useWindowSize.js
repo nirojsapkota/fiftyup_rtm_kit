@@ -3,10 +3,13 @@ import { useState, useEffect } from 'react';
 // Hook
 export function useWindowSize() {
   function getSize() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
+    /* istanbul ignore else */
+    if (window) {
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    }
   }
 
   const [windowSize, setWindowSize] = useState(getSize);
