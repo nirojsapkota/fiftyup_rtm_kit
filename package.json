@@ -22,7 +22,6 @@
     "test:watch": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --watch",
     "test:coverage": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --coverage",
     "release": "lerna publish --yes",
-    "prerelease": "lerna publish --yes --preid next",
     "generate": "plop --plopfile ./templates/plopfile.js",
     "watch": "lerna run --parallel build -- -- --watch --colors",
     "zip": "rtm-scripts zip --p ./aws/GithubDocumentationFunction"
