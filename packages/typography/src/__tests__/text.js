@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { Header, Paragraph, Label, Text, Small, Markdown } from '../index';
+import { blocks } from '../../docs/content.md';
 import {
   weightProps,
   fontStyles,
@@ -178,5 +179,20 @@ describe('<Markdown />', () => {
   it('renders header text properly', () => {
     const { container } = render(<Markdown raw="## Hello" />);
     expect(container).toContainElement(document.querySelector('h2'));
+  });
+  it('renders blocks properly', () => {
+    const { getByText } = render(<Markdown raw={blocks} />);
+    expect(getByText(/hello, world/i).closest('p')).toHaveStyleRule(
+      'font-size',
+      '1em'
+    );
+    expect(getByText(/hello, world larger/i).closest('div')).toHaveStyleRule(
+      'font-size',
+      '32px'
+    );
+  });
+  it('strips out html', () => {
+    const { getByText } = render(<Markdown raw={`<span>Raw html</span>`} />);
+    getByText('Raw html');
   });
 });

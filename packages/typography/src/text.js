@@ -115,7 +115,7 @@ const generalStyleForText = css`
       ? props.theme.fonts.serif
       : props.theme.fonts.sansSerif};
   ${props => (props.weight ? `font-weight: ${getWeight(props.weight)}` : null)};
-  text-align: ${props => props.align};
+  ${props => (props.align ? `text-align: ${props.align}` : null)};
   ${colorStyles};
   ${subStyles};
 
@@ -175,8 +175,8 @@ export function Text({
 Text.defaultProps = {
   dangerousHTML: undefined,
   children: undefined,
-  align: 'left',
   font: 'sansSerif',
+  align: null,
   color: null,
   p: undefined,
   pl: undefined,

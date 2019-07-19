@@ -12,6 +12,12 @@ const setup = async props => {
       tagline="1,000,000 Members"
       items={[
         {
+          id: 'how-it-works',
+          onClick: props && props.onClick,
+          label: 'How it works',
+          navbar: true,
+        },
+        {
           id: 'news',
           href: '/news',
           label: 'News',
@@ -112,14 +118,38 @@ describe(`<Nav />`, () => {
     });
   });
   describe(`for desktop views`, () => {
+    it(`clicking the nav onClick`, async () => {
+      window.innerWidth = 1301;
+      const mockOnClick = jest.fn();
+      const { getByText } = await setup({
+        onClick: mockOnClick,
+      });
+      const navItem = getByText('How it works');
+      fireEvent.click(navItem);
+
+      await wait(() => {
+        expect(mockOnClick).toHaveBeenCalled();
+      });
+    });
     it(`shows the tagline and menu items where 'navbar' is true`, async () => {
       window.innerWidth = 1301;
-      const { getByText, queryByText } = await setup();
+      const { getByText, debug, queryByText } = await setup();
 
       await wait(() => {
         expect(getByText('1,000,000 Members')).toBeInTheDocument();
         expect(getByText(/news/i)).toBeInTheDocument();
         expect(queryByText(/about us/i)).not.toBeInTheDocument();
+      });
+    });
+    it(`it shows the popout panel with hidden items`, async () => {
+      window.innerWidth = 1301;
+      const { getByText, getByTestId } = await setup();
+      const toggle = getByTestId('toggle-nav');
+      fireEvent.click(toggle);
+
+      await wait(() => {
+        const item = getByText(/about us/i);
+        expect(item).toBeInTheDocument();
       });
     });
     describe(`when resized`, () => {

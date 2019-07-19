@@ -101,7 +101,14 @@ const Navbar = ({ variant, ...props }) => {
         )}
         <Box style={{ display: 'flex' }}>
           <LogoA href="/">
-            <Logo entityBrand={logoGlyph} width={props.isDesktop ? 200 : 100} />
+            {props.logo ? (
+              props.logo
+            ) : (
+              <Logo
+                entityBrand={logoGlyph}
+                width={props.isDesktop ? 200 : 100}
+              />
+            )}
           </LogoA>
         </Box>
         <NavList>
@@ -149,7 +156,7 @@ const Nav = props => {
   const size = useWindowSize();
   const [isDesktop, setIsDesktop] = React.useState();
 
-  React.useEffect(
+  React.useLayoutEffect(
     function() {
       setIsDesktop(size.width > 1300);
     },

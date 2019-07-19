@@ -4,8 +4,8 @@ import { Text } from './text';
 const Small = props => <Text color="text" {...props} tag="small" />;
 
 const defaultBodyProps = {
-  align: 'left',
   weight: 'normal',
+  color: 'text',
 };
 
 Small.defaultProps = defaultBodyProps;

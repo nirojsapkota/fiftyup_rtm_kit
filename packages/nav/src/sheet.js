@@ -78,18 +78,34 @@ const Sheet = props => {
         </SheetItem>
         {props.items
           .filter(item => (props.isDesktop && !item.navbar) || !props.isDesktop)
-          .map(({ id, href, label }) => (
-            <A key={id} href={href}>
-              <SheetItem p={20}>
-                <Header style={{ lineHeight: '2' }} tag="h6">
-                  {label}
-                </Header>
-                <Box>
-                  <Icon fill="primary" size={40} inline glyph="view-forward" />
-                </Box>
-              </SheetItem>
-            </A>
-          ))}
+          .map(({ id, href, label, onClick = null }) => {
+            const clickProps = onClick
+              ? {
+                  key: id,
+                  onClick,
+                }
+              : {
+                  key: id,
+                  href: href,
+                };
+            return (
+              <A {...clickProps}>
+                <SheetItem p={20}>
+                  <Header style={{ lineHeight: '2' }} tag="h6">
+                    {label}
+                  </Header>
+                  <Box>
+                    <Icon
+                      fill="primary"
+                      size={40}
+                      inline
+                      glyph="view-forward"
+                    />
+                  </Box>
+                </SheetItem>
+              </A>
+            );
+          })}
       </SheetWrapper>
     </Wrapper>
   );

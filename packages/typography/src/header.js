@@ -5,11 +5,9 @@ const Header = props => <Text color="primary" {...props} />;
 
 Header.defaultProps = {
   tag: 'h1',
-  align: 'left',
   weight: 'bold',
   color: 'primary',
   font: 'sansSerif',
-  scale: 1,
 };
 
 export default Header;

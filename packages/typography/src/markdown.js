@@ -2,13 +2,14 @@ import React from 'react';
 import Header from './header';
 import Paragraph from './paragraph';
 import { Box } from '@rtm-ui/layout';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 import { Text } from './text';
 import unified from 'unified';
 import markdown from 'remark-parse';
 import stringify from 'rehype-stringify';
 import remark2rehype from 'remark-rehype';
 import interpolator from './interpolator';
+import blocks from './blocks';
 
 const toComponent = (ast, i) => {
   return renderComponent(ast, i);
@@ -25,11 +26,8 @@ const renderComponent = ({ type, ...props }, i) => {
   return <Text key={`${type}-${i}`} {...intrinsicProps} />;
 };
 
-const renderChildren = children => {
-  return children
-    ? children.map((child, i) => renderComponent(child, i))
-    : null;
-};
+const renderChildren = children =>
+  children.map((child, i) => renderComponent(child, i));
 
 const primitiveMap = {
   heading: ({ children, depth }) => ({
@@ -51,10 +49,17 @@ const primitiveMap = {
     children: renderChildren(children),
   }),
   list: ({ children, ordered }) => ({
-    as: ordered === true ? 'ol':'ul',
-    tag: ordered === true ? 'ol':'ul',
+    as: ordered === true ? 'ol' : 'ul',
+    tag: ordered === true ? 'ol' : 'ul',
     children: renderChildren(children),
   }),
+  block: ({ children, rules }) => {
+    return {
+      ...rules,
+      className: 'block-container',
+      children: renderChildren(children),
+    };
+  },
   listItem: ({ children }) => ({
     as: 'li',
     tag: 'li',
@@ -69,11 +74,6 @@ const primitiveMap = {
     as: 'sup',
     tag: 'span',
     children: label,
-  }),
-  footnote: ({ children }) => ({
-    as: 'sup',
-    tag: 'span',
-    children: renderChildren(children),
   }),
   handlebars: ({ children }) => ({
     as: 'span',
@@ -94,7 +94,7 @@ const primitiveMap = {
     // just plaintext is dropped into a link tag
     if (children[0].value.split('|').length === 2) {
       const track = children[0].value.split('|')[1] || null;
-      const value = children[0].value.split('|')[0] || children[0].value;
+      const value = children[0].value.split('|')[0];
       props = {
         track,
         children: value,
@@ -107,6 +107,7 @@ const primitiveMap = {
     return {
       as: 'a',
       tag: 'a',
+      color: 'link',
       href: rest.url,
       title: rest.title,
       ...props,
@@ -119,33 +120,31 @@ const MarkdownBox = styled(Box)`
   > *:not(:last-child) {
     margin-bottom: 10px;
   }
+  .block-container > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
 
-  ul, ol {
+  ul,
+  ol {
     li {
       p {
-        display: inline
+        display: inline;
       }
     }
   }
 `;
 
-export const Markdown = ({ raw, scale = 1, referenceObject = {}, ...boxProps }) => {
-  // Commentary on the limits of markdown for rendering data models
-  // https://github.com/gatsbyjs/gatsby/issues/444#issuecomment-247350970
-  const theme = React.useContext(ThemeContext);
-  const basePx = theme.basePx;
-
+export const Markdown = ({ raw, referenceObject = {}, ...boxProps }) => {
   const ast = unified()
     .use(markdown, { commonmark: true, footnotes: true })
     .use(interpolator, referenceObject)
+    .use(blocks)
     .use(remark2rehype)
     .use(stringify)
     .parse(raw.toString());
-   
-    const fontSize = basePx * scale;
 
   return (
-    <MarkdownBox {...boxProps} style={{ fontSize }} >
+    <MarkdownBox {...boxProps} data-testid="markdown">
       {ast.children.map((item, i) => toComponent(item, i))}
     </MarkdownBox>
   );

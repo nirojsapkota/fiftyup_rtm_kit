@@ -26,7 +26,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
 ## [6.0.35](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/nav@6.0.34...@rtm-ui/nav@6.0.35) (2019-07-04)
 
 **Note:** Version bump only for package @rtm-ui/nav
