@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export function useWindowSize() {
   function getSize() {
     /* istanbul ignore else */
-    if (window) {
+    if (typeof window !== 'undefined') {
       return {
         width: window.innerWidth,
         height: window.innerHeight,
