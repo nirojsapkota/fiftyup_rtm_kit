@@ -9,6 +9,11 @@ export function useWindowSize() {
         width: window.innerWidth,
         height: window.innerHeight,
       };
+    } else {
+      return {
+        width: 0,
+        height: 0,
+      };
     }
   }
 
