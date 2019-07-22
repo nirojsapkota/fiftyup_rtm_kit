@@ -21,8 +21,8 @@ const hybridLoginView = {
   },
   howItWorksProps: {
     header:
-      'One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!',
-    icons: [
+      '##### One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!',
+    items: [
       {
         glyph: 'user-help',
         title: 'You join the movement for free',
