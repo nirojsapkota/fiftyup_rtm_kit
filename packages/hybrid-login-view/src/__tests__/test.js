@@ -11,14 +11,15 @@ describe('<HybridLoginView />', () => {
       <HybridLoginView component="how" {...props} />
     );
     expect(queryByText(props.title)).toBeInTheDocument();
-    expect(queryByText(props.howItWorksProps.header)).toBeInTheDocument();
+    expect(
+      queryByText(props.howItWorksProps.items[0].title)
+    ).toBeInTheDocument();
   });
 
   it('verifies the  expected why join component', () => {
     const { queryByText } = render(
       <HybridLoginView component="why" {...props} />
     );
-
     expect(queryByText(props.children[0].body)).toBeInTheDocument();
   });
 
