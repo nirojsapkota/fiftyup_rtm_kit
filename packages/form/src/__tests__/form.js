@@ -22,6 +22,59 @@ const form = {
 };
 
 describe(`<Form />`, () => {
+  it(`progressiveReveal doesn't break`, async () => {
+    const handleSubmit = jest.fn(() => {
+      throw new FormError({
+        formError: 'test form error',
+        fieldErrors: {},
+      });
+    });
+    const buttonText = 'test button text';
+    const buttonTestId = `button-test-id`;
+    const { getByTestId, getByLabelText, container } = await render(
+      <Form
+        onSubmit={handleSubmit}
+        progressiveReveal
+        {...form}
+        renderFooter={({ formError }) => {
+          return (
+            <React.Fragment>
+              <Box>
+                <Button data-testid={buttonTestId} type="submit">
+                  {buttonText}
+                </Button>
+              </Box>
+              <Box>
+                <Small align="left" color="error">
+                  {formError}
+                </Small>
+              </Box>
+            </React.Fragment>
+          );
+        }}
+      />
+    );
+
+    const submit = await getByTestId(buttonTestId);
+    expect(submit.textContent).toEqual(buttonText);
+
+    const emailInput = await getByLabelText(form.fields[0].label);
+    await fireEvent.change(emailInput, {
+      target: { value: 'user@example.com' },
+    });
+    const zipCodeInput = await getByLabelText(form.fields[1].label);
+    await fireEvent.change(zipCodeInput, {
+      target: { value: '5000' },
+    });
+
+    await fireEvent.click(submit);
+
+    await wait(async () => {
+      expect(handleSubmit).toHaveBeenCalled();
+      expect(container).toHaveTextContent('test form error');
+    });
+  });
+
   it(`renderFooter is a function`, async () => {
     const handleSubmit = jest.fn(() => {
       throw new FormError({

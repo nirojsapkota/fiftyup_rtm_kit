@@ -31,10 +31,10 @@ const StyledBox = styled(Card)`
   box-shadow: 0px 1px 5px rgba(35, 34, 33, 0.47);
   flex-direction: column;
   flex: 1;
+  overflow: hidden;
 
   &.active {
-    border: 1px solid ${props => getColor('accent', props.theme)};
-    box-shadow: none;
+    box-shadow: inset 0 0 0 1px ${props => getColor('accent', props.theme)};
   }
 `;
 
@@ -46,6 +46,7 @@ const IconContainer = styled(Box)`
 `;
 
 const StyledLabel = styled(Label)`
+  cursor: pointer;
   background: ${props => getColor(props.fillColor, props.theme)};
   color: ${props => getColor(props.color || 'inverseText', props.theme)};
   font-size: 1.2em;

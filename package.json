@@ -30,7 +30,7 @@
     "@rtm/core": "^1.0.33",
     "acorn": "^6.1.1",
     "acorn-dynamic-import": "^4.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-preset-react": "^6.24.1",
     "buble": "0.19.6",
@@ -80,8 +80,9 @@
     "@rtm-ui/dialog": "file:packages/dialog",
     "@rtm-ui/electricity-switch": "file:packages/electricity-switch",
     "@rtm-ui/feature-tile": "file:packages/feature-tile",
-    "@rtm-ui/form": "file:packages/form",
     "@rtm-ui/footer": "file:packages/footer",
+    "@rtm-ui/form": "file:packages/form",
+    "@rtm-ui/hero": "file:packages/hero",
     "@rtm-ui/how-it-works": "file:packages/how-it-works",
     "@rtm-ui/hybrid-login-view": "file:packages/hybrid-login-view",
     "@rtm-ui/icon": "file:packages/icon",
@@ -89,6 +90,7 @@
     "@rtm-ui/layout": "file:packages/layout",
     "@rtm-ui/list": "file:packages/list",
     "@rtm-ui/login-panel": "file:packages/login-panel",
+    "@rtm-ui/multi-list": "file:packages/multi-list",
     "@rtm-ui/nav": "file:packages/nav",
     "@rtm-ui/phoneback": "file:packages/phoneback",
     "@rtm-ui/plan": "file:packages/plan",
@@ -99,8 +101,7 @@
     "@rtm-ui/theme": "file:packages/theme",
     "@rtm-ui/tracker": "file:packages/tracker",
     "@rtm-ui/typography": "file:packages/typography",
-    "@rtm-ui/hero": "file:packages/hero",
-    "@rtm-ui/multi-list": "file:packages/multi-list"
+    "framer-motion": "^1.2.4"
   },
   "eslintConfig": {
     "extends": [

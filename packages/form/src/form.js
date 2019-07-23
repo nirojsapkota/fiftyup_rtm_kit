@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { Small } from '@rtm-ui/typography';
 import { Button } from '@rtm-ui/button';
-import BaseField from './fields/baseField';
+import BaseField, { FieldGroup } from './fields/baseField';
 import { setupForm, getFieldErrors } from './util/helpers';
 import { FormContext } from './formContext';
 import { FormError } from './formError';
@@ -138,19 +138,25 @@ const Form = ({
         return (
           <form onSubmit={handleSubmit}>
             <button type="submit" hidden id={`hidden-submit-${id}`} />
-            {fields.map(field => (
-              <BaseField
-                key={field.name}
-                fieldUtils={fieldUtils}
-                {...field}
-                value={rest.values[field.name]}
-                onChange={rest.handleChange}
-                error={
-                  serverErrors.fieldErrors[field.name] ||
-                  (!autoSearch && getFieldErrors(rest, field))
-                }
-              />
-            ))}
+            <FieldGroup
+              fields={fields}
+              values={rest.values}
+              animate={props.progressiveReveal}
+            >
+              {field => (
+                <BaseField
+                  key={field.name}
+                  fieldUtils={fieldUtils}
+                  {...field}
+                  value={rest.values[field.name]}
+                  onChange={rest.handleChange}
+                  error={
+                    serverErrors.fieldErrors[field.name] ||
+                    (!autoSearch && getFieldErrors(rest, field))
+                  }
+                />
+              )}
+            </FieldGroup>
             {typeof props.renderFooter === 'function'
               ? props.renderFooter({ formError: serverErrors.formError })
               : props.renderFooter || (

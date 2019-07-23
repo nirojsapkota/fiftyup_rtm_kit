@@ -4,12 +4,12 @@ route: /form/fields
 menu: Form
 ---
 
-import { Playground, PropsTable } from 'docz'
-import { stepInputs, formInputs, presignupInputs } from './sampleInputs'
+import { Playground, PropsTable } from 'docz';
+import { stepInputs, formInputs, presignupInputs } from './sampleInputs';
 import { Header, Small } from '@rtm-ui/typography';
-import { Button } from '@rtm-ui/button'
-import BaseField from './src/fields/baseField'
-import { Form, StepForm, FormError, Accordion } from './src'
+import { Button } from '@rtm-ui/button';
+import BaseField from './src/fields/baseField';
+import { Form, StepForm, FormError, Accordion } from './src';
 
 # Fields
 
@@ -96,19 +96,21 @@ To provide a new error message you'll need to define a new validator
 ## Email
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'My Email:',
-          name: 'email',
-          type: 'text',
-          config: {
-            validator: 'email',
-          },
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'My Email:',
+        name: 'email',
+        type: 'text',
+        config: {
+          validator: 'email',
         },
-      ]}
-    />
+      },
+    ]}
+  />
 </Playground>
 
 ## Credit Card
@@ -121,22 +123,24 @@ an apiKey.
 Use `4111111111111111`, any cvc, and any date in the future for a valid response
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'Payment:',
-          name: 'cc_token',
-          type: 'text',
-          config: {
-            component: 'stripePayment',
-            apiKey: 'pk_test_82Xn9YM3wF2LVCLD0kPewINf',
-            validator: 'required',
-            sensitive: true,
-          },
-        }
-      ]}
-    />
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Payment:',
+        name: 'cc_token',
+        type: 'text',
+        config: {
+          component: 'stripePayment',
+          apiKey: 'pk_test_82Xn9YM3wF2LVCLD0kPewINf',
+          validator: 'required',
+          sensitive: true,
+        },
+      },
+    ]}
+  />
 </Playground>
 
 ## Autocomplete
@@ -148,29 +152,30 @@ provided data and controlling the display and selection of the options
 The function below does no filtering, so any text will return the dataset.
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'My Zipcode:',
-          name: 'zipcode',
-          type: 'text',
-          hint: 'Ex. 2000, Barangaroo',
-          autoComplete: 'off',
-          config: {
-            onEmptyResult: () => { 'Invalid Postcode message' },
-            component: 'autocomplete',
-            searchFunction: async function () {
-              return [
-                { label: "2000, Sydney" },
-                { label: "2000, Barangaroo" },
-              ];
-            },
-            validator: 'zipcode',
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'My Zipcode:',
+        name: 'zipcode',
+        type: 'text',
+        hint: 'Ex. 2000, Barangaroo',
+        autoComplete: 'off',
+        config: {
+          onEmptyResult: () => {
+            'Invalid Postcode message';
           },
-        }
-      ]}
-    />
+          component: 'autocomplete',
+          searchFunction: async function() {
+            return [{ label: '2000, Sydney' }, { label: '2000, Barangaroo' }];
+          },
+          validator: 'zipcode',
+        },
+      },
+    ]}
+  />
 </Playground>
 
 ## Numbers
@@ -179,150 +184,249 @@ Number fields accept a mask validator which formats the input as desired. New fo
 can be added as needed.
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'Phone Number:',
-          hint: 'US numbers only',
-          name: 'phone_number',
-          type: 'tel',
-          config: {
-            mask: 'phoneUS',
-            validator: 'mask',
-            validatorArgs: ['phoneUS', 'Phone Number'],
-          },
-        }
-      ]}
-    />
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Phone Number:',
+        hint: 'US numbers only',
+        name: 'phone_number',
+        type: 'tel',
+        config: {
+          mask: 'phoneUS',
+          validator: 'mask',
+          validatorArgs: ['phoneUS', 'Phone Number'],
+        },
+      },
+    ]}
+  />
 </Playground>
 
 ## Radio
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'Are you currently under contract with your provider?',
-          config: {
-            validator: 'requiredRadio',
-          },
-          name: 'currently_with_provider',
-          value: '',
-          type: 'radio',
-          options: [
-            { label: 'Yes', value: 'yes' },
-            { label: 'No', value: 'no' },
-            { label: 'Not Sure', value: 'notSure' },
-          ],
-        }
-      ]}
-    />
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Are you currently under contract with your provider?',
+        config: {
+          validator: 'requiredRadio',
+        },
+        name: 'currently_with_provider',
+        value: '',
+        type: 'radio',
+        options: [
+          { label: 'Yes', value: 'yes' },
+          { label: 'No', value: 'no' },
+          { label: 'Not Sure', value: 'notSure' },
+        ],
+      },
+    ]}
+  />
 </Playground>
 
 ## Checkbox
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'Some preference',
-          config: {
-            validator: 'requiredRadio',
-          },
-          hint: 'Select yes for some reason',
-          name: 'some_pref',
-          value: '',
-          type: 'checkbox',
-          options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
-        }
-      ]}
-    />
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Some preference',
+        config: {
+          validator: 'requiredRadio',
+        },
+        hint: 'Select yes for some reason',
+        name: 'some_pref',
+        value: '',
+        type: 'checkbox',
+        options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+      },
+    ]}
+  />
 </Playground>
 
 ## PanelCheckbox
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'Please select items',
-          config: {
-            component: 'panelCheck',
-            validator: 'requiredRadio',
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Please select items',
+        config: {
+          component: 'panelCheck',
+          validator: 'requiredRadio',
+        },
+        hint: 'Select for some reason',
+        name: 'icon_check',
+        value: '',
+        type: 'checkbox',
+        options: [
+          { label: 'ELECTRICITY', value: 'electricity', icon: 'electricity' },
+          {
+            label: 'ELECTRICITY + GAS',
+            value: 'electricity,gas',
+            icon: 'electricgas',
           },
-          hint: 'Select for some reason',
-          name: 'icon_check',
-          value: '',
-          type: 'checkbox',
-          options: [
-            { label:'ELECTRICITY', value:'electricity', icon:'electricity' },
-            { label:'ELECTRICITY + GAS', value:'electricity,gas', icon:'electricgas' },
-          ]
-        }
-      ]}
-    />
+        ],
+      },
+    ]}
+  />
 </Playground>
 
 ## PanelRadio
 
 <Playground>
-    <Form
-      onSubmit={async function(values) {alert(JSON.stringify(values, 0, 2))}}
-      fields={[
-        {
-          label: 'Please select an item',
-          config: {
-            component: 'panelRadio',
-            validator: 'requiredRadio',
-            justifyContent: 'flex-start',
-          },
-          hint: 'Select for some reason',
-          name: 'icon_radio',
-          value: '',
-          type: 'radio',
-          options: [
-            { label:'SOLAR PANELS', value:'solar', icon:'solar-3' },
-            { label:'NO SOLAR PANELS', value:'nonsolar', icon:'nonsolar' },
-          ]
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Please select an item',
+        config: {
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+          justifyContent: 'flex-start',
         },
-        {
-          label: 'Center items via justifyContent attribute',
-          config: {
-            component: 'panelRadio',
-            validator: 'requiredRadio',
-            justifyContent: 'center',
-          },
-          hint: 'Select for some reason',
-          name: 'icon_radio',
-          value: '',
-          type: 'radio',
-          options: [
-            { label:'ALWAYS HOME', value:'always-home', icon:'person-at-home' },
-            { label:'RARELY HOME', value:'rarely-home', icon:'home-1' },
-          ]
+        hint: 'Select for some reason',
+        name: 'icon_radio',
+        value: '',
+        type: 'radio',
+        options: [
+          { label: 'SOLAR PANELS', value: 'solar', icon: 'solar-3' },
+          { label: 'NO SOLAR PANELS', value: 'nonsolar', icon: 'nonsolar' },
+        ],
+      },
+      {
+        label: 'Center items via justifyContent attribute',
+        config: {
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+          justifyContent: 'center',
         },
-        {
-          label: 'Please select a household size',
-          config: {
-            component: 'panelRadio',
-            validator: 'requiredRadio',
+        hint: 'Select for some reason',
+        name: 'icon_radio',
+        value: '',
+        type: 'radio',
+        options: [
+          {
+            label: 'ALWAYS HOME',
+            value: 'always-home',
+            icon: 'person-at-home',
           },
-          hint: 'Select for some reason',
-          name: 'icon_radio',
-          value: '',
-          type: 'radio',
-          options: [
-            { label:'1-2 PERSONS', value:'sm', icon:'single-person' },
-            { label:'2-4 PERSONS', value:'md', icon:'double-person' },
-            { label:'4+ PERSONS', value:'lg', icon:'multiple-person' },
-          ]
-        }
-      ]}
-    />
+          { label: 'RARELY HOME', value: 'rarely-home', icon: 'home-1' },
+        ],
+      },
+      {
+        label: 'Please select a household size',
+        config: {
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+        },
+        hint: 'Select for some reason',
+        name: 'icon_radio',
+        value: '',
+        type: 'radio',
+        options: [
+          { label: '1-2 PERSONS', value: 'sm', icon: 'single-person' },
+          { label: '2-4 PERSONS', value: 'md', icon: 'double-person' },
+          { label: '4+ PERSONS', value: 'lg', icon: 'multiple-person' },
+        ],
+      },
+    ]}
+  />
+</Playground>
+
+### Animation
+
+When using the `progressiveReveal` prop, field items will be revealed as previous
+items are clicked.
+
+<Playground>
+  <Form
+    progressiveReveal
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Please select an item',
+        description: 'More options will appear',
+        helper: 'Do it, yo',
+        config: {
+          renderLabel: ({ name, label, description }) => (
+            <>
+              <Header tag="h3" align="center" htmlFor={name}>
+                {label}
+              </Header>
+              <div style={{ textAlign: 'center' }}>
+                <Small align="center">{description}</Small>
+              </div>
+            </>
+          ),
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+          justifyContent: 'center',
+        },
+        hint: 'Select for some reason',
+        name: 'option1',
+        value: '',
+        type: 'radio',
+        options: [
+          { label: 'SOLAR PANELS', value: 'solar', icon: 'solar-3' },
+          { label: 'NO SOLAR PANELS', value: 'nonsolar', icon: 'nonsolar' },
+        ],
+      },
+      {
+        label: 'Center items via justifyContent attribute',
+        config: {
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+          justifyContent: 'center',
+        },
+        hint: 'Select for some reason',
+        name: 'option2',
+        value: '',
+        type: 'radio',
+        options: [
+          {
+            label: 'ALWAYS HOME',
+            value: 'always-home',
+            icon: 'person-at-home',
+          },
+          { label: 'RARELY HOME', value: 'rarely-home', icon: 'home-1' },
+        ],
+      },
+      {
+        label: 'Please select a household size',
+        config: {
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+          justifyContent: 'center',
+        },
+        hint: 'Select for some reason',
+        name: 'option3',
+        value: '',
+        type: 'radio',
+        options: [
+          { label: '1-2 PERSONS', value: 'sm', icon: 'single-person' },
+          { label: '2-4 PERSONS', value: 'md', icon: 'double-person' },
+          { label: '4+ PERSONS', value: 'lg', icon: 'multiple-person' },
+        ],
+      },
+    ]}
+  />
 </Playground>
 
 ## PropTypes

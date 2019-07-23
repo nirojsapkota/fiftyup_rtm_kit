@@ -7,9 +7,7 @@ import { focusStyle } from '../textField';
 
 const StyledButton = styled(Button)`
   ${focusStyle};
-  display: contents;
   align-items: flex-start;
-  flex: 1;
 
   & > * {
     width: 100%;
