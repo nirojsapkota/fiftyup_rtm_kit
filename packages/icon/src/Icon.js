@@ -3849,6 +3849,11 @@ export const ICONS = {
 
 export const Glyph = ({ glyph }) => ICONS[glyph];
 
+const isMultiColoredIcon = iconName => {
+  const multiColoredIcons = ['bright-idea', 'free-to-join', 'build'];
+  return multiColoredIcons.includes(iconName) === true;
+};
+
 const Icon = ({
   size,
   glyph,
@@ -3859,6 +3864,19 @@ const Icon = ({
   strokePrimary,
   strokeSecondary,
 }) => {
+  // FIXME: The multi-colored icons need the strokePrimary, strokeSecondary and fill='none' props
+  // and the old icons (single-colored ones) requires a fill prop. We have to identify which icons are multi-colored
+  // and which are not. And ONLY provide the props required for them to work.
+  // We should probably separate the different types of icons (multi-colored/single-colored)
+  // So that we don't have to hard-codedly check/add it in the isMultiColoredIcon function.
+  const colorProps = isMultiColoredIcon(glyph)
+    ? {
+        strokePrimary: strokePrimary || fill,
+        strokeSecondary: strokeSecondary || fill,
+        fill: 'none',
+      }
+    : { fill: fill };
+
   return (
     <Wrapper size={size} inline={inline}>
       <SvgWrapper size={size} className="icon">
@@ -3871,13 +3889,11 @@ const Icon = ({
           aria-labelledby="title"
           viewBox="0 0 32 32"
           preserveAspectRatio="xMidYMid meet"
-          fill={fill}
-          strokePrimary={strokePrimary}
-          strokeSecondary={strokeSecondary}
           hover={hover}
           fit
           className={glyph}
           rotate={rotate}
+          {...colorProps}
         >
           <Glyph glyph={glyph} />
         </InlineSvg>
