@@ -40,12 +40,6 @@ const StyledCardHeader = styled(Box)`
   }
 `;
 
-const StyledPendantPositioner = styled(PendantPositioner)`
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
 const StyledPendant = styled(Pendant)`
   min-width: 200px;
   width: 80%;
@@ -89,7 +83,7 @@ const FeatureTile = ({
         </Header>
       </StyledCardHeader>
 
-      <StyledPendantPositioner>
+      <div>
         <ImgContainer>
           <a href={ctaLink}>
             <Img src={image} alt="" />
@@ -98,7 +92,7 @@ const FeatureTile = ({
         {flagText.length > 0 && (
           <StyledPendant color="secondary">{flagText}</StyledPendant>
         )}
-      </StyledPendantPositioner>
+      </div>
     </Box>
 
     <TileContentWrapper>
