@@ -47,10 +47,12 @@ const AutocompleteField = ({
     if (debouncedSearchTerm) {
       !hasSelected && onWaiting('Searching pending...');
       config.searchFunction(debouncedSearchTerm).then(results => {
-        results.length > 0 ?
-        (isModalOpen ? onWaiting(`${results.length} results`) : onWaiting(``)) 
-        : (onWaiting(``), config.onEmptyResult());
-         setResults(results);
+        results.length > 0
+          ? isModalOpen
+            ? onWaiting(`${results.length} results`)
+            : onWaiting(``)
+          : (onWaiting(``), config.onEmptyResult());
+        setResults(results);
       });
     } else {
       onWaiting('');
@@ -120,7 +122,7 @@ const AutocompleteField = ({
                       fieldUtils.setFieldValue(inputProps.name, result.label);
                     }}
                   >
-                    <Header tag="h6" weight="thin" p={15}>
+                    <Header tag="h6" align="left" weight="thin" p={15}>
                       {result.label}
                     </Header>
                   </ResultItem>
