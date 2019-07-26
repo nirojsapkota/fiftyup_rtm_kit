@@ -99,7 +99,7 @@ export const Footer = ({ entity, disclaimers }) => {
               )}
               {businessHourInfo.hours && (
                 <Paragraph
-                  style={{ whiteSpace: 'pre', lineHeight: '1.2em' }}
+                  style={{ whiteSpace: 'pre-wrap', lineHeight: '1.2em' }}
                   dangerousHTML={businessHourInfo.hours}
                 />
               )}
