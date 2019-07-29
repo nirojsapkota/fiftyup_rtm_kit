@@ -34,6 +34,7 @@ const primitiveMap = {
     ...Header.defaultProps,
     as: `h${depth}`,
     tag: `h${depth}`,
+    mb: 30,
     children: renderChildren(children),
   }),
   paragraph: ({ children }) => ({
@@ -118,7 +119,7 @@ const primitiveMap = {
 // Add margin-bottom to each child except last
 const MarkdownBox = styled(Box)`
   > *:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   .block-container > *:not(:last-child) {
     margin-bottom: 10px;
@@ -127,6 +128,10 @@ const MarkdownBox = styled(Box)`
   ul,
   ol {
     li {
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+
       p {
         display: inline;
       }

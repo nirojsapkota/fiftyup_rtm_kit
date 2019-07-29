@@ -81,6 +81,8 @@ describe(`<Nav />`, () => {
     it(`it shows the user's emaill with a sign out button in the popout panel`, async () => {
       const { getByText, getByTestId } = await setup({
         user: { email: 'user@example.com' },
+        signOutPath: '/some-path',
+        signInPath: '/some-other-path',
       });
       const toggle = getByTestId('toggle-nav');
       fireEvent.click(toggle);
@@ -92,14 +94,20 @@ describe(`<Nav />`, () => {
   });
   describe(`when no user is passed to the component`, () => {
     it(`shows a sign up button on the navbar`, async () => {
-      const { getByText } = await setup();
+      const { getByText } = await setup({
+        signOutPath: '/some-path',
+        signInPath: '/some-other-path',
+      });
 
       await wait(() => {
         expect(getByText(/join for free/i)).toBeInTheDocument();
       });
     });
     it(`shows a sign up button in the popout panel`, async () => {
-      const { getByText, getByTestId } = await setup();
+      const { getByText, getByTestId } = await setup({
+        signOutPath: '/some-path',
+        signInPath: '/some-other-path',
+      });
       const toggle = getByTestId('toggle-nav');
       fireEvent.click(toggle);
 
