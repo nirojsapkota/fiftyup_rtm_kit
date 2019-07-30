@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@2.0.53...@rtm-ui/switch-confirm-page@3.0.0) (2019-07-30)
+
+
+* Use markdown-supported accordion (#204) ([1e0eda5](https://github.com/OBSAU/rtm-kit/commit/1e0eda5)), closes [#204](https://github.com/OBSAU/rtm-kit/issues/204)
+
+
+### BREAKING CHANGES
+
+* Will have a different props structure. See fixtures for sample json
+
+OB-2674
+
+
+
+
+
 ## [2.0.53](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@2.0.52...@rtm-ui/switch-confirm-page@2.0.53) (2019-07-29)
 
 **Note:** Version bump only for package @rtm-ui/switch-confirm-page
