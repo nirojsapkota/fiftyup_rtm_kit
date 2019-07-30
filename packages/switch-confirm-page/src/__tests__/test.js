@@ -26,11 +26,12 @@ describe('<SwitchConfirmPage />', () => {
     const { queryByText, getByText } = render(
       <SwitchConfirmPage {...dummyData} />
     );
-    const headerElement = getByText('Confirm and agreement');
+    const headerElement = getByText('Confirm and agreements');
     fireEvent.click(headerElement);
 
-    expect(queryByText(/Your Plan Details/i)).toBeInTheDocument();
-    expect(queryByText(/Lorem ipsum dolor sit amet/i)).toBeInTheDocument();
+    expect(
+      queryByText(/Content for confirm and agreements/i)
+    ).toBeInTheDocument();
   });
 
   it('Submit to sever when form valid', async () => {
@@ -38,7 +39,7 @@ describe('<SwitchConfirmPage />', () => {
       <SwitchConfirmPage {...dummyData} />
     );
     const headerElement = getByText('Yes, I agree');
-    
+
     const divSubmit = getByText('Switch Now');
     const btnSubmit = divSubmit.closest('button');
 
@@ -52,11 +53,11 @@ describe('<SwitchConfirmPage />', () => {
   it('Will trigger button click to submit form', async () => {
     const { queryByText, getByText } = render(
       <SwitchConfirmPage {...dummyData} />
-    )
+    );
     const submitLink = getByText('Click here to continue Your switch');
     fireEvent.click(submitLink);
     await wait(() => {
       expect(queryByText('Please select an option')).toBeInTheDocument();
     });
-  })
+  });
 });

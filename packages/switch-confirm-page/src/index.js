@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { A } from '@rtm-ui/a';
 import { Accordion } from '@rtm-ui/accordion';
 import { Box, Block } from '@rtm-ui/layout';
-import { Header, Small } from '@rtm-ui/typography';
+import { Header, Small, Markdown } from '@rtm-ui/typography';
 import { Theme as Variant, getColor } from '@rtm-ui/theme';
 import {
   ConfirmHeader,
@@ -12,6 +12,10 @@ import {
   Disclaimer,
   ConfirmSwitch,
 } from '@rtm-ui/electricity-switch';
+
+const StyledAccordion = styled(Box)`
+  background: ${props => props.theme.colors.grayscale.lightest};
+`;
 
 const PageWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -70,31 +74,7 @@ const HeaderWrapper = ({ headerProps, orientation }) => {
 };
 
 const AccordionHeader = ({ header }) => {
-  return <Header tag="h6">{header}</Header>;
-};
-
-const AccordionContent = ({ items }) => {
-  return (
-    <Box py={2}>
-      {items &&
-        items.map((item, key) => {
-          return (
-            <React.Fragment key={key}>
-              {item && (
-                <React.Fragment>
-                  <Header tag="h6" color="dark">
-                    {item.title || ''}
-                  </Header>
-                  {item.body && (
-                    <Small dangerousHTML={item.body.value} color="dark" />
-                  )}
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          );
-        })}
-    </Box>
-  );
+  return <Header tag="h5">{header}</Header>;
 };
 
 const FooterNote = ({ text }) => {
@@ -116,19 +96,21 @@ const ReviewContent = ({ items }) => {
   );
 };
 
-const AccordionSection = ({ items, reviewItems, footer }) => {
+const AccordionSection = ({ items, reviewItems, footer, references }) => {
   return (
     <Variant variant="b">
       <React.Fragment>
         <Accordion
           items={items}
-          renderHeader={item => <AccordionHeader header={item.header} />}
+          renderHeader={item => <Header tag="h5">{item.name}</Header>}
           renderItem={item => {
             return (
-              <React.Fragment>
-                <AccordionContent items={item.body} />
-                <FooterNote text={footer.value} />
-              </React.Fragment>
+              <Variant variant="a">
+                <StyledAccordion p={[2, 2, 3]}>
+                  <Markdown referenceObject={references} raw={item.content} />
+                  <FooterNote text={footer.value} />
+                </StyledAccordion>
+              </Variant>
             );
           }}
         />
@@ -173,6 +155,7 @@ class ConfirmationWrapper extends React.Component {
       merchant,
       plan,
       switchLinkText,
+      references,
       ...rest
     } = this.props;
 
@@ -201,6 +184,7 @@ class ConfirmationWrapper extends React.Component {
             items={accordion.items}
             reviewItems={[reviewDetail]}
             footer={accordion.footNote}
+            references={references}
           />
           <Box py={2} style={{ textAlign: 'center' }}>
             <SwitchLink onClick={this.handleButtonClick}>
@@ -223,6 +207,7 @@ class ConfirmationWrapper extends React.Component {
                 items={accordion.items}
                 reviewItems={[reviewDetail]}
                 footer={accordion.footNote}
+                references={references}
               />
             </Box>
             <Box style={{ width: '50%' }} pt={20}>
