@@ -4,8 +4,9 @@ route: /primitives/img
 menu: Primitives
 ---
 
-import { Playground, PropsTable } from 'docz'
-import { Img } from './src'
+import { Playground, PropsTable } from 'docz';
+import { Img, ResponsiveImage } from './src';
+import imageProps from './src/__fixtures__/sampleImgResp.js';
 
 # Img
 
@@ -16,13 +17,17 @@ import { Img } from './src'
 ## Basic usage
 
 <Playground>
-  <Img src="https://placehold.it/300x200" />
+  <Img alt="" src="https://placehold.it/300x200" />
 </Playground>
 
 <Playground>
-  <Img shape="rounded" src="https://placehold.it/300x200" />
+  <Img shape="rounded" alt="" src="https://placehold.it/300x200" />
 </Playground>
 
 <Playground>
-  <Img shape="circle" src="https://placehold.it/200x200" />
+  <Img shape="circle" alt="" src="https://placehold.it/200x200" />
+</Playground>
+
+<Playground>
+  <ResponsiveImage {...imageProps} />
 </Playground>

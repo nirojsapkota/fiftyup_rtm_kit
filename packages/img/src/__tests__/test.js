@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '../../../bootstrap/setup/testSetup';
-import { Img } from '../index';
+import { Img, ResponsiveImage } from '../index';
+import sampleResp from '../__fixtures__/sampleImgResp';
 
 const setup = () => {
   const { container } = render(
@@ -20,5 +21,22 @@ describe(`<Img />`, () => {
     expect(imageTag.getAttribute(`src`)).toEqual(`test_image.jpg`);
     expect(imageTag.getAttribute(`title`)).toEqual(`Title for the image`);
     expect(imageTag.getAttribute(`alt`)).toEqual(`Alt text for the image`);
+  });
+});
+
+describe(`<ResponsiveImage />`, () => {
+  const imageProps = sampleResp;
+  it('should resize the image with various breakpoints', () => {
+    const { container } = render(<ResponsiveImage {...imageProps} />);
+    const props = container.querySelector(`img`);
+    const resizeWindow = x => {
+      window.innerWidth = x;
+      window.dispatchEvent(new Event('resize'));
+    };
+    resizeWindow(500);
+    expect(props.getAttribute(`src`)).toEqual(imageProps.tabletImgView);
+
+    resizeWindow(2880);
+    expect(props.getAttribute(`src`)).toEqual(imageProps.desktopImgView);
   });
 });

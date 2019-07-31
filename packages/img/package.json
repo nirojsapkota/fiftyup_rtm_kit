@@ -6,7 +6,8 @@
   "rtmRollup": {
     "namespace": "img",
     "namedExports": [
-      "Img"
+      "Img",
+      "ResponsiveImage"
     ]
   },
   "license": "UNLICENSED",
@@ -19,7 +20,8 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/layout": "file:../layout"
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/img": "file:../img"
   },
   "peerDependencies": {
     "prop-types": "15.x",
