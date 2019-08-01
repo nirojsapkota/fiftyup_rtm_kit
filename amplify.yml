@@ -1,0 +1,24 @@
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm set registry http://registry.npmjs.org/
+        - npm set always-auth true
+        - npm set unsafe-perm true
+        - npm install -g npm
+        - npm install -g lerna
+        - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+        - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+        - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+        - npm run bootstrap
+    build:
+      commands:
+        - npm run build:docs
+  artifacts:
+    baseDirectory: /.docz/dist
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
