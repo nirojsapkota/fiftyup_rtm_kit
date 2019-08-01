@@ -38,7 +38,7 @@ export const WorkFlow = ({ header, subHeader, items }) => {
           items.map((s, index) => (
             <React.Fragment key={index}>
               <List>
-                <Icon fill="iconPrimary" glyph={s.icon} size={70} />
+                <Icon glyph={s.icon} size={70} />
                 <Markdown align="center" py={3} raw={s.title} />
                 <ItemBody px={4}>{s.body}</ItemBody>
               </List>

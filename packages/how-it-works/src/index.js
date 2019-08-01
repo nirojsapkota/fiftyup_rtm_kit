@@ -79,7 +79,6 @@ const HowItWorks = ({ header, subHeader, items, orientation }) => {
               <Item>
                 <Box my={10}>
                   <Icon
-                    fill="iconPrimary"
                     glyph={s.glyph}
                     size={orientation === 'vertical' ? 70 : 50}
                   />
