@@ -1,0 +1,30 @@
+{
+  "name": "@rtm-ui/dynamic-svg",
+  "version": "1.0.0",
+  "description": "Description for dynamicSvg",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "dynamic-svg",
+    "namedExports": [
+      "DynamicSvg"
+    ]
+  },
+  "main": "build/index.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
+  },
+  "dependencies": {
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/theme": "file:../theme",
+    "handlebars": "^4.1.2"
+  },
+  "peerDependencies": {
+    "axios": "^0.19.0",
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}

@@ -30,6 +30,10 @@ export default {
       resolve: {
         ...config.resolve,
         mainFields: ['_module', 'module', 'main'],
+        alias: {
+          ...config.resolve.alias,
+          handlebars: 'handlebars/dist/handlebars.min.js',
+        },
       },
     };
   },
