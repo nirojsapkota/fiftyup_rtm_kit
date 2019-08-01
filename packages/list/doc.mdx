@@ -5,7 +5,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { Header, Paragraph } from '@rtm-ui/typography';
+import { Markdown, Paragraph } from '@rtm-ui/typography';
 import { List, ListItem } from './src/index';
 import data from './src/__fixtures__/sampleApi.js';
 
@@ -15,9 +15,7 @@ import data from './src/__fixtures__/sampleApi.js';
 
 <Playground>
   <ListItem icon="void">
-    <Header color="primary" weight="normal" tag="h5">
-      What's the offer?
-    </Header>
+    <Markdown raw="## Whats the offer" />
   </ListItem>
   <List>
     {[
@@ -56,22 +54,17 @@ import data from './src/__fixtures__/sampleApi.js';
 
 <Playground>
   <List>
-    {[{ icon: 'view-forward', body: <Header tag="h3">Hello World</Header> }]}
+    {[{ icon: 'view-forward', body: <Markdown raw="# Hello World" /> }]}
   </List>
 </Playground>
 
 ## Why Join Component
 
 <Playground>
-  <List
-    header={
-      <Header align="center" tag="h5">
-        {data.header}
-      </Header>
-    }
-  >
-    {data.items}
-  </List>
+  <ListItem>
+    <Markdown align="center" raw={data.header} />
+  </ListItem>
+  <List>{data.items}</List>
 </Playground>
 
 ### Props

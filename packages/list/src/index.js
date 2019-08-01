@@ -2,16 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
 import ListItem from './ListItem';
+import { Markdown } from '@rtm-ui/typography';
 
 const List = ({ header, subHeader, children }) => {
   return (
     <Box my={[3]}>
-      {header}
-      {subHeader}
       {children &&
         children.map((item, index) => {
           return (
-            <ListItem key={index} {...item}>
+            <ListItem
+              key={index}
+              {...item}
+              header={<Markdown raw={header} />}
+              subHeader={<Markdown raw={subHeader} />}
+            >
               {<div>{item.body}</div>}
             </ListItem>
           );
@@ -23,8 +27,8 @@ const List = ({ header, subHeader, children }) => {
 export { List, ListItem };
 
 List.propTypes = {
-  header: PropTypes.any,
-  subHeader: PropTypes.any,
+  header: PropTypes.string,
+  subHeader: PropTypes.string,
   children: PropTypes.arrayOf(
     PropTypes.shape({
       icon: PropTypes.string,

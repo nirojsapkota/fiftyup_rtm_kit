@@ -8,8 +8,8 @@ import { Img } from '@rtm-ui/img';
 import { HowItWorks } from '@rtm-ui/how-it-works';
 import { track } from '@rtm-ui/tracker';
 import BasicHeader from './header';
-import { List } from '@rtm-ui/list';
-import { Header } from '@rtm-ui/typography';
+import { List, ListItem } from '@rtm-ui/list';
+import { Markdown } from '@rtm-ui/typography';
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
@@ -24,6 +24,7 @@ const MobileHide = styled(Box)`
   background: inherit;
   display: flex;
   flex-flow: row;
+  min-height: 400px;
   @media (max-width: ${props => props.theme.grid.md}em) {
     display: none;
   }
@@ -83,15 +84,12 @@ const HybridLoginView = ({
                 {component === 'how' ? (
                   <HowItWorks orientation="vertical" {...howItWorksProps} />
                 ) : (
-                  <List
-                    header={
-                      <Header align="center" tag="h5">
-                        {whyJoinheader}
-                      </Header>
-                    }
-                  >
-                    {children}
-                  </List>
+                  <Box px={10}>
+                    <ListItem>
+                      <Markdown raw={whyJoinheader} />
+                    </ListItem>
+                    <List>{children}</List>
+                  </Box>
                 )}
               </HowItWorksWrapper>
             </Column>
@@ -104,15 +102,12 @@ const HybridLoginView = ({
               {component === 'how' ? (
                 <HowItWorks orientation="vertical" {...howItWorksProps} />
               ) : (
-                <List
-                  header={
-                    <Header align="center" tag="h6">
-                      {whyJoinheader}
-                    </Header>
-                  }
-                >
-                  {children}
-                </List>
+                <Box px={10}>
+                  <ListItem>
+                    <Markdown raw={whyJoinheader} />
+                  </ListItem>
+                  <List>{children}</List>
+                </Box>
               )}
             </HowItWorksWrapper>
           </MobileShow>

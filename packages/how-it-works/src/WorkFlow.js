@@ -1,3 +1,7 @@
+/*
+WorkFlow component is the second version of "How it Works" component mainly designed to use it inside the HomePage before user logs in" 
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -28,7 +32,7 @@ export const WorkFlow = ({ header, subHeader, items }) => {
   return (
     <Box>
       <Markdown raw={header} />
-      <Paragraph py={2}>{subHeader}</Paragraph>
+      <Markdown py={2} raw={subHeader} />
       <BoxContainer>
         {items &&
           items.map((s, index) => (

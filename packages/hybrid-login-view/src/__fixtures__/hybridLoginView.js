@@ -37,7 +37,7 @@ const hybridLoginView = {
       },
     ],
   },
-  whyJoinheader: 'Why Join One Big Switch ? ',
+  whyJoinheader: '##### Why Join One Big Switch ? ',
   children: [
     {
       icon: 'build',

@@ -1,6 +1,5 @@
 const data = {
-  header: 'Why Join One Big Switch ?',
-  subHeader: '',
+  header: '#### Why Join One Big Switch?',
   items: [
     {
       icon: 'build',

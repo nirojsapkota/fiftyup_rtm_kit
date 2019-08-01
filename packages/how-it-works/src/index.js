@@ -60,6 +60,8 @@ const HowItWorks = ({ header, subHeader, items, orientation }) => {
   const Item = orientation === 'vertical' ? VerticalItem : HorizontalItem;
   const IconTitle =
     orientation === 'vertical' ? VerticalTitle : HorizontalTitle;
+  const subheading = !subHeader ? '' : subHeader;
+
   return (
     <Box
       style={{
@@ -69,7 +71,7 @@ const HowItWorks = ({ header, subHeader, items, orientation }) => {
       }}
     >
       <Markdown raw={header} />
-      <Paragraph>{subHeader}</Paragraph>
+      <Markdown raw={subheading} />
       <Container>
         {items &&
           items.map((s, index) => (

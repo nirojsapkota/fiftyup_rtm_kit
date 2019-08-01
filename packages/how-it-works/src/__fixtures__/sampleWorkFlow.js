@@ -1,6 +1,6 @@
 const data = {
   header: ' ### How it Works',
-  subHeader: 'Why using people power saves you money',
+  subHeader: '###### Why using people power saves you money',
   items: [
     {
       icon: 'user-help',
