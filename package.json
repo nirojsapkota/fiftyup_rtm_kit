@@ -1,4 +1,5 @@
 {
+  "name": "rtm-kit",
   "private": true,
   "rtmRollup": {
     "globalMap": {
@@ -122,6 +123,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "name": "rtm-kit"
+  }
 }
