@@ -61,6 +61,17 @@ Resources:
                 - npm install -g npm
                 - npm install -g lerna
                 - npm install
+            build:
+              commands:
+                - npm run bootstrap
+                - npm run build:docs
+            artifacts:
+              baseDirectory: /.docz/dist
+              files:
+                - "**/*"
+            cache:
+              paths:
+                - node_modules/**/*
       CustomRules:
         - Source: /dist/vue.min.js
           Target: /vue.min.js
