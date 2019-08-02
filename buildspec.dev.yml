@@ -11,6 +11,6 @@ phases:
     commands:
       - echo $GIT_USER_EMAIL
       - echo $NPM_AUTH_TOKEN
-      - echo $GITHUB_OAUTH_TOKEN
+      - echo $GITHUB_ACCESS_TOKEN
       - echo $NPM_REGISTRY_LOGIN_URL
       - aws cloudformation deploy --stack-name rtm-kit-docs --template-file ./aws/docs-cft.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --parameter-overrides =$SPA_BUCKET_NAME || ( aws cloudformation describe-stack-events --stack-name $STACK_NAME && exit 1)
