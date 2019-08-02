@@ -9,6 +9,7 @@ env:
 phases:
   install:
     commands:
+      - aws cloudformation deploy --stack-name rtm-ui-docs --template-file ./aws/docs-cft.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --parameter-overrides OauthToken=$GITHUB_AUTH_TOKEN NpmAuthToken=$NPM_AUTH_TOKEN NpmRegistryLoginUrl=$NPM_REGISTRY_LOGIN_URL
       - echo "Running on branch `git name-rev --name-only --always $CODEBUILD_RESOLVED_SOURCE_VERSION 2>/dev/null`"
       - npm install -g npm
       - npm install -g lerna
