@@ -1,6 +1,6 @@
 {
-  "name": "rtm-kit",
   "private": true,
+  "name": "rtm-kit",
   "rtmRollup": {
     "globalMap": {
       "styled-components": "styled",
