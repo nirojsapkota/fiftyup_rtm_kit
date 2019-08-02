@@ -46,6 +46,13 @@ Resources:
       Repository: "https://github.com/OBSAU/rtm-kit.git"
       Description: RTM UI Documentation
       OauthToken: !Ref OauthToken
+      AutoBranchCreationConfig:
+        AutoBranchCreationPatterns:
+          - "*"
+      BasicAuthConfig:
+        EnableBasicAuth: true
+        Password: "switchbigone"
+        Username: "20Under21Wood"
       BuildSpec: |-
         version: 0.1
         frontend:
