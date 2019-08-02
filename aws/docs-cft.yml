@@ -1,44 +1,116 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: Webhook used to monitor Github using a specific set of conditions to then chain load
-
 Parameters:
+  OauthToken:
+    Type: String
+    Description: Github Token
+    NoEcho: true
+
+  NpmAuthToken:
+    Type: String
+    Description: Github Token
+    NoEcho: true
+
+  NpmRegistryLoginUrl:
+    Type: String
+    Description: Github Token
+
+  # Domain:
+  #   Type: String
+  #   Description: Domain name to host application
 
 Resources:
-  RootRole:
-    Type: "AWS::IAM::Role"
+  AmplifyRole:
+    Type: AWS::IAM::Role
     Properties:
-      ManagedPolicyArns:
-        - "arn:aws:iam::aws:policy/AdministratorAccess"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - amplify.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: Amplify
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "amplify:*"
+                Resource: "*"
+
   AmplifyApp:
-    Type: AWS::Amplify::App
+    Type: "AWS::Amplify::App"
     Properties:
-      AccessToken: String
-      AutoBranchCreationConfig: AutoBranchCreationConfig
-      BasicAuthConfig: BasicAuthConfig
-      BuildSpec: "./amplify.yml"
-      # CustomRules:
-      #   - CustomRule
-      Description: "Static site for RTM Kit documentation"
-      EnvironmentVariables:
-        - EnvironmentVariable
-      IAMServiceRole: String
-      Name: String
-      OauthToken: String
-      Repository: String
+      Name: RTM Kit
+      Repository: !Ref Repository
+      Description: RTM Kit Documentation Site
+      OauthToken: !Ref OauthToken
+      EnableBranchAutoBuild: true
+      BuildSpec: |-
+        env:
+          variables:
+            GIT_USER_EMAIL: !Ref OauthToken
+            NPM_AUTH_TOKEN: !Ref NpmAuthToken
+            NPM_REGISTRY_LOGIN_URL: !Ref NpmRegistryLoginUrl
+        frontend:
+          phases:
+            preBuild:
+              commands:
+                - npm set registry http://registry.npmjs.org/
+                - npm set always-auth true
+                - npm set unsafe-perm true
+                - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+                - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+                - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+                - npm config list
+                - npm install -g npm
+                - npm install -g lerna
+                - npm install
+            build:
+              commands:
+                - npm run bootstrap
+                - npm run build:docs
+          artifacts:
+            baseDirectory: /.docz/dist
+            files:
+              - "**/*"
+          cache:
+            paths:
+              - node_modules/**/*
+      CustomRules:
+        - Source: /dist/vue.min.js
+          Target: /vue.min.js
+          Status: "200"
       Tags:
-        - Tag
+        - Key: Name
+          Value: Todo
+      IAMServiceRole: !GetAtt AmplifyRole.Arn
 
   AmplifyBranch:
     Type: AWS::Amplify::Branch
     Properties:
-      AppId: String
-      BasicAuthConfig: BasicAuthConfig
-      BranchName: String
-      BuildSpec: String
-      Description: String
-      EnableAutoBuild: Boolean
-      EnvironmentVariables:
-        - EnvironmentVariable
-      Stage: String
+      BranchName: master
+      AppId: !GetAtt AmplifyApp.AppId
+      Description: Master Branch
+      EnableAutoBuild: true
       Tags:
-        - Tag
+        - Key: Name
+          Value: todo-master
+        - Key: Branch
+          Value: master
+
+  # AmplifyDomain:
+  #   Type: AWS::Amplify::Domain
+  #   Properties:
+  #     DomainName: !Ref Domain
+  #     AppId: !GetAtt AmplifyApp.AppId
+  #     SubDomainSettings:
+  #       - Prefix: master
+  #         BranchName: !GetAtt AmplifyBranch.BranchName
+
+Outputs:
+  # DefaultDomain:
+  #   Value: !GetAtt AmplifyApp.DefaultDomain
+  # MasterBranchUrl:
+  #   Value: !Join [ ".", [ !GetAtt AmplifyBranch.BranchName, !GetAtt AmplifyDomain.DomainName ]]
