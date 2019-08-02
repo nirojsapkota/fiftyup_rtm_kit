@@ -44,7 +44,7 @@ Resources:
     Properties:
       Name: "RTMKit"
       Repository: "https://github.com/OBSAU/rtm-kit.git"
-      Description: RTM Kit Documentation Site
+      Description: RTM Kit Documentation
       OauthToken: !Ref OauthToken
       BuildSpec: |
         env:
