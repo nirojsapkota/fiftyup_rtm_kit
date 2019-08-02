@@ -43,7 +43,7 @@ Resources:
     Type: "AWS::Amplify::App"
     Properties:
       Name: RTM Kit
-      Repository: !Ref Repository
+      Repository: "https://github.com/OBSAU/rtm-kit.git"
       Description: RTM Kit Documentation Site
       OauthToken: !Ref OauthToken
       EnableBranchAutoBuild: true
