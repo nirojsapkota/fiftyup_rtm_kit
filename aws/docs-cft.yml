@@ -42,9 +42,9 @@ Resources:
   AmplifyApp:
     Type: "AWS::Amplify::App"
     Properties:
-      Name: "RTMKit"
+      Name: "RTM-UI"
       Repository: "https://github.com/OBSAU/rtm-kit.git"
-      Description: RTM Kit Documentation
+      Description: RTM UI Documentation
       OauthToken: !Ref OauthToken
       BuildSpec: |-
         version: 0.1
@@ -67,17 +67,18 @@ Resources:
               commands:
                 - npm run bootstrap
                 - npm run build:docs
-            artifacts:
-              baseDirectory: /.docz/dist
-              files:
-                - "**/*"
-            cache:
-              paths:
-                - node_modules/**/*
+                - ls .docz/dist
+          artifacts:
+            baseDirectory: .docz/dist
+            files:
+              - "**/*"
+          cache:
+            paths:
+              - node_modules/**/*
       CustomRules:
-        - Source: /dist/vue.min.js
-          Target: /vue.min.js
-          Status: "200"
+        - Source: /<*>
+          Target: /index.html
+          Status: "404"
       EnvironmentVariables:
         - Name: NPM_AUTH_TOKEN
           Value: !Ref NpmAuthToken
