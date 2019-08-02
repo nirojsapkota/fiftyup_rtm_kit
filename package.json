@@ -41,8 +41,10 @@
     "docz": "0.13.7",
     "docz-theme-default": "0.13.7",
     "formik": "^1.5.7",
+    "framer-motion": "^1.2.4",
     "front-matter": "^3.0.1",
     "globby": "^8.0.1",
+    "handlebars": "^4.1.2",
     "husky": "^1.1.4",
     "lerna": "^3.13.4",
     "lerna-changelog": "^0.7.0",
@@ -78,6 +80,7 @@
     "@rtm-ui/csrf": "file:packages/csrf",
     "@rtm-ui/dashboard": "file:packages/dashboard",
     "@rtm-ui/dialog": "file:packages/dialog",
+    "@rtm-ui/dynamic-svg": "file:packages/dynamic-svg",
     "@rtm-ui/electricity-switch": "file:packages/electricity-switch",
     "@rtm-ui/feature-tile": "file:packages/feature-tile",
     "@rtm-ui/footer": "file:packages/footer",
@@ -100,8 +103,7 @@
     "@rtm-ui/testimonial": "file:packages/testimonial",
     "@rtm-ui/theme": "file:packages/theme",
     "@rtm-ui/tracker": "file:packages/tracker",
-    "@rtm-ui/typography": "file:packages/typography",
-    "framer-motion": "^1.2.4"
+    "@rtm-ui/typography": "file:packages/typography"
   },
   "eslintConfig": {
     "extends": [

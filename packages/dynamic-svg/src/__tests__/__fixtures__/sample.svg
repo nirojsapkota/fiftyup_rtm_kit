@@ -1,0 +1,6 @@
+<svg width="581" height="359" viewBox="0 0 581 359" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="581" height="359" fill="#C4C4C4"/>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="32" letter-spacing="0em"><tspan x="128" y="120.938">{{header}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="32" letter-spacing="0em"><tspan x="128" y="189.938">{{body}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="32" letter-spacing="0em"><tspan x="128" y="262.938">{{footer}}</tspan></text>
+</svg>

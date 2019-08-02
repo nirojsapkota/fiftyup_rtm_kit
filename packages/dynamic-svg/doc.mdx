@@ -1,0 +1,24 @@
+---
+name: DynamicSvg
+route: /dynamicSvg
+menu: Packages
+---
+
+import { Playground } from 'docz';
+import { DynamicSvg } from './src';
+import sample from './src/__tests__/__fixtures__/sample.svg';
+
+# DynamicSvg
+
+## Basic usage
+
+<Playground>
+  <DynamicSvg
+    src={sample}
+    referenceObject={{
+      header: 'Estimated Price*',
+      body: '$1,999',
+      footer: 'per year',
+    }}
+  />
+</Playground>
