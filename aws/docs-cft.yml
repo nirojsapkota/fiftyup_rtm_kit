@@ -99,7 +99,6 @@ Resources:
           Value: todo-master
         - Key: Branch
           Value: master
-
   # AmplifyDomain:
   #   Type: AWS::Amplify::Domain
   #   Properties:
@@ -108,9 +107,8 @@ Resources:
   #     SubDomainSettings:
   #       - Prefix: master
   #         BranchName: !GetAtt AmplifyBranch.BranchName
-
-Outputs:
-  # DefaultDomain:
-  #   Value: !GetAtt AmplifyApp.DefaultDomain
-  # MasterBranchUrl:
-  #   Value: !Join [ ".", [ !GetAtt AmplifyBranch.BranchName, !GetAtt AmplifyDomain.DomainName ]]
+# Outputs:
+# DefaultDomain:
+#   Value: !GetAtt AmplifyApp.DefaultDomain
+# MasterBranchUrl:
+#   Value: !Join [ ".", [ !GetAtt AmplifyBranch.BranchName, !GetAtt AmplifyDomain.DomainName ]]
