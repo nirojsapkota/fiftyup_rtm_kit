@@ -2,12 +2,12 @@ Parameters:
   OauthToken:
     Type: String
     Description: Github Token
-    # NoEcho: true
+    NoEcho: true
 
   NpmAuthToken:
     Type: String
     Description: Github Token
-    # NoEcho: true
+    NoEcho: true
 
   NpmRegistryLoginUrl:
     Type: String
