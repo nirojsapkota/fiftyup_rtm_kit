@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Webhook used to monitor Github using a specific set of conditions to then chain load
+
+Parameters:
+
+Resources:
+  RootRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AdministratorAccess"
+  AmplifyApp:
+    Type: AWS::Amplify::App
+    Properties:
+      AccessToken: String
+      AutoBranchCreationConfig: AutoBranchCreationConfig
+      BasicAuthConfig: BasicAuthConfig
+      BuildSpec: "./amplify.yml"
+      # CustomRules:
+      #   - CustomRule
+      Description: "Static site for RTM Kit documentation"
+      EnvironmentVariables:
+        - EnvironmentVariable
+      IAMServiceRole: String
+      Name: String
+      OauthToken: String
+      Repository: String
+      Tags:
+        - Tag
+
+  AmplifyBranch:
+    Type: AWS::Amplify::Branch
+    Properties:
+      AppId: String
+      BasicAuthConfig: BasicAuthConfig
+      BranchName: String
+      BuildSpec: String
+      Description: String
+      EnableAutoBuild: Boolean
+      EnvironmentVariables:
+        - EnvironmentVariable
+      Stage: String
+      Tags:
+        - Tag

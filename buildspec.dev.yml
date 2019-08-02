@@ -3,40 +3,14 @@ env:
   parameter-store:
     GIT_USER_EMAIL: "github-user-email"
     NPM_AUTH_TOKEN: "/aws/reference/secretsmanager/npm-access-token"
+    GITHUB_ACCESS_TOKEN: "/aws/reference/secretsmanager/github-access-token"
     NPM_REGISTRY_LOGIN_URL: "npm-repository-auth-url"
 
 phases:
   install:
     commands:
-      - echo "Running on branch `git name-rev --name-only --always $CODEBUILD_RESOLVED_SOURCE_VERSION 2>/dev/null`"
-      - npm install -g npm
-      - npm install -g lerna
-      - npm set registry http://registry.npmjs.org/
-      - npm set always-auth true
-      - npm set unsafe-perm true
-      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
-      - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
-
-  pre_build:
-    commands:
-      - npm install
-      - cd aws/GithubDocumentationFunction && npm i && cd ../../
-      - npm run zip
-      - aws lambda update-function-code --function-name GithubDocumentationFunction --zip-file fileb://./aws/GithubDocumentationFunction.zip --publish
-      - lerna bootstrap --no-ci
-      - npm run build:ci --parallel
-  build:
-    commands:
-      - export DOCZ_BASE=/$CODEBUILD_WEBHOOK_TRIGGER/
-      - echo $DOCZ_BASE
-      - npm run test:ci
-      - npm run build:docs
-      - npm run copy:builds
-  post_build:
-    commands:
-      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
-      - aws s3 cp ./.docz/dist s3://$DOCS_BUCKET_NAME/$CODEBUILD_WEBHOOK_TRIGGER --acl public-read --recursive
-      - aws lambda invoke --function-name GithubDocumentationFunction --payload '{"bucket":"'"${DOCS_BUCKET_NAME}"'", "codebuild_trigger":"'"${CODEBUILD_WEBHOOK_TRIGGER}"'"}' response6.txt
-      # - npm run prerelease
-      # - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
-      # - aws s3 cp ./dist/ s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read --exclude "*" --include "*.min.js" --recursive
+      - echo $GIT_USER_EMAIL
+      - echo $NPM_AUTH_TOKEN
+      - echo $GITHUB_OAUTH_TOKEN
+      - echo $NPM_REGISTRY_LOGIN_URL
+      - aws cloudformation deploy --stack-name rtm-kit-docs --template-file ./aws/docs-cft.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --parameter-overrides =$SPA_BUCKET_NAME || ( aws cloudformation describe-stack-events --stack-name $STACK_NAME && exit 1)
