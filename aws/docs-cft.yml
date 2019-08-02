@@ -1,0 +1,113 @@
+Parameters:
+  OauthToken:
+    Type: String
+    Description: Github Token
+    NoEcho: true
+
+  NpmAuthToken:
+    Type: String
+    Description: Github Token
+    NoEcho: true
+
+  NpmRegistryLoginUrl:
+    Type: String
+    Description: Github Token
+
+  # Domain:
+  #   Type: String
+  #   Description: Domain name to host application
+
+Resources:
+  AmplifyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - amplify.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: Amplify
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "amplify:*"
+                Resource: "*"
+
+  AmplifyApp:
+    Type: "AWS::Amplify::App"
+    Properties:
+      Name: "RTMKit"
+      Repository: "https://github.com/OBSAU/rtm-kit.git"
+      Description: RTM Kit Documentation
+      OauthToken: !Ref OauthToken
+      BuildSpec: |-
+        frontend:
+          phases:
+            preBuild:
+              commands:
+                - npm set registry http://registry.npmjs.org/
+                - npm set always-auth true
+                - npm set unsafe-perm true
+                - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+                - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+                - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+                - npm config list
+                - npm install -g npm
+                - npm install -g lerna
+                - npm install
+            build:
+              commands:
+                - npm run bootstrap
+                - npm run build:docs
+            artifacts:
+              baseDirectory: /.docz/dist
+              files:
+                - "**/*"
+            cache:
+              paths:
+                - node_modules/**/*
+      CustomRules:
+        - Source: /dist/vue.min.js
+          Target: /vue.min.js
+          Status: "200"
+      EnvironmentVariables:
+        - Name: NPM_AUTH_TOKEN
+          Value: !Ref NpmAuthToken
+        - Name: NPM_REGISTRY_LOGIN_URL
+          Value: !Ref NpmRegistryLoginUrl
+      Tags:
+        - Key: Name
+          Value: Todo
+      IAMServiceRole: !GetAtt AmplifyRole.Arn
+
+  AmplifyBranch:
+    Type: AWS::Amplify::Branch
+    Properties:
+      BranchName: master
+      AppId: !GetAtt AmplifyApp.AppId
+      Description: Master Branch
+      EnableAutoBuild: true
+      Tags:
+        - Key: Name
+          Value: todo-master
+        - Key: Branch
+          Value: master
+  # AmplifyDomain:
+  #   Type: AWS::Amplify::Domain
+  #   Properties:
+  #     DomainName: !Ref Domain
+  #     AppId: !GetAtt AmplifyApp.AppId
+  #     SubDomainSettings:
+  #       - Prefix: master
+  #         BranchName: !GetAtt AmplifyBranch.BranchName
+# Outputs:
+# DefaultDomain:
+#   Value: !GetAtt AmplifyApp.DefaultDomain
+# MasterBranchUrl:
+#   Value: !Join [ ".", [ !GetAtt AmplifyBranch.BranchName, !GetAtt AmplifyDomain.DomainName ]]

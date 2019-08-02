@@ -1,0 +1,36 @@
+version: 0.1
+# env:
+#   parameter-store:
+#     GIT_USER_EMAIL: "github-user-email"
+#     NPM_AUTH_TOKEN: "/aws/reference/secretsmanager/npm-access-token"
+#     NPM_REGISTRY_LOGIN_URL: "npm-repository-auth-url"
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # - npm set registry http://registry.npmjs.org/
+        # - npm set always-auth true
+        # - npm set unsafe-perm true
+        - echo "Hello World"
+        - echo $GIT_USER_EMAIL
+        - echo $NPM_REGISTRY_LOGIN_URL
+        - echo "Goodbye World"
+        - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+        - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+        - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
+        - npm config list
+        - npm install -g npm
+        - npm install -g lerna
+        - npm install
+    build:
+      commands:
+        - npm run bootstrap
+        - npm run build:docs
+  artifacts:
+    baseDirectory: /.docz/dist
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*

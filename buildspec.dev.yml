@@ -3,11 +3,17 @@ env:
   parameter-store:
     GIT_USER_EMAIL: "github-user-email"
     NPM_AUTH_TOKEN: "/aws/reference/secretsmanager/npm-access-token"
+    GITHUB_AUTH_TOKEN: "/aws/reference/secretsmanager/github-access-token"
     NPM_REGISTRY_LOGIN_URL: "npm-repository-auth-url"
 
 phases:
   install:
     commands:
+      - echo $GIT_USER_EMAIL
+      - echo $NPM_AUTH_TOKEN
+      - echo $GITHUB_AUTH_TOKEN
+      - echo $NPM_REGISTRY_LOGIN_URL
+      - aws cloudformation deploy --stack-name rtm-kit-docs --template-file ./aws/docs-cft.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --parameter-overrides OauthToken=$GITHUB_AUTH_TOKEN NpmAuthToken=$NPM_AUTH_TOKEN NpmRegistryLoginUrl=$NPM_REGISTRY_LOGIN_URL
       - echo "Running on branch `git name-rev --name-only --always $CODEBUILD_RESOLVED_SOURCE_VERSION 2>/dev/null`"
       - npm install -g npm
       - npm install -g lerna
