@@ -46,7 +46,7 @@ Resources:
       Repository: "https://github.com/OBSAU/rtm-kit.git"
       Description: RTM Kit Documentation Site
       OauthToken: !Ref OauthToken
-      BuildSpec: |-
+      BuildSpec: |
         env:
           variables:
             GIT_USER_EMAIL: !Ref OauthToken
@@ -66,17 +66,6 @@ Resources:
                 - npm install -g npm
                 - npm install -g lerna
                 - npm install
-            build:
-              commands:
-                - npm run bootstrap
-                - npm run build:docs
-          artifacts:
-            baseDirectory: /.docz/dist
-            files:
-              - "**/*"
-          cache:
-            paths:
-              - node_modules/**/*
       CustomRules:
         - Source: /dist/vue.min.js
           Target: /vue.min.js
