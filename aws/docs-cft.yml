@@ -47,6 +47,7 @@ Resources:
       Description: RTM Kit Documentation
       OauthToken: !Ref OauthToken
       BuildSpec: |-
+        version: 0.1
         frontend:
           phases:
             preBuild:
@@ -58,6 +59,7 @@ Resources:
                 - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
                 - echo "@rtm-ui:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
                 - npm config list
+                - cat $HOME/.npmrc
                 - npm install -g npm
                 - npm install -g lerna
                 - npm install
