@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -166,8 +167,22 @@ class TrackerRegistration extends React.Component {
     zd2.id = 'ze-snippet';
     zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${
       this.props.zendesk_id
-    }`;
+      }`;
     this.instance.appendChild(zd2);
+
+    // SalesForce Marketting Cloud Collect code
+    const sfmc = document.createElement('script');
+    let sfmc_script_html = `(function (n, i, r, o, j, s, p) {
+      s = i.createElement(r),p = i.getElementsByTagName(r)[0];
+      s.async = 1;s.src = o;p.parentNode.insertBefore(s, p);
+      s.onload = s.onreadystatechange = function () {
+      _etmc.push(['setOrgId', '${this.props.sfmc_business_account_id}']);`;
+    if (this.props.user && this.props.user.email) {
+      sfmc_script_html = sfmc_script_html + `_etmc.push(['setUserInfo', { 'email': '${this.props.user.email}' }]);`;
+    };
+    sfmc_script_html = sfmc_script_html + `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${this.props.sfmc_business_account_id}.collect.igodigital.com/collect.js', '_etmc');`;
+    sfmc.innerHTML = sfmc_script_html;
+    this.instance.appendChild(sfmc);
   }
 
   render() {
@@ -196,5 +211,6 @@ TrackerRegistration.propTypes = {
   bing_uet_tag_code: PropTypes.string,
   google_adwords_id: PropTypes.string,
   facebook_pixel_id: PropTypes.string,
-  zendesk_id: PropTypes.string
+  zendesk_id: PropTypes.string,
+  sfmc_business_account_id: PropTypes.string
 };

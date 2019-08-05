@@ -141,14 +141,17 @@ describe('<TrackerRegistration />', () => {
     const google_adwords_id = 'AW-964414963';
     const facebook_pixel_id = '1111111111';
     const zendesk_id = 'a85c71b0-2af3-4bb0-9cd3-3a9eb0ebcb67';
+    const sfmc_business_account_id = '123456';
 
-    const { getByTestId } = render(<TrackerRegistration ga_code={ga_code} bing_uet_tag_code={bing_uet_tag_code} google_adwords_id={google_adwords_id} facebook_pixel_id={facebook_pixel_id} zendesk_id={zendesk_id} />);
+    const { getByTestId } = render(<TrackerRegistration ga_code={ga_code} bing_uet_tag_code={bing_uet_tag_code} google_adwords_id={google_adwords_id} facebook_pixel_id={facebook_pixel_id} zendesk_id={zendesk_id} sfmc_business_account_id={sfmc_business_account_id} user={{ email: 'test@mail.com' }} />);
 
     expect(getByTestId('TrackingRegister').innerHTML).toContain(ga_code);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(bing_uet_tag_code);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(google_adwords_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(facebook_pixel_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(sfmc_business_account_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain('setUserInfo');
 
   });
 });
