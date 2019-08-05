@@ -9,11 +9,12 @@ import { Plan } from './src'
 import planProps, { actions } from './src/__fixtures__/plans';
 import energyPlanProps from './src/__fixtures__/energyPlans';
 import { DocWrapper } from '../bootstrap/setup/docWrapper'
+import Action, { RequestCallback } from './src/Action';
 
 # Plan
 
 <DocWrapper>
-  <Plan {...planProps} actions={[actions.get_started]} />
+  <Plan {...planProps} actions={[actions.request_call_back]} />
 </DocWrapper>
 
 ## Energy Plan

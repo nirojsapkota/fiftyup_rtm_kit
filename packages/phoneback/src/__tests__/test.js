@@ -1,36 +1,63 @@
 import React from 'react';
-import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import { PhonebackBox } from '../index';
-import sample from '../../sample';
+import {
+  render,
+  fireEvent,
+  wait,
+  cleanup,
+} from '../../../bootstrap/setup/testSetup';
+import { PhonebackBox, Phoneback } from '../index';
+import Sample from '../../sample';
 
-const setup = form => {
-  const rendered = render(<PhonebackBox form={form} text={sample.text} />);
-  const callbackButton = rendered.getByText(/request a callback/i).closest('button');
+afterEach(cleanup);
+
+const setup = phonebackProps => {
+  const rendered = render(<PhonebackBox {...phonebackProps} />);
+  const callbackButton = rendered
+    .getByText(/request a callback/i)
+    .closest('button');
   fireEvent.click(callbackButton);
 
-  const emailField = rendered.getByLabelText(/my email:/i);
-  const phoneNumberField = rendered.getByLabelText(/phone number:/i);
-  fireEvent.change(emailField, {
-    target: { value: 'user@example.com' },
-  });
-  fireEvent.change(phoneNumberField, {
-    target: { value: '0422058679' },
-  });
+  // when phoneback has been submited, will show thankyou page only
+  if (!phonebackProps.isPhonebacked) {
+    const firstNameField = rendered.getByLabelText(/First Name:/i);
+    const lastNameField = rendered.getByLabelText(/Last Name/i);
+    const phoneNumberField = rendered.getByLabelText(/Phone Number:/i);
 
-  const formSubmitButton = rendered.getByText(/call me back/i).closest('button');
-  fireEvent.click(formSubmitButton);
+    fireEvent.change(firstNameField, {
+      target: { value: 'Tony' },
+    });
+    fireEvent.change(lastNameField, {
+      target: { value: 'Toe' },
+    });
+    fireEvent.change(phoneNumberField, {
+      target: { value: '0422058679' },
+    });
 
+    const formSubmitButton = rendered
+      .getByText(Sample.submitText)
+      .closest('button');
+    fireEvent.click(formSubmitButton);
+  }
   return rendered;
 };
 
 describe('<Phoneback />', () => {
+  const { form, ...rest } = Sample;
+
   describe('with a valid callback handler', () => {
-    it.only('calls the onSubmit and onSuccess handlers', async () => {
+    it('calls the onSubmit and onSuccess handlers', async () => {
       const onSubmit = jest.fn(async fields => fields);
       const onSuccess = jest.fn(async () => {});
-      const formProps = { ...sample.form, onSubmit, onSuccess };
+      const formProps = {
+        ...form,
+        onSubmit,
+        onSuccess,
+      };
 
-      const { getByText } = setup(formProps);
+      const { getByText } = setup({
+        form: formProps,
+        ...rest,
+      });
 
       await wait(async () => {
         expect(onSubmit).toHaveBeenCalled();
@@ -46,13 +73,15 @@ describe('<Phoneback />', () => {
 
   describe('with an invalid callback handler', () => {
     it('shows an error', async () => {
-      const onSubmit = jest.fn(async () => {
-        throw new Error('some error');
-      });
+      const onSubmit = jest.fn(async () => {});
       const onSuccess = jest.fn(async () => {});
-      const formProps = { ...sample.form, onSubmit, onSuccess };
+      const formProps = { ...form, onSubmit, onSuccess };
 
-      const { getByText } = setup(formProps);
+      const { getByText } = setup({
+        form: formProps,
+        ...rest,
+        isPhonebacked: false,
+      });
 
       await wait(async () => {
         expect(onSubmit).toHaveBeenCalled();
@@ -60,6 +89,81 @@ describe('<Phoneback />', () => {
         await wait(() => {
           expect(getByText(/something went wrong/i)).toBeInTheDocument();
         });
+      });
+    });
+  });
+
+  describe('should thankyou page', () => {
+    it('when isPhonebacked true', async () => {
+      const onSubmit = jest.fn(async fields => fields);
+      const onSuccess = jest.fn(async () => {});
+      const formProps = {
+        ...form,
+        onSubmit,
+        onSuccess,
+      };
+      const { getByText } = setup({
+        form: formProps,
+        ...rest,
+        isPhonebacked: true,
+      });
+
+      await wait(() => {
+        expect(
+          getByText('Thank you for requesting a call back.')
+        ).toBeInTheDocument();
+      });
+    });
+
+    it('when form has been summited', async () => {
+      const onSubmit = jest.fn(async fields => fields);
+      const onSuccess = jest.fn(async () => {});
+      const formProps = {
+        ...form,
+        onSubmit,
+        onSuccess,
+      };
+      const { getByText } = setup({
+        form: formProps,
+        ...rest,
+      });
+
+      const btnsubmit = getByText(Sample.submitText).closest('button');
+      fireEvent.click(btnsubmit);
+
+      await wait(() => {
+        expect(
+          getByText('Thank you for requesting a call back.')
+        ).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('With renderTriger as a component', () => {
+    it('Should display element from trigger', async () => {
+      const onSubmit = jest.fn(async fields => {
+        return fields;
+      });
+      const onSuccess = jest.fn(async () => {});
+      const renderTrigger = open => (
+        <a onClick={open}>
+          <h2>Click to display phone back</h2>
+        </a>
+      );
+      const formProps = {
+        ...form,
+        onSubmit,
+        onSuccess,
+      };
+
+      const { getByText } = render(
+        <Phoneback form={formProps} {...rest} renderTrigger={renderTrigger} />
+      );
+      const submitLink = getByText(/Click to display phone back/i);
+      expect(submitLink).toBeInTheDocument();
+      fireEvent.click(submitLink.closest('a'));
+      await wait(() => {
+        expect(getByText(Sample.header)).toBeInTheDocument();
       });
     });
   });

@@ -7,13 +7,9 @@ import { Blurb } from '@rtm-ui/typography';
 import Sidebar from './Sidebar';
 import Cta from './Cta';
 import Summary from './Summary';
-import Action, { ClickToCall } from './Action';
+import Action, { ClickToCall, RequestCallback } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
 import { Theme as Variant } from '@rtm-ui/theme';
-
-// FIXME: Add CallbackFormDialog and add more unit test later
-// import CallbackFormDialog from './CallbackFormDialog';
-const CallbackFormDialog = () => <div>Callback form dialog</div>;
 
 const SidebarWrapper = styled.div`
   min-width: 340px;
@@ -30,6 +26,7 @@ const PlanSidebar = ({ children, ...props }) => (
 const MerchantBox = styled.div`
   max-width: 250px;
   margin: 10px auto;
+  padding-top: 10px;
 `;
 const Merchant = ({ logoUrl, full_name }) =>
   logoUrl && (
@@ -81,13 +78,43 @@ export const Plan = ({
   switchFacts,
   actions,
   reference,
+  phonebackProps,
 }) => {
-  console.log({ reference });
+  const [hasPhoneback, setHasPhoneback] = React.useState(plan.has_phoneback);
   const callAction = actions.find(({ track }) => track === 'click_to_call');
   const callbackAction = actions.find(
     ({ track }) => track === 'request_call_back'
   );
+  const handleCallbackSuccess = result => {
+    setHasPhoneback(true);
+  };
   const clickAction = actions.find(({ track }) => track === 'get_started');
+  const callbackAttrs = {
+    ...phonebackProps,
+    authenticityToken,
+    campaignId: plan.campaign_id,
+  };
+
+  const callBackFormDialog = (
+    onCallBackSubmitted,
+    onSuccessCallback,
+    triggerElement = null
+  ) => {
+    return (
+      <>
+        {callbackAction && (
+          <RequestCallback
+            action={callbackAction}
+            {...callbackAttrs}
+            isSubmitted={onCallBackSubmitted}
+            onSuccess={onSuccessCallback}
+            renderTrigger={triggerElement}
+          />
+        )}
+      </>
+    );
+  };
+
   const planCta = (
     <Cta actions={actions} tips={productTips} switchFacts={switchFacts}>
       {clickAction && (
@@ -95,19 +122,14 @@ export const Plan = ({
       )}
       <Merchant {...plan.merchant} />
       {callAction && (
-        <Variant variant="regular"><ClickToCall {...callAction} /></Variant>
+        <Variant variant="regular">
+          <ClickToCall {...callAction} />
+        </Variant>
       )}
       {!callbackAction && clickAction && <Action {...clickAction} />}
       {callbackAction && (
         <Box p={[2, 3]} width={1}>
-          <CallbackFormDialog
-            {...plan.callbackFormProps}
-            {...callbackAction}
-            block
-            entity={entity}
-            campaignId={plan.campaign_id}
-            authenticityToken={authenticityToken}
-          />
+          {callBackFormDialog(hasPhoneback, handleCallbackSuccess)}
         </Box>
       )}
     </Cta>
@@ -124,6 +146,13 @@ export const Plan = ({
               entity={entity}
               actions={actions}
               authenticityToken={authenticityToken}
+              phoneBackDialog={triggerElement =>
+                callBackFormDialog(
+                  hasPhoneback,
+                  handleCallbackSuccess,
+                  triggerElement
+                )
+              }
             >
               <Block hideAt="lg">{planCta}</Block>
             </Summary>

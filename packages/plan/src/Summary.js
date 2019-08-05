@@ -12,9 +12,18 @@ import { Accordion } from '@rtm-ui/accordion';
 import { Share } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
 
-// FIXME: Add CallbackFormDialog and add more unit test later
-// import CallbackFormDialog from './CallbackFormDialog';
-const CallbackFormDialog = () => <div>Callback form dialog</div>;
+const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
+  const refer = React.useContext(PlanReferenceContext);
+  return (
+    <>
+      {isEnabledMarkdown === false ? (
+        <Paragraph dangerousHTML={content} />
+      ) : (
+        <Markdown {...rest} referenceObject={refer} raw={content} />
+      )}
+    </>
+  );
+};
 
 const StyledAccordion = styled(Box)`
   background: ${props => props.theme.colors.grayscale.lightest};
@@ -31,7 +40,6 @@ const SubHeader = props => (
 );
 
 const Main = props => {
-  const refer = React.useContext(PlanReferenceContext);
   return (
     <React.Fragment>
       <Box width={1} py={20}>
@@ -40,7 +48,12 @@ const Main = props => {
             props.plan_features.map(({ icon, body }) => ({
               icon,
               fill: 'primary',
-              body: <Markdown referenceObject={refer} raw={body} />,
+              body: (
+                <MarkdownWrapper
+                  content={body}
+                  isEnabledMarkdown={props.isEnabledMarkdown}
+                />
+              ),
             }))}
         </List>
       </Box>
@@ -50,18 +63,18 @@ const Main = props => {
 
 const ActionButton = ({
   callAction,
-  callbackAction,
   authenticityToken,
   campaignId,
   entity,
-  callbackFormProps,
+  ...rest
 }) => (
-  <React.Fragment>
+  <Box
+    style={{
+      marginLeft: 'auto',
+    }}
+  >
     {callAction && (
       <Button
-        style={{
-          marginLeft: 'auto',
-        }}
         as="a"
         track={callAction.track}
         href={callAction.link}
@@ -70,27 +83,18 @@ const ActionButton = ({
         {callAction.cta}
       </Button>
     )}
-    {callbackAction && !callAction && (
-      <CallbackFormDialog
-        authenticityToken={authenticityToken}
-        campaignId={campaignId}
-        entity={entity}
-        {...callbackFormProps}
-        {...callbackAction}
-      />
-    )}
-  </React.Fragment>
+    {rest.phoneBackDialog()}
+  </Box>
 );
 
 const ActionImage = ({
   callAction,
-  callbackAction,
   authenticityToken,
   campaignId,
   entity,
-  callbackFormProps,
   src,
   main_header_text,
+  ...rest
 }) => (
   <React.Fragment>
     {callAction && (
@@ -98,29 +102,15 @@ const ActionImage = ({
         <Img src={src} alt={main_header_text} />
       </A>
     )}
-    {callbackAction && !callAction && (
-      <CallbackFormDialog
-        authenticityToken={authenticityToken}
-        campaignId={campaignId}
-        entity={entity}
-        {...callbackFormProps}
-        {...callbackAction}
-        cta={<Img src={src} alt={main_header_text} />}
-      />
-    )}
+    {rest.phoneBackDialog((open) => <Img src={src} alt={main_header_text} onClick={open}/>)}
   </React.Fragment>
 );
 
 const Summary = props => {
   const callAction = props.actions.find(({ track }) => track === 'get_started');
-  const callbackAction = props.actions.find(
-    ({ track }) => track === 'request_call_back'
-  );
   const backAction = props.actions.find(
     ({ actionType }) => actionType === 'back'
   );
-
-  const refer = React.useContext(PlanReferenceContext);
 
   return (
     <Box p={[0, 0, 0, 2]}>
@@ -133,7 +123,6 @@ const Summary = props => {
         {props.main_image_file_url && (
           <ActionImage
             callAction={callAction}
-            callbackAction={callbackAction}
             {...props}
             src={props.main_image_file_url}
           />
@@ -143,7 +132,6 @@ const Summary = props => {
         {props.mobile_image_file_url && (
           <ActionImage
             callAction={callAction}
-            callbackAction={callbackAction}
             {...props}
             src={props.mobile_image_file_url}
           />
@@ -169,11 +157,7 @@ const Summary = props => {
               {backAction.cta}
             </Button>
           )}
-          <ActionButton
-            callAction={callAction}
-            callbackAction={callbackAction}
-            {...props}
-          />
+          <ActionButton callAction={callAction} {...props} />
         </Box>
         <Box
           style={{
@@ -184,13 +168,13 @@ const Summary = props => {
         >
           <Box width={[1, 1, 0.6, 1]} pr={[0, 2, 2]}>
             <Main {...props} />
-            {props.tweet_text &&
+            {props.tweet_text && (
               <Box pb={2}>
                 <Share
                   message={props.tweet_text ? props.tweet_text : undefined}
                 />
               </Box>
-            }
+            )}
           </Box>
           <Box width={[1, 1, 0.4, 1]}>{props.children}</Box>
         </Box>
@@ -201,7 +185,10 @@ const Summary = props => {
               renderItem={item => (
                 <Variant variant="a">
                   <StyledAccordion p={[2, 2, 3]}>
-                    <Markdown referenceObject={refer} raw={item.content} />
+                    <MarkdownWrapper
+                      content={item.content}
+                      isEnabledMarkdown={props.isEnabledMarkdown}
+                    />
                   </StyledAccordion>
                 </Variant>
               )}
@@ -216,7 +203,12 @@ const Summary = props => {
               // base being 12px and the <Small> tag will
               // handle applying base colors to text blocks
               <Small>
-                <Markdown pb={10} referenceObject={refer} raw={disclaimer.body} scale={0.75} />
+                <MarkdownWrapper
+                  pb={10}
+                  scale={0.75}
+                  content={disclaimer.body}
+                  isEnabledMarkdown={props.isEnabledMarkdown}
+                />
               </Small>
             ))}
           <Small dangerousHTML={props.disclaimer_html} />
@@ -259,7 +251,6 @@ Summary.propTypes = {
   disclaimer_html: PropTypes.string,
   accordion: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
   tweet_text: PropTypes.string,
-  callbackFormProps: PropTypes.shape({}),
 };
 
 SubHeader.propTypes = {

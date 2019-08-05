@@ -11,14 +11,18 @@ import {
   cleanup,
 } from '../../../bootstrap/setup/testSetup';
 import { actions as planActions } from '../__fixtures__/plans';
-import { default as planProps } from '../__fixtures__/plans';
+import { default as planProps, phonebackProps } from '../__fixtures__/plans';
 import { actions as energyPlanActions } from '../__fixtures__/energyPlans';
 import { default as energyPlanProps } from '../__fixtures__/energyPlans';
-import Action, { ClickToCall, Share } from '../Action';
+import Action, { ClickToCall, Share, RequestCallback } from '../Action';
 import Cta from '../Cta';
 import Sidebar from '../Sidebar';
 import Summary from '../Summary';
 import { Plan } from '../index';
+
+const axios = require('axios');
+
+jest.mock('axios');
 
 const mockTrackEvent = jest.fn();
 jest.mock('@rtm-ui/tracker', () => {
@@ -41,7 +45,7 @@ describe('<Plan />', () => {
 
       const message = getByText(data.message);
       expect(message).toBeInTheDocument();
-      
+
       const button = getByText(data.cta).closest('a');
 
       expect(button).toBeInTheDocument();
@@ -132,6 +136,7 @@ describe('<Plan />', () => {
     const entity = planProps.entity;
     const authenticityToken = planProps.authenticity_token;
     const planCta = 'click to start';
+    const fnPhoneBack = jest.fn(v => v);
 
     it('matches expected output', async () => {
       const props = energyPlanProps;
@@ -151,11 +156,11 @@ describe('<Plan />', () => {
           {...props.plan}
           campaignId={props.plan.campaign_id}
           entity={entity}
-          actions={props.actions}
+          actions={actions}
           authenticityToken={authenticityToken}
           tweet_text="tweet"
           accordion={accordion}
-          actions={actions}
+          phoneBackDialog={fnPhoneBack}
         >
           {planCta}
         </Summary>
@@ -176,13 +181,6 @@ describe('<Plan />', () => {
         expect(nameEl).toBeInTheDocument();
         expect(nameEl.tagName).toEqual('H5');
         fireEvent.click(nameEl);
-
-        await wait(async () => {
-          const contentEl = getByText(item.content);
-          expect(contentEl).toBeInTheDocument();
-          expect(actionMainImage.tagName).toEqual('IMG');
-          expect(actionMainImage.src).toEqual(plan.main_image_file_url);
-        });
       });
 
       const tweet = getByText('tweet');
@@ -198,6 +196,7 @@ describe('<Plan />', () => {
           entity={entity}
           actions={actions}
           authenticityToken={authenticityToken}
+          phoneBackDialog={fnPhoneBack}
         >
           {planCta}
         </Summary>
@@ -230,13 +229,13 @@ describe('<Plan />', () => {
           campaignId={plan.campaign_id}
           actions={actions}
           entity={entity}
+          phoneBackDialog={fnPhoneBack}
         />
       );
       const fb = queryByTestId('share_facebook');
       expect(fb).toBeNull();
     });
   });
-
   describe('Plan', () => {
     const plan = planProps.plan;
     it('matches expected output', async () => {
@@ -271,6 +270,111 @@ describe('<Plan />', () => {
       await fireEvent.click(button);
       expect(mockTrackEvent).toHaveBeenCalledWith('get_started', undefined);
       mockTrackEvent.mockReset();
+    });
+  });
+
+  describe('RequestCallback', () => {
+    const setupPhoneback = defaultProps => {
+      const rendered = render(<RequestCallback {...defaultProps} />);
+      const callbackButton = rendered
+        .getByText(phonebackProps.action.cta)
+        .closest('button');
+
+      fireEvent.click(callbackButton);
+
+      const firstNameField = rendered.getByLabelText(/First Name:/i);
+      const lastNameField = rendered.getByLabelText(/Last Name/i);
+      const phoneNumberField = rendered.getByLabelText(/Phone Number:/i);
+      if (defaultProps.enableCheckbox) {
+        const cbAgreement = rendered.getByTestId(
+          'checkbox-agreement_checkbox_yes'
+        );
+        fireEvent.click(cbAgreement);
+      }
+
+      fireEvent.change(firstNameField, {
+        target: { value: 'Tony' },
+      });
+      fireEvent.change(lastNameField, {
+        target: { value: 'Joe' },
+      });
+      fireEvent.change(phoneNumberField, {
+        target: { value: '07 88 266 553' },
+      });
+
+      const formSubmitButton = rendered
+        .getByText(phonebackProps.submitText)
+        .closest('button');
+
+      fireEvent.click(formSubmitButton);
+      return rendered;
+    };
+    it(`it submit successfuly`, async () => {
+      const onSuccess = jest.fn(() => {});
+      axios.post.mockResolvedValue({ status: 200 });
+      setupPhoneback({ ...phonebackProps, onSuccess });
+
+      const phonebackAttrs = {
+        agreement_checkbox: 'yes',
+        phoneback: {
+          campaign_id: phonebackProps.campaignId,
+          first_name: 'Tony',
+          last_name: 'Joe',
+          phone: '07 88 266 553',
+        },
+      };
+
+      await wait(() => {
+        expect(axios.post).toHaveBeenCalledWith(
+          phonebackProps.action.link,
+          phonebackAttrs,
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': phonebackProps.authenticityToken,
+            },
+          }
+        );
+      });
+    });
+
+    it(`it cant submit data to server`, async () => {
+      const onSuccess = jest.fn(() => {});
+      axios.post.mockRejectedValue({
+        response: {
+          status: 500,
+        },
+      });
+      setupPhoneback({
+        ...phonebackProps,
+        onSuccess,
+        enableCheckbox: false,
+      });
+
+      const phonebackAttrs = {
+        phoneback: {
+          campaign_id: phonebackProps.campaignId,
+          first_name: 'Tony',
+          last_name: 'Joe',
+          phone: '07 88 266 553',
+        },
+      };
+
+      await wait(() => {
+        expect(axios.post).toHaveBeenCalledWith(
+          phonebackProps.action.link,
+          phonebackAttrs,
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': phonebackProps.authenticityToken,
+            },
+          }
+        );
+        expect(onSuccess).not.toHaveBeenCalledWith();
+      });
     });
   });
 });

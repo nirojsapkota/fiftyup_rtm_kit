@@ -21,7 +21,7 @@ const WhiteCard = styled(Card)`
   align-items: center;
 `;
 
-export const PhonebackBox = ({ form, text, children }) => {
+export const PhonebackBox = ({ form, children, ...props }) => {
   return (
     <WhiteCard
       width={[1, 1, 500]}
@@ -32,24 +32,37 @@ export const PhonebackBox = ({ form, text, children }) => {
       mt={30}
     >
       <Header tag="h6" align="center" color="accent">
-        {text.talkToUsText}
+        {props.talkToUsText}
       </Header>
       <Header tag="h1" align="center" color="text">
-        {text.businessPhone}
+        {props.businessPhone}
       </Header>
       <Header tag="h6" align="center" color="accent">
-        {text.businessHours}
+        {props.businessHours}
       </Header>
+      <Paragraph
+        align="center"
+        py={[2, 2]}
+        dangerousHTML={props.extraMessage}
+      />
       <Box pt={10}>
-        <Phoneback text={text} form={form} />
+        <Phoneback form={form} {...props} />
         {children}
       </Box>
     </WhiteCard>
   );
 };
 
-export const Phoneback = ({ form, text }) => {
-  const [phonebackSubmitted, setPhonebackSubmitted] = React.useState(false);
+export const Phoneback = ({
+  form,
+  isPhonebacked = false,
+  thankYouProps,
+  ...props
+}) => {
+  const [phonebackSubmitted, setPhonebackSubmitted] = React.useState(isPhonebacked);
+  React.useEffect(() => {
+    setPhonebackSubmitted(isPhonebacked);
+  }, [isPhonebacked]);
   return (
     <Dialog
       renderContainer={() => {
@@ -58,10 +71,10 @@ export const Phoneback = ({ form, text }) => {
             {!phonebackSubmitted ? (
               <Box>
                 <Header tag="h6" align="center" color="text">
-                  {text.header}
+                  {props.header}
                 </Header>
                 <PhonebackForm
-                  text={text}
+                  {...props}
                   form={{
                     ...form,
                     onSuccess: (values, ctx) => {
@@ -74,10 +87,10 @@ export const Phoneback = ({ form, text }) => {
             ) : (
               <Box>
                 <Header pb={10} align="center" tag="h5" weight="normal">
-                  {text.thankYou}
+                  {thankYouProps.header}
                 </Header>
                 <Paragraph py={10} align="center">
-                  {text.message}
+                  {thankYouProps.message}
                 </Paragraph>
                 <Box
                   style={{
@@ -85,8 +98,8 @@ export const Phoneback = ({ form, text }) => {
                     justifyContent: 'center',
                   }}
                 >
-                  <Button as="a" href={text.thankYouLink}>
-                    {text.thankYouButtonText}
+                  <Button as="a" href={thankYouProps.link}>
+                    {thankYouProps.buttonText}
                   </Button>
                 </Box>
               </Box>
@@ -95,26 +108,52 @@ export const Phoneback = ({ form, text }) => {
         );
       }}
       renderTrigger={open => {
-        return (
-          <CenterBox>
-            <Button onClick={open}>
-              {text.requestButtonText}
-              <Icon inline fill="inverseText" glyph={text.requestButtonIcon} />
-            </Button>
-          </CenterBox>
-        );
+        if (typeof props.renderTrigger === 'function') {
+          return props.renderTrigger(open);
+        } else {
+          return (
+            <>
+              <CenterBox>
+                <Button onClick={open}>
+                  {props.requestButtonText}
+                  <Icon
+                    inline
+                    fill="inverseText"
+                    glyph={props.requestButtonIcon}
+                  />
+                </Button>
+              </CenterBox>
+            </>
+          );
+        }
       }}
     />
   );
 };
 
-export const PhonebackForm = ({ form, text }) => {
+export const PhonebackForm = ({ form, ...props }) => {
   return (
     <>
-      <Form {...form} submitText="Call Me Back" />
-      <Box style={{ textAlign: 'right' }}>
-        <Small dangerousHTML={text.disclaimer} />
-      </Box>
+      <Form
+        {...form}
+        renderFooter={({ formError }) => (
+          <>
+            <CenterBox>
+              <Button type="submit" track={props.track}>
+                {props.submitText}
+              </Button>
+            </CenterBox>
+            {formError && (
+              <Box pt={2}>
+                <Small align="left" color="error">
+                  <Icon fill="error" glyph="error" size={15} />
+                  {formError}
+                </Small>
+              </Box>
+            )}
+          </>
+        )}
+      />
     </>
   );
 };

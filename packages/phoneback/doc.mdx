@@ -27,7 +27,7 @@ This package exports a standalone phoneback box:
 The standalone form is exported as well:
 
 <Playground>
-  <PhonebackForm text={sample.text} form={sample.form} />
+  <PhonebackForm {...sample} />
 </Playground>
 
 Form errors are shown above the disclaimer, the following form will
@@ -35,7 +35,7 @@ throw an error on submission:
 
 <Playground>
   <PhonebackForm
-    text={sample.text}
+    {...sample}
     form={{...sample.form, onSubmit: async () => 'some error'}}
   />
 </Playground>

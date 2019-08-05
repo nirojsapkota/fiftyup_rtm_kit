@@ -27,7 +27,9 @@
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/list": "file:../list",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/typography": "file:../typography"
+    "@rtm-ui/typography": "file:../typography",
+    "@rtm-ui/phoneback": "file:../phoneback",
+    "@rtm-ui/form": "file:../form"
   },
   "peerDependencies": {
     "prop-types": "15.x",

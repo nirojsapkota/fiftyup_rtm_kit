@@ -6,6 +6,8 @@ import { Button } from '@rtm-ui/button';
 
 import ClickToCall from './ClickToCall';
 import Share from './Share';
+import RequestCallback from './RequestCallback';
+
 
 const Action = props => {
   return (
@@ -29,4 +31,4 @@ Action.propTypes = {
 
 export default Action;
 
-export { ClickToCall, Share };
+export { ClickToCall, Share, RequestCallback };
