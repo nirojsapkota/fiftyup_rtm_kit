@@ -4,25 +4,34 @@ route: /primitives/img
 menu: Primitives
 ---
 
-import { Playground, PropsTable } from 'docz'
-import { Img } from './src'
+import { Playground, PropsTable } from 'docz';
+import { Img, ResponsiveImage } from './src';
+import imageProps from './src/__fixtures__/sampleImgResp.js';
 
 # Img
-
-## PropTypes
-
-<PropsTable of={Img} />
 
 ## Basic usage
 
 <Playground>
-  <Img src="https://placehold.it/300x200" />
+  <Img alt="" src="https://placehold.it/300x200" />
 </Playground>
 
 <Playground>
-  <Img shape="rounded" src="https://placehold.it/300x200" />
+  <Img shape="rounded" alt="" src="https://placehold.it/300x200" />
 </Playground>
 
 <Playground>
-  <Img shape="circle" src="https://placehold.it/200x200" />
+  <Img shape="circle" alt="" src="https://placehold.it/200x200" />
 </Playground>
+
+## Responsive Image Component
+
+### It takes dual images and resize it to different breakpoints (Mobile & Desktop)
+
+<Playground>
+  <ResponsiveImage {...imageProps} />
+</Playground>
+
+## PropTypes
+
+<PropsTable of={Img} />

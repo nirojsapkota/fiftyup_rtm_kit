@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
+import ResponsiveImage from '../src/responsiveImg';
 
 const Wrapper = styled(Box)`
   max-width: 100%;
@@ -50,4 +51,4 @@ Img.propTypes = {
   height: PropTypes.number,
 };
 
-export { Img };
+export { Img, ResponsiveImage };
