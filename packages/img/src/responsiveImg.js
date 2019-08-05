@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
 import { Img } from '@rtm-ui/img';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 
 const Wrapper = styled(Box)`
   background: inherit;
@@ -31,7 +31,11 @@ const useResponsiveWidth = () => {
 };
 
 const ResponsiveImage = ({ desktopImgView, tabletImgView }) => {
-  const imageUrl = useResponsiveWidth() >= 990 ? desktopImgView : tabletImgView;
+  const theme = React.useContext(ThemeContext);
+
+  const minWidth = theme.width[1];
+  const imageUrl =
+    useResponsiveWidth() >= minWidth ? desktopImgView : tabletImgView;
   return (
     <Wrapper>
       <Img src={imageUrl} alt={imageUrl} />

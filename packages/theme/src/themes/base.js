@@ -4,9 +4,14 @@ const sm = '32';
 const md = '46';
 const lg = '76';
 
+const wsm = 750;
+const wmd = 990;
+const wlg = 1200;
+
 // eslint-disable-next-line
 export const base = {
   breakpoints: [`${sm}em`, `${md}em`, `${lg}em`],
+  width: [wsm, wmd, wlg],
   grid: {
     sm,
     md,

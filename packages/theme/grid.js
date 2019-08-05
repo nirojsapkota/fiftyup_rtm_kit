@@ -14,12 +14,11 @@ const Container = styled.div`
 const Grid = ({ children }) => {
   const theme = React.useContext(ThemeContext);
   const variants = Object.keys(theme.colors.variants);
-  console.log(variants);
   return (
     <Container>
-      {variants.map(variant => {
+      {variants.map((variant, index) => {
         return (
-          <Card p={10} variant={variant}>
+          <Card p={10} key={index} variant={variant}>
             <Header tag="h3">Hello, World</Header>
             <Paragraph>This is a test</Paragraph>
             <Small>Here is some disclaimer text</Small>
