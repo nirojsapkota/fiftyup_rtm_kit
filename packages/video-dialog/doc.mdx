@@ -1,0 +1,27 @@
+---
+name: VideoDialog
+route: /components/video-dialog
+menu: Components
+---
+
+import { Playground, PropsTable } from 'docz';
+import { VideoDialog } from './src';
+import videoProps from './src/__fixtures__/videoResponse.js';
+
+# VideoDialog
+
+## Basic usage
+
+<Playground>
+  <VideoDialog {...videoProps} />
+</Playground>
+
+### Modal Video Component with editable props
+
+<Playground>
+  <VideoDialog embedCode="kiyi-C7NQrQ" description=" One Big Switch" />
+</Playground>
+
+### Props
+
+<PropsTable of={VideoDialog} />

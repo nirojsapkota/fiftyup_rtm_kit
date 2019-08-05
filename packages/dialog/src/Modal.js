@@ -19,7 +19,7 @@ const Screen = styled.div`
 
 const Wrapper = styled.div`
   max-width: 100%;
-  width: 600px;
+  width: 700px;
 
   @media (max-width: ${props => props.theme.grid.sm}em) {
     position: absolute;
@@ -51,11 +51,12 @@ class Modal extends React.Component {
         <Wrapper
           onClick={e => {
             e.stopPropagation();
-          }}>
+          }}
+        >
           {this.props.children}
         </Wrapper>
       </Screen>,
-      this.el,
+      this.el
     );
   }
 }

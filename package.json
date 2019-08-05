@@ -104,7 +104,8 @@
     "@rtm-ui/testimonial": "file:packages/testimonial",
     "@rtm-ui/theme": "file:packages/theme",
     "@rtm-ui/tracker": "file:packages/tracker",
-    "@rtm-ui/typography": "file:packages/typography"
+    "@rtm-ui/typography": "file:packages/typography",
+    "@rtm-ui/video-dialog": "file:packages/video-dialog"
   },
   "eslintConfig": {
     "extends": [
