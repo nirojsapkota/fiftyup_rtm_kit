@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/img",
-  "version": "4.0.18",
+  "version": "4.0.19",
   "description": "Description for Bootstrap",
   "author": "RevTech Media",
   "rtmRollup": {
@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/layout": "file:../layout",
-    "@rtm-ui/img": "file:../img"
+    "@rtm-ui/img": "file:../img",
+    "@rtm-ui/layout": "file:../layout"
   },
   "peerDependencies": {
     "prop-types": "15.x",

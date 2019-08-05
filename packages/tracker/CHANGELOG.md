@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.1.2...@rtm-ui/tracker@4.2.0) (2019-08-05)
+
+
+### Features
+
+* **component:** Added sfmc collect code script ([#213](https://github.com/OBSAU/rtm-kit/issues/213)) ([92c2e9e](https://github.com/OBSAU/rtm-kit/commit/92c2e9e))
+
+
+
+
+
 ## [4.1.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.1.1...@rtm-ui/tracker@4.1.2) (2019-07-15)
 
 **Note:** Version bump only for package @rtm-ui/tracker

@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/plan",
-  "version": "2.0.53",
+  "version": "2.0.54",
   "description": "Description for plan",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -22,14 +22,14 @@
     "@rtm-ui/accordion": "file:../accordion",
     "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/button": "file:../button",
+    "@rtm-ui/form": "file:../form",
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/list": "file:../list",
-    "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/typography": "file:../typography",
     "@rtm-ui/phoneback": "file:../phoneback",
-    "@rtm-ui/form": "file:../form"
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
     "prop-types": "15.x",
