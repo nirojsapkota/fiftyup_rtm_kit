@@ -30,7 +30,7 @@ const loginPanel = {
   buttonIcon: 'view-forward',
   stateField: {
     fieldName: 'postcode_suburb',
-    validator: 'zipcode',
+    validator: 'postcode',
     errorValue: 'postcode',
   },
 };

@@ -15,7 +15,7 @@ const formSetup = [
     invalid: { entry: '34567', expect: 'Not enough characters' },
   },
   {
-    field: getFieldProps('zipcode'),
+    field: getFieldProps('postcode'),
     valid: { entry: '2000', expect: '2000, BARANGAROO' },
     // invalid: { entry: '', expect: 'Required' }, // TODO: not able to remove click on
   },
@@ -63,11 +63,11 @@ const formSetup = [
   },
   {
     field: getFieldProps('icon_check'),
-    valid: { entry: 'yes', expect: 'yes'}
+    valid: { entry: 'yes', expect: 'yes' },
   },
   {
     field: getFieldProps('icon_radio'),
-    valid: { entry: 'yes', expect: 'yes'}
+    valid: { entry: 'yes', expect: 'yes' },
   },
 ];
 

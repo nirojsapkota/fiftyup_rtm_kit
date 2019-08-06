@@ -18,7 +18,7 @@ jest
 
 const form = {
   id: 'test-form',
-  fields: [getFieldProps('email'), getFieldProps('zipcode')],
+  fields: [getFieldProps('email'), getFieldProps('postcode')],
 };
 
 describe(`<Form />`, () => {
@@ -64,7 +64,7 @@ describe(`<Form />`, () => {
     });
     const zipCodeInput = await getByLabelText(form.fields[1].label);
     await fireEvent.change(zipCodeInput, {
-      target: { value: '5000' },
+      target: { value: '5000, Ashfield' },
     });
 
     await fireEvent.click(submit);
@@ -116,7 +116,7 @@ describe(`<Form />`, () => {
     });
     const zipCodeInput = await getByLabelText(form.fields[1].label);
     await fireEvent.change(zipCodeInput, {
-      target: { value: '5000' },
+      target: { value: '5000, Ashfield' },
     });
 
     await fireEvent.click(submit);
@@ -131,7 +131,7 @@ describe(`<Form />`, () => {
     const handleSubmit = jest.fn(() => {
       throw new FormError({
         formError: 'test form error',
-        fieldErrors: { zipcode: 'zipcode not valid' },
+        fieldErrors: { postcode: 'zipcode not valid' },
       });
     });
 
@@ -147,7 +147,7 @@ describe(`<Form />`, () => {
     });
     const zipCodeInput = await getByLabelText(form.fields[1].label);
     await fireEvent.change(zipCodeInput, {
-      target: { value: '5000' },
+      target: { value: '5000, Ashfield' },
     });
     await fireEvent.click(submit);
 

@@ -18,9 +18,21 @@ export const maskValidator = (regex, fieldName) => {
     });
 };
 
+// 4 Digit AU Postcode Validation
+export const postcodeValidator = Yup.string()
+  .required('Required')
+  .matches(
+    /^[0-9]{4}(,\s*)([A-Za-z]+(?:\s[A-Za-z]+)*)$/,
+    'Please select postcode and suburb from the dropdown list'
+  );
+
+// 5 Digit US Zipcode Validation
 export const zipcodeValidator = Yup.string()
   .required('Required')
-  .min(4, 'Must be 4 digits');
+  .matches(
+    /^[0-9]{5}(,\s*)([A-Za-z]+(?:\s[A-Za-z]+)*)$/,
+    'Please select zipcode and city from the dropdown list'
+  );
 
 export const requiredValidator = Yup.string().required('Required');
 export const requiredRadioValidator = Yup.string().required(

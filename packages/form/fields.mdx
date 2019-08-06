@@ -66,10 +66,27 @@ We use [Yup](https://github.com/jquense/yup) to define our validation schema.
 Yup allows use to define a set of constraints along with an error message
 
 ```js
+// eg. postcodeValidator
+export const postcodeValidator = Yup.string()
+  .required('Required')
+  .matches(
+    /^[0-9]{4}(,\s*)([A-Za-z]+(?:\s[A-Za-z]+)*)$/,
+    'Please select postcode and suburb from the dropdown list'
+  );
+// (Or)
+export const postcodeValidator = Yup.string()
+  .required('Required')
+  .min(4, 'Must be 4 digits');
+```
+
+```js
 // eg. zipcodeValidator
 export const zipcodeValidator = Yup.string()
   .required('Required')
-  .min(4, 'Must be 4 digits');
+  .matches(
+    /^[0-9]{5}(,\s*)([A-Za-z]+(?:\s[A-Za-z]+)*)$/,
+    'Please select zipcode and city from the dropdown list'
+  );
 ```
 
 #### Mask Validator
@@ -145,11 +162,44 @@ Use `4111111111111111`, any cvc, and any date in the future for a valid response
 
 ## Autocomplete
 
+#### AU Zipcode vs US Postcode Validation
+
 The autocomplete field accepts a function which is responsible for querying a database
 or local dataset. This component is only responsible for triggering the function with the
 provided data and controlling the display and selection of the options
 
 The function below does no filtering, so any text will return the dataset.
+
+### AU Postcode Basic Usage
+
+<Playground>
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'My Postcode:',
+        name: 'postcode',
+        type: 'text',
+        hint: 'Eg. 2000, BARANGAROO',
+        autoComplete: 'off',
+        config: {
+          onEmptyResult: () => {
+            'Invalid Postcode message';
+          },
+          component: 'autocomplete',
+          searchFunction: async function() {
+            return [{ label: '2000, Sydney' }, { label: '2000, Barangaroo' }];
+          },
+          validator: 'postcode',
+        },
+      },
+    ]}
+  />
+</Playground>
+
+### US Zipcode Basic Usage
 
 <Playground>
   <Form
@@ -161,15 +211,15 @@ The function below does no filtering, so any text will return the dataset.
         label: 'My Zipcode:',
         name: 'zipcode',
         type: 'text',
-        hint: 'Ex. 2000, Barangaroo',
+        hint: 'Ex. 51111, Sioux City',
         autoComplete: 'off',
         config: {
           onEmptyResult: () => {
-            'Invalid Postcode message';
+            'Invalid zipcode message';
           },
           component: 'autocomplete',
           searchFunction: async function() {
-            return [{ label: '2000, Sydney' }, { label: '2000, Barangaroo' }];
+            return [{ label: '63123, Saint Louis' }, { label: '54111, Cecil' }];
           },
           validator: 'zipcode',
         },

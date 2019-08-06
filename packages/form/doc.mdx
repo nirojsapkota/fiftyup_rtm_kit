@@ -4,12 +4,12 @@ route: /form
 menu: Form
 ---
 
-import { Playground, PropsTable } from 'docz'
+import { Playground, PropsTable } from 'docz';
 import { Header, Small } from '@rtm-ui/typography';
-import { Button } from '@rtm-ui/button'
-import { stepInputs, formInputs, presignupInputs } from './sampleInputs'
-import { Form, StepForm, FormError, Accordion } from './src'
-import BaseField from './src/fields/baseField'
+import { Button } from '@rtm-ui/button';
+import { stepInputs, formInputs, presignupInputs } from './sampleInputs';
+import { Form, StepForm, FormError, Accordion } from './src';
+import BaseField from './src/fields/baseField';
 
 # Form
 
@@ -20,9 +20,9 @@ what make up the value of the form submission.
 
 ### onSubmit
 
-The `onSubmit` prop takes a __handler__ function with the `fields` as it's payload. `onSubmit` props
+The `onSubmit` prop takes a **handler** function with the `fields` as it's payload. `onSubmit` props
 must be promises to ensure they're executed asynchronously. Upon a successful response
-the form will go on to call `onSuccess`. When the __handler__ fails it should `throw`. The thrown
+the form will go on to call `onSuccess`. When the **handler** fails it should `throw`. The thrown
 object has a specific format:
 
 ```js
@@ -58,19 +58,19 @@ An error should result in the following:
   <Form
     {...presignupInputs}
     formError="Oh no! Something went wrong"
-    fieldErrors={{email: 'That username already exists'}} />
+    fieldErrors={{ email: 'That username already exists' }}
+  />
 </Playground>
-
 
 The `fields` payload is identical to the `fields` prop provided on render but with an additional
 `value` attribute supplied by the user input. This is to give the form handler the opportunity
 to manipulate the form after submission by passing back an updated set of `fields`.
 Some examples of why this might be useful:
 
-* Certain fields are no longer editable after initial submission (ie. `username` & `password`
-during signup)
-* Additional items are needed (ie. we couldn't find the address you submitted, so enter a
-multi-field address instead)
+- Certain fields are no longer editable after initial submission (ie. `username` & `password`
+  during signup)
+- Additional items are needed (ie. we couldn't find the address you submitted, so enter a
+  multi-field address instead)
 
 TODO: There will be scenarios where we want to pass other data to the `onSuccess` prop
 from the `onSubmit` response, this will need to be able to pass that back as well.
@@ -85,7 +85,7 @@ from the `onSubmit` response, this will need to be able to pass that back as wel
 
 1. Provide a mechanism for stepping through multiple forms
 2. Provide context for these forms. Each `Form` in a step form has access
-to the submitted values in a previous form
+   to the submitted values in a previous form
 
 `Form` accepts an `onSuccess` prop - which is the recommended way of progressing
 through sequential forms. It's the job of the step form to navigate the user, which
@@ -93,29 +93,30 @@ can be done in several ways. Below is an example of using a regular `accordion` 
 to show/hide each form.
 
 <Playground>
-    <StepForm {...stepInputs} renderForm={formProps => formProps}>
-      {({ activeFormId, forms }) => {
-        return (
-          <Accordion
-            items={forms}
-            activeItem={activeFormId}
-            setOpenItems={(openItems, openingItemId) => [
-              openItems,
-              openingItemId,
-            ]}
-            itemHeader={({ item, onClick }) => (
-              <Button asWrapper onClick={onClick}>
-                <Header tag="h6">{item.id}</Header>
-              </Button>
-            )}
-            itemBody={item => <Form {...item} />}
-          />
-        );
-      }}
-    </StepForm>
+  <StepForm {...stepInputs} renderForm={formProps => formProps}>
+    {({ activeFormId, forms }) => {
+      return (
+        <Accordion
+          items={forms}
+          activeItem={activeFormId}
+          setOpenItems={(openItems, openingItemId) => [
+            openItems,
+            openingItemId,
+          ]}
+          itemHeader={({ item, onClick }) => (
+            <Button asWrapper onClick={onClick}>
+              <Header tag="h6">{item.id}</Header>
+            </Button>
+          )}
+          itemBody={item => <Form {...item} />}
+        />
+      );
+    }}
+  </StepForm>
 </Playground>
 
 ### renderForm
+
 The `renderForm` prop allows us to manipulate the form from the context of the caller
 of the step form. When rendering a regular `Form` you may want to add a specific header
 or position the footer in specific manner - but if you're using the `StepForm`, you'd expect
@@ -126,6 +127,7 @@ so you can style each step however you'd like.
 > This functionality may go away as the following section can likely handle everything we need.
 
 ### children
+
 `StepForm` accepts a `children` render prop as well. This is useful for when you want to
 style the collection of forms in their entirety - however you can still dig into each
 form with ease. See the `accordion` example above for usage details.
@@ -152,14 +154,14 @@ can range from specify an autocomplete input to setting up a Stripe token genera
 
 ```js
   const props = {
-    label: 'My Zipcode:',
-    name: 'zipcode',
+    label: 'My postcode:',
+    name: 'postcode',
     type: 'text',
     autoComplete: 'off',
     config: {
       component: 'autocomplete',
       searchFunction: (term) => someSearchFunction(term)
-      validator: 'zipcode',
+      validator: 'postcode',
     },
   }
 
@@ -189,6 +191,7 @@ mask of `+1 (###) ###-####` on the input.
 
   <BaseField {...props} />
 ```
+
 In most cases these fields will be passed in via the `<Form />` props and will be automatically
 rendered to the `BaseField`.
 

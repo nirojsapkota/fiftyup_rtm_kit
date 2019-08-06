@@ -73,7 +73,7 @@ describe('<LoginPanel />', () => {
     });
     const postcode = getByLabelText('My Postcode:');
     fireEvent.change(postcode, {
-      target: { value: '2000, Barangaroo' },
+      target: { value: '2000, BARANGAROO' },
     });
 
     const submit = getByText(loginPanelProps.buttonText).closest('button');
@@ -87,7 +87,7 @@ describe('<LoginPanel />', () => {
           ...loginPanelProps.hiddenFields,
           user: {
             email: 'user@example.com',
-            postcode_suburb: '2000, Barangaroo',
+            postcode_suburb: '2000, BARANGAROO',
           },
           authenticity_token: loginPanelProps.authenticityToken,
           redirectPath: '',
@@ -122,7 +122,7 @@ describe('<LoginPanel />', () => {
     });
     const postcode = getByLabelText('My Postcode:');
     fireEvent.change(postcode, {
-      target: { value: '2000, Barangaroo' },
+      target: { value: '2000, BARANGAROO' },
     });
 
     const submit = getByText(loginPanelProps.buttonText).closest('button');
@@ -153,7 +153,7 @@ describe('<LoginPanel />', () => {
     });
     const postcode = getByLabelText('My Postcode:');
     fireEvent.change(postcode, {
-      target: { value: '2000' },
+      target: { value: '2000, BARANGAROO' },
     });
 
     const submit = getByText(loginPanelProps.buttonText).closest('button');

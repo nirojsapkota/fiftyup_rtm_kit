@@ -11,10 +11,10 @@ export const presignupInputs = {
       },
     },
     {
-      label: 'My Zipcode:',
-      name: 'zipcode',
+      label: 'My postcode:',
+      name: 'postcode',
       type: 'text',
-      hint: 'Ex. 2000, Barangaroo',
+      hint: 'Eg. 2000, BARANGAROO',
       autoComplete: 'off',
       config: {
         component: 'autocomplete',
@@ -40,7 +40,7 @@ export const presignupInputs = {
               });
             });
         },
-        validator: 'zipcode',
+        validator: 'postcode',
       },
     },
   ],
@@ -139,7 +139,7 @@ export const formInputs = {
       value: '',
       type: 'radio',
       options: [{ label: 'ELECTRICITY', value: 'yes', icon: 'electricity' }],
-    }
+    },
   ],
 };
 
