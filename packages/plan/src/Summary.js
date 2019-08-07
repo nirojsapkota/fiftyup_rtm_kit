@@ -48,7 +48,12 @@ const Main = props => {
             props.plan_features.map(({ icon, body }) => ({
               icon,
               fill: 'primary',
-              body: <Paragraph dangerousHTML={body} />,
+              body: (
+                <MarkdownWrapper	
+                  content={body}	
+                  isEnabledMarkdown={props.isEnabledMarkdown}	
+                />
+              ),
             }))}
         </List>
       </Box>
