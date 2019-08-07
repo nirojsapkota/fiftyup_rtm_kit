@@ -49,9 +49,9 @@ const Main = props => {
               icon,
               fill: 'primary',
               body: (
-                <MarkdownWrapper
-                  content={body}
-                  isEnabledMarkdown={props.isEnabledMarkdown}
+                <MarkdownWrapper	
+                  content={body}	
+                  isEnabledMarkdown={props.isEnabledMarkdown}	
                 />
               ),
             }))}
@@ -102,7 +102,9 @@ const ActionImage = ({
         <Img src={src} alt={main_header_text} />
       </A>
     )}
-    {rest.phoneBackDialog((open) => <Img src={src} alt={main_header_text} onClick={open}/>)}
+    {rest.phoneBackDialog(open => (
+      <Img src={src} alt={main_header_text} onClick={open} />
+    ))}
   </React.Fragment>
 );
 
@@ -247,6 +249,7 @@ Summary.propTypes = {
       }),
     })
   ),
+  isEnabledMarkdown: PropTypes.bool,
   children: PropTypes.node,
   disclaimer_html: PropTypes.string,
   accordion: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
