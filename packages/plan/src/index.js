@@ -79,6 +79,7 @@ export const Plan = ({
   actions,
   reference,
   phonebackProps,
+  isEnabledMarkdown,
 }) => {
   const [hasPhoneback, setHasPhoneback] = React.useState(plan.has_phoneback);
   const callAction = actions.find(({ track }) => track === 'click_to_call');
@@ -146,6 +147,7 @@ export const Plan = ({
               entity={entity}
               actions={actions}
               authenticityToken={authenticityToken}
+              isEnabledMarkdown={isEnabledMarkdown}
               phoneBackDialog={triggerElement =>
                 callBackFormDialog(
                   hasPhoneback,
@@ -199,6 +201,7 @@ Plan.propTypes = {
       body: PropTypes.string,
     })
   ),
+  isEnabledMarkdown: PropTypes.bool,
   user: PropTypes.shape({}),
   actions: PropTypes.arrayOf(PropTypes.shape({ action: PropTypes.string })),
   testimonials: PropTypes.arrayOf(
