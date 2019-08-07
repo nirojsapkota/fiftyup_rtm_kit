@@ -1,11 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { TrackingProvider } from '@rtm-ui/tracker';
 import { Button, ButtonGroup } from '../../button/src';
 import { Logo } from '../../icon/src';
 import { Bootstrap } from '../src';
 import { useLocalStorage } from './useLocalStorage';
 import { DocWrapper } from './docWrapper';
+
+const Wrapper = styled.div`
+  .css-1i0fr1k {
+    width: 100%;
+    max-width: 1500px;
+  }
+`;
 
 // This is used by jest and Docz
 const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
@@ -20,13 +28,15 @@ const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
       themeName={localThemeName}
     >
       <DocWrapper>
-        <ButtonGroup style={{ padding: '10px 10px 5px' }}>
+        <ButtonGroup
+          style={{ justifyContent: 'flex-end', padding: '10px 10px 5px' }}
+        >
           <Button
             style={{
               paddingBottom: '2px',
               boxShadow:
                 localThemeName === 'fiftyup'
-                  ? 'inset 0 -3px 0px currentColor'
+                  ? 'inset 0 -1px 0px currentColor'
                   : 'none',
             }}
             asWrapper
@@ -39,7 +49,7 @@ const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
               paddingBottom: '2px',
               boxShadow:
                 localThemeName === 'obs'
-                  ? 'inset 0 -3px 0px currentColor'
+                  ? 'inset 0 -1px 0px currentColor'
                   : 'none',
             }}
             asWrapper
@@ -52,7 +62,7 @@ const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
               paddingBottom: '2px',
               boxShadow:
                 localThemeName === 'ninesaver'
-                  ? 'inset 0 -3px 0px currentColor'
+                  ? 'inset 0 -1px 0px currentColor'
                   : 'none',
             }}
             asWrapper
@@ -62,7 +72,7 @@ const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
           </Button>
         </ButtonGroup>
       </DocWrapper>
-      {children}
+      <Wrapper>{children}</Wrapper>
     </Bootstrap>
   );
 };
