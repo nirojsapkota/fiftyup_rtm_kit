@@ -101,7 +101,7 @@ const Navbar = ({ variant, ...props }) => {
         )}
         <Box style={{ display: 'flex' }}>
           <LogoA href="/">
-            {props.logo ? (
+            {typeof props.logo === 'function' ? (
               props.logo
             ) : (
               <Logo
