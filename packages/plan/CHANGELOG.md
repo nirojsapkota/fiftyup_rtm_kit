@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.55](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.54...@rtm-ui/plan@2.0.55) (2019-08-08)
+
+
+### Bug Fixes
+
+* **Plan component:** fixed markdown format content ([7ba0495](https://github.com/OBSAU/rtm-kit/commit/7ba0495))
+
+
+
+
+
 ## [2.0.54](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.53...@rtm-ui/plan@2.0.54) (2019-08-05)
 
 **Note:** Version bump only for package @rtm-ui/plan

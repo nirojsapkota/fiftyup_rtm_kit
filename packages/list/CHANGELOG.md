@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.38](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/list@2.0.37...@rtm-ui/list@2.0.38) (2019-08-08)
+
+**Note:** Version bump only for package @rtm-ui/list
+
+
+
+
+
 ## [2.0.37](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/list@2.0.36...@rtm-ui/list@2.0.37) (2019-08-05)
 
 **Note:** Version bump only for package @rtm-ui/list

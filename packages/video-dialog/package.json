@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/video-dialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description for videoDialog",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -18,9 +18,9 @@
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
-    "@rtm-ui/icon": "file:../icon",
-    "@rtm-ui/dialog": "file:../dialog",
     "@rtm-ui/a": "file:../a",
+    "@rtm-ui/dialog": "file:../dialog",
+    "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout"
   },
   "peerDependencies": {
