@@ -12,19 +12,6 @@ import { Accordion } from '@rtm-ui/accordion';
 import { Share } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
 
-const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
-  const refer = React.useContext(PlanReferenceContext);
-  return (
-    <>
-      {isEnabledMarkdown === false ? (
-        <Paragraph dangerousHTML={content} />
-      ) : (
-        <Markdown {...rest} referenceObject={refer} raw={content} />
-      )}
-    </>
-  );
-};
-
 const StyledAccordion = styled(Box)`
   background: ${props => props.theme.colors.grayscale.lightest};
 `;
@@ -40,6 +27,7 @@ const SubHeader = props => (
 );
 
 const Main = props => {
+  const refer = React.useContext(PlanReferenceContext);
   return (
     <React.Fragment>
       <Box width={1} py={20}>
@@ -48,12 +36,7 @@ const Main = props => {
             props.plan_features.map(({ icon, body }) => ({
               icon,
               fill: 'primary',
-              body: (
-                <MarkdownWrapper	
-                  content={body}	
-                  isEnabledMarkdown={props.isEnabledMarkdown}	
-                />
-              ),
+              body: <Markdown referenceObject={refer} raw={body} />,
             }))}
         </List>
       </Box>
@@ -113,6 +96,7 @@ const Summary = props => {
   const backAction = props.actions.find(
     ({ actionType }) => actionType === 'back'
   );
+  const refer = React.useContext(PlanReferenceContext);
 
   return (
     <Box p={[0, 0, 0, 2]}>
@@ -187,10 +171,11 @@ const Summary = props => {
               renderItem={item => (
                 <Variant variant="a">
                   <StyledAccordion p={[2, 2, 3]}>
-                    <MarkdownWrapper
-                      content={item.content}
-                      isEnabledMarkdown={props.isEnabledMarkdown}
-                    />
+                    {props.isEnabledMarkdown === false ? (
+                      <Paragraph dangerousHTML={item.content} />
+                    ) : (
+                      <Markdown referenceObject={refer} raw={item.content} />
+                    )}
                   </StyledAccordion>
                 </Variant>
               )}
@@ -205,11 +190,11 @@ const Summary = props => {
               // base being 12px and the <Small> tag will
               // handle applying base colors to text blocks
               <Small>
-                <MarkdownWrapper
+                <Markdown
                   pb={10}
                   scale={0.75}
-                  content={disclaimer.body}
-                  isEnabledMarkdown={props.isEnabledMarkdown}
+                  referenceObject={refer}
+                  raw={disclaimer.body}
                 />
               </Small>
             ))}
@@ -218,6 +203,10 @@ const Summary = props => {
       </Box>
     </Box>
   );
+};
+
+Summary.defaultProps = {
+  isEnabledMarkdown: true,
 };
 
 export default Summary;
