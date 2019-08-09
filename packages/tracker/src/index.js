@@ -148,7 +148,13 @@ class TrackerRegistration extends React.Component {
     const fbimage = document.createElement('img');
     fbimage.height = '1';
     fbimage.width = '1';
-    fbimage.style = 'display:none';
+    /*
+    * Raises 'Attempted to assign to readonly property' exception while trying set Style by assigning a string directly
+    * This caused the IOS 9-10 to break
+    * Should be assigned to the property of style
+    * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
+    */
+    fbimage.style.display = 'none';
     fbimage.src =
       'https://www.facebook.com/tr?id=' +
       `${this.props.facebook_pixel_id}` +
