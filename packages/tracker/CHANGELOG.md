@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.2.0...@rtm-ui/tracker@4.2.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* Fix for IOS 9/10 issue ([#218](https://github.com/OBSAU/rtm-kit/issues/218)) ([212239d](https://github.com/OBSAU/rtm-kit/commit/212239d))
+
+
+
+
+
 # [4.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.1.2...@rtm-ui/tracker@4.2.0) (2019-08-05)
 
 
