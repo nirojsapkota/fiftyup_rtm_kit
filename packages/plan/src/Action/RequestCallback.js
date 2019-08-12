@@ -37,10 +37,13 @@ export const onSubmit = async (values, authenticityToken, url, campaignId) => {
   return values;
 };
 
+const Agreement = ({ disclaimer }) => {
+  return <Markdown scale={0.7} raw={disclaimer} />;
+};
+
 const RequestCallback = props => {
   const { action, isSubmitted, onSuccess, formInput, ...rest } = props;
   const { form } = formInput;
-  const agreementMessage = () => <Markdown scale={0.7} raw={rest.disclaimer} />;
   const cbAgreement = {
     label: '',
     name: 'agreement_checkbox',
@@ -50,7 +53,7 @@ const RequestCallback = props => {
     },
     options: [
       {
-        label: agreementMessage(),
+        label: <Agreement disclaimer={rest.disclaimer} />,
         value: 'yes',
       },
     ],
@@ -76,7 +79,7 @@ const RequestCallback = props => {
       form={formWithHandler}
       isPhonebacked={isSubmitted}
       track={action.track}
-      agreementMessage={!rest.enableCheckbox && agreementMessage}
+      agreement={!rest.enableCheckbox && <Agreement disclaimer={rest.disclaimer} />}
       requestButtonText={rest.triggerElement || action.cta}
     />
   );

@@ -140,9 +140,7 @@ export const PhonebackForm = ({ form, ...props }) => {
         {...form}
         renderFooter={({ formError }) => (
           <>
-            {typeof props.agreementMessage === 'function' && (
-              <Box my={2}>{props.agreementMessage()}</Box>
-            )}
+            {props.agreement && <Box my={2}>{props.agreement}</Box>}
             <CenterBox>
               <Button type="submit" track={props.track}>
                 {props.submitText}
