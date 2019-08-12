@@ -9,6 +9,7 @@ import { List } from '@rtm-ui/list';
 import { A } from '@rtm-ui/a';
 import { Theme as Variant } from '@rtm-ui/theme';
 import { Accordion } from '@rtm-ui/accordion';
+import { DynamicSvg } from '@rtm-ui/dynamic-svg';
 import { Share } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
 
@@ -70,26 +71,28 @@ const ActionButton = ({
   </Box>
 );
 
-const ActionImage = ({
-  callAction,
-  authenticityToken,
-  campaignId,
-  entity,
-  src,
-  main_header_text,
-  ...rest
-}) => (
-  <React.Fragment>
-    {callAction && (
-      <A track={callAction.track} href={callAction.link}>
-        <Img src={src} alt={main_header_text} />
-      </A>
-    )}
-    {rest.phoneBackDialog(open => (
-      <Img src={src} alt={main_header_text} onClick={open} />
-    ))}
-  </React.Fragment>
-);
+const PlanImg = ({ src, alt }) => {
+  const referenceObject = React.useContext(PlanReferenceContext);
+  if (src.endsWith('.svg')) {
+    return <DynamicSvg src={src} referenceObject={referenceObject} />;
+  } else {
+    return <Img src={src} alt={alt} />;
+  }
+};
+
+const ActionImage = ({ callAction, src, main_header_text, phoneBackDialog }) =>
+  src && (
+    <React.Fragment>
+      {callAction && (
+        <A track={callAction.track} href={callAction.link}>
+          <PlanImg src={src} alt={main_header_text} />
+        </A>
+      )}
+      {phoneBackDialog(open => (
+        <PlanImg src={src} alt={main_header_text} onClick={open} />
+      ))}
+    </React.Fragment>
+  );
 
 const Summary = props => {
   const callAction = props.actions.find(({ track }) => track === 'get_started');
@@ -106,22 +109,18 @@ const Summary = props => {
         </Header>
       </Box>
       <Block showAt="md">
-        {props.main_image_file_url && (
-          <ActionImage
-            callAction={callAction}
-            {...props}
-            src={props.main_image_file_url}
-          />
-        )}
+        <ActionImage
+          callAction={callAction}
+          {...props}
+          src={props.main_image_file_url}
+        />
       </Block>
       <Block hideAt="md">
-        {props.mobile_image_file_url && (
-          <ActionImage
-            callAction={callAction}
-            {...props}
-            src={props.mobile_image_file_url}
-          />
-        )}
+        <ActionImage
+          callAction={callAction}
+          {...props}
+          src={props.mobile_image_file_url}
+        />
       </Block>
       <Box px={[2, 2, 3, 0]} py={[20]}>
         <Box width={1}>
@@ -185,11 +184,11 @@ const Summary = props => {
         </Box>
         <Box py={2}>
           {props.disclaimers &&
-            props.disclaimers.map(disclaimer => (
+            props.disclaimers.map((disclaimer, i) => (
               // since fonts are em, this will result in the new
               // base being 12px and the <Small> tag will
               // handle applying base colors to text blocks
-              <Small>
+              <Small key={i}>
                 <Markdown
                   pb={10}
                   scale={0.75}

@@ -12,7 +12,6 @@ import {
 } from '../../../bootstrap/setup/testSetup';
 import { actions as planActions } from '../__fixtures__/plans';
 import { default as planProps, phonebackProps } from '../__fixtures__/plans';
-import { actions as energyPlanActions } from '../__fixtures__/energyPlans';
 import { default as energyPlanProps } from '../__fixtures__/energyPlans';
 import Action, { ClickToCall, Share, RequestCallback } from '../Action';
 import Cta from '../Cta';
@@ -185,6 +184,27 @@ describe('<Plan />', () => {
 
       const tweet = getByText('tweet');
       expect(tweet).toBeInTheDocument();
+    });
+
+    it('renders an svg if provided', async () => {
+      const actions = [planActions.get_started, planActions.request_call_back];
+      const planWithSvgImage = {
+        ...plan,
+        main_image_file_url: 'https//example.svg',
+        mobile_image_file_url: 'https//example.svg',
+      };
+      const { getByText, container, debug, getByTestId } = render(
+        <Summary
+          {...planWithSvgImage}
+          campaignId={plan.campaign_id}
+          entity={entity}
+          actions={actions}
+          authenticityToken={authenticityToken}
+          phoneBackDialog={fnPhoneBack}
+        >
+          {planCta}
+        </Summary>
+      );
     });
 
     it('get started action', async () => {
