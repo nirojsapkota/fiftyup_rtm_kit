@@ -153,7 +153,6 @@ const SubHeaderWrapper = styled(Box)`
   margin: auto;
 `;
 const Nav = props => {
-  console.log(props);
   const size = useWindowSize();
   const [isDesktop, setIsDesktop] = React.useState();
 
@@ -192,7 +191,6 @@ const Nav = props => {
         <Portal
           {...props}
           header={() =>
-            props.signInPath &&
             props.signOutPath && (
               <ProfileStatus
                 user={props.user}
