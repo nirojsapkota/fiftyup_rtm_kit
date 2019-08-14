@@ -479,6 +479,59 @@ items are clicked.
   />
 </Playground>
 
+## Dynamic Panel Radio Content using Text instead of Icons
+
+#### Same as Panel Radio where there is a check if icons are null or not present it will consider it as Text (Eg. Headers & Sub Headers)
+
+<Playground>
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Choose your Offer',
+        config: {
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+          justifyContent: 'center',
+          renderLabel: ({ name, label }) => (
+            <>
+              <Header tag="h5" align="center" htmlFor={name}>
+                {label}
+              </Header>
+            </>
+          ),
+        },
+        hint: '',
+        name: 'icon_radio',
+        value: '',
+        type: 'radio',
+        options: [
+          {
+            label: '9 MONTHS',
+            value: '9months',
+            header: '10.1',
+            subHeader: '¢/kWh',
+          },
+          {
+            label: '12 MONTHS',
+            value: '12months',
+            header: '9.6',
+            subHeader: '¢/kWh',
+          },
+          {
+            label: '24 MONTHS',
+            value: '24months',
+            header: '9.1',
+            subHeader: '¢/kWh',
+          },
+        ],
+      },
+    ]}
+  />
+</Playground>
+
 ## PropTypes
 
 <PropsTable of={BaseField} />

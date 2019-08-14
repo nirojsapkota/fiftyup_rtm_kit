@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Label } from '@rtm-ui/typography';
+import { Label, Header } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
 import { Icon } from '@rtm-ui/icon';
 import BasePanelRadioCheckboxField from '../basePanelRadioCheckboxField';
@@ -23,6 +23,21 @@ const Wrapper = styled.div`
     max-width: 120px;
     min-width: 100px;
   }
+`;
+
+const DynamicHeader = styled(Header)`
+  font-size: 3.4em;
+  padding-right: 18px;
+  font-weight: 600;
+  text-align: left;
+  color: ${props => getColor('accent', props.theme)};
+`;
+
+const DynamicSubHeader = styled(Header)`
+  color: ${props => getColor('accent', props.theme)};
+  font-size: 1.5em;
+  padding-left: 18px;
+  text-align: right;
 `;
 
 const StyledBox = styled(Card)`
@@ -49,7 +64,7 @@ const StyledLabel = styled(Label)`
   cursor: pointer;
   background: ${props => getColor(props.fillColor, props.theme)};
   color: ${props => getColor(props.color || 'inverseText', props.theme)};
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 600;
   width: 100%;
   text-align: center;
@@ -86,12 +101,20 @@ const PanelRadioField = ({
                   glyph={fieldValue === option.value ? 'radio-active' : 'radio'}
                 />
               </IconContainer>
-              {option.icon && (
+              {!('icon' in option) || !option.icon ? ( // Returns text only If the icon is null
+                <Box>
+                  <DynamicHeader>{option.header}</DynamicHeader>
+                  <DynamicSubHeader>{option.subHeader}</DynamicSubHeader>
+                </Box>
+              ) : option.icon && !(option.header && option.subHeader) ? ( // Returns icon only when headers and subheaders are not present.
                 <Icon
                   glyph={option.icon}
                   size={46}
                   fill={fillColorName(option.value, fieldValue)}
                 />
+              ) : (
+                // Returns null if icons, headers and subheaders are present.
+                ''
               )}
               <StyledLabel
                 fillColor={fillColorName(option.value, fieldValue)}
