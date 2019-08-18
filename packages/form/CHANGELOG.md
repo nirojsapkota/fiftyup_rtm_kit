@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.55](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.54...@rtm-ui/form@5.0.55) (2019-08-18)
+
+
+### Bug Fixes
+
+* **FieldGroup:** Fix progressive reveal of hidden form fields ([#224](https://github.com/OBSAU/rtm-kit/issues/224)) ([b11a50a](https://github.com/OBSAU/rtm-kit/commit/b11a50a))
+
+
+
+
+
 ## [5.0.54](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.53...@rtm-ui/form@5.0.54) (2019-08-14)
 
 **Note:** Version bump only for package @rtm-ui/form
