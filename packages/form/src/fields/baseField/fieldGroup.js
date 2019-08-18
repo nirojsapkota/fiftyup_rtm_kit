@@ -5,7 +5,16 @@ export const FieldGroupContext = React.createContext();
 
 export const FieldGroup = ({ fields, children, values, animate }) => {
   if (animate) {
-    const fieldsWithValues = fields.filter(({ name }) => {
+    const orderedFields = fields.sort(field => {
+      // Order the fields so that hidden fields come first.
+      // This way we can avoid blank fields during progressive reveal
+      if (field.type === 'hidden') {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    const fieldsWithValues = orderedFields.filter(({ name }) => {
       return values[name];
     });
     const lastFieldWithValue = fieldsWithValues[fieldsWithValues.length - 1];
