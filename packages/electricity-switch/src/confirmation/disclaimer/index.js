@@ -15,18 +15,27 @@ const DisclaimerBox = styled(Box)`
 `;
 
 const Disclaimer = ({ title, items }) => {
-  const disclaimers = items && items.filter(({ body }) => body !== '' && body !== null);
+  const disclaimers =
+    items && items.filter(({ body }) => body !== '' && body !== null);
   return (
     <Box>
       <Header pl={20} mb={20} tag="h6">
         {title}
       </Header>
-      {typeof(disclaimers) !== 'undefined' && disclaimers.length > 0 && (
+      {typeof disclaimers !== 'undefined' && disclaimers.length > 0 && (
         <DisclaimerBox p={2}>
-          {disclaimers.map(({ body }) => body).map((d, index) => {
-            // eslint-disable-next-line react/no-array-index-key
-            return d &&(<div><Small key={index} py={2} dangerousHTML={d} /></div>)
-          })}
+          {disclaimers
+            .map(({ body }) => body)
+            .map((d, index) => {
+              // eslint-disable-next-line react/no-array-index-key
+              return (
+                d && (
+                  <div key={index}>
+                    <Small key={index} py={2} dangerousHTML={d} />
+                  </div>
+                )
+              );
+            })}
         </DisclaimerBox>
       )}
     </Box>

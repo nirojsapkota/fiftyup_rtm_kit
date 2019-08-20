@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import isReact from 'is-react';
 import { Box, Pane } from '@rtm-ui/layout';
 import { Icon, Logo } from '@rtm-ui/icon';
 import { Button } from '@rtm-ui/button';
@@ -101,7 +102,7 @@ const Navbar = ({ variant, ...props }) => {
         )}
         <Box style={{ display: 'flex' }}>
           <LogoA href="/">
-            {typeof props.logo === 'function' ? (
+            {isReact.compatible(props.logo) ? (
               props.logo
             ) : (
               <Logo

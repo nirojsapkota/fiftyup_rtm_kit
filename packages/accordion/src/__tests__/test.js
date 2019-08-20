@@ -28,10 +28,10 @@ describe('<Accordion/>', () => {
       <Accordion
         {...props}
         renderHeader={h => <h2>{h.header}</h2>}
-        renderItem={item => <div>{item.body}</div>}
+        renderItem={item => <div>{item.body.value}</div>}
       />
     );
-    expect(getByText('Heading 1')).toBeInTheDocument();
+    expect(getByText('Heading 1')).toBeVisible();
   });
 
   it('calls onClick to display content', () => {
@@ -54,8 +54,8 @@ describe('<Accordion/>', () => {
     const headingText = getByText('Heading 1');
     fireEvent.click(headingText);
 
-    expect(getByText('Welcome to react')).toBeInTheDocument();
-    expect(getByText('Title item 1')).toBeInTheDocument();
+    expect(getByText('Welcome to react')).toBeVisible();
+    expect(getByText('Title item 1')).toBeVisible();
   });
 
   it('Set default content of tab by index', () => {
@@ -76,8 +76,8 @@ describe('<Accordion/>', () => {
         }}
       />
     );
-    expect(getByText('Welcome to react')).toBeInTheDocument();
-    expect(getByText('Title item 1')).toBeInTheDocument();
+    expect(getByText('Welcome to react')).toBeVisible();
+    expect(getByText('Title item 1')).toBeVisible();
   });
 
   it('Double click on header tab to hidden the content', () => {
@@ -102,7 +102,7 @@ describe('<Accordion/>', () => {
     const headingText = getByText(firstItem.header);
     fireEvent.click(headingText);
     fireEvent.click(headingText);
-    expect(queryByText('Welcome to react')).not.toBeInTheDocument();
-    expect(queryByText('Title item 1')).not.toBeInTheDocument();
+    expect(queryByText('Welcome to react')).not.toBeVisible();
+    expect(queryByText('Title item 1')).not.toBeVisible();
   });
 });

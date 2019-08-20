@@ -1,4 +1,3 @@
-import LogRocket from 'logrocket';
 import Google from '../google';
 
 describe(`Google`, () => {
@@ -64,7 +63,8 @@ describe(`Google`, () => {
   });
 
   it(`when not enough data is present it logs the failure`, () => {
-    const logSpy = jest.spyOn(LogRocket, 'captureException');
+    process.env.NODE_ENV = 'development';
+    const logSpy = jest.spyOn(console, 'log');
 
     Google.sendData({
       category: 'signin',
@@ -163,7 +163,8 @@ describe(`Google`, () => {
     });
 
     it(`get_started action, missing is_solar`, () => {
-      const logSpy = jest.spyOn(LogRocket, 'captureException');
+      process.env.NODE_ENV = 'development';
+      const logSpy = jest.spyOn(console, 'log');
 
       Google.sendData({
         category: 'energy',
@@ -179,7 +180,8 @@ describe(`Google`, () => {
     });
 
     it(`get_started action, missing plan_type`, () => {
-      const logSpy = jest.spyOn(LogRocket, 'captureException');
+      process.env.NODE_ENV = 'development';
+      const logSpy = jest.spyOn(console, 'log');
 
       Google.sendData({
         category: 'energy',

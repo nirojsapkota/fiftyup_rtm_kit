@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { getColor, getWeight } from '@rtm-ui/theme';
-import { Tracker } from '@rtm-ui/tracker';
+import { useTracker } from '@rtm-ui/tracker';
 import { Text } from '@rtm-ui/typography';
 
 const TextStyle = styled(Text)`
@@ -17,14 +17,13 @@ const TextStyle = styled(Text)`
 `;
 
 const A = ({ track, onClick, ...props }) => {
-  return track ? (
-    <Tracker
-      render={trackEvent => (
-        <TextStyle onClick={() => trackEvent(track, onClick)} {...props} />
-      )}
+  const { ref, trackEvent } = useTracker();
+  return (
+    <TextStyle
+      ref={ref}
+      onClick={e => trackEvent(e, track, onClick)}
+      {...props}
     />
-  ) : (
-    <TextStyle onClick={onClick} {...props} />
   );
 };
 

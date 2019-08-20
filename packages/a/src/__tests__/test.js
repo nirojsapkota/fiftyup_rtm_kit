@@ -4,33 +4,20 @@ import { A } from '../index';
 
 afterEach(cleanup);
 
-const mockTrackEvent = jest.fn();
+const mockTrackEvent = jest.fn((_, callback) => callback);
 jest.mock('@rtm-ui/tracker', () => {
   const original = require.requireActual('@rtm-ui/tracker');
   return {
     ...original,
-    Tracker: props => props.render(mockTrackEvent),
+    useTracker: () => ({
+      ref: () => {},
+      trackEvent: mockTrackEvent,
+    }),
   };
 });
 
 describe('<A />', () => {
   const text = 'Hello, World!';
-
-  it('matches expected output', () => {
-    const clickFn = jest.fn();
-    const { getByText } = render(
-      <A onClick={clickFn} weight="normal" color="primary">
-        {text}
-      </A>
-    );
-
-    expect(getByText(text)).toBeInTheDocument();
-    expect(getByText(text)).toHaveStyleRule('font-weight', '400');
-    expect(getByText(text)).toHaveStyleRule('color', '#1566ad');
-
-    fireEvent.click(getByText(text));
-    expect(clickFn).toHaveBeenCalled();
-  });
 
   it('passes the track prop to the tracking context module', () => {
     const { getByText } = render(<A track="test">{text}</A>);
@@ -40,6 +27,20 @@ describe('<A />', () => {
     expect(mockTrackEvent).toHaveBeenCalledTimes(1);
 
     mockTrackEvent.mockReset();
+  });
+
+  it('matches expected output', () => {
+    const { getByText } = render(
+      <A weight="normal" color="primary">
+        {text}
+      </A>
+    );
+
+    expect(getByText(text)).toBeInTheDocument();
+    expect(getByText(text)).toHaveStyleRule('font-weight', '400');
+    expect(getByText(text)).toHaveStyleRule('color', '#1566ad');
+
+    fireEvent.click(getByText(text));
   });
 
   it('defaults to link color when color prop is not set', () => {

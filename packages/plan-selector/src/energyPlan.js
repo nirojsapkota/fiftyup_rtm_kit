@@ -54,7 +54,7 @@ const PlanRateBox = styled(Box)`
     }
   }
 `;
-const NoRate = styled(Header) `
+const NoRate = styled(Header)`
   text-align: center;
   font-weight: normal;
 `;
@@ -90,7 +90,7 @@ const PlanBrief = ({ planBrief }) => (
   </PlanBriefBox>
 );
 
-const StyledButton = styled(Paragraph)`
+const StyledButton = styled(Box)`
   align-self: flex-end;
   text-decoration: underline;
   margin-bottom: 5px;
@@ -164,7 +164,7 @@ const EnergyPlan = ({
         <Block showAt="sm">
           <Merchant {...merchant} />
         </Block>
-        <PlanRate planRate={planRate}/>
+        <PlanRate planRate={planRate} />
         <MobileWrapper>
           <Block hideAt="sm">
             <Merchant {...merchant} />

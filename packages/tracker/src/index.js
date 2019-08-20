@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogRocket from 'logrocket';
 import Google from './google';
 import Facebook from './facebook';
 import Funnel from './funnel';
@@ -12,18 +11,12 @@ const safeSendTo = (service, data) => {
   try {
     service.sendData(data);
   } catch (error) {
-    LogRocket.captureException(error, {
-      tags: {
-        service,
-      },
-    });
+    console.log(error);
   }
 };
 
 export const track = (action, trackingData) => {
   const data = { ...trackingData, action };
-
-  console.log({ tracking: data });
 
   safeSendTo(Google, data);
   safeSendTo(Facebook, data);
@@ -31,10 +24,10 @@ export const track = (action, trackingData) => {
   safeSendTo(Bing, data);
 };
 
-const trackEvent = trackingData => (action, callback) => {
+const trackEvent = (e, action, trackingData, callback) => {
   track(action, trackingData);
   if (typeof callback === 'function') {
-    callback();
+    callback(e);
   }
 };
 
@@ -43,33 +36,43 @@ const TrackingContext = React.createContext({
   trackEvent,
 });
 
+const mungeHref = url => {
+  try {
+    const parsedUrl = new URL(url);
+    return `${parsedUrl.hostname}${parsedUrl.pathname.replace(/\//g, '---')}`;
+  } catch (e) {
+    // console.error(e);
+  }
+};
+
 export const useTracker = () => {
   const { trackingData } = React.useContext(TrackingContext);
   return {
     trackEvent: (e, action, callback) => {
-      track(action, trackingData);
-      if (callback) {
-        callback(e);
+      let realAction = action;
+      const aTag = e && e.target.closest('a');
+      // If we don't receive an action, grab the href out of the
+      // DOM node and clean it up so it can be sent as a virtual page view
+      if (aTag && aTag.href && !action) {
+        realAction = mungeHref(aTag.href);
       }
+      trackEvent(e, realAction, trackingData, callback);
     },
   };
 };
 
-export const TrackingProvider = ({ children, trackingData }) => {
+export const TrackingProvider = ({
+  children,
+  trackEventOverride,
+  trackingData,
+}) => {
+  const realTrackEvent = trackEventOverride || trackEvent;
   return (
-    <TrackingContext.Provider value={{ trackingData, trackEvent }}>
+    <TrackingContext.Provider
+      value={{ trackingData, trackEvent: realTrackEvent }}
+    >
       {children}
     </TrackingContext.Provider>
-  );
-};
-
-export const Tracker = props => {
-  return (
-    <TrackingContext.Consumer>
-      {({ trackingData, trackEvent }) => {
-        return props.render(trackEvent(trackingData));
-      }}
-    </TrackingContext.Consumer>
   );
 };
 
@@ -149,11 +152,11 @@ class TrackerRegistration extends React.Component {
     fbimage.height = '1';
     fbimage.width = '1';
     /*
-    * Raises 'Attempted to assign to readonly property' exception while trying set Style by assigning a string directly
-    * This caused the IOS 9-10 to break
-    * Should be assigned to the property of style
-    * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
-    */
+     * Raises 'Attempted to assign to readonly property' exception while trying set Style by assigning a string directly
+     * This caused the IOS 9-10 to break
+     * Should be assigned to the property of style
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
+     */
     fbimage.style.display = 'none';
     fbimage.src =
       'https://www.facebook.com/tr?id=' +
@@ -173,7 +176,7 @@ class TrackerRegistration extends React.Component {
     zd2.id = 'ze-snippet';
     zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${
       this.props.zendesk_id
-      }`;
+    }`;
     this.instance.appendChild(zd2);
 
     // SalesForce Marketting Cloud Collect code
@@ -184,28 +187,27 @@ class TrackerRegistration extends React.Component {
       s.onload = s.onreadystatechange = function () {
       _etmc.push(['setOrgId', '${this.props.sfmc_business_account_id}']);`;
     if (this.props.user && this.props.user.email) {
-      sfmc_script_html = sfmc_script_html + `_etmc.push(['setUserInfo', { 'email': '${this.props.user.email}' }]);`;
-    };
-    sfmc_script_html = sfmc_script_html + `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${this.props.sfmc_business_account_id}.collect.igodigital.com/collect.js', '_etmc');`;
+      sfmc_script_html =
+        sfmc_script_html +
+        `_etmc.push(['setUserInfo', { 'email': '${this.props.user.email}' }]);`;
+    }
+    sfmc_script_html =
+      sfmc_script_html +
+      `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${
+        this.props.sfmc_business_account_id
+      }.collect.igodigital.com/collect.js', '_etmc');`;
     sfmc.innerHTML = sfmc_script_html;
     this.instance.appendChild(sfmc);
   }
 
   render() {
     return (
-      <div
-        data-testid="TrackingRegister"
-        ref={el => (this.instance = el)}
-      />
+      <div data-testid="TrackingRegister" ref={el => (this.instance = el)} />
     );
   }
 }
 
 export { TrackerRegistration };
-
-Tracker.propTypes = {
-  render: PropTypes.func,
-};
 
 TrackingProvider.propTypes = {
   children: PropTypes.node,
@@ -218,5 +220,5 @@ TrackerRegistration.propTypes = {
   google_adwords_id: PropTypes.string,
   facebook_pixel_id: PropTypes.string,
   zendesk_id: PropTypes.string,
-  sfmc_business_account_id: PropTypes.string
+  sfmc_business_account_id: PropTypes.string,
 };

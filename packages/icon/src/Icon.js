@@ -3912,6 +3912,10 @@ const Icon = ({
       }
     : { fill: fill };
 
+  if (!glyph) {
+    return null;
+  }
+
   return (
     <Wrapper size={size} inline={inline}>
       <SvgWrapper size={size} className="icon">

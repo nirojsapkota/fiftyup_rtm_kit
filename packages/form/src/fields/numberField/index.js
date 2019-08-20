@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 import styled from 'styled-components';
 import maskPatterns, { pipes } from '../util/maskPatterns';
-import { inputStyle } from '../textField';
+import { inputStyle } from '../textField/styles';
 
-// const StyledInput = styled(MaskedInput)`
-//   ${inputStyle};
-// `;
-const StyledInput = styled(({ showErrorColor, ...rest }) => (
+const StyledInput = styled(({ showErrorColor, error, ...rest }) => (
   <MaskedInput {...rest} />
 ))`
   ${inputStyle};

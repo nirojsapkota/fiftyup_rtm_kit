@@ -16,7 +16,7 @@ const Grid = ({ children }) => {
     <Container>
       {variants.map(variant => {
         return (
-          <Card p={10} variant={variant}>
+          <Card p={10} key={variant} variant={variant}>
             {children}
           </Card>
         );

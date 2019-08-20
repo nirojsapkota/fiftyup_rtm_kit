@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
 import { injectStripe, CardElement } from 'react-stripe-elements';
 import Stripe from './stripe';
-import { inputStyle } from '../textField';
+import { inputStyle } from '../textField/styles';
 import { stripeStyle } from './styles';
 
 const Wrapper = styled(Box)`

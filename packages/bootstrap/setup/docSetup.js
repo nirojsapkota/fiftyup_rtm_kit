@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { TrackingProvider } from '@rtm-ui/tracker';
-import { Button, ButtonGroup } from '../../button/src';
-import { Logo } from '../../icon/src';
 import { Bootstrap } from '../src';
 import { useLocalStorage } from './useLocalStorage';
-import { DocWrapper } from './docWrapper';
 
 const Wrapper = styled.div`
   .css-1i0fr1k {
@@ -17,61 +14,13 @@ const Wrapper = styled.div`
 
 // This is used by jest and Docz
 const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
-  const [localThemeName, setThemeName] = useLocalStorage(
-    'themeName',
-    themeName
-  );
+  const [localThemeName] = useLocalStorage('themeName', themeName);
   return (
     <Bootstrap
       trackingProvider={TrackingProvider}
       overrides={overrides}
       themeName={localThemeName}
     >
-      <DocWrapper>
-        <ButtonGroup
-          style={{ justifyContent: 'flex-end', padding: '10px 10px 5px' }}
-        >
-          <Button
-            style={{
-              paddingBottom: '2px',
-              boxShadow:
-                localThemeName === 'fiftyup'
-                  ? 'inset 0 -1px 0px currentColor'
-                  : 'none',
-            }}
-            asWrapper
-            onClick={() => setThemeName('fiftyup')}
-          >
-            <Logo width={75} entityBrand="fiftyup" />
-          </Button>
-          <Button
-            style={{
-              paddingBottom: '2px',
-              boxShadow:
-                localThemeName === 'obs'
-                  ? 'inset 0 -1px 0px currentColor'
-                  : 'none',
-            }}
-            asWrapper
-            onClick={() => setThemeName('obs')}
-          >
-            <Logo width={75} entityBrand="obs" />
-          </Button>
-          <Button
-            style={{
-              paddingBottom: '2px',
-              boxShadow:
-                localThemeName === 'ninesaver'
-                  ? 'inset 0 -1px 0px currentColor'
-                  : 'none',
-            }}
-            asWrapper
-            onClick={() => setThemeName('ninesaver')}
-          >
-            <Logo width={75} entityBrand="ninesaver" />
-          </Button>
-        </ButtonGroup>
-      </DocWrapper>
       <Wrapper>{children}</Wrapper>
     </Bootstrap>
   );

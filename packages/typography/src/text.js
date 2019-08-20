@@ -140,37 +140,30 @@ const H1 = styled(({ color, tag, weight, font, align, boxParams, ...rest }) => {
   ${rest => displayByEachScreen(rest.tag)};
 `;
 
-export function Text({
-  dangerousHTML,
-  children,
-  p,
-  pl,
-  pr,
-  pt,
-  pb,
-  px,
-  py,
-  ...rest
-}) {
-  const textValue = dangerousHTML
-    ? { dangerouslySetInnerHTML: createMarkup(dangerousHTML) }
-    : { children };
-  const tagParams = { ...rest, ...textValue };
-  const { trackEvent } = useTracker();
-  let onClickProps = {};
-  if (rest.as === 'a' && rest.track) {
-    onClickProps = {
-      onClick: e => trackEvent(e, rest.track, rest.onClick),
-    };
+export const Text = React.forwardRef(
+  ({ dangerousHTML, children, p, pl, pr, pt, pb, px, py, ...rest }, ref) => {
+    const textValue = dangerousHTML
+      ? { dangerouslySetInnerHTML: createMarkup(dangerousHTML) }
+      : { children };
+    const tagParams = { ...rest, ...textValue };
+    const { trackEvent } = useTracker(ref);
+    let onClickProps = {};
+    // NOTE: we might want to replace this with a document-wide event listener
+    if (rest.as === 'a') {
+      onClickProps = {
+        onClick: e => trackEvent(e, rest.track, rest.onClick),
+      };
+    }
+    return (
+      <H1
+        ref={ref}
+        boxParams={{ p, pl, pr, pt, pb, px, py }}
+        {...tagParams}
+        {...onClickProps} // FIXME: placing this before tagParams allows tracking to be overridden
+      />
+    );
   }
-  return (
-    <H1
-      boxParams={{ p, pl, pr, pt, pb, px, py }}
-      {...tagParams}
-      {...onClickProps} // FIXME: placing this before tagParams allows tracking to be overridden
-    />
-  );
-}
+);
 
 Text.defaultProps = {
   dangerousHTML: undefined,
@@ -196,8 +189,12 @@ export const primitiveTags = [
   'label',
   'input',
   'span',
+  'div',
   'strong',
   'em',
+  'ul',
+  'ol',
+  'li',
 ];
 
 export const weightProps = ['thin', 'normal', 'bold'];
@@ -213,7 +210,6 @@ export const alignmentProps = [
 Text.propTypes = {
   tag: PropTypes.oneOf([...headerTags, ...primitiveTags]).isRequired,
   dangerousHTML: PropTypes.string,
-  children: PropTypes.node,
   align: PropTypes.oneOf(alignmentProps),
   weight: PropTypes.oneOf(weightProps),
   font: PropTypes.oneOf(fontStyles),

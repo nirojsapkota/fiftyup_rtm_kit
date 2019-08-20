@@ -23,12 +23,12 @@ describe('<LoginPanel />', () => {
     const postCodeField = {
       label: 'My Postcode:',
       placeholder: 'Postcode',
-      name: 'postcode',
+      fieldName: 'postcode',
       hint: '10001, New York',
     };
     const emailField = {
       label: 'My Email:',
-      name: 'email',
+      fieldName: 'postcode',
       placeholder: 'Email',
     };
 

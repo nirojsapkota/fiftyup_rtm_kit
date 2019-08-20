@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from '@rtm-ui/button';
 import { Box } from '@rtm-ui/layout';
-import { focusStyle } from '../textField';
+import { focusStyle } from '../textField/styles';
 
 const StyledButton = styled(Button)`
   ${focusStyle};

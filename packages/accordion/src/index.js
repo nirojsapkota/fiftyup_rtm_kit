@@ -9,20 +9,25 @@ const HeaderWrapper = styled.a`
   ${backgroundStyle};
   color: ${props => getColor('text', props.theme)};
   padding: 15px;
-  border-radius: 3px;
-  margin-top: 10px;
   cursor: pointer;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-const BodyWrapper = styled(Box)`
+const BoxWrapper = styled(Box)`
   border: 1px solid ${props => getColor('background', props.theme)};
   border-radius: 3px;
-  position: relative;
-  top: -2px;
-  padding: 8px;
+  border-radius: 3px;
+  margin-top: 10px;
+`;
+
+const BodyWrapper = styled(Box)`
+  padding: ${props => (props.active ? '16px' : '0')};
+  height: ${props => (props.active ? '100%' : '0')};
+  opacity: ${props => (props.active ? 1 : 0)};
+  overflow: hidden;
 `;
 
 class Accordion extends React.Component {
@@ -48,7 +53,7 @@ class Accordion extends React.Component {
       <Box>
         {this.props.items.map((item, index) => {
           return (
-            <Box key={index}>
+            <BoxWrapper key={index}>
               <HeaderWrapper onClick={() => this.chooseItem(index)}>
                 <Box>{this.props.renderHeader(item)}</Box>
                 <Icon
@@ -56,10 +61,10 @@ class Accordion extends React.Component {
                   glyph="view-back"
                 />
               </HeaderWrapper>
-              {index === this.state.activeItemIndex ? (
-                <BodyWrapper>{this.props.renderItem(item)}</BodyWrapper>
-              ) : null}
-            </Box>
+              <BodyWrapper active={index === this.state.activeItemIndex}>
+                {this.props.renderItem(item)}
+              </BodyWrapper>
+            </BoxWrapper>
           );
         })}
       </Box>

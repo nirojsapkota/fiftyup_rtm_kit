@@ -18,7 +18,9 @@ const toComponent = (ast, i) => {
 const renderComponent = ({ type, ...props }, i) => {
   const mappedType = primitiveMap[type];
   if (typeof mappedType !== 'function') {
-    console.log('Mapped type not found for', type, props);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Mapped type not found for', type, props);
+    }
     return null;
   }
 
@@ -57,6 +59,7 @@ const primitiveMap = {
   block: ({ children, rules }) => {
     return {
       ...rules,
+      tag: 'div',
       className: 'block-container',
       children: renderChildren(children),
     };

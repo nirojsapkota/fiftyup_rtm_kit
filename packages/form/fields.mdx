@@ -25,6 +25,7 @@ import Form from '@rtm-ui/form'
 ...
 
 <Form
+  id="my-form"
   onSubmit={myHandler}
   fields={[
     {
@@ -114,6 +115,7 @@ To provide a new error message you'll need to define a new validator
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -141,6 +143,7 @@ Use `4111111111111111`, any cvc, and any date in the future for a valid response
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -174,6 +177,7 @@ The function below does no filtering, so any text will return the dataset.
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -235,6 +239,7 @@ can be added as needed.
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -258,6 +263,7 @@ can be added as needed.
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -284,6 +290,7 @@ can be added as needed.
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -307,6 +314,7 @@ can be added as needed.
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -338,6 +346,7 @@ can be added as needed.
 
 <Playground>
   <Form
+    id="my-form"
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -366,7 +375,7 @@ can be added as needed.
           justifyContent: 'center',
         },
         hint: 'Select for some reason',
-        name: 'icon_radio',
+        name: 'icon_other',
         value: '',
         type: 'radio',
         options: [
@@ -385,7 +394,7 @@ can be added as needed.
           validator: 'requiredRadio',
         },
         hint: 'Select for some reason',
-        name: 'icon_radio',
+        name: 'icon_radio_2',
         value: '',
         type: 'radio',
         options: [
@@ -405,6 +414,7 @@ items are clicked.
 
 <Playground>
   <Form
+    id="my-form"
     progressiveReveal
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));

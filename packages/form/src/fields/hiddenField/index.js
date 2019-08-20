@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HiddenField = ({ fieldUtils: _fieldUtils, ...inputProps }) => (
+const HiddenField = ({ fieldUtils: _fieldUtils, error, ...inputProps }) => (
   <input {...inputProps} type="hidden" />
 );
 

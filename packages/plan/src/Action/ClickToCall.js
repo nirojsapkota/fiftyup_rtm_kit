@@ -5,9 +5,9 @@ import { Header, Paragraph } from '@rtm-ui/typography';
 import { Icon } from '@rtm-ui/icon';
 import { Theme as Variant } from '@rtm-ui/theme';
 
-const ClickToCall = ({ header, link, footer, track }) => {
+const ClickToCall = ({ header, link, footer, track, ...rest }) => {
   return (
-    <Variant variant="regular"> 
+    <Variant variant="regular">
       <React.Fragment>
         {header && (
           <Paragraph

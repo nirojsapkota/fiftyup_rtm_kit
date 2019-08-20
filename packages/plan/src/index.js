@@ -1,175 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Box, Block } from '@rtm-ui/layout';
-import { Img } from '@rtm-ui/img';
-import { Blurb } from '@rtm-ui/typography';
 import Sidebar from './Sidebar';
 import Cta from './Cta';
 import Summary from './Summary';
-import Action, { ClickToCall, RequestCallback } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
-import { Theme as Variant } from '@rtm-ui/theme';
-
-const SidebarWrapper = styled.div`
-  min-width: 340px;
-`;
+import * as S from './styles';
 
 const PlanSidebar = ({ children, ...props }) => (
   <Block showAt="lg" width={[1, 1, 1, 0.35]}>
     <Sidebar flex={0} px={[0, 0, 0, 3]} {...props}>
-      <SidebarWrapper>{children}</SidebarWrapper>
+      <S.SidebarWrapper>{children}</S.SidebarWrapper>
     </Sidebar>
   </Block>
 );
-
-const MerchantBox = styled.div`
-  max-width: 250px;
-  margin: 10px auto;
-  padding-top: 10px;
-`;
-const Merchant = ({ logoUrl, full_name }) =>
-  logoUrl && (
-    <MerchantBox>
-      <Img src={logoUrl} alt={full_name} />
-    </MerchantBox>
-  );
-
-const PlanWrapper = ({ children }) => (
-  <Box flex={1} px={[0, 0, 0, 3]} width={[1, 1, 1, 0.65]}>
-    {children}
-  </Box>
-);
-
-const StyledWrapper = styled(Box)`
-  position: relative;
-  justify-content: center;
-  display: flex;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    right: 0;
-    background-color: ${props => props.theme.colors.grayscale.lightest};
-    height: 320px;
-
-    @media (min-width: ${props => props.theme.grid.md}) {
-      height: 400px;
-    }
-  }
-`;
-
-const ContentWrapper = styled(Box)`
-  display: flex;
-  flex-wrap: wrap;
-
-  max-width: 1400px;
-  width: 100%;
-`;
 
 export const Plan = ({
   authenticityToken,
   entity,
   plan,
-  productTips,
-  switchFacts,
   actions,
   reference,
   phonebackProps,
   isEnabledMarkdown,
 }) => {
-  const [hasPhoneback, setHasPhoneback] = React.useState(plan.has_phoneback);
-  const callAction = actions.find(({ track }) => track === 'click_to_call');
+  const [isPhonebackSubmitted, setPhonebackSubmitted] = React.useState(false);
+  const clickAction = actions.find(({ track }) => track === 'get_started');
   const callbackAction = actions.find(
     ({ track }) => track === 'request_call_back'
   );
-  const handleCallbackSuccess = result => {
-    setHasPhoneback(true);
-  };
-  const clickAction = actions.find(({ track }) => track === 'get_started');
-  const callbackAttrs = {
+
+  const primaryAction = callbackAction || clickAction;
+  const primaryActionWithPhonebackProps = {
+    ...primaryAction,
     ...phonebackProps,
     authenticityToken,
     campaignId: plan.campaign_id,
+    isPhonebackSubmitted,
+    setPhonebackSubmitted,
   };
-
-  const callBackFormDialog = (
-    onCallBackSubmitted,
-    onSuccessCallback,
-    triggerElement = null
-  ) => {
-    return (
-      <>
-        {callbackAction && (
-          <RequestCallback
-            action={callbackAction}
-            {...callbackAttrs}
-            isSubmitted={onCallBackSubmitted}
-            onSuccess={onSuccessCallback}
-            renderTrigger={triggerElement}
-          />
-        )}
-      </>
-    );
-  };
-
-  const planCta = (
-    <Cta actions={actions} tips={productTips} switchFacts={switchFacts}>
-      {clickAction && (
-        <Blurb right variant="b" serif header={clickAction.header} />
-      )}
-      <Merchant {...plan.merchant} />
-      {callAction && (
-        <Variant variant="regular">
-          <ClickToCall {...callAction} />
-        </Variant>
-      )}
-      {!callbackAction && clickAction && <Action {...clickAction} />}
-      {callbackAction && (
-        <Box p={[2, 3]} width={1}>
-          {callBackFormDialog(hasPhoneback, handleCallbackSuccess)}
-        </Box>
-      )}
-    </Cta>
-  );
 
   return (
     <PlanReferenceContext.Provider value={reference}>
-      <StyledWrapper>
-        <ContentWrapper pt={[2, 2, 3]} px={[0, 0, 0, 48]}>
-          <PlanWrapper>
+      <S.StyledWrapper>
+        <S.ContentWrapper pt={[2, 2, 3]} px={[0, 0, 0, 48]}>
+          <Box flex={1} px={[0, 0, 0, 3]} width={[1, 1, 1, 0.65]}>
             <Summary
               {...plan}
               campaignId={plan.campaign_id}
-              entity={entity}
               actions={actions}
+              primaryActionProps={primaryActionWithPhonebackProps}
               authenticityToken={authenticityToken}
               isEnabledMarkdown={isEnabledMarkdown}
-              phoneBackDialog={triggerElement =>
-                callBackFormDialog(
-                  hasPhoneback,
-                  handleCallbackSuccess,
-                  triggerElement
-                )
-              }
             >
-              <Block hideAt="lg">{planCta}</Block>
+              <Block hideAt="lg">
+                <Cta
+                  actions={actions}
+                  primaryActionProps={primaryActionWithPhonebackProps}
+                  merchant={plan.merchant}
+                />
+              </Block>
             </Summary>
-          </PlanWrapper>
+          </Box>
           <PlanSidebar>
-            <Block showAt="lg">{planCta}</Block>
+            <Block showAt="lg">
+              <Cta
+                actions={actions}
+                primaryActionProps={primaryActionWithPhonebackProps}
+                merchant={plan.merchant}
+              />
+            </Block>
           </PlanSidebar>
-        </ContentWrapper>
-      </StyledWrapper>
+        </S.ContentWrapper>
+      </S.StyledWrapper>
     </PlanReferenceContext.Provider>
   );
-};
-
-PlanWrapper.propTypes = {
-  children: PropTypes.node,
 };
 
 Plan.propTypes = {
@@ -211,9 +116,4 @@ Plan.propTypes = {
 
 PlanSidebar.propTypes = {
   children: PropTypes.node,
-};
-
-Merchant.propTypes = {
-  logoUrl: PropTypes.string,
-  name: PropTypes.string,
 };

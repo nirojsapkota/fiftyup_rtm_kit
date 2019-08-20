@@ -75,7 +75,8 @@ const BaseField = props => {
   React.useEffect(() => {
     // The purpose of this is to allow the field to mount
     // in a hidden state and then begin it's animation
-    setTimeout(() => setClosed(false), 100);
+    const timeout = setTimeout(() => setClosed(false), 100);
+    return () => clearInterval(timeout);
   }, []);
 
   const toggleWaiting = () => {
@@ -84,6 +85,8 @@ const BaseField = props => {
 
   const { label, description, hint, helper, error } = props;
   const Input = getFieldComponent(props.type, props.config);
+
+  const { initialValue: _iv, ...inputProps } = props;
 
   return props.type !== 'hidden' ? (
     <Box mb={10}>
@@ -113,7 +116,7 @@ const BaseField = props => {
           </AnimateableWrapper>
           <AnimateableWrapper variants={variantChild}>
             <Input
-              {...props}
+              {...inputProps}
               showErrorColor={!focused && error}
               id={`${props.name}`}
               onFocus={toggleFocused}
@@ -137,7 +140,7 @@ const BaseField = props => {
       </AnimateableWrapper>
     </Box>
   ) : (
-    <Input {...props} id={`${props.name}`} />
+    <Input {...inputProps} id={`${props.name}`} />
   );
 };
 

@@ -42,7 +42,7 @@ const Agreement = ({ disclaimer }) => {
 };
 
 const RequestCallback = props => {
-  const { action, isSubmitted, onSuccess, formInput, ...rest } = props;
+  const { isSubmitted, onSuccess, formInput, ...rest } = props;
   const { form } = formInput;
   const cbAgreement = {
     label: '',
@@ -66,7 +66,7 @@ const RequestCallback = props => {
     id: 'callback',
     fields: [...formFields],
     onSubmit: async values =>
-      onSubmit(values, rest.authenticityToken, action.link, rest.campaignId),
+      onSubmit(values, rest.authenticityToken, rest.link, rest.campaignId),
     onSuccess: async values => {
       onSuccess();
       return values;
@@ -78,9 +78,7 @@ const RequestCallback = props => {
       {...rest}
       form={formWithHandler}
       isPhonebacked={isSubmitted}
-      track={action.track}
-      agreement={!rest.enableCheckbox && <Agreement disclaimer={rest.disclaimer} />}
-      requestButtonText={rest.triggerElement || action.cta}
+      renderTrigger={props.renderTrigger}
     />
   );
 };
@@ -127,4 +125,5 @@ RequestCallback.defaultProps = {
     },
   },
 };
+
 export default RequestCallback;

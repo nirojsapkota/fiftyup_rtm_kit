@@ -39,48 +39,41 @@ const Animate = ({ children }) => {
   const [maskWidth, setMaskWidth] = useState(null);
   const secondsDelay = 3000; // 3 seconds
 
-  useEffect(
-    () => {
-      setMaskWidth(
-        sliderRef.current.querySelector('.slider-mask').offsetWidth || 0
-      );
-      /* istanbul ignore else  */
-      if (middleRef.current) {
-        setHeightValue(middleRef.current.getBoundingClientRect().height);
-      }
-    },
-    [windowSize.width]
-  );
+  useEffect(() => {
+    setMaskWidth(
+      sliderRef.current.querySelector('.slider-mask').offsetWidth || 0
+    );
+    /* istanbul ignore else  */
+    if (middleRef.current) {
+      setHeightValue(middleRef.current.getBoundingClientRect().height);
+    }
+  }, [windowSize.width]);
 
-  useEffect(
-    () => {
-      setTimeout(() => {
-        if (children && currentIndex === children.length - 1) {
-          // Go back to the inital slide if we've reached the
-          // maximum number of slides
-          setCurrentIndex(0);
-        } else {
-          // Increment the current index
-          setCurrentIndex(currentIndex + 1);
-        }
-      }, secondsDelay);
-    },
-    [currentIndex]
-  );
-
-  useEffect(
-    () => {
-      /* istanbul ignore else  */
-      if (middleRef.current) {
-        setHeightValue(middleRef.current.getBoundingClientRect().height);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (children && currentIndex === children.length - 1) {
+        // Go back to the inital slide if we've reached the
+        // maximum number of slides
+        setCurrentIndex(0);
+      } else {
+        // Increment the current index
+        setCurrentIndex(currentIndex + 1);
       }
-    },
-    [
-      middleRef.current
-        ? middleRef.current.getBoundingClientRect().height
-        : middleRef.current,
-    ]
-  );
+    }, secondsDelay);
+
+    return () => clearInterval(timeout);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    /* istanbul ignore else  */
+    if (middleRef.current) {
+      setHeightValue(middleRef.current.getBoundingClientRect().height);
+    }
+  }, [
+    middleRef.current
+      ? middleRef.current.getBoundingClientRect().height
+      : middleRef.current,
+  ]);
 
   return (
     <Slider

@@ -25,6 +25,7 @@
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/typography": "file:../typography",
+    "is-react": "^1.3.3",
     "react-dom": "^16.8.4"
   },
   "peerDependencies": {

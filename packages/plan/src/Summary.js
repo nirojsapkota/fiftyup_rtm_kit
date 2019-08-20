@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Button } from '@rtm-ui/button';
 import { Header, Paragraph, Small, Markdown } from '@rtm-ui/typography';
 import { Block, Box } from '@rtm-ui/layout';
@@ -12,20 +11,30 @@ import { Accordion } from '@rtm-ui/accordion';
 import { DynamicSvg } from '@rtm-ui/dynamic-svg';
 import { Share } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
+import { PrimaryAction } from './PrimaryAction';
+import * as S from './styles';
 
-const StyledAccordion = styled(Box)`
-  background: ${props => props.theme.colors.grayscale.lightest};
-`;
+const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
+  const referenceObject = React.useContext(PlanReferenceContext);
+  return (
+    <>
+      {isEnabledMarkdown === false ? (
+        <Paragraph dangerousHTML={content} />
+      ) : (
+        <Markdown {...rest} referenceObject={referenceObject} raw={content} />
+      )}
+    </>
+  );
+};
 
-const SubHeader = props => (
-  <React.Fragment>
-    <Box width={1} py={3}>
-      <Header weight="normal" tag="h3">
-        {props.sub_header_text}
-      </Header>
-    </Box>
-  </React.Fragment>
-);
+const PlanImg = ({ src, alt }) => {
+  const referenceObject = React.useContext(PlanReferenceContext);
+  if (src.endsWith('.svg')) {
+    return <DynamicSvg src={src} referenceObject={referenceObject} />;
+  } else {
+    return <Img src={src} alt={alt} />;
+  }
+};
 
 const Main = props => {
   const refer = React.useContext(PlanReferenceContext);
@@ -45,57 +54,7 @@ const Main = props => {
   );
 };
 
-const ActionButton = ({
-  callAction,
-  authenticityToken,
-  campaignId,
-  entity,
-  ...rest
-}) => (
-  <Box
-    style={{
-      marginLeft: 'auto',
-    }}
-  >
-    {callAction && (
-      <Button
-        as="a"
-        track={callAction.track}
-        href={callAction.link}
-        target={callAction.target}
-      >
-        {callAction.cta}
-      </Button>
-    )}
-    {rest.phoneBackDialog()}
-  </Box>
-);
-
-const PlanImg = ({ src, alt }) => {
-  const referenceObject = React.useContext(PlanReferenceContext);
-  if (src.endsWith('.svg')) {
-    return <DynamicSvg src={src} referenceObject={referenceObject} />;
-  } else {
-    return <Img src={src} alt={alt} />;
-  }
-};
-
-const ActionImage = ({ callAction, src, main_header_text, phoneBackDialog }) =>
-  src && (
-    <React.Fragment>
-      {callAction && (
-        <A track={callAction.track} href={callAction.link}>
-          <PlanImg src={src} alt={main_header_text} />
-        </A>
-      )}
-      {phoneBackDialog(open => (
-        <PlanImg src={src} alt={main_header_text} onClick={open} />
-      ))}
-    </React.Fragment>
-  );
-
 const Summary = props => {
-  const callAction = props.actions.find(({ track }) => track === 'get_started');
   const backAction = props.actions.find(
     ({ actionType }) => actionType === 'back'
   );
@@ -109,30 +68,51 @@ const Summary = props => {
         </Header>
       </Box>
       <Block showAt="md">
-        <ActionImage
-          callAction={callAction}
-          {...props}
-          src={props.main_image_file_url}
-        />
+        {props.main_image_file_url && (
+          <PrimaryAction
+            {...props.primaryActionProps}
+            renderTrigger={triggerProps => (
+              <A {...triggerProps}>
+                <PlanImg
+                  src={props.main_image_file_url}
+                  alt={props.main_header_text}
+                />
+              </A>
+            )}
+          />
+        )}
       </Block>
       <Block hideAt="md">
-        <ActionImage
-          callAction={callAction}
-          {...props}
-          src={props.mobile_image_file_url}
-        />
+        {(props.mobile_image_file_url || props.main_image_file_url) && (
+          <PrimaryAction
+            {...props.primaryActionProps}
+            renderTrigger={triggerProps => (
+              <A {...triggerProps}>
+                <PlanImg
+                  src={props.mobile_image_file_url}
+                  alt={props.main_header_text}
+                />
+              </A>
+            )}
+          />
+        )}
       </Block>
       <Box px={[2, 2, 3, 0]} py={[20]}>
         <Box width={1}>
-          <SubHeader {...props} />
+          <Box width={1} py={3}>
+            <Header weight="normal" tag="h3">
+              {props.sub_header_text}
+            </Header>
+          </Box>
         </Box>
         <Box
           style={{
             display: 'flex',
             flexWrap: 'wrap',
+            justifyContent: 'space-between',
           }}
         >
-          {backAction && (
+          {backAction ? (
             <Button
               as="a"
               href={backAction.link}
@@ -141,8 +121,10 @@ const Summary = props => {
             >
               {backAction.cta}
             </Button>
+          ) : (
+            <div />
           )}
-          <ActionButton callAction={callAction} {...props} />
+          <PrimaryAction {...props.primaryActionProps} />
         </Box>
         <Box
           style={{
@@ -155,9 +137,7 @@ const Summary = props => {
             <Main {...props} />
             {props.tweet_text && (
               <Box pb={2}>
-                <Share
-                  message={props.tweet_text ? props.tweet_text : undefined}
-                />
+                <Share message={props.tweet_text} />
               </Box>
             )}
           </Box>
@@ -169,13 +149,12 @@ const Summary = props => {
               items={props.accordion}
               renderItem={item => (
                 <Variant variant="a">
-                  <StyledAccordion p={[2, 2, 3]}>
-                    {props.isEnabledMarkdown === false ? (
-                      <Paragraph dangerousHTML={item.content} />
-                    ) : (
-                      <Markdown referenceObject={refer} raw={item.content} />
-                    )}
-                  </StyledAccordion>
+                  <S.StyledAccordion p={[2, 2, 3]}>
+                    <MarkdownWrapper
+                      content={item.content}
+                      isEnabledMarkdown={props.isEnabledMarkdown}
+                    />
+                  </S.StyledAccordion>
                 </Variant>
               )}
               renderHeader={item => <Header tag="h5">{item.name}</Header>}
@@ -217,9 +196,6 @@ Main.propTypes = {
 Summary.propTypes = {
   authenticityToken: PropTypes.string,
   campaignId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  entity: PropTypes.shape({
-    name: PropTypes.string,
-  }),
   main_header_text: PropTypes.string,
   main_image_file_url: PropTypes.string,
   mobile_image_file_url: PropTypes.string,
@@ -242,8 +218,4 @@ Summary.propTypes = {
   disclaimer_html: PropTypes.string,
   accordion: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
   tweet_text: PropTypes.string,
-};
-
-SubHeader.propTypes = {
-  sub_header_text: PropTypes.string,
 };

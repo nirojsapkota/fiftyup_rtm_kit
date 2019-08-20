@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tracker } from '@rtm-ui/tracker';
-import { StyledButton, WrapperButton, ContentWrapper, ButtonLink } from './style';
+import { useTracker } from '@rtm-ui/tracker';
+import {
+  StyledButton,
+  WrapperButton,
+  ContentWrapper,
+  ButtonLink,
+} from './style';
 
 export const Base = ({
   track,
@@ -11,23 +16,30 @@ export const Base = ({
   block,
   ...buttonProps
 }) => {
-  const Component = asWrapper ? WrapperButton : buttonProps.as === 'a' ? ButtonLink : StyledButton;
+  const { ref, trackEvent } = useTracker();
+  const Component = asWrapper
+    ? WrapperButton
+    : buttonProps.as === 'a'
+    ? ButtonLink
+    : StyledButton;
 
-  const content = asWrapper || buttonProps.as === 'a' ? <React.Fragment>{children}</React.Fragment> : <ContentWrapper>{children}</ContentWrapper>;
-
-  return track ? (
-    <Tracker
-      render={trackEvent => (
-        <Component block={block} onClick={() => trackEvent(track, onClick)} {...buttonProps}>
-          {content}
-        </Component>
-      )}
-    />
-  ) : (
-      <Component block={block} onClick={onClick} {...buttonProps}>
-        {content}
-      </Component>
+  const content =
+    asWrapper || buttonProps.as === 'a' ? (
+      <React.Fragment>{children}</React.Fragment>
+    ) : (
+      <ContentWrapper>{children}</ContentWrapper>
     );
+
+  return (
+    <Component
+      ref={ref}
+      block={block}
+      onClick={e => trackEvent(e, track, onClick)}
+      {...buttonProps}
+    >
+      {content}
+    </Component>
+  );
 };
 
 Base.propTypes = {
