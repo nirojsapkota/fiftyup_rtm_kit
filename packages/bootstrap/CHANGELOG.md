@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.20](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@4.0.19...@rtm-ui/bootstrap@4.0.20) (2019-08-20)
+
+**Note:** Version bump only for package @rtm-ui/bootstrap
+
+
+
+
+
 ## [4.0.19](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@4.0.18...@rtm-ui/bootstrap@4.0.19) (2019-08-09)
 
 **Note:** Version bump only for package @rtm-ui/bootstrap

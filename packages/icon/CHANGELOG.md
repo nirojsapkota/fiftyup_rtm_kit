@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.31](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/icon@5.0.30...@rtm-ui/icon@5.0.31) (2019-08-20)
+
+**Note:** Version bump only for package @rtm-ui/icon
+
+
+
+
+
 ## [5.0.30](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/icon@5.0.29...@rtm-ui/icon@5.0.30) (2019-08-09)
 
 **Note:** Version bump only for package @rtm-ui/icon
