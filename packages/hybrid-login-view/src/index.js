@@ -72,10 +72,10 @@ const HybridLoginView = ({
         <HeroImageWrapper m="auto">
           <Img src={heroImageUrl} alt="Hero image" />
         </HeroImageWrapper>
-        <ContentWrapper mt={-20} m="auto">
+        <ContentWrapper m="auto">
           <MobileHide>
             <Column width={1 / 2}>
-              <LoginPanelWrapper px={[10, 10, 15, 20]}>
+              <LoginPanelWrapper mt={-30} px={[10, 10, 15, 20]}>
                 <LoginPanel {...props} />
               </LoginPanelWrapper>
             </Column>
@@ -95,7 +95,7 @@ const HybridLoginView = ({
             </Column>
           </MobileHide>
           <MobileShow>
-            <LoginPanelWrapper px={[10, 10, 15, 20]}>
+            <LoginPanelWrapper mt={-30} px={[10, 10, 15, 20]}>
               <LoginPanel {...props} />
             </LoginPanelWrapper>
             <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
