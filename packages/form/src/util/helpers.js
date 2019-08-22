@@ -8,6 +8,7 @@ import {
   passwordComplexityValidator,
   zipcodeValidator,
   postcodeValidator,
+  countyValidator,
   dropdownValidator,
 } from '../fields/util/validators';
 
@@ -20,6 +21,7 @@ const validatorMap = {
   passwordComplexityValidator,
   zipcodeValidator,
   postcodeValidator,
+  countyValidator,
   dropdownValidator,
 };
 

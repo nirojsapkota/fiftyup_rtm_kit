@@ -34,6 +34,11 @@ export const zipcodeValidator = Yup.string()
     'Please select zipcode and city from the dropdown list'
   );
 
+// IE County Validation
+export const countyValidator = Yup.string()
+  .required('Required')
+  .matches(/[A-Za-z]+/, 'Please select county from the dropdown list');
+
 export const requiredValidator = Yup.string().required('Required');
 export const requiredRadioValidator = Yup.string().required(
   'Please select an option'

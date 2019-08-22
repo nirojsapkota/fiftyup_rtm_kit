@@ -90,6 +90,13 @@ export const zipcodeValidator = Yup.string()
   );
 ```
 
+```js
+// eg. countyValidator
+export const countyValidator = Yup.string()
+  .required('Required')
+  .matches(/[A-Za-z]+/, 'Please select county from the dropdown list');
+```
+
 #### Mask Validator
 
 The mask validator is special case that both validates and formats
@@ -215,7 +222,7 @@ The function below does no filtering, so any text will return the dataset.
         label: 'My Zipcode:',
         name: 'zipcode',
         type: 'text',
-        hint: 'Ex. 51111, Sioux City',
+        hint: 'Eg. 51111, Sioux City',
         autoComplete: 'off',
         config: {
           onEmptyResult: () => {
@@ -226,6 +233,35 @@ The function below does no filtering, so any text will return the dataset.
             return [{ label: '63123, Saint Louis' }, { label: '54111, Cecil' }];
           },
           validator: 'zipcode',
+        },
+      },
+    ]}
+  />
+</Playground>
+
+### IE County Basic Usage
+
+<Playground>
+  <Form
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'My County:',
+        name: 'county',
+        type: 'text',
+        hint: 'Eg. Carlow',
+        autoComplete: 'off',
+        config: {
+          onEmptyResult: () => {
+            'Invalid county message';
+          },
+          component: 'autocomplete',
+          searchFunction: async function() {
+            return [{ label: 'Clare' }, { label: 'Mayo' }];
+          },
+          validator: 'county',
         },
       },
     ]}
