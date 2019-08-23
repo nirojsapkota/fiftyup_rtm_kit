@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/hero",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Description for hero",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -18,11 +18,11 @@
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
-    "@rtm-ui/img": "file:../img",
-    "@rtm-ui/typography": "file:../typography",
-    "@rtm-ui/video-dialog": "file:../video-dialog",
     "@rtm-ui/button": "file:../button",
-    "@rtm-ui/layout": "file:../layout"
+    "@rtm-ui/img": "file:../img",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/typography": "file:../typography",
+    "@rtm-ui/video-dialog": "file:../video-dialog"
   },
   "peerDependencies": {
     "prop-types": "15.x",
