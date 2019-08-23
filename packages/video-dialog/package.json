@@ -21,7 +21,8 @@
     "@rtm-ui/a": "file:../a",
     "@rtm-ui/dialog": "file:../dialog",
     "@rtm-ui/icon": "file:../icon",
-    "@rtm-ui/layout": "file:../layout"
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
     "prop-types": "15.x",

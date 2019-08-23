@@ -4,14 +4,41 @@ route: /components/hero
 menu: Components
 ---
 
-import { Playground } from 'docz'
-import { Hero } from './src'
+import { Playground, PropsTable } from 'docz';
+import { Hero, HomePageHero } from './src';
 import { heroProps } from './src/__fixtures__/heroProps';
+import { auProps } from './src/__fixtures__/auProps';
+import { usProps } from './src/__fixtures__/usProps';
+import { euProps } from './src/__fixtures__/euProps';
 
 # Hero
 
-## Basic usage
+## Basic Home Page Hero Component AU
+
+##### Note: Default Image size is 515x470
 
 <Playground>
-  <Hero {...heroProps} />
+  <Hero {...auProps} />
 </Playground>
+
+## US Hero Component
+
+<Playground>
+  <Hero {...usProps} />
+</Playground>
+
+## EU Hero Component
+
+<Playground>
+  <Hero {...euProps} />
+</Playground>
+
+## Default Home Page Hero Component
+
+<Playground>
+  <HomePageHero {...heroProps} />
+</Playground>
+
+### Props
+
+<PropsTable of={Hero} />

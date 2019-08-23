@@ -18,7 +18,7 @@ describe('<VideoDialog />', () => {
 
       expect(iframe).toBeInTheDocument();
       expect(iframe.src).toBe(
-        `https://www.youtube.com/embed/${videoProps.embedCode}?controls=0`
+        `https://www.youtube.com/embed/${videoProps.embedCode}`
       );
       expect(iframe.width).toBe(videoProps.width);
       expect(iframe.height).toBe(videoProps.height);
@@ -44,7 +44,7 @@ describe('<VideoDialog />', () => {
       const iframe = document.querySelector('iframe');
       expect(iframe).toBeInTheDocument();
       expect(iframe.src).toBe(
-        `https://www.youtube.com/embed/${props.embedCode}?controls=0`
+        `https://www.youtube.com/embed/${props.embedCode}`
       );
     });
   });

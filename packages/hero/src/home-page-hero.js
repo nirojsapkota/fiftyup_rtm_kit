@@ -1,0 +1,46 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Header } from '@rtm-ui/typography';
+import { Box } from '@rtm-ui/layout';
+import { Button } from '@rtm-ui/button';
+
+const HeroWrapper = styled(Box)`
+  max-width: 1500px;
+  display: flex;
+  flex-direction: column;
+  height: 454px;
+`;
+
+const HomePageHero = ({ ...props }) => {
+  return (
+    <React.Fragment>
+      <HeroWrapper
+        data-testid="hero-background"
+        style={{
+          backgroundImage: `url(${props.backgroundImgUrl})`,
+          backgroundPosition: 'center',
+        }}
+      >
+        <Header align="center" mt={130}>
+          {props.imgText}
+        </Header>
+        <Box mx="auto" mt={80}>
+          <Button as="a" href={props.buttonLink}>
+            {props.buttonText}
+          </Button>
+        </Box>
+      </HeroWrapper>
+    </React.Fragment>
+  );
+};
+
+export default HomePageHero;
+
+HomePageHero.propTypes = {
+  children: PropTypes.node,
+  backgroundImgUrl: PropTypes.string,
+  imgText: PropTypes.string,
+  buttonText: PropTypes.string,
+  buttonLink: PropTypes.string,
+};

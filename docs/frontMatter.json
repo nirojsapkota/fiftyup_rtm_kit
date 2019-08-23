@@ -83,5 +83,10 @@
     "name": "Readfile",
     "route": "/packages/readfile",
     "menu": "Packages"
+  },
+  {
+    "name": "Hero",
+    "route": "/components/hero",
+    "menu": "Components"
   }
 ]
