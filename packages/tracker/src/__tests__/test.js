@@ -54,6 +54,7 @@ describe('<TrackerRegistration />', () => {
     const bing_uet_tag_code = '25041030';
     const google_adwords_id = 'AW-964414963';
     const facebook_pixel_id = '1111111111';
+    const fullstory_id = 'NQGXA';
     const zendesk_id = 'a85c71b0-2af3-4bb0-9cd3-3a9eb0ebcb67';
     const sfmc_business_account_id = '123456';
 
@@ -63,6 +64,7 @@ describe('<TrackerRegistration />', () => {
         bing_uet_tag_code={bing_uet_tag_code}
         google_adwords_id={google_adwords_id}
         facebook_pixel_id={facebook_pixel_id}
+        fullstory_id={fullstory_id}
         zendesk_id={zendesk_id}
         sfmc_business_account_id={sfmc_business_account_id}
         user={{ email: 'test@mail.com' }}
@@ -79,6 +81,7 @@ describe('<TrackerRegistration />', () => {
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       facebook_pixel_id
     );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(fullstory_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       sfmc_business_account_id
