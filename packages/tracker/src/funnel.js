@@ -50,6 +50,12 @@ const categoryKeys = {
         plan_id: tracking.meta.tracking_id,
       };
     },
+    switch_confirm: tracking => {
+      return {
+        step_code: 'energy_click_switch_confirm',
+        plan_id: tracking.meta.tracking_id,
+      };
+    },
   },
   'health-insurance': {
     get_started: tracking => {
