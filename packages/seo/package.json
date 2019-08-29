@@ -1,0 +1,27 @@
+{
+  "name": "@rtm-ui/seo",
+  "version": "1.0.0",
+  "description": "Description for seo",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "seo",
+    "namedExports": [
+      "Seo"
+    ]
+  },
+  "main": "build/index.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
+  },
+  "dependencies": {
+    "react-helmet": "^5.2.1"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}

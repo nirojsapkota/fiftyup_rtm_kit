@@ -59,6 +59,7 @@
     "react": "^16.8.0",
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.8.0",
+    "react-helmet": "^5.2.1",
     "react-spring": "^8.0.15",
     "react-stripe-elements": "^2.0.3",
     "react-text-mask": "^5.4.3",
@@ -107,7 +108,8 @@
     "@rtm-ui/theme": "file:packages/theme",
     "@rtm-ui/tracker": "file:packages/tracker",
     "@rtm-ui/typography": "file:packages/typography",
-    "@rtm-ui/video-dialog": "file:packages/video-dialog"
+    "@rtm-ui/video-dialog": "file:packages/video-dialog",
+    "@rtm-ui/seo": "file:packages/seo"
   },
   "eslintConfig": {
     "extends": [

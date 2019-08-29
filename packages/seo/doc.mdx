@@ -1,0 +1,35 @@
+---
+name: Seo
+route: /components/seo
+menu: Components
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Seo } from './src';
+import data from './src/__fixtures__/props.js';
+
+# Seo Header component
+
+#### Supports List of Meta tags (e.g name, property, content), Title & Links in the document head
+
+<Playground>
+  <Seo {...data}></Seo>
+</Playground>
+
+### Sample SEO Response:
+
+```js
+<head>
+  <title>One Big Switch</title>
+  <link rel="icon" href="https://www.onebigswitch.com.au" />
+  <meta property="og:description" content="Join One Big Switch" />
+  <meta
+    name="title"
+    content="One Big Switch | OVER 1,083,268 MEMBERS TO DATE"
+  />
+</head>
+```
+
+### Props
+
+<PropsTable of={Seo} />
