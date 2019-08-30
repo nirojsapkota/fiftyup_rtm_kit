@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.24](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/animate@2.0.23...@rtm-ui/animate@2.0.24) (2019-08-30)
+
+**Note:** Version bump only for package @rtm-ui/animate
+
+
+
+
+
 ## [2.0.23](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/animate@2.0.22...@rtm-ui/animate@2.0.23) (2019-08-27)
 
 **Note:** Version bump only for package @rtm-ui/animate
