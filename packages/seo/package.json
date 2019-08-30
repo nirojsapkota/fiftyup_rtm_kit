@@ -11,6 +11,7 @@
     ]
   },
   "main": "build/index.js",
+  "module": "build/index.js",
   "_module": "src/index",
   "scripts": {
     "build": "rtm-scripts rollup --f umd",
