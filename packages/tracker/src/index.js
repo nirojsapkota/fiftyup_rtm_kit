@@ -134,7 +134,7 @@ class TrackerRegistration extends React.Component {
     this.instance.appendChild(adwords2);
 
     const fullstory = document.createElement('script');
-    adwords2.innerHTML = `
+    fullstory.innerHTML = `
       window['_fs_host'] = 'fullstory.com';
       window['_fs_org'] = ${this.props.fullstory_id};
       window['_fs_namespace'] = 'FS';
@@ -194,9 +194,7 @@ class TrackerRegistration extends React.Component {
 
     const zd2 = document.createElement('script');
     zd2.id = 'ze-snippet';
-    zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${
-      this.props.zendesk_id
-    }`;
+    zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${this.props.zendesk_id}`;
     this.instance.appendChild(zd2);
 
     // SalesForce Marketting Cloud Collect code
@@ -213,9 +211,7 @@ class TrackerRegistration extends React.Component {
     }
     sfmc_script_html =
       sfmc_script_html +
-      `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${
-        this.props.sfmc_business_account_id
-      }.collect.igodigital.com/collect.js', '_etmc');`;
+      `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${this.props.sfmc_business_account_id}.collect.igodigital.com/collect.js', '_etmc');`;
     sfmc.innerHTML = sfmc_script_html;
     this.instance.appendChild(sfmc);
   }
