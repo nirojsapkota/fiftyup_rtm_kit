@@ -19,6 +19,21 @@ const Container = styled(Box)`
 const A = styled.a`
   text-decoration: none;
   color: ${props => getColor('text', props.theme)};
+  :hover {
+    color: ${props => getColor('linkHover', props.theme)};
+  }
+`;
+const HoursInfo = styled(Paragraph)`
+  white-space: pre-wrap;
+  line-height: 1.2em;
+  a {
+    font-weight: bold;
+    text-decoration: none;
+    color: ${props => getColor('text', props.theme)};
+    :hover {
+      color: ${props => getColor('linkHover', props.theme)};
+    }
+  }
 `;
 
 const GridBox = styled(Box)`
@@ -60,7 +75,14 @@ export const Footer = ({ entity, disclaimers }) => {
       <Box variant="b">
         <Container>
           <GridBox>
-            <A style={{ gridArea: 'logo' }} href="/" align="center">
+            <A
+              style={{
+                gridArea: 'logo',
+                textAlign: 'center',
+                alignSelf: 'center',
+              }}
+              href="/"
+            >
               <Logo width={150} entityBrand={entity.brand} />
             </A>
             <Box style={{ gridArea: 'social' }}>
@@ -98,15 +120,17 @@ export const Footer = ({ entity, disclaimers }) => {
                 </Paragraph>
               )}
               {businessHourInfo.hours && (
-                <Paragraph
-                  style={{ whiteSpace: 'pre-wrap', lineHeight: '1.2em' }}
-                  dangerousHTML={businessHourInfo.hours}
-                />
+                <HoursInfo dangerousHTML={businessHourInfo.hours} />
               )}
               <Box style={{ height: '30px' }} />
               {others.map(item =>
                 item.url ? (
-                  <A key={item.name} href={item.url} target="_blank">
+                  <A
+                    key={item.name}
+                    href={item.url}
+                    target="_blank"
+                    style={{ fontWeight: 'bold' }}
+                  >
                     {item.name}
                   </A>
                 ) : (
