@@ -79,62 +79,72 @@ export const TrackingProvider = ({
 class TrackerRegistration extends React.Component {
   componentDidMount() {
     //FOR GOOGLE ANALYTICS
-    const googleAnalytics = document.createElement('script');
-    googleAnalytics.type = 'text/javascript';
-    googleAnalytics.innerHTML =
-      "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" +
-      '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),' +
-      'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)' +
-      "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" +
-      "ga('create', '" +
-      `${this.props.ga_code}` +
-      "', 'auto');" +
-      "ga('send', 'pageview');";
-    this.instance.appendChild(googleAnalytics);
+    if (this.props.ga_code) {
+      const googleAnalytics = document.createElement('script');
+      googleAnalytics.type = 'text/javascript';
+      googleAnalytics.innerHTML =
+        "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" +
+        '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),' +
+        'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)' +
+        "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" +
+        "ga('create', '" +
+        `${this.props.ga_code}` +
+        "', 'auto');" +
+        "ga('send', 'pageview');";
+      this.instance.appendChild(googleAnalytics);
+    }
 
-    //FOR BING
-    const bing = document.createElement('script');
-    bing.type = 'text/javascript';
-    bing.innerHTML =
-      '(function (w, d, t, r, u) { ' +
-      'var f, n, i;' +
-      'w[u] = w[u] || [], f = function () {' +
-      " var o = {ti: '" +
-      `${this.props.bing_uet_tag_code}` +
-      "'};" +
-      ' o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad")' +
-      ' }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {' +
-      ' var s = this.readyState;' +
-      ' s && s !== "loaded" && s !== "complete" || (f(), n.onload = n.onreadystatechange = null)' +
-      '}, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i)' +
-      '})(window, document, "script", "//bat.bing.com/bat.js", "uetq");' +
-      'window.uetq = window.uetq || [];' +
-      " window.uetq.push ('event', 'pageview');";
-    this.instance.appendChild(bing);
+    if (this.props.bing_uet_tag_code) {
+      //FOR BING
+      //hello world
+      const bing = document.createElement('script');
+      bing.type = 'text/javascript';
+      bing.innerHTML =
+        '(function (w, d, t, r, u) { ' +
+        'var f, n, i;' +
+        'w[u] = w[u] || [], f = function () {' +
+        " var o = {ti: '" +
+        `${this.props.bing_uet_tag_code}` +
+        "'};" +
+        ' o.q = w[u], w[u] = new UET(o), w[u].push("pageLoad")' +
+        ' }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {' +
+        ' var s = this.readyState;' +
+        ' s && s !== "loaded" && s !== "complete" || (f(), n.onload = n.onreadystatechange = null)' +
+        '}, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i)' +
+        '})(window, document, "script", "//bat.bing.com/bat.js", "uetq");' +
+        'window.uetq = window.uetq || [];' +
+        " window.uetq.push ('event', 'pageview');";
+      this.instance.appendChild(bing);
+    }
 
-    //FOR GOOGLE ADWORDS
-    const adwords1 = document.createElement('script');
-    adwords1.async = true;
-    adwords1.src =
-      "https://www.googletagmanager.com/gtag/js?id='" +
-      `${this.props.google_adwords_id}` +
-      "'";
-    this.instance.appendChild(adwords1);
+    if (this.props.google_adwords_id) {
+      //FOR GOOGLE ADWORDS
+      const adwords1 = document.createElement('script');
+      adwords1.async = true;
+      adwords1.src =
+        "https://www.googletagmanager.com/gtag/js?id='" +
+        `${this.props.google_adwords_id}` +
+        "'";
+      this.instance.appendChild(adwords1);
+    }
 
-    const adwords2 = document.createElement('script');
-    adwords2.innerHTML =
-      'window.dataLayer = window.dataLayer || [];' +
-      'function gtag() {' +
-      'dataLayer.push(arguments);' +
-      '}' +
-      "gtag('js', new Date());" +
-      "gtag('config', '" +
-      `${this.props.google_adwords_id}` +
-      "');";
-    this.instance.appendChild(adwords2);
+    if (this.props.google_adwords_id) {
+      const adwords2 = document.createElement('script');
+      adwords2.innerHTML =
+        'window.dataLayer = window.dataLayer || [];' +
+        'function gtag() {' +
+        'dataLayer.push(arguments);' +
+        '}' +
+        "gtag('js', new Date());" +
+        "gtag('config', '" +
+        `${this.props.google_adwords_id}` +
+        "');";
+      this.instance.appendChild(adwords2);
+    }
 
-    const fullstory = document.createElement('script');
-    fullstory.innerHTML = `
+    if (this.props.fullstory_id) {
+      const fullstory = document.createElement('script');
+      fullstory.innerHTML = `
       window['_fs_host'] = 'fullstory.com';
       window['_fs_org'] = ${this.props.fullstory_id};
       window['_fs_namespace'] = 'FS';
@@ -151,69 +161,76 @@ class TrackerRegistration extends React.Component {
           g.clearUserCookie=function(){};
       })(window,document,window['_fs_namespace'],'script','user');
     `;
-    this.instance.appendChild(fullstory);
+      this.instance.appendChild(fullstory);
+    }
 
-    //FOR FACEBOOK PIXEL
-    const fb1 = document.createElement('script');
-    fb1.innerHTML =
-      '!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?' +
-      'n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;' +
-      "n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;" +
-      't.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,' +
-      "document,'script','https://connect.facebook.net/en_US/fbevents.js');" +
-      "fbq('init', '" +
-      `${this.props.facebook_pixel_id}` +
-      "');" +
-      "fbq('track', 'PageView');";
-    this.instance.appendChild(fb1);
+    if (this.props.facebook_pixel_id) {
+      //FOR FACEBOOK PIXEL
+      const fb1 = document.createElement('script');
+      fb1.innerHTML =
+        '!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?' +
+        'n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;' +
+        "n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;" +
+        't.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,' +
+        "document,'script','https://connect.facebook.net/en_US/fbevents.js');" +
+        "fbq('init', '" +
+        `${this.props.facebook_pixel_id}` +
+        "');" +
+        "fbq('track', 'PageView');";
+      this.instance.appendChild(fb1);
 
-    const fb2 = document.createElement('noscript');
-    const fbimage = document.createElement('img');
-    fbimage.height = '1';
-    fbimage.width = '1';
-    /*
-     * Raises 'Attempted to assign to readonly property' exception while trying set Style by assigning a string directly
-     * This caused the IOS 9-10 to break
-     * Should be assigned to the property of style
-     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
-     */
-    fbimage.style.display = 'none';
-    fbimage.src =
-      'https://www.facebook.com/tr?id=' +
-      `${this.props.facebook_pixel_id}` +
-      '&amp;ev=PageView&amp;noscript=1';
-    fb2.appendChild(fbimage);
-    this.instance.appendChild(fb2);
+      const fb2 = document.createElement('noscript');
+      const fbimage = document.createElement('img');
+      fbimage.height = '1';
+      fbimage.width = '1';
+      /*
+       * Raises 'Attempted to assign to readonly property' exception while trying set Style by assigning a string directly
+       * This caused the IOS 9-10 to break
+       * Should be assigned to the property of style
+       * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
+       */
+      fbimage.style.display = 'none';
+      fbimage.src =
+        'https://www.facebook.com/tr?id=' +
+        `${this.props.facebook_pixel_id}` +
+        '&amp;ev=PageView&amp;noscript=1';
+      fb2.appendChild(fbimage);
+      this.instance.appendChild(fb2);
+    }
 
-    //FOR ZENDESK
-    const zd1 = document.createElement('script');
-    zd1.type = 'text/javascript';
-    zd1.innerHTML =
-      "window.zESettings = {webWidget: {contactOptions: { enabled: true, contactButton: { '*': 'Contact Button' }, chatLabelOnline: { '*': 'Live Chat' },    chatLabelOffline: { '*': 'Chat is unavailable' },  contactFormLabel: { '*': 'Leave us a message' } } } };";
-    this.instance.appendChild(zd1);
+    if (this.props.zendesk_id) {
+      //FOR ZENDESK
+      const zd1 = document.createElement('script');
+      zd1.type = 'text/javascript';
+      zd1.innerHTML =
+        "window.zESettings = {webWidget: {contactOptions: { enabled: true, contactButton: { '*': 'Contact Button' }, chatLabelOnline: { '*': 'Live Chat' },    chatLabelOffline: { '*': 'Chat is unavailable' },  contactFormLabel: { '*': 'Leave us a message' } } } };";
+      this.instance.appendChild(zd1);
 
-    const zd2 = document.createElement('script');
-    zd2.id = 'ze-snippet';
-    zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${this.props.zendesk_id}`;
-    this.instance.appendChild(zd2);
+      const zd2 = document.createElement('script');
+      zd2.id = 'ze-snippet';
+      zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${this.props.zendesk_id}`;
+      this.instance.appendChild(zd2);
+    }
 
-    // SalesForce Marketting Cloud Collect code
-    const sfmc = document.createElement('script');
-    let sfmc_script_html = `(function (n, i, r, o, j, s, p) {
+    if (this.props.sfmc_business_account_id) {
+      // SalesForce Marketting Cloud Collect code
+      const sfmc = document.createElement('script');
+      let sfmc_script_html = `(function (n, i, r, o, j, s, p) {
       s = i.createElement(r),p = i.getElementsByTagName(r)[0];
       s.async = 1;s.src = o;p.parentNode.insertBefore(s, p);
       s.onload = s.onreadystatechange = function () {
       _etmc.push(['setOrgId', '${this.props.sfmc_business_account_id}']);`;
-    if (this.props.user && this.props.user.email) {
+      if (this.props.user && this.props.user.email) {
+        sfmc_script_html =
+          sfmc_script_html +
+          `_etmc.push(['setUserInfo', { 'email': '${this.props.user.email}' }]);`;
+      }
       sfmc_script_html =
         sfmc_script_html +
-        `_etmc.push(['setUserInfo', { 'email': '${this.props.user.email}' }]);`;
+        `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${this.props.sfmc_business_account_id}.collect.igodigital.com/collect.js', '_etmc');`;
+      sfmc.innerHTML = sfmc_script_html;
+      this.instance.appendChild(sfmc);
     }
-    sfmc_script_html =
-      sfmc_script_html +
-      `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${this.props.sfmc_business_account_id}.collect.igodigital.com/collect.js', '_etmc');`;
-    sfmc.innerHTML = sfmc_script_html;
-    this.instance.appendChild(sfmc);
   }
 
   render() {
