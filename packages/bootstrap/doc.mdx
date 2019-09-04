@@ -1,0 +1,38 @@
+---
+name: Bootstrap
+route: /utilities/bootstrap
+menu: Utilities
+---
+
+import { Playground } from 'docz';
+import { Bootstrap } from './src';
+import { DummyComponent } from './dummy-component';
+
+# Bootstrap
+
+The Bootstrap component responsible for the following:
+
+- Rendering the `@rtm-ui/theme` -> `BootstrapTheme` component, which sets up all theming
+  as well as the CSS reset.
+- Proving the `@rtm-ui/tracker` module with page-specific context for it's
+  reporting
+- Providing an error boundary. If any `children` throw an error, the Bootstrap
+  component will catch it, log it, and show the user an appropriate message.
+
+There will likely be more responsibilities in the future. In general, the
+Bootstrap package handles setup and should be the single source of truth
+for most "global" needs for a given app.
+
+> Note: the error handling at this level is extremely minimal as it's the last
+> possible opportunity to catch an error before the app is entirely unmounted from the
+> DOM. As a general rule, you should be wrapping most higher-level components (ex. `@rtm-ui/plan`)
+> with their own error boundaries. You can use the `@rtm-ui/error-boundary`
+> package in most cases, or handle roll your own rather easily.
+
+Below is an example of a component which errors:
+
+<Playground>
+  <Bootstrap>
+    <DummyComponent />
+  </Bootstrap>
+</Playground>

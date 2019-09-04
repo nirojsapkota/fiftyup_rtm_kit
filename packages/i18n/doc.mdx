@@ -1,0 +1,37 @@
+---
+name: I18n
+route: /i18n
+menu: Packages
+---
+
+import { Playground } from 'docz';
+import { I18n } from './src';
+
+# I18n
+
+## Basic usage
+
+Provide your definitions in the top-level `<LocaleProvider>` and
+then access them lower down with the `useLocale` hook:
+
+```js
+const Wrapper = ({ children }) => {
+  return (
+    <LocaleProvider keys={{ en: { myMessage: 'Hello, World!' } }}>
+      {children}
+    </LocaleProvider>
+  );
+};
+
+const NestedItem = () => {
+  const { myMessage } = useLocale({ key: 'myMessage' });
+
+  return <p>{myMessage}</p>;
+};
+
+// ... and use it
+
+<Wrapper>
+  <NestedItem />
+</Wrapper>;
+```

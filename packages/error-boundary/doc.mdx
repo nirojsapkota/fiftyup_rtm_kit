@@ -1,0 +1,28 @@
+---
+name: ErrorBoundary
+route: /errorBoundary
+menu: Packages
+---
+
+import { Playground } from 'docz';
+import { ErrorBoundary } from './src';
+import { DummyComponent } from './docs/dummy-component';
+import { NotFound } from './docs/not-found';
+
+# ErrorBoundary
+
+## Basic usage
+
+An error boundary allows us to provide a fallback UI in case the children
+throw an error. Whatever is provided to the `renderOnError` prop will be
+rendered when a child component throws an error.
+
+> Note: If your `renderOnError` component itself throws an error there's nothing
+> left to fall back on. This is why we have a separate error boundary component
+> in the `@rtm-ui/bootstrap` package which acts as a last measure against unhandled errors
+
+<Playground>
+  <ErrorBoundary renderOnError={<NotFound />}>
+    <DummyComponent />
+  </ErrorBoundary>
+</Playground>

@@ -19,7 +19,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Logo = ({ customLogo, entityBrand, width = 200 }) => {
+const Logo = ({ customLogo, entityBrand = '', width = 200 }) => {
   const theme = React.useContext(ThemeContext);
 
   // FIXME: this can probably benefit from light/dark context info
@@ -28,6 +28,10 @@ const Logo = ({ customLogo, entityBrand, width = 200 }) => {
   if (customLogo) {
     return <Img src={customLogo} alt="logo" />;
   } else {
+    if (entityBrand === 'defaultTheme' || entityBrand === '') {
+      return <span />;
+    }
+
     if (entityBrand === 'ninesaver') {
       const ratio = 57 / 132;
       return (

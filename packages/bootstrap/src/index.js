@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TrackingProvider } from '@rtm-ui/tracker';
 import { BootstrapTheme, themeMap, setIn } from '@rtm-ui/theme';
+import { ErrorBoundary } from './error-boundary';
 
 const Bootstrap = ({
   overrides,
@@ -10,6 +11,7 @@ const Bootstrap = ({
   cssReset,
   ...props
 }) => {
+  const [useDefaultTheme, setUseDefaultTheme] = React.useState(false);
   const Tracking = props.trackingProvider
     ? props.trackingProvider
     : TrackingProvider;
@@ -24,11 +26,17 @@ const Bootstrap = ({
     : theme;
 
   return (
-    <Tracking trackingData={trackingData}>
-      <BootstrapTheme theme={themeWithOverrides} cssReset={cssReset}>
-        {children}
-      </BootstrapTheme>
-    </Tracking>
+    <ErrorBoundary onError={setUseDefaultTheme}>
+      <Tracking trackingData={trackingData}>
+        <BootstrapTheme
+          useDefaultTheme={useDefaultTheme}
+          theme={themeWithOverrides}
+          cssReset={cssReset}
+        >
+          {children}
+        </BootstrapTheme>
+      </Tracking>
+    </ErrorBoundary>
   );
 };
 

@@ -3,6 +3,8 @@ import 'jest-dom/extend-expect';
 import { TrackingProvider } from '@rtm-ui/tracker';
 import { render, cleanup } from 'react-testing-library';
 import { Bootstrap } from '../index';
+import { ErrorBoundary } from '../error-boundary';
+import { DummyComponent as ThisComponentThrowsAnError } from '../../dummy-component';
 
 afterEach(cleanup);
 
@@ -29,4 +31,22 @@ it('renders the tracking provider', () => {
     <Bootstrap trackingData={{ category: 'energy' }}>Hello, World!</Bootstrap>
   );
   expect(getByText('Hello, World!')).toBeInTheDocument();
+});
+
+describe('<ErrorBoundary />', () => {
+  it('matches expected output', () => {
+    const logSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const mockOnError = jest.fn();
+    const { getByText } = render(
+      <ErrorBoundary onError={mockOnError}>
+        <ThisComponentThrowsAnError />
+      </ErrorBoundary>
+    );
+
+    expect(
+      getByText("We're sorry, something went wrong. Please try again.")
+    ).toBeInTheDocument();
+    expect(logSpy).toHaveBeenCalled();
+    expect(mockOnError).toHaveBeenCalled();
+  });
 });

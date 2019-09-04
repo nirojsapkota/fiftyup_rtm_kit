@@ -4,10 +4,10 @@ route: /utilities/theme
 menu: Utilities
 ---
 
-import { Playground } from 'docz'
-import { Theme as Variant } from './src'
-import { DocWrapper } from '../bootstrap/setup/docWrapper'
-import { Grid } from './grid'
+import { Playground } from 'docz';
+import { Theme as Variant, BootstrapTheme } from './src';
+import { DocWrapper } from '../bootstrap/setup/docWrapper';
+import { Grid } from './grid';
 
 # Theme
 
@@ -40,8 +40,15 @@ to this, something like:
 <Box variant="light.secondary">Hello, World!</Box>
 ```
 
-Which would have subtle adjustments based on the second key.
+Which would have subtle adjustments based on the second key. Below are all of the variants
+for the current theme:
 
-<DocWrapper>
+<Grid />
+
+### Fallback
+
+When no theme is provided, we use the `defaultTheme`:
+
+<BootstrapTheme>
   <Grid />
-</DocWrapper>
+</BootstrapTheme>

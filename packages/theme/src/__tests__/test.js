@@ -18,6 +18,15 @@ describe('<BootstrapTheme />', () => {
     expect(getByText('Welcome to React')).toBeInTheDocument();
   });
 
+  it('when no theme is present it doesnt error', () => {
+    const { getByText } = render(
+      <BootstrapTheme>
+        <div>Welcome to React</div>
+      </BootstrapTheme>
+    );
+    expect(getByText('Welcome to React')).toBeInTheDocument();
+  });
+
   it('do not render CssReset', () => {
     const { getByTestId } = render(
       <BootstrapTheme theme={obs} cssReset={false}>

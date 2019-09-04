@@ -25,6 +25,7 @@ const Grid = ({ children }) => {
             <ButtonGroup>
               <Button primary>Click Me!</Button>
               <Button secondary>Click Me!</Button>
+              <Button tertiary>Click Me!</Button>
             </ButtonGroup>
           </Card>
         );

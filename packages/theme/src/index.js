@@ -1,13 +1,13 @@
 import React from 'react';
 import { ThemeProvider, withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
-import { themeMap, obs, fiftyup, ninesaver } from './themes';
+import { themeMap, defaultTheme, obs, fiftyup, ninesaver } from './themes';
 import { CssReset } from './reset';
 import { Fonts } from './fonts';
 import { backgroundStyle, getColor, tintColor, setIn, getWeight } from './util';
 
 export { backgroundStyle, getColor, setIn, tintColor, getWeight };
-export { themeMap, obs, fiftyup, ninesaver };
+export { themeMap, defaultTheme, obs, fiftyup, ninesaver };
 
 const Variant = ({ theme, variant, children }) => {
   return (
@@ -16,8 +16,9 @@ const Variant = ({ theme, variant, children }) => {
 };
 
 export const BootstrapTheme = ({ children, theme, variant, cssReset }) => {
+  const realTheme = theme || defaultTheme;
   return (
-    <Variant variant={variant} theme={theme}>
+    <Variant variant={variant} theme={realTheme}>
       <React.Fragment>
         {cssReset && <CssReset />}
         <Fonts />

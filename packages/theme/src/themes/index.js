@@ -2,8 +2,9 @@ import obs from './obs';
 import fiftyup from './fiftyup';
 import ninesaver from './ninesaver';
 import gpml from './gpml';
+import defaultTheme from './defaultTheme';
 
-export { obs, fiftyup, ninesaver, gpml };
+export { defaultTheme, obs, fiftyup, ninesaver, gpml };
 
 export const themeMap = {
   obs,
