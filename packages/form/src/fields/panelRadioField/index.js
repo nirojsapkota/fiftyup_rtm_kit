@@ -11,17 +11,17 @@ import { Card } from '@rtm-ui/layout';
 const Wrapper = styled.div`
   flex: 1;
   padding: 5px;
-  min-width: 120px;
-  max-width: 120px;
+  min-width: 130px;
+  max-width: 130px;
 
   @media (min-width: ${props => props.theme.grid.sm}em) {
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 130px;
+    max-width: 130px;
   }
 
   @media (max-width: ${props => props.theme.grid.sm}em) {
-    max-width: 120px;
-    min-width: 100px;
+    max-width: 130px;
+    min-width: 110px;
   }
 `;
 
@@ -69,7 +69,7 @@ const StyledLabel = styled(Label)`
   width: 100%;
   text-align: center;
   margin-top: 1px;
-  height: 40px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
