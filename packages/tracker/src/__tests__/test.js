@@ -30,6 +30,28 @@ describe(`useTracker`, () => {
     fireEvent.click(buttonNode);
     expect(mockOnClick).toHaveBeenCalled();
   });
+
+  it(`provides a virtual page click when no track props is provided`, () => {
+    const SampleComponent = ({ text, onClick }) => {
+      const { ref, trackEvent } = useTracker();
+      return (
+        <a
+          ref={ref}
+          onClick={e => trackEvent(e, null, onClick)}
+          href="https://my-example.com"
+        >
+          {text}
+        </a>
+      );
+    };
+    const mockOnClick = jest.fn();
+    const { getByText } = render(
+      <SampleComponent onClick={mockOnClick} text="Click Me" />
+    );
+    const aNode = getByText('Click Me');
+    fireEvent.click(aNode);
+    expect(mockOnClick).toHaveBeenCalled();
+  });
 });
 
 describe(`track`, () => {
