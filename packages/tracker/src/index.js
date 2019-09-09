@@ -55,6 +55,7 @@ export const useTracker = () => {
       // DOM node and clean it up so it can be sent as a virtual page view
       if (aTag && aTag.href && !action) {
         realAction = mungeHref(aTag.href);
+        console.log(realAction);
       }
       trackEvent(e, realAction, trackingData, callback);
     },
