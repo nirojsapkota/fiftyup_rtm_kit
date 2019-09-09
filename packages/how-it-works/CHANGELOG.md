@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.47](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@3.0.46...@rtm-ui/how-it-works@3.0.47) (2019-09-09)
+
+**Note:** Version bump only for package @rtm-ui/how-it-works
+
+
+
+
+
 ## [3.0.46](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/how-it-works@3.0.45...@rtm-ui/how-it-works@3.0.46) (2019-09-08)
 
 **Note:** Version bump only for package @rtm-ui/how-it-works
