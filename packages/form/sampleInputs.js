@@ -140,6 +140,15 @@ export const formInputs = {
       type: 'radio',
       options: [{ label: 'ELECTRICITY', value: 'yes', icon: 'electricity' }],
     },
+    {
+      label: 'When does your current contract end?',
+      config: {
+        validator: '',
+      },
+      name: 'month',
+      value: 'Sep, 2019',
+      type: 'text',
+    },
   ],
 };
 

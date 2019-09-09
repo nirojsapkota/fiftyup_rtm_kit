@@ -8,6 +8,7 @@
     "namespace": "form",
     "namedExports": [
       "Accordion",
+      "MonthField",
       "Form",
       "StepForm",
       "FormError",

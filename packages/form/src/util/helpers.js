@@ -10,6 +10,7 @@ import {
   postcodeValidator,
   countyValidator,
   dropdownValidator,
+  monthValidator,
 } from '../fields/util/validators';
 
 const validatorMap = {
@@ -23,6 +24,7 @@ const validatorMap = {
   postcodeValidator,
   countyValidator,
   dropdownValidator,
+  monthValidator,
 };
 
 export const getSchema = fields => {

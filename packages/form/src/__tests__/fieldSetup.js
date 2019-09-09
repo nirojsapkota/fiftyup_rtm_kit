@@ -50,6 +50,10 @@ const formSetup = [
     invalid: { entry: '34567', expect: 'Not enough characters' },
   },
   {
+    field: getFieldProps('month'),
+    valid: { entry: 'Sep, 2019', expect: 'Sep, 2019' },
+  },
+  {
     field: getFieldProps('currently_with_provider'),
     valid: { entry: 'yes' },
   },

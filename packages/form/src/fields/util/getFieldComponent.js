@@ -7,22 +7,29 @@ import AutocompletField from '../autocompleteField';
 import HiddenField from '../hiddenField';
 import PanelCheckField from '../panelCheckField';
 import PanelRadioField from '../panelRadioField';
+import MonthField from '../monthField';
 
 export const getFieldComponent = (
   type,
   { component = null, validator = null }
 ) => {
   return type === 'radio'
-    ? (component === 'panelRadio' ? PanelRadioField : RadioField)
+    ? component === 'panelRadio'
+      ? PanelRadioField
+      : RadioField
     : type === 'checkbox'
-      ? (component === 'panelCheck' ? PanelCheckField : CheckboxField)
-      : type === 'hidden'
-        ? HiddenField
-        : component === 'stripePayment'
-          ? StripeField
-          : component === 'autocomplete'
-            ? AutocompletField
-            : validator === 'mask'
-              ? NumberField
-              : TextField;
+    ? component === 'panelCheck'
+      ? PanelCheckField
+      : CheckboxField
+    : component === 'month'
+    ? MonthField
+    : type === 'hidden'
+    ? HiddenField
+    : component === 'stripePayment'
+    ? StripeField
+    : component === 'autocomplete'
+    ? AutocompletField
+    : validator === 'mask'
+    ? NumberField
+    : TextField;
 };

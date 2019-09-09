@@ -119,6 +119,7 @@ const BaseField = props => {
               {...inputProps}
               showErrorColor={!focused && error}
               id={`${props.name}`}
+              value={inputProps.value}
               onFocus={toggleFocused}
               onBlur={toggleFocused}
               onWaiting={toggleWaiting}
@@ -157,6 +158,7 @@ const inputHtmlProps = {
     'password',
     'checkbox',
     'hidden',
+    //'month',
   ]).isRequired,
 };
 
