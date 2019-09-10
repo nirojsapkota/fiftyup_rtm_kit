@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 `;
 
 const DynamicHeader = styled(Header)`
-  font-size: 3.4em;
+  font-size: 3.2em;
   padding-right: 18px;
   font-weight: 600;
   text-align: left;
@@ -35,7 +35,7 @@ const DynamicHeader = styled(Header)`
 
 const DynamicSubHeader = styled(Header)`
   color: ${props => getColor('accent', props.theme)};
-  font-size: 1.5em;
+  font-size: 1.3em;
   padding-left: 18px;
   text-align: right;
 `;
