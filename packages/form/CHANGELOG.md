@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.65](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.64...@rtm-ui/form@5.0.65) (2019-09-12)
+
+
+### Bug Fixes
+
+* **@rtm-ui/form:** OB-2767: increase box size of panel radio ([cd51b5e](https://github.com/OBSAU/rtm-kit/commit/cd51b5e))
+
+
+
+
+
 ## [5.0.64](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.63...@rtm-ui/form@5.0.64) (2019-09-09)
 
 **Note:** Version bump only for package @rtm-ui/form
