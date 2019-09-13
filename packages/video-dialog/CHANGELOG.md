@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.13](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/video-dialog@1.0.12...@rtm-ui/video-dialog@1.0.13) (2019-09-13)
+
+**Note:** Version bump only for package @rtm-ui/video-dialog
+
+
+
+
+
 ## [1.0.12](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/video-dialog@1.0.11...@rtm-ui/video-dialog@1.0.12) (2019-09-12)
 
 **Note:** Version bump only for package @rtm-ui/video-dialog
