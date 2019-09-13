@@ -23,6 +23,15 @@ const A = styled.a`
     color: ${props => getColor('linkHover', props.theme)};
   }
 `;
+
+const SocialWapper = styled(Box)`
+  svg {
+    :hover {
+      fill: ${props => getColor('linkHover', props.theme)};
+    }
+  }
+`;
+
 const HoursInfo = styled(Paragraph)`
   white-space: pre-wrap;
   line-height: 1.2em;
@@ -78,14 +87,13 @@ export const Footer = ({ entity, disclaimers }) => {
             <A
               style={{
                 gridArea: 'logo',
-                textAlign: 'center',
-                alignSelf: 'center',
+                textAlign: 'center'
               }}
               href="/"
             >
-              <Logo width={150} entityBrand={entity.brand} />
+              <Logo width={135} entityBrand={entity.brand} />
             </A>
-            <Box style={{ gridArea: 'social' }}>
+            <SocialWapper style={{ gridArea: 'social' }}>
               <Paragraph weight="bold" my={1}>
                 FOLLOW US ON SOCIAL
               </Paragraph>
@@ -97,7 +105,7 @@ export const Footer = ({ entity, disclaimers }) => {
                   </A>
                 );
               })}
-            </Box>
+            </SocialWapper>
             {main.map((subItems, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <Box style={{ gridArea: `list-${index}` }} key={index}>
@@ -107,6 +115,12 @@ export const Footer = ({ entity, disclaimers }) => {
                     key={item.url}
                     py={5}
                     href={item.url}
+                    onClick={e => {
+                      if (item.is_js_driven) {
+                        e.preventDefault();
+                        window.zE.activate({ hideOnClose: true });
+                      }
+                    }}
                   >
                     {item.name}
                   </A>
