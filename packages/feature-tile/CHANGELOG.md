@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.46](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@2.0.45...@rtm-ui/feature-tile@2.0.46) (2019-09-16)
+
+**Note:** Version bump only for package @rtm-ui/feature-tile
+
+
+
+
+
 ## [2.0.45](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/feature-tile@2.0.44...@rtm-ui/feature-tile@2.0.45) (2019-09-09)
 
 **Note:** Version bump only for package @rtm-ui/feature-tile
