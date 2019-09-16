@@ -8,6 +8,29 @@ jest.mock('axios');
 
 afterEach(cleanup);
 
+const expectRequestCall = (axios, sendingData) => {
+  expect(axios.post).toHaveBeenCalledWith(
+    '/ajax/funnel-report/track-step',
+    sendingData,
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': 'token_key',
+      },
+    }
+  );
+};
+
+const prepareData = (category, action) => {
+  return {
+    category: category,
+    action: action,
+    authenticityToken: 'token_key',
+    meta: { tracking_id: 1 },
+  };
+};
+
 describe(`Funnel`, () => {
   it(`invalid category`, () => {
     // set Up
@@ -45,17 +68,7 @@ describe(`Funnel`, () => {
         Funnel.sendData(data);
         const sendingData = action(data);
 
-        expect(axios.post).toHaveBeenCalledWith(
-          '/ajax/funnel-report/track-step',
-          sendingData,
-          {
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': 'token_key',
-            },
-          }
-        );
+        expectRequestCall(axios, sendingData);
       });
     });
   });
@@ -73,16 +86,87 @@ describe(`Funnel`, () => {
     Funnel.sendData(data);
     const sendingData = categoryKeys['energy']['get_started'](data);
 
-    expect(axios.post).toHaveBeenCalledWith(
-      '/ajax/funnel-report/track-step',
-      sendingData,
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': 'token_key',
-        },
-      }
-    );
+    expect(sendingData.step_code).toEqual('click_get_started');
+    expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
+  });
+
+  describe(`life-insurance actions`, () => {
+    it(`get_quote`, () => {
+      axios.post.mockResolvedValue({ data: {} });
+
+      const data = prepareData('life-insurance', 'get_quote');
+      Funnel.sendData(data);
+      const sendingData = categoryKeys['life-insurance']['get_quote'](data);
+
+      expect(sendingData.step_code).toEqual('life_get_a_quote_page');
+      expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
+    });
+
+    it(`call_me_back`, () => {
+      axios.post.mockResolvedValue({ data: {} });
+
+      const data = prepareData('life-insurance', 'call_me_back');
+      Funnel.sendData(data);
+      const sendingData = categoryKeys['life-insurance']['call_me_back'](data);
+
+      expect(sendingData.step_code).toEqual('life_submit_call_me_back_page');
+      expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
+    });
+  });
+
+  describe(`health-insurance actions`, () => {
+    it(`get_started`, () => {
+      axios.post.mockResolvedValue({ data: {} });
+
+      const data = prepareData('health-insurance', 'get_started');
+      Funnel.sendData(data);
+      const sendingData = categoryKeys['health-insurance']['get_started'](data);
+
+      expect(sendingData.step_code).toEqual('health_click_get_started');
+      expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
+    });
+  });
+
+  describe(`car-insurance actions`, () => {
+    it(`get_started`, () => {
+      axios.post.mockResolvedValue({ data: {} });
+
+      const data = prepareData('car-insurance', 'get_started');
+      Funnel.sendData(data);
+      const sendingData = categoryKeys['car-insurance']['get_started'](data);
+
+      expect(sendingData.step_code).toEqual('car_click_get_started');
+      expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
+    });
+  });
+
+  describe(`home-and-contents-insurance actions`, () => {
+    it(`get_started`, () => {
+      axios.post.mockResolvedValue({ data: {} });
+
+      const data = prepareData('home-and-contents-insurance', 'get_started');
+      Funnel.sendData(data);
+      const sendingData = categoryKeys['home-and-contents-insurance'][
+        'get_started'
+      ](data);
+
+      expect(sendingData.step_code).toEqual(
+        'home_and_contents_click_get_started'
+      );
+      expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
+    });
+  });
+
+  describe(`travel actions`, () => {
+    it(`get_started`, () => {
+      axios.post.mockResolvedValue({ data: {} });
+
+      const data = prepareData('travel', 'get_started');
+      Funnel.sendData(data);
+      const sendingData = categoryKeys['travel']['get_started'](data);
+
+      expect(sendingData.step_code).toEqual('travel_click_get_started');
+      expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
+    });
   });
 });

@@ -20,17 +20,17 @@ const sendDataToServer = (data, authenticityToken) => {
 };
 
 const categoryKeys = {
-  'reverse-mortgage': {
-    request_callback: () => {
+  'life-insurance': {
+    get_quote: tracking => {
       return {
-        step_code: 'reverse_mortgage_request_callback_page',
+        step_code: 'life_get_a_quote_page',
+        plan_id: tracking.meta.tracking_id,
       };
     },
-  },
-  'life-insurance': {
-    request_callback: () => {
+    call_me_back: tracking => {
       return {
-        step_code: 'life_request_callback_page',
+        step_code: 'life_submit_call_me_back_page',
+        plan_id: tracking.meta.tracking_id,
       };
     },
   },
@@ -66,17 +66,25 @@ const categoryKeys = {
     },
   },
   'car-insurance': {
-    get_a_quote: tracking => {
+    get_started: tracking => {
       return {
-        step_code: 'car_get_a_quote_online',
+        step_code: 'car_click_get_started',
         plan_id: tracking.meta.tracking_id,
       };
     },
   },
   'home-and-contents-insurance': {
-    get_a_quote: tracking => {
+    get_started: tracking => {
       return {
-        step_code: 'home_get_a_quote_online',
+        step_code: 'home_and_contents_click_get_started',
+        plan_id: tracking.meta.tracking_id,
+      };
+    },
+  },
+  'travel': {
+    get_started: tracking => {
+      return {
+        step_code: 'travel_click_get_started',
         plan_id: tracking.meta.tracking_id,
       };
     },
