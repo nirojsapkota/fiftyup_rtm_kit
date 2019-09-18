@@ -13,7 +13,6 @@ phases:
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
       - git checkout master
-      - git status
       - npm ci
 
   pre_build:
@@ -30,13 +29,14 @@ phases:
   post_build:
     commands:
       - npm run release
-# artifacts:
-#   secondary-artifacts:
-#     api:
-#       base-directory: .docz/dist
-#       files:
-#         - '**/*'
-#     ui:
-#       base-directory: .docz/dist
-#       files:
-#         - '**/*'
+
+artifacts:
+  secondary-artifacts:
+    api:
+      base-directory: .docz/dist
+      files:
+        - '**/*'
+    ui:
+      base-directory: .docz/dist
+      files:
+        - '**/*'

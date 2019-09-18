@@ -15,13 +15,14 @@ phases:
       - npm run test:ci
       - npm run copy:builds
       - npm run build:docs
-# artifacts:
-#   secondary-artifacts:
-#     api:
-#       base-directory: .docz/dist
-#       files:
-#         - "**/*"
-#     ui:
-#       base-directory: .docz/dist
-#       files:
-#         - "**/*"
+
+artifacts:
+  secondary-artifacts:
+    api:
+      base-directory: .docz/dist
+      files:
+        - '**/*'
+    ui:
+      base-directory: .docz/dist
+      files:
+        - '**/*'
