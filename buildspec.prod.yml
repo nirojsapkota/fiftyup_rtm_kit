@@ -1,42 +1,41 @@
 version: 0.2
 env:
   parameter-store:
-    AWS_ACCESS_KEY_ID: "component-website-access-key"
-    AWS_SECRET_ACCESS_KEY: "component-website-secret-key"
-    GIT_USER_EMAIL: "github-user-email"
-    GIT_USER_NAME: "github-user-name"
-    GITHUB_AUTH_TOKEN: "/aws/reference/secretsmanager/github-access-token"
-    NPM_AUTH_TOKEN: "/aws/reference/secretsmanager/npm-access-token"
-    NPM_REGISTRY_LOGIN_URL: "npm-repository-auth-url"
+    AWS_ACCESS_KEY_ID: 'component-website-access-key'
+    AWS_SECRET_ACCESS_KEY: 'component-website-secret-key'
+    GIT_USER_EMAIL: 'github-user-email'
+    GIT_USER_NAME: 'github-user-name'
 
 phases:
   install:
     commands:
-      # - aws cloudformation deploy --stack-name rtm-ui-docs --template-file ./aws/docs-cft.yml --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --parameter-overrides OauthToken=$GITHUB_AUTH_TOKEN NpmAuthToken=$NPM_AUTH_TOKEN NpmRegistryLoginUrl=$NPM_REGISTRY_LOGIN_URL
-      - git checkout master
-      - npm install -g npm
-      - npm install -g lerna
-      - npm set registry http://registry.npmjs.org/
-      - npm set always-auth true
-      - npm set unsafe-perm true
-      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
-      - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
+      - npm config list
+      - npm ci
+
   pre_build:
     commands:
-      - lerna bootstrap
+      - npm run bootstrap
+      - npm run build:ci
+
   build:
     commands:
-      - npm run build:ci --parallel
-      - npm run copy:builds # this copies the build files and places in the dist/ folder for the component CDN
+      - npm run test:ci
+      - npm run copy:builds
+      - npm run build:docs
+
   post_build:
     commands:
-      - npm run test:ci
       - npm run release
-      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
-      - aws s3 cp ./dist/ s3://$CDN_BUCKET_NAME/rtm-ui/libs --acl public-read --exclude "*" --include "*.min.js" --recursive
-cache:
-  paths:
-    - "./node_modules/**/*"
+# artifacts:
+#   secondary-artifacts:
+#     api:
+#       base-directory: .docz/dist
+#       files:
+#         - '**/*'
+#     ui:
+#       base-directory: .docz/dist
+#       files:
+#         - '**/*'

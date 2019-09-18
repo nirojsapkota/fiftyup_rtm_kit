@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout"
   },
   "peerDependencies": {
