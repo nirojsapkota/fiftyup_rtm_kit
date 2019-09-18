@@ -2,7 +2,6 @@ version: 0.2
 phases:
   install:
     commands:
-      - aws ecr batch-get-image --registry-id=676559443024 --repository-name custom-codebuild-image-develop --image-ids=imageTag=latest
       - npm ci
       - npm config list
 

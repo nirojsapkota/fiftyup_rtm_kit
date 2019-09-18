@@ -12,7 +12,8 @@ phases:
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
-      - npm config list
+      - git checkout master
+      - git status
       - npm ci
 
   pre_build:
