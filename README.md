@@ -1,5 +1,7 @@
 # RTM Kit
 
+---
+
 ![Build Status](https://codebuild.ap-southeast-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiVVkvQkdpWVVZcU1zRHNYN0tNdjJYV0t6N1l3bG1tL3Y5WWE0R1MwaExPOUpSVU51cm1XZDJVcHRLTmtyaDNKc3IreXFpZnNDU3EwSkZzNER4YzUyblY0PSIsIml2UGFyYW1ldGVyU3BlYyI6ImUvSGxpZTF5eTZHOXlKMFciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
