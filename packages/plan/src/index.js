@@ -17,14 +17,13 @@ const PlanSidebar = ({ children, ...props }) => (
 
 export const Plan = ({
   authenticityToken,
-  entity,
   plan,
   actions,
   reference,
   phonebackProps,
   isEnabledMarkdown,
 }) => {
-  const [isPhonebackSubmitted, setPhonebackSubmitted] = React.useState(false);
+  const [isPhonebackSubmitted, setPhonebackSubmitted] = React.useState(plan.has_phoneback);
   const clickAction = actions.find(({ track }) => track === 'get_started');
   const callbackAction = actions.find(
     ({ track }) => track === 'request_call_back'
