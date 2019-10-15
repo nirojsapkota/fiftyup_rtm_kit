@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/typography",
-  "version": "4.0.42",
+  "version": "4.0.43",
   "description": "Stub description for type",
   "rtmRollup": {
     "namespace": "typography",
