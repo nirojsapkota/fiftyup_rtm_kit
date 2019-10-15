@@ -228,7 +228,20 @@ class TrackerRegistration extends React.Component {
       }
       sfmc_script_html =
         sfmc_script_html +
-        `_etmc.push(['trackPageView']);}})(window, document, 'script', 'https://${this.props.sfmc_business_account_id}.collect.igodigital.com/collect.js', '_etmc');`;
+        `_etmc.push(["updateItem",
+        {
+          "item_type": "content",
+          "item": "${window.location.origin + window.location.pathname}",
+          "url": "${window.location.href}",
+        },
+      ])`;
+      sfmc_script_html =
+        sfmc_script_html +
+        `_etmc.push(['trackPageView', { "item" : "${window.location.origin +
+          window.location
+            .pathname}" }]);}})(window, document, 'script', 'https://${
+          this.props.sfmc_business_account_id
+        }.collect.igodigital.com/collect.js', '_etmc');`;
       sfmc.innerHTML = sfmc_script_html;
       this.instance.appendChild(sfmc);
     }
