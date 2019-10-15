@@ -234,7 +234,7 @@ class TrackerRegistration extends React.Component {
           "item": "${window.location.origin + window.location.pathname}",
           "url": "${window.location.href}",
         },
-      ])`;
+      ]);`;
       sfmc_script_html =
         sfmc_script_html +
         `_etmc.push(['trackPageView', { "item" : "${window.location.origin +
