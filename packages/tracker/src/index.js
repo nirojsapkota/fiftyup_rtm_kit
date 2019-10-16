@@ -233,6 +233,7 @@ class TrackerRegistration extends React.Component {
           "item_type": "content",
           "item": "${window.location.origin + window.location.pathname}",
           "url": "${window.location.href}",
+          "available": "Y",
         },
       ]);`;
       sfmc_script_html =
