@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { HybridLoginView } from '../index';
 
 import hybridLoginViewProps from '../__fixtures__/hybridLoginView';
@@ -28,5 +28,18 @@ describe('<HybridLoginView />', () => {
     const updateMockData = { ...props, entity };
     render(<HybridLoginView component="how" {...updateMockData} />);
     // TODO - write a real assertion here due to removing snapshot
+  });
+
+  it('renders the accordion if given', () => {
+    let accordionHeaderText = 'Accordion Header 1';
+    let accordionContentText = 'Accordion content 1';
+
+    const { queryByText } = render(
+      <HybridLoginView component="how" {...props} />
+    );
+
+    expect(queryByText(accordionHeaderText)).toBeInTheDocument();
+    fireEvent.click(queryByText(accordionHeaderText));
+    expect(queryByText(accordionContentText)).toBeInTheDocument();
   });
 });

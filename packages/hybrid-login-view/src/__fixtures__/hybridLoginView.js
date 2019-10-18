@@ -65,6 +65,24 @@ const hybridLoginView = {
       body: 'Its free to join and its obligation-free',
     },
   ],
+  accordion: [
+    {
+      id: 69,
+      name: 'Accordion Header 1',
+      content: 'Accordion content 1',
+      sort_order: null,
+      created_at: '2016-11-21T17:26:43.000+11:00',
+      updated_at: '2017-06-29T14:37:01.000+10:00',
+    },
+    {
+      id: 70,
+      name: 'Accordion Header 2',
+      content: 'Accordion content 2',
+      sort_order: null,
+      created_at: '2016-11-21T17:26:43.000+11:00',
+      updated_at: '2017-06-29T14:37:01.000+10:00',
+    },
+  ],
 };
 
 export default hybridLoginView;
