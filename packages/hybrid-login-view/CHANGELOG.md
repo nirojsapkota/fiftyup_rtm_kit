@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.0.79...@rtm-ui/hybrid-login-view@4.1.0) (2019-10-18)
+
+
+### Features
+
+* **HybridLoginView:** Add support for accordions ([#247](https://github.com/OBSAU/rtm-kit/issues/247)) ([7a9ecd8](https://github.com/OBSAU/rtm-kit/commit/7a9ecd8)), closes [#OB-2845](https://github.com/OBSAU/rtm-kit/issues/OB-2845)
+
+
+
+
+
 ## [4.0.79](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.0.78...@rtm-ui/hybrid-login-view@4.0.79) (2019-10-16)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
