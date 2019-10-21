@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.1.0...@rtm-ui/hybrid-login-view@4.1.1) (2019-10-21)
+
+**Note:** Version bump only for package @rtm-ui/hybrid-login-view
+
+
+
+
+
 # [4.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.0.79...@rtm-ui/hybrid-login-view@4.1.0) (2019-10-18)
 
 
