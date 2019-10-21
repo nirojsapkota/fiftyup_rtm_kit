@@ -19,52 +19,15 @@ const hybridLoginView = {
     validator: 'zipcode',
     errorValue: 'postcode',
   },
-  howItWorksProps: {
-    header:
-      '##### One Big Switch takes the stress out of getting value on your household bills by doing the negotiating for you!',
-    items: [
-      {
-        glyph: 'user-help',
-        title: 'You join the movement for free',
-      },
-      {
-        glyph: 'balance',
-        title: 'We negotiate Group Discounts',
-      },
-      {
-        glyph: 'hands-shake-2',
-        title: 'You decide what’s right for you',
-      },
-    ],
+
+  rightSideMarkDownContent: {
+    header: '##### Free Text Heading',
+    body: `
+Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.
+
+Ut id efficitur enim. Phasellus vitae risus a urna dignissim pellentesque pulvinar quis arcu. Vivamus ac metus ultrices, consequat magna nec, malesuada lectus. Aenean quis nibh diam. Vivamus et erat mauris. Vivamus eget fermentum justo, in sollicitudin mauris. Proin suscipit lacus id elementum finibus`
   },
-  whyJoinheader: '##### Why Join One Big Switch ? ',
-  children: [
-    {
-      icon: 'build',
-      size: 70,
-      strokePrimary: 'primary',
-      strokeSecondary: 'accent',
-      fill: 'none',
-      body: '1.06 miilion Australians have joined the movement since 2011',
-    },
-    {
-      icon: 'bright-idea',
-      size: 70,
-      strokePrimary: 'primary',
-      strokeSecondary: 'accent',
-      fill: 'none',
-      body:
-        ' We have helped more than 300,000 households switch their Energy plan',
-    },
-    {
-      icon: 'free-to-join',
-      size: 70,
-      strokePrimary: 'primary',
-      strokeSecondary: 'accent',
-      fill: 'none',
-      body: 'Its free to join and its obligation-free',
-    },
-  ],
+
   accordion: [
     {
       id: 69,

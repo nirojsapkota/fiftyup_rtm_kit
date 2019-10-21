@@ -1,17 +1,14 @@
-import React from 'react';
-import t from 'prop-types';
-import styled from 'styled-components';
 import { Accordion } from '@rtm-ui/accordion';
-import { Box } from '@rtm-ui/layout';
-import { getColor, Theme as Variant } from '@rtm-ui/theme';
-import { LoginPanel } from '@rtm-ui/login-panel';
 import { Img } from '@rtm-ui/img';
-import { HowItWorks } from '@rtm-ui/how-it-works';
+import { Box } from '@rtm-ui/layout';
+import { LoginPanel } from '@rtm-ui/login-panel';
+import { getColor, Theme as Variant } from '@rtm-ui/theme';
 import { track } from '@rtm-ui/tracker';
+import { Header, Markdown } from '@rtm-ui/typography';
+import t from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 import BasicHeader from './header';
-import { List, ListItem } from '@rtm-ui/list';
-import { Markdown, Header } from '@rtm-ui/typography';
-
 const HybridLoginReferenceContext = React.createContext();
 
 const BodyWrapper = styled(Box)`
@@ -21,15 +18,12 @@ const BodyWrapper = styled(Box)`
 const ContentWrapper = styled(Box)`
   max-width: 1080px;
   background: none;
-`;
-
-const MobileHide = styled(Box)`
-  background: inherit;
+  padding-top: 1rem;
   display: flex;
   flex-flow: row;
   min-height: 400px;
   @media (max-width: ${props => props.theme.grid.md}em) {
-    display: none;
+    flex-flow: column;
   }
 `;
 
@@ -39,26 +33,25 @@ const Column = styled(Box)`
   flex-flow: column;
 `;
 
-const MobileShow = styled(Box)`
-  background: inherit;
-  display: flex;
-  flex-flow: column;
-  padding-top: 8px;
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    display: none;
-  }
-`;
-
-const HowItWorksWrapper = styled(Box)`
-  background: inherit;
-`;
-
 const LoginPanelWrapper = styled(Box)`
   background: inherit;
 `;
 
 const HeroImageWrapper = styled(Box)`
   max-width: 1080px;
+`;
+
+const ContentBox = styled(Box)`
+ padding: 0 1rem 0.5rem 1rem;
+`;
+
+const TitleMarkdown = styled(Markdown)`
+margin-top:0.7rem;
+margin-bottom:0.7rem;
+`;
+
+const ContentMarkdown = styled(Markdown)`
+margin-bottom:1.0rem;
 `;
 
 const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
@@ -71,11 +64,9 @@ const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
 };
 
 const HybridLoginView = ({
-  howItWorksProps,
   children,
-  whyJoinheader,
   heroImageUrl,
-  component,
+  rightSideMarkDownContent,
   accordion,
   ...props
 }) => {
@@ -86,45 +77,20 @@ const HybridLoginView = ({
           <Img src={heroImageUrl} alt="Hero image" />
         </HeroImageWrapper>
         <ContentWrapper m="auto">
-          <MobileHide>
-            <Column width={1 / 2}>
-              <LoginPanelWrapper mt={-30} px={[10, 10, 15, 20]}>
-                <LoginPanel {...props} />
-              </LoginPanelWrapper>
-            </Column>
-            <Column width={1 / 2}>
-              <HowItWorksWrapper px={10} mt={[20, 20, 40, 40]}>
-                {component === 'how' ? (
-                  <HowItWorks orientation="vertical" {...howItWorksProps} />
-                ) : (
-                  <Box px={10}>
-                    <ListItem>
-                      <Markdown raw={whyJoinheader} />
-                    </ListItem>
-                    <List>{children}</List>
-                  </Box>
-                )}
-              </HowItWorksWrapper>
-            </Column>
-          </MobileHide>
-          <MobileShow>
+
+          <Column width={1}>
             <LoginPanelWrapper mt={-30} px={[10, 10, 15, 20]}>
               <LoginPanel {...props} />
             </LoginPanelWrapper>
-            <HowItWorksWrapper px={10} mt={[20, 20, 40, 50]}>
-              {component === 'how' ? (
-                <HowItWorks orientation="vertical" {...howItWorksProps} />
-              ) : (
-                <Box px={10}>
-                  <ListItem>
-                    <Markdown raw={whyJoinheader} />
-                  </ListItem>
-                  <List>{children}</List>
-                </Box>
-              )}
-            </HowItWorksWrapper>
-          </MobileShow>
-
+          </Column>
+          <Column width={1}>
+            <ContentBox>
+              <TitleMarkdown raw={rightSideMarkDownContent.header} />
+              <ContentMarkdown raw={rightSideMarkDownContent.body} />
+            </ContentBox>
+          </Column>
+        </ContentWrapper>
+        <ContentWrapper m="auto">
           <Column width={1} pb={20} px={[10, 10, 0]} variant="b">
             <Accordion
               items={accordion}
@@ -139,15 +105,18 @@ const HybridLoginView = ({
             />
           </Column>
         </ContentWrapper>
+
       </BodyWrapper>
     </React.Fragment>
   );
 };
 
 HybridLoginView.propTypes = {
-  howItWorksProps: t.shape({}),
+  rightSideMarkDownContent: t.shape({
+    header: t.string,
+    body: t.string
+  }),
   heroImageUrl: t.string,
-  component: t.oneOf(['why', 'how']),
   accordion: t.arrayOf(t.shape({})),
 };
 
@@ -186,3 +155,4 @@ WrappedHybridLoginView.propTypes = {
 };
 
 export { WrappedHybridLoginView as HybridLoginView };
+

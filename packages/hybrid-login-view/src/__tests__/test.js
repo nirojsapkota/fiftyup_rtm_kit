@@ -1,33 +1,18 @@
 import React from 'react';
-import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
+import { fireEvent, render } from '../../../bootstrap/setup/testSetup';
 import { HybridLoginView } from '../index';
-
 import hybridLoginViewProps from '../__fixtures__/hybridLoginView';
 
 describe('<HybridLoginView />', () => {
+
   const props = hybridLoginViewProps;
-  it('matches expected output', () => {
-    const { queryByText } = render(
-      <HybridLoginView component="how" {...props} />
-    );
-    expect(queryByText(props.title)).toBeInTheDocument();
-    expect(
-      queryByText(props.howItWorksProps.items[0].title)
-    ).toBeInTheDocument();
-  });
 
-  it('verifies the  expected why join component', () => {
-    const { queryByText } = render(
-      <HybridLoginView component="why" {...props} />
-    );
-    expect(queryByText(props.children[0].body)).toBeInTheDocument();
-  });
+  it('Test the Right side Markdown Content to have header and content', () => {
 
-  it('entity brand ninesaver button icon will not rendered', () => {
-    const entity = { ...props.entity, brand: 'ninesaver' };
-    const updateMockData = { ...props, entity };
-    render(<HybridLoginView component="how" {...updateMockData} />);
-    // TODO - write a real assertion here due to removing snapshot
+    const { queryByText, getByText } = render(<HybridLoginView {...props} />);
+    expect(getByText('Free Text Heading')).toBeInTheDocument();
+    expect(queryByText('Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.')).toBeInTheDocument();
+
   });
 
   it('renders the accordion if given', () => {
@@ -35,7 +20,7 @@ describe('<HybridLoginView />', () => {
     let accordionContentText = 'Accordion content 1';
 
     const { queryByText } = render(
-      <HybridLoginView component="how" {...props} />
+      <HybridLoginView {...props} />
     );
 
     expect(queryByText(accordionHeaderText)).toBeInTheDocument();
