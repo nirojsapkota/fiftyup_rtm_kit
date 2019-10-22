@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.1.1...@rtm-ui/hybrid-login-view@4.1.2) (2019-10-22)
+
+
+### Bug Fixes
+
+* **HybridLoginView:** Remove big space at the bottom when accordion is not available ([#249](https://github.com/OBSAU/rtm-kit/issues/249)) ([ec8edc2](https://github.com/OBSAU/rtm-kit/commit/ec8edc218c98d9d1badba4c8b1fa2b94766b332c)), closes [#OB-2845](https://github.com/OBSAU/rtm-kit/issues/OB-2845)
+
+
+
+
+
 ## [4.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.1.0...@rtm-ui/hybrid-login-view@4.1.1) (2019-10-21)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
