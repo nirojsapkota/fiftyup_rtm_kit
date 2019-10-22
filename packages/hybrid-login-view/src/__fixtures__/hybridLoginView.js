@@ -25,7 +25,7 @@ const hybridLoginView = {
     body: `
 Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.
 
-Ut id efficitur enim. Phasellus vitae risus a urna dignissim pellentesque pulvinar quis arcu. Vivamus ac metus ultrices, consequat magna nec, malesuada lectus. Aenean quis nibh diam. Vivamus et erat mauris. Vivamus eget fermentum justo, in sollicitudin mauris. Proin suscipit lacus id elementum finibus`
+Ut id efficitur enim. Phasellus vitae risus a urna dignissim pellentesque pulvinar quis arcu. Vivamus ac metus ultrices, consequat magna nec, malesuada lectus. Aenean quis nibh diam. Vivamus et erat mauris. Vivamus eget fermentum justo, in sollicitudin mauris. Proin suscipit lacus id elementum finibus`,
   },
 
   accordion: [

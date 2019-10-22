@@ -27,6 +27,11 @@ const ContentWrapper = styled(Box)`
   }
 `;
 
+const BottomContentWrapper = styled(ContentWrapper)`
+  min-height: auto;
+  padding-top: 0;
+`;
+
 const Column = styled(Box)`
   background: inherit;
   display: flex;
@@ -42,16 +47,16 @@ const HeroImageWrapper = styled(Box)`
 `;
 
 const ContentBox = styled(Box)`
- padding: 0 1rem 0.5rem 1rem;
+  padding: 0 1rem 0.5rem 1rem;
 `;
 
 const TitleMarkdown = styled(Markdown)`
-margin-top:0.7rem;
-margin-bottom:0.7rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
 `;
 
 const ContentMarkdown = styled(Markdown)`
-margin-bottom:1.0rem;
+  margin-bottom: 1rem;
 `;
 
 const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
@@ -64,7 +69,6 @@ const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
 };
 
 const HybridLoginView = ({
-  children,
   heroImageUrl,
   rightSideMarkDownContent,
   accordion,
@@ -77,7 +81,6 @@ const HybridLoginView = ({
           <Img src={heroImageUrl} alt="Hero image" />
         </HeroImageWrapper>
         <ContentWrapper m="auto">
-
           <Column width={1}>
             <LoginPanelWrapper mt={-30} px={[10, 10, 15, 20]}>
               <LoginPanel {...props} />
@@ -90,7 +93,7 @@ const HybridLoginView = ({
             </ContentBox>
           </Column>
         </ContentWrapper>
-        <ContentWrapper m="auto">
+        <BottomContentWrapper m="auto">
           <Column width={1} pb={20} px={[10, 10, 0]} variant="b">
             <Accordion
               items={accordion}
@@ -104,8 +107,7 @@ const HybridLoginView = ({
               renderHeader={item => <Header tag="h5">{item.name}</Header>}
             />
           </Column>
-        </ContentWrapper>
-
+        </BottomContentWrapper>
       </BodyWrapper>
     </React.Fragment>
   );
@@ -114,7 +116,7 @@ const HybridLoginView = ({
 HybridLoginView.propTypes = {
   rightSideMarkDownContent: t.shape({
     header: t.string,
-    body: t.string
+    body: t.string,
   }),
   heroImageUrl: t.string,
   accordion: t.arrayOf(t.shape({})),
@@ -155,4 +157,3 @@ WrappedHybridLoginView.propTypes = {
 };
 
 export { WrappedHybridLoginView as HybridLoginView };
-
