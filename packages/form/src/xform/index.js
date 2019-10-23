@@ -34,12 +34,40 @@ const validatorMap = {
  *
  *
  */
-const getFieldMachine = machineName => {
+const getFieldMachine = (machineName, field) => {
   const machineMap = {
     text: textMachine,
     radio: radioMachine,
   };
-  return machineMap[machineName];
+
+  let context = field;
+  let machine = machineMap[machineName];
+
+  // If we have a radio field with only one value
+  // we can skip to it's validation step
+  if (machineName === 'radio' && field.options.length === 1) {
+    context = { ...field, value: field.options[0].value, type: 'hidden' };
+    machine = {
+      ...machine,
+      states: {
+        ...machine.states,
+        completion: {
+          ...machine.states.completion,
+          initial: 'complete', // move to complete
+        },
+        validity: {
+          ...machine.states.validity,
+          initial: 'validating', // this will trigger the field group submission
+        },
+      },
+    };
+  }
+
+  return {
+    ...machine,
+    id: field.name,
+    context,
+  };
 };
 
 const getFieldValues = fields => {
@@ -305,14 +333,10 @@ const fieldGroupConfig = {
           machine: field.machine
             ? field.machine
             : spawn(
-                Machine(
-                  {
-                    ...getFieldMachine(field.config.machine),
-                    id: field.name,
-                    context: field,
-                  },
-                  { ...fieldConfig, sync: true }
-                ),
+                Machine(getFieldMachine(field.config.machine, field), {
+                  ...fieldConfig,
+                  sync: true,
+                }),
                 `field-${field.name}`
               ),
         })),
