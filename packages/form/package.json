@@ -28,12 +28,14 @@
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/typography": "file:../typography",
+    "@xstate/react": "^0.7.1",
     "date-fns": "^1.30.1",
     "formik": "^1.4.1",
     "react-stripe-elements": "^2.0.3",
     "react-text-mask": "^5.4.3",
     "styled-components": "^4.0",
     "text-mask-addons": "^3.8.0",
+    "xstate": "^4.7.0-rc5",
     "yup": "^0.26.10"
   },
   "peerDependencies": {

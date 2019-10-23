@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@rtm/core": "^1.0.33",
+    "@xstate/react": "^0.7.1",
     "acorn": "^6.1.1",
     "acorn-dynamic-import": "^4.0.0",
     "axios": "^0.19.0",
@@ -73,7 +74,8 @@
     "universal-cookie": "^3.0.7",
     "wait-for-localhost": "2.0.1",
     "webpack": "4.28.4",
-    "yup": "^0.26.10"
+    "yup": "^0.26.10",
+    "xstate": "^4.7.0-rc5"
   },
   "dependencies": {
     "@rtm-ui/a": "file:packages/a",
@@ -105,13 +107,13 @@
     "@rtm-ui/plan": "file:packages/plan",
     "@rtm-ui/plan-selector": "file:packages/plan-selector",
     "@rtm-ui/readfile": "file:packages/readfile",
+    "@rtm-ui/seo": "file:packages/seo",
     "@rtm-ui/switch-confirm-page": "file:packages/switch-confirm-page",
     "@rtm-ui/testimonial": "file:packages/testimonial",
     "@rtm-ui/theme": "file:packages/theme",
     "@rtm-ui/tracker": "file:packages/tracker",
     "@rtm-ui/typography": "file:packages/typography",
-    "@rtm-ui/video-dialog": "file:packages/video-dialog",
-    "@rtm-ui/seo": "file:packages/seo"
+    "@rtm-ui/video-dialog": "file:packages/video-dialog"
   },
   "eslintConfig": {
     "extends": [

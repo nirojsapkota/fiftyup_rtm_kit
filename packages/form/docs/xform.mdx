@@ -1,0 +1,27 @@
+---
+name: XForm
+route: /form/xform
+menu: Form
+---
+
+import { Playground, PropsTable } from 'docz';
+import { example, exampleWithAutoComplete } from './xsample';
+import { Xform } from '../src';
+import { Layout } from './layout';
+
+# XForm
+
+<Layout
+  left={
+    <>
+      Without Autocomplete
+      <Xform {...example} />
+    </>
+  }
+  right={
+    <>
+      With Autocomplete
+      <Xform {...exampleWithAutoComplete} />
+    </>
+  }
+/>
