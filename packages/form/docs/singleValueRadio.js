@@ -45,26 +45,26 @@ export const example = {
             ],
           },
         ],
-        next: {
-          fields: [
-            {
-              label: 'Please select items',
-              config: {
-                machine: 'radio',
-                component: 'panelRadio',
-                validator: 'requiredRadio',
-              },
-              hint: 'Select for some reason',
-              name: 'solar',
-              value: '',
-              type: 'radio',
-              options: [
-                { label: 'SOLAR', value: 'solar', icon: 'electricity' },
-                { label: 'NONSOLAR', value: 'nonsolar', icon: 'electricity' },
-              ],
-            },
-          ],
-        },
+        // next: {
+        //   fields: [
+        //     {
+        //       label: 'Please select items',
+        //       config: {
+        //         machine: 'radio',
+        //         component: 'panelRadio',
+        //         validator: 'requiredRadio',
+        //       },
+        //       hint: 'Select for some reason',
+        //       name: 'solar',
+        //       value: '',
+        //       type: 'radio',
+        //       options: [
+        //         { label: 'SOLAR', value: 'solar', icon: 'electricity' },
+        //         { label: 'NONSOLAR', value: 'nonsolar', icon: 'electricity' },
+        //       ],
+        //     },
+        //   ],
+        // },
       },
   },
 };
