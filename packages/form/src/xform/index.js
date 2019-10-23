@@ -268,7 +268,7 @@ const fieldGroupConfig = {
 
         return spawn(
           Machine(
-            fieldGroupMachine(context.options),
+            fieldGroupMachineConfig(context.options),
             fieldGroupConfig
           ).withContext({
             ...event.data,
@@ -352,7 +352,7 @@ const fieldGroupConfig = {
   },
 };
 
-const fieldGroupMachine = options => ({
+const fieldGroupMachineConfig = options => ({
   initial: 'init',
   states: {
     init: {
@@ -434,7 +434,6 @@ const formConfig = {
         const name = context.next.context.fields
           .map(({ name }) => name)
           .join('-');
-        console.log('options', context.next);
         return spawn(
           Machine({ ...context.next, id: `group-${name}` }, fieldGroupConfig),
           `group-${name}`
@@ -486,7 +485,7 @@ const useField = (machine, groupIsValidating) => {
     if (groupIsValidating) {
       send('validate');
     }
-  }, [groupIsValidating]);
+  }, [groupIsValidating, send]);
 
   return {
     context: state ? state.context : {},
@@ -520,7 +519,10 @@ const useForm = ({ onSubmit, options, form }) => {
     Machine(formMachine, formConfig).withContext({
       onSubmit: onSubmit,
       options,
-      next: { ...fieldGroupMachine(options), context: { ...form, options } },
+      next: {
+        ...fieldGroupMachineConfig(options),
+        context: { ...form, options },
+      },
     })
   );
 
@@ -606,7 +608,6 @@ export const Xform = props => {
   if (!fieldGroupMachine) {
     return null;
   }
-  // console.log(fieldGroupMachine);
 
   return <>{fieldGroupMachine && <FieldGroup service={fieldGroupMachine} />}</>;
 };

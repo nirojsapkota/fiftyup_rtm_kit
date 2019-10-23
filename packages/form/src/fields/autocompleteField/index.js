@@ -84,10 +84,10 @@ const AutocompleteField = ({
         <TextField
           {...inputProps}
           aria-haspopup="listbox"
-          onFocus={() => {
+          onFocus={e => {
             setModalOpen(true);
             setHasInteracted(true);
-            onFocus();
+            typeof onFocus === 'function' && onFocus(e);
           }}
           onBlur={onBlur}
           onChange={e => {
@@ -120,6 +120,7 @@ const AutocompleteField = ({
                       config.onDidSelect &&
                         config.onDidSelect(inputProps.name, result.label);
                       fieldUtils.setFieldValue(inputProps.name, result.label);
+                      onBlur(); // FIXME
                     }}
                   >
                     <Header tag="h6" align="left" weight="thin" p={15}>
