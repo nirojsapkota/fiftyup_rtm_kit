@@ -8,8 +8,42 @@ import { Playground, PropsTable } from 'docz';
 import { example, exampleWithAutoComplete } from './xsample';
 import { Xform } from '../src';
 import { Layout } from './layout';
+import { Escape } from './escapeSample';
+import { AnimateEntry } from './animateEntry';
+import { SingleValue } from './singleValueRadio';
 
 # XForm
+
+### Single value passthru
+
+TODO - when there's an initial value we should evaluate it's validity
+without throwing an error. Some change near the `validity.unknown` logic
+
+<SingleValue />
+
+---
+
+### Animate entry
+
+Since most of the logic lives in hooks it's trival to make your own
+components and wrap them in whatever you want
+
+<AnimateEntry />
+
+---
+
+### Escape
+
+Hook into the form lifecycle to jump out of it when the user
+indicates they are an existing customer
+
+<Escape />
+
+---
+
+### Autocomplete
+
+When a field group becomes valid, automatically submit
 
 <Layout
   left={

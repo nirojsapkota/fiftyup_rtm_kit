@@ -3,7 +3,14 @@ import StepForm from './stepForm';
 import Accordion from './accordion';
 import MonthField from '../src/fields/monthField';
 import { FormError } from './formError';
-import { Xform } from './xform';
+import {
+  Xform,
+  FieldGroup,
+  Field,
+  useForm,
+  useFieldGroup,
+  useField,
+} from './xform';
 
 export {
   Form,
@@ -13,4 +20,9 @@ export {
   getFormValues,
   FormError,
   Xform,
+  FieldGroup,
+  Field,
+  useForm,
+  useFieldGroup,
+  useField,
 };

@@ -30,7 +30,7 @@ const validatorMap = {
 /**
  *
  *
- * Field machine logic
+ * Helpers
  *
  *
  */
@@ -42,6 +42,23 @@ const getFieldMachine = machineName => {
   return machineMap[machineName];
 };
 
+const getFieldValues = fields => {
+  const submissionObject = {};
+  fields.map(({ machine }) => {
+    const { name, value } = machine.state.context;
+    submissionObject[name] = value;
+  });
+
+  return submissionObject;
+};
+
+/**
+ *
+ *
+ * Field machine logic
+ *
+ *
+ */
 export const fieldConfig = {
   actions: {
     change: assign({
@@ -332,6 +349,10 @@ const fieldGroupConfig = {
   },
   services: {
     getNextFieldGroup: async context => {
+      if (context.onSubmit) {
+        await context.onSubmit(getFieldValues(context.fields));
+      }
+
       try {
         if (context.nextFn) {
           return await context.nextFn(context);
@@ -478,7 +499,7 @@ const formMachine = {
  *
  *
  */
-const useField = (machine, groupIsValidating) => {
+export const useField = (machine, groupIsValidating) => {
   const [state, send] = useService(machine);
 
   React.useEffect(() => {
@@ -493,7 +514,7 @@ const useField = (machine, groupIsValidating) => {
   };
 };
 
-const useFieldGroup = service => {
+export const useFieldGroup = service => {
   const [state, send] = useService(service);
   const [groupIsValidating, setGroupIsValidating] = React.useState(false);
 
@@ -514,7 +535,7 @@ const useFieldGroup = service => {
   };
 };
 
-const useForm = ({ onSubmit, options, form }) => {
+export const useForm = ({ onSubmit, options, form }) => {
   const [state] = useMachine(
     Machine(formMachine, formConfig).withContext({
       onSubmit: onSubmit,
@@ -553,7 +574,7 @@ const useForm = ({ onSubmit, options, form }) => {
  *
  *
  */
-const Field = ({ groupIsValidating, machine }) => {
+export const Field = ({ groupIsValidating, machine }) => {
   const { context, send } = useField(machine, groupIsValidating);
 
   return (
@@ -581,7 +602,7 @@ const Field = ({ groupIsValidating, machine }) => {
   );
 };
 
-const FieldGroup = ({ service }) => {
+export const FieldGroup = ({ service }) => {
   const { fields, send, nextMachine, groupIsValidating } = useFieldGroup(
     service
   );
@@ -594,9 +615,7 @@ const FieldGroup = ({ service }) => {
           machine={field.machine}
         />
       ))}
-      <button type="button" onClick={() => send('submit')}>
-        Submit
-      </button>
+      <button onClick={() => send('submit')}>Submit</button>
       {nextMachine && <FieldGroup service={nextMachine} />}
     </>
   );
@@ -604,10 +623,6 @@ const FieldGroup = ({ service }) => {
 
 export const Xform = props => {
   const { fieldGroupMachine } = useForm(props);
-
-  if (!fieldGroupMachine) {
-    return null;
-  }
 
   return <>{fieldGroupMachine && <FieldGroup service={fieldGroupMachine} />}</>;
 };
