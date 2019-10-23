@@ -434,6 +434,7 @@ const formConfig = {
         const name = context.next.context.fields
           .map(({ name }) => name)
           .join('-');
+        console.log('options', context.next);
         return spawn(
           Machine({ ...context.next, id: `group-${name}` }, fieldGroupConfig),
           `group-${name}`
@@ -530,6 +531,13 @@ const useForm = ({ onSubmit, options, form }) => {
     };
   }
 
+  if (!state.context.nextMachine.hasOwnProperty('machine')) {
+    return {
+      formState: undefined,
+      fieldGroupMachine: undefined,
+    };
+  }
+
   return {
     formState: state,
     fieldGroupMachine: state.context.nextMachine,
@@ -575,7 +583,6 @@ const FieldGroup = ({ service }) => {
   const { fields, send, nextMachine, groupIsValidating } = useFieldGroup(
     service
   );
-
   return (
     <>
       {fields.map(field => (
@@ -596,9 +603,10 @@ const FieldGroup = ({ service }) => {
 export const Xform = props => {
   const { fieldGroupMachine } = useForm(props);
 
-  return (
-    <>
-      <FieldGroup service={fieldGroupMachine} />
-    </>
-  );
+  if (!fieldGroupMachine) {
+    return null;
+  }
+  // console.log(fieldGroupMachine);
+
+  return <>{fieldGroupMachine && <FieldGroup service={fieldGroupMachine} />}</>;
 };

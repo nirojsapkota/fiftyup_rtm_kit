@@ -56,7 +56,10 @@ const variantChildLast = {
 };
 
 const AnimateableWrapper = ({ children, ...animateProps }) => {
-  const { shouldAnimate } = React.useContext(FieldGroupContext);
+  const fieldGroupContext = React.useContext(FieldGroupContext);
+  const shouldAnimate = fieldGroupContext
+    ? fieldGroupContext.shouldAnimate
+    : false;
   if (shouldAnimate) {
     return <motion.div {...animateProps}>{children}</motion.div>;
   } else {
