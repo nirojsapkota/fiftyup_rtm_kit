@@ -355,11 +355,6 @@ const fieldGroupConfig = {
     }),
   },
   guards: {
-    allFieldsTouched: (context, event) => {
-      return context.fields
-        .map(({ machine }) => machine.state)
-        .every(state => state.matches('focus.touched'));
-    },
     allFieldsComplete: (context, event) => {
       return context.fields
         .map(({ machine }) => machine.state)
@@ -377,17 +372,11 @@ const fieldGroupConfig = {
         await context.onSubmit(getFieldValues(context.fields));
       }
 
-      try {
-        if (context.nextFn) {
-          return await context.nextFn(context);
-        }
-        if (context.next) {
-          return context.next;
-        }
-      } catch (e) {
-        // FIXME: Since throwing an error will result in form submission, we don't have
-        // a solid way of exiting this when a nextFn() call throws an unexpected error
-        console.error(e);
+      if (context.nextFn) {
+        return await context.nextFn(context);
+      }
+      if (context.next) {
+        return context.next;
       }
 
       // We're treating a rejected promise as a way of saying we have no 'next'
@@ -627,9 +616,7 @@ export const Field = ({ groupIsValidating, machine }) => {
 };
 
 export const FieldGroup = ({ service }) => {
-  const { fields, send, nextMachine, groupIsValidating } = useFieldGroup(
-    service
-  );
+  const { fields, nextMachine, groupIsValidating } = useFieldGroup(service);
   return (
     <>
       {fields.map(field => (
@@ -639,7 +626,6 @@ export const FieldGroup = ({ service }) => {
           machine={field.machine}
         />
       ))}
-      <button onClick={() => send('submit')}>Submit</button>
       {nextMachine && <FieldGroup service={nextMachine} />}
     </>
   );

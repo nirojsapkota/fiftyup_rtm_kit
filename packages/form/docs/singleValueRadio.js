@@ -7,23 +7,14 @@ export const example = {
   form: {
     fields: [
       {
-        label: 'My postcode:',
-        name: 'postcode',
-        value: '',
-        type: 'text',
-        hint: 'Eg. 2000, BARANGAROO',
-        autoComplete: 'off',
+        label: 'Enter your email',
         config: {
           machine: 'text',
-          component: 'autocomplete',
-          searchFunction: async searchTerm => {
-            return [
-              { label: `${searchTerm}, Sydney` },
-              { label: `${searchTerm}, Barangaroo` },
-            ];
-          },
-          validator: 'required',
+          validator: 'email',
         },
+        name: 'email',
+        value: '',
+        type: 'text',
       },
     ],
     nextFn: async () =>
@@ -69,6 +60,87 @@ export const example = {
   },
 };
 
+export const simple = {
+  onSubmit: async values => console.log('gottt it', values),
+  options: {
+    autoComplete: true,
+  },
+  form: {
+    fields: [
+      {
+        label: 'Do you have solar',
+        config: {
+          machine: 'radio',
+          component: 'panelRadio',
+          validator: 'requiredRadio',
+        },
+        hint: 'Select for some reason',
+        name: 'solar',
+        value: '',
+        type: 'radio',
+        options: [
+          { label: 'SOLAR', value: 'solar', icon: 'electricity' },
+          { label: 'NON-SOLAR', value: 'nonsolar', icon: 'electricity' },
+        ],
+      },
+    ],
+    nextFn: async () => ({
+      fields: [
+        {
+          label: 'Choose your fuel type',
+          config: {
+            machine: 'radio',
+            component: 'panelRadio',
+            validator: 'requiredRadio',
+          },
+          hint: 'Select for some reason',
+          name: 'fuel',
+          value: '',
+          type: 'radio',
+          options: [
+            { label: 'ELECTRICITY', value: 'e', icon: 'electricity' },
+            { label: 'GAS & ELEC', value: 'eg', icon: 'electricity' },
+          ],
+        },
+      ],
+      next: {
+        fields: [
+          {
+            label: 'Enter your email',
+            config: {
+              machine: 'text',
+              validator: 'email',
+            },
+            name: 'email',
+            value: '',
+            type: 'text',
+          },
+        ],
+        next: {
+          fields: [
+            {
+              label: 'What is your household size',
+              config: {
+                machine: 'radio',
+                component: 'panelRadio',
+                validator: 'requiredRadio',
+              },
+              hint: 'Select for some reason',
+              name: 'household',
+              value: '',
+              type: 'radio',
+              options: [
+                // { label: 'SMALL', value: 'small', icon: 'electricity' },
+                { label: 'MEDIUM', value: 'medium', icon: 'electricity' },
+              ],
+            },
+          ],
+        },
+      },
+    }),
+  },
+};
+
 export const FieldGroup = ({ service }) => {
   const { fields, send, nextMachine, groupIsValidating } = useFieldGroup(
     service
@@ -90,8 +162,13 @@ export const FieldGroup = ({ service }) => {
 };
 
 export const SingleValue = _props => {
-  const props = example; // Just an example - use props passed in
+  const props = simple; // Just an example - use props passed in
   const { fieldGroupMachine } = useForm(props);
 
-  return <>{fieldGroupMachine && <FieldGroup service={fieldGroupMachine} />}</>;
+  return (
+    <>
+      {fieldGroupMachine && <FieldGroup service={fieldGroupMachine} />}
+      <div onClick={() => console.log('im focused')}>Click away</div>
+    </>
+  );
 };
