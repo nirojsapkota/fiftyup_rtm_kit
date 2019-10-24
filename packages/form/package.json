@@ -12,7 +12,13 @@
       "Form",
       "StepForm",
       "FormError",
-      "getFormValues"
+      "getFormValues",
+      "Xform",
+      "FieldGroup",
+      "Field",
+      "useForm",
+      "useFieldGroup",
+      "useField"
     ]
   },
   "main": "build/index.js",

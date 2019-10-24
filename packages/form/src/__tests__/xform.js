@@ -5,7 +5,6 @@ import { Xform } from '../index';
 
 describe('xform', () => {
   it('allows automatic submissions', async () => {
-    // const mockSubmit = async () => console.log('submitted');
     const mockSubmit = jest.fn();
     const mockFieldGroupSubmit = jest.fn();
 
