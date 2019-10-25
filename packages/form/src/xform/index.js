@@ -125,7 +125,11 @@ export const fieldConfig = {
       data: context,
     })),
   },
-  guards: {},
+  guards: {
+    hasValue: context => {
+      return !!context.value;
+    },
+  },
   services: {
     validateField: async context => {
       const validator = validatorMap[`${context.config.validator}Validator`];
@@ -158,8 +162,13 @@ export const textMachine = {
       },
     },
     completion: {
-      initial: 'idle',
+      initial: 'unknown',
       states: {
+        unknown: {
+          on: {
+            '': [{ target: 'complete', cond: 'hasValue' }, { target: 'idle' }],
+          },
+        },
         idle: {
           entry: 'notifyParentIncomplete',
           on: {
@@ -178,6 +187,14 @@ export const textMachine = {
       initial: 'unknown',
       states: {
         unknown: {
+          on: {
+            '': [
+              { target: 'validating', cond: 'hasValue' },
+              { target: 'idle' },
+            ],
+          },
+        },
+        idle: {
           on: {
             validate: 'validating',
           },
@@ -372,11 +389,17 @@ const fieldGroupConfig = {
         await context.onSubmit(getFieldValues(context.fields));
       }
 
-      if (context.nextFn) {
-        return await context.nextFn(context);
-      }
-      if (context.next) {
-        return context.next;
+      try {
+        if (context.nextFn) {
+          return context.nextFn(
+            context.fields.map(({ machine }) => machine.state.context)
+          );
+        }
+        if (context.next) {
+          return context.next;
+        }
+      } catch (e) {
+        console.error(e);
       }
 
       // We're treating a rejected promise as a way of saying we have no 'next'
@@ -463,11 +486,14 @@ const fieldGroupMachineConfig = options => ({
  */
 const formConfig = {
   actions: {
+    // "Attempted to spawn an Actor" warning is tracked here
+    // https://github.com/davidkpiano/xstate/issues/757
     assignInitialFieldGroup: assign({
       nextMachine: context => {
         const name = context.next.context.fields
           .map(({ name }) => name)
           .join('-');
+
         return spawn(
           Machine({ ...context.next, id: `group-${name}` }, fieldGroupConfig),
           `group-${name}`

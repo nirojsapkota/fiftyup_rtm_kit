@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, useFieldGroup, Field } from '../src';
 import { motion, AnimatePresence } from 'framer-motion';
-import { simple } from './xsample';
+import { exampleWithAutoComplete } from './xsample';
 
 export const FieldGroup = ({ service }) => {
   const { fields, nextMachine, groupIsValidating } = useFieldGroup(service);
@@ -31,7 +31,7 @@ export const FieldGroup = ({ service }) => {
 };
 
 export const AnimateEntry = _props => {
-  const props = simple; // Just an example - use props passed in
+  const props = exampleWithAutoComplete; // Just an example - use props passed in
   const { fieldGroupMachine } = useForm(props);
 
   return <>{fieldGroupMachine && <FieldGroup service={fieldGroupMachine} />}</>;
