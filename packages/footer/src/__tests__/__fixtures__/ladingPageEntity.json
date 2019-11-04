@@ -1,0 +1,205 @@
+{
+  "id": 1,
+  "name": "One Big Switch",
+  "web_domain": "obsau.develop",
+  "email_domain": "onebigswitch.com.au",
+  "is_active": true,
+  "api": false,
+  "description": "Join over 600,000 Australian households using People Power to try and cut the cost of living.",
+  "keywords": "One Big Switch, onebigswitch, onebig switch, one bigswitch, big energy switch, joel gibson, group switching, groupswitching, big cost of living switch, cheaper electricity, big electricity switch",
+  "namespace": "obsau",
+  "brand": "obs",
+  "slogan": "One Big Switch",
+  "facebook_page": "onebigswitch",
+  "twitter_feed": "OneBigSwitchAU",
+  "body_class": "obsau",
+  "email_host_override": "",
+  "favicon": "",
+  "created_at": "2013-11-22T18:49:36.000+11:00",
+  "updated_at": "2019-05-30T15:58:22.000+10:00",
+  "comments_intro": null,
+  "email_header_image_path": "email_headers/header-obs-plain.jpg",
+  "campaign_jump_ids": [
+    338
+  ],
+  "user_memberships_count": 1055089,
+  "social_image_file_name": "thumb.jpg",
+  "social_image_content_type": "image/jpeg",
+  "social_image_file_size": 3492,
+  "social_image_updated_at": "2015-03-04T10:02:31.000+11:00",
+  "social_image_type": null,
+  "campaign_menu_config": [
+    {
+      "text": "Big Insurance Switch",
+      "url": "/"
+    },
+    {
+      "text": "Past Campaigns",
+      "url": "/campaigns/snapshots"
+    }
+  ],
+  "user_voice_key": "s3IhzBWI2a1oBTxGn9UfuQ",
+  "is_visible_to_crawlers": true,
+  "dynamic_assets_location": "d235f2imj5gfpf.cloudfront.net",
+  "contact_us_html": "<a href=\"#\" onclick=\"UserVoice.showPopupWidget();\">Contact Us</a>",
+  "country_code": "AU",
+  "google_plus_account": "110146799508944619821",
+  "main_conversation_id": 1,
+  "youtube_account": "UCZ9YxrP70605YresG19RVtA",
+  "time_zone": "Sydney",
+  "dashboard_tweet": "",
+  "news_conversation_category_id": 12,
+  "shopify_url": "https://d19af7eed1070274dbfe796b15b02b85:a892f806d9ad4b69b725cf3e0520b986@one-big-switch.myshopify.com/admin",
+  "campaign_snapshot_blurb": "<p>Since 2011, more than 1 million Australian households have signed up to be part of our campaigns. We've harnessed that People Power to unlock Group Discounts and cut the cost of bills such as Energy, Health Insurance, Mortgages, Life Insurance and Petrol.</p>",
+  "press_page_blurb": "<p>If you have a media inquiry for One Big Switch, please contact Madeleine on madeleine@onebigswitch.com.au</p>\r\n<p>See our media coverage below.</p>",
+  "homepage_intro": "<p>Join over 1 million Australian households using People Power to try and cut the cost of living</p>\r\n",
+  "is_signup_modal_active": false,
+  "sidebar_cross_sell_id": 3,
+  "send_welcome_emails": false,
+  "business_opening_hours_html": "<p>MON-FRI 8am - 7pm<br />\r\nSAT 9am - 5pm<br />\r\nSUN CLOSED</p>\r\n",
+  "facebook_pixel_id": "1111111111",
+  "gtm_code": "GTM-K3FPQLF",
+  "ga_code": "UA-121324450-2",
+  "inspectlet_id": "1675703739",
+  "marketo_id": "928-MWU-342",
+  "zendesk_id": "a85c71b0-2af3-4bb0-9cd3-3a9eb0ebcb67",
+  "desktop_client_logo_image_file_name": "original_logo.png",
+  "desktop_client_logo_image_content_type": "image/png",
+  "desktop_client_logo_image_file_size": 33511,
+  "desktop_client_logo_image_updated_at": "2018-07-23T13:18:21.000+10:00",
+  "tablet_client_logo_image_file_name": "TAB_AUS-MEDIA.png",
+  "tablet_client_logo_image_content_type": "image/png",
+  "tablet_client_logo_image_file_size": 45263,
+  "tablet_client_logo_image_updated_at": "2018-07-12T14:56:49.000+10:00",
+  "client_logo_title": "As seen on",
+  "member_wall_image_file_name": "OBS_Footer_1702.jpg",
+  "member_wall_image_content_type": "image/jpeg",
+  "member_wall_image_file_size": 145682,
+  "member_wall_image_updated_at": "2018-08-14T17:43:37.000+10:00",
+  "google_adwords_id": "AW-964414963",
+  "confirmation_of_consent": "confirmation-of-consent",
+  "cookie_policy": "about-us",
+  "attach_plan_detail_in_confirmation_email": false,
+  "privacy_policy_link": "/privacy-policy",
+  "footer_logo_file_name": "footer-logo.png",
+  "footer_logo_content_type": "image/png",
+  "footer_logo_file_size": 6226,
+  "footer_logo_updated_at": "2018-11-12T15:53:47.000+11:00",
+  "header_logo_file_name": "header-logo.png",
+  "header_logo_content_type": "image/png",
+  "header_logo_file_size": 3695,
+  "header_logo_updated_at": "2019-01-30T20:15:41.000+11:00",
+  "login_banner_image_file_name": null,
+  "login_banner_image_content_type": null,
+  "login_banner_image_file_size": null,
+  "login_banner_image_updated_at": null,
+  "wordpress_url": "www.onebigswitch.com.au/feed",
+  "footer_items": {
+    "logo": "https://d235f2imj5gfpf.cloudfront.net/entities/1/footer_logo/original.png?1541998427",
+    "links": [
+      {
+        "id": 11,
+        "name": "One Big Switch AFSL 455982",
+        "url": "",
+        "custom_url": false,
+        "kind": "financial",
+        "is_js_driven": false,
+        "entity_id": 1,
+        "created_at": "2018-11-09T11:22:55.000+11:00",
+        "updated_at": "2018-11-09T11:22:55.000+11:00"
+      },
+      {
+        "id": 12,
+        "name": "One Big Switch ACL 405918",
+        "url": "",
+        "custom_url": false,
+        "kind": "financial",
+        "is_js_driven": false,
+        "entity_id": 1,
+        "created_at": "2018-11-09T11:22:55.000+11:00",
+        "updated_at": "2018-11-09T11:22:55.000+11:00"
+      },
+      {
+        "id": 13,
+        "name": "One Big Switch ABN 75 150 963 474",
+        "url": "",
+        "custom_url": false,
+        "kind": "financial",
+        "is_js_driven": false,
+        "entity_id": 1,
+        "created_at": "2018-11-09T11:22:55.000+11:00",
+        "updated_at": "2018-11-09T11:22:55.000+11:00"
+      },
+      {
+        "id": 14,
+        "name": "Financial Services Guide",
+        "url": "https://s3-ap-southeast-1.amazonaws.com/onebigswitch/OBSFSG.pdf",
+        "custom_url": true,
+        "kind": "financial",
+        "is_js_driven": false,
+        "entity_id": 1,
+        "created_at": "2018-11-09T11:22:55.000+11:00",
+        "updated_at": "2018-11-09T11:22:55.000+11:00"
+      },
+      {
+        "id": 15,
+        "name": "Privacy",
+        "url": "/privacy-policy",
+        "custom_url": false,
+        "kind": "legal",
+        "is_js_driven": false,
+        "entity_id": 1,
+        "created_at": "2018-11-09T11:22:55.000+11:00",
+        "updated_at": "2018-11-09T11:22:55.000+11:00"
+      },
+      {
+        "id": 16,
+        "name": "Terms and Conditions",
+        "url": "/terms-and-conditions",
+        "custom_url": false,
+        "kind": "legal",
+        "is_js_driven": false,
+        "entity_id": 1,
+        "created_at": "2018-11-09T11:22:55.000+11:00",
+        "updated_at": "2018-11-09T11:22:55.000+11:00"
+      }
+    ],
+    "businessHourInfo": {
+      "telephone": "1300 858 737",
+      "hours": "MON-FRI 8am - 7pm\r\nSAT 9am - 5pm\r\nSUN CLOSED"
+    },
+    "disclaimers": [
+      "<div id=\"BudgetDirectHome\">\r\n<p><u><strong>Home Insurance Special Offersss</strong></u><br />\r\n<br />\r\nThis insurance product is issued by Auto &amp; General Insurance Company Limited (ACN 111 586 353, AFS Licence No 285571) and administered by Auto &amp; General Services Pty Limited (ACN 003 617 909, AFS Licence No 241411). Any advice provided is general only and may not be right for you. Before you purchase this product you should carefully read the Product Disclosure Statement (<a href=\"https://secure.budgetdirect.com.au/branding/resources/BUDD/legal/home/HCPDSA.pdf\">Part A</a> and <a href=\"https://secure.budgetdirect.com.au/branding/resources/BUDD/legal/home/SHCPDSB.pdf\">Part B</a>)&nbsp;to decide if it is right for you.</p>\r\n\r\n<p>One Big Switch is a registered business name of RevTech Media Pty Ltd (ABN 75 150 963 474) who holds its own Australian Financial Services Licence (AFSL 455982) and can provide you with factual information and general advice only. If in doubt about your personal situation or needs, you should seek financial advice.</p>\r\n\r\n<p><br />\r\nIf you take out a Home and Contents Insurance policy as a result of the services provided by us, Budget Direct may pay us a commission of up to 20% of the premium for each member who takes up the Budget Direct member&#39;s offer. One Big Switch returns $50 of this commission to members in the form of the switcher&#39;s cashback. Further information can be found in the One Big Switch Financial Services Guide (FSG) available <a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/OBSFSG.pdf\" target=\"_blank\">here</a>.</p>\r\n\r\n<p>One Big Switch is a consumer network established to build real consumer power to access discounts, special offers, information and influence for our members. One Big Switch may earn a commission, paid by the provider, for a member who takes up a special One Big Switch offer. One Big Switch may share these commissions with our media partners, which include Seven Network Media and Newscorp Australia</p>\r\n</div>\r\n",
+      "<p>testing</p>\r\n",
+      "<div id=\"BudgetDirectCar\">\r\n<p><u><strong>Car Insurance Special Offer</strong></u><br />\r\n<br />\r\nThis insurance product is issued by Auto &amp; General Insurance Company Limited (ACN 111 586 353, AFS Licence No 285571) and administered by Auto &amp; General Services Pty Limited (ACN 003 617 909, AFS Licence No 241411). Any advice provided is general only and may not be right for you. Before you purchase this product you should carefully read the Product Disclosure Statement (<a href=\"https://ecommerce.disconline.com.au/branding/resources/BUDD/legal/car/PDSA.pdf\" target=\"_blank\">Part A</a> and <a href=\"https://ecommerce.disconline.com.au/branding/resources/BUDD/legal/car/PDSBGD.pdf\" target=\"_blank\">Part B</a>)&nbsp;to decide if it is right for you.</p>\r\n\r\n<p>One Big Switch is a registered business name of RevTech Media Pty Ltd (ABN 75 150 963 474) who holds its own Australian Financial Services Licence (AFSL 455982) and can provide you with factual information and general advice only. If in doubt about your personal situation or needs, you should seek financial advice.<br />\r\n<br />\r\nIf you take out a Comprehensive Car Insurance policy or Third Party Car Insurance policy as a result of the services provided by us, Budget Direct may pay us a commission of up to 20% of the premium for each member who takes up the Budget Direct member&#39;s offer. One Big Switch returns $50 of this commission to members in the form of the switcher&#39;s cashback. Further information can be found in the One Big Switch Financial Services Guide (FSG) available <a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/OBSFSG.pdf\" target=\"_blank\">here</a>.</p>\r\n\r\n<p>One Big Switch is a consumer network established to build real consumer power to access discounts, special offers, information and influence for our members. One Big Switch may earn a commission, paid by the provider, for a member who takes up a special One Big Switch offer. One Big Switch may share these commissions with our media partners, which include Seven Network Media and Newscorp Australia</p>\r\n</div>\r\n",
+      "<p>TEST PURE TELECOM</p>\r\n",
+      "<p><u>Health Insurance Offer</u></p>\r\n\r\n<p>* Offer not available to existing nib customers. To be eligible for the $200 eftpos card, you need to take up the health insurance special offer and be a financial member of nib for at least three months.&nbsp;Waiting periods apply for services not currently covered. Any benefit limits used with your current fund will apply to your nib policy.</p>\r\n",
+      "<div id=\"hcfdisclaimer\">\r\n<p><u>Health Insurance Offer</u></p>\r\n\r\n<p>As a One Big Switch member, you can enjoy the members offers we make available and unlock, if you decide it is right for you. One Big Switch are able to unlock additional special offers from time to time. Check the One Big Switch website for further information about our member and special offers.<br />\r\n<br />\r\n^If you take up the One Big Switch Health Insurance Offer with HCF, One Big Switch will send a Prezzee eGift Card to the value of $150. To be eligible to receive the Prezzee eGift Card you must take up combined hospital and extras cover with HCF and remain a member after the 30-day cooling off period and have paid the first month&rsquo;s premium. Limit of one Prezzee eGift Card per policy.<br />\r\n<br />\r\nEligible Recipients will receive their Prezzee eGift Card by email up to 90 days after One Big Switch has confirmed their eligibility. The Prezzee eGift Card is valid for 36 months from the date of issue (<a href=\"https://www.prezzee.com.au/\">www.prezzee.com.au</a>). For full eGift card terms &amp; conditions <a href=\"https://s3-ap-southeast-2.amazonaws.com/digital-au/obs-au/web/HEALTH+150eGift/OBS+and+HCF+Standard+Offer+.pdf\">see here</a>.<br />\r\n<br />\r\n*Offer is for switchers only and excludes existing HCF customers. If you take up the offer and you are not already a member of One Big Switch, you will become a member upon taking up the offer. HCF will recognise waiting periods you&#39;ve already served with your current fund. Some longer waiting periods and conditions apply. Any benefit limits used with your current fund will apply to your new HCF policy. Offer cannot be used in conjunction with any other corporate offer or discount.<br />\r\n<br />\r\nOne Big Switch is a consumer network established to build real consumer power to access discounts, special offers, information and influence for our members, One Big Switch receives a commission for each member who takes up an offer with HCF and remains a member of HCF. One Big Switch returns up to $150 of this commission to members in the form of the switcher&#39;s bonus/cashback. Part of our commissions will also be used to fund future One Big Switch Campaigns.</p>\r\n\r\n<p>&nbsp;</p>\r\n</div>\r\n",
+      "<p><u>Health Insurance Offer</u></p>\r\n\r\n<p>As a One Big Switch member, you can enjoy the members offers we make available and unlock, if you decide it is right for you. One Big Switch are able to unlock additional special offers from time to time. Check the One Big Switch website for further information about our member and special offers.<br />\r\n<br />\r\n^If you take up the One Big Switch Health Insurance Offer with HCF, One Big Switch will send a Prezzee eGift Card to the value of $150. To be eligible to receive the Prezzee eGift Card you must take up combined hospital and extras cover with HCF and remain a member after the 30-day cooling off period.<br />\r\n<br />\r\nEligible Recipients will receive their Prezzee eGift Card by email up to 90 days after One Big Switch has confirmed their eligibility. The Prezzee eGift Card is valid for 36 months from the date of issue (<a href=\"https://www.prezzee.com.au/\">www.prezzee.com.au</a>). For full eGift card terms &amp; conditions see here.<br />\r\n<br />\r\n*Offer is for switchers only and excludes existing HCF customers. If you take up the offer and you are not already a member of One Big Switch, you will become a member upon taking up the offer. HCF will recognise waiting periods you&#39;ve already served with your current fund. Some longer waiting periods and conditions apply. Any benefit limits used with your current fund will apply to your new HCF policy. Offer cannot be used in conjunction with any other corporate offer or discount.<br />\r\n<br />\r\nOne Big Switch is a consumer network established to build real consumer power to access discounts, special offers, information and influence for our members, One Big Switch receives a commission for each member who takes up an offer with HCF and remains a member of HCF. One Big Switch returns up to $150 of this commission to members in the form of the switcher&#39;s bonus/cashback. Part of our commissions will also be used to fund future One Big Switch Campaigns.</p>\r\n",
+      "<div id=\"ipdisclaimer\">\r\n<p><u>Income Protection Offer</u></p>\r\n\r\n<p>View our occupation category definitions <a href=\"https://s3-ap-southeast-2.amazonaws.com/digital-au/obs-au/web/INCOME+PROTECTION/INCOME_PROTECTION+Occupation+Category+Definitions.pdf\" target=\"_blank\">here</a></p>\r\n\r\n<p><sup style=\"vertical-align:super;\">+</sup>By clicking on the &quot;Next&quot; and button above, I acknowledge having read, understood and agreed to the One Big Switch&nbsp;<a href=\"https://www.onebigswitch.com.au/privacy-policy\" target=\"_blank\">Privacy Policy</a>&nbsp;and I am willing to be contacted by NobleOak from time to time regarding their products and services.&nbsp;&nbsp;</p>\r\n\r\n<p><sup style=\"vertical-align:super;\">#</sup>Initial quotes are indicative only. Cover is subject to underwriting and confirmation of acceptance by NobleOak, including the terms and conditions of the PDS. Your age, occupation, pastimes, gender, sum insured, smoker status and health will determine the actual premium amount (including any applicable premium loading) charged by NobleOak and the actual savings to comparable products. By clicking on the &quot;Get Quote&quot; button above, I acknowledge having read, understood and agreed to the One Big Switch&nbsp;<a href=\"https://www.onebigswitch.com.au/privacy-policy\" target=\"_blank\">Privacy Policy</a>&nbsp;and I am willing to be contacted by NobleOak from time to time regarding their products and services.&nbsp;&nbsp;</p>\r\n\r\n<p>**Cover is available up to a maximum of $25,000 a month or 75% of your monthly income, including superannuation, whichever is greater&nbsp;</p>\r\n\r\n<p>Any information contained in this communication is general advice, it does not take account of your individual circumstances or needs.</p>\r\n\r\n<p>One Big Switch is a registered business name of RevTech Media Pty Ltd (ABN 75 150 963 474) who holds its own Australian Financial Services Licence (AFSL 455982). One Big Switch can provide you with factual information and general advice only. If in doubt about your personal situation or needs, you should seek financial advice.</p>\r\n\r\n<p>Further information can be found in the One Big Switch Financial Services Guide (FSG) <a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/OBSFSG.pdf\" target=\"_blank\">available here</a>.</p>\r\n\r\n<p>*The offer applies for all quotes received by 10pm on 9 November 2018. This offer is available once only per new customer and may not be used in conjunction with any other offer. If you make an application for NobleOak Income Protection Insurance before 10pm on 9 November 2018, then you will not start paying premiums until one months after the commencement date of the cover.</p>\r\n\r\n<p>Premium discounts apply to the standard premium offering for the My Protection Plan product. NobleOak Income Protection Insurance premiums include a 10% discount which remains for the life of the cover.</p>\r\n\r\n<p>~NobleOak is an award winning insurer who has won <a href=\"https://www.nobleoak.com.au/wp-content/uploads/2018/03/NOL18-MEDIA-RELEASE-NOBLEOAK-WINS-THIRD-CANSTAR-INCOME-PROTECTION-AWARD.pdf\" target=\"_blank\">Canstar&rsquo;s Direct Income Protection and Life Insurance Awards in 2018, 2017 and 2016</a>.<br />\r\n<br />\r\nInsurance cover is issued by the insurer, <a href=\"https://www.nobleoak.com.au/about/\" target=\"_blank\">NobleOak Life Limited</a> ABN 85 087 648 708 AFSL No. 247302 under the NobleOak My Protection Plan product and is subject to the terms and conditions of the&nbsp;<a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/noble_oak/MyProtectionPlanPDS.pdf\" target=\"_blank\">My Protection Plan Product Disclosure Statement (PDS)</a>. Please also read the <a href=\"https://www.nobleoak.com.au/financial-services-guide/\" target=\"_blank\">Financial Services Guide</a>. This information is of a general nature only and does not take into consideration your individual objectives, financial situation or needs. Before you purchase an insurance product you should carefully consider the PDS to decide if it is right for you. NobleOak cannot provide you with personal advice but their staff may provide general information about NobleOak Life Insurance products.</p>\r\n\r\n<p>Customers should not cancel any existing Income Protection Insurance cover until they have been informed in writing that their replacement cover is in place.</p>\r\n\r\n<p>If you take out Income Protection Insurance cover as a result of the services provided by us, NobleOak may pay us a commission of 15% of each premium for each cover taken. Further information can be found in the One Big Switch Financial Services Guide (FSG) <a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/OBSFSG.pdf\" target=\"_blank\">available here</a>.</p>\r\n</div>\r\n",
+      "<div id=\"lifedisclaimerstandard\">\r\n<p><u>Life Insurance&nbsp;Offer</u></p>\r\n\r\n<p dir=\"ltr\">*Premium discounts apply to the standard premium offering for My Protection Plan product and are available for applications received until such time as the offer closes. One Big Switch premiums include a 20% discount which remains for the life of the cover.</p>\r\n\r\n<p>**The Rice Warner Comparator Tool (Copyright Rice Warner, 2008) provides up to date market information for comparable underwritten policies from a range of major insurers. Using this Comparator Tool, one can see that the NobleOak Life Insurance premiums for most age groups are considerably lower than comparable products, with an average saving of 23.71% across the selected age groups. Data last updated May 2018. Comparison based on a non-smoker with $500,000 Life Cover and stepped premiums. Your age, occupation, pastimes, gender, sum insured, smoker status and health will determine the actual premium amount and the actual savings to comparable products. Life Insurance rates for insurers, including NobleOak Life Limited may change in the future and this could change the outcome. <a href=\"https://s3-ap-southeast-2.amazonaws.com/digital-au/obs-au/1-life/ricewarnertable/NOL18_OBS_500_RWT-100518.pdf\">Click here to view the comparison table</a>.</p>\r\n\r\n<p>Insurance cover &nbsp;is issued by the insurer, <a href=\"https://www.nobleoak.com.au/\" target=\"_blank\">NobleOak Life Limited</a> ABN 85 087 648 708 AFSL No.&nbsp;247302 under the NobleOak My Protection Plan product and is subject to the terms and conditions of&nbsp;<a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/noble_oak/MyProtectionPlanPDS.pdf\" target=\"_blank\">My Protection Plan Product Disclosure Statement&nbsp;</a>(PDS). Please also read the&nbsp;<a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/noble_oak/NOL16-FinancialServicesGuide.pdf\" target=\"_blank\">Financial Services Guide</a>. This information is of a general nature only and does not take into consideration your individual objectives, financial situation or needs. Before you purchase an insurance product you should carefully consider the PDS to decide if it is right for you. NobleOak cannot provide you with personal advice but our staff may provide general information about NobleOak Life Insurance. &nbsp;</p>\r\n\r\n<p>Customers should not cancel any existing Life Insurance cover until they have been informed in writing that their replacement cover is in place.</p>\r\n\r\n<p>One Big Switch is a registered business name of RevTech Media Pty Ltd (ABN 75 150 963 474) who holds its own Australian Financial Services Licence (AFSL 455982) and can provide you with factual information and general advice only. If in doubt about your personal situation or needs, you should seek financial advice.</p>\r\n\r\n<p>If you take out Life Insurance cover as a result of the services provided by us, NobleOak may pay us a commission of 15% of each premium for each cover taken. Further information can be found in the One Big Switch Financial Services Guide (FSG) available <a href=\"https://s3-ap-southeast-1.amazonaws.com/onebigswitch/OBSFSG.pdf\" target=\"_blank\">here.</a></p>\r\n</div>\r\n",
+      "<div id=\"hcfdisclaimer\">\r\n<p><span style=\"font-size:14px;\">This price excludes any Lifetime Health Cover loadings. To get a quote, please call the HCF hotline on 1800 444 423.</span></p>\r\n\r\n<div id=\"hcfdisclaimer\">\r\n<p><u>Health Insurance Offer</u></p>\r\n\r\n<p>As a One Big Switch member, you can enjoy the members offers we make available and unlock, if you decide it is right for you. One Big Switch are able to unlock additional special offers from time to time. Check the One Big Switch website for further information about our member and special offers.<br />\r\n<br />\r\nUp to $550 eGift Card offer is only available to the first 1000 One Big Switch members who take up the offer. To be eligible you must purchase combined hospital and extras cover with HCF via One Big Switch.<br />\r\n<br />\r\n<sup style=\"vertical-align:super;\">2</sup>If you take up the One Big Switch Special Health Insurance Offer and remain with HCF, One Big Switch will send a Prezzee eGift Card to eligible couples and families to the value of $150 after 3 months, and then $100 at 1 year, 2 years, 3 years and 4 years. Eligible singles will receive eGift Cards valued at $100 after 3 months, and then $50 at 1 year, 2 years, 3 years and 4 years. To be eligible to receive the first Prezzee eGift Card you must take up combined hospital and extras cover with HCF, remain a member and have paid the first three month&rsquo;s premium. To receive each further Prezzee eGift Card, you must remain a member of HCF with combined hospital and extras cover and premiums must be up-to-date at the relevant points in time. Each Prezzee eGift Card is awarded on a per policy basis.<br />\r\n<br />\r\nOffer is for switchers only and excludes existing HCF customers. If you take up the offer and you are not already a member of One Big Switch, you will become a member upon taking up the offer. HCF will recognise waiting periods you&#39;ve already served with your current fund. Some longer waiting periods and conditions apply. Any benefit limits used with your current fund will apply to your new HCF policy. Offer cannot be used in conjunction with any other corporate offer or discount.<br />\r\n<br />\r\nOne Big Switch is a consumer network established to build real consumer power to access discounts, special offers, information and influence for our members, One Big Switch receives a commission for each member who takes up an offer with HCF and remains a member of HCF. One Big Switch returns up to $550 of this commission to members in the form of eGift Cards. Part of our commissions will also be used to fund future One Big Switch Campaigns.</p>\r\n</div>\r\n</div>\r\n"
+    ]
+  },
+  "cookie_items": {
+    "gdprCookieUrl": null
+  },
+  "header_items": {
+    "logo": "https://d235f2imj5gfpf.cloudfront.net/entities/1/header_logo/original.png?1548839741"
+  },
+  "csrf_items": {
+    "validateUrl": "/csrf/validate",
+    "generateTokenUrl": "/csrf/generateToken"
+  },
+  "navigation_items": {
+    "items": [],
+    "tagline": "One Big Switch",
+    "subHeader": "Current Campaigns & Offers",
+    "user": {
+      "email": "jeff+2342nfwek@onebigswitch.com"
+    },
+    "signOutPath": "/users/sign_out",
+    "signInPath": "/users/sign_in",
+    "logo": "obs"
+  }
+}

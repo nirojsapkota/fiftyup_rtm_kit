@@ -7,6 +7,7 @@ menu: Packages
 import { Playground } from 'docz';
 import { Footer } from './src';
 import entity from './src/__tests__/__fixtures__/entity';
+import ladingPageEntity from './src/__tests__/__fixtures__/ladingPageEntity';
 import disclaimers from './src/__tests__/__fixtures__/disclaimers';
 import { DocWrapper } from '../bootstrap/setup/docWrapper';
 
@@ -17,3 +18,12 @@ import { DocWrapper } from '../bootstrap/setup/docWrapper';
 <DocWrapper>
   <Footer entity={entity} disclaimers={disclaimers} />
 </DocWrapper>
+
+
+## Landing Page Footer
+
+<DocWrapper>
+  <Footer landing={true} entity={ladingPageEntity} disclaimers={disclaimers} />
+</DocWrapper>
+
+

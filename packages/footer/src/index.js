@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Paragraph, Small } from '@rtm-ui/typography';
-import { getColor } from '@rtm-ui/theme';
-import { Box } from '@rtm-ui/layout';
 import { Icon, Logo } from '@rtm-ui/icon';
+import { Box } from '@rtm-ui/layout';
+import { getColor } from '@rtm-ui/theme';
+import { Paragraph, Small } from '@rtm-ui/typography';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 const Flex = styled(Box)`
   display: flex;
@@ -45,23 +45,17 @@ const HoursInfo = styled(Paragraph)`
   }
 `;
 
-const GridBox = styled(Box)`
-  display: grid;
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
-  grid-template-rows: auto 1fr;
+const FlexBox = styled(Box)`
   padding: 92px 32px 32px 32px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: 'logo logo' 'social social' 'list-0 list-1' 'right right';
-  @media (min-width: 400px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 'logo social' 'list-0 list-1' 'right right';
-  }
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content:space-around;
+`;
 
-  @media (min-width: 800px) {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-areas: 'logo social list-0 list-1 right';
-  }
+const InnerFlexBox = styled(Box)`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const chunkArray = (myArray, chunkSize) => {
@@ -72,7 +66,7 @@ const chunkArray = (myArray, chunkSize) => {
   return results;
 };
 
-export const Footer = ({ entity, disclaimers }) => {
+export const Footer = ({ entity, disclaimers, landing }) => {
   const { links, businessHourInfo } = entity.footer_items;
   const socials = links.filter(l => l.kind === 'social');
   const main = chunkArray(links.filter(l => l.kind === 'info'), 4);
@@ -83,32 +77,29 @@ export const Footer = ({ entity, disclaimers }) => {
     <React.Fragment>
       <Box variant="b">
         <Container>
-          <GridBox>
-            <A
-              style={{
-                gridArea: 'logo',
-                textAlign: 'center'
-              }}
-              href="/"
-            >
-              <Logo width={135} entityBrand={entity.brand} />
-            </A>
-            <SocialWapper style={{ gridArea: 'social' }}>
-              <Paragraph weight="bold" my={1}>
-                FOLLOW US ON SOCIAL
-              </Paragraph>
-              {socials.map(item => {
-                const iconName = item.name.toLowerCase();
-                return (
-                  <A key={iconName} href={item.url}>
-                    <Icon glyph={iconName} />
-                  </A>
-                );
-              })}
-            </SocialWapper>
+          <FlexBox>
+            <Box mb={[3, 0, 5, 0]} width={landing ? [1, 1, 1 / 3, 1 / 4] : [1, 1 / 2, 1 / 3, 1 / 5]} >
+              <A href="/">
+                <Logo width={135} entityBrand={entity.brand} />
+              </A>
+            </Box>
+            {!landing &&
+              <SocialWapper mb={[3, 0, 5, 0]} width={[1, 1 / 2, 1 / 3, 1 / 5]}>
+                <Paragraph weight="bold" my={1}>
+                  FOLLOW US ON SOCIAL
+                </Paragraph>
+                {socials.map(item => {
+                  const iconName = item.name.toLowerCase();
+                  return (
+                    <A key={iconName} href={item.url}>
+                      <Icon glyph={iconName} />
+                    </A>
+                  );
+                })}
+              </SocialWapper>}
             {main.map((subItems, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <Box style={{ gridArea: `list-${index}` }} key={index}>
+              <Box mt={[3, 3, 0, 0]} width={[1, 1 / 2, 1 / 3, 1 / 5]} key={index}>
                 {subItems.map(item => (
                   <A
                     style={{ display: 'block', fontWeight: 'bold' }}
@@ -127,34 +118,46 @@ export const Footer = ({ entity, disclaimers }) => {
                 ))}
               </Box>
             ))}
-            <Box style={{ gridArea: 'right' }}>
-              {businessHourInfo.telephone && (
-                <Paragraph pb={1} weight="bold">
-                  {`TEL: ${businessHourInfo.telephone}`}
-                </Paragraph>
-              )}
-              {businessHourInfo.hours && (
-                <HoursInfo dangerousHTML={businessHourInfo.hours} />
-              )}
-              <Box style={{ height: '30px' }} />
-              {others.map(item =>
-                item.url ? (
-                  <A
-                    key={item.name}
-                    href={item.url}
-                    target="_blank"
-                    style={{ fontWeight: 'bold' }}
-                  >
-                    {item.name}
-                  </A>
-                ) : (
-                  <Paragraph key={item.name} weight="bold">
-                    {item.name}
+            <InnerFlexBox
+              width={landing ? [1, 1, 2 / 3, 2 / 4] : [1, 1, 2 / 3, 1 / 5]}
+              mt={landing ? [3, 3, 0, 0] : [3, 3, 0, 0]}
+            >
+              <Box
+                mb={landing ? [3, 3, 0, 3] : [0, 0, 0, 3]}
+                width={landing ? [1, 1, 1 / 2, 1 / 2] : [1, 1 / 2, 1 / 2, 1]}
+              >
+                {businessHourInfo.telephone && (
+                  <Paragraph weight="bold">
+                    {`TEL: ${businessHourInfo.telephone}`}
                   </Paragraph>
-                )
-              )}
-            </Box>
-          </GridBox>
+                )}
+                {businessHourInfo.hours && (
+                  <HoursInfo dangerousHTML={businessHourInfo.hours} />
+                )}
+              </Box>
+              <Box
+                mt={landing ? [3, 0, 0, 0] : [3, 0, 0, 0]}
+                width={landing ? [1, 1, 1 / 2, 1 / 2, 1 / 2] : [1, 1 / 2, 1 / 2, 1]}
+              >
+                {others.map(item =>
+                  item.url ? (
+                    <A
+                      key={item.name}
+                      href={item.url}
+                      target="_blank"
+                      style={{ fontWeight: 'bold' }}
+                    >
+                      {item.name}
+                    </A>
+                  ) : (
+                      <Paragraph key={item.name} weight="bold">
+                        {item.name}
+                      </Paragraph>
+                    )
+                )}
+              </Box>
+            </InnerFlexBox>
+          </FlexBox>
         </Container>
       </Box>
       <Box variant="d">
@@ -173,10 +176,11 @@ export const Footer = ({ entity, disclaimers }) => {
           </Box>
         </Container>
       </Box>
-    </React.Fragment>
+    </React.Fragment >
   );
 };
 
 Footer.propTypes = {
   children: PropTypes.node,
+  landing: PropTypes.bool
 };
