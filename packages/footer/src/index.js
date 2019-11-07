@@ -16,6 +16,11 @@ const Container = styled(Box)`
   max-width: 1400px;
 `;
 
+const LegalContainer = styled(Container)`
+  padding: 32px 32px 32px 32px;
+  max-width: none;
+`;
+
 const A = styled.a`
   text-decoration: none;
   color: ${props => getColor('text', props.theme)};
@@ -48,9 +53,9 @@ const HoursInfo = styled(Paragraph)`
 const FlexBox = styled(Box)`
   padding: 92px 32px 32px 32px;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content:space-around;
+  justify-content: space-around;
 `;
 
 const InnerFlexBox = styled(Box)`
@@ -78,12 +83,15 @@ export const Footer = ({ entity, disclaimers, landing }) => {
       <Box variant="b">
         <Container>
           <FlexBox>
-            <Box mb={[3, 0, 5, 0]} width={landing ? [1, 1, 1 / 3, 1 / 4] : [1, 1 / 2, 1 / 3, 1 / 5]} >
+            <Box
+              mb={[3, 0, 5, 0]}
+              width={landing ? [1, 1, 1 / 3, 1 / 4] : [1, 1 / 2, 1 / 3, 1 / 5]}
+            >
               <A href="/">
                 <Logo width={135} entityBrand={entity.brand} />
               </A>
             </Box>
-            {!landing &&
+            {!landing && (
               <SocialWapper mb={[3, 0, 5, 0]} width={[1, 1 / 2, 1 / 3, 1 / 5]}>
                 <Paragraph weight="bold" my={1}>
                   FOLLOW US ON SOCIAL
@@ -96,10 +104,15 @@ export const Footer = ({ entity, disclaimers, landing }) => {
                     </A>
                   );
                 })}
-              </SocialWapper>}
+              </SocialWapper>
+            )}
             {main.map((subItems, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <Box mt={[3, 3, 0, 0]} width={[1, 1 / 2, 1 / 3, 1 / 5]} key={index}>
+              <Box
+                mt={[3, 3, 0, 0]}
+                width={[1, 1 / 2, 1 / 3, 1 / 5]}
+                key={index}
+              >
                 {subItems.map(item => (
                   <A
                     style={{ display: 'block', fontWeight: 'bold' }}
@@ -137,7 +150,9 @@ export const Footer = ({ entity, disclaimers, landing }) => {
               </Box>
               <Box
                 mt={landing ? [3, 0, 0, 0] : [3, 0, 0, 0]}
-                width={landing ? [1, 1, 1 / 2, 1 / 2, 1 / 2] : [1, 1 / 2, 1 / 2, 1]}
+                width={
+                  landing ? [1, 1, 1 / 2, 1 / 2, 1 / 2] : [1, 1 / 2, 1 / 2, 1]
+                }
               >
                 {others.map(item =>
                   item.url ? (
@@ -145,15 +160,15 @@ export const Footer = ({ entity, disclaimers, landing }) => {
                       key={item.name}
                       href={item.url}
                       target="_blank"
-                      style={{ fontWeight: 'bold' }}
+                      style={{ fontWeight: 'bold', display: 'block' }}
                     >
                       {item.name}
                     </A>
                   ) : (
-                      <Paragraph key={item.name} weight="bold">
-                        {item.name}
-                      </Paragraph>
-                    )
+                    <Paragraph key={item.name} weight="bold">
+                      {item.name}
+                    </Paragraph>
+                  )
                 )}
               </Box>
             </InnerFlexBox>
@@ -161,8 +176,8 @@ export const Footer = ({ entity, disclaimers, landing }) => {
         </Container>
       </Box>
       <Box variant="d">
-        <Container>
-          <Flex p={10} style={{ justifyContent: 'flex-end' }}>
+        <LegalContainer>
+          <Flex p={10} pt="0" style={{ justifyContent: 'flex-end' }}>
             {legals.map((item, index) => (
               <Box key={item.name} pb={2} mr={index === 0 ? 40 : 0}>
                 <A href={item.url}>{item.name}</A>
@@ -174,13 +189,13 @@ export const Footer = ({ entity, disclaimers, landing }) => {
               <Small key={index} color="text" dangerousHTML={disclaimer} />
             ))}
           </Box>
-        </Container>
+        </LegalContainer>
       </Box>
-    </React.Fragment >
+    </React.Fragment>
   );
 };
 
 Footer.propTypes = {
   children: PropTypes.node,
-  landing: PropTypes.bool
+  landing: PropTypes.bool,
 };
