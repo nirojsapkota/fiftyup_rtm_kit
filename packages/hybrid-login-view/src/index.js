@@ -40,6 +40,8 @@ const Column = styled(Box)`
 
 const LoginPanelWrapper = styled(Box)`
   background: inherit;
+  margin-top: -55px;
+  margin-bottom: 2px;
 `;
 
 const HeroImageWrapper = styled(Box)`
@@ -83,7 +85,13 @@ const HybridLoginView = ({
         <ContentWrapper m="auto">
           <Column width={1}>
             <LoginPanelWrapper mt={-30} px={[10, 10, 15, 20]}>
-              <LoginPanel {...props} />
+              <LoginPanel
+                {...props}
+                wrapperStyle={{
+                  'border-top-left-radius': 0,
+                  'border-top-right-radius': 0,
+                }}
+              />
             </LoginPanelWrapper>
           </Column>
           <Column width={1}>

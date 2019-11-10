@@ -142,7 +142,7 @@ class LoginForm extends React.Component {
               ? [stateField.options.map(option => option['label'])]
               : undefined,
             searchFunction: this.autoCompleteSearch,
-            onEmptyResult: this.handleEmptyResult
+            onEmptyResult: this.handleEmptyResult,
           },
         },
         {
@@ -178,7 +178,7 @@ class LoginForm extends React.Component {
     };
     return (
       <React.Fragment>
-        <Header py={3} tag="h6">
+        <Header py={4} tag="h6">
           {title}
         </Header>
         <Form
@@ -219,8 +219,8 @@ class LoginForm extends React.Component {
   }
 }
 
-const LoginPanel = props => (
-  <Card px={[20, 20, 30, 40]} py={10}>
+const LoginPanel = ({ wrapperStyle, ...props }) => (
+  <Card px={[20, 20, 30, 40]} py={10} style={wrapperStyle}>
     <LoginForm {...props} />
   </Card>
 );
@@ -249,6 +249,7 @@ LoginPanel.propTypes = {
     label: t.string,
     placeholder: t.string,
   }),
+  wrapperStyle: t.object,
 };
 
 LoginPanel.defaultProps = {
