@@ -40,7 +40,8 @@ const DropdownField = ({ onWaiting,
 
   console.log("isModalOpen", isModalOpen);
   console.log("setHasSelected", hasSelected);
-
+  console.log(inputProps);
+  console.log("onBlur", onBlur);
   return (
     <div style={{ position: 'relative' }}>
 
@@ -76,19 +77,19 @@ const DropdownField = ({ onWaiting,
           <ResultsContainer distanceFromTop={resultsPosition}>
 
 
-            {inputProps.options.map((result, index) => {
+            {inputProps.options.map((element, index) => {
               return (
                 <Label
-                  htmlFor={`result-${inputProps.name}-${index}`}
-                  key={result.label}
+                  htmlFor={`element-${inputProps.name}-${index}`}
+                  key={element.label}
                 >
                   <ResultItem
 
-                    aria-selected={result.label === inputProps.value}
+                    aria-selected={element.label === inputProps.value}
 
                     asWrapper
 
-                    id={`result-${inputProps.name}-${index}`}
+                    id={`element-${inputProps.name}-${index}`}
 
                     type="button"
 
@@ -101,12 +102,12 @@ const DropdownField = ({ onWaiting,
                       setModalOpen(false);
                       onWaiting('');
                       config.onDidSelect &&
-                        config.onDidSelect(inputProps.name, result.label);
-                      fieldUtils.setFieldValue(inputProps.name, result.label);
+                        config.onDidSelect(inputProps.name, element.label);
+                      fieldUtils.setFieldValue(inputProps.name, element.label);
                     }}
                   >
                     <Header tag="h6" align="left" weight="thin" p={15}>
-                      {result.label}
+                      {element.label}
                     </Header>
 
                   </ResultItem>
