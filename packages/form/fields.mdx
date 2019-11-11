@@ -581,9 +581,9 @@ items are clicked.
 ## SPA UI Month field.
 
 <Playground>
-  <Form  
+  <Form
      id="my-form"
-    
+
     onSubmit={async function(values) {
       alert(JSON.stringify(values, 0, 2));
     }}
@@ -597,11 +597,37 @@ items are clicked.
           component: 'month',
           validator: 'month',
         }
-      },      
+      },
     ]}
 
 />
 
+</Playground>
+
+### Dropdown Field
+
+<Playground>
+  <Form
+    id="my-form"
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Please select a Country',
+        config: { component: 'dropdownfield'},
+        hint: 'eg. USA',
+        name: 'country',
+        value: '',
+
+        options: [
+          { label: '1-2 PERSONS', value: 'sm', },
+          { label: '2-4 PERSONS', value: 'md', },
+          { label: '4+ PERSONS', value: 'lg', },
+        ],
+      }
+    ]}
+  />
 </Playground>
 
 ## PropTypes
