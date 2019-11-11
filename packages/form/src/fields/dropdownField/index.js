@@ -40,10 +40,21 @@ const DropdownField = ({ onWaiting,
   const [resultsPosition, setResultsPosition] = React.useState();
   const [hasInteracted, setHasInteracted] = React.useState(false);
 
+  // React.useEffect(() => {
+  //   if (inputRef.current) {
+  //     const position = inputRef.current.getBoundingClientRect();
+  //     if (position) {
+  //       setResultsPosition(position.height + 20);
+  //     }
+  //   }
+  // }, [inputRef]);
+
   console.log("isModalOpen", isModalOpen);
   console.log("setHasSelected", hasSelected);
   console.log(inputProps);
   console.log("onBlur", onBlur);
+
+
   return (
     <div style={{ position: 'relative' }}>
 
@@ -57,7 +68,6 @@ const DropdownField = ({ onWaiting,
             setModalOpen(true);
             setHasInteracted(true);
             onFocus();
-
           }}
 
           onBlur={() => {
@@ -69,16 +79,14 @@ const DropdownField = ({ onWaiting,
             setHasInteracted(true);
             inputProps.onChange(e);
           }}
-
         />
+
       </div>
 
 
       {isModalOpen && (
         <div ref={dropdownRef}>
           <ResultsContainer distanceFromTop={resultsPosition}>
-
-
             {inputProps.options.map((element, index) => {
               return (
                 <Label
@@ -86,19 +94,12 @@ const DropdownField = ({ onWaiting,
                   key={element.label}
                 >
                   <ResultItem
-
                     aria-selected={element.label === inputProps.value}
-
                     asWrapper
-
                     id={`element-${inputProps.name}-${index}`}
-
                     type="button"
-
                     block
-
                     style={{ width: '100%' }}
-
                     onClick={() => {
                       setHasSelected(true);
                       setModalOpen(false);
@@ -109,7 +110,6 @@ const DropdownField = ({ onWaiting,
                     <Header tag="h6" align="left" weight="thin" p={15}>
                       {element.label}
                     </Header>
-
                   </ResultItem>
                 </Label>
               );

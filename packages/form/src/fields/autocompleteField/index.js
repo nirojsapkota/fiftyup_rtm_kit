@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Button } from '@rtm-ui/button';
 import { Card } from '@rtm-ui/layout';
 import { Header, Label } from '@rtm-ui/typography';
-import { Button } from '@rtm-ui/button';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 import TextField from '../textField';
-import { useOnClickOutside } from './useOnClickOutside';
 import { useDebounce } from './useDebounce';
+import { useOnClickOutside } from './useOnClickOutside';
 
 const ResultsContainer = styled(Card)`
   position: absolute;
