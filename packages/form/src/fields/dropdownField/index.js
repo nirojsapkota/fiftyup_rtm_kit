@@ -3,6 +3,7 @@ import { Card } from '@rtm-ui/layout';
 import { Header, Label } from '@rtm-ui/typography';
 import React from 'react';
 import styled from 'styled-components';
+import { useOnClickOutside } from '../autocompleteField/useOnClickOutside';
 import TextField from '../textField';
 
 const ResultsContainer = styled(Card)`
@@ -29,10 +30,11 @@ const DropdownField = ({ onWaiting,
   config,
   ...inputProps }) => {
 
-  console.log(inputProps.options);
-
 
   const inputRef = React.useRef();
+  const dropdownRef = React.useRef();
+  useOnClickOutside(dropdownRef, () => setModalOpen(false));
+
   const [hasSelected, setHasSelected] = React.useState(false);
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [resultsPosition, setResultsPosition] = React.useState();
@@ -73,7 +75,7 @@ const DropdownField = ({ onWaiting,
 
 
       {isModalOpen && (
-        <div>
+        <div ref={dropdownRef}>
           <ResultsContainer distanceFromTop={resultsPosition}>
 
 
@@ -101,8 +103,6 @@ const DropdownField = ({ onWaiting,
                       setHasSelected(true);
                       setModalOpen(false);
                       onWaiting('');
-                      config.onDidSelect &&
-                        config.onDidSelect(inputProps.name, element.label);
                       fieldUtils.setFieldValue(inputProps.name, element.label);
                     }}
                   >

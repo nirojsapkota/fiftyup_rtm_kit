@@ -610,6 +610,7 @@ items are clicked.
   <Form
     id="my-form"
     onSubmit={async function(values) {
+      console.log(values);
       alert(JSON.stringify(values, 0, 2));
     }}
     fields={[
