@@ -58,7 +58,6 @@ const DropdownField = ({ onWaiting,
           }}
 
           onBlur={() => {
-            setModalOpen(false);
             onBlur();
           }}
 
