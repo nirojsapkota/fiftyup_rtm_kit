@@ -16,11 +16,23 @@ const ResultsContainer = styled(Card)`
 const ResultItem = styled(Button)`
   cursor: pointer;
   font-size: 1em;
-
   :hover,
   :focus {
     background: #eee;
   }
+`;
+
+const DropdownTextBox = styled(TextField)`
+border:1px solid #ccc;
+cursor: default;
+
+
+:hover, focus {
+  pointer:cursor;
+  outline:none;
+
+}
+
 `;
 
 const DropdownField = ({ onWaiting,
@@ -49,17 +61,17 @@ const DropdownField = ({ onWaiting,
   //   }
   // }, [inputRef]);
 
-  console.log("isModalOpen", isModalOpen);
-  console.log("setHasSelected", hasSelected);
-  console.log(inputProps);
-  console.log("onBlur", onBlur);
+  // console.log("isModalOpen", isModalOpen);
+  // console.log("setHasSelected", hasSelected);
+  // console.log(inputProps);
+  // console.log("onBlur", onBlur);
 
 
   return (
     <div style={{ position: 'relative' }}>
 
       <div ref={inputRef}>
-        <TextField
+        <DropdownTextBox
           {...inputProps}
 
           aria-haspopup="listbox"
@@ -77,11 +89,21 @@ const DropdownField = ({ onWaiting,
           onChange={e => {
             setHasSelected(false);
             setHasInteracted(true);
-            inputProps.onChange(e);
           }}
+
+          onClick={() => {
+            console.log("clicked");
+          }}
+
         />
 
       </div>
+      <select>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
 
 
       {isModalOpen && (
@@ -120,6 +142,7 @@ const DropdownField = ({ onWaiting,
     </div>
   );
 };
+
 
 
 export default DropdownField;
