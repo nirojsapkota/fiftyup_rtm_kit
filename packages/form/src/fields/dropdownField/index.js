@@ -101,7 +101,7 @@ const DropdownField = ({ onWaiting,
           }
         }>
           <Icon
-            rotate={true ? -90 : 60}
+            rotate={isModalOpen ? 90 : 270}
             glyph="view-back"
           />
         </Box>
