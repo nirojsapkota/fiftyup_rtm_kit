@@ -11,6 +11,8 @@ const ResultsContainer = styled(Card)`
   width: 100%;
   top: ${({ distanceFromTop }) => `${distanceFromTop}px`};
   z-index: 100;
+  height:${({ scrollable }) => { return scrollable ? "200px" : "none"; }};
+  overflow:${({ scrollable }) => { return scrollable ? "auto" : "none"; }};
 `;
 
 const ResultItem = styled(Button)`
@@ -52,21 +54,7 @@ const DropdownField = ({ onWaiting,
   const [resultsPosition, setResultsPosition] = React.useState();
   const [hasInteracted, setHasInteracted] = React.useState(false);
   const [currentElement, setCurrentElement] = React.useState('');
-
-  // React.useEffect(() => {
-  //   if (inputRef.current) {
-  //     const position = inputRef.current.getBoundingClientRect();
-  //     if (position) {
-  //       setResultsPosition(position.height + 20);
-  //     }
-  //   }
-  // }, [inputRef]);
-
-  // console.log("isModalOpen", isModalOpen);
-  // console.log("setHasSelected", hasSelected);
-  // console.log(inputProps);
-  // console.log("onBlur", onBlur);
-
+  console.log("config.scrollable", config.scrollable);
 
   return (
     <div style={{ position: 'relative' }}>
@@ -100,17 +88,9 @@ const DropdownField = ({ onWaiting,
         />
 
       </div>
-      {/* <select>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select> */}
-
-
       {isModalOpen && (
         <div ref={dropdownRef}>
-          <ResultsContainer distanceFromTop={resultsPosition}>
+          <ResultsContainer scrollable={config.scrollable} distanceFromTop={resultsPosition}>
             {inputProps.options.map((element, index) => {
               return (
                 <Label
