@@ -57,12 +57,11 @@ const DropdownField = ({ onWaiting,
   const [currentElement, setCurrentElement] = React.useState('');
 
   const toggleFunction = () => {
-    console.log("clicked");
     setModalOpen(!isModalOpen);
   };
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div ref={dropdownRef} style={{ position: 'relative' }}>
 
       <div ref={inputRef}>
         <DropdownTextBox
@@ -114,7 +113,7 @@ const DropdownField = ({ onWaiting,
 
       </div>
       {isModalOpen && (
-        <div ref={dropdownRef}>
+        <div>
           <ResultsContainer scrollable={config.scrollable}>
             {inputProps.options.map((element, index) => {
               return (
