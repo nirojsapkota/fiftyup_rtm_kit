@@ -7,12 +7,11 @@ import styled from 'styled-components';
 import { useOnClickOutside } from '../autocompleteField/useOnClickOutside';
 import TextField from '../textField';
 
-
 const ResultsContainer = styled(Card)`
   position: absolute;
   width: 100%;
   z-index: 100;
-  height:${({ scrollable }) => { return scrollable ? "200px" : "none"; }};
+  height:${({ scrollable }) => { return scrollable ? "204px" : "none"; }};
   overflow:${({ scrollable }) => { return scrollable ? "auto" : "none"; }};
 `;
 
@@ -34,13 +33,6 @@ cursor: default;
 }
 `;
 
-const ArrowIcon = styled(Icon)`
-  position: absolute;
-  right: 20px;
-  top: 1px;
-  border:5px solid red;
-`;
-
 const DropdownField = ({ onWaiting,
   onFocus,
   onBlur,
@@ -48,42 +40,23 @@ const DropdownField = ({ onWaiting,
   config,
   ...inputProps }) => {
 
-  const inputRef = React.useRef();
   const dropdownRef = React.useRef();
   useOnClickOutside(dropdownRef, () => setModalOpen(false));
-  const [hasSelected, setHasSelected] = React.useState(false);
   const [isModalOpen, setModalOpen] = React.useState(false);
-  const [hasInteracted, setHasInteracted] = React.useState(false);
   const [currentElement, setCurrentElement] = React.useState('');
-
-  const toggleFunction = () => {
-    setModalOpen(!isModalOpen);
-  };
 
   return (
     <div ref={dropdownRef} style={{ position: 'relative' }}>
-
-      <div ref={inputRef}>
+      <div>
         <DropdownTextBox
           {...inputProps}
-
           aria-haspopup="listbox"
-
           onFocus={() => {
             setModalOpen(true);
-            setHasInteracted(true);
-            onFocus();
           }}
-
           onBlur={() => {
             onBlur();
           }}
-
-          onChange={e => {
-            setHasSelected(false);
-            setHasInteracted(true);
-          }}
-
           onClick={() => {
             if (inputProps.value == '') {
               if (isModalOpen == false) {
@@ -91,11 +64,9 @@ const DropdownField = ({ onWaiting,
               }
             }
           }}
-
           value={currentElement}
         />
-
-        <Box onClick={() => toggleFunction()}
+        <Box onClick={() => setModalOpen(!isModalOpen)}
           style={
             {
               position: 'relative',
@@ -109,8 +80,6 @@ const DropdownField = ({ onWaiting,
             glyph="view-back"
           />
         </Box>
-
-
       </div>
       {isModalOpen && (
         <div>
@@ -129,7 +98,6 @@ const DropdownField = ({ onWaiting,
                     block
                     style={{ width: '100%' }}
                     onClick={() => {
-                      setHasSelected(true);
                       setModalOpen(false);
                       onWaiting('');
                       fieldUtils.setFieldValue(inputProps.name, element.value);
@@ -149,7 +117,5 @@ const DropdownField = ({ onWaiting,
     </div>
   );
 };
-
-
 
 export default DropdownField;
