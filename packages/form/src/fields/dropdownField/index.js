@@ -1,10 +1,12 @@
 import { Button } from '@rtm-ui/button';
-import { Card } from '@rtm-ui/layout';
+import { Icon } from '@rtm-ui/icon';
+import { Box, Card } from '@rtm-ui/layout';
 import { Header, Label } from '@rtm-ui/typography';
 import React from 'react';
 import styled from 'styled-components';
 import { useOnClickOutside } from '../autocompleteField/useOnClickOutside';
 import TextField from '../textField';
+
 
 const ResultsContainer = styled(Card)`
   position: absolute;
@@ -26,12 +28,17 @@ const ResultItem = styled(Button)`
 const DropdownTextBox = styled(TextField)`
 border:1px solid #ccc;
 cursor: default;
-
-
 :hover, focus {
   pointer:cursor;
   outline:none;
 }
+`;
+
+const ArrowIcon = styled(Icon)`
+  position: absolute;
+  right: 20px;
+  top: 1px;
+  border:5px solid red;
 `;
 
 const DropdownField = ({ onWaiting,
@@ -44,7 +51,6 @@ const DropdownField = ({ onWaiting,
   const inputRef = React.useRef();
   const dropdownRef = React.useRef();
   useOnClickOutside(dropdownRef, () => setModalOpen(false));
-
   const [hasSelected, setHasSelected] = React.useState(false);
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [hasInteracted, setHasInteracted] = React.useState(false);
@@ -85,6 +91,21 @@ const DropdownField = ({ onWaiting,
 
           value={currentElement}
         />
+
+        <Box style={
+          {
+            position: 'relative',
+            width: 'auto',
+            float: 'right',
+            top: '-35px'
+          }
+        }>
+          <Icon
+            rotate={true ? -90 : 60}
+            glyph="view-back"
+          />
+        </Box>
+
 
       </div>
       {isModalOpen && (
