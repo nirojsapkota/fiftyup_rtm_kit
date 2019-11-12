@@ -9,7 +9,6 @@ import TextField from '../textField';
 const ResultsContainer = styled(Card)`
   position: absolute;
   width: 100%;
-  top: ${({ distanceFromTop }) => `${distanceFromTop}px`};
   z-index: 100;
   height:${({ scrollable }) => { return scrollable ? "200px" : "none"; }};
   overflow:${({ scrollable }) => { return scrollable ? "auto" : "none"; }};
@@ -32,9 +31,7 @@ cursor: default;
 :hover, focus {
   pointer:cursor;
   outline:none;
-
 }
-
 `;
 
 const DropdownField = ({ onWaiting,
@@ -44,17 +41,15 @@ const DropdownField = ({ onWaiting,
   config,
   ...inputProps }) => {
 
-
   const inputRef = React.useRef();
   const dropdownRef = React.useRef();
   useOnClickOutside(dropdownRef, () => setModalOpen(false));
 
   const [hasSelected, setHasSelected] = React.useState(false);
   const [isModalOpen, setModalOpen] = React.useState(false);
-  const [resultsPosition, setResultsPosition] = React.useState();
   const [hasInteracted, setHasInteracted] = React.useState(false);
   const [currentElement, setCurrentElement] = React.useState('');
-  console.log("config.scrollable", config.scrollable);
+
 
   return (
     <div style={{ position: 'relative' }}>
@@ -81,7 +76,11 @@ const DropdownField = ({ onWaiting,
           }}
 
           onClick={() => {
-            console.log("clicked");
+            if (inputProps.value == '') {
+              if (isModalOpen == false) {
+                setModalOpen(true);
+              }
+            }
           }}
 
           value={currentElement}
@@ -90,7 +89,7 @@ const DropdownField = ({ onWaiting,
       </div>
       {isModalOpen && (
         <div ref={dropdownRef}>
-          <ResultsContainer scrollable={config.scrollable} distanceFromTop={resultsPosition}>
+          <ResultsContainer scrollable={config.scrollable}>
             {inputProps.options.map((element, index) => {
               return (
                 <Label
