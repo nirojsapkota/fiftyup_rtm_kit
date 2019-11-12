@@ -51,6 +51,7 @@ const DropdownField = ({ onWaiting,
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [resultsPosition, setResultsPosition] = React.useState();
   const [hasInteracted, setHasInteracted] = React.useState(false);
+  const [currentElement, setCurrentElement] = React.useState('');
 
   // React.useEffect(() => {
   //   if (inputRef.current) {
@@ -95,15 +96,16 @@ const DropdownField = ({ onWaiting,
             console.log("clicked");
           }}
 
+          value={currentElement}
         />
 
       </div>
-      <select>
+      {/* <select>
         <option value="volvo">Volvo</option>
         <option value="saab">Saab</option>
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
-      </select>
+      </select> */}
 
 
       {isModalOpen && (
@@ -126,7 +128,8 @@ const DropdownField = ({ onWaiting,
                       setHasSelected(true);
                       setModalOpen(false);
                       onWaiting('');
-                      fieldUtils.setFieldValue(inputProps.name, element.label);
+                      fieldUtils.setFieldValue(inputProps.name, element.value);
+                      setCurrentElement(element.label);
                     }}
                   >
                     <Header tag="h6" align="left" weight="thin" p={15}>
