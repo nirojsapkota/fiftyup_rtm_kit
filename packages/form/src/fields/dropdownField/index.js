@@ -56,6 +56,10 @@ const DropdownField = ({ onWaiting,
   const [hasInteracted, setHasInteracted] = React.useState(false);
   const [currentElement, setCurrentElement] = React.useState('');
 
+  const toggleFunction = () => {
+    console.log("clicked");
+    setModalOpen(!isModalOpen);
+  };
 
   return (
     <div style={{ position: 'relative' }}>
@@ -92,14 +96,15 @@ const DropdownField = ({ onWaiting,
           value={currentElement}
         />
 
-        <Box style={
-          {
-            position: 'relative',
-            width: 'auto',
-            float: 'right',
-            top: '-35px'
-          }
-        }>
+        <Box onClick={() => toggleFunction()}
+          style={
+            {
+              position: 'relative',
+              width: 'auto',
+              float: 'right',
+              top: '-35px'
+            }
+          }>
           <Icon
             rotate={isModalOpen ? 90 : 270}
             glyph="view-back"
