@@ -12,10 +12,10 @@ const setup = async () => {
       fields={[
         {
           label: 'Please select a Country',
+          name: 'country',
           config: { component: 'dropdownfield', scrollable: true },
           hint: 'eg. USA',
           value: '',
-          id: 'dfd',
           options: [
             { label: 'Canada', value: 'CAN', },
             { label: 'Australia', value: 'AUS', },
