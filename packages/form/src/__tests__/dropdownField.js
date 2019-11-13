@@ -30,9 +30,6 @@ const setup = async (flag) => {
   );
   return util;
 };
-
-
-
 afterEach(cleanup);
 
 describe(`Testing Component with scrollable set to true `, () => {
@@ -40,13 +37,12 @@ describe(`Testing Component with scrollable set to true `, () => {
 
     const runTests = async () => {
       let label = 'Please select a Country';
-      let { getByLabelText, getByText, container, getByTestId } = await setup(true);
+      let { getByLabelText, getByText, getByTestId } = await setup(true);
       let input = await getByLabelText(label);
       await fireEvent.focus(input);
 
       await wait(async () => {
         const item1 = await getByText('Canada');
-        const item2 = await getByText('Australia');
 
         // Click away to check if dropdown disappears
         await fireEvent.mouseDown(getByText(''));
@@ -85,7 +81,6 @@ describe(`Testing Component with scrollable set to true `, () => {
   });
 });
 
-
 describe(`Testing Component with scrollable set to fals `, () => {
   it(`Should render all options in the dropdown without a scrollbar`, async () => {
 
@@ -97,7 +92,6 @@ describe(`Testing Component with scrollable set to fals `, () => {
 
       await wait(async () => {
         const item1 = await getByText('Canada');
-        const item2 = await getByText('Australia');
 
         // Click away to check if dropdown disappears
         await fireEvent.mouseDown(getByText(''));
