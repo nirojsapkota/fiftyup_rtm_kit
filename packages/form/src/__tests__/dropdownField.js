@@ -14,6 +14,7 @@ const setup = async (flag) => {
         {
           label: 'Please select a Country',
           name: 'country',
+          type: 'text',
           config: { component: 'dropdownfield', scrollable: flag },
           hint: 'eg. USA',
           value: '',
@@ -39,7 +40,7 @@ describe(`Testing Component with scrollable set to true `, () => {
 
     const runTests = async () => {
       let label = 'Please select a Country';
-      let { getByLabelText, getByText } = await setup(true);
+      let { getByLabelText, getByText, container, getByTestId } = await setup(true);
       let input = await getByLabelText(label);
       await fireEvent.focus(input);
 
@@ -55,7 +56,7 @@ describe(`Testing Component with scrollable set to true `, () => {
         input = await getByLabelText(label);
         await fireEvent.focus(input);
 
-        //Try if the dropdown closes if not values
+        //Try if the dropdown closes if no values are present
         await fireEvent.click(input);
         await fireEvent.click(input);
 
@@ -66,9 +67,20 @@ describe(`Testing Component with scrollable set to true `, () => {
           await fireEvent.click(dropdownItem);
         });
 
+        const arrowBox = getByTestId('arrow-box');
+        // click on arrow to open the dropdown
+        await fireEvent.click(arrowBox);
+
+        //check if the dropdown has items
+        await wait(async () => {
+          const newItem = await getByLabelText('Australia');
+          await expect(newItem).toBeInTheDocument();
+          // click on another item
+          await fireEvent.click(newItem);
+        });
+
       });
     };
-
     await runTests();
   });
 });

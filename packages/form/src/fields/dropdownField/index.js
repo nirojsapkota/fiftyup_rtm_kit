@@ -63,7 +63,7 @@ const DropdownField = ({ onWaiting,
           }}
           value={currentElement}
         />
-        <Box onClick={() => setModalOpen(!isModalOpen)}
+        <Box data-testid="arrow-box" onClick={() => setModalOpen(!isModalOpen)}
           style={
             {
               position: 'relative',
