@@ -42,6 +42,11 @@ describe(`Testing Component with scrollable set to true `, () => {
       await fireEvent.focus(input);
 
       await wait(async () => {
+        //check if dropdown has a scrollbar
+        const resultsContainer = getByTestId('results-container');
+        expect(resultsContainer).toHaveStyleRule('overflow', 'auto');
+        expect(resultsContainer).toHaveStyleRule('height', '204px');
+
         const item1 = await getByText('Canada');
 
         // Click away to check if dropdown disappears
@@ -81,16 +86,22 @@ describe(`Testing Component with scrollable set to true `, () => {
   });
 });
 
-describe(`Testing Component with scrollable set to fals `, () => {
+describe(`Testing Component with scrollable set to false `, () => {
   it(`Should render all options in the dropdown without a scrollbar`, async () => {
 
     const runTests = async () => {
       let label = 'Please select a Country';
-      let { getByLabelText, getByText } = await setup(false);
+      let { getByLabelText, getByText, getByTestId } = await setup(false);
       let input = await getByLabelText(label);
       await fireEvent.focus(input);
 
       await wait(async () => {
+
+        // check for scrollbar and no height
+        const resultsContainer = getByTestId('results-container');
+        expect(resultsContainer).toHaveStyleRule('overflow', 'none');
+        expect(resultsContainer).toHaveStyleRule('height', 'none');
+
         const item1 = await getByText('Canada');
 
         // Click away to check if dropdown disappears

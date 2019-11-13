@@ -80,7 +80,7 @@ const DropdownField = ({ onWaiting,
       </div>
       {isModalOpen && (
         <div>
-          <ResultsContainer scrollable={config.scrollable}>
+          <ResultsContainer data-testid="results-container" scrollable={config.scrollable}>
             {inputProps.options.map((element, index) => {
               return (
                 <Label
