@@ -2,6 +2,7 @@ import { Button } from '@rtm-ui/button';
 import { Icon } from '@rtm-ui/icon';
 import { Box, Card } from '@rtm-ui/layout';
 import { Header, Label } from '@rtm-ui/typography';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { useOnClickOutside } from '../autocompleteField/useOnClickOutside';
@@ -34,8 +35,6 @@ cursor: default;
 `;
 
 const DropdownField = ({ onWaiting,
-  onFocus,
-  onBlur,
   fieldUtils,
   config,
   ...inputProps }) => {
@@ -114,5 +113,19 @@ const DropdownField = ({ onWaiting,
     </div>
   );
 };
+
+
+DropdownField.propTypes = {
+  config: PropTypes.shape({
+    component: PropTypes.string,
+    scrollable: PropTypes.bool
+  }),
+  name: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.string
+  })),
+};
+
 
 export default DropdownField;
