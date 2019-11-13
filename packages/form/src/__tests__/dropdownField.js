@@ -42,7 +42,7 @@ describe(`Testing Component with scrollable set to true `, () => {
       await fireEvent.focus(input);
 
       await wait(async () => {
-        //check if dropdown has a scrollbar
+        // check for scrollbar and height of dropdown
         const resultsContainer = getByTestId('results-container');
         expect(resultsContainer).toHaveStyleRule('overflow', 'auto');
         expect(resultsContainer).toHaveStyleRule('height', '204px');
@@ -97,7 +97,7 @@ describe(`Testing Component with scrollable set to false `, () => {
 
       await wait(async () => {
 
-        // check for scrollbar and no height
+        // check for scrollbar and height of dropdown
         const resultsContainer = getByTestId('results-container');
         expect(resultsContainer).toHaveStyleRule('overflow', 'none');
         expect(resultsContainer).toHaveStyleRule('height', 'none');
