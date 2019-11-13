@@ -54,9 +54,6 @@ const DropdownField = ({ onWaiting,
           onFocus={() => {
             setModalOpen(true);
           }}
-          onBlur={() => {
-            onBlur();
-          }}
           onClick={() => {
             if (inputProps.value == '') {
               if (isModalOpen == false) {

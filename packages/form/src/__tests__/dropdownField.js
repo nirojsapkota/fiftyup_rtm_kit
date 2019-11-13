@@ -1,11 +1,12 @@
 import React from 'react';
 // eslint-disable-next-line import/named
-import { cleanup, render } from '../../../bootstrap/setup/testSetup';
+import { cleanup, fireEvent, render, wait } from '../../../bootstrap/setup/testSetup';
 import { Form } from '../index';
-const handleSubmit = jest.fn();
-const setup = async () => {
-  const util = render(
 
+const handleSubmit = jest.fn();
+
+const setup = async (flag) => {
+  const util = render(
     <Form
       id="test"
       onSubmit={handleSubmit}
@@ -13,7 +14,7 @@ const setup = async () => {
         {
           label: 'Please select a Country',
           name: 'country',
-          config: { component: 'dropdownfield', scrollable: true },
+          config: { component: 'dropdownfield', scrollable: flag },
           hint: 'eg. USA',
           value: '',
           options: [
@@ -25,66 +26,47 @@ const setup = async () => {
         }
       ]}
     />
-
   );
   return util;
 };
 
+
+
 afterEach(cleanup);
 
-describe(`Address Auto Complete Component `, () => {
-  it(`Tests when there are no result for the searched address`, async () => {
-
+describe(`Testing Component with scrollable set to true `, () => {
+  it(`Should render all options in the dropdown and should have a scrollbar`, async () => {
 
     const runTests = async () => {
+      let label = 'Please select a Country';
+      let { getByLabelText, getByText } = await setup(true);
+      let input = await getByLabelText(label);
+      await fireEvent.focus(input);
 
-      let { getByLabelText, getByText } = await setup();
+      await wait(async () => {
+        const item1 = await getByText('Canada');
+        const item2 = await getByText('Australia');
 
-      let input;
-      input = await getByLabelText('Please select a Country');
-      // let field = xforminputs.form.fields[0];
-      // let input = await getByLabelText(field.label);
+        // Click away to check if dropdown disappears
+        await fireEvent.mouseDown(getByText(''));
+        await expect(item1).not.toBeInTheDocument();
 
-      // await fireEvent.change(input, {
-      //   target: { value: 'lorem ipsum donor' },
-      // });
+        //Get input again and focus
+        input = await getByLabelText(label);
+        await fireEvent.focus(input);
 
-      // await wait(async () => {
-      //   const item = await getByText(/Address not found/i);
-      //   // Click away to check if dropdown disappears
+        //Try if the dropdown closes if not values
+        await fireEvent.click(input);
+        await fireEvent.click(input);
 
-      //   await fireEvent.mouseDown(getByText(field.label));
-      //   await fireEvent.change(input, {
-      //     target: { value: '' },
-      //   });
-      //   await expect(item).not.toBeInTheDocument();
+        // Wait for dropdown to appear
+        await wait(async () => {
+          const dropdownItem = await getByLabelText('Canada');
+          await expect(dropdownItem).toBeInTheDocument();
+          await fireEvent.click(dropdownItem);
+        });
 
-      //   // get input and search again
-      //   input = await getByLabelText(field.label);
-      //   await fireEvent.change(input, {
-      //     target: { value: 'lorem ipsum donor' },
-      //   });
-
-      //   // Check popup re-display when focus to input
-      //   await fireEvent.mouseDown(getByText(field.label));
-      //   await expect(item).not.toBeInTheDocument();
-
-      //   //Focus the Element
-      //   await fireEvent.focus(input);
-
-      //   //Check if the dropdown Reappears
-      //   await wait(async () => {
-      //     const item = await getByText(/Address not found/i);
-      //     await expect(item).toBeInTheDocument();
-      //   });
-
-      //   await wait(async () => {
-      //     const item = await getByText(/Address not found/i);
-      //     await fireEvent.click(item);
-      //   });
-      // });
-
-
+      });
     };
 
     await runTests();
@@ -92,63 +74,41 @@ describe(`Address Auto Complete Component `, () => {
 });
 
 
-// import React from 'react';
-// // eslint-disable-next-line import/named
-// import { fireEvent, render } from '../../../bootstrap/setup/testSetup';
-// import { Form } from '../index';
+describe(`Testing Component with scrollable set to fals `, () => {
+  it(`Should render all options in the dropdown without a scrollbar`, async () => {
 
-// describe(`Month Picker `, () => {
-//   it(`can select the month picker when valid`, async () => {
+    const runTests = async () => {
+      let label = 'Please select a Country';
+      let { getByLabelText, getByText } = await setup(false);
+      let input = await getByLabelText(label);
+      await fireEvent.focus(input);
 
-//     const handleSubmit = jest.fn();
-//     const { getByLabelText, getByValue, container, getByTestId } = await render(
-//       <Form
-//         id="test"
-//         onSubmit={handleSubmit}
-//         fields={[
-//           {
-//             label: 'Please select a Country',
-//             config: { component: 'dropdownfield', scrollable: true },
-//             hint: 'eg. USA',
-//             name: 'country',
-//             value: '',
-//             options: [
-//               { label: 'Canada', value: 'CAN', },
-//               { label: 'Australia', value: 'AUS', },
-//               { label: 'New Zealand', value: 'NZ', },
-//               { label: 'South Africa', value: 'SAF', }
-//             ],
-//           }
-//         ]}
-//       />
-//     );
+      await wait(async () => {
+        const item1 = await getByText('Canada');
+        const item2 = await getByText('Australia');
 
-//     const itemInput = getByValue('');
-//     fireEvent.change(itemInput, {
-//       target: { value: '' },
-//     });
+        // Click away to check if dropdown disappears
+        await fireEvent.mouseDown(getByText(''));
+        await expect(item1).not.toBeInTheDocument();
 
-//     // const submit = getByTestId(`submit-test`);
-//     // fireEvent.click(submit);
-//     // await wait(() => {
-//     //   expect(handleSubmit).toHaveBeenCalled();
-//     //   fireEvent.focus(itemInput);
-//     // });
+        //Get input again and focus
+        input = await getByLabelText(label);
+        await fireEvent.focus(input);
 
-//     // const leftIcon = container.querySelector(`div.icon`);
-//     // fireEvent.click(leftIcon);
-//     // const icon1 = container.querySelector(`svg.view-back`);
-//     // const icon2 = container.querySelector(`svg.view-forward`);
-//     // expect(icon1).not.toBeDisabled();
-//     // expect(icon2).not.toBeDisabled();
-//     // fireEvent.click(icon1);
-//     // fireEvent.click(icon2);
+        //Try if the dropdown closes if not values
+        await fireEvent.click(input);
+        await fireEvent.click(input);
 
-//     // const iconSelected = container.querySelector(`div.selected`);
-//     // fireEvent.click(iconSelected);
+        // Wait for dropdown to appear
+        await wait(async () => {
+          const dropdownItem = await getByLabelText('Canada');
+          await expect(dropdownItem).toBeInTheDocument();
+          await fireEvent.click(dropdownItem);
+        });
 
-//     // const input = container.querySelector('input');
-//     // fireEvent.keyDown(input);
+      });
+    };
 
-//   });
-// });
+    await runTests();
+  });
+});
