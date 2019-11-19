@@ -1,0 +1,231 @@
+---
+name: XForm
+route: /form/xform
+menu: Form
+---
+
+import { Playground, PropsTable } from 'docz';
+import { example, exampleWithAutoComplete } from './xsample';
+import { Xform } from '../src';
+import { Layout } from './layout';
+import { Escape } from './escapeSample';
+import { Address } from './addressSample';
+import { AnimateEntry } from './animateEntry';
+import { SingleValue } from './singleValueRadio';
+
+# XForm
+
+XForm is mainly divided into 3 distinct parts:
+
+- The form as a whole
+- Field groups
+- An individual Field
+
+Each portion of this component has it's own machine.
+
+So there is a machine for the form, for each field group within the form,
+and then for each field within each field group. This might sound like a lot
+but machines can be thought of as nothing more than a `useReducer` with
+some extra logic built in.
+
+### The form machine
+
+The form machine is the most simple, it's job are:
+
+- To spawn a `fieldGroup` machine (which may then spawn sub-`fieldGroup` machines of its own).
+- To handle the `onSubmit` function passed in
+
+Usage:
+
+```js
+// sample props
+const props = {
+  onSubmit: async values => console.log('values submitted', values),
+  options: {
+    autoComplete: true,
+  },
+  form: {
+    fields: [
+      {
+        label: 'Please select items',
+        ... // note that the field config has not changed
+      },
+    ],
+  }
+}
+
+// XForm does exactly this:
+const MyForm = props => {
+  const { fieldGroupMachine } = useForm(props);
+
+  return <>{fieldGroupMachine && <FieldGroup service={fieldGroupMachine} />}</>;
+};
+```
+
+The `Xform` component does this under the hood, that's all it does. The primary
+benefit from this package is the hooks, not the components. This allows us
+to keep as much flexibility as possible.
+
+### The field group machine
+
+This is the mos complicated machine. A 'field group' is just what it sounds like,
+a collection of fields. However it's different from a 'form' because it only
+stands to represent a subset of fields for a form. A single field group could
+have a nested field group, and that nested field group could have yet another
+nested group. There are several examples of this below.
+
+Usage:
+
+```js
+export const FieldGroup = ({ service }) => {
+  const { fields, nextMachine, groupIsValidating } = useFieldGroup(service);
+  return (
+    <>
+      {fields.map(field => (
+        <Field
+          key={field.name}
+          groupIsValidating={groupIsValidating}
+          machine={field.machine}
+        />
+      ))}
+      {nextMachine && <FieldGroup service={nextMachine} />}
+    </>
+  );
+};
+```
+
+Again - note that under the hood the `FieldGroup` component does exactly this.
+It may be preferrable to use the built-in components like `Xform` or
+`FieldGroup`, but as soon as you need some custom UI you can build your
+own component and rely on the hooks to handle the form logic - see the
+animated example below for an example.
+
+### `onSubmit`
+
+The field group machine can provide an `onSubmit` event - this is different
+from the form's `onSubmit` event, in that it happens when a field group
+is completed. See an example of this in the escape example below.
+
+### The field machine
+
+Each field in a form has it's own machine, remember that machines don't have
+to be complex, and they're not much more expensive than a simple reducer.
+
+Its job is to determine when to submit its `field` machines to the parent
+`FieldGroup`. Note that one of the biggest differences between the existing
+`<Form>` component and this one is that field values are kept in local state.
+The `FieldGroup` and `Form` machines don't know the values of the fields, only
+during the submit phase are those values passed up. This keeps things light
+and allows things to remain decoupled.
+
+Another important thing to note is that there are a couple of different styles
+of field machines. Currently there are only 2, `text` and `radio` - clearly there
+will need to be a `checkbox` machine as well and possibly many others.
+While it may seem like any field machine should have the same lifecycle
+(ex. `idle`, `focused`, `complete`, `invalid`, `valid`) - the actions that
+can be taken on them differs.
+
+A text field can take focus, change, and blur - however a radio option
+is effectivly focused, changed, and blurred in the same user event (a mouse click).
+Using seperate machines to capture this means we don't have to think as hard
+when working with components, a radio component can just call `send('change')`
+and the machine will make sure it's considered 'complete'.
+
+## Examples
+
+### Single value passthru
+
+When tha field only has one value and it's of type `radio` - we can assume
+the field must be the value supplied. Note that in the case of a checkbox we
+wouldn't be able to make the same assumption since it could be left untoggled.
+
+View the console to see that we actually have a value for household size
+even though the question wasn't shown in the form.
+
+<SingleValue />
+
+---
+
+### Animate entry
+
+Since most of the logic lives in hooks it's trival to make your own
+components and wrap them in whatever you want
+
+<AnimateEntry />
+
+---
+
+### Escape
+
+Hook into the form lifecycle to jump out of it when the user
+indicates they are an existing customer
+
+<Escape />
+
+```js
+  const [canSeeOffers, setCanSeeOffers] = React.useState(true);
+
+  const props = {
+    ...
+    form: {
+      ...config.form,
+      onSubmit: async values => {
+        if (values.existing === 'existing') {
+          setCanSeeOffers(false);
+        }
+      },
+    },
+  };
+
+  return (
+    <>
+      {canSeeOffers ? (
+        <Xform {...props} />
+      ) : (
+        <Header>
+          Sorry, this offer is not available to existing customers
+          <button onClick={() => setCanSeeOffers(true)}>Go back</button>
+        </Header>
+      )}
+    </>
+  );
+```
+
+---
+
+### Autocomplete
+
+When a field group becomes valid, automatically submit
+
+<Xform {...exampleWithAutoComplete} />
+
+```js
+// This is basically a reimplementation of the `FieldGroup` component
+// with an animation library wrapped around it
+<>
+  {fields.map(field => (
+    <Field
+      key={field.name}
+      groupIsValidating={groupIsValidating}
+      machine={field.machine}
+    />
+  ))}
+  <AnimatePresence>
+    {nextMachine && (
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -50, opacity: 0 }}
+      >
+        <FieldGroup service={nextMachine} />
+      </motion.div>
+    )}
+  </AnimatePresence>
+</>
+```
+
+---
+
+### Address
+
+<Address />

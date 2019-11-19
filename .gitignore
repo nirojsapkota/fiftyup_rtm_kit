@@ -4,6 +4,7 @@ node_modules/
 build
 .DS_Store
 .docz
+.npmrc
 dist
 aws/GithubDocumentationFunction.zip
 packages/*/package-lock.json

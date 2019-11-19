@@ -56,7 +56,10 @@ const variantChildLast = {
 };
 
 const AnimateableWrapper = ({ children, ...animateProps }) => {
-  const { shouldAnimate } = React.useContext(FieldGroupContext);
+  const fieldGroupContext = React.useContext(FieldGroupContext);
+  const shouldAnimate = fieldGroupContext
+    ? fieldGroupContext.shouldAnimate
+    : false;
   if (shouldAnimate) {
     return <motion.div {...animateProps}>{children}</motion.div>;
   } else {
@@ -68,9 +71,16 @@ const BaseField = props => {
   const [focused, setFocused] = React.useState(false);
   const [waiting, setWaiting] = React.useState(false);
 
-  const toggleFocused = () => {
+  const toggleFocused = e => {
     setFocused(!focused);
+    if (!focused && typeof props.onFocus === 'function') {
+      props.onFocus(e);
+    }
+    if (focused && typeof props.onBlur === 'function') {
+      props.onBlur(e);
+    }
   };
+
   const [closed, setClosed] = React.useState(true);
   React.useEffect(() => {
     // The purpose of this is to allow the field to mount
