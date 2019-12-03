@@ -5,10 +5,18 @@ env:
     AWS_SECRET_ACCESS_KEY: 'component-website-secret-key'
     GIT_USER_EMAIL: 'github-user-email'
     GIT_USER_NAME: 'github-user-name'
+    NPM_AUTH_TOKEN: "/aws/reference/secretsmanager/npm-access-token"
+    NPM_REGISTRY_LOGIN_URL: "npm-repository-auth-url"
 
 phases:
   install:
     commands:
+      - npm set registry http://registry.npmjs.org/
+      - npm set always-auth true
+      - npm set unsafe-perm true
+      - npm install -g npm
+      - echo "$NPM_REGISTRY_LOGIN_URL:_authToken=$NPM_AUTH_TOKEN" >> $HOME/.npmrc
+      - echo "@rtm:registry=https:$NPM_REGISTRY_LOGIN_URL" >> $HOME/.npmrc
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
