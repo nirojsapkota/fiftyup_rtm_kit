@@ -20,6 +20,8 @@ phases:
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
+      - echo $CODEBUILD_BUILD_IMAGE
+      - env
       - npm cache clear --force
       - npm ci
 
