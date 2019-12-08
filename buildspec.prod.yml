@@ -20,9 +20,8 @@ phases:
       - git remote set-url origin $GITHUB_URL
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
-      - env
-      - ls -l /node_modules/.bin
-      - npm ci
+      - cat $HOME/.npmrc
+      - npm install
 
   pre_build:
     commands:
