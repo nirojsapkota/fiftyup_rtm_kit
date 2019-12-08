@@ -9,7 +9,7 @@
     }
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --no-ci",
     "build:docs": "docz build",
     "build:ci": "CI=true lerna run --parallel build -- -- --colors",
     "commit": "npx git-cz",
