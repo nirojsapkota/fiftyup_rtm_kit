@@ -23,7 +23,7 @@
     "test:ci": "CI=true lerna run test --parallel --stream --concurrency 999 -- -- --coverage --silent --verbose",
     "test:watch": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --watch",
     "test:coverage": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --coverage",
-    "release": "lerna publish --yes",
+    "release": "lerna publish --force-publish --yes",
     "generate": "plop --plopfile ./templates/plopfile.js",
     "watch": "lerna run --parallel build -- -- --watch --colors",
     "zip": "rtm-scripts zip --p ./aws/GithubDocumentationFunction"
