@@ -16,6 +16,7 @@ phases:
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
       - cat $HOME/.npmrc
+      - node --version
       - npm install
 
   pre_build:
@@ -25,7 +26,7 @@ phases:
 
   build:
     commands:
-      #- npm run test:ci
+      - npm run test:ci
       - npm run copy:builds
       - npm run build:docs
 
