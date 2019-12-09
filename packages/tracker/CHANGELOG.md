@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.2.11...@rtm-ui/tracker@5.0.0) (2019-12-09)
+
+
+### Features
+
+* **Tracker:** Add support for multiple GA & Adwords Account IDs ([ef0f4d4](https://github.com/OBSAU/rtm-kit/commit/ef0f4d41f3d6819621658f8502d4bbc43981404a)), closes [#OB-2875](https://github.com/OBSAU/rtm-kit/issues/OB-2875)
+
+
+### BREAKING CHANGES
+
+* **Tracker:** Use ga_code_collection & google_adwords_id_collection rather than just
+ga_code/google_adwords_id. The new props will accept an array.
+
+
+
+
+
 ## [4.2.11](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@4.2.10...@rtm-ui/tracker@4.2.11) (2019-10-16)
 
 **Note:** Version bump only for package @rtm-ui/tracker
