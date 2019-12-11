@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.0.6...@rtm-ui/tracker@5.0.7) (2019-12-11)
+
+
+### Reverts
+
+* Revert "feat(Tracker): Add support for multiple GA & Adwords Account IDs" ([9520c72](https://github.com/OBSAU/rtm-kit/commit/9520c724845da422a637ab801331492379c41b32))
+
+
+
+
+
 ## [5.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.0.5...@rtm-ui/tracker@5.0.6) (2019-12-09)
 
 **Note:** Version bump only for package @rtm-ui/tracker

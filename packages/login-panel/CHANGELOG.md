@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.84](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@4.0.83...@rtm-ui/login-panel@4.0.84) (2019-12-11)
+
+**Note:** Version bump only for package @rtm-ui/login-panel
+
+
+
+
+
 ## [4.0.83](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@4.0.82...@rtm-ui/login-panel@4.0.83) (2019-12-09)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
