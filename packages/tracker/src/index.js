@@ -80,21 +80,18 @@ export const TrackingProvider = ({
 class TrackerRegistration extends React.Component {
   componentDidMount() {
     //FOR GOOGLE ANALYTICS
-    if (this.props.ga_code_collection) {
+    if (this.props.ga_code) {
       const googleAnalytics = document.createElement('script');
       googleAnalytics.type = 'text/javascript';
       googleAnalytics.innerHTML =
         "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" +
         '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),' +
         'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)' +
-        "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');";
-
-      this.props.ga_code_collection.forEach((ga, index) => {
-        let trackerName = this.props.brand + 'Tracker' + index;
-        googleAnalytics.innerHTML += `ga('create', '${ga}', 'auto', '${trackerName}');` +
-          `ga('${trackerName}.send', 'pageview');`;
-      });
-
+        "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" +
+        "ga('create', '" +
+        `${this.props.ga_code}` +
+        "', 'auto');" +
+        "ga('send', 'pageview');";
       this.instance.appendChild(googleAnalytics);
     }
 
@@ -121,26 +118,29 @@ class TrackerRegistration extends React.Component {
       this.instance.appendChild(bing);
     }
 
-    if (this.props.google_adwords_id_collection) {
+    if (this.props.google_adwords_id) {
       //FOR GOOGLE ADWORDS
-      this.props.google_adwords_id_collection.forEach(ga => {
-        let adwords1 = document.createElement('script');
-        adwords1.async = true;
-        adwords1.src = `https://www.googletagmanager.com/gtag/js?id='${ga}'`;
-        this.instance.appendChild(adwords1);
+      const adwords1 = document.createElement('script');
+      adwords1.async = true;
+      adwords1.src =
+        "https://www.googletagmanager.com/gtag/js?id='" +
+        `${this.props.google_adwords_id}` +
+        "'";
+      this.instance.appendChild(adwords1);
+    }
 
-        let adwords2 = document.createElement('script');
-        adwords2.innerHTML =
-          'window.dataLayer = window.dataLayer || [];' +
-          'function gtag() {' +
-          'dataLayer.push(arguments);' +
-          '}' +
-          "gtag('js', new Date());" +
-          "gtag('config', '" +
-          `${ga}` +
-          "');";
-        this.instance.appendChild(adwords2);
-      });
+    if (this.props.google_adwords_id) {
+      const adwords2 = document.createElement('script');
+      adwords2.innerHTML =
+        'window.dataLayer = window.dataLayer || [];' +
+        'function gtag() {' +
+        'dataLayer.push(arguments);' +
+        '}' +
+        "gtag('js', new Date());" +
+        "gtag('config', '" +
+        `${this.props.google_adwords_id}` +
+        "');";
+      this.instance.appendChild(adwords2);
     }
 
     if (this.props.fullstory_id) {
@@ -263,9 +263,9 @@ TrackingProvider.propTypes = {
 };
 
 TrackerRegistration.propTypes = {
-  ga_code_collection: PropTypes.arrayOf(PropTypes.string),
+  ga_code: PropTypes.string,
   bing_uet_tag_code: PropTypes.string,
-  google_adwords_id_collection: PropTypes.arrayOf(PropTypes.string),
+  google_adwords_id: PropTypes.string,
   facebook_pixel_id: PropTypes.string,
   fullstory_id: PropTypes.string,
   zendesk_id: PropTypes.string,
