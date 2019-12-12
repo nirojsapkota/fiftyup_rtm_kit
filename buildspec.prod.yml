@@ -21,12 +21,14 @@ phases:
 
   build:
     commands:
+      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
 #      - npm run test:ci
       - npm run copy:builds
       - npm run build:docs
 
   post_build:
     commands:
+      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
       - npm run release
 
 artifacts:

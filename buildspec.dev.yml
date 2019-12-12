@@ -7,11 +7,13 @@ phases:
 
   pre_build:
     commands:
+      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
       - npm run bootstrap
       - npm run build:ci
 
   build:
     commands:
+      - if [ $CODEBUILD_BUILD_SUCCEEDING -eq 0 ] ; then exit 1; fi
       - npm run test:ci
       - npm run copy:builds
       - npm run build:docs
