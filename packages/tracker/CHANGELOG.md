@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.0.7...@rtm-ui/tracker@5.0.8) (2019-12-12)
+
+
+### Bug Fixes
+
+* **component:** Removed noscript tag for facebook pixel as it is not required ([10a4d3d](https://github.com/OBSAU/rtm-kit/commit/10a4d3d7a1d0f8f52fe8e8698acd5b73b5036470)), closes [#OB-2900](https://github.com/OBSAU/rtm-kit/issues/OB-2900)
+
+
+
+
+
 ## [5.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.0.6...@rtm-ui/tracker@5.0.7) (2019-12-11)
 
 

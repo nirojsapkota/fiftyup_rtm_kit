@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.24](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dynamic-svg@1.0.23...@rtm-ui/dynamic-svg@1.0.24) (2019-12-12)
+
+**Note:** Version bump only for package @rtm-ui/dynamic-svg
+
+
+
+
+
 ## [1.0.23](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dynamic-svg@1.0.22...@rtm-ui/dynamic-svg@1.0.23) (2019-12-11)
 
 **Note:** Version bump only for package @rtm-ui/dynamic-svg
