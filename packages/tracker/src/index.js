@@ -179,24 +179,6 @@ class TrackerRegistration extends React.Component {
         "');" +
         "fbq('track', 'PageView');";
       this.instance.appendChild(fb1);
-
-      const fb2 = document.createElement('noscript');
-      const fbimage = document.createElement('img');
-      fbimage.height = '1';
-      fbimage.width = '1';
-      /*
-       * Raises 'Attempted to assign to readonly property' exception while trying set Style by assigning a string directly
-       * This caused the IOS 9-10 to break
-       * Should be assigned to the property of style
-       * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
-       */
-      fbimage.style.display = 'none';
-      fbimage.src =
-        'https://www.facebook.com/tr?id=' +
-        `${this.props.facebook_pixel_id}` +
-        '&amp;ev=PageView&amp;noscript=1';
-      fb2.appendChild(fbimage);
-      this.instance.appendChild(fb2);
     }
 
     if (this.props.zendesk_id) {
@@ -239,9 +221,9 @@ class TrackerRegistration extends React.Component {
       sfmc_script_html =
         sfmc_script_html +
         `_etmc.push(['trackPageView', { "item" : "${window.location.origin +
-          window.location
-            .pathname}" }]);}})(window, document, 'script', 'https://${
-          this.props.sfmc_business_account_id
+        window.location
+          .pathname}" }]);}})(window, document, 'script', 'https://${
+        this.props.sfmc_business_account_id
         }.collect.igodigital.com/collect.js', '_etmc');`;
       sfmc.innerHTML = sfmc_script_html;
       this.instance.appendChild(sfmc);
