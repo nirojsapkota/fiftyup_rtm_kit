@@ -29,7 +29,7 @@
     "zip": "rtm-scripts zip --p ./aws/GithubDocumentationFunction"
   },
   "devDependencies": {
-    "@rtm/core": "^1.0.53",
+    "@rtm/core": "^1.0.54",
     "@xstate/react": "^0.7.1",
     "acorn": "^6.1.1",
     "acorn-dynamic-import": "^4.0.0",
