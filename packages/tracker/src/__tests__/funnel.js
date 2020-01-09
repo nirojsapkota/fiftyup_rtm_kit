@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // eslint-disable-next-line import/named
 import { cleanup } from '../../../bootstrap/setup/testSetup';
-import Funnel, { categoryKeys } from '../funnel';
+import Funnel, { categoryKeys, defaultCategoryKeys } from '../funnel';
 
 jest.mock('axios');
 
@@ -157,16 +157,17 @@ describe(`Funnel`, () => {
     });
   });
 
-  describe(`travel actions`, () => {
+  describe('actions (i.e travel) not defined in the categoryKeys should fallback to the defaultCategoryKeys', () => {
     it(`get_started`, () => {
       axios.post.mockResolvedValue({ data: {} });
 
       const data = prepareData('travel', 'get_started');
       Funnel.sendData(data);
-      const sendingData = categoryKeys['travel']['get_started'](data);
+      const keys = categoryKeys['travel'] || defaultCategoryKeys('travel')
+      const sendingData = keys['get_started'](data);
 
       expect(sendingData.step_code).toEqual('travel_click_get_started');
       expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
-    });
-  });
+    })
+  })
 });
