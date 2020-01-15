@@ -19,6 +19,17 @@ const sendDataToServer = (data, authenticityToken) => {
   });
 };
 
+const defaultCategoryKeys = (category = '') => {
+  return {
+    get_started: tracking => {
+      return {
+        step_code: `${category.replace(/-/g, '_')}_click_get_started`,
+        plan_id: tracking.meta.tracking_id,
+      };
+    }
+  }
+};
+
 const categoryKeys = {
   'life-insurance': {
     get_quote: tracking => {
@@ -80,20 +91,12 @@ const categoryKeys = {
         plan_id: tracking.meta.tracking_id,
       };
     },
-  },
-  'travel': {
-    get_started: tracking => {
-      return {
-        step_code: 'travel_click_get_started',
-        plan_id: tracking.meta.tracking_id,
-      };
-    },
-  },
+  }
 };
 
 class Funnel {
   static sendData(tracking) {
-    const categoryKey = categoryKeys[tracking.category];
+    const categoryKey = categoryKeys[tracking.category] || defaultCategoryKeys(tracking.category);
     if (categoryKey !== undefined) {
       const actionKey = categoryKey[tracking.action];
       if (actionKey !== undefined) {
@@ -106,4 +109,4 @@ class Funnel {
 }
 
 export default Funnel;
-export { categoryKeys };
+export { categoryKeys, defaultCategoryKeys };

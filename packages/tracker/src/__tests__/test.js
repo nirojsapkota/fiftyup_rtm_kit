@@ -2,8 +2,6 @@ import React from 'react';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import {
-  Tracker,
-  TrackingProvider,
   useTracker,
   track,
   TrackerRegistration,
@@ -64,7 +62,7 @@ describe(`track`, () => {
 
     const logSpy = jest.spyOn(console, 'log');
 
-    track('get_started', { some: 'data' });
+    track('get_started', { some: 'data', meta: {} });
 
     expect(logSpy).toHaveBeenCalledTimes(2);
   });
