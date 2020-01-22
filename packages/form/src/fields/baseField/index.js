@@ -100,7 +100,7 @@ const BaseField = props => {
 
   return props.type !== 'hidden' ? (
     <Box mb={10}>
-      <AnimateableWrapper initial={false} animate={closed ? 'closed' : 'open'}>
+      <AnimateableWrapper initial={false} animate={closed ? 'closed' : 'open'} exit={{ opacity: 0 }}>
         <AnimateableWrapper variants={variants}>
           <AnimateableWrapper variants={variantChild}>
             {props.config.renderLabel ? (
@@ -111,18 +111,18 @@ const BaseField = props => {
                 helper,
               })
             ) : (
-              <Wrapper alignItems="flex-end">
-                <>
-                  <Box>
-                    <Label font="serif" htmlFor={props.name}>
-                      {label}
-                    </Label>
-                    <SmallText>{description}</SmallText>
-                  </Box>
-                  <SmallText>{helper}</SmallText>
-                </>
-              </Wrapper>
-            )}
+                <Wrapper alignItems="flex-end">
+                  <>
+                    <Box>
+                      <Label font="serif" htmlFor={props.name}>
+                        {label}
+                      </Label>
+                      <SmallText>{description}</SmallText>
+                    </Box>
+                    <SmallText>{helper}</SmallText>
+                  </>
+                </Wrapper>
+              )}
           </AnimateableWrapper>
           <AnimateableWrapper variants={variantChild}>
             <Input
@@ -151,8 +151,8 @@ const BaseField = props => {
       </AnimateableWrapper>
     </Box>
   ) : (
-    <Input {...inputProps} id={`${props.name}`} />
-  );
+      <Input {...inputProps} id={`${props.name}`} />
+    );
 };
 
 export default BaseField;

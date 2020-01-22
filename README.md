@@ -157,6 +157,16 @@ module.exports = {
 };
 ```
 
+## Note
+While using rtm-core in the package,  `rtm-scripts` provides all the required scripts.
+
+Project `rtm-offer-spa` has been configured to use the packages from rtm-core. In this case to link the packages from rtm-kit, there's an option to link the `rtm-ui` packages from local development. Just use `--alias` while starting the app and provide the absolute url to rtm-kit project location on your machine.
+
+#### Command
+```
+npm start -- --alias '/Users/niroj/prects/rtm-kit/packages'
+```
+
 This would remove any need for `npm link`, your webpack environment should pick up any
 changes to your rtm-kit packages.
 
