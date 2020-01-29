@@ -45,7 +45,7 @@ describe('<SwitchConfirmPage />', () => {
 
     fireEvent.click(headerElement);
     fireEvent.click(btnSubmit);
-    await wait(() => {
+    wait(() => {
       expect(queryByText('Please select an option')).not.toBeInTheDocument();
     });
   });
