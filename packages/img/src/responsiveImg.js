@@ -5,7 +5,7 @@ Responsive Image component to be used inside the Home Page
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
-import { Img } from '@rtm-ui/img';
+import { Img } from './index';
 import styled, { ThemeContext } from 'styled-components';
 
 const Wrapper = styled(Box)`
@@ -22,12 +22,14 @@ const useResponsiveWidth = () => {
     setDesktopWidth(window.innerWidth);
   };
 
+  window.addEventListener('resize', handleImgResize);
+
   useEffect(() => {
     window.addEventListener('resize', handleImgResize);
     return () => window.removeEventListener('resize', handleImgResize);
   }, []);
 
-  return desktopWidth;
+  return window.innerWidth;
 };
 
 const ResponsiveImage = ({ desktopImgView, tabletImgView }) => {
