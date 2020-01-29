@@ -5,13 +5,16 @@ export const FieldGroupContext = React.createContext();
 
 export const FieldGroup = ({ fields, children, values, animate }) => {
   if (animate) {
-    const orderedFields = fields.sort(field => {
+    const orderedFields = fields.sort((field1, field2) => {
       // Order the fields so that hidden fields come first.
       // This way we can avoid blank fields during progressive reveal
-      if (field.type === 'hidden') {
+      // Basically return -1 for ordering the first compared element to lower index and 1 for reverse.
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+      if (field1.type === 'hidden') {
         return -1;
-      } else {
-        return 0;
+      }
+      if (field2.type === 'hidden') {
+        return 1;
       }
     });
     const fieldsWithValues = orderedFields.filter(({ name }) => {
