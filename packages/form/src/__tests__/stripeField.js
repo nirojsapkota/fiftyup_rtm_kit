@@ -10,19 +10,22 @@ const form = {
 };
 
 describe(`For a stripePayment component`, () => {
-  it(`presents a notice when stripe can't be reached`, async () => {
+  it('works', () => {
     const handleSubmit = jest.fn();
+    const { queryByTestId } = render(<Form onSubmit={handleSubmit} {...form} />);
+    expect(queryByTestId('stripe-load-error')).toBeNull();
+    console.log('stripe: ',queryByTestId('stripe-load-error'))
+  });
+
+  it('returns a stripe load error', () => {
+    const handleSubmit = jest.fn();
+    const setState = jest.fn(() => [null,true]);
+    const useStateSpy = jest.spyOn(React, 'useState')
+    useStateSpy.mockImplementation((init) => [init, setState]);
     const { getByTestId } = render(<Form onSubmit={handleSubmit} {...form} />);
 
-    const stripeScript = await document.getElementById('stripe');
-    var event = new Event('error');
-    stripeScript.dispatchEvent(event);
-
-    const errorContainer = getByTestId('stripe-load-error');
-    await wait(async () => {
-      expect(errorContainer).toHaveTextContent(
-        'Unable to load payment gateway'
-      );
-    });
-  });
+    wait(() => {
+      expect(getByTestId('stripe-load-error')).toBeInTheDocument();
+    })
+  })
 });
