@@ -1,8 +1,3 @@
-/* istanbul ignore file */
-// FIXME: This file is currently excluded in the
-// coverage checks. Please remove the istanbul comment above once
-// the tests passes the required 95% test coverage.
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -141,6 +136,8 @@ class ConfirmationWrapper extends React.Component {
   }
 
   // FIXME form will submit to server
+  /* istanbul ignore next: unable to test this atm. but the test for this form
+  submit is already covered in the electricity-switch package */
   handleSubmit() {
     const form = document.getElementsByTagName('form')[0];
     form.method = 'POST';
