@@ -136,6 +136,8 @@ class ConfirmationWrapper extends React.Component {
   }
 
   // FIXME form will submit to server
+  /* istanbul ignore next: unable to test this atm. but the test for this form
+  submit is already covered in the electricity-switch package */
   handleSubmit() {
     const form = document.getElementsByTagName('form')[0];
     form.method = 'POST';

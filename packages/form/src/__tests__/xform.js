@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
@@ -96,33 +98,26 @@ describe('xform', () => {
       </>
     );
     // util.debug();
-
     await fireEvent.click(util.getByText('SOLAR'));
-
-    await wait(async () => {
-      expect(util.getByText('Choose your fuel type'));
-      await fireEvent.click(util.getByText('ELECTRICITY'));
-      await wait(async () => {
+    wait(
+      async () => {
+        expect(util.getByText('Choose your fuel type'));
+        await fireEvent.click(util.getByText('ELECTRICITY'));
         const emailInput = await util.getByLabelText('Enter your email');
         await emailInput.focus();
         await fireEvent.change(emailInput, {
           target: { value: 'user@example.com' },
         });
         await emailInput.blur();
-        await wait(
-          async () => {
-            expect(mockFieldGroupSubmit).toHaveBeenCalled();
-            expect(mockSubmit).toHaveBeenCalled();
-            // recall the form
-            await fireEvent.click(util.getByText('GAS & ELEC'));
-          },
-          { timeout: 5000 }
-        );
-      });
-    });
+        expect(mockFieldGroupSubmit).toHaveBeenCalled();
+        expect(mockSubmit).toHaveBeenCalled();
+        await fireEvent.click(util.getByText('GAS & ELEC'));
+      },
+      { timeout: 5000 }
+    );
   });
+
   it('handles error messages', async () => {
-    // const mockSubmit = async () => console.log('submitted');
     const mockSubmit = jest.fn();
     const mockFieldGroupSubmit = jest.fn();
 

@@ -14,12 +14,14 @@ export function useWindowSize() {
     setWindowSize(getSize());
   }
 
+  window.addEventListener('resize', handleResize);
+
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [windowSize]);
 
   return windowSize;
 }

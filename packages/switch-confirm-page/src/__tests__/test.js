@@ -34,7 +34,7 @@ describe('<SwitchConfirmPage />', () => {
     ).toBeInTheDocument();
   });
 
-  it('Submit to sever when form valid', async () => {
+  it('Submit to server when form valid', async () => {
     const { queryByText, getByText } = render(
       <SwitchConfirmPage {...dummyData} />
     );
@@ -45,9 +45,9 @@ describe('<SwitchConfirmPage />', () => {
 
     fireEvent.click(headerElement);
     fireEvent.click(btnSubmit);
-    await wait(() => {
-      expect(queryByText('Please select an option')).not.toBeInTheDocument();
-    });
+
+    expect(queryByText('Please select an option')).not.toBeInTheDocument();
+
   });
 
   it('Will trigger button click to submit form', async () => {

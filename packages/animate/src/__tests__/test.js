@@ -60,7 +60,19 @@ describe('<Animate />', () => {
     await runPendingTimer();
     await expect(
       document.getElementsByClassName(currentSlideClassName)[0].textContent
+    ).toBe('Slide1');
+    await runPendingTimer();
+    await expect(
+      document.getElementsByClassName(currentSlideClassName)[0].textContent
     ).toBe('Slide2');
+    await runPendingTimer();
+    await expect(
+      document.getElementsByClassName(currentSlideClassName)[0].textContent
+    ).toBe('Slide2');
+    await runPendingTimer();
+    await expect(
+      document.getElementsByClassName(currentSlideClassName)[0].textContent
+    ).toBe('Slide3');
     await runPendingTimer();
     await expect(
       document.getElementsByClassName(currentSlideClassName)[0].textContent
@@ -72,7 +84,12 @@ describe('<Animate />', () => {
     await runPendingTimer();
     await expect(
       document.getElementsByClassName(currentSlideClassName)[0].textContent
+    ).toBe('Slide4');
+    await runPendingTimer();
+    await expect(
+      document.getElementsByClassName(currentSlideClassName)[0].textContent
     ).toBe('Slide1');
+
   });
 
   describe('slider size', () => {
