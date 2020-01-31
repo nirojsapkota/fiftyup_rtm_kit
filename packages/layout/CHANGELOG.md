@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.43](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@4.0.42...@rtm-ui/layout@4.0.43) (2020-01-31)
+
+
+### Bug Fixes
+
+* **Layout:** Fix the window resize which errs out on tests ([1f5f7c5](https://github.com/OBSAU/rtm-kit/commit/1f5f7c5c2e8d797db9ac4fd56f525f81341aa2c2))
+
+
+
+
+
 ## [4.0.42](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@4.0.41...@rtm-ui/layout@4.0.42) (2020-01-15)
 
 **Note:** Version bump only for package @rtm-ui/layout

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.44](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/img@4.0.43...@rtm-ui/img@4.0.44) (2020-01-31)
+
+
+### Bug Fixes
+
+* **Img:** Fix issue on the responsiveImg package erring on tests ([99756cd](https://github.com/OBSAU/rtm-kit/commit/99756cdc3f8c9a8f73f96bee3584de0ef6413638))
+
+
+
+
+
 ## [4.0.43](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/img@4.0.42...@rtm-ui/img@4.0.43) (2020-01-15)
 
 **Note:** Version bump only for package @rtm-ui/img
