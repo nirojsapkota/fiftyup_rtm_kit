@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.0.9...@rtm-ui/tracker@5.1.0) (2020-02-10)
+
+
+### Features
+
+* **Tracker:** Campaign type tracking capability ([#267](https://github.com/OBSAU/rtm-kit/issues/267)) ([0f908fe](https://github.com/OBSAU/rtm-kit/commit/0f908fef7af6f06ddf41c972a7a394ded2e4de33))
+
+
+
+
+
 ## [5.0.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.0.8...@rtm-ui/tracker@5.0.9) (2020-01-15)
 
 **Note:** Version bump only for package @rtm-ui/tracker
