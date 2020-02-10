@@ -17,6 +17,7 @@ always-auth=true
 registry=http://registry.npmjs.org/ # All other packages
 ```
 
+
 ## Lerna
 
 [Lerna](!https://lernajs.io/) is a tool for managing monorepos, it handles dependencies and versioning. One of it's key features is to share a common `node_modules` directory so that if two packages require the same package you'll still only need to store it once. It also ensures that we follow semantic versioning by automatically bumping the versions of our packages based on [conventional commits](#conventional-commits).
