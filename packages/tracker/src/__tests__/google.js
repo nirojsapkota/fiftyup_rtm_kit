@@ -46,6 +46,19 @@ describe(`Google`, () => {
       hitType: 'pageview',
       page: 'virtual/some_product/get_started',
     });
+
+    Google.sendData({
+      category: 'some_product',
+      action: 'get_started',
+      meta: {
+        campaign_type: 'business'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/some_product/business/get_started',
+    });
   });
 
   it(`when there is no ga object on the window`, () => {
@@ -89,6 +102,24 @@ describe(`Google`, () => {
     });
   });
 
+  it(`with energy category, presignup action and campaign_type`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'presignup',
+      meta: {
+        campaign_type: 'business'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/business/presignup',
+    });
+  })
+
   it(`with energy category and preoffer action`, () => {
     global.ga = jest.fn();
     const spyGa = jest.spyOn(global, 'ga');
@@ -104,6 +135,24 @@ describe(`Google`, () => {
     });
   });
 
+  it(`with energy category, preoffer action and campaign_type`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'preoffer',
+      meta: {
+        campaign_type: 'residential'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/residential/preoffer',
+    });
+  })
+
   it(`with energy category and signin action`, () => {
     global.ga = jest.fn();
     const spyGa = jest.spyOn(global, 'ga');
@@ -118,6 +167,24 @@ describe(`Google`, () => {
       page: 'virtual/energy/signin',
     });
   });
+
+  it(`with energy category, signin action and campaign_type`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'signin',
+      meta: {
+        campaign_type: 'business'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/business/signin',
+    });
+  })
 
   describe(`energy category`, () => {
     it(`get_started action, Electricity and solar`, () => {
@@ -195,5 +262,28 @@ describe(`Google`, () => {
 
       expect(logSpy).toHaveBeenCalled();
     });
+
+    it(`works with campaign_type meta`, () => {
+      global.ga = jest.fn();
+      const spyGa = jest.spyOn(global, 'ga');
+
+      Google.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'E',
+          is_solar: true,
+          campaign_type: 'business'
+        },
+      });
+
+      expect(spyGa).toHaveBeenCalledWith('send', {
+        hitType: 'pageview',
+        page: 'virtual/energy/business/get_started/internal/NSW/Electricity/solar',
+      });
+    })
+
   });
 });
