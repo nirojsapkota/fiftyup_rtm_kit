@@ -96,10 +96,16 @@ const primitiveMap = {
     let props = {};
     // FIXME: we may want some sort of error when more
     // just plaintext is dropped into a link tag
-    if (children[0].value.split('|').length === 2) {
+    if (children[0].value.split('|').length >= 1) {
+      try {
+        var otherAttrs = JSON.parse(children[0].value.split('|')[2]);
+      } catch {
+        var otherAttrs = {}
+      }
       const track = children[0].value.split('|')[1] || null;
       const value = children[0].value.split('|')[0];
       props = {
+        ...otherAttrs,
         track,
         children: value,
       };

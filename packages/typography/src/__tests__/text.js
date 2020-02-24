@@ -125,6 +125,18 @@ describe('<Markdown />', () => {
     fireEvent.click(getByText('world!'));
     expect(mockTrackEvent).toHaveBeenCalled();
   });
+  it('adds in additional attributes when provided with correct object format', () => {
+    const { container } = render(
+      <Markdown raw='Hello [world!|get_started|{"target": "_blank"}](https://example.com)' />
+    );
+    expect(container).toContainElement(document.querySelector('a[target="_blank"]'));
+  })
+  it('does not break when we pass a single quoted additional attribute', () => {
+    const { container } = render(
+      <Markdown raw="Hello [world!|get_started|{'target': '_blank'}](https://example.com)" />
+    );
+    expect(container).not.toContainElement(document.querySelector('a[target="_blank"]'));
+  })
   it('interpolates values when given a reference object', () => {
     const { getByText } = render(
       <Markdown
