@@ -9,21 +9,35 @@ const IFrameContainer = styled.iframe`
   margin: 0 auto;
 `;
 
-export const VideoDialog = ({ width, height, videoSrc, description }) => {
+export const VideoDialog = ({
+  width,
+  height,
+  videoSrc,
+  description,
+  containerStyle,
+  iframeStyle
+}) => {
   return (
-    <Box data-testid="if-container" width={width} height={height} m="0 auto">
+    <Box style={containerStyle} data-testid="if-container" width={width} height={height} m="0 auto">
       <IFrameContainer
         src={videoSrc}
         title={description}
         name={description}
+        style={iframeStyle}
       />
     </Box>
   );
 };
 
+VideoDialog.defaultProps = {
+  description: '',
+}
+
 VideoDialog.propTypes = {
   videoSrc: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  iframeStyle: PropTypes.shape({}),
+  containerStyle: PropTypes.shape({}),
   width: PropTypes.string,
   height: PropTypes.string,
 };

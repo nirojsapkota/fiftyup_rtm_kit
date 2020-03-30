@@ -27,6 +27,14 @@ import videoProps from './src/__fixtures__/videoResponse.js';
   <VideoDialog width="180px" height="240px" videoSrc="https://www.youtube.com/embed/_NDxJucqwiQ" description="One Big Switch" />
 </Playground>
 
+### Add styles to the video container and/or iframe
+<Playground>
+  <VideoDialog
+    containerStyle={{position: 'relative', paddingTop: '50%'}}
+    iframeStyle={{position: 'absolute', top: 0, left: 0}}
+    videoSrc="https://www.youtube.com/embed/_NDxJucqwiQ" description="One Big Switch" />
+</Playground>
+
 ### Props
 
 <PropsTable of={VideoDialog} />
