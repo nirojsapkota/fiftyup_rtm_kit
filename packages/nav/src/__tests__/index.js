@@ -6,33 +6,42 @@ import { Button } from '@rtm-ui/button';
 
 const setup = async props => {
   return render(
-    <Nav
-      logo="fiftyup"
-      subHeader="Australia's top money-saving destination"
-      tagline="1,000,000 Members"
-      items={[
-        {
-          id: 'how-it-works',
-          onClick: props && props.onClick,
-          label: 'How it works',
-          navbar: true,
-        },
-        {
-          id: 'news',
-          href: '/news',
-          label: 'News',
-          navbar: true,
-        },
-        {
-          id: 'about-us',
-          href: '/about',
-          label: 'About Us',
-        },
-      ]}
-      {...props}
-    >
-      <Button>join for free</Button>
-    </Nav>
+    <>
+      <Nav
+        logo="fiftyup"
+        subHeader="Australia's top money-saving destination"
+        tagline="1,000,000 Members"
+        items={[
+          {
+            id: 'how-it-works',
+            onClick: props && props.onClick,
+            label: 'How it works',
+            navbar: true,
+          },
+          {
+            id: 'scroll-me',
+            scrollTo: 'scrollsToElement',
+            label: 'Scroll me',
+            navbar: true,
+          },
+          {
+            id: 'news',
+            href: '/news',
+            label: 'News',
+            navbar: true,
+          },
+          {
+            id: 'about-us',
+            href: '/about',
+            label: 'About Us',
+          }
+        ]}
+        {...props}
+      >
+        <Button>join for free</Button>
+      </Nav>
+      <div scroll-target='scrollsToElement' />
+    </>
   );
 };
 
@@ -160,6 +169,19 @@ describe(`<Nav />`, () => {
         expect(item).toBeInTheDocument();
       });
     });
+    describe(`for links that scrolls to element`, () => {
+      it(`works`, async () => {
+        window.scrollTo = jest.fn();
+        const spy = jest.spyOn(window, 'scrollTo');
+        const { getByText } = await setup();
+        const navItem = getByText("Scroll me");
+        fireEvent.click(navItem);
+
+        await wait(() => {
+          expect(spy).toHaveBeenCalled();
+        });
+      })
+    })
     describe(`when resized`, () => {
       it(`hides the tagline and menu items`, async () => {
         window.innerWidth = 1301;
@@ -176,6 +198,15 @@ describe(`<Nav />`, () => {
       });
     });
   });
+  describe(`given a sticky prop`, () => {
+    it(`sticks the navbar to the top of the document`, async () => {
+      window.innerWidth = 1301;
+      const { getByTestId } = await setup({
+        sticky: true
+      });
+      expect(getByTestId("nav-fixed")).toBeInTheDocument();
+    })
+  })
   describe(`for the subheader`, () => {
     it(`it's shown`, async () => {
       const { getByText } = await setup({

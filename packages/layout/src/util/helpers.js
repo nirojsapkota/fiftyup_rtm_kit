@@ -25,3 +25,9 @@ export function useWindowSize() {
 
   return windowSize;
 }
+
+export function scrollToElement(e, ref) {
+  e.preventDefault();
+  const anchor = document.querySelector(`[scroll-target='${ref}']`)
+  window.scrollTo({ top: anchor.offsetTop - 100, behavior: 'smooth' })
+}

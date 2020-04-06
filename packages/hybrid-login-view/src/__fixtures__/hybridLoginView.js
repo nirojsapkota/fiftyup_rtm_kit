@@ -9,10 +9,25 @@ const hybridLoginView = {
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
   heroImageUrl: 'https://placehold.it/1080x454',
+  mainHeading: 'I am a main heading',
+  videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
+  asSeenOnImage: 'https://placehold.it/1080x150',
+  mainContent: "I am main content",
   entity: {
     brand: 'obs',
+    navigation_items: {
+      user: '',
+      tagline: "I'm a tagline",
+      signOutPath: "https://example.com",
+      signInPath: "https://example.com",
+      logo: "obs",
+      items: [],
+      subHeader: 'Subheader'
+    },
     footer_items: {},
-    header_items: {},
+    header_items: {
+      logo: "https://somelogo.com"
+    },
   },
   stateField: {
     fieldName: 'postcode_suburb',
@@ -46,6 +61,53 @@ Ut id efficitur enim. Phasellus vitae risus a urna dignissim pellentesque pulvin
       updated_at: '2017-06-29T14:37:01.000+10:00',
     },
   ],
+
+  workflow: {
+    header: "### How it Works",
+    items: [
+      {
+        type: 'image',
+        src: 'https://placehold.it/1080x250',
+        content: 'https://placehold.it/1080x250',
+      },
+      {
+        type: 'video',
+        src: 'https://www.youtube.com/embed/_NDxJucqwiQ',
+        content: 'One Big Switch Vid',
+      },
+      {
+        type: 'markdown',
+        content: '**Lorem ipsum**, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.',
+      }
+    ]
+  },
+
+  navLinks: [
+    {
+      id: 'mainHeading',
+      label: "Heading",
+      scrollTo: 'mainHeading',
+      navbar: true,
+    },
+    {
+      id: 'mainContent',
+      label: "Content",
+      scrollTo: 'mainContent',
+      navbar: true,
+    },
+    {
+      id: 'offerContent',
+      label: "See Offer",
+      scrollTo: 'offerContent',
+      navbar: true,
+    },
+    {
+      id: 'mediaContent',
+      label: "How it works",
+      scrollTo: 'mediaContent',
+      navbar: true,
+    }
+  ]
 };
 
 export default hybridLoginView;

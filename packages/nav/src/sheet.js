@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Box, Pane } from '@rtm-ui/layout';
+import { Box, Pane, scrollToElement } from '@rtm-ui/layout';
 import { Header } from '@rtm-ui/typography';
 import { getColor } from '@rtm-ui/theme';
 import { Icon } from '@rtm-ui/icon';
@@ -62,6 +62,10 @@ const Screen = props => {
 
 const Sheet = props => {
   const { isClosed, toggle } = props;
+  const items = props.items.map(({...item}) => {
+    if (item.scrollTo) {item = {...item, onClick: (e) => { scrollToElement(e, item.scrollTo) }}}
+    return {...item};
+  })
 
   return (
     <Wrapper isClosed={isClosed}>
@@ -76,7 +80,7 @@ const Sheet = props => {
             </Box>
           </A>
         </SheetItem>
-        {props.items
+        {items
           .filter(item => (props.isDesktop && !item.navbar) || !props.isDesktop)
           .map(({ id, href, label, onClick = null }) => {
             const clickProps = onClick

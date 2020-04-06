@@ -3,6 +3,7 @@ import { render } from '../../../bootstrap/setup/testSetup';
 import { HowItWorks } from '../index';
 import { WorkFlow } from '../WorkFlow';
 import sampleWorkFlow from '../__fixtures__/sampleWorkFlow.js';
+import sampleMultContentWorlFlow from '../__fixtures__/sampleMultiContentWorkFlow.js';
 import howItWorksResp from '../__fixtures__/howItWorksResp.js';
 
 describe('<HowItWork />', () => {
@@ -41,10 +42,19 @@ describe('<HowItWork />', () => {
     expect(queryByText('You join the movement for free')).toBeInTheDocument();
     expect(queryByText('You decide what’s right for you')).toBeInTheDocument();
   });
+});
 
+describe('<WorkFlow />', () => {
   it('checks the workFlow matches the expected outcome', () => {
     const workFlow = sampleWorkFlow;
     const { queryByText } = render(<WorkFlow {...workFlow} />);
     expect(queryByText(workFlow.items[0].body)).toBeInTheDocument();
   });
-});
+
+  it('renders a multi content workflow when multiContent prop is passed', () => {
+    const workFlow = sampleMultContentWorlFlow;
+    const { container } = render(<WorkFlow multiContent {...workFlow} />)
+    expect(container.querySelector(`img`)).toBeInTheDocument();
+    expect(container.querySelector(`iframe`)).toBeInTheDocument();
+  })
+})

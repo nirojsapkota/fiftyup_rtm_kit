@@ -9,7 +9,7 @@ const IFrameContainer = styled.iframe`
   margin: 0 auto;
 `;
 
-export const VideoDialog = ({
+const VideoDialog = ({
   width,
   height,
   videoSrc,
@@ -41,3 +41,5 @@ VideoDialog.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
 };
+
+export { VideoDialog };

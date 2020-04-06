@@ -1,5 +1,5 @@
 /*
-WorkFlow component is the second version of "How it Works" component mainly designed to use it inside the HomePage before user logs in" 
+WorkFlow component is the second version of "How it Works" component mainly designed to use it inside the HomePage before user logs in"
 */
 
 import React from 'react';
@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { Icon } from '@rtm-ui/icon';
 import { Paragraph, Markdown } from '@rtm-ui/typography';
 import { Box } from '@rtm-ui/layout';
+import { MultiContentWorkFlow } from './MultiContentWorkFlow';
 
 const ItemBody = styled(Paragraph)`
   max-width: '150px';
@@ -28,7 +29,7 @@ const List = styled(Box)`
   padding-top: 16px;
 `;
 
-export const WorkFlow = ({ header, subHeader, items }) => {
+const SimpleWorkFlow = ({ header, subHeader, items }) => {
   return (
     <Box>
       <Markdown raw={header} />
@@ -59,9 +60,20 @@ export const WorkFlow = ({ header, subHeader, items }) => {
   );
 };
 
+export const WorkFlow = (props) => {
+  const {multiContent, ...rest} = props;
+
+  if (multiContent) {
+    return(<MultiContentWorkFlow {...rest} />)
+  } else {
+    return(<SimpleWorkFlow {...rest} />)
+  }
+}
+
 WorkFlow.propTypes = {
   header: PropTypes.string,
   subHeader: PropTypes.string,
+  multiContent: PropTypes.bool,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       icon: PropTypes.string,

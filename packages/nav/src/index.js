@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import isReact from 'is-react';
-import { Box, Pane } from '@rtm-ui/layout';
+import { Box, Pane, scrollToElement } from '@rtm-ui/layout';
 import { Icon, Logo } from '@rtm-ui/icon';
 import { Button } from '@rtm-ui/button';
 import { A } from '@rtm-ui/a';
@@ -89,6 +89,14 @@ const NavGroupWrapper = styled(NavGroup)`
   width: 1216px;
 `;
 
+const FixedPosition = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  background: white;
+`
+
 const Navbar = ({ variant, ...props }) => {
   const { logoGlyph } = React.useContext(ThemeContext);
   return (
@@ -118,6 +126,7 @@ const Navbar = ({ variant, ...props }) => {
               {props.items
                 .filter(item => item.navbar)
                 .map(({ label, id, ...item }) => {
+                  if (item.scrollTo) {item = {...item, onClick: (e) => { scrollToElement(e, item.scrollTo) }}}
                   return (
                     <NavA key={id} color="primary" weight="bold" {...item}>
                       {label}
@@ -153,6 +162,22 @@ const SubHeaderWrapper = styled(Box)`
   max-width: 1400px;
   margin: auto;
 `;
+
+const NavbarPositioner = (props) => {
+  if (props.sticky) {
+    return(
+      <FixedPosition data-testid="nav-fixed">
+        {props.children}
+      </FixedPosition>
+    )
+  } else {
+    return(
+      <React.Fragment>
+        {props.children}
+      </React.Fragment>
+    )
+  }
+}
 const Nav = props => {
   const size = useWindowSize();
   const [isDesktop, setIsDesktop] = React.useState();
@@ -167,8 +192,9 @@ const Nav = props => {
   const [isClosed, toggleClosed] = React.useState(true);
   const toggle = () => toggleClosed(!isClosed);
   return (
-    <React.Fragment>
+    <NavbarPositioner sticky={props.sticky}>
       <Navbar
+        sticky={props.sticky}
         variant={props.variant}
         isDesktop={isDesktop}
         logo={props.logo}
@@ -205,18 +231,20 @@ const Nav = props => {
           toggle={toggle}
         />
       )}
-    </React.Fragment>
+    </NavbarPositioner>
   );
 };
 
 Nav.propTypes = {
   logo: PropTypes.string,
+  sticky: PropTypes.bool,
   onHomeClick: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       onClick: PropTypes.func,
       label: PropTypes.string,
+      scrollTo: PropTypes.string,
     })
   ),
   children: PropTypes.node,

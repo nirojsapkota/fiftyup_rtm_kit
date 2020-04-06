@@ -54,6 +54,10 @@ import sampleWorkFlow from './src/__fixtures__/sampleWorkFlow.js';
   />
 </Playground>
 
+### Props
+
+<PropsTable of={HowItWorks} />
+
 ## Dashboard/Home Page version of "How it Works" Component
 
 ### Designed to be used inside the Home Page
@@ -62,4 +66,31 @@ import sampleWorkFlow from './src/__fixtures__/sampleWorkFlow.js';
   <WorkFlow {...sampleWorkFlow} />
 </Playground>
 
-<PropsTable of={HowItWorks} />
+### Multi content workflow contains header, image, video, and/or text content
+
+<Playground>
+  <WorkFlow
+    multiContent
+    header="### How it Works"
+    items={[
+      {
+        type: 'image',
+        src: 'https://placeimg.com/1080/250/any',
+        content: 'https://placeimg.com/1080/250/any',
+      },
+      {
+        type: 'video',
+        src: 'https://www.youtube.com/embed/_NDxJucqwiQ',
+        content: 'One Big Switch Vid',
+      },
+      {
+        type: 'markdown',
+        content: '**Lorem ipsum**, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.',
+      }
+    ]}
+  />
+</Playground>
+
+### Props
+
+<PropsTable of={WorkFlow} />

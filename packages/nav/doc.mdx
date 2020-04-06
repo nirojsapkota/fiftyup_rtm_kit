@@ -4,12 +4,19 @@ route: /components/nav
 menu: Components
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import { Nav } from './src'
 import { Button } from '../button/src'
 import { DocWrapper } from '../bootstrap/setup/docWrapper'
+import { Box } from '../layout/src';
+import { SampleStickyNav } from './src/__fixtures__/SampleStickyNav';
 
 # Nav
+
+Sticky navbar:
+<DocWrapper>
+  <SampleStickyNav />
+</DocWrapper>
 
 When there is no user:
 <DocWrapper>
@@ -135,6 +142,51 @@ When a user is signed in:
   </Nav>
 </DocWrapper>
 
+### Links with scroll to element
+
+Make the link scroll to an element by specifying the target value in the scrollTo field of an item. <br/>
+> Note: We are using attribute tagging rather than refs for easier configuration of the props. So in order for the scrolling link to work, you have to
+> wrap your content in a div with attribute `scroll-target=[ TARGET VALUE ]`. See sample below
+
+<DocWrapper>
+  <Nav
+    user={false}
+    header={toggle => 'Hello'}
+    onHomeClick={() => console.log("/")}
+    subHeader="Australia's money-saving destination"
+    tagline="Australia's money-saving destination"
+    isClosed={true}
+    logo="obs"
+    items={[
+      {
+        id: "news",
+        label: "News",
+        navbar: true,
+        scrollTo: "targetScrollNews",
+      },
+      {
+        id: "our-story",
+        label: "Our Story",
+        scrollTo: "targetScrollStory",
+        navbar: true,
+      }
+    ]}
+  >
+  </Nav>
+  <div>
+    <Box>
+      <div scroll-target="targetScrollNews" style={{height: "500px", background: '#dedede'}}>
+        <h1>News Section</h1>
+        <p>Some content goes here</p>
+      </div>
+    </Box>
+    <div scroll-target="targetScrollStory" style={{height: "500px", background: '#fafafa'}}>
+      <h1>Our Story Section</h1>
+      <p>Some content goes here</p>
+    </div>
+  </div>
+</DocWrapper>
+
 ## With color variants
 
 <DocWrapper>
@@ -256,3 +308,5 @@ When a user is signed in:
     <Button>join for free</Button>
   </Nav>
 </DocWrapper>
+
+<PropsTable of={Nav} />

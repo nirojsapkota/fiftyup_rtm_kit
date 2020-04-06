@@ -1,27 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Logo } from '@rtm-ui/icon';
-import { Box } from '@rtm-ui/layout';
-import styled, { ThemeContext } from 'styled-components';
+import { Nav } from '@rtm-ui/nav';
 
-const Wrapper = styled(Box)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BasicHeader = ({ ...boxProps }) => {
-  const theme = React.useContext(ThemeContext);
+const BasicHeader = ({entity, ...props}) => {
   return (
-    <Wrapper {...boxProps}>
-      <Logo width={175} entityBrand={theme.logoGlyph} />
-    </Wrapper>
+    <Nav
+      user={false}
+      sticky={true}
+      isClosed={true}
+      {...entity.navigation_items}
+      {...props}
+    />
   );
 };
 
 BasicHeader.propTypes = {
-  logoUrl: PropTypes.string,
-  entityBrand: PropTypes.string,
+  entity: PropTypes.shape({
+    navigation_items: PropTypes.shape({})})
 };
 
 export default BasicHeader;

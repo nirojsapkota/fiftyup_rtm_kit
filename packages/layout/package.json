@@ -11,6 +11,7 @@
       "Flex",
       "Card",
       "useWindowSize",
+      "scrollToElement",
       "TopBorderCard"
     ]
   },

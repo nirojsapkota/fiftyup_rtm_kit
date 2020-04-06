@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '../../../bootstrap/setup/testSetup';
-import { Block, Card, Pane, Flex, useWindowSize, TopBorderCard } from '../index';
+import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
+import { Block, Card, Pane, Flex, useWindowSize, TopBorderCard, scrollToElement } from '../index';
 
 const text = 'Hello, World';
 
@@ -133,3 +133,22 @@ describe('useWindowSize', () => {
   });
 
 });
+
+describe('scrollToElement', () => {
+  it('scrolls to a given element attribute', async () => {
+    window.scrollTo = jest.fn();
+    const spy = jest.spyOn(window, 'scrollTo');
+    const { getByText } = await render(
+      <>
+        <a onClick={(e) => scrollToElement(e, 'findMe')}>Test</a>
+        <div scroll-target="findMe" />
+      </>
+    );
+    const navItem = getByText("Test");
+    fireEvent.click(navItem);
+
+    await wait(() => {
+      expect(spy).toHaveBeenCalled();
+    })
+  })
+})

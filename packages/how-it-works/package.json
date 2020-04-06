@@ -24,7 +24,8 @@
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
-    "@rtm-ui/typography": "file:../typography"
+    "@rtm-ui/typography": "file:../typography",
+    "@rtm-ui/video-dialog": "file:../video-dialog"
   },
   "peerDependencies": {
     "prop-types": "15.x",
