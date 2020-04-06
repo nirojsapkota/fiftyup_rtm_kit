@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.98](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.97...@rtm-ui/plan@2.0.98) (2020-04-06)
+
+**Note:** Version bump only for package @rtm-ui/plan
+
+
+
+
+
 ## [2.0.97](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.96...@rtm-ui/plan@2.0.97) (2020-02-24)
 
 **Note:** Version bump only for package @rtm-ui/plan

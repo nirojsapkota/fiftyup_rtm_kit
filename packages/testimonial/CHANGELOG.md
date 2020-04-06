@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.57](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/testimonial@2.0.56...@rtm-ui/testimonial@2.0.57) (2020-04-06)
+
+**Note:** Version bump only for package @rtm-ui/testimonial
+
+
+
+
+
 ## [2.0.56](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/testimonial@2.0.55...@rtm-ui/testimonial@2.0.56) (2020-02-24)
 
 **Note:** Version bump only for package @rtm-ui/testimonial
