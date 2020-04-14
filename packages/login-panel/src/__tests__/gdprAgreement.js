@@ -18,29 +18,15 @@ describe(`<GdprAgreement/>`, () => {
     enableCheckBox: true,
     isRequire: 'required',
     isChecked: false,
-    confirmationOfConsent: {
-      url: '/link/to/confirmation-of-consent',
-      text: 'Confirmation of consent',
-    },
-    termsAndConditions: {
-      url: '/link/to/term-and-conditions',
-      text: 'Terms and Conditions',
-    },
-    privacyPolicy: {
-      url: '/link/to/privacy-policy',
-      text: 'Privacy Policy',
-    },
+    content: 'Some agreement text and [Link](https://someagreementlink.com)',
   };
 
-  it(`renders Gdpr link confirmation`, () => {
-    const { getByText, } = render(<GdprAgreement {...props} />);
-    const elConfirmationOfconsent = getByText(props.confirmationOfConsent.text);
-    const elTermsCondition = getByText(props.termsAndConditions.text);
-    const elPrivacyPolicy = getByText(props.privacyPolicy.text);
-
-    expect(elConfirmationOfconsent).toBeInTheDocument();
-    expect(elTermsCondition).toBeInTheDocument();
-    expect(elPrivacyPolicy).toBeInTheDocument();
+  it(`renders Gdpr content with markdown link`, () => {
+    const { getByText, container} = render(<GdprAgreement {...props} />);
+    const agreementText = getByText('Some agreement text and');
+    const linkNode = container.querySelector("a[href='https://someagreementlink.com']")
+    expect(agreementText).toBeInTheDocument();
+    expect(linkNode).toBeInTheDocument();
   });
 
   it('renders checkbox event tracking', () => {

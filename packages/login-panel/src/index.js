@@ -187,7 +187,8 @@ class LoginForm extends React.Component {
           onSuccess={this.handleSuccess}
           renderFooter={({ formError }) => (
             <React.Fragment>
-              <ButtonWrapper pb={3}>
+              <GdprAgreement {...gdprProps} />
+              <ButtonWrapper py={3}>
                 <Button type="submit" track="signin">
                   {buttonText}
                   {buttonIcon && (
@@ -210,7 +211,6 @@ class LoginForm extends React.Component {
                   </Box>
                 )}
               </ButtonWrapper>
-              <GdprAgreement {...gdprProps} />
             </React.Fragment>
           )}
         />

@@ -12,8 +12,18 @@ import loginPanelProps from './src/__fixtures__/loginPanel';
 
 ## Basic usage
 
+With checkbox agreement
+
 <Playground>
   <LoginPanel {...loginPanelProps} />
+</Playground>
+
+Without checkbox agreement
+<Playground>
+  <LoginPanel
+    {...loginPanelProps}
+    gdprProps={{...loginPanelProps.gdprProps, enableCheckBox: false}}
+  />
 </Playground>
 
 ## PropsTable

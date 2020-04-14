@@ -14,18 +14,10 @@ const loginPanel = {
     enableCheckBox: true,
     isRequire: 'required',
     isChecked: false,
-    confirmationOfConsent: {
-      url: '/confirmation-of-consent',
-      text: 'Confirmation of Consent',
-    },
-    termsAndConditions: {
-      url: '/terms-and-conditions',
-      text: 'Terms and Conditions',
-    },
-    privacyPolicy: {
-      url: '/privacy-policy',
-      text: 'Privacy Policy',
-    },
+    getCheckBoxValue: function(e){ console.log('checkbox: ',e); },
+    content: "By ticking this box, you agree to our [Confirmation of Consent](https://staging.onebigswitch.com.au/confirmation-of-consent),\
+      [Terms and Conditions](https://staging.onebigswitch.com.au/terms-and-conditions) and \
+      [Privacy Policy](https://staging.onebigswitch.com.au/privacy-policy)"
   },
   buttonIcon: 'view-forward',
   stateField: {
