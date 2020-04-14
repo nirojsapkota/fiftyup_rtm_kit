@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@4.0.92...@rtm-ui/login-panel@5.0.0) (2020-04-14)
+
+
+### Features
+
+* **LoginPanel:** Use markdown for the agreement/disclaimer text ([#275](https://github.com/OBSAU/rtm-kit/issues/275)) ([3e10233](https://github.com/OBSAU/rtm-kit/commit/3e102331eb254aca76241709ebad3f439125e7e0))
+
+
+### BREAKING CHANGES
+
+* **LoginPanel:** Removed the confirmation, policy, and terms links props and replaced it with the
+content props that uses a markdown
+
+* improvement(LoginPanel): Add a margin to the checkbox
+
+* improvement(LoginPanel): Remove unused codes and avoid errors when content is and empty value
+
+
+
+
+
 ## [4.0.92](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@4.0.91...@rtm-ui/login-panel@4.0.92) (2020-04-06)
 
 **Note:** Version bump only for package @rtm-ui/login-panel
