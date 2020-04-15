@@ -18,16 +18,18 @@ const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
 `;
 
-const ContentWrapper = styled(Box)`
+const ContainerWrapper = styled(Box)`
   background: none;
   padding-top: 1rem;
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
   background: linear-gradient(to bottom, rgba(240,240,240,1) 0%, rgba(250,250,250,1) 10%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%);
   border-top: 1px solid #e0e0e0;
   padding-bottom: 4px;
 `;
+
+const ContentWrapper = styled(Box)`
+  max-width: 1080px;
+  margin: auto;
+`
 
 const Column = styled(Box)`
   background: inherit;
@@ -38,14 +40,34 @@ const Column = styled(Box)`
   }
 `;
 
+const ContentSection = styled(Box)`
+  position: relative;
+`
+
+const ContentBox = styled(Box)`
+  margin: 0 auto;
+  text-align: center;
+  max-width: 1080px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+
 const LoginPanelWrapper = styled(Box)`
-  align-self: flex-end;
+  height: 100%;
+  overflow: unset;
   @media (min-width: ${props => props.theme.grid.md}em) {
-    right: 0;
-    position: fixed;
-    top: 20%;
+    left: 58%;
+    top: -125px;
+    position: absolute;
   }
 `;
+
+const LoginPanelContentBox = styled(ContentBox)`
+  position: sticky;
+  padding-top: 100px;
+  top: 0%
+  align-self: flex-start;
+`
 
 const ImageWrapper = styled(Box)`
   max-width: 1080px;
@@ -55,25 +77,22 @@ const VideoWrapper = styled(ImageWrapper)`
   min-height: 200px;
 `;
 
-const LeftContainerWrapper = styled(Box)`
-`;
-
 const defaultProps = {
-  width: [1, 1, 3 / 5, 3 / 5],
-  px: [1, 1, 5, 6],
+  width: [1, 1, 3 / 5],
+  px: [10, 10],
+  maxWidth: ["100%", "100%", "648px"]
+}
+
+const expandedProps = {
+  ...defaultProps,
+  maxWidth: "100%"
 }
 
 const LoginDefaultProps = {
   width: [1, 1, 2 / 5, 2 / 5],
-  px: [10, 10, 15, 20]
+  px: [10, 10, 15, 10],
+  maxWidth: ["100%", "100%", "388px"]
 }
-
-const ContentBox = styled(Box)`
-  margin: 0 auto;
-  max-width: 1080px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-`;
 
 const TitleMarkdown = styled(Markdown)`
   margin-top: 0.7rem;
@@ -98,7 +117,7 @@ const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
 
 const StyledButton = styled(Button)`
   box-shadow: 0px 4px ${props => getColor('darker', props.theme)};
-`
+`;
 
 const FloatingCta = () => {
   return (
@@ -112,52 +131,72 @@ const FloatingCta = () => {
 
 
 const FloatingCtaWrapper = styled(Box)`
-    position: fixed;
-    text-align: center;
-    left: 0;
-    bottom: 5%;
-    width: 100%;
-  `
+  position: fixed;
+  text-align: center;
+  left: 0;
+  bottom: 5%;
+  width: 100%;
+`;
 
-const MainContent = ({ mainHeading, asSeenOnImage, heroImageUrl, videoSrc, mainContent, refs, ...props }) => {
+const MainContent = ({ mainHeading, asSeenOnImage, videoSrc, mainContent }) => {
   return (
     <>
       <div scroll-target="mainHeading">
-        {(mainHeading || asSeenOnImage) && <ContentWrapper className="content-wrapper main-section">
-          <LeftContainerWrapper className="as-seen-on" {...defaultProps} width={1}>
-            {mainHeading && <Header py={2} align="center" tag="h1">{mainHeading}</Header>}
-            {asSeenOnImage && <ImageWrapper m="auto">
-              <Img src={asSeenOnImage} alt="As Seen On" />
-            </ImageWrapper>}
-          </LeftContainerWrapper>
-        </ContentWrapper>}
+        {(mainHeading || asSeenOnImage) &&
+           <ContainerWrapper className="content-wrapper">
+            <ContentWrapper>
+              <Box className="hero" {...defaultProps}>
+                {
+                  videoSrc &&
+                  <VideoWrapper m="auto" py={10}>
+                    <VideoDialog
+                      containerStyle={{ position: 'relative', paddingTop: '50%' }}
+                      iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
+                      videoSrc={videoSrc}
+                      description={mainHeading || ''}
+                    />
+                  </VideoWrapper>
+                }
+                {mainContent &&
+                  <ContentBox>
+                    <Markdown raw={mainContent} />
+                  </ContentBox>}
+              </Box>
+            </ContentWrapper>
+          </ContainerWrapper>}
       </div>
+    </>
+  )
+}
 
-      <div scroll-target="mainContent">
-        {(heroImageUrl || videoSrc || mainContent) &&
-          <ContentWrapper className="content-wrapper">
-            <LeftContainerWrapper className="hero" {...defaultProps}>
+const HeadingSection = ({mainHeading, asSeenOnImage}) => {
+  return(
+    <div scroll-target="mainHeading">
+      {(mainHeading || asSeenOnImage) && <ContainerWrapper className="content-wrapper main-section">
+        <Box className="as-seen-on" {...expandedProps} width={1}>
+          {mainHeading && <Header py={2} align="center" tag="h1">{mainHeading}</Header>}
+          {asSeenOnImage && <ImageWrapper m="auto">
+            <Img src={asSeenOnImage} alt="As Seen On" />
+          </ImageWrapper>}
+        </Box>
+      </ContainerWrapper>}
+    </div>
+  )
+}
+
+const MainGraphic = ({heroImageUrl}) => {
+  return(
+    <>
+      {heroImageUrl &&
+        <div scroll-target="mainContent">
+          <ContainerWrapper className="content-wrapper" style={{paddingTop: "4px"}}>
+            <Box className="hero" {...expandedProps} width={1}>
               <ImageWrapper m="auto">
                 <Img src={heroImageUrl} alt="Hero image" />
               </ImageWrapper>
-              {
-                videoSrc &&
-                <VideoWrapper m="auto" py={10}>
-                  <VideoDialog
-                    containerStyle={{ position: 'relative', paddingTop: '50%' }}
-                    iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
-                    videoSrc={videoSrc}
-                    description={mainHeading || ''}
-                  />
-                </VideoWrapper>
-              }
-              {mainContent &&
-                <ContentBox>
-                  <Markdown raw={mainContent} />
-                </ContentBox>}
-            </LeftContainerWrapper>
-          </ContentWrapper>}
-      </div>
+            </Box>
+          </ContainerWrapper>
+      </div>}
     </>
   )
 }
@@ -168,77 +207,86 @@ const HybridLoginView = ({
   workflow,
   ...props
 }) => {
-
   const defaultButtonVisible = useElementVisible('.signup-button');
+
   return (
     <React.Fragment>
       <BodyWrapper className="body-wrapper" pt={[50, 50, 50, 72]}>
-        <MainContent {...props} />
+        <HeadingSection {...props} />
+        <MainGraphic {...props} />
 
-        <LoginPanelWrapper {...LoginDefaultProps}>
-          <div scroll-target="login-panel" >
-            <ContentBox>
-              <LoginPanel
-                {...props}
-              />
-            </ContentBox>
+        <ContentSection>
+          <MainContent {...props} />
+
+          <LoginPanelWrapper {...LoginDefaultProps}>
+            <LoginPanelContentBox>
+              <div scroll-target="login-panel" >
+                <LoginPanel
+                  {...props}
+                />
+              </div>
+            </LoginPanelContentBox>
+          </LoginPanelWrapper>
+
+          <div scroll-target="offerContent">
+            {(rightSideMarkDownContent.header || rightSideMarkDownContent.body || accordion.length > 0) &&
+              <ContainerWrapper className="content-wrapper">
+                <ContentWrapper>
+                  <Box className="as-seen-on" {...defaultProps}>
+                    <ContentBox>
+                      <TitleMarkdown raw={rightSideMarkDownContent.header} />
+                      <ContentMarkdown raw={rightSideMarkDownContent.body} />
+                    </ContentBox>
+
+                    <Column variant="b" pb="20px">
+                      <Accordion
+                        items={accordion}
+                        renderItem={item => (
+                          <Variant variant="a">
+                            <Box p={[2, 2, 3]}>
+                              <MarkdownWrapper content={item.content} />
+                            </Box>
+                          </Variant>
+                        )}
+                        renderHeader={item => <Header tag="h5">{item.name}</Header>}
+                      />
+                    </Column>
+                  </Box>
+                </ContentWrapper>
+              </ContainerWrapper>}
           </div>
-        </LoginPanelWrapper>
 
-        <div scroll-target="offerContent">
-          {(rightSideMarkDownContent.header || rightSideMarkDownContent.body || accordion.length > 0) &&
-            <ContentWrapper className="content-wrapper">
-              <LeftContainerWrapper className="as-seen-on" {...defaultProps}>
-                <ContentBox>
-                  <TitleMarkdown raw={rightSideMarkDownContent.header} />
-                  <ContentMarkdown raw={rightSideMarkDownContent.body} />
-                </ContentBox>
+          {(workflow.header || workflow.items.length > 0) &&
+            <ContainerWrapper className="content-wrapper">
+              <ContentWrapper>
+                <Box {...defaultProps}>
+                  <Variant variant="a">
+                    <WorkFlowContainer >
+                      <div scroll-target="mediaContent">
+                        <WorkFlow
+                          multiContent
+                          header={workflow.header}
+                          items={workflow.items} />
+                      </div>
+                    </WorkFlowContainer>
+                  </Variant>
+                </Box>
+              </ContentWrapper>
+            </ContainerWrapper>}
 
-                <Column variant="b" pb="20px">
-                  <Accordion
-                    items={accordion}
-                    renderItem={item => (
-                      <Variant variant="a">
-                        <Box p={[2, 2, 3]}>
-                          <MarkdownWrapper content={item.content} />
-                        </Box>
-                      </Variant>
-                    )}
-                    renderHeader={item => <Header tag="h5">{item.name}</Header>}
-                  />
-                </Column>
-              </LeftContainerWrapper>
-            </ContentWrapper>}
-        </div>
-
-        {(workflow.header || workflow.items.length > 0) &&
-          <ContentWrapper className="content-wrapper">
-            <LeftContainerWrapper {...defaultProps}>
+          {!defaultButtonVisible &&
+            <Block hideAt="md">
               <Variant variant="a">
-                <WorkFlowContainer >
-                  <div scroll-target="mediaContent">
-                    <WorkFlow
-                      multiContent
-                      header={workflow.header}
-                      items={workflow.items} />
-                  </div>
-                </WorkFlowContainer>
+                <FloatingCtaWrapper px={4} className="floating-cta" >
+                  <FloatingCta />
+                </FloatingCtaWrapper>
               </Variant>
-            </LeftContainerWrapper>
-          </ContentWrapper>}
-
-        {!defaultButtonVisible &&
-          <Block hideAt="md">
-            <Variant variant="a">
-              <FloatingCtaWrapper px={4} className="floating-cta" >
-                <FloatingCta />
-              </FloatingCtaWrapper>
-            </Variant>
-          </Block>
-        }
+            </Block>
+          }
+        </ContentSection>
 
       </BodyWrapper>
-    </React.Fragment >
+    </React.Fragment>
   );
 };
 

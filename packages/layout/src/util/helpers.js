@@ -29,7 +29,8 @@ export function useWindowSize() {
 export function scrollToElement(e, ref) {
   e.preventDefault();
   const anchor = document.querySelector(`[scroll-target='${ref}']`)
-  window.scrollTo({ top: anchor.offsetTop - 100, behavior: 'smooth' })
+  const offset = window.scrollY + anchor.getBoundingClientRect().top // Y
+  window.scrollTo({left: 0, top: offset - 100, behavior: 'smooth'});
 }
 
 export function useElementVisible(elem) {
@@ -63,6 +64,7 @@ export function useElementVisible(elem) {
  * element passed is a dom element and not an object
  */
 function elementIsVisible(element) {
+  console.log('i am here!!')
   const elem = document.querySelector(element);
   if (!elem) {
     return 'invalid element';

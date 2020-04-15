@@ -95,12 +95,16 @@ const FixedPosition = styled.div`
   width: 100%;
   z-index: 9999;
   background: white;
-`
+`;
+
+const StyledNavbar = styled(Flex)`
+  box-shadow: ${props => props.sticky ? 'none' : 'inherit'};
+`;
 
 const Navbar = ({ variant, ...props }) => {
   const { logoGlyph } = React.useContext(ThemeContext);
   return (
-    <Flex variant={variant} px={[10, 20]} elevation={1}>
+    <StyledNavbar variant={variant} px={[10, 20]} elevation={1}>
       {props.isDesktop && <div style={{ wdith: '32px' }} />}
       <NavGroupWrapper px={[0, 0, 32]}>
         {props.isDesktop && props.tagline && (
@@ -147,7 +151,7 @@ const Navbar = ({ variant, ...props }) => {
           </StyledParagraph>
         </A>
       </ToggleList>
-    </Flex>
+    </StyledNavbar>
   );
 };
 
