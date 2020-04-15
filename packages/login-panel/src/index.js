@@ -189,7 +189,7 @@ class LoginForm extends React.Component {
             <React.Fragment>
               <GdprAgreement {...gdprProps} />
               <ButtonWrapper py={3}>
-                <Button type="submit" track="signin">
+                <Button type="submit" className="signup-button" track="signin">
                   {buttonText}
                   {buttonIcon && (
                     <ButtonIConWrapper>

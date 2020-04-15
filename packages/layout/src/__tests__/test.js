@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import { Block, Card, Pane, Flex, useWindowSize, TopBorderCard, scrollToElement } from '../index';
+import { Block, Card, Pane, Flex, useWindowSize, TopBorderCard, scrollToElement, useElementVisible } from '../index';
 
 const text = 'Hello, World';
 
@@ -101,7 +101,7 @@ describe('useWindowSize', () => {
     expect(getByTestId('width')).toHaveTextContent('100');
     expect(getByTestId('height')).toHaveTextContent('200');
 
-    const resizeWindow = (x,y) => {
+    const resizeWindow = (x, y) => {
       window.innerWidth = x;
       window.innerHeight = y;
       window.dispatchEvent(new Event('resize'));
@@ -116,7 +116,7 @@ describe('useWindowSize', () => {
   describe('<TopBorderCard />', () => {
     it('renders the border color of the variant provided', () => {
       const { getByText } = render(
-      <TopBorderCard variant="c" bordercolor="primary">{text}</TopBorderCard>, {
+        <TopBorderCard variant="c" bordercolor="primary">{text}</TopBorderCard>, {
         themeOverrides: { 'colors.variants.c.primary': '#1566ad' },
       });
 
@@ -151,4 +151,44 @@ describe('scrollToElement', () => {
       expect(spy).toHaveBeenCalled();
     })
   })
+})
+
+describe('useElementVisible', () => {
+  beforeEach(() => {
+    global.innerWidth = 1024;
+    global.dispatchEvent(new Event('resize'));
+  });
+
+  const TestFn = ({ element, ...props }) => {
+    const elemIsVisible = useElementVisible(element);
+    return (
+      <div style={{ "minHeight": "1000px" }}>
+        <span data-testid="elem-visible">{elemIsVisible ? "Yes" : "No"}</span>
+        <div style={{ "marginTop": "20px", "width": "100%" }}></div>
+        <div className="target-element">
+          I am target element
+          </div>
+        <div data-testid="response">
+          <p>I am {elemIsVisible}</p>
+        </div>
+      </div>
+    );
+  };
+
+  it('checks if the given element is visible in the window viewport', async () => {
+    const { getByTestId, rerender } = await render(<TestFn element='.target-element' />);
+    window.dispatchEvent(new Event('scroll'));
+    expect(getByTestId('elem-visible')).toHaveTextContent('Yes');
+    window.scrollTo(0, 10000);
+    window.dispatchEvent(new Event('scroll'));
+    rerender(<TestFn element='.target-element' />);
+    expect(getByTestId('elem-visible')).toHaveTextContent('No');
+  });
+
+  it('raises error while passing invalid element', async () => {
+    const { getByTestId, rerender } = render(<TestFn element='.not-existing' />);
+    window.dispatchEvent(new Event('scroll'));
+    expect(getByTestId('response')).toHaveTextContent('I am invalid element');
+  })
+
 })

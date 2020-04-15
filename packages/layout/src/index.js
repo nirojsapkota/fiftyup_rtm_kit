@@ -3,7 +3,7 @@ import Block from './block';
 import Box from './box';
 import Card from './card';
 import Flex from './flex';
-import { useWindowSize, scrollToElement } from './util/helpers';
+import { useWindowSize, scrollToElement, useElementVisible } from './util/helpers';
 import TopBorderCard from './topbordercard';
 
-export { Pane, Box, Card, Flex, Block, useWindowSize, TopBorderCard, scrollToElement };
+export { Pane, Box, Card, Flex, Block, useWindowSize, TopBorderCard, scrollToElement, useElementVisible };

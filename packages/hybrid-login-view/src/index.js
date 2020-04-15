@@ -1,12 +1,13 @@
 import { Accordion } from '@rtm-ui/accordion';
 import { Img } from '@rtm-ui/img';
-import { Box } from '@rtm-ui/layout';
+import { Box, Block, scrollToElement, useWindowSize, useElementVisible } from '@rtm-ui/layout';
 import { LoginPanel } from '@rtm-ui/login-panel';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
 import { track } from '@rtm-ui/tracker';
 import { Header, Markdown } from '@rtm-ui/typography';
 import { VideoDialog } from '@rtm-ui/video-dialog';
 import { WorkFlow } from '@rtm-ui/how-it-works';
+import { Button } from '@rtm-ui/button';
 import t from 'prop-types';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
@@ -95,11 +96,34 @@ const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
   );
 };
 
+const StyledButton = styled(Button)`
+  box-shadow: 0px 4px ${props => getColor('darker', props.theme)};
+`
+
+const FloatingCta = () => {
+  return (
+    <StyledButton secondary onClick={(e) => {
+      scrollToElement(e, 'login-panel');
+    }}
+    >
+      See The Offers</StyledButton >
+  )
+}
+
+
+const FloatingCtaWrapper = styled(Box)`
+    position: fixed;
+    text-align: center;
+    left: 0;
+    bottom: 5%;
+    width: 100%;
+  `
+
 const MainContent = ({ mainHeading, asSeenOnImage, heroImageUrl, videoSrc, mainContent, refs, ...props }) => {
   return (
     <>
       <div scroll-target="mainHeading">
-        {( mainHeading || asSeenOnImage) && <ContentWrapper className="content-wrapper main-section">
+        {(mainHeading || asSeenOnImage) && <ContentWrapper className="content-wrapper main-section">
           <LeftContainerWrapper className="as-seen-on" {...defaultProps} width={1}>
             {mainHeading && <Header py={2} align="center" tag="h1">{mainHeading}</Header>}
             {asSeenOnImage && <ImageWrapper m="auto">
@@ -112,7 +136,7 @@ const MainContent = ({ mainHeading, asSeenOnImage, heroImageUrl, videoSrc, mainC
       <div scroll-target="mainContent">
         {(heroImageUrl || videoSrc || mainContent) &&
           <ContentWrapper className="content-wrapper">
-            <LeftContainerWrapper className="hero-" {...defaultProps}>
+            <LeftContainerWrapper className="hero" {...defaultProps}>
               <ImageWrapper m="auto">
                 <Img src={heroImageUrl} alt="Hero image" />
               </ImageWrapper>
@@ -120,8 +144,8 @@ const MainContent = ({ mainHeading, asSeenOnImage, heroImageUrl, videoSrc, mainC
                 videoSrc &&
                 <VideoWrapper m="auto" py={10}>
                   <VideoDialog
-                    containerStyle={{position: 'relative', paddingTop: '50%'}}
-                    iframeStyle={{position: 'absolute', top: 0, left: 0}}
+                    containerStyle={{ position: 'relative', paddingTop: '50%' }}
+                    iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
                     videoSrc={videoSrc}
                     description={mainHeading || ''}
                   />
@@ -144,23 +168,26 @@ const HybridLoginView = ({
   workflow,
   ...props
 }) => {
-  console.log(props);
+
+  const defaultButtonVisible = useElementVisible('.signup-button');
   return (
     <React.Fragment>
-      <BodyWrapper className="body-wrapper" pt={[50,50,50,72]}>
+      <BodyWrapper className="body-wrapper" pt={[50, 50, 50, 72]}>
         <MainContent {...props} />
 
         <LoginPanelWrapper {...LoginDefaultProps}>
-          <ContentBox>
-            <LoginPanel
-              {...props}
-            />
-          </ContentBox>
+          <div scroll-target="login-panel" >
+            <ContentBox>
+              <LoginPanel
+                {...props}
+              />
+            </ContentBox>
+          </div>
         </LoginPanelWrapper>
 
         <div scroll-target="offerContent">
-          {(rightSideMarkDownContent.header || rightSideMarkDownContent.body || accordion.length >0) &&
-            <ContentWrapper  className="content-wrapper">
+          {(rightSideMarkDownContent.header || rightSideMarkDownContent.body || accordion.length > 0) &&
+            <ContentWrapper className="content-wrapper">
               <LeftContainerWrapper className="as-seen-on" {...defaultProps}>
                 <ContentBox>
                   <TitleMarkdown raw={rightSideMarkDownContent.header} />
@@ -198,7 +225,18 @@ const HybridLoginView = ({
                 </WorkFlowContainer>
               </Variant>
             </LeftContainerWrapper>
-        </ContentWrapper>}
+          </ContentWrapper>}
+
+        {!defaultButtonVisible &&
+          <Block hideAt="md">
+            <Variant variant="a">
+              <FloatingCtaWrapper px={4} className="floating-cta" >
+                <FloatingCta />
+              </FloatingCtaWrapper>
+            </Variant>
+          </Block>
+        }
+
       </BodyWrapper>
     </React.Fragment >
   );
@@ -216,7 +254,7 @@ HybridLoginView.propTypes = {
 HybridLoginView.defaultProps = {
   accordion: [],
   mainContent: '',
-  workflow: {header: '', items: []},
+  workflow: { header: '', items: [] },
 };
 
 const WrappedHybridLoginView = (props) => {
@@ -236,7 +274,7 @@ const WrappedHybridLoginView = (props) => {
         signInPath=''
         signOutPath=''
         subHeader='' />
-      <HybridLoginView {...rest}/>
+      <HybridLoginView {...rest} />
     </React.Fragment>
   );
 }

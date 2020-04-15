@@ -11,7 +11,7 @@ const hybridLoginView = {
   heroImageUrl: 'https://placehold.it/1080x454',
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
-  asSeenOnImage: 'https://placehold.it/1080x150',
+  asSeenOnImage: 'https://placehold.it/1080x250',
   mainContent: "I am main content",
   entity: {
     brand: 'obs',
