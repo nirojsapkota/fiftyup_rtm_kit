@@ -1,6 +1,6 @@
 import { Accordion } from '@rtm-ui/accordion';
 import { Img } from '@rtm-ui/img';
-import { Box, Block, scrollToElement, useWindowSize, useElementVisible } from '@rtm-ui/layout';
+import { Box, Block, scrollToElement } from '@rtm-ui/layout';
 import { LoginPanel } from '@rtm-ui/login-panel';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
 import { track } from '@rtm-ui/tracker';
@@ -116,12 +116,12 @@ const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
 };
 
 const StyledButton = styled(Button)`
-  box-shadow: 0px 4px ${props => getColor('darker', props.theme)};
+  box-shadow: ${({ theme }) => theme.boxShadow};
 `;
 
 const FloatingCta = () => {
   return (
-    <StyledButton secondary onClick={(e) => {
+    <StyledButton data-testid="floating-signup-btn" primary onClick={(e) => {
       scrollToElement(e, 'login-panel');
     }}
     >
@@ -131,11 +131,12 @@ const FloatingCta = () => {
 
 
 const FloatingCtaWrapper = styled(Box)`
-  position: fixed;
-  text-align: center;
-  left: 0;
-  bottom: 5%;
-  width: 100%;
+position: fixed;
+text-align: center;
+left: 0;
+bottom: 0;
+width: 100 %;
+background: ${ props => getColor('white', props.theme)};
 `;
 
 const MainContent = ({ mainHeading, asSeenOnImage, videoSrc, mainContent }) => {
@@ -143,7 +144,7 @@ const MainContent = ({ mainHeading, asSeenOnImage, videoSrc, mainContent }) => {
     <>
       <div scroll-target="mainHeading">
         {(mainHeading || asSeenOnImage) &&
-           <ContainerWrapper className="content-wrapper">
+          <ContainerWrapper className="content-wrapper">
             <ContentWrapper>
               <Box className="hero" {...defaultProps}>
                 {
@@ -169,8 +170,8 @@ const MainContent = ({ mainHeading, asSeenOnImage, videoSrc, mainContent }) => {
   )
 }
 
-const HeadingSection = ({mainHeading, asSeenOnImage}) => {
-  return(
+const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
+  return (
     <div scroll-target="mainHeading">
       {(mainHeading || asSeenOnImage) && <ContainerWrapper className="content-wrapper main-section">
         <Box className="as-seen-on" {...expandedProps} width={1}>
@@ -184,19 +185,19 @@ const HeadingSection = ({mainHeading, asSeenOnImage}) => {
   )
 }
 
-const MainGraphic = ({heroImageUrl}) => {
-  return(
+const MainGraphic = ({ heroImageUrl }) => {
+  return (
     <>
       {heroImageUrl &&
         <div scroll-target="mainContent">
-          <ContainerWrapper className="content-wrapper" style={{paddingTop: "4px"}}>
+          <ContainerWrapper className="content-wrapper" style={{ paddingTop: "4px" }}>
             <Box className="hero" {...expandedProps} width={1}>
               <ImageWrapper m="auto">
                 <Img src={heroImageUrl} alt="Hero image" />
               </ImageWrapper>
             </Box>
           </ContainerWrapper>
-      </div>}
+        </div>}
     </>
   )
 }
@@ -207,8 +208,6 @@ const HybridLoginView = ({
   workflow,
   ...props
 }) => {
-  const defaultButtonVisible = useElementVisible('.signup-button');
-
   return (
     <React.Fragment>
       <BodyWrapper className="body-wrapper" pt={[50, 50, 50, 72]}>
@@ -257,7 +256,7 @@ const HybridLoginView = ({
           </div>
 
           {(workflow.header || workflow.items.length > 0) &&
-            <ContainerWrapper className="content-wrapper">
+            <ContainerWrapper data-testid="mediaContent" className="content-wrapper">
               <ContentWrapper>
                 <Box {...defaultProps}>
                   <Variant variant="a">
@@ -274,15 +273,13 @@ const HybridLoginView = ({
               </ContentWrapper>
             </ContainerWrapper>}
 
-          {!defaultButtonVisible &&
-            <Block hideAt="md">
-              <Variant variant="a">
-                <FloatingCtaWrapper px={4} className="floating-cta" >
-                  <FloatingCta />
-                </FloatingCtaWrapper>
-              </Variant>
-            </Block>
-          }
+          <Block hideAt="md">
+            <Variant variant="a">
+              <FloatingCtaWrapper {...defaultProps} py={4} px={4} className="floating-cta" >
+                <FloatingCta />
+              </FloatingCtaWrapper>
+            </Variant>
+          </Block>
         </ContentSection>
 
       </BodyWrapper>
@@ -312,7 +309,6 @@ const WrappedHybridLoginView = (props) => {
     track('presignup', trackingData);
   });
 
-  console.log("entity: ", entity);
   return (
     <React.Fragment>
       <BasicHeader

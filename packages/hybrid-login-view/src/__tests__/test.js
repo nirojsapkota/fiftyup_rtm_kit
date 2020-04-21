@@ -33,23 +33,42 @@ describe('<HybridLoginView />', () => {
 
   it('does not render as seen on image if not given', () => {
     const { container, queryByText } = render(
-      <HybridLoginView {...props} asSeenOnImage="" mainHeading=""/>
+      <HybridLoginView {...props} asSeenOnImage="" mainHeading="" />
     );
     const imageTag = container.querySelector(`[alt="As Seen On"]`);
     expect(imageTag).not.toBeInTheDocument();
     expect(queryByText("I am a main heading")).not.toBeInTheDocument();
   })
 
+  it('renders workflow if workflow.items length is greater than 1 and header is null', async () => {
+    const testworkflow = {
+      workflow: {
+        header: '', items: [
+          {
+            type: 'image',
+            src: 'https://placehold.it/1080x250',
+            content: 'https://placehold.it/1080x250',
+          }
+        ]
+      }
+    };
+    const newprops = { ...props, ...testworkflow }
+    const { getByTestId } = render(
+      <HybridLoginView {...newprops} />
+    );
+    expect(getByTestId('mediaContent')).toBeInTheDocument();
+  })
+
   it("does not render main content if not given", () => {
     const { queryByText } = render(
-      <HybridLoginView {...props} mainContent=""/>
+      <HybridLoginView {...props} mainContent="" />
     );
     expect(queryByText("I am main content")).not.toBeInTheDocument();
   })
 
   it("does not render video if not given", () => {
     render(
-      <HybridLoginView {...props} videoSrc=""/>
+      <HybridLoginView {...props} videoSrc="" />
     );
     const iframe = document.querySelector('iframe[src="https://www.youtube.com/embed/_NDxJucqwiQ1"]');
     expect(iframe).not.toBeInTheDocument();
@@ -57,7 +76,7 @@ describe('<HybridLoginView />', () => {
 
   it("does not render video, main Content, and hero image if not given", () => {
     const { container, queryByText } = render(
-      <HybridLoginView {...props} heroImageUrl="" mainContent="" videoSrc=""/>
+      <HybridLoginView {...props} heroImageUrl="" mainContent="" videoSrc="" />
     );
     expect(queryByText("I am main content")).not.toBeInTheDocument();
 
@@ -66,5 +85,17 @@ describe('<HybridLoginView />', () => {
 
     const HeroImageTag = container.querySelector(`[alt="Hero image"]`);
     expect(HeroImageTag).not.toBeInTheDocument();
+  })
+
+
+  it("scrolls the window to login box upon clicking the floating button", async () => {
+    window.scrollTo = jest.fn();
+    const spy = jest.spyOn(window, 'scrollTo');
+    const { getByTestId } = render(
+      <HybridLoginView {...props} heroImageUrl="" mainContent="" videoSrc="" />
+    );
+    const floatingButton = getByTestId('floating-signup-btn');
+    fireEvent.click(floatingButton);
+    expect(spy).toHaveBeenCalled();
   })
 });
