@@ -17,9 +17,12 @@ const Container = styled(Box)`
 `;
 
 const LegalContainer = styled(Container)`
-  padding: 32px 32px 32px 32px;
   max-width: none;
 `;
+
+const DisclaimersBox = styled(Box)`
+  text-align: justify;
+`
 
 const A = styled.a`
   text-decoration: none;
@@ -51,7 +54,6 @@ const HoursInfo = styled(Paragraph)`
 `;
 
 const FlexBox = styled(Box)`
-  padding: 92px 32px 32px 32px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -82,10 +84,10 @@ export const Footer = ({ entity, disclaimers, landing }) => {
     <React.Fragment>
       <Box variant="b">
         <Container>
-          <FlexBox>
+          <FlexBox py={landing ? [4, 5, "92px", "92px"] : "92px"} px={[3, 3, 3, 4]}>
             <Box
               mb={[3, 0, 5, 0]}
-              width={landing ? [1, 1, 1 / 3, 1 / 4] : [1, 1 / 2, 1 / 3, 1 / 5]}
+              width={landing ? [1, 1, 1 / 3, 3 / 4] : [1, 1 / 2, 1 / 3, 1 / 5]}
             >
               <A href="/">
                 <Logo width={135} entityBrand={entity.brand} />
@@ -106,38 +108,41 @@ export const Footer = ({ entity, disclaimers, landing }) => {
                 })}
               </SocialWapper>
             )}
-            {main.map((subItems, index) => (
-              // eslint-disable-next-line react/no-array-index-key
+
+            {!landing && main.map((subItems, index) => (
               <Box
                 mt={[3, 3, 0, 0]}
                 width={[1, 1 / 2, 1 / 3, 1 / 5]}
                 key={index}
               >
-                {subItems.map(item => (
-                  <A
-                    style={{ display: 'block', fontWeight: 'bold' }}
-                    key={item.url}
-                    py={5}
-                    href={item.url}
-                    onClick={e => {
-                      if (item.is_js_driven) {
-                        e.preventDefault();
-                        window.zE.activate({ hideOnClose: true });
-                      }
-                    }}
-                  >
-                    {item.name}
-                  </A>
-                ))}
+                {
+                  // eslint-disable-next-line react/no-array-index-key
+                  subItems.map(item => (
+                    <A
+                      style={{ display: 'block', fontWeight: 'bold' }}
+                      key={item.url}
+                      py={5}
+                      href={item.url}
+                      onClick={e => {
+                        if (item.is_js_driven) {
+                          e.preventDefault();
+                          window.zE.activate({ hideOnClose: true });
+                        }
+                      }}
+                    >
+                      {item.name}
+                    </A>
+                  ))
+                }
               </Box>
             ))}
             <InnerFlexBox
-              width={landing ? [1, 1, 2 / 3, 2 / 4] : [1, 1, 2 / 3, 1 / 5]}
+              width={landing ? [1, 1, 2 / 3, 1 / 4] : [1, 1, 2 / 3, 1 / 5]}
               mt={landing ? [3, 3, 0, 0] : [3, 3, 0, 0]}
             >
               <Box
-                mb={landing ? [3, 3, 0, 3] : [0, 0, 0, 3]}
-                width={landing ? [1, 1, 1 / 2, 1 / 2] : [1, 1 / 2, 1 / 2, 1]}
+                mb={[0, 0, 0, 3]}
+                width={[1, 1 / 2, 1 / 2, 1]}
               >
                 {businessHourInfo.telephone && (
                   <Paragraph weight="bold">
@@ -149,10 +154,8 @@ export const Footer = ({ entity, disclaimers, landing }) => {
                 )}
               </Box>
               <Box
-                mt={landing ? [3, 0, 0, 0] : [3, 0, 0, 0]}
-                width={
-                  landing ? [1, 1, 1 / 2, 1 / 2, 1 / 2] : [1, 1 / 2, 1 / 2, 1]
-                }
+                mt={[3, 0, 0, 0]}
+                width={[1, 1 / 2, 1 / 2, 1]}
               >
                 {others.map(item =>
                   item.url ? (
@@ -176,19 +179,19 @@ export const Footer = ({ entity, disclaimers, landing }) => {
         </Container>
       </Box>
       <Box variant="d">
-        <LegalContainer>
-          <Flex p={10} pt="0" style={{ justifyContent: 'flex-end' }}>
+        <LegalContainer px={[3, 3, 3, 4]}>
+          <Flex p={[2, 2, 4]} pt={[4, 4, 4]} style={{ justifyContent: 'flex-end' }}>
             {legals.map((item, index) => (
-              <Box key={item.name} pb={2} mr={index === 0 ? 40 : 0}>
+              <Box key={item.name} pb={[5, 5, 2]} mr={index === 0 ? 40 : 0}>
                 <A href={item.url}>{item.name}</A>
               </Box>
             ))}
           </Flex>
-          <Box p={10}>
+          <DisclaimersBox pb={70}>
             {disclaimers.map((disclaimer, index) => (
               <Small key={index} color="text" dangerousHTML={disclaimer} />
             ))}
-          </Box>
+          </DisclaimersBox>
         </LegalContainer>
       </Box>
     </React.Fragment>
