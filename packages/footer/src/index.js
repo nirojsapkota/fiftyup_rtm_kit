@@ -187,7 +187,7 @@ export const Footer = ({ entity, disclaimers, landing }) => {
               </Box>
             ))}
           </Flex>
-          <DisclaimersBox pb={70}>
+          <DisclaimersBox pb={landing ? [150, 150, 70] : [70]}>
             {disclaimers.map((disclaimer, index) => (
               <Small key={index} color="text" dangerousHTML={disclaimer} />
             ))}
