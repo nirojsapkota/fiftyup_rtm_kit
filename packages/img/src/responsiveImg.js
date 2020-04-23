@@ -10,7 +10,7 @@ import styled, { ThemeContext } from 'styled-components';
 
 const Wrapper = styled(Box)`
   background: inherit;
-  display: inline-flex;
+  display: flex-root;
   @media (max-width: 990px) {
     background-position: center center;
   }

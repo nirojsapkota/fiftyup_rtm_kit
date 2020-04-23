@@ -8,10 +8,11 @@ const hybridLoginView = {
   },
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
-  heroImageUrl: 'https://placehold.it/1080x454',
+  heroImageUrlDesktopUrl: 'https://placehold.it/2080x400',
+  heroImageUrlMobileUrl: 'https://placehold.it/700x400',
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
-  asSeenOnImage: 'https://placehold.it/1080x250',
+  asSeenOnImage: 'https://placehold.it/1080x100',
   mainContent: "I am main content",
   entity: {
     brand: 'obs',

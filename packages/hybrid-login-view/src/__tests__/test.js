@@ -76,7 +76,7 @@ describe('<HybridLoginView />', () => {
 
   it("does not render video, main Content, and hero image if not given", () => {
     const { container, queryByText } = render(
-      <HybridLoginView {...props} heroImageUrl="" mainContent="" videoSrc="" />
+      <HybridLoginView {...props} heroImageUrlMobileUrl="" heroImageUrlDesktopUrl="" mainContent="" videoSrc="" />
     );
     expect(queryByText("I am main content")).not.toBeInTheDocument();
 

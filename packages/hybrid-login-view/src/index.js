@@ -1,5 +1,5 @@
 import { Accordion } from '@rtm-ui/accordion';
-import { Img } from '@rtm-ui/img';
+import { Img, ResponsiveImage } from '@rtm-ui/img';
 import { Box, Block, scrollToElement } from '@rtm-ui/layout';
 import { LoginPanel } from '@rtm-ui/login-panel';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
@@ -132,6 +132,7 @@ const FloatingCta = () => {
 
 const FloatingCtaWrapper = styled(Box)`
 position: fixed;
+z-index: 999;
 text-align: center;
 left: 0;
 bottom: 0;
@@ -185,16 +186,19 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
   )
 }
 
-const MainGraphic = ({ heroImageUrl }) => {
+const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlMobileUrl }) => {
   return (
     <>
-      {heroImageUrl &&
+      {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) &&
         <div scroll-target="mainContent">
           <ContainerWrapper className="content-wrapper" style={{ paddingTop: "4px" }}>
             <Box className="hero" {...expandedProps} width={1}>
-              <ImageWrapper m="auto">
-                <Img src={heroImageUrl} alt="Hero image" />
-              </ImageWrapper>
+              <Box m="auto" width={1}>
+                <ResponsiveImage
+                  desktopImgView={heroImageUrlDesktopUrl}
+                  tabletImgView={heroImageUrlMobileUrl}
+                  alt="Hero image" />
+              </Box>
             </Box>
           </ContainerWrapper>
         </div>}
