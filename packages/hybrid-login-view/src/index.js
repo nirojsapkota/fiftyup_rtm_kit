@@ -210,6 +210,7 @@ const HybridLoginView = ({
   rightSideMarkDownContent,
   accordion,
   workflow,
+  workflowOffer,
   ...props
 }) => {
   return (
@@ -232,14 +233,18 @@ const HybridLoginView = ({
           </LoginPanelWrapper>
 
           <div scroll-target="offerContent">
-            {(rightSideMarkDownContent.header || rightSideMarkDownContent.body || accordion.length > 0) &&
+            {(workflowOffer.header || workflowOffer.items.length > 0 || accordion.length > 0) &&
               <ContainerWrapper className="content-wrapper">
                 <ContentWrapper>
-                  <Box className="as-seen-on" {...defaultProps}>
-                    <ContentBox>
-                      <TitleMarkdown raw={rightSideMarkDownContent.header} />
-                      <ContentMarkdown raw={rightSideMarkDownContent.body} />
-                    </ContentBox>
+                  <Box {...defaultProps}>
+                    <Variant variant="a">
+                      <WorkFlowContainer >
+                        <WorkFlow
+                          multiContent
+                          header={workflowOffer.header}
+                          items={workflowOffer.items} />
+                      </WorkFlowContainer>
+                    </Variant>
 
                     <Column variant="b" pb="20px">
                       <Accordion
@@ -298,12 +303,14 @@ HybridLoginView.propTypes = {
   }),
   accordion: t.arrayOf(t.shape({})),
   workflow: t.shape({}),
+  workflowOffer: t.shape({}),
 };
 
 HybridLoginView.defaultProps = {
   accordion: [],
   mainContent: '',
   workflow: { header: '', items: [] },
+  workflowOffer: { header: '', items: [] }
 };
 
 const WrappedHybridLoginView = (props) => {

@@ -7,15 +7,12 @@ describe('<HybridLoginView />', () => {
 
   const props = hybridLoginViewProps;
 
-  it('Test the Right side Markdown Content to have header and content', () => {
-
+  it('Test the Offer Content section to have header and content', () => {
     const { queryByText, getByText, container } = render(<HybridLoginView {...props} />);
     expect(getByText('Free Text Heading')).toBeInTheDocument();
-    expect(getByText('I am a main heading')).toBeInTheDocument();
     expect(queryByText('Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.')).toBeInTheDocument();
     expect(container.querySelector(`iframe`)).toBeInTheDocument();
     expect(queryByText("I am main content")).toBeInTheDocument();
-
   });
 
   it('renders the accordion if given', () => {

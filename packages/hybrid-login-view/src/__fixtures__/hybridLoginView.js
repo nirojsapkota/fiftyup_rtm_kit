@@ -36,12 +36,24 @@ const hybridLoginView = {
     errorValue: 'postcode',
   },
 
-  rightSideMarkDownContent: {
-    header: '##### Free Text Heading',
-    body: `
-Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.
-
-Ut id efficitur enim. Phasellus vitae risus a urna dignissim pellentesque pulvinar quis arcu. Vivamus ac metus ultrices, consequat magna nec, malesuada lectus. Aenean quis nibh diam. Vivamus et erat mauris. Vivamus eget fermentum justo, in sollicitudin mauris. Proin suscipit lacus id elementum finibus`,
+  workflowOffer: {
+    header: "##### Free Text Heading",
+    items: [
+      {
+        type: 'image',
+        src: 'https://placehold.it/1080x450',
+        content: 'https://placehold.it/1080x450',
+      },
+      {
+        type: 'video',
+        src: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F9SaverNews%2Fvideos%2F843213159512326%2F&show_text=0',
+        content: 'One Big Switch Vid',
+      },
+      {
+        type: 'markdown',
+        content: 'Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.',
+      }
+    ]
   },
 
   accordion: [
