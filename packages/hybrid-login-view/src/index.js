@@ -64,7 +64,9 @@ const LoginPanelWrapper = styled(Box)`
 
 const LoginPanelContentBox = styled(ContentBox)`
   position: sticky;
-  padding-top: 100px;
+  @media (min-width: ${props => props.theme.grid.md}em) {
+    padding-top: 100px;
+  }
   top: 0%
   align-self: flex-start;
 `
