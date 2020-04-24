@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.1.25...@rtm-ui/hybrid-login-view@5.0.0) (2020-04-24)
+
+
+### improvement
+
+* **HybridLoginView:** Add image/video into the offer section ([#282](https://github.com/OBSAU/rtm-kit/issues/282)) ([abfc0fe](https://github.com/OBSAU/rtm-kit/commit/abfc0fe7ced52b60b147329078d4ea31a24fc5ad))
+
+
+### BREAKING CHANGES
+
+* **HybridLoginView:** The rightSideMarkDownContent has been removed in favor of workflowOffer
+
+
+
+
+
 ## [4.1.25](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@4.1.24...@rtm-ui/hybrid-login-view@4.1.25) (2020-04-23)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
