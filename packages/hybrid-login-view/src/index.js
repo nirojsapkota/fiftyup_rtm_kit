@@ -142,17 +142,17 @@ width: 100 %;
 background: ${ props => getColor('white', props.theme)};
 `;
 
-const MainContent = ({ mainHeading, asSeenOnImage, videoSrc, mainContent }) => {
+const MainContent = ({ mainHeading, videoSrc, mainContent }) => {
   return (
     <>
       <div scroll-target="mainHeading">
-        {(mainHeading || asSeenOnImage) &&
+        {mainHeading &&
           <ContainerWrapper className="content-wrapper">
             <ContentWrapper>
               <Box className="hero" {...defaultProps}>
                 {
                   videoSrc &&
-                  <VideoWrapper m="auto" py={10}>
+                  <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
                     <VideoDialog
                       containerStyle={{ position: 'relative', paddingTop: '50%' }}
                       iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
@@ -162,7 +162,7 @@ const MainContent = ({ mainHeading, asSeenOnImage, videoSrc, mainContent }) => {
                   </VideoWrapper>
                 }
                 {mainContent &&
-                  <ContentBox>
+                  <ContentBox px={[3, 3, 4]}>
                     <Markdown raw={mainContent} />
                   </ContentBox>}
               </Box>
@@ -178,7 +178,7 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
     <div scroll-target="mainHeading">
       {(mainHeading || asSeenOnImage) && <ContainerWrapper className="content-wrapper main-section">
         <Box className="as-seen-on" {...expandedProps} width={1}>
-          {mainHeading && <Header py={2} align="center" tag="h1">{mainHeading}</Header>}
+          {mainHeading && <Header py={2} px={[3, 3, 4]} align="center" tag="h1">{mainHeading}</Header>}
           {asSeenOnImage && <ImageWrapper m="auto">
             <Img src={asSeenOnImage} alt="As Seen On" />
           </ImageWrapper>}

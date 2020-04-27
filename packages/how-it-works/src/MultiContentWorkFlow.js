@@ -27,7 +27,7 @@ const ComponentSwitcher = ({item}) => {
     <ComponentSwitchContainer>
       { item.type === 'image' && <Img src={item.src} alt={item.content} /> }
       { item.type === 'video' && (
-        <Box m="auto">
+        <Box m="auto" px={[2, 2, 3]}>
           <VideoDialog
             containerStyle={{position: 'relative', paddingTop: '50%'}}
             iframeStyle={{position: 'absolute', top: 0, left: 0}}
@@ -35,7 +35,7 @@ const ComponentSwitcher = ({item}) => {
             description={item.content} />
         </Box>
       )}
-      { item.type === 'markdown' && <ContentMarkdown raw={item.content} /> }
+      { item.type === 'markdown' && <ContentMarkdown px={[3, 3, 4]} raw={item.content} /> }
     </ComponentSwitchContainer>
   )
 }
@@ -43,7 +43,7 @@ const ComponentSwitcher = ({item}) => {
 export const MultiContentWorkFlow = ({ header, items }) => {
   return (
     <Box>
-      <HeaderMarkdown raw={header} />
+      <HeaderMarkdown px={[3, 3, 4]} raw={header} />
       { items && items.map((s, index) => {
           return(<ComponentSwitcher key={index} item={s}/>)
         }) }
