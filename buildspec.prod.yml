@@ -9,6 +9,7 @@ phases:
     commands:
       - npm install -g npm
       - git remote set-url origin $GITHUB_URL
+      - git fetch
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
       - git checkout master
