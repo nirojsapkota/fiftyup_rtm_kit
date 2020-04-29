@@ -56,9 +56,14 @@ const LoginPanelWrapper = styled(Box)`
   height: 100%;
   overflow: unset;
   @media (min-width: ${props => props.theme.grid.md}em) {
-    left: 58%;
+    left: 58%; /* Fallback if needed */
+    left: calc(50% + 90px);
     top: -125px;
     position: absolute;
+  }
+  @media (min-width: ${props => props.theme.grid.lg}em) {
+    left: 58%; /* Fallback if needed */
+    left: calc(50% + 120px);
   }
 `;
 
@@ -93,7 +98,7 @@ const expandedProps = {
 const LoginDefaultProps = {
   width: [1, 1, 2 / 5, 2 / 5],
   px: [10, 10, 15, 10],
-  maxWidth: ["100%", "100%", "388px"]
+  maxWidth: ["100%", "100%", "388px", "460px"]
 }
 
 const TitleMarkdown = styled(Markdown)`
