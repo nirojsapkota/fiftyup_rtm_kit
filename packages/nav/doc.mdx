@@ -18,6 +18,37 @@ Sticky navbar:
   <SampleStickyNav />
 </DocWrapper>
 
+### Logo at the center
+<DocWrapper>
+  <Nav
+    user={false}
+    header={toggle => 'Hello'}
+    onHomeClick={() => console.log("/")}
+    subHeader="Australia's money-saving destination"
+    tagline="122,111 Members"
+    isClosed={true}
+    logoPosition="center"
+    logo="fiftyup"
+    items={[
+      {
+        id: "news",
+        href: '/',
+        label: "News",
+        navbar: true,
+      },
+      {
+        id: "menu-2",
+        href: '/menu-2',
+        label: "Menu option 2"
+      }
+    ]}
+  >
+    <Button>join for free</Button>
+  </Nav>
+</DocWrapper>
+
+### Logo and tagline on left side by default
+
 When there is no user:
 <DocWrapper>
   <Nav

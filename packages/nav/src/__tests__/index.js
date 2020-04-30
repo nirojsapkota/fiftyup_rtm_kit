@@ -169,6 +169,15 @@ describe(`<Nav />`, () => {
         expect(item).toBeInTheDocument();
       });
     });
+    describe(`given a logoPosition='left' prop`, () => {
+      it(`brand items are left positioned`, async() => {
+        window.innerWidth = 1301;
+        const { getByTestId } = await setup({
+          logoPosition: 'left'
+        });
+        expect(getByTestId("brand-items")).toHaveClass('left');
+      })
+    });
     describe(`for links that scrolls to element`, () => {
       it(`works`, async () => {
         window.scrollTo = jest.fn();
@@ -206,7 +215,7 @@ describe(`<Nav />`, () => {
       });
       expect(getByTestId("nav-fixed")).toBeInTheDocument();
     })
-  })
+  });
   describe(`for the subheader`, () => {
     it(`it's shown`, async () => {
       const { getByText } = await setup({

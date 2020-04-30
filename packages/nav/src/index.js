@@ -101,29 +101,45 @@ const StyledNavbar = styled(Flex)`
   box-shadow: ${props => props.sticky ? 'none' : 'inherit'};
 `;
 
+const BrandItems = styled(Box)`
+  align-items: center;
+  display: contents;
+  &.left {
+    display: flex;
+    flex-flow: row-reverse;
+    > * {
+      padding-right: 20px;
+    }
+  }
+`
+
 const Navbar = ({ variant, ...props }) => {
   const { logoGlyph } = React.useContext(ThemeContext);
   return (
     <StyledNavbar variant={variant} px={[10, 20]} elevation={1}>
       {props.isDesktop && <div style={{ wdith: '32px' }} />}
       <NavGroupWrapper px={[0, 0, 32]}>
-        {props.isDesktop && props.tagline && (
-          <Paragraph pr={10} weight="bold" color="tertiary" tag="h6">
-            {props.tagline}
-          </Paragraph>
-        )}
-        <Box style={{ display: 'flex' }}>
-          <LogoA href="/">
-            {isReact.compatible(props.logo) ? (
-              props.logo
-            ) : (
-              <Logo
-                entityBrand={logoGlyph}
-                width={props.isDesktop ? 200 : 100}
-              />
-            )}
-          </LogoA>
-        </Box>
+        <BrandItems data-testid="brand-items" className={props.logoPosition} >
+          {props.isDesktop && props.tagline && (
+            <Paragraph pr={10} weight="bold" color="tertiary" tag="h6">
+              {props.tagline}
+            </Paragraph>
+          )}
+          <Box style={{ display: 'flex' }}>
+            <LogoA href="/">
+              {isReact.compatible(props.logo) ? (
+                props.logo
+              ) : (
+                <Logo
+                  entityBrand={logoGlyph}
+                  width={props.isDesktop ? 200 : 100}
+                />
+              )}
+            </LogoA>
+          </Box>
+
+        </BrandItems>
+
         <NavList>
           {props.isDesktop ? (
             <NavGroup>
@@ -201,6 +217,7 @@ const Nav = props => {
         sticky={props.sticky}
         variant={props.variant}
         isDesktop={isDesktop}
+        logoPosition={props.logoPosition}
         logo={props.logo}
         onHomeClick={props.onHomeClick}
         tagline={props.tagline}
@@ -243,6 +260,7 @@ Nav.propTypes = {
   logo: PropTypes.string,
   sticky: PropTypes.bool,
   onHomeClick: PropTypes.func,
+  logoPosition: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -254,9 +272,14 @@ Nav.propTypes = {
   children: PropTypes.node,
 };
 
+Nav.defaultProps = {
+  logoPosition: "left",
+};
+
 Navbar.propTypes = {
   logo: PropTypes.string,
   desktop: PropTypes.bool,
+  logoPosition: PropTypes.string,
   onHomeClick: PropTypes.func,
   onNavClick: PropTypes.func,
 };
