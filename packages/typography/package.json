@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/typography",
-  "version": "4.0.59",
+  "version": "4.1.0",
   "description": "Stub description for type",
   "rtmRollup": {
     "namespace": "typography",
@@ -28,8 +28,8 @@
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
     "lodash.get": "^4.4.2",
-    "remark-align": "^1.2.13",
     "rehype-stringify": "^5.0.0",
+    "remark-align": "^1.2.13",
     "remark-parse": "^6.0.3",
     "remark-rehype": "^4.0.0",
     "unified": "^7.1.0"

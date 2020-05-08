@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@4.0.59...@rtm-ui/typography@4.1.0) (2020-05-08)
+
+
+### Features
+
+* **Typography:** Add support for text alignment ([#289](https://github.com/OBSAU/rtm-kit/issues/289)) ([6cb950e](https://github.com/OBSAU/rtm-kit/commit/6cb950e41fddc0559bd615375985e0eff5833114))
+
+
+
+
+
 ## [4.0.59](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@4.0.58...@rtm-ui/typography@4.0.59) (2020-04-15)
 
 **Note:** Version bump only for package @rtm-ui/typography
