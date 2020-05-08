@@ -192,6 +192,18 @@ describe('<Markdown />', () => {
     const { container } = render(<Markdown raw="## Hello" />);
     expect(container).toContainElement(document.querySelector('h2'));
   });
+  it('renders left aligned text properly', async() => {
+    const { getByText } = await render(<Markdown raw="<- Hello <-" />);
+    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute('style','text-align: left;')
+  })
+  it('renders right aligned text properly', async() => {
+    const { getByText } = await render(<Markdown raw="-> Hello ->" />);
+    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute('style','text-align: right;')
+  })
+  it('renders center aligned text properly', async() => {
+    const { getByText } = await render(<Markdown raw="-> Hello <-" />);
+    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute('style','text-align: center;')
+  })
   it('renders blocks properly', () => {
     const { getByText } = render(<Markdown raw={blocks} />);
     expect(getByText(/hello, world/i).closest('p')).toHaveStyleRule(

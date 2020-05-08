@@ -12,6 +12,11 @@ We can write _emphasized_ and **strong** text
 
 <span>Here</span> is some mention text[^myReference]
 
+## Alignment
+<- i am _left_ aligned <-
+-> i am **right** aligned ->
+-> i am centered <-
+
 ## Here is a [link](https://example.com)
 
 Links inside markdown can still provide a tracking action.

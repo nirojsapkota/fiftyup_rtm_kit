@@ -8,6 +8,7 @@ import unified from 'unified';
 import markdown from 'remark-parse';
 import stringify from 'rehype-stringify';
 import remark2rehype from 'remark-rehype';
+import remarkAlign from 'remark-align';
 import interpolator from './interpolator';
 import blocks from './blocks';
 
@@ -123,6 +124,27 @@ const primitiveMap = {
       ...props,
     };
   },
+  centerAligned: ({ children }) => ({
+    ...Paragraph.defaultProps,
+    style: {textAlign: 'center'},
+    as: 'p',
+    tag: 'p',
+    children: renderChildren(children),
+  }),
+  rightAligned: ({ children }) => ({
+    ...Paragraph.defaultProps,
+    style: {textAlign: 'right'},
+    as: 'p',
+    tag: 'p',
+    children: renderChildren(children),
+  }),
+  leftAligned: ({ children }) => ({
+    ...Paragraph.defaultProps,
+    style: {textAlign: 'left'},
+    as: 'p',
+    tag: 'p',
+    children: renderChildren(children),
+  }),
 };
 
 // Add margin-bottom to each child except last
@@ -152,6 +174,7 @@ export const Markdown = ({ raw, referenceObject = {}, ...boxProps }) => {
   const ast = unified()
     .use(markdown, { commonmark: true, footnotes: true })
     .use(interpolator, referenceObject)
+    .use(remarkAlign)
     .use(blocks)
     .use(remark2rehype)
     .use(stringify)
