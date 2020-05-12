@@ -116,7 +116,7 @@ const BrandItems = styled(Box)`
 const Navbar = ({ variant, ...props }) => {
   const { logoGlyph } = React.useContext(ThemeContext);
   return (
-    <StyledNavbar variant={variant} px={[10, 20]} elevation={1}>
+    <StyledNavbar variant={variant} px={[10, 20]} py={[0, 0, 0, 10]} elevation={1}>
       {props.isDesktop && <div style={{ wdith: '32px' }} />}
       <NavGroupWrapper px={[0, 0, 32]}>
         <BrandItems data-testid="brand-items" className={props.logoPosition} >
@@ -132,7 +132,7 @@ const Navbar = ({ variant, ...props }) => {
               ) : (
                 <Logo
                   entityBrand={logoGlyph}
-                  width={props.isDesktop ? 200 : 100}
+                  width={props.isDesktop ? 150 : 100}
                 />
               )}
             </LogoA>
