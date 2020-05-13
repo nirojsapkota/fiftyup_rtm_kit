@@ -76,6 +76,7 @@ describe('<TrackerRegistration />', () => {
     const facebook_pixel_id = '1111111111';
     const fullstory_id = 'NQGXA';
     const zendesk_id = 'a85c71b0-2af3-4bb0-9cd3-3a9eb0ebcb67';
+    const google_optimize_id = 'OPT-123456';
     const sfmc_business_account_id = '123456';
 
     const { getByTestId } = render(
@@ -87,6 +88,7 @@ describe('<TrackerRegistration />', () => {
         fullstory_id={fullstory_id}
         zendesk_id={zendesk_id}
         sfmc_business_account_id={sfmc_business_account_id}
+        google_optimize_id={google_optimize_id}
         user={{ email: 'test@mail.com' }}
       />
     );
@@ -103,6 +105,7 @@ describe('<TrackerRegistration />', () => {
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(fullstory_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(google_optimize_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       sfmc_business_account_id
     );
