@@ -79,6 +79,29 @@ export const TrackingProvider = ({
 
 class TrackerRegistration extends React.Component {
   componentDidMount() {
+
+    // Google Optimize Code starts
+    if (this.props.google_optimize_id) {
+      let g_optimze = document.createElement('script');
+      let c_css = document.createElement('style');
+      c_css.innerHTML = `.async-hide {opacity: 0 !important}`;
+      // Anti - flicker snippet(recommended)
+      const g_optimze_html = `(function(a,s,y,n,c,h,i,d,e){s.className += ' ' + y;h.start=1*new Date;
+      h.end=i=function(){s.className = s.className.replace(RegExp(' ?' + y), '')};
+      (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+      })(window,document.documentElement,'async-hide','dataLayer',4000,
+      {'${this.props.google_optimize_id}':true});`
+      g_optimze.innerHTML = g_optimze_html;
+      this.instance.appendChild(g_optimze);
+      let g_optimize_source = document.createElement('script');
+      g_optimize_source.src = `https://www.googleoptimize.com/optimize.js?id=${this.props.google_optimize_id}`
+      g_optimize_source.setAttribute('onerror', `dataLayer.hide.end && dataLayer.hide.end()`);
+
+      this.instance.appendChild(c_css);
+      this.instance.appendChild(g_optimize_source);
+      // Google Optimize Code ends
+    }
+
     //FOR GOOGLE ANALYTICS
     if (this.props.ga_code) {
       const googleAnalytics = document.createElement('script');
@@ -97,7 +120,6 @@ class TrackerRegistration extends React.Component {
 
     if (this.props.bing_uet_tag_code) {
       //FOR BING
-      //hello world
       const bing = document.createElement('script');
       bing.type = 'text/javascript';
       bing.innerHTML =
@@ -192,6 +214,7 @@ class TrackerRegistration extends React.Component {
       const zd2 = document.createElement('script');
       zd2.id = 'ze-snippet';
       zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${this.props.zendesk_id}`;
+      zd2.defer = true;
       this.instance.appendChild(zd2);
     }
 
@@ -228,6 +251,7 @@ class TrackerRegistration extends React.Component {
       sfmc.innerHTML = sfmc_script_html;
       this.instance.appendChild(sfmc);
     }
+
   }
 
   render() {
