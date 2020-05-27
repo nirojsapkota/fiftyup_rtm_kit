@@ -78,6 +78,7 @@ describe('<TrackerRegistration />', () => {
     const zendesk_id = 'a85c71b0-2af3-4bb0-9cd3-3a9eb0ebcb67';
     const google_optimize_id = 'OPT-123456';
     const sfmc_business_account_id = '123456';
+    const outbrain_tracking_id = '000123456';
 
     const { getByTestId } = render(
       <TrackerRegistration
@@ -89,6 +90,7 @@ describe('<TrackerRegistration />', () => {
         zendesk_id={zendesk_id}
         sfmc_business_account_id={sfmc_business_account_id}
         google_optimize_id={google_optimize_id}
+        outbrain_tracking_id={outbrain_tracking_id}
         user={{ email: 'test@mail.com' }}
       />
     );
@@ -110,5 +112,6 @@ describe('<TrackerRegistration />', () => {
       sfmc_business_account_id
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain('setUserInfo');
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(outbrain_tracking_id);
   });
 });
