@@ -4,6 +4,7 @@ phases:
     commands:
       - npm install
       - npm config list
+      - git status
 
   pre_build:
     commands:
