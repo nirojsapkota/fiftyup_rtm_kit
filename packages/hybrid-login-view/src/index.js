@@ -253,19 +253,20 @@ const HybridLoginView = ({
                       </WorkFlowContainer>
                     </Variant>
 
-                    <Column variant="b" pb="20px">
-                      <Accordion
-                        items={accordion}
-                        renderItem={item => (
-                          <Variant variant="a">
-                            <Box p={[2, 2, 3]}>
-                              <MarkdownWrapper content={item.content} />
-                            </Box>
-                          </Variant>
-                        )}
-                        renderHeader={item => <Header tag="h5">{item.name}</Header>}
-                      />
-                    </Column>
+                    {(accordion.length > 0) &&
+                      <Column variant="b" pb="20px">
+                        <Accordion
+                          items={accordion}
+                          renderItem={item => (
+                            <Variant variant="a">
+                              <Box p={[2, 2, 3]}>
+                                <MarkdownWrapper content={item.content} />
+                              </Box>
+                            </Variant>
+                          )}
+                          renderHeader={item => <Header tag="h5">{item.name}</Header>}
+                        />
+                      </Column>}
                   </Box>
                 </ContentWrapper>
               </ContainerWrapper>}
