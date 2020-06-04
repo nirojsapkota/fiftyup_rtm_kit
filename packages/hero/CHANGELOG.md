@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.43](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@1.0.42...@rtm-ui/hero@1.0.43) (2020-06-04)
+
+**Note:** Version bump only for package @rtm-ui/hero
+
+
+
+
+
 ## [1.0.42](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hero@1.0.41...@rtm-ui/hero@1.0.42) (2020-05-28)
 
 **Note:** Version bump only for package @rtm-ui/hero
