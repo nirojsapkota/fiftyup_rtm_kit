@@ -31,6 +31,7 @@ const VideoDialog = ({
 
 VideoDialog.defaultProps = {
   description: '',
+  videoSrc: '',
 }
 
 VideoDialog.propTypes = {

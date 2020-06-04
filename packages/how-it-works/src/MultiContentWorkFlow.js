@@ -29,8 +29,8 @@ const ComponentSwitcher = ({item}) => {
       { item.type === 'video' && (
         <Box m="auto" px={[2, 2, 3]}>
           <VideoDialog
-            containerStyle={{position: 'relative', paddingTop: '50%'}}
-            iframeStyle={{position: 'absolute', top: 0, left: 0}}
+            containerStyle={{position: 'relative', paddingTop: '56.25%'}}
+            iframeStyle={{position: 'absolute', top: 0, left: 0 }}
             videoSrc={item.src}
             description={item.content} />
         </Box>
