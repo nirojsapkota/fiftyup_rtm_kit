@@ -5,7 +5,7 @@ import { Nav } from '@rtm-ui/nav';
 const BasicHeader = ({entity, ...props}) => {
   return (
     <Nav
-      user={false}
+      user={null}
       sticky={true}
       isClosed={true}
       {...entity.navigation_items}

@@ -227,4 +227,89 @@ describe(`<Nav />`, () => {
       });
     });
   });
+  describe(`no empty hamburger`, () => {
+    it (`doesn't show the hambruger on desktop navbar is true for all item`, async () => {
+      window.innerWidth = 1301;
+      const { queryByTestId } = await setup({
+        user: null,
+        items: [
+          {
+            id: 'how-it-works',
+            label: 'How it works',
+            navbar: true,
+          },
+          {
+            id: 'scroll-me',
+            scrollTo: 'scrollsToElement',
+            label: 'Scroll me',
+            navbar: true,
+          },
+          {
+            id: 'news',
+            href: '/news',
+            label: 'News',
+            navbar: true,
+          },
+        ],
+      });
+      await wait(() => {
+        expect(queryByTestId('toggle-nav')).toBeNull();
+      });
+    });
+    it(`show the hambruger on desktop if navbar is true in all items but user is logged in`, async () => {
+      window.innerWidth = 1301;
+      const { getByTestId } = await setup({
+        user: { email: 'user@example.com' },
+        items: [
+          {
+            id: 'how-it-works',
+            label: 'How it works',
+            navbar: true,
+          },
+          {
+            id: 'scroll-me',
+            scrollTo: 'scrollsToElement',
+            label: 'Scroll me',
+            navbar: true,
+          },
+          {
+            id: 'news',
+            href: '/news',
+            label: 'News',
+            navbar: true,
+          },
+        ],
+      });
+      await wait(() => {
+        expect(getByTestId('toggle-nav')).toBeInTheDocument();
+      });
+    });
+    it(`show the hambruger on desktop if navbar is not true in all items`, async () => {
+      window.innerWidth = 1301;
+      const { getByTestId } = await setup({
+        user: null,
+        items: [
+          {
+            id: 'how-it-works',
+            label: 'How it works',
+            navbar: true,
+          },
+          {
+            id: 'scroll-me',
+            scrollTo: 'scrollsToElement',
+            label: 'Scroll me',
+            navbar: true,
+          },
+          {
+            id: 'news',
+            href: '/news',
+            label: 'News',
+          },
+        ],
+      });
+      await wait(() => {
+        expect(getByTestId('toggle-nav')).toBeInTheDocument();
+      });
+    });
+  });
 });

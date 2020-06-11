@@ -79,6 +79,13 @@ const ToggleList = styled(Box)`
   }
 `;
 
+
+const NoToggleList = styled(Box)`
+  display: flex;
+  align-items: center;
+  padding: 20px;
+`;
+
 const NavGroup = styled(Box)`
   display: flex;
   align-items: center;
@@ -139,7 +146,6 @@ const Navbar = ({ variant, ...props }) => {
           </Box>
 
         </BrandItems>
-
         <NavList>
           {props.isDesktop ? (
             <NavGroup>
@@ -159,6 +165,7 @@ const Navbar = ({ variant, ...props }) => {
           )}
         </NavList>
       </NavGroupWrapper>
+      {((props.isDesktop && props.showSideNav) || !props.isDesktop)? 
       <ToggleList p={10}>
         {props.children}
         <A onClick={() => props.onNavClick()}>
@@ -167,6 +174,8 @@ const Navbar = ({ variant, ...props }) => {
           </StyledParagraph>
         </A>
       </ToggleList>
+      :
+      <NoToggleList/>}
     </StyledNavbar>
   );
 };
@@ -214,6 +223,7 @@ const Nav = props => {
   return (
     <NavbarPositioner sticky={props.sticky}>
       <Navbar
+        showSideNav = {props.user !== null || props.items.some(i => i.navbar !== true) }
         sticky={props.sticky}
         variant={props.variant}
         isDesktop={isDesktop}
@@ -278,6 +288,7 @@ Nav.defaultProps = {
 
 Navbar.propTypes = {
   logo: PropTypes.string,
+  showSideNav: PropTypes.bool,
   desktop: PropTypes.bool,
   logoPosition: PropTypes.string,
   onHomeClick: PropTypes.func,
