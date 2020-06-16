@@ -159,7 +159,7 @@ const MainContent = ({ mainHeading, videoSrc, mainContent }) => {
                   videoSrc &&
                   <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
                     <VideoDialog
-                      containerStyle={{ position: 'relative', paddingTop: '50%' }}
+                      containerStyle={{position: 'relative', paddingTop: '56.25%'}}
                       iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
                       videoSrc={videoSrc}
                       description={mainHeading || ''}
