@@ -42,6 +42,13 @@ export const countyValidator = Yup.string()
 export const monthValidator = Yup.string()
   .required('Required')
   .matches(
+    /^[A-Za-z]{3}/,
+    'Please select month from the dropdown'
+  );
+
+  export const monthYearValidator = Yup.string()
+  .required('Required')
+  .matches(
     /^[A-Za-z]{3},\s([0-9]{4})$/,
     'Please select month and year from the dropdown'
   );

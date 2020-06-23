@@ -11,6 +11,7 @@ import {
   countyValidator,
   dropdownValidator,
   monthValidator,
+  monthYearValidator,
 } from '../fields/util/validators';
 
 const validatorMap = {
@@ -25,6 +26,7 @@ const validatorMap = {
   countyValidator,
   dropdownValidator,
   monthValidator,
+  monthYearValidator,
 };
 
 export const getSchema = fields => {

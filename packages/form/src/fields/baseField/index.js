@@ -130,6 +130,7 @@ const BaseField = props => {
               showErrorColor={!focused && error}
               id={`${props.name}`}
               value={inputProps.value}
+              defaultValue={props.defaultValue}
               onFocus={toggleFocused}
               onBlur={toggleFocused}
               onWaiting={toggleWaiting}
@@ -175,8 +176,10 @@ const inputHtmlProps = {
 BaseField.propTypes = {
   ...inputHtmlProps,
   label: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   config: PropTypes.shape({
     component: PropTypes.string,
     validator: PropTypes.string,
+    showYear: PropTypes.bool,
   }),
 };

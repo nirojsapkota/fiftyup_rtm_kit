@@ -5,6 +5,12 @@ import TextField from '../textField';
 import { useOnClickOutside } from '../autocompleteField/useOnClickOutside';
 import styled from 'styled-components';
 
+const getCurrentMonth = () => {
+   const d = new Date();
+   const monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+   return monthArray[d.getMonth()];
+}
+
 const Wrapper = styled.div`
   position: relative;
 `;
@@ -14,20 +20,22 @@ const MonthField = ({
   onBlur,
   onKeyDown,
   fieldUtils,
+  defaultValue,
   ...inputProps
 }) => {
-  const currentYear = new Date().getFullYear();
+  const config = inputProps.config || {};
   const resultsRef = React.useRef();
   const anchorRef = React.useRef();
-  const [month, setMonth] = React.useState('Sep');
+  const [month, setMonth] = React.useState( getCurrentMonth());
+  const currentYear = new Date().getFullYear();
   const [year, setYear] = React.useState(currentYear);
+
 
   const [monthPickerVisible, setMonthPickerVisible] = React.useState(false);
   const inputRef = React.useRef();
   useOnClickOutside(resultsRef, () => setMonthPickerVisible(false));
   const [hasSelected, setHasSelected] = React.useState(false);
   const [height, setHeight] = React.useState(0);
-
   React.useEffect(() => {
     if (anchorRef.current) {
       const position = anchorRef.current.getBoundingClientRect();
@@ -36,7 +44,17 @@ const MonthField = ({
   }, [anchorRef.current]);
 
   React.useEffect(() => {
-    if (inputProps.value && !hasSelected) {
+    if (defaultValue) {
+      fieldUtils.setFieldValue(inputProps.name, defaultValue);
+      const defaultMonth = defaultValue.split(', ')[0];
+      setMonth(defaultMonth)
+      const defaultYear = defaultValue.split(', ')[1] || currentYear;
+      setYear(parseInt(defaultYear))
+    }
+  }, [defaultValue]);
+
+  React.useEffect(() => {
+    if (inputProps.value && !hasSelected & !defaultValue) {
       setMonthPickerVisible(true);
     } else {
       setMonthPickerVisible(false);
@@ -86,10 +104,16 @@ const MonthField = ({
             selectedYear={year}
             minYear={2000}
             maxYear={2030}
+            showYear={config.showYear}
             onChangeYear={setYear}
             onChangeMonth={setMonth}
             onChange={val => {
-              fieldUtils.setFieldValue(inputProps.name, val);
+              if (config.showYear) {
+                fieldUtils.setFieldValue(inputProps.name, val);
+              } else {
+                const onlyMonth = val.split(', ')[0];
+                fieldUtils.setFieldValue(inputProps.name, onlyMonth);
+              }
             }}
           />
         </div>
@@ -102,6 +126,7 @@ MonthField.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  defaultValue: PropTypes.string,
   id: PropTypes.string,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,

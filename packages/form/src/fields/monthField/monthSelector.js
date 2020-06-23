@@ -12,6 +12,7 @@ const BoxWrapper = styled(Box)`
   top: ${props => props.offsetHeight}px;
   flex-flow: column wrap;
   justify-content: space-around;
+  z-index: 1000;
 `;
 
 const Wrapper = styled(Card)`
@@ -80,6 +81,7 @@ const MonthSelector = ({
   onChangeMonth,
   onChangeYear,
   onChange,
+  showYear,
   offsetHeight,
 }) => {
   function handleOnClickLeftArrow() {
@@ -155,13 +157,13 @@ const MonthSelector = ({
   return (
     <BoxWrapper offsetHeight={offsetHeight}>
       <Wrapper>
-        <WrapperContent>
+        {showYear && <WrapperContent>
           <div className="controls">
             <span>{renderLeftArrowButton()}</span>
             <span>{selectedYear}</span>
             <span> {renderRightArrowButton()}</span>
           </div>
-        </WrapperContent>
+        </WrapperContent>}
         <MonthDropdownBox>
           <div>{renderMonth()}</div>
         </MonthDropdownBox>
@@ -175,6 +177,7 @@ MonthSelector.propTypes = {
   selectedMonth: PropTypes.string,
   minYear: PropTypes.number,
   maxYear: PropTypes.number,
+  showYear: PropTypes.bool,
   onChangeYear: PropTypes.func,
   onChangeMonth: PropTypes.func,
 };

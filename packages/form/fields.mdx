@@ -592,10 +592,39 @@ items are clicked.
         label: 'When does your current contract end?',
         name: 'month',
         type: 'text',
-        hint: 'Eg. Sep, 2019',
+        defaultValue: 'Feb',
+        hint: 'Eg. Sep',
         config: {
           component: 'month',
           validator: 'month',
+        }
+      },
+    ]}
+
+/>
+
+</Playground>
+
+## SPA UI Month and Year field.
+
+<Playground>
+  <Form
+     id="my-form"
+
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'When does your current contract end?',
+        name: 'month',
+        type: 'text',
+        defaultValue: 'Feb, 2020',
+        hint: 'Eg. Sep, 2020',
+        config: {
+          component: 'month',
+          validator: 'monthYear',
+          showYear: true,
         }
       },
     ]}
