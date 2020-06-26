@@ -42,7 +42,7 @@ export const countyValidator = Yup.string()
 export const monthValidator = Yup.string()
   .required('Required')
   .matches(
-    /^[A-Za-z]{3}/,
+    /^(January|February|March|April|May|June|July|August|September|October|November|December)$/,
     'Please select month from the dropdown'
   );
 
@@ -74,3 +74,4 @@ export const dropdownValidator = options => {
 };
 
 export const passwordComplexityValidator = Yup.string();
+

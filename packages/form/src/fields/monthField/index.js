@@ -5,11 +5,20 @@ import TextField from '../textField';
 import { useOnClickOutside } from '../autocompleteField/useOnClickOutside';
 import styled from 'styled-components';
 
-const getCurrentMonth = () => {
+
+const monthArray= ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const shortMonthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+const getCurrentMonth = (showYear) => {
    const d = new Date();
-   const monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-   return monthArray[d.getMonth()];
+
+   if (showYear) {
+     return  shortMonthArray[d.getMonth()];
+   } else {
+    return monthArray[d.getMonth()];
+   }
 }
+
 
 const Wrapper = styled.div`
   position: relative;
@@ -26,7 +35,7 @@ const MonthField = ({
   const config = inputProps.config || {};
   const resultsRef = React.useRef();
   const anchorRef = React.useRef();
-  const [month, setMonth] = React.useState( getCurrentMonth());
+  const [month, setMonth] = React.useState( getCurrentMonth(config.showYear));
   const currentYear = new Date().getFullYear();
   const [year, setYear] = React.useState(currentYear);
 
@@ -112,7 +121,10 @@ const MonthField = ({
                 fieldUtils.setFieldValue(inputProps.name, val);
               } else {
                 const onlyMonth = val.split(', ')[0];
-                fieldUtils.setFieldValue(inputProps.name, onlyMonth);
+                const monthIndex = shortMonthArray.indexOf(onlyMonth);
+                const fullMonth = monthArray[monthIndex];
+                fieldUtils.setFieldValue(inputProps.name, fullMonth);
+                
               }
             }}
           />
@@ -133,3 +145,4 @@ MonthField.propTypes = {
 };
 
 export default MonthField;
+
