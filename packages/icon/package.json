@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/icon",
-  "version": "5.0.62",
+  "version": "5.0.63",
   "description": "Description for Icon",
   "rtmRollup": {
     "namespace": "icon",

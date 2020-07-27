@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.99](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.98...@rtm-ui/form@5.0.99) (2020-07-27)
+
+**Note:** Version bump only for package @rtm-ui/form
+
+
+
+
+
 ## [5.0.98](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.97...@rtm-ui/form@5.0.98) (2020-06-26)
 
 **Note:** Version bump only for package @rtm-ui/form
