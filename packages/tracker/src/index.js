@@ -79,7 +79,6 @@ export const TrackingProvider = ({
 
 class TrackerRegistration extends React.Component {
   componentDidMount() {
-
     // Google Optimize Code starts
     if (this.props.google_optimize_id) {
       let g_optimze = document.createElement('script');
@@ -90,12 +89,17 @@ class TrackerRegistration extends React.Component {
       h.end=i=function(){s.className = s.className.replace(RegExp(' ?' + y), '')};
       (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
       })(window,document.documentElement,'async-hide','dataLayer',4000,
-      {'${this.props.google_optimize_id}':true});`
+      {'${this.props.google_optimize_id}':true});`;
       g_optimze.innerHTML = g_optimze_html;
       this.instance.appendChild(g_optimze);
       let g_optimize_source = document.createElement('script');
-      g_optimize_source.src = `https://www.googleoptimize.com/optimize.js?id=${this.props.google_optimize_id}`
-      g_optimize_source.setAttribute('onerror', `dataLayer.hide.end && dataLayer.hide.end()`);
+      g_optimize_source.src = `https://www.googleoptimize.com/optimize.js?id=${
+        this.props.google_optimize_id
+      }`;
+      g_optimize_source.setAttribute(
+        'onerror',
+        `dataLayer.hide.end && dataLayer.hide.end()`
+      );
 
       this.instance.appendChild(c_css);
       this.instance.appendChild(g_optimize_source);
@@ -213,7 +217,9 @@ class TrackerRegistration extends React.Component {
 
       const zd2 = document.createElement('script');
       zd2.id = 'ze-snippet';
-      zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${this.props.zendesk_id}`;
+      zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${
+        this.props.zendesk_id
+      }`;
       zd2.defer = true;
       this.instance.appendChild(zd2);
     }
@@ -229,7 +235,9 @@ class TrackerRegistration extends React.Component {
       if (this.props.user && this.props.user.email) {
         sfmc_script_html =
           sfmc_script_html +
-          `_etmc.push(['setUserInfo', { 'email': '${this.props.user.email}' }]);`;
+          `_etmc.push(['setUserInfo', { 'email': '${
+            this.props.user.email
+          }' }]);`;
       }
       sfmc_script_html =
         sfmc_script_html +
@@ -244,9 +252,9 @@ class TrackerRegistration extends React.Component {
       sfmc_script_html =
         sfmc_script_html +
         `_etmc.push(['trackPageView', { "item" : "${window.location.origin +
-        window.location
-          .pathname}" }]);}})(window, document, 'script', 'https://${
-        this.props.sfmc_business_account_id
+          window.location
+            .pathname}" }]);}})(window, document, 'script', 'https://${
+          this.props.sfmc_business_account_id
         }.collect.igodigital.com/collect.js', '_etmc');`;
       sfmc.innerHTML = sfmc_script_html;
       this.instance.appendChild(sfmc);
@@ -272,11 +280,32 @@ class TrackerRegistration extends React.Component {
         tag.src = '//amplify.outbrain.com/cp/obtp.js';
         tag.type = 'text/javascript';var script = _document.getElementsByTagName('script')[0];script.parentNode.insertBefore(tag, script);}(window, document);
         obApi('track', 'PAGE_VIEW');
-      `
+      `;
       outbrain.innerHTML = outbrain_script_html;
       this.instance.appendChild(outbrain);
     }
 
+    /* Jackmedia pixel */
+    if (this.props.jackmedia_pixel_id) {
+      const jackmedia_pixel = document.createElement('script');
+      jackmedia_pixel.id = 'jackmedia_pixel';
+      const jackmedia_pixel_html = `
+      window._tfa = window._tfa || [];
+      window._tfa.push({notify: 'event', name: 'page_view', id: ${
+        this.props.jackmedia_pixel_id
+      }});
+      !function (t, f, a, x) {
+      if (!document.getElementById(x)) {
+      t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+      }
+      }(document.createElement('script'),
+      document.getElementsByTagName('script')[0],
+      '//cdn.taboola.com/libtrc/unip/${this.props.jackmedia_pixel_id}/tfa.js',
+      'tb_tfa_script');
+    `;
+      jackmedia_pixel.innerHTML = jackmedia_pixel_html;
+      this.instance.appendChild(jackmedia_pixel);
+    }
   }
 
   render() {

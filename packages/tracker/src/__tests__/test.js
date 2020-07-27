@@ -1,11 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
-import {
-  useTracker,
-  track,
-  TrackerRegistration,
-} from '..';
+import { useTracker, track, TrackerRegistration } from '..';
 import Google from '../google';
 import Facebook from '../facebook';
 
@@ -79,6 +75,7 @@ describe('<TrackerRegistration />', () => {
     const google_optimize_id = 'OPT-123456';
     const sfmc_business_account_id = '123456';
     const outbrain_tracking_id = '000123456';
+    const jackmedia_pixel_id = '111111';
 
     const { getByTestId } = render(
       <TrackerRegistration
@@ -92,6 +89,7 @@ describe('<TrackerRegistration />', () => {
         google_optimize_id={google_optimize_id}
         outbrain_tracking_id={outbrain_tracking_id}
         user={{ email: 'test@mail.com' }}
+        jackmedia_pixel_id={jackmedia_pixel_id}
       />
     );
 
@@ -107,11 +105,18 @@ describe('<TrackerRegistration />', () => {
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(fullstory_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
-    expect(getByTestId('TrackingRegister').innerHTML).toContain(google_optimize_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      google_optimize_id
+    );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       sfmc_business_account_id
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain('setUserInfo');
-    expect(getByTestId('TrackingRegister').innerHTML).toContain(outbrain_tracking_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      outbrain_tracking_id
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      jackmedia_pixel_id
+    );
   });
 });
