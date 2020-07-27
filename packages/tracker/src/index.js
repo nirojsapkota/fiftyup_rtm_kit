@@ -291,14 +291,16 @@ class TrackerRegistration extends React.Component {
       jackmedia_pixel.id = 'jackmedia_pixel';
       const jackmedia_pixel_html = `
       window._tfa = window._tfa || [];
-      window._tfa.push({notify: 'event', name: 'page_view', id: ${jackmedia_pixel_id}});
+      window._tfa.push({notify: 'event', name: 'page_view', id: ${
+        this.props.jackmedia_pixel_id
+      }});
       !function (t, f, a, x) {
       if (!document.getElementById(x)) {
       t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
       }
       }(document.createElement('script'),
       document.getElementsByTagName('script')[0],
-      '//cdn.taboola.com/libtrc/unip/${jackmedia_pixel_id}/tfa.js',
+      '//cdn.taboola.com/libtrc/unip/${this.props.jackmedia_pixel_id}/tfa.js',
       'tb_tfa_script');
     `;
       jackmedia_pixel.innerHTML = jackmedia_pixel_html;
