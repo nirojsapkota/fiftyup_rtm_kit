@@ -1,11 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { FeatureRow, GroupedFeatureTiles } from '@rtm-ui/feature-tile';
-import { Block, Box, Flex } from '@rtm-ui/layout';
-import { Paragraph } from '@rtm-ui/typography';
+import { Block, Box, Flex, Card } from '@rtm-ui/layout';
+import { Modal } from '@rtm-ui/dialog';
 import { Theme as Variant, getColor } from '@rtm-ui/theme';
+import { Button } from '@rtm-ui/button';
+import { Icon } from '@rtm-ui/icon';
+import { Form } from '@rtm-ui/form';
+import { Header, Markdown, Paragraph } from '@rtm-ui/typography';
+import { getSurvey, submitSurvey } from './actions';
+
 
 const MainWrapper = styled(Box)`
   background: #f1f1f1;
@@ -43,15 +50,117 @@ const HeroHeadingWrapper = styled(HeroContentWrapper)`
   }
 `;
 
-export const Dashboard = ({ campaigns, dashboardBanner }) => {
+const SkipSurveyWrapper = styled(Box)`
+  display: flex;
+  background: 'white';
+  justify-content: center;
+  flex-flow: column;
+`;
+
+const StyledCard = styled(Card)`
+  max-width: 400px;
+  @media (min-width: ${props => props.theme.grid.sm}em) {
+    max-width: 550px;
+    padding: 30px;
+    justify-content: space-between;
+  }
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+
+`;
+
+const CloseDialogWrapper = styled(Box)`
+  display: flex;
+  background: 'white';
+  justify-content: 'flex-end';
+  flex-flow: column;
+`;
+
+export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   const featuredCampaign = campaigns.filter(
     campaign => campaign.isFeatured === true
   )[0];
   const unfeaturedCampaigns = featuredCampaign
     ? campaigns.filter(campaign => campaign.id !== featuredCampaign.id)
     : campaigns;
+
+  React.useEffect(() => {
+    if (survey) {
+      (async () => {
+        const result = await getSurvey(survey.url, { email: survey.email })
+        if (result && result.data && result.data.showSurvey) {    // empty
+          setModalOpen(true);
+        }
+      })();
+    }
+  }, []);
+
+  const [isModalOpen, setModalOpen] = React.useState(false);
+  const [selectedProducts, setSelectedProducts] = React.useState([]);
+  const [hasSelectionBeenMade, setSelectionBeenMade] = React.useState(false);
+
+  const sendSurvey = () => {
+    submitSurvey(survey.url, survey.email, selectedProducts)
+    setModalOpen(!isModalOpen)
+  };
+
+  const updateSurvey = (e) => {
+    setSelectedProducts(e[0].value)
+    setSelectionBeenMade(true)
+  };
+
   return (
     <MainWrapper>
+      {isModalOpen && (
+        <Modal onClose={sendSurvey} data-testid='test-modal'>
+          <StyledCard>
+            <CloseDialogWrapper>
+              <Button data-testid="close-modal" asWrapper onClick={sendSurvey}>
+                <Header weight="normal" color="text" tag="h6" align="right">
+                  <Icon center glyph="view-close" />
+                </Header>
+              </Button>
+            </CloseDialogWrapper>
+            <Header tag="h5" align="center">
+              <Markdown raw={survey.title} />
+            </Header>
+            <div style={{ textAlign: 'center' }}>
+              <small align="center"><Markdown raw={survey.description} /></small>
+            </div>
+            <Form
+              id="survey-form"
+              quickSubmit={true}
+              onSubmit={(e) => updateSurvey(e)}
+              fields={[
+                {
+                  label: '',
+                  description: '',
+                  config: {
+                    component: 'panelCheck',
+                    validator: 'requiredRadio',
+                    justifyContent: 'center',
+                  },
+                  name: survey.productSelection.name,
+                  value: '',
+                  type: survey.productSelection.type,
+                  options: survey.productSelection.options,
+                },
+              ]}
+            />
+            <SkipSurveyWrapper>
+              <Button asWrapper onClick={sendSurvey}>
+                <Header weight="normal" color="text" tag="h5">
+                  {hasSelectionBeenMade ? survey.cta_label : survey.skip_label}
+                </Header>
+              </Button>
+            </SkipSurveyWrapper>
+          </StyledCard>
+        </Modal>
+      )}
+
       {dashboardBanner.content && (
         <HeroHeadingWrapper>
           <Box width={['316px', 'auto', 1]} mx="auto">
@@ -109,5 +218,16 @@ Dashboard.propTypes = {
   dashboardBanner: PropTypes.shape({
     content: PropTypes.string,
     link: PropTypes.string,
+  }),
+  survey: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    list: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        icon: PropTypes.string,
+      }),
+    ),
+    skippable: PropTypes.bool,
   }),
 };

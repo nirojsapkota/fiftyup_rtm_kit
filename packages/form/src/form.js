@@ -28,11 +28,13 @@ const FooterBox = styled(Box)`
 
 const Form = ({
   onSubmit,
+  quickSubmit,
   autoSearch,
   fields: providedFields,
   id,
   ...props
 }) => {
+
   const [fields, setFields] = React.useState(providedFields);
   const [serverErrors, setServerErrors] = React.useState({
     formError: props.formError || null,
@@ -83,7 +85,7 @@ const Form = ({
   };
 
   // Pass these values straight through with no submission
-  React.useEffect(function() {
+  React.useEffect(function () {
     if (props.passThru) {
       validationSchema.isValid(initialValues).then(valid => {
         if (valid) {
@@ -126,7 +128,7 @@ const Form = ({
             });
 
             rest.setFieldValue(field, value);
-            autoSearch &&
+            (autoSearch || quickSubmit) &&
               validateForm().then(() => {
                 autoSubmit();
               });
@@ -157,33 +159,33 @@ const Form = ({
                 />
               )}
             </FieldGroup>
-            {typeof props.renderFooter === 'function'
+            {(typeof props.renderFooter === 'function')
               ? props.renderFooter({ formError: serverErrors.formError })
               : props.renderFooter || (
-                  <FooterBox>
-                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                      <Box
-                        mb={10}
-                        style={{ display: 'flex', alignSelf: 'flex-end' }}
-                      >
-                        <Button data-testid={`submit-${id}`} type="submit">
-                          {props.submitText || 'Submit'}
-                        </Button>
-                      </Box>
-                      <Box
-                        style={{
-                          height: '12px',
-                          display: 'flex',
-                          alignSelf: 'flex-end',
-                        }}
-                      >
-                        <Small align="left" color="error">
-                          {serverErrors.formError}
-                        </Small>
-                      </Box>
+                !quickSubmit && <FooterBox>
+                  <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Box
+                      mb={10}
+                      style={{ display: 'flex', alignSelf: 'flex-end' }}
+                    >
+                      <Button data-testid={`submit-${id}`} type="submit">
+                        {props.submitText || 'Submit'}
+                      </Button>
                     </Box>
-                  </FooterBox>
-                )}
+                    <Box
+                      style={{
+                        height: '12px',
+                        display: 'flex',
+                        alignSelf: 'flex-end',
+                      }}
+                    >
+                      <Small align="left" color="error">
+                        {serverErrors.formError}
+                      </Small>
+                    </Box>
+                  </Box>
+                </FooterBox>
+              )}
           </form>
         );
       }}

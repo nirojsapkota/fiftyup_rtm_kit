@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: ${props => props.theme.grid.sm}em) {
-    max-width: 120px;
+    max-width: 100px;
     min-width: 100px;
   }
 `;
@@ -74,11 +74,11 @@ const PanelCheckField = ({
         isSingle
           ? setFieldValue(name, fieldValues === '' ? value : '')
           : setFieldValue(
-              name,
-              fieldValues.includes(value)
-                ? fieldValues.filter(fieldValue => fieldValue !== value)
-                : [...fieldValues, value]
-            );
+            name,
+            fieldValues.includes(value)
+              ? fieldValues.filter(fieldValue => fieldValue !== value)
+              : [...fieldValues, value]
+          );
       }}
     >
       {({ option, name, fieldValue }) => {

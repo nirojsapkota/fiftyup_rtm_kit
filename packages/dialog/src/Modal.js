@@ -12,7 +12,7 @@ const Screen = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10000;
   background-color: rgba(47, 57, 65, 0.85);
   overflow: auto;
 `;

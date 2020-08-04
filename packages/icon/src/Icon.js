@@ -3934,10 +3934,10 @@ const Icon = ({
   // So that we don't have to hard-codedly check/add it in the isMultiColoredIcon function.
   const colorProps = isMultiColoredIcon(glyph)
     ? {
-        strokePrimary: strokePrimary || fill,
-        strokeSecondary: strokeSecondary || fill,
-        fill: 'none',
-      }
+      strokePrimary: strokePrimary || fill,
+      strokeSecondary: strokeSecondary || fill,
+      fill: 'none',
+    }
     : { fill: fill };
 
   if (!glyph) {

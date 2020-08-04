@@ -20,9 +20,14 @@
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/feature-tile": "file:../feature-tile",
+    "@rtm-ui/typography": "file:../typography",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/typography": "file:../typography"
+    "@rtm-ui/dialog": "file:../dialog",
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/icon": "file:../icon",
+    "@rtm-ui/form": "file:../form",
+    "axios": "^0.18.0"
   },
   "peerDependencies": {
     "prop-types": "15.x",
