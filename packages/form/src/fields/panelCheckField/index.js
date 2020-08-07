@@ -49,7 +49,7 @@ const StyledLabel = styled(Label)`
   cursor: pointer;
   background: ${props => getColor(props.fillColor, props.theme)};
   color: ${props => getColor(props.color || 'inverseText', props.theme)};
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 600;
   width: 100%;
   text-align: center;

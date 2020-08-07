@@ -18,17 +18,9 @@ const Screen = styled.div`
 `;
 
 const Wrapper = styled.div`
-  max-width: 100%;
+  max-width: 90%;
   width: 700px;
 
-  @media (max-width: ${props => props.theme.grid.sm}em) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
 `;
 
 class Modal extends React.Component {

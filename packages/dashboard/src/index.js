@@ -59,9 +59,10 @@ const SkipSurveyWrapper = styled(Box)`
 
 const StyledCard = styled(Card)`
   max-width: 400px;
+  padding: 15px;
   @media (min-width: ${props => props.theme.grid.sm}em) {
     max-width: 550px;
-    padding: 30px;
+    padding: 25px;
     justify-content: space-between;
   }
   margin: auto;
@@ -69,7 +70,6 @@ const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap-reverse;
-
 `;
 
 const CloseDialogWrapper = styled(Box)`
@@ -78,6 +78,10 @@ const CloseDialogWrapper = styled(Box)`
   justify-content: 'flex-end';
   flex-flow: column;
 `;
+
+const CloseButton = styled(Button)`
+  outline: none;
+`
 
 export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   const featuredCampaign = campaigns.filter(
@@ -99,17 +103,13 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   }, []);
 
   const [isModalOpen, setModalOpen] = React.useState(false);
-  const [selectedProducts, setSelectedProducts] = React.useState([]);
-  const [hasSelectionBeenMade, setSelectionBeenMade] = React.useState(false);
 
-  const sendSurvey = () => {
-    submitSurvey(survey.url, survey.email, selectedProducts)
+  const sendSurvey = (e) => {
+    if (e[0]) {
+      submitSurvey(survey.url, survey.email, e[0].value)
+    }
+    submitSurvey(survey.url, survey.email, [])
     setModalOpen(!isModalOpen)
-  };
-
-  const updateSurvey = (e) => {
-    setSelectedProducts(e[0].value)
-    setSelectionBeenMade(true)
   };
 
   return (
@@ -118,11 +118,11 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         <Modal onClose={sendSurvey} data-testid='test-modal'>
           <StyledCard>
             <CloseDialogWrapper>
-              <Button data-testid="close-modal" asWrapper onClick={sendSurvey}>
+              <CloseButton data-testid="close-modal" asWrapper onClick={sendSurvey}>
                 <Header weight="normal" color="text" tag="h6" align="right">
                   <Icon center glyph="view-close" />
                 </Header>
-              </Button>
+              </CloseButton>
             </CloseDialogWrapper>
             <Header tag="h5" align="center">
               <Markdown raw={survey.title} />
@@ -132,8 +132,10 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
             </div>
             <Form
               id="survey-form"
-              quickSubmit={true}
-              onSubmit={(e) => updateSurvey(e)}
+              submitText={survey.cta_label}
+              centeredSubmit={true}
+              quickSubmit={false}
+              onSubmit={(e) => sendSurvey(e)}
               fields={[
                 {
                   label: '',
@@ -151,11 +153,11 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
               ]}
             />
             <SkipSurveyWrapper>
-              <Button asWrapper onClick={sendSurvey}>
+              <CloseButton asWrapper onClick={sendSurvey}>
                 <Header weight="normal" color="text" tag="h5">
-                  {hasSelectionBeenMade ? survey.cta_label : survey.skip_label}
+                  {survey.skip_label}
                 </Header>
-              </Button>
+              </CloseButton>
             </SkipSurveyWrapper>
           </StyledCard>
         </Modal>

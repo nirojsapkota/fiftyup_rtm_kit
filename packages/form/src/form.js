@@ -23,7 +23,7 @@ export const getFormValues = fields => {
 
 const FooterBox = styled(Box)`
   display: flex;
-  justify-content: flex-end;
+  justify-content: ${props => props.centeredSubmit ? "center" : "flex-end"};
 `;
 
 const Form = ({
@@ -162,13 +162,10 @@ const Form = ({
             {(typeof props.renderFooter === 'function')
               ? props.renderFooter({ formError: serverErrors.formError })
               : props.renderFooter || (
-                !quickSubmit && <FooterBox>
+                !quickSubmit && <FooterBox centeredSubmit={props.centeredSubmit}>
                   <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Box
-                      mb={10}
-                      style={{ display: 'flex', alignSelf: 'flex-end' }}
-                    >
-                      <Button data-testid={`submit-${id}`} type="submit">
+                    <Box mb={10} style={{ display: 'flex', alignSelf: 'flex-end' }}>
+                      <Button align="center" data-testid={`submit-${id}`} type="submit">
                         {props.submitText || 'Submit'}
                       </Button>
                     </Box>

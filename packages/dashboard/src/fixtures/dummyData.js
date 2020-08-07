@@ -5,12 +5,12 @@ export const dummyData = {
   },
   news: [],
   survey: {
-    url: ' https://api.staging.fiftyupclub.com/survey',
-    title: "#### Welcome to OneBigSwitch!",
+    url: 'https://api.staging.fiftyupclub.com/survey',
+    title: '',
     description: "##### What type of offers are you most interested in?\r\n(select all that apply)",
     "cta_label": "See the offers",
     "skip_label": "Skip this step",
-    "email": "user7@email.com",
+    "email": "user24@email.com",
     "productSelection": {
       "label": "",
       "name": "products",
@@ -18,32 +18,32 @@ export const dummyData = {
       "component": "panelCheck",
       "options": [
         {
-          "label": "Energy",
+          "label": "ENERGY",
           "value": "energy",
           "icon": "energy"
         },
         {
-          "label": "Health Insurance",
+          "label": "HEALTH INSURANCE",
           "value": "health insurance",
           "icon": "health"
         },
         {
-          "label": "Life Insurance",
+          "label": "LIFE INSURANCE",
           "value": "life insurance",
           "icon": "life"
         },
         {
-          "label": "Home",
+          "label": "HOME",
           "value": "energy1",
           "icon": "home-2"
         },
         {
-          "label": "Internet",
+          "label": "INTERNET",
           "value": "energy2",
           "icon": "internet"
         },
         {
-          "label": "Car Insurance",
+          "label": "CAR INSURANCE",
           "value": "car insurance",
           "icon": "car"
         }

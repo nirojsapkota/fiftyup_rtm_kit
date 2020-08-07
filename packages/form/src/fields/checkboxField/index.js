@@ -27,11 +27,11 @@ const CheckboxField = ({
         isSingle
           ? setFieldValue(name, fieldValues === '' ? value : '')
           : setFieldValue(
-              name,
-              fieldValues.includes(value)
-                ? fieldValues.filter(fieldValue => fieldValue !== value)
-                : [...fieldValues, value]
-            );
+            name,
+            fieldValues.includes(value)
+              ? fieldValues.filter(fieldValue => fieldValue !== value)
+              : [...fieldValues, value]
+          );
       }}
       icon={({ itemValue, fieldValue }) => {
         return (

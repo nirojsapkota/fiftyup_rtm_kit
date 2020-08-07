@@ -50,15 +50,14 @@ describe('<Dashboard />', () => {
     expect(queryByTestId('test-modal')).toBeNull();
   });
 
-  it('does popup a modal with a title and description when survey prop is given, and is a new user', async () => {
+  it('does popup a modal with a description when survey prop is given, and is a new user', async () => {
     axios.get.mockResolvedValue({ data: { showSurvey: true } });
     const { getByText } = render(<Dashboard {...dummyData} />);
     await expect(axios.get).toHaveBeenCalled();
     await wait(async () => {
       expect(getByText(dummyData.survey.skip_label)).toBeInTheDocument();
+      expect(getByText('What type of offers are you most interested in?')).toBeInTheDocument();
     })
-    expect(getByText('Welcome to OneBigSwitch!')).toBeInTheDocument();
-    expect(getByText('What type of offers are you most interested in?')).toBeInTheDocument();
   });
 
   it('does not popup a modal when user already seen the survey', async () => {
@@ -68,46 +67,52 @@ describe('<Dashboard />', () => {
     expect(queryByTestId('test-modal')).toBeNull();
   });
 
-  it('closes the modal after selecting a product and clicking on the cta link', async () => {
+  it('closes the modal after selecting a product and clicking on close button', async () => {
     axios.get.mockResolvedValue({ data: { showSurvey: true } });
-    const { getByText, queryByTestId } = render(<Dashboard {...dummyData} />);
+    const { getByText, queryByTestId, getByTestId } = render(<Dashboard {...dummyData} survey={dummyData.survey} />);
 
-    const data = { email: dummyData.survey.email, products: ['health insurance'] };
-    axios.post.mockResolvedValue(data);
     await expect(axios.get).toHaveBeenCalled();
     await wait(async () => {
       expect(getByText(dummyData.survey.skip_label)).toBeInTheDocument();
+      const healthProduct = getByText('HEALTH INSURANCE');
+      await fireEvent.click(healthProduct);
     })
-    const healthProduct = getByText('Health Insurance');
+
+
+    await wait(async () => {
+      expect(getByText(dummyData.survey.cta_label)).toBeInTheDocument();
+    })
+
+    await fireEvent.click(getByText(dummyData.survey.cta_label));
+    await wait(async () => {
+      expect(axios.post).toHaveBeenCalled();
+    })
+    expect(queryByTestId('test-modal')).toBeNull();
+  })
+
+  it('submits selected products and closes modal when submitting', async () => {
+    axios.get.mockResolvedValue({ data: { showSurvey: true } });
+    const { getByText, queryByTestId, getByTestId } = render(<Dashboard {...dummyData} />);
+
+    await expect(axios.get).toHaveBeenCalled();
+    await wait(async () => {
+      expect(getByText('HEALTH INSURANCE')).toBeInTheDocument();
+    })
+    const healthProduct = getByText('HEALTH INSURANCE');
+    axios.post.mockResolvedValue({ email: dummyData.survey.email, products: ['health insurance'] });
     await fireEvent.click(healthProduct);
     await wait(async () => {
       expect(getByText(dummyData.survey.cta_label)).toBeInTheDocument();
     })
 
     await fireEvent.click(getByText(dummyData.survey.cta_label));
-    await expect(axios.post).toHaveBeenCalled();
-    expect(queryByTestId('test-modal')).toBeNull();
-  })
-
-  it('saves selected products when closing the modal', async () => {
-    axios.get.mockResolvedValue({ data: { showSurvey: true } });
-    const { getByText, queryByTestId, getByTestId } = render(<Dashboard {...dummyData} />);
-
-    const data = { email: dummyData.survey.email, products: ['health insurance'] };
-    axios.post.mockResolvedValue(data);
-    await expect(axios.get).toHaveBeenCalled();
     await wait(async () => {
-      expect(getByText(dummyData.survey.skip_label)).toBeInTheDocument();
-    })
-    const healthProduct = getByText('Health Insurance');
-    await fireEvent.click(healthProduct);
-    await wait(async () => {
-      expect(getByText(dummyData.survey.cta_label)).toBeInTheDocument();
+      expect(axios.post).toHaveBeenCalled();
     })
 
-    await fireEvent.click(getByTestId('close-modal'));
-    await expect(axios.post).toHaveBeenCalled();
-    expect(queryByTestId('test-modal')).toBeNull();
+    await wait(async () => {
+      expect(queryByTestId('test-modal')).toBeNull();
+    })
   })
 });
 
@@ -135,7 +140,6 @@ describe('getSurvey', () => {
 describe('submitSurvey', () => {
   it('pushes successfully data to an API', async () => {
     const data = {};
-
     axios.post.mockImplementationOnce(() => Promise.resolve(data));
 
     await expect(submitSurvey(API, TEST_EMAIL, ['energy'])).resolves.toEqual(data);
