@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.2.1...@rtm-ui/tracker@5.3.0) (2020-08-10)
+
+
+### Features
+
+* **Tracker:** Add support for google tag manager ([#308](https://github.com/OBSAU/rtm-kit/issues/308)) ([b7ac54b](https://github.com/OBSAU/rtm-kit/commit/b7ac54ba0315582b503f910d27decf897bbb9165))
+
+
+
+
+
 ## [5.2.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.2.0...@rtm-ui/tracker@5.2.1) (2020-07-27)
 
 **Note:** Version bump only for package @rtm-ui/tracker
