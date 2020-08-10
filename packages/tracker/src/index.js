@@ -67,6 +67,7 @@ export const TrackingProvider = ({
   trackEventOverride,
   trackingData,
 }) => {
+  /* istanbul ignore next */
   const realTrackEvent = trackEventOverride || trackEvent;
   return (
     <TrackingContext.Provider
@@ -79,6 +80,17 @@ export const TrackingProvider = ({
 
 class TrackerRegistration extends React.Component {
   componentDidMount() {
+    // Google Tag Manager
+    if (this.props.google_tag_mgr_id) {
+      let gtag_mgr = document.createElement('script');
+      gtag_mgr.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${this.props.google_tag_mgr_id}');`;
+      this.instance.appendChild(gtag_mgr);
+    }
+
     // Google Optimize Code starts
     if (this.props.google_optimize_id) {
       let g_optimze = document.createElement('script');

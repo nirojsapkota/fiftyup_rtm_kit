@@ -68,6 +68,7 @@ describe('<TrackerRegistration />', () => {
   it(`renders the script with given IDs`, () => {
     const ga_code = 'UA-121324450-2';
     const bing_uet_tag_code = '25041030';
+    const google_tag_mgr_id = 'GMT-1111111';
     const google_adwords_id = 'AW-964414963';
     const facebook_pixel_id = '1111111111';
     const fullstory_id = 'NQGXA';
@@ -79,6 +80,7 @@ describe('<TrackerRegistration />', () => {
 
     const { getByTestId } = render(
       <TrackerRegistration
+        google_tag_mgr_id={google_tag_mgr_id}
         ga_code={ga_code}
         bing_uet_tag_code={bing_uet_tag_code}
         google_adwords_id={google_adwords_id}
@@ -93,6 +95,7 @@ describe('<TrackerRegistration />', () => {
       />
     );
 
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(google_tag_mgr_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(ga_code);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       bing_uet_tag_code
