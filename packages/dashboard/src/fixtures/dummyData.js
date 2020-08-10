@@ -10,7 +10,7 @@ export const dummyData = {
     description: "##### What type of offers are you most interested in?\r\n(select all that apply)",
     "cta_label": "See the offers",
     "skip_label": "Skip this step",
-    "email": "user24@email.com",
+    "email": "user28@email.com",
     "productSelection": {
       "label": "",
       "name": "products",

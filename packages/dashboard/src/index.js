@@ -107,8 +107,9 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   const sendSurvey = (e) => {
     if (e[0]) {
       submitSurvey(survey.url, survey.email, e[0].value)
+    } else {
+      submitSurvey(survey.url, survey.email, [])
     }
-    submitSurvey(survey.url, survey.email, [])
     setModalOpen(!isModalOpen)
   };
 
