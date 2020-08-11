@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/dashboard",
-  "version": "2.0.74",
+  "version": "2.0.75",
   "description": "Description for dashboard",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -19,14 +19,14 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/dialog": "file:../dialog",
     "@rtm-ui/feature-tile": "file:../feature-tile",
-    "@rtm-ui/typography": "file:../typography",
+    "@rtm-ui/form": "file:../form",
+    "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/dialog": "file:../dialog",
-    "@rtm-ui/button": "file:../button",
-    "@rtm-ui/icon": "file:../icon",
-    "@rtm-ui/form": "file:../form",
+    "@rtm-ui/typography": "file:../typography",
     "axios": "^0.18.0"
   },
   "peerDependencies": {
