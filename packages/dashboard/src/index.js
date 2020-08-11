@@ -103,13 +103,10 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   }, []);
 
   const [isModalOpen, setModalOpen] = React.useState(false);
+  const [products, setProducts] = React.useState([]);
 
-  const sendSurvey = (e) => {
-    if (e[0]) {
-      submitSurvey(survey.url, survey.email, e[0].value)
-    } else {
-      submitSurvey(survey.url, survey.email, [])
-    }
+  const sendSurvey = () => {
+    submitSurvey(survey.url, survey.email, products)
     setModalOpen(!isModalOpen)
   };
 
@@ -132,11 +129,10 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
               <small align="center"><Markdown raw={survey.description} /></small>
             </div>
             <Form
-              id="survey-form"
-              submitText={survey.cta_label}
               centeredSubmit={true}
-              quickSubmit={false}
-              onSubmit={(e) => sendSurvey(e)}
+              quickSubmit={true}
+              onSubmit={(e) => setProducts(e[0].value)}
+              autoSearch={true}
               fields={[
                 {
                   label: '',
@@ -153,7 +149,15 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                 },
               ]}
             />
+
             <SkipSurveyWrapper>
+              <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                <Box mb={10} style={{ display: 'flex', alignSelf: 'center' }}>
+                  <CloseButton align="center" onClick={sendSurvey}>
+                    {survey.cta_label}
+                  </CloseButton>
+                </Box>
+              </Box>
               <CloseButton asWrapper onClick={sendSurvey}>
                 <Header weight="normal" color="text" tag="h5">
                   {survey.skip_label}
