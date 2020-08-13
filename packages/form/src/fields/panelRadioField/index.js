@@ -20,8 +20,8 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: ${props => props.theme.grid.sm}em) {
-    max-width: 120px;
-    min-width: 100px;
+    max-width: 110px;
+    min-width: 110px;
   }
 `;
 
@@ -113,9 +113,9 @@ const PanelRadioField = ({
                   fill={fillColorName(option.value, fieldValue)}
                 />
               ) : (
-                // Returns null if icons, headers and subheaders are present.
-                ''
-              )}
+                    // Returns null if icons, headers and subheaders are present.
+                    ''
+                  )}
               <StyledLabel
                 fillColor={fillColorName(option.value, fieldValue)}
                 px={10}
