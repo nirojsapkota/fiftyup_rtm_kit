@@ -7,7 +7,7 @@ export const submitSurvey = async (url, email, products) => {
       'Content-Type': 'application/json',
     }
   };
-  const data = { email, products };
+  const data = { email, data: { products } };
 
   try {
     return await axios.post(url, data, config)
