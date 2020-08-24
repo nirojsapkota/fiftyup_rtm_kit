@@ -46,26 +46,30 @@ class ConfirmSwitch extends React.Component {
     ];
 
     agreementItems
-      .map(({ label }) => label)
+      .map(({ label, optional, name }) => {
+        if (label === null) {
+          return null;
+        }
+        return { label, optional: optional || false, name: name || false }
+      })
       .map((val, index) => {
-        val &&
+        val && val.label &&
           fields.push({
             label: '',
             config: {
-              validator: 'requiredRadio',
+              validator: val.optional === false ? 'requiredRadio' : '',
             },
-            name: 'agreement' + index,
+            name: val.name || 'agreement' + index,
             value: '',
             type: 'checkbox',
             options: [
               {
-                label: <Small dangerousHTML={val} />,
-                value: 'agreement' + index,
+                label: <Small dangerousHTML={val.label} />,
+                value: val.name || 'agreement' + index,
               },
             ],
           });
       });
-
     return (
       <Wrapper p={20}>
         <Form

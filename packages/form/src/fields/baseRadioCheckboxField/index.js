@@ -11,35 +11,48 @@ const StyledButton = styled(Button)`
   align-items: flex-start;
 `;
 
+
 const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
+  const [checkboxValue, setCheckboxValue] = React.useState(false);
+  const isSingle = options.length === 1;
   return (
-    <ButtonGroup py={2}>
-      {options.map(option => (
-        <StyledButton
-          key={option.value}
-          name={name}
-          value={option.value}
-          aria-labelledby={`${name}_${option.value}-label`}
-          role="radio"
-          id={`${name}_${option.value}`}
-          data-testid={`${rest.type}-${name}_${option.value}`}
-          asWrapper
-          type="button"
-          onClick={() => rest.onClick(name, option.value, rest.value)}
-        >
-          {rest.icon({ itemValue: option.value, fieldValue: rest.value })}
-          <Label
-            id={`${name}_${option.value}-label`}
-            htmlFor={`${name}_${option.value}`}
-            pl={10}
-            pr={20}
-            pt="4px"
+    <>
+      <ButtonGroup py={2}>
+        {options.map(option => (
+          <StyledButton
+            key={option.value}
+            name={name}
+            value={option.value}
+            aria-labelledby={`${name}_${option.value}-label`}
+            role="radio"
+            id={`${name}_${option.value}`}
+            data-testid={`${rest.type}-${name}_${option.value}`}
+            asWrapper
+            type="button"
+            onClick={() => {
+              if (isSingle) {
+                setCheckboxValue(!checkboxValue);
+                document.getElementById(`input-${name}`).value = !checkboxValue;
+              }
+              rest.onClick(name, option.value, rest.value);
+
+            }}
           >
-            {option.label}
-          </Label>
-        </StyledButton>
-      ))}
-    </ButtonGroup>
+            {rest.icon({ itemValue: option.value, fieldValue: rest.value })}
+            <Label
+              id={`${name}_${option.value}-label`}
+              htmlFor={`${name}_${option.value}`}
+              pl={10}
+              pr={20}
+              pt="4px"
+            >
+              {option.label}
+            </Label>
+          </StyledButton>
+        ))}
+      </ButtonGroup>
+      {isSingle && <input type="hidden" name={name} id={`input-${name}`} value={checkboxValue} />}
+    </>
   );
 };
 
