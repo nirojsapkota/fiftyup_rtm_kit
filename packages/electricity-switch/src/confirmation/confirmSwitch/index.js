@@ -3,7 +3,7 @@ import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { Button } from '@rtm-ui/button';
-import { Small } from '@rtm-ui/typography';
+import { Text } from '@rtm-ui/typography';
 import { Form } from '@rtm-ui/form';
 import { getColor } from '@rtm-ui/theme';
 
@@ -17,6 +17,11 @@ const ButtonWrapper = styled(Box)`
 const Wrapper = styled(Box)`
   background: ${props => getColor('background', props.theme)};
 `;
+
+const LabelText = styled(Text)`
+  font-size: 0.75em;
+`;
+
 class ConfirmSwitch extends React.Component {
   render() {
     const {
@@ -64,7 +69,7 @@ class ConfirmSwitch extends React.Component {
             type: 'checkbox',
             options: [
               {
-                label: <Small dangerousHTML={val.label} />,
+                label: <LabelText ml="2" align="left" dangerousHTML={val.label} />,
                 value: val.name || 'agreement' + index,
               },
             ],

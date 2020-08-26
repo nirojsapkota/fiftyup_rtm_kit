@@ -65,14 +65,14 @@ export const dummyData = {
     {
       type: 'confirm',
       body: 'Welcome to react. this is a content of disclaimer box',
-      label: 'Yes, I agree',
+      label: 'Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box',
       optional: false,
       name: 'second'
     },
     {
       type: 'confirm',
       body: 'I understand and agree that I am entering.',
-      label: 'Yes, I agree2',
+      label: 'Yes, I agree',
       optional: true,
       name: 'third'
     },
