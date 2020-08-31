@@ -22,6 +22,16 @@ const LegalContainer = styled(Container)`
 
 const DisclaimersBox = styled(Box)`
   text-align: justify;
+  * {
+    margin: 15px 0;
+   }
+  a {
+    color: ${props => getColor('text', props.theme)};
+    :hover {
+      color: ${props => getColor('linkHover', props.theme)};
+    }
+  }
+
 `
 
 const A = styled.a`
@@ -168,10 +178,10 @@ export const Footer = ({ entity, disclaimers, landing }) => {
                       {item.name}
                     </A>
                   ) : (
-                    <Paragraph key={item.name} weight="bold">
-                      {item.name}
-                    </Paragraph>
-                  )
+                      <Paragraph key={item.name} weight="bold">
+                        {item.name}
+                      </Paragraph>
+                    )
                 )}
               </Box>
             </InnerFlexBox>
