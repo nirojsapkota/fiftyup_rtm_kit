@@ -56,15 +56,21 @@ export const PhonebackBox = ({ form, children, ...props }) => {
 export const Phoneback = ({
   form,
   isPhonebacked = false,
+  isFormSubmitting,
   thankYouProps,
   ...props
 }) => {
-  const [phonebackSubmitted, setPhonebackSubmitted] = React.useState(
-    isPhonebacked
-  );
+  const [phonebackSubmitted, setPhonebackSubmitted] = React.useState(isPhonebacked);
+  const [phonebackSubmitting, setPhonebackSubmitting] = React.useState(isFormSubmitting);
+
   React.useEffect(() => {
     setPhonebackSubmitted(isPhonebacked);
   }, [isPhonebacked]);
+
+  React.useEffect(() => {
+    setPhonebackSubmitting(isFormSubmitting);
+  }, [isFormSubmitting]);
+
   return (
     <Dialog
       renderContainer={() => {
@@ -77,12 +83,13 @@ export const Phoneback = ({
                 </Header>
                 <PhonebackForm
                   {...props}
+                  phonebackSubmitting={phonebackSubmitting}
                   form={{
                     ...form,
                     onSuccess: (values, ctx) => {
                       setPhonebackSubmitted(true);
                       form.onSuccess && form.onSuccess(values, ctx);
-                    },
+                    }
                   }}
                 />
               </Box>
@@ -142,7 +149,7 @@ export const PhonebackForm = ({ form, ...props }) => {
           <>
             {props.agreement && <Box my={2}>{props.agreement}</Box>}
             <CenterBox>
-              <Button type="submit" track={props.track}>
+              <Button disabled={props.phonebackSubmitting} type="submit" track={props.track}>
                 {props.submitText}
               </Button>
             </CenterBox>

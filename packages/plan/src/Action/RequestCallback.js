@@ -42,6 +42,7 @@ const Agreement = ({ disclaimer }) => {
 };
 
 const RequestCallback = props => {
+  const [isSubmitting, setSubmitting] = React.useState(false);
   const { isSubmitted, onSuccess, formInput, ...rest } = props;
   const { form } = formInput;
   const cbAgreement = {
@@ -65,8 +66,10 @@ const RequestCallback = props => {
   const formWithHandler = {
     id: 'callback',
     fields: [...formFields],
-    onSubmit: async values =>
-      onSubmit(values, rest.authenticityToken, rest.link, rest.campaignId),
+    onSubmit: async values => {
+      setSubmitting(true);
+      return onSubmit(values, rest.authenticityToken, rest.link, rest.campaignId);
+    },
     onSuccess: async values => {
       onSuccess();
       return values;
@@ -78,6 +81,7 @@ const RequestCallback = props => {
       {...rest}
       form={formWithHandler}
       isPhonebacked={isSubmitted}
+      isFormSubmitting={isSubmitting}
       renderTrigger={props.renderTrigger}
     />
   );
