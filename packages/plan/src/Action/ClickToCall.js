@@ -18,11 +18,11 @@ const ClickToCall = ({ header, link, footer, track, ...rest }) => {
             dangerousHTML={header}
           />
         )}
-        <A track={track} href={`tel:${link}`}>
+        {link && link.length > 0 && (<A track={track} href={`tel:${link}`}>
           <Header py={[1]} align="center" tag="h3">
             <Icon glyph="phone" fill="primary" inline /> {link}
           </Header>
-        </A>
+        </A>)}
         {footer && (
           <Paragraph
             dangerousHTML={footer}
