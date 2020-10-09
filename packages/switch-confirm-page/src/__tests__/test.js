@@ -46,7 +46,7 @@ describe('<SwitchConfirmPage />', () => {
     fireEvent.click(headerElement);
     fireEvent.click(btnSubmit);
 
-    expect(queryByText('Please select an option')).not.toBeInTheDocument();
+    expect(queryByText('Tick to agree to terms above')).not.toBeInTheDocument();
 
   });
 
@@ -57,7 +57,7 @@ describe('<SwitchConfirmPage />', () => {
     const submitLink = getByText('Click here to continue Your switch');
     fireEvent.click(submitLink);
     await wait(() => {
-      expect(queryByText('Please select an option')).toBeInTheDocument();
+      expect(queryByText('Tick to agree to terms above')).toBeInTheDocument();
     });
   });
 });

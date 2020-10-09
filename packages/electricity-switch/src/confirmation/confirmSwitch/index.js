@@ -19,7 +19,7 @@ const Wrapper = styled(Box)`
 `;
 
 const LabelText = styled(Text)`
-  font-size: 0.75em;
+  font-size: 0.9em;
 `;
 
 class ConfirmSwitch extends React.Component {
@@ -62,7 +62,7 @@ class ConfirmSwitch extends React.Component {
           fields.push({
             label: '',
             config: {
-              validator: val.optional === false ? 'requiredRadio' : '',
+              validator: val.optional === false ? 'requiredRadioTerms' : '',
             },
             name: val.name || 'agreement' + index,
             value: '',

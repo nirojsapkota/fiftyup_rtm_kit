@@ -18,7 +18,12 @@ const Wrapper = styled(Box)`
   justify-content: space-between;
   align-items: ${props => (props.alignItems ? props.alignItems : 'center')};
   flex-wrap: wrap;
-  margin: 5px 0;
+  margin: 5px 0px;
+
+    &.radioTermWrapper {
+      justify-content: flex-start;
+      margin: 5px 0px 5px 30px;
+    }
 `;
 
 const variantChild = {
@@ -138,7 +143,7 @@ const BaseField = props => {
           </AnimateableWrapper>
           <AnimateableWrapper variants={variantChildLast}>
             {/* Ensure the page doesn't jump if a message is inserted */}
-            <Wrapper style={{ minHeight: '12px' }}>
+            <Wrapper style={{ minHeight: '12px' }} className={props.config && props.config.validator === 'requiredRadioTerms' ? 'radioTermWrapper' : ''}>
               <SmallText>{hint}</SmallText>
               <SmallText
                 data-testid="fieldError"

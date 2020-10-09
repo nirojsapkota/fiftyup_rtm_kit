@@ -3,6 +3,7 @@ import {
   maskValidator,
   requiredValidator,
   requiredRadioValidator,
+  requiredRadioTermsValidator,
   emailValidator,
   passwordConfirmValidator,
   passwordComplexityValidator,
@@ -18,6 +19,7 @@ const validatorMap = {
   maskValidator,
   requiredValidator,
   requiredRadioValidator,
+  requiredRadioTermsValidator,
   emailValidator,
   passwordConfirmValidator,
   passwordComplexityValidator,
@@ -38,7 +40,6 @@ export const getSchema = fields => {
         ? validatorMap[`${validator}Validator`](...validatorArgs)
         : validatorMap[`${validator}Validator`];
     });
-
   return Yup.object().shape(validationSchema);
 };
 
@@ -62,6 +63,5 @@ export const getFieldErrors = (rest, field) => {
   if (errors[field.name] && touched[field.name]) {
     return errors[field.name];
   }
-
   return false;
 };

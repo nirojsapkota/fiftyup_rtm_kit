@@ -46,7 +46,7 @@ export const monthValidator = Yup.string()
     'Please select month from the dropdown'
   );
 
-  export const monthYearValidator = Yup.string()
+export const monthYearValidator = Yup.string()
   .required('Required')
   .matches(
     /^[A-Za-z]{3},\s([0-9]{4})$/,
@@ -56,6 +56,9 @@ export const monthValidator = Yup.string()
 export const requiredValidator = Yup.string().required('Required');
 export const requiredRadioValidator = Yup.string().required(
   'Please select an option'
+);
+export const requiredRadioTermsValidator = Yup.string().required(
+  'Tick to agree to terms above'
 );
 
 export const emailValidator = Yup.string()
