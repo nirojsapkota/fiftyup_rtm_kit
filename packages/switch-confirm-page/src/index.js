@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { A } from '@rtm-ui/a';
 import { Accordion } from '@rtm-ui/accordion';
-import { Box, Block } from '@rtm-ui/layout';
+import { Box, Block, scrollToElement } from '@rtm-ui/layout';
 import { Header, Small, Markdown } from '@rtm-ui/typography';
 import { Theme as Variant, getColor } from '@rtm-ui/theme';
 import {
@@ -145,8 +145,8 @@ class ConfirmationWrapper extends React.Component {
     form.submit();
   }
   // FIXME handle trigger button form child component
-  handleButtonClick() {
-    document.getElementById(this.props.switchButtonId).click();
+  handleButtonClick(e) {
+    scrollToElement(e, "confirm-switch");
   }
 
   render() {
@@ -173,15 +173,17 @@ class ConfirmationWrapper extends React.Component {
             />
           </Box>
           <Disclaimer items={disclaimers} />
-          <ConfirmSwitch
-            completeUrl={rest.completeUrl}
-            editUrl={rest.editUrl}
-            agreementItems={disclaimers}
-            authenticityToken={rest.authenticityToken}
-            handleSubmit={this.handleSubmit}
-            buttonId={rest.switchButtonId}
-            buttonText={rest.switchButtonText}
-          />
+          <div scroll-target="confirm-switch" >
+            <ConfirmSwitch
+              completeUrl={rest.completeUrl}
+              editUrl={rest.editUrl}
+              agreementItems={disclaimers}
+              authenticityToken={rest.authenticityToken}
+              handleSubmit={this.handleSubmit}
+              buttonId={rest.switchButtonId}
+              buttonText={rest.switchButtonText}
+            />
+          </div>
           <AccordionSection
             items={accordion.items}
             reviewItems={[reviewDetail]}
@@ -194,6 +196,7 @@ class ConfirmationWrapper extends React.Component {
             </SwitchLink>
           </Box>
         </Block>
+
         <Block showAt="md" width="100%">
           <HeaderWrapper orientation="vertical" headerProps={rest} />
           <HorizontalWrapper m="auto" py={30}>
