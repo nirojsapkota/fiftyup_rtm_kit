@@ -54,10 +54,13 @@ describe('<SwitchConfirmPage />', () => {
     const { queryByText, getByText } = render(
       <SwitchConfirmPage {...dummyData} />
     );
+    /**
+     * To avoid Not implemented: window.scrollTo
+     * https://stackoverflow.com/a/62086079/1138156
+     */
+    window.scrollTo = jest.fn();
     const submitLink = getByText('Click here to continue Your switch');
     fireEvent.click(submitLink);
-    await wait(() => {
-      expect(queryByText('Tick to agree to terms above')).toBeInTheDocument();
-    });
+    expect(queryByText(/Switch Now/i)).toBeInTheDocument();
   });
 });
