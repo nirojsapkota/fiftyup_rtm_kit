@@ -76,5 +76,9 @@ export const dropdownValidator = options => {
     .required('Required');
 };
 
-export const passwordComplexityValidator = Yup.string();
+export const passwordComplexityValidator = Yup.string()
+  .required('Required')
+  .min(8, 'Password is too short - should be 8 chars minimum')
+  .matches(/[a-zA-Z]/, 'Password should contain a letter')
+  .matches(/[0-9]/, 'Password should contain a number');
 

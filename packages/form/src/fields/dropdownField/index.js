@@ -42,7 +42,14 @@ const DropdownField = ({ onWaiting,
   const dropdownRef = React.useRef();
   useOnClickOutside(dropdownRef, () => setModalOpen(false));
   const [isModalOpen, setModalOpen] = React.useState(false);
-  const [currentElement, setCurrentElement] = React.useState('');
+  const [currentElement, setCurrentElement] = React.useState({label: null, value: null});
+
+  // Pass these values straight through with no submission
+  React.useEffect(function () {
+    if (typeof inputProps.onDropdownChange == 'function') {
+      inputProps.onDropdownChange(currentElement.value);
+    }
+  }, [currentElement]);
 
   return (
     <div ref={dropdownRef} style={{ position: 'relative' }}>
@@ -60,7 +67,7 @@ const DropdownField = ({ onWaiting,
               }
             }
           }}
-          value={currentElement}
+          value={currentElement.label || inputProps.value}
         />
         <Box data-testid="arrow-box" onClick={() => setModalOpen(!isModalOpen)}
           style={
@@ -97,7 +104,7 @@ const DropdownField = ({ onWaiting,
                       setModalOpen(false);
                       onWaiting('');
                       fieldUtils.setFieldValue(inputProps.name, element.value);
-                      setCurrentElement(element.label);
+                      setCurrentElement({...element});
                     }}
                   >
                     <Header tag="h6" align="left" weight="thin" p={15}>
