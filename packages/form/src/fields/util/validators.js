@@ -65,10 +65,11 @@ export const emailValidator = Yup.string()
   .email('Invalid email address')
   .required('Required');
 
-export const passwordConfirmValidator = passwordFieldName =>
-  Yup.string()
-    .oneOf([Yup.ref(passwordFieldName), null], "Passwords don't match")
-    .required(`Confirm ${passwordFieldName} is required`);
+export const passwordConfirmValidator = (passwordFieldValue='') => {
+  return Yup.string()
+    .required('Confirm password is required')
+    .oneOf([passwordFieldValue, null], "Passwords don't match")
+}
 
 export const dropdownValidator = options => {
   return Yup.string()

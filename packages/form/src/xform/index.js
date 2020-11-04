@@ -11,6 +11,7 @@ import {
   maskValidator,
   requiredValidator,
   requiredRadioValidator,
+  requiredRadioTermsValidator,
   emailValidator,
   passwordConfirmValidator,
   passwordComplexityValidator,
@@ -23,6 +24,7 @@ const validatorMap = {
   maskValidator,
   requiredValidator,
   requiredRadioValidator,
+  requiredRadioTermsValidator,
   emailValidator,
   passwordConfirmValidator,
   passwordComplexityValidator,
@@ -43,6 +45,7 @@ const getFieldMachine = (machineName, field) => {
   const machineMap = {
     text: textMachine,
     radio: radioMachine,
+    check: radioMachine,
   };
 
   let context = field;
@@ -98,6 +101,20 @@ export const fieldConfig = {
       value: (_, event) => {
         return event.value;
       },
+      validatorArgs: (_, event) => {
+        return event.validatorArgs;
+      },
+      validator: (_, event) => {
+        return event.validator;
+      },
+    }),
+    assignValidatorArgs: assign({
+      validatorArgs: (_, event) => {
+        return event.validatorArgs;
+      },
+      validator: (_, event) => {
+        return event.validator;
+      },
     }),
     assignError: assign({
       error: (_, event) => {
@@ -134,11 +151,34 @@ export const fieldConfig = {
     hasValue: context => {
       return !!context.value;
     },
+    autoValidateValues: context => {
+      return !!context.value && !!context.autoValidate;
+    },
   },
   services: {
-    validateField: async context => {
-      const validator = validatorMap[`${context.config.validator}Validator`];
-      await validator.validate(context.value);
+    validateField: async (context) => {
+      const validatorArgs = context.validatorArgs
+      const validator = context.validator
+      if (context.config.validate_if) {
+        // Use the validator in the context rather than context.config
+        // These are validator manipulated/set from the component
+        if (validatorArgs) {
+          await validatorMap[`${validator}Validator`](...validatorArgs).validate(context.value);
+        } else if (validator) {
+          await validatorMap[`${validator}Validator`].validate(context.value);
+        } else {
+          // do nothing
+        }
+      } else {
+        // Use the validator in the context.config
+        if (context.config.validatorArgs) {
+          await validatorMap[`${context.config.validator}Validator`](...validatorArgs).validate(context.value);
+        } else if (context.config.validator) {
+          await validatorMap[`${context.config.validator}Validator`].validate(context.value);
+        } else {
+          // do nothing
+        }
+      }
     },
   },
 };
@@ -152,7 +192,7 @@ export const textMachine = {
         idle: {
           on: {
             change: {
-              actions: 'change',
+              actions: ['change', 'assignValidatorArgs', 'removeError'],
               target: 'touched',
             },
           },
@@ -160,7 +200,7 @@ export const textMachine = {
         touched: {
           on: {
             change: {
-              actions: ['change'],
+              actions: ['change', 'assignValidatorArgs', 'removeError'],
             },
           },
         },
@@ -171,7 +211,7 @@ export const textMachine = {
       states: {
         unknown: {
           on: {
-            '': [{ target: 'complete', cond: 'hasValue' }, { target: 'idle' }],
+            '': [{ target: 'complete', cond: 'autoValidateValues' }, { target: 'idle' }],
           },
         },
         idle: {
@@ -194,7 +234,7 @@ export const textMachine = {
         unknown: {
           on: {
             '': [
-              { target: 'validating', cond: 'hasValue' },
+              { target: 'validating', cond: 'autoValidateValues' },
               { target: 'idle' },
             ],
           },
@@ -205,6 +245,7 @@ export const textMachine = {
           },
         },
         validating: {
+          entry: ['assignValidatorArgs'],
           invoke: {
             src: 'validateField',
             onDone: 'valid',
@@ -242,7 +283,7 @@ export const radioMachine = {
         idle: {
           on: {
             change: {
-              actions: 'change',
+              actions: ['change', 'assignValidatorArgs', 'removeError'],
               target: 'touched',
             },
           },
@@ -250,7 +291,7 @@ export const radioMachine = {
         touched: {
           on: {
             change: {
-              actions: ['change'],
+              actions: ['change', 'assignValidatorArgs', 'removeError'],
             },
           },
         },
@@ -278,10 +319,19 @@ export const radioMachine = {
       states: {
         unknown: {
           on: {
+            '': [
+              { target: 'validating', cond: 'autoValidateValues' },
+              { target: 'idle' },
+            ],
+          },
+        },
+        idle: {
+          on: {
             validate: 'validating',
           },
         },
         validating: {
+          entry: ['assignValidatorArgs'],
           invoke: {
             src: 'validateField',
             onDone: 'valid',
@@ -543,12 +593,13 @@ const formMachine = {
  *
  *
  */
-export const useField = (machine, groupIsValidating) => {
+export const useField = (machine, groupIsValidating, fieldValidator = {}) => {
   const [state, send] = useService(machine);
+  const { validator, validatorArgs } = fieldValidator
 
   React.useEffect(() => {
     if (groupIsValidating) {
-      send('validate');
+      validatorArgs ? send({type: 'validate', validator, validatorArgs}) : send({type: 'validate', validator});
     }
   }, [groupIsValidating, send]);
 
@@ -584,6 +635,8 @@ export const useForm = ({ onSubmit, options, form }) => {
     Machine(formMachine, formConfig).withContext({
       onSubmit: onSubmit,
       options,
+      fieldOptions: form.fieldOptions,
+      submitText: form.submitText,
       next: {
         ...fieldGroupMachineConfig(options),
         context: { ...form, options },
