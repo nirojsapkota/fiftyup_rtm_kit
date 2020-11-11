@@ -609,6 +609,18 @@ export const useField = (machine, groupIsValidating, fieldValidator = {}) => {
   };
 };
 
+export const useInitialFieldValue = (field, value) => {
+  const [_state, send] = useService(field.machine);
+  React.useEffect(() => {
+    send({
+      type: 'change',
+      value: value
+    });
+  }, [value, send])
+
+  return {};
+}
+
 export const useFieldGroup = service => {
   const [state, send] = useService(service);
   const [groupIsValidating, setGroupIsValidating] = React.useState(false);

@@ -11,6 +11,7 @@ import {
   useForm,
   useFieldGroup,
   useField,
+  useInitialFieldValue,
 } from './xform';
 
 export {
@@ -27,4 +28,5 @@ export {
   useForm,
   useFieldGroup,
   useField,
+  useInitialFieldValue,
 };

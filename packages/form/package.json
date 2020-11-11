@@ -19,7 +19,8 @@
       "Field",
       "useForm",
       "useFieldGroup",
-      "useField"
+      "useField",
+      "useInitialFieldValue"
     ]
   },
   "main": "build/index.js",
