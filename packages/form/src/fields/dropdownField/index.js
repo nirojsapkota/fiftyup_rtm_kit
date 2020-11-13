@@ -67,7 +67,7 @@ const DropdownField = ({ onWaiting,
               }
             }
           }}
-          value={currentElement.label || inputProps.value}
+          value={currentElement.label || inputProps.options.map((option) => option.value === inputProps.value ? option.label : null).filter((e) => !!e)}
         />
         <Box data-testid="arrow-box" onClick={() => setModalOpen(!isModalOpen)}
           style={

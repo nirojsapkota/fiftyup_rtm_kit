@@ -22,7 +22,13 @@ const LogoA = styled(A)`
   padding: 5px;
 `;
 
-const ProfileStatus = ({ user, signOutPath, signInPath }) => {
+const ProfileStatus = ({
+  user,
+  signOutPath,
+  signInPath,
+  signOutText,
+  signInText
+}) => {
   return user ? (
     <Box style={{ display: 'flex', alignItems: 'center' }}>
       <Icon fill="tertiary" glyph="profile" />
@@ -36,13 +42,13 @@ const ProfileStatus = ({ user, signOutPath, signInPath }) => {
       >
         <Small color="primary">{user.email}</Small>
         <Button data-testid="sign-out" as="a" asWrapper href={signOutPath}>
-          <Header tag="h6">SIGN OUT</Header>
+          <Header tag="h6">{signOutText || 'SIGN OUT'}</Header>
         </Button>
       </Box>
     </Box>
   ) : (
     <Button data-testid="sign-in" as="a" href={signInPath}>
-      Sign Up
+      {signInText || 'Sign Up'}
     </Button>
   );
 };
@@ -165,7 +171,7 @@ const Navbar = ({ variant, ...props }) => {
           )}
         </NavList>
       </NavGroupWrapper>
-      {((props.isDesktop && props.showSideNav) || !props.isDesktop)? 
+      {((props.isDesktop && props.showSideNav) || !props.isDesktop)?
       <ToggleList p={10}>
         {props.children}
         <A onClick={() => props.onNavClick()}>
@@ -254,6 +260,8 @@ const Nav = props => {
                 user={props.user}
                 signInPath={props.signInPath}
                 signOutPath={props.signOutPath}
+                signOutText={props.signOutText}
+                signInText={props.signInText}
               />
             )
           }
