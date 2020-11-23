@@ -6,6 +6,7 @@ const maskPatterns = {
   phoneUS: ['+', '1', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
   phoneAU: ['0', /\d/, ' ', /\d/, /\d/, ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/],
   dateUS: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
+  dateAU: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
   ssn: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
 };
 
@@ -13,6 +14,7 @@ const maskPatterns = {
 // Pipes allow us to add additional constraints to a pattern
 export const pipes = {
   dateUS: createAutoCorrectedDatePipe('mm/dd/yyyy'),
+  dateAU: createAutoCorrectedDatePipe('dd/mm/yyyy'),
 };
 
 export default maskPatterns;
