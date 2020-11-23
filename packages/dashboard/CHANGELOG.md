@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.84](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@2.0.83...@rtm-ui/dashboard@2.0.84) (2020-11-23)
+
+**Note:** Version bump only for package @rtm-ui/dashboard
+
+
+
+
+
 ## [2.0.83](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@2.0.82...@rtm-ui/dashboard@2.0.83) (2020-11-13)
 
 **Note:** Version bump only for package @rtm-ui/dashboard
