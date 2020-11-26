@@ -143,7 +143,7 @@ const BaseField = props => {
           </AnimateableWrapper>
           <AnimateableWrapper variants={variantChildLast}>
             {/* Ensure the page doesn't jump if a message is inserted */}
-            <Wrapper style={{ minHeight: '12px' }} className={props.config && props.config.validator === 'requiredRadioTerms' ? 'radioTermWrapper' : ''}>
+            <Wrapper style={{ minHeight: '15px' }} className={props.config && props.config.validator === 'requiredRadioTerms' ? 'radioTermWrapper' : ''}>
               <SmallText>{hint}</SmallText>
               <SmallText
                 data-testid="fieldError"

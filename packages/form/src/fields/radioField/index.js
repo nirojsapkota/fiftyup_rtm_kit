@@ -7,18 +7,25 @@ const RadioField = ({
   config: _config,
   fieldUtils: { setFieldValue },
   ...props
-}) => (
-  <BaseRadioCheckboxField
-    {...props}
-    onClick={(name, value) => setFieldValue(name, value)}
-    icon={({ itemValue, fieldValue }) => (
-      <Icon
-        size={22}
-        glyph={fieldValue === itemValue ? 'radio-active' : 'radio'}
-      />
-    )}
-  />
-);
+}) => {
+  const fillColorName = (itemValue, fieldValue) => {
+    return fieldValue === itemValue ? 'primary' : 'slightlyDarker';
+  };
+
+  return (
+    <BaseRadioCheckboxField
+      {...props}
+      onClick={(name, value) => setFieldValue(name, value)}
+      icon={({ itemValue, fieldValue }) => (
+        <Icon
+          fill={fillColorName(itemValue, fieldValue)}
+          size={22}
+          glyph={fieldValue === itemValue ? 'radio-active' : 'radio'}
+        />
+      )}
+    />
+  )
+};
 
 RadioField.propTypes = {
   autoComplete: PropTypes.string,

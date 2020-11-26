@@ -48,7 +48,7 @@ const completeForm = ({ onSuccess }) => {
     campaign_id: plan.campaign_id,
     first_name: 'Tony',
     last_name: 'Joe',
-    phone: '07 88 266 553',
+    phone: '0788266553',
   };
 
   fillAndFireForm({

@@ -9,8 +9,13 @@ const StyledButton = styled(Button)`
   ${focusStyle};
   display: flex;
   align-items: flex-start;
+  margin-right: 20px;
 `;
 
+const StyledLabel = styled(Label)`
+  line-height: 1.75;
+  text-align: left;
+`
 
 const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
   const [checkboxValue, setCheckboxValue] = React.useState(false);
@@ -39,15 +44,15 @@ const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
             }}
           >
             {rest.icon({ itemValue: option.value, fieldValue: rest.value })}
-            <Label
+            <StyledLabel
               id={`${name}_${option.value}-label`}
               htmlFor={`${name}_${option.value}`}
               pl={10}
               pr={20}
-              pt="4px"
+              ml={'5px'}
             >
               {option.label}
-            </Label>
+            </StyledLabel>
           </StyledButton>
         ))}
       </ButtonGroup>

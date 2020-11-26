@@ -19,6 +19,9 @@ const CheckboxField = ({
   fieldUtils: { setFieldValue },
   ...props
 }) => {
+  const fillColorName = (itemValue, fieldValue) => {
+    return fieldValue.includes(itemValue)  ? 'primary' : 'slightlyDarker';
+  };
   const isSingle = props.options.length === 1;
   return (
     <BaseRadioCheckboxField
@@ -37,9 +40,14 @@ const CheckboxField = ({
         return (
           <IconContainer>
             <AbsoluteIcon>
-              <Icon size={22} glyph="box" />
+              <Icon
+                fill={fillColorName(itemValue, fieldValue)}
+                size={22}
+                glyph="box"
+              />
             </AbsoluteIcon>
             <Icon
+              fill={fillColorName(itemValue, fieldValue)}
               size={22}
               glyph={fieldValue.includes(itemValue) ? 'check' : 'void'}
             />
