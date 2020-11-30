@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.48](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/multi-list@1.0.47...@rtm-ui/multi-list@1.0.48) (2020-11-30)
+
+**Note:** Version bump only for package @rtm-ui/multi-list
+
+
+
+
+
 ## [1.0.47](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/multi-list@1.0.46...@rtm-ui/multi-list@1.0.47) (2020-08-10)
 
 **Note:** Version bump only for package @rtm-ui/multi-list
