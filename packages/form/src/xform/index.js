@@ -19,6 +19,10 @@ import {
   postcodeValidator,
   countyValidator,
   dropdownValidator,
+  driversLicenceValidator,
+  medicareValidator,
+  minimumCharsValidator,
+  passportValidator,
 } from '../fields/util/validators';
 const validatorMap = {
   maskValidator,
@@ -32,6 +36,10 @@ const validatorMap = {
   postcodeValidator,
   countyValidator,
   dropdownValidator,
+  driversLicenceValidator,
+  medicareValidator,
+  minimumCharsValidator,
+  passportValidator,
 };
 
 /**
@@ -476,6 +484,7 @@ const fieldGroupMachineConfig = options => ({
       },
     },
     notReady: {
+      id: 'notReady',
       on: {
         submit: 'validating',
         fieldComplete: options.autoComplete
@@ -487,6 +496,7 @@ const fieldGroupMachineConfig = options => ({
       },
     },
     validating: {
+      id: 'validating',
       on: {
         fieldInvalid: {
           target: 'notReady',
@@ -519,12 +529,14 @@ const fieldGroupMachineConfig = options => ({
           on: {
             parentRequestSubmitting: { actions: 'sendRequestToSubmit' },
             bubble: { actions: 'notifyParentSubmitting' },
+            submit: '#validating'
           },
         },
         submitter: {
           entry: 'notifyParentSubmitting',
           on: {
             parentRequestSubmitting: { actions: 'notifyParentSubmitting' },
+            submit: '#validating'
           },
         },
       },

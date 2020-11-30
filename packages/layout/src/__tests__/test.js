@@ -151,6 +151,23 @@ describe('scrollToElement', () => {
       expect(spy).toHaveBeenCalled();
     })
   })
+
+  it('scrolls to a given element attribute regardless of event', async () => {
+    window.scrollTo = jest.fn();
+    const spy = jest.spyOn(window, 'scrollTo');
+    const { getByText } = await render(
+      <>
+        <a onClick={(e) => scrollToElement(null, 'findMe')}>Test</a>
+        <div scroll-target="findMe" />
+      </>
+    );
+    const navItem = getByText("Test");
+    fireEvent.click(navItem);
+
+    await wait(() => {
+      expect(spy).toHaveBeenCalled();
+    })
+  })
 })
 
 describe('useElementVisible', () => {

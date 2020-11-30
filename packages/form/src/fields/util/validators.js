@@ -18,6 +18,33 @@ export const maskValidator = (regex, fieldName) => {
     });
 };
 
+export const minimumCharsValidator = (min) => {
+  return Yup.string()
+    .required('Required')
+    .min(min, `Must be at least ${min} characters`);
+}
+
+export const driversLicenceValidator = Yup.string()
+  .required('Required')
+  .matches(
+    /^[a-zA-Z0-9]{4,9}$/,
+    "4 to 9 digits and letters, no spaces"
+  );
+
+export const medicareValidator = Yup.string()
+  .required('Required')
+  .matches(
+    /^[0-9]{10}$/,
+    "10 digits, no spaces"
+  );
+
+export const passportValidator = Yup.string()
+  .required('Required')
+  .matches(
+    /^[a-z]{1,2}\d{7}$/i,
+    "1 to 2 letters, 7 digits, no spaces"
+  )
+
 // 4 Digit AU Postcode Validation
 export const postcodeValidator = Yup.string()
   .required('Required')

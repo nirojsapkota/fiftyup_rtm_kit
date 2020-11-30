@@ -13,6 +13,10 @@ import {
   dropdownValidator,
   monthValidator,
   monthYearValidator,
+  driversLicenceValidator,
+  medicareValidator,
+  minimumCharsValidator,
+  passportValidator,
 } from '../fields/util/validators';
 
 const validatorMap = {
@@ -29,6 +33,10 @@ const validatorMap = {
   dropdownValidator,
   monthValidator,
   monthYearValidator,
+  driversLicenceValidator,
+  medicareValidator,
+  minimumCharsValidator,
+  passportValidator,
 };
 
 export const getSchema = fields => {
