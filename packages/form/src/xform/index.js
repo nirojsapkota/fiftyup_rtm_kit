@@ -297,6 +297,7 @@ export const radioMachine = {
           },
         },
         touched: {
+          entry: 'notifyParentTouched',
           on: {
             change: {
               actions: ['change', 'assignValidatorArgs', 'removeError'],
@@ -462,7 +463,7 @@ const fieldGroupConfig = {
           return context.next;
         }
       } catch (e) {
-        console.error(e);
+        console.error('xform error: ',e);
       }
 
       // We're treating a rejected promise as a way of saying we have no 'next'
@@ -529,6 +530,7 @@ const fieldGroupMachineConfig = options => ({
           on: {
             parentRequestSubmitting: { actions: 'sendRequestToSubmit' },
             bubble: { actions: 'notifyParentSubmitting' },
+            fieldTouched: '#validating',
             submit: '#validating'
           },
         },
@@ -536,7 +538,6 @@ const fieldGroupMachineConfig = options => ({
           entry: 'notifyParentSubmitting',
           on: {
             parentRequestSubmitting: { actions: 'notifyParentSubmitting' },
-            submit: '#validating'
           },
         },
       },

@@ -25,6 +25,7 @@ const BaseRadioCheckboxField = ({ options, name, ...rest }) => {
       <ButtonGroup py={2}>
         {options.map(option => (
           <StyledButton
+            {...rest}
             key={option.value}
             name={name}
             value={option.value}
