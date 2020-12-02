@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.114](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.113...@rtm-ui/form@5.0.114) (2020-12-02)
+
+
+### Bug Fixes
+
+* **Form:** Fixup radiofield props and xform submit action ([#328](https://github.com/OBSAU/rtm-kit/issues/328)) ([2b5396d](https://github.com/OBSAU/rtm-kit/commit/2b5396d7cb21b13ffda8ec17023bfa663e764d35))
+
+
+
+
+
 ## [5.0.113](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.112...@rtm-ui/form@5.0.113) (2020-11-30)
 
 **Note:** Version bump only for package @rtm-ui/form
