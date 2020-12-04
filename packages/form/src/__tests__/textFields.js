@@ -35,6 +35,72 @@ describe(`<TextField />`, () => {
       });
     });
   });
+  describe(`with function as validator`, () => {
+    const handleSubmit = jest.fn();
+    const validatorFn = jest.fn();
+    it(`prevents submission and shows an error`, async () => {
+      const { queryAllByTestId, getByTestId, getByLabelText } = render(
+        <Form
+          id="test"
+          onSubmit={handleSubmit}
+          fields={[
+            {
+              label: 'Name',
+              name: 'name',
+              type: 'text',
+              config: {
+                validator: 'valueMatch',
+                validatorArgs: [validatorFn, "error message"],
+              },
+            },
+          ]}
+        />
+      );
+      const itemInput = getByLabelText('Name');
+      fireEvent.change(itemInput, {
+        target: { value: 'test' },
+      });
+      const submit = getByTestId(`submit-test`);
+      fireEvent.click(submit);
+      await wait(() => {
+        expect(validatorFn).toHaveBeenCalled();
+      });
+    })
+  })
+  describe(`with regex validation`, () => {
+    const handleSubmit = jest.fn();
+    it(`prevents submission and shows an error`, async () => {
+      const { queryAllByTestId, getByTestId, getByLabelText } = render(
+        <Form
+          id="test"
+          onSubmit={handleSubmit}
+          fields={[
+            {
+              label: 'Name',
+              name: 'name',
+              type: 'text',
+              config: {
+                validator: 'valueMatch',
+                validatorArgs: ["^[a-z]{1,2}[0-9]{7}$", "1 to 2 letters, 7 digits, no spaces"],
+              },
+            },
+          ]}
+        />
+      );
+      const itemInput = getByLabelText('Name');
+      const errorContainers = queryAllByTestId('fieldError');
+      fireEvent.change(itemInput, {
+        target: { value: 'test' },
+      });
+      const submit = getByTestId(`submit-test`);
+      fireEvent.click(submit);
+      await wait(() => {
+        expect(errorContainers[0]).toHaveTextContent('1 to 2 letters, 7 digits, no spaces');
+        expect(handleSubmit).not.toHaveBeenCalled();
+      });
+    })
+  })
+
   describe(`without matching passwords`, () => {
     describe(`the password confirm validator`, () => {
       const handleSubmit = jest.fn();
