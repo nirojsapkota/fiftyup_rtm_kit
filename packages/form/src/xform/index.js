@@ -19,10 +19,8 @@ import {
   postcodeValidator,
   countyValidator,
   dropdownValidator,
-  driversLicenceValidator,
-  medicareValidator,
   minimumCharsValidator,
-  passportValidator,
+  valueMatchValidator,
 } from '../fields/util/validators';
 const validatorMap = {
   maskValidator,
@@ -36,10 +34,8 @@ const validatorMap = {
   postcodeValidator,
   countyValidator,
   dropdownValidator,
-  driversLicenceValidator,
-  medicareValidator,
   minimumCharsValidator,
-  passportValidator,
+  valueMatchValidator,
 };
 
 /**
