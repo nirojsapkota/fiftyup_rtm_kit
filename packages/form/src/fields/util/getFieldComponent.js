@@ -1,4 +1,5 @@
 import AutocompletField from '../autocompleteField';
+import GoogleAddressAutocompleteField from '../googleAddressAutocompleteField';
 import CheckboxField from '../checkboxField';
 import DropdownField from '../dropdownField';
 import HiddenField from '../hiddenField';
@@ -30,9 +31,11 @@ export const getFieldComponent = (
             ? StripeField
             : component === 'autocomplete'
               ? AutocompletField
-              : component === 'dropdownfield'
-                ? DropdownField
-                : validator === 'mask'
-                  ? NumberField
-                  : TextField;
+              : component === 'addressautocomplete'
+                ? GoogleAddressAutocompleteField
+                : component === 'dropdownfield'
+                  ? DropdownField
+                  : validator === 'mask'
+                    ? NumberField
+                    : TextField;
 };

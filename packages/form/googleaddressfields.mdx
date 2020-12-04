@@ -1,0 +1,64 @@
+---
+name: GoogleFields
+route: /form/googlefields
+menu: Form
+---
+
+import { Playground, PropsTable } from 'docz';
+import { stepInputs, formInputs, presignupInputs } from './sampleInputs';
+import { Header, Small } from '@rtm-ui/typography';
+import { Button } from '@rtm-ui/button';
+import GoogleAddressAutocompleteField from './src/fields/googleAddressAutocompleteField';
+import { Form, StepForm, FormError, Accordion } from './src';
+import { setupGoogleMock } from './src/__mocks__/googlePayload';
+
+# Fields
+
+## Autocomplete
+
+#### Address autocomplete using google api
+
+This is the implementation of react-places-autocomplete node package.
+For demo purpose, the response from the google is mocked, as GoogleApi requires api key which is charged per usage.
+On actual app, we'll need to import the maps script
+`searchOptions` -> pass the option to GoogleMaps API https://developers.google.com/maps/documentation/javascript/places-autocomplete
+
+`componentRestrictions` to limit the country to query to reduce the Cost
+`minInputLength` to prohibit hitting google's api if the min input length is not provided
+
+<Playground>
+  {setupGoogleMock()}
+  <Form
+    id="my-form"
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'My address:',
+        name: 'autocomplete_address',
+        type: 'text',
+        hint: 'Eg. 2000, BARANGAROO',
+        autoComplete: 'off',
+        config: {
+          minInputLength: 5,
+          onEmptyResult: res => {
+            console.log(res);
+          },
+          searchOptions: {
+            componentRestrictions: { country: 'au' },
+            types: ['geocode'],
+          },
+          onDidSelect: address_components => {
+            console.log(address_components);
+          },
+          component: 'addressautocomplete',
+        },
+      },
+    ]}
+  />
+</Playground>
+
+## PropTypes
+
+<PropsTable of={GoogleAddressAutocompleteField} />
