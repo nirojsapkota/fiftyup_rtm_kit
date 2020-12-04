@@ -24,26 +24,16 @@ export const minimumCharsValidator = (min) => {
     .min(min, `Must be at least ${min} characters`);
 }
 
-export const driversLicenceValidator = Yup.string()
-  .required('Required')
-  .matches(
-    /^[a-zA-Z0-9]{4,9}$/,
-    "4 to 9 digits and letters, no spaces"
-  );
-
-export const medicareValidator = Yup.string()
-  .required('Required')
-  .matches(
-    /^[0-9]{10}$/,
-    "10 digits, no spaces"
-  );
-
-export const passportValidator = Yup.string()
-  .required('Required')
-  .matches(
-    /^[a-z]{1,2}\d{7}$/i,
-    "1 to 2 letters, 7 digits, no spaces"
-  )
+export const valueMatchValidator = (regexStr, message) => {
+  if (typeof(regexStr) === 'function') {
+    return regexStr();
+  } else {
+    var re = new RegExp(regexStr);
+    return Yup.string()
+      .required('Required')
+      .matches(re, message)
+  }
+}
 
 // 4 Digit AU Postcode Validation
 export const postcodeValidator = Yup.string()
