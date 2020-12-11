@@ -4,6 +4,7 @@ import CheckboxField from '../checkboxField';
 import DropdownField from '../dropdownField';
 import HiddenField from '../hiddenField';
 import MonthField from '../monthField';
+import MonthButtonGroupField from '../monthButtonGroupField';
 import NumberField from '../numberField';
 import PanelCheckField from '../panelCheckField';
 import PanelRadioField from '../panelRadioField';
@@ -25,6 +26,8 @@ export const getFieldComponent = (
         : CheckboxField
       : component === 'month'
         ? MonthField
+      : component === 'monthButtonGroup'
+        ? MonthButtonGroupField
         : type === 'hidden'
           ? HiddenField
           : component === 'stripePayment'

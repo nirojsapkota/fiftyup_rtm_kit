@@ -578,7 +578,7 @@ items are clicked.
   />
 </Playground>
 
-## SPA UI Month field.
+## SPA UI Month field(Dropdown).
 
 <Playground>
   <Form
@@ -598,6 +598,42 @@ items are clicked.
           component: 'month',
           validator: 'month',
         }
+      },
+    ]}
+
+/>
+
+</Playground>
+
+## SPA UI Month Select field.
+
+<Playground>
+  <Form
+     id="my-form"
+
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'My car insurance renewal month is',
+        name: 'monthButtonGroup',
+        type: 'text',
+        defaultValue: 'February',
+        config: {
+          component: 'monthButtonGroup',
+          validator: 'monthButtonGroup'
+        },
+        useShortMonthName: false,
+        additionalChoices: [
+          {
+            label: 'I dont know',
+            value: 'dont-know'
+          },
+          {
+            label: 'I dont currently have insurance',
+            value: 'dont-have'
+        }]
       },
     ]}
 
@@ -645,18 +681,18 @@ items are clicked.
     fields={[
       {
         label: 'Please select a Country',
-        config: { component: 'dropdownfield', scrollable:true },
+        config: { component: 'dropdownfield', scrollable: true },
         type: 'text',
         hint: 'eg. USA',
         name: 'country',
         value: '',
         options: [
-          { label: 'Canada', value: 'CAN', },
-          { label: 'Australia', value: 'AUS', },
-          { label: 'New Zealand', value: 'NZ', },
-          { label: 'South Africa', value: 'SAF', }
+          { label: 'Canada', value: 'CAN' },
+          { label: 'Australia', value: 'AUS' },
+          { label: 'New Zealand', value: 'NZ' },
+          { label: 'South Africa', value: 'SAF' },
         ],
-      }
+      },
     ]}
   />
 </Playground>

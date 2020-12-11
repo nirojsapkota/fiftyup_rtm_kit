@@ -63,6 +63,12 @@ export const monthValidator = Yup.string()
     'Please select month from the dropdown'
   );
 
+export const monthButtonGroupValidator = Yup.string()
+  .required('Required')
+  .matches(/[A-Za-z]+/,
+    'Please select a month or other options'
+);
+
 export const monthYearValidator = Yup.string()
   .required('Required')
   .matches(
