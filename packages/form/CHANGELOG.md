@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.116...@rtm-ui/form@5.1.0) (2020-12-11)
+
+
+### Features
+
+* **MonthButtonGroupField:** created component for offer spa ([#330](https://github.com/OBSAU/rtm-kit/issues/330)) ([8dcdb10](https://github.com/OBSAU/rtm-kit/commit/8dcdb10230353c726d085c29050ce75cada6bb57))
+
+
+
+
+
 ## [5.0.116](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.0.115...@rtm-ui/form@5.0.116) (2020-12-04)
 
 **Note:** Version bump only for package @rtm-ui/form
