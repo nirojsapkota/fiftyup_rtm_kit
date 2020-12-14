@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@rtm-ui/layout';
-import { getColor } from '@rtm-ui/theme';
+import { getColor, tintColor } from '@rtm-ui/theme';
 import styled from 'styled-components';
 
 const monthArray= ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -15,40 +15,54 @@ const MonthBox = styled(Box)`
   margin: 15px auto;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(6, 23%);
+  grid-template-columns: repeat(4, 23%);
   grid-template-rows: repeat(3, 33%);
-  grid-auto-flow: column;
+  grid-auto-flow: row;
 `;
 
 const MonthButton = styled(Box)`
   text-align: center;
   font-weight: bold;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${props => getColor('primary', props.theme)};
-  color: ${props => getColor('light', props.theme)};
+  color: #fff;
+  border: none;
+  border-radius: ${props => props.theme.button.borderRadius};
+  border-bottom-width: ${props => props.theme.button.bottomBorderWidth};
+  border-bottom-style: solid;
+  border-bottom-color: ${props => tintColor(getColor('primary', props.theme), -10)};
   :hover {
+    cursor: pointer;
     color: ${props => getColor('accent', props.theme)};
+    border-bottom-color: ${props => getColor('accent', props.theme)};
   }
   &.selected {
     background-color: ${props => getColor('accent', props.theme)};
     color: ${props => getColor('light', props.theme)};
+    border-bottom-color: ${props => tintColor(getColor('accent', props.theme), -10)};
   }
-  border-radius: 2px;
   font-size: 70%;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   padding: 10px 5px;
   @media (min-width: ${props => props.theme.grid.sm}em) {
     font-size: 95%;
     padding: 10px;
   }
+
 `;
 
 const DontKnow = styled(Box)`
   display: flex;
   justify-content: space-between;
   > a {
-    padding: 15px;
-    font-size: 70%;
+    padding: 20px;
+    font-size: 85%;
+    @media (max-width: ${props => props.theme.grid.sm}em) {
+      font-size: 75%;
+      padding: 20px;
+    }
     text-decoration: underline;
     color: ${props => getColor('primary', props.theme)};
     :hover {

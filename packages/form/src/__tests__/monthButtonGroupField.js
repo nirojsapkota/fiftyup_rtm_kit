@@ -134,7 +134,8 @@ describe(`Month Picker `, () => {
   });
 
   it(`Are defaultValues being submitted automatically`, async () => {
-    const handleSubmit = jest.fn(res => console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',res));
+
+    const handleSubmit = jest.fn();
     const {  getByValue, getByText, container, getByTestId, toHaveBeenCalledWith} = await render(
       <Form
         id="test"
