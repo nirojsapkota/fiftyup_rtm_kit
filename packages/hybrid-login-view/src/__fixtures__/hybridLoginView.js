@@ -13,21 +13,21 @@ const hybridLoginView = {
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
   asSeenOnImage: 'https://placehold.it/1080x100',
-  mainContent: "I am main content",
+  mainContent: 'I am main content',
   entity: {
     brand: 'obs',
     navigation_items: {
       user: '',
       tagline: "I'm a tagline",
-      signOutPath: "https://example.com",
-      signInPath: "https://example.com",
-      logo: "obs",
+      signOutPath: 'https://example.com',
+      signInPath: 'https://example.com',
+      logo: 'obs',
       items: [],
-      subHeader: 'Subheader'
+      subHeader: 'Subheader',
     },
     footer_items: {},
     header_items: {
-      logo: "https://somelogo.com"
+      logo: 'https://somelogo.com',
     },
   },
   stateField: {
@@ -37,7 +37,7 @@ const hybridLoginView = {
   },
 
   workflowOffer: {
-    header: "##### Free Text Heading",
+    header: '##### Free Text Heading',
     items: [
       {
         type: 'image',
@@ -46,14 +46,16 @@ const hybridLoginView = {
       },
       {
         type: 'video',
-        src: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F9SaverNews%2Fvideos%2F843213159512326%2F&show_text=0',
+        src:
+          'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F9SaverNews%2Fvideos%2F843213159512326%2F&show_text=0',
         content: 'One Big Switch Vid',
       },
       {
         type: 'markdown',
-        content: 'Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.',
-      }
-    ]
+        content:
+          'Lorem ipsum dolor sit amet, consectetur /n/n adipiscing elit.',
+      },
+    ],
   },
 
   accordion: [
@@ -76,7 +78,7 @@ const hybridLoginView = {
   ],
 
   workflow: {
-    header: "### How it Works",
+    header: '### How it Works',
     items: [
       {
         type: 'image',
@@ -90,37 +92,38 @@ const hybridLoginView = {
       },
       {
         type: 'markdown',
-        content: '**Lorem ipsum**, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.',
-      }
-    ]
+        content:
+          "**Lorem ipsum**, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.",
+      },
+    ],
   },
 
   navLinks: [
     {
       id: 'mainHeading',
-      label: "Heading",
+      label: 'Heading',
       scrollTo: 'mainHeading',
       navbar: true,
     },
     {
       id: 'mainContent',
-      label: "Content",
+      label: 'Content',
       scrollTo: 'mainContent',
       navbar: true,
     },
     {
       id: 'offerContent',
-      label: "See Offer",
+      label: 'See Offer',
       scrollTo: 'offerContent',
       navbar: true,
     },
     {
       id: 'mediaContent',
-      label: "How it works",
+      label: 'How it works',
       scrollTo: 'mediaContent',
       navbar: true,
-    }
-  ]
+    },
+  ],
 };
 
 export default hybridLoginView;
