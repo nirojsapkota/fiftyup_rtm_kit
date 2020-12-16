@@ -35,12 +35,12 @@ const MonthButton = styled(Box)`
   border-bottom-color: ${props => tintColor(getColor('primary', props.theme), -10)};
   :hover {
     cursor: pointer;
-    color: ${props => getColor('accent', props.theme)};
+    color: #fff;
     border-bottom-color: ${props => getColor('accent', props.theme)};
   }
   &.selected {
     background-color: ${props => getColor('accent', props.theme)};
-    color: ${props => getColor('light', props.theme)};
+    color: #fff;
     border-bottom-color: ${props => tintColor(getColor('accent', props.theme), -10)};
   }
   font-size: 70%;

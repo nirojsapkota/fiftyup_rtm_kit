@@ -29,7 +29,6 @@ describe(`Month Picker `, () => {
                 "label": 'I dont currently have insurance',
                 "value": 'dont-have'
             }]
-
           }
         ]}
       />
