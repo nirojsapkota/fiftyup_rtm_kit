@@ -27,10 +27,12 @@ export function useWindowSize() {
 }
 
 export function scrollToElement(e, ref) {
-  if (e) { e.preventDefault() }
-  const anchor = document.querySelector(`[scroll-target='${ref}']`)
-  const offset = window.scrollY + anchor.getBoundingClientRect().top // Y
-  window.scrollTo({left: 0, top: offset - 100, behavior: 'smooth'});
+  if (e) {
+    e.preventDefault();
+  }
+  const anchor = document.querySelector(`[scroll-target='${ref}']`);
+  const offset = window.scrollY + anchor.getBoundingClientRect().top; // Y
+  window.scrollTo({ left: 0, top: offset - 100, behavior: 'smooth' });
 }
 
 export function useElementVisible(elem) {
@@ -57,14 +59,12 @@ export function useElementVisible(elem) {
   return visible;
 }
 
-
 /**
  * Check if the element is inside the visible viewport
  * return true/false
  * element passed is a dom element and not an object
  */
 function elementIsVisible(element) {
-  console.log('i am here!!')
   const elem = document.querySelector(element);
   if (!elem) {
     return 'invalid element';
@@ -76,14 +76,15 @@ function elementIsVisible(element) {
   const viewport = {
     top: scroll,
     bottom: scroll + window.innerHeight,
-  }
+  };
 
   const bounds = {
     top: boundsTop,
     bottom: boundsTop + elem.clientHeight,
-  }
+  };
 
-  return (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom)
-    || (bounds.top <= viewport.bottom && bounds.top >= viewport.top);
-
+  return (
+    (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom) ||
+    (bounds.top <= viewport.bottom && bounds.top >= viewport.top)
+  );
 }

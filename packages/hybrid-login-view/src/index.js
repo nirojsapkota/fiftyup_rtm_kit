@@ -1,6 +1,6 @@
 import { Accordion } from '@rtm-ui/accordion';
 import { Img, ResponsiveImage } from '@rtm-ui/img';
-import { Box, Block, scrollToElement } from '@rtm-ui/layout';
+import { Box, Block, scrollToElement, useElementVisible } from '@rtm-ui/layout';
 import { LoginPanel } from '@rtm-ui/login-panel';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
 import { track } from '@rtm-ui/tracker';
@@ -21,7 +21,13 @@ const BodyWrapper = styled(Box)`
 const ContainerWrapper = styled(Box)`
   background: none;
   padding-top: 1rem;
-  background: linear-gradient(to bottom, rgba(240,240,240,1) 0%, rgba(250,250,250,1) 10%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(240, 240, 240, 1) 0%,
+    rgba(250, 250, 250, 1) 10%,
+    rgba(255, 255, 255, 1) 40%,
+    rgba(255, 255, 255, 1) 100%
+  );
   border-top: 1px solid #e0e0e0;
   padding-bottom: 4px;
 `;
@@ -29,7 +35,7 @@ const ContainerWrapper = styled(Box)`
 const ContentWrapper = styled(Box)`
   max-width: 1080px;
   margin: auto;
-`
+`;
 
 const Column = styled(Box)`
   background: inherit;
@@ -42,7 +48,7 @@ const Column = styled(Box)`
 
 const ContentSection = styled(Box)`
   position: relative;
-`
+`;
 
 const ContentBox = styled(Box)`
   margin: 0 auto;
@@ -74,7 +80,7 @@ const LoginPanelContentBox = styled(ContentBox)`
   }
   top: 0%
   align-self: flex-start;
-`
+`;
 
 const ImageWrapper = styled(Box)`
   max-width: 1080px;
@@ -87,19 +93,19 @@ const VideoWrapper = styled(ImageWrapper)`
 const defaultProps = {
   width: [1, 1, 3 / 5],
   px: [10, 10],
-  maxWidth: ["100%", "100%", "648px"]
-}
+  maxWidth: ['100%', '100%', '648px'],
+};
 
 const expandedProps = {
   ...defaultProps,
-  maxWidth: "100%"
-}
+  maxWidth: '100%',
+};
 
 const LoginDefaultProps = {
   width: [1, 1, 2 / 5, 2 / 5],
   px: [10, 10, 15, 10],
-  maxWidth: ["100%", "100%", "388px", "460px"]
-}
+  maxWidth: ['100%', '100%', '388px', '460px'],
+};
 
 const TitleMarkdown = styled(Markdown)`
   margin-top: 0.7rem;
@@ -113,13 +119,11 @@ const ContentMarkdown = styled(Markdown)`
 const WorkFlowContainer = styled(Box)`
   margin-top: 0.7rem;
   margin-bottom: 2rem;
-`
+`;
 
 const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
   const referenceObject = React.useContext(HybridLoginReferenceContext);
-  return (
-    <Markdown {...rest} referenceObject={referenceObject} raw={content} />
-  );
+  return <Markdown {...rest} referenceObject={referenceObject} raw={content} />;
 };
 
 const StyledButton = styled(Button)`
@@ -128,90 +132,110 @@ const StyledButton = styled(Button)`
 
 const FloatingCta = () => {
   return (
-    <StyledButton data-testid="floating-signup-btn" primary onClick={(e) => {
-      scrollToElement(e, 'login-panel');
-    }}
+    <StyledButton
+      data-testid="floating-signup-btn"
+      primary
+      onClick={e => {
+        scrollToElement(e, 'login-panel');
+      }}
     >
-      See The Offers</StyledButton >
-  )
-}
-
+      See The Offers
+    </StyledButton>
+  );
+};
 
 const FloatingCtaWrapper = styled(Box)`
-position: fixed;
-z-index: 999;
-text-align: center;
-left: 0;
-bottom: 0;
-width: 100 %;
-background: ${ props => getColor('white', props.theme)};
+  position: fixed;
+  z-index: 999;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100 %;
+  background: ${props => getColor('white', props.theme)};
 `;
 
 const MainContent = ({ mainHeading, videoSrc, mainContent }) => {
   return (
     <>
       <div scroll-target="mainHeading">
-        {mainHeading &&
+        {mainHeading && (
           <ContainerWrapper className="content-wrapper">
             <ContentWrapper>
               <Box className="hero" {...defaultProps}>
-                {
-                  videoSrc &&
+                {videoSrc && (
                   <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
                     <VideoDialog
-                      containerStyle={{position: 'relative', paddingTop: '56.25%'}}
+                      containerStyle={{
+                        position: 'relative',
+                        paddingTop: '56.25%',
+                      }}
                       iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
                       videoSrc={videoSrc}
                       description={mainHeading || ''}
                     />
                   </VideoWrapper>
-                }
-                {mainContent &&
+                )}
+                {mainContent && (
                   <ContentBox px={[3, 3, 4]}>
                     <Markdown raw={mainContent} />
-                  </ContentBox>}
+                  </ContentBox>
+                )}
               </Box>
             </ContentWrapper>
-          </ContainerWrapper>}
+          </ContainerWrapper>
+        )}
       </div>
     </>
-  )
-}
+  );
+};
 
 const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
   return (
     <div scroll-target="mainHeading">
-      {(mainHeading || asSeenOnImage) && <ContainerWrapper className="content-wrapper main-section">
-        <Box className="as-seen-on" {...expandedProps} width={1}>
-          {mainHeading && <Header py={2} px={[3, 3, 4]} align="center" tag="h1">{mainHeading}</Header>}
-          {asSeenOnImage && <ImageWrapper m="auto">
-            <Img src={asSeenOnImage} alt="As Seen On" />
-          </ImageWrapper>}
-        </Box>
-      </ContainerWrapper>}
+      {(mainHeading || asSeenOnImage) && (
+        <ContainerWrapper className="content-wrapper main-section">
+          <Box className="as-seen-on" {...expandedProps} width={1}>
+            {mainHeading && (
+              <Header py={2} px={[3, 3, 4]} align="center" tag="h1">
+                {mainHeading}
+              </Header>
+            )}
+            {asSeenOnImage && (
+              <ImageWrapper m="auto">
+                <Img src={asSeenOnImage} alt="As Seen On" />
+              </ImageWrapper>
+            )}
+          </Box>
+        </ContainerWrapper>
+      )}
     </div>
-  )
-}
+  );
+};
 
 const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlMobileUrl }) => {
   return (
     <>
-      {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) &&
+      {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
         <div scroll-target="mainContent">
-          <ContainerWrapper className="content-wrapper" style={{ paddingTop: "4px" }}>
+          <ContainerWrapper
+            className="content-wrapper"
+            style={{ paddingTop: '4px' }}
+          >
             <Box className="hero" {...expandedProps} width={1}>
               <Box m="auto" width={1}>
                 <ResponsiveImage
                   desktopImgView={heroImageUrlDesktopUrl}
                   tabletImgView={heroImageUrlMobileUrl}
-                  alt="Hero image" />
+                  alt="Hero image"
+                />
               </Box>
             </Box>
           </ContainerWrapper>
-        </div>}
+        </div>
+      )}
     </>
-  )
-}
+  );
+};
 
 const HybridLoginView = ({
   rightSideMarkDownContent,
@@ -220,6 +244,10 @@ const HybridLoginView = ({
   workflowOffer,
   ...props
 }) => {
+  const defaultButtonVisible = useElementVisible(
+    '[scroll-target="login-panel"]'
+  );
+
   return (
     <React.Fragment>
       <BodyWrapper className="body-wrapper" pt={[50, 50, 50, 72]}>
@@ -231,29 +259,30 @@ const HybridLoginView = ({
 
           <LoginPanelWrapper {...LoginDefaultProps}>
             <LoginPanelContentBox>
-              <div scroll-target="login-panel" >
-                <LoginPanel
-                  {...props}
-                />
+              <div scroll-target="login-panel">
+                <LoginPanel {...props} />
               </div>
             </LoginPanelContentBox>
           </LoginPanelWrapper>
 
           <div scroll-target="offerContent">
-            {(workflowOffer.header || workflowOffer.items.length > 0 || accordion.length > 0) &&
+            {(workflowOffer.header ||
+              workflowOffer.items.length > 0 ||
+              accordion.length > 0) && (
               <ContainerWrapper className="content-wrapper">
                 <ContentWrapper>
                   <Box {...defaultProps}>
                     <Variant variant="a">
-                      <WorkFlowContainer >
+                      <WorkFlowContainer>
                         <WorkFlow
                           multiContent
                           header={workflowOffer.header}
-                          items={workflowOffer.items} />
+                          items={workflowOffer.items}
+                        />
                       </WorkFlowContainer>
                     </Variant>
 
-                    {(accordion.length > 0) &&
+                    {accordion.length > 0 && (
                       <Column variant="b" pb="20px">
                         <Accordion
                           items={accordion}
@@ -264,41 +293,56 @@ const HybridLoginView = ({
                               </Box>
                             </Variant>
                           )}
-                          renderHeader={item => <Header tag="h5">{item.name}</Header>}
+                          renderHeader={item => (
+                            <Header tag="h5">{item.name}</Header>
+                          )}
                         />
-                      </Column>}
+                      </Column>
+                    )}
                   </Box>
                 </ContentWrapper>
-              </ContainerWrapper>}
+              </ContainerWrapper>
+            )}
           </div>
 
-          {(workflow.header || workflow.items.length > 0) &&
-            <ContainerWrapper data-testid="mediaContent" className="content-wrapper">
+          {(workflow.header || workflow.items.length > 0) && (
+            <ContainerWrapper
+              data-testid="mediaContent"
+              className="content-wrapper"
+            >
               <ContentWrapper>
                 <Box {...defaultProps}>
                   <Variant variant="a">
-                    <WorkFlowContainer >
+                    <WorkFlowContainer>
                       <div scroll-target="mediaContent">
                         <WorkFlow
                           multiContent
                           header={workflow.header}
-                          items={workflow.items} />
+                          items={workflow.items}
+                        />
                       </div>
                     </WorkFlowContainer>
                   </Variant>
                 </Box>
               </ContentWrapper>
-            </ContainerWrapper>}
+            </ContainerWrapper>
+          )}
 
-          <Block hideAt="md">
-            <Variant variant="a">
-              <FloatingCtaWrapper {...defaultProps} py={4} px={4} className="floating-cta" >
-                <FloatingCta />
-              </FloatingCtaWrapper>
-            </Variant>
-          </Block>
+          {!defaultButtonVisible && (
+            <Block hideAt="md">
+              <Variant variant="a">
+                <FloatingCtaWrapper
+                  {...defaultProps}
+                  py={4}
+                  px={4}
+                  className="floating-cta"
+                >
+                  <FloatingCta />
+                </FloatingCtaWrapper>
+              </Variant>
+            </Block>
+          )}
         </ContentSection>
-
       </BodyWrapper>
     </React.Fragment>
   );
@@ -318,10 +362,10 @@ HybridLoginView.defaultProps = {
   accordion: [],
   mainContent: '',
   workflow: { header: '', items: [] },
-  workflowOffer: { header: '', items: [] }
+  workflowOffer: { header: '', items: [] },
 };
 
-const WrappedHybridLoginView = (props) => {
+const WrappedHybridLoginView = props => {
   const { trackingData, entity, navLinks, ...rest } = props;
 
   useEffect(() => {
@@ -334,13 +378,14 @@ const WrappedHybridLoginView = (props) => {
         py={2}
         entity={entity}
         items={navLinks}
-        signInPath=''
-        signOutPath=''
-        subHeader='' />
+        signInPath=""
+        signOutPath=""
+        subHeader=""
+      />
       <HybridLoginView {...rest} />
     </React.Fragment>
   );
-}
+};
 
 WrappedHybridLoginView.propTypes = {
   trackingData: t.shape({}),
