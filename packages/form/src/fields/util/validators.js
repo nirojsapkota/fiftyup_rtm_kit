@@ -65,7 +65,7 @@ export const monthValidator = Yup.string()
 
 export const monthButtonGroupValidator = Yup.string()
   .required('Required')
-  .matches(/[A-Za-z]+/,
+  .matches(/[A-Za-z0-9]+/,
     'Please select a month or other options'
 );
 
