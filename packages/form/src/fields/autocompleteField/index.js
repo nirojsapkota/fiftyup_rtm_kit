@@ -118,7 +118,7 @@ const AutocompleteField = ({
                       setModalOpen(false);
                       onWaiting('');
                       config.onDidSelect &&
-                        config.onDidSelect(inputProps.name, result.label);
+                        config.onDidSelect(inputProps.name, result.label, result);
                       fieldUtils.setFieldValue(inputProps.name, result.label);
                       onBlur(); // FIXME
                     }}

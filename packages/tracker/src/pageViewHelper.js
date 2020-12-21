@@ -10,12 +10,14 @@ const categoryKeys = {
     'fuel_type',
     'solar_nonsolar',
   ],
+  car: ['category', 'campaign_type', 'action', 'renewal_month'],
+  home: ['category', 'campaign_type', 'action', 'renewal_month'],
   generic: ['category', 'campaign_type', 'action'],
 };
 
 const optionalKeys = {
   signin: [],
-  energy: ['campaign_type'],
+  energy: ['campaign_type', 'solar_nonsolar', 'internal_external'],
   generic: ['campaign_type']
 };
 
@@ -35,12 +37,7 @@ const energyTrackingValues = (keys, tracking) => {
     G: 'Gas',
   };
 
-  const solarValue =
-    tracking.meta.is_solar === true
-      ? 'solar'
-      : tracking.meta.is_solar === false
-      ? 'nonsolar'
-      : undefined;
+  const solarValue = typeof tracking.meta.is_solar === 'boolean' ? (tracking.meta.is_solar ? 'solar' : 'nonsolar') : undefined;
   const energyTracking = {
     ...tracking,
     fuel_type: fuelTypes[tracking.meta.plan_type] || undefined,

@@ -17,7 +17,6 @@ export const getFormValues = fields => {
   fields.map(field => {
     values[field.name] = field.value;
   });
-
   return values;
 };
 
@@ -30,6 +29,7 @@ const Form = ({
   onSubmit,
   quickSubmit,
   autoSearch,
+  getNewestFieldValue,
   fields: providedFields,
   id,
   ...props
@@ -41,6 +41,7 @@ const Form = ({
     fieldErrors: props.fieldErrors || {},
   });
   const { validationSchema, initialValues } = setupForm(fields, id);
+
   const context = React.useContext(FormContext) || {};
 
   const submitWrapper = async (...args) => {
@@ -128,10 +129,10 @@ const Form = ({
             });
 
             rest.setFieldValue(field, value);
-            (autoSearch || quickSubmit) &&
-              validateForm().then(() => {
-                autoSubmit();
-              });
+            getNewestFieldValue && typeof getNewestFieldValue == 'function' && getNewestFieldValue(field, value);
+            (autoSearch || quickSubmit) && validateForm().then(() => { 
+              autoSubmit();
+            });
           },
           setFieldTouched: rest.setFieldTouched,
           setFieldError: rest.setFieldError,

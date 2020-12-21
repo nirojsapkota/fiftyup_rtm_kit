@@ -286,4 +286,80 @@ describe(`Google`, () => {
     })
 
   });
+
+  it(`with energy category, tile-click action and category energy, state VIC, plan_type EG  without optional fields campaign_type, solar_nonsolar, internal_external`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'tile-click',
+      meta: {
+        state: 'VIC',
+        plan_type: 'EG'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/tile-click/VIC/DualFuel',
+    });
+  })
+
+
+  it(`with energy category, tile-click action and category energy, state VIC, plan_type EG,  solar true,  without optional fields campaign_type, internal_external`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'tile-click',
+      meta: {
+        state: 'NSW',
+        plan_type: 'EG',
+        is_solar: true
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/tile-click/NSW/DualFuel/solar',
+    });
+  })
+
+  it(`with home category, tile-click action and category home month-selected june`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'home',
+      action: 'renewal-month-tile-click',
+      meta: {
+        renewal_month: 'june'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/home/renewal-month-tile-click/june',
+    });
+  })
+
+  it(`with car category, tile-click action and category car month-selected dont-have`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'car',
+      action: 'renewal-month-tile-click',
+      meta: {
+        renewal_month: 'dont-have'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/car/renewal-month-tile-click/dont-have',
+    });
+  })
 });
