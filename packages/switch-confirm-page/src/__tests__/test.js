@@ -10,6 +10,7 @@ describe('<SwitchConfirmPage />', () => {
     expect(queryByText(/Review your plan below/i)).toBeInTheDocument();
     expect(queryByText(/0909887778/i)).toBeInTheDocument();
     expect(queryByText(/Switch Now/i)).toBeInTheDocument();
+    expect(queryByText(/Plan detail header/i)).toBeInTheDocument();
   });
 
   it('Display review details when fireevent on tab', () => {

@@ -155,7 +155,7 @@ class ConfirmationWrapper extends React.Component {
       reviewDetail,
       disclaimers,
       merchant,
-      plan,
+      planDetails,
       switchLinkText,
       references,
       ...rest
@@ -168,7 +168,8 @@ class ConfirmationWrapper extends React.Component {
           <Box pt={30} px={3}>
             <PlanDetails
               orientation="horizontal"
-              plan={plan}
+              plan={planDetails.plan}
+              header={planDetails.header}
               merchantLogo={merchant.logoUrl}
             />
           </Box>
@@ -204,7 +205,8 @@ class ConfirmationWrapper extends React.Component {
               <Box pl={3}>
                 <PlanDetails
                   orientation="vertical"
-                  plan={plan}
+                  plan={planDetails.plan}
+                  header={planDetails.header}
                   merchantLogo={merchant.logoUrl}
                 />
               </Box>
@@ -242,7 +244,7 @@ ConfirmationWrapper.propTypes = {
   reviewDetail: PropTypes.shape({}),
   disclaimers: PropTypes.array,
   merchant: PropTypes.shape({}),
-  plan: PropTypes.shape({}),
+  planDetails: PropTypes.shape({}),
   handleSubmit: PropTypes.func,
   switchLinkText: PropTypes.string,
 };

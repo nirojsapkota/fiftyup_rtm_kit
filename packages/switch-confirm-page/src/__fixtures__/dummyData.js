@@ -77,12 +77,14 @@ export const dummyData = {
       name: 'third'
     },
   ],
-
-  plan: {
-    electricity_brief:
-      '42% pay on time discount off Click Energy’s electricity usage & supply standing rate',
-    gas_brief:
-      '18% pay on time discount off Click Energy’s natural gas usage & supply standing rate',
+  planDetails: {
+    header: '##### Plan detail header',
+    plan: {
+      electricity_brief:
+        '42% pay on time discount off Click Energy’s electricity usage & supply standing rate',
+      gas_brief:
+        '18% pay on time discount off Click Energy’s natural gas usage & supply standing rate',
+    },
   },
   references: {
     offer_id: 11111,

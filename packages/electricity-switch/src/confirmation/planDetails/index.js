@@ -3,7 +3,7 @@ import t from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
 import { Img } from '@rtm-ui/img';
-import { Header, Paragraph } from '@rtm-ui/typography';
+import { Paragraph, Markdown } from '@rtm-ui/typography';
 
 const ItemHorizontal = styled(Box)`
   display: flex;
@@ -31,9 +31,7 @@ const Logo = ({ url }) => (
 );
 
 const HeaderTitle = ({ title }) => (
-  <Header py={10} tag="h4">
-    {title}
-  </Header>
+  title && <Markdown raw={title} />
 );
 const PlanDetails = ({ orientation, header, merchantLogo, plan }) => {
   let energyBriefs = [];

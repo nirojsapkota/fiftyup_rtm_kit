@@ -22,7 +22,7 @@ export const dummyData = {
       ],
     },
     planDetailsProps: {
-      header: 'You have selected this offer:',
+      header: '### You have selected this offer:',
       merchantLogo:
         'https://d235f2imj5gfpf.cloudfront.net/merchants/44/logo/deal.png?1369355035',
       plan: {
