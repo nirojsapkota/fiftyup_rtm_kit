@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@2.0.126...@rtm-ui/electricity-switch@3.0.0) (2021-01-05)
+
+
+* Configurable switch confirm header text (#336) ([ad1be3a](https://github.com/OBSAU/rtm-kit/commit/ad1be3a268b7bc6be3bbeda4f5ee72f9440efcd3)), closes [#336](https://github.com/OBSAU/rtm-kit/issues/336)
+
+
+### BREAKING CHANGES
+
+* Updated the plan prop into planDetails
+
+* improvement(SwitchConfirmPage): Update plan field to planDetails
+
+Add a header field into the planDetails
+* Updated the plan prop into planDetails, this will allow us to pass a header prop
+
+* test(SwitchConfirmPage): Add tests for the plan details header
+
+
+
+
+
 ## [2.0.126](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@2.0.125...@rtm-ui/electricity-switch@2.0.126) (2020-12-21)
 
 **Note:** Version bump only for package @rtm-ui/electricity-switch
