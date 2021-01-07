@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@4.1.7...@rtm-ui/typography@4.1.8) (2021-01-07)
+
+**Note:** Version bump only for package @rtm-ui/typography
+
+
+
+
+
 ## [4.1.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@4.1.6...@rtm-ui/typography@4.1.7) (2020-12-21)
 
 **Note:** Version bump only for package @rtm-ui/typography
