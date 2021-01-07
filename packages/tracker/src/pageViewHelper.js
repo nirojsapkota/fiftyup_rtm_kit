@@ -18,7 +18,9 @@ const categoryKeys = {
 const optionalKeys = {
   signin: [],
   energy: ['campaign_type', 'solar_nonsolar', 'internal_external'],
-  generic: ['campaign_type']
+  generic: ['campaign_type'],
+  home: [ 'campaign_type', 'renewal_month'],
+  car: [ 'campaign_type', 'renewal_month']
 };
 
 const getTrackingValues = (keys, tracking, requiredOnly = false) => {
