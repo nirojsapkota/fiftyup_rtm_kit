@@ -1,6 +1,7 @@
 const data = {
   header: '## How It Works',
   subHeader: '###### Why using people power saves you money',
+  scrollTo:"scrollsToElement",
   items: [
     {
       type: 'image',

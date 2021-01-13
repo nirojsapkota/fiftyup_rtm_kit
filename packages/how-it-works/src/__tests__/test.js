@@ -1,10 +1,20 @@
 import React from 'react';
-import { render } from '../../../bootstrap/setup/testSetup';
+import { fireEvent, render, wait } from '../../../bootstrap/setup/testSetup';
 import { HowItWorks } from '../index';
 import { WorkFlow } from '../WorkFlow';
 import sampleWorkFlow from '../__fixtures__/sampleWorkFlow.js';
 import sampleMultContentWorlFlow from '../__fixtures__/sampleMultiContentWorkFlow.js';
 import howItWorksResp from '../__fixtures__/howItWorksResp.js';
+
+const setup = async props => {
+  const workFlow = sampleMultContentWorlFlow;
+  return render(
+    <>
+    <WorkFlow multiContent scrollTo {...workFlow} />
+    <div scroll-target='scrollsToElement' />
+    </>
+  );
+};
 
 describe('<HowItWork />', () => {
   it('matches expected snapshot', () => {
@@ -57,4 +67,17 @@ describe('<WorkFlow />', () => {
     expect(container.querySelector(`img`)).toBeInTheDocument();
     expect(container.querySelector(`iframe`)).toBeInTheDocument();
   })
+
+  it('renders onclick function on multicontent image if scrollTo prop is passed', async () => {
+    window.scrollTo = jest.fn();
+    const spy = jest.spyOn(window, 'scrollTo');
+    const { container } = await setup();
+    const contentImg = container.querySelector(`img`);
+    fireEvent.click(contentImg);
+
+    await wait(() => {
+      expect(spy).toHaveBeenCalled();
+    });
+  })
+
 })

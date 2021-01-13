@@ -74,6 +74,7 @@ WorkFlow.propTypes = {
   header: PropTypes.string,
   subHeader: PropTypes.string,
   multiContent: PropTypes.bool,
+  scrollTo: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       icon: PropTypes.string,

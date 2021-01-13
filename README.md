@@ -38,7 +38,15 @@ npm install
 lerna link
 ```
 
-This step will ensure that each package has linked together.
+This step will ensure that each package has linked together. Lerna should be installed on the system globally
+
+### Create Build
+
+```sh
+npm run build:ci
+```
+
+This step will build the packages
 
 ### Run tests
 

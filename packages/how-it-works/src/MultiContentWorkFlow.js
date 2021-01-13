@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Img } from '@rtm-ui/img';
 import { Markdown } from '@rtm-ui/typography';
-import { Box } from '@rtm-ui/layout';
+import { Box, scrollToElement } from '@rtm-ui/layout';
 import { VideoDialog } from '@rtm-ui/video-dialog';
 
 const HeaderMarkdown = styled(Markdown)`
@@ -22,10 +22,10 @@ const ComponentSwitchContainer = styled.div`
   width: 100%;
 `
 
-const ComponentSwitcher = ({item}) => {
+const ComponentSwitcher = ({item, scrollTo}) => {
   return (
     <ComponentSwitchContainer>
-      { item.type === 'image' && <Img src={item.src} alt={item.content} /> }
+      { item.type === 'image' && <Img src={item.src} alt={item.content} onClick={ scrollTo ? e => { scrollToElement(e, scrollTo)} : ''} /> }
       { item.type === 'video' && (
         <Box m="auto" px={[2, 2, 3]}>
           <VideoDialog
@@ -40,12 +40,12 @@ const ComponentSwitcher = ({item}) => {
   )
 }
 
-export const MultiContentWorkFlow = ({ header, items }) => {
+export const MultiContentWorkFlow = ({ header, scrollTo, items }) => {
   return (
     <Box>
       <HeaderMarkdown px={[3, 3, 4]} raw={header} />
       { items && items.map((s, index) => {
-          return(<ComponentSwitcher key={index} item={s}/>)
+          return(<ComponentSwitcher key={index} item={s} scrollTo={scrollTo} />)
         }) }
     </Box>
   );
@@ -53,6 +53,7 @@ export const MultiContentWorkFlow = ({ header, items }) => {
 
 MultiContentWorkFlow.propTypes = {
   header: PropTypes.string,
+  scrollTo: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.string,

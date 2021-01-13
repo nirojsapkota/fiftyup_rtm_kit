@@ -109,4 +109,16 @@ describe('<HybridLoginView />', () => {
     fireEvent.click(floatingButton);
     expect(spy).toHaveBeenCalled();
   });
+
+  it(`scrolls to login panel when content image is clicked`, async () => {
+    window.scrollTo = jest.fn();
+    const spy = jest.spyOn(window, 'scrollTo');
+    const { getByTestId } = render(
+      <HybridLoginView {...props} heroImageUrl="" mainContent="" videoSrc="" />
+    );
+    const contentImg = getByTestId('main-content');
+    fireEvent.click(contentImg);
+    expect(spy).toHaveBeenCalled();
+  })
+
 });

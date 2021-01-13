@@ -216,7 +216,9 @@ const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlMobileUrl }) => {
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
-        <div scroll-target="mainContent">
+        <div scroll-target="mainContent" data-testid="main-content" onClick={e => {
+          scrollToElement(e, 'login-panel');
+        }}>
           <ContainerWrapper
             className="content-wrapper"
             style={{ paddingTop: '4px' }}
@@ -274,8 +276,9 @@ const HybridLoginView = ({
                   <Box {...defaultProps}>
                     <Variant variant="a">
                       <WorkFlowContainer>
-                        <WorkFlow
+                        <WorkFlow 
                           multiContent
+                          scrollTo="login-panel"
                           header={workflowOffer.header}
                           items={workflowOffer.items}
                         />
@@ -317,6 +320,7 @@ const HybridLoginView = ({
                       <div scroll-target="mediaContent">
                         <WorkFlow
                           multiContent
+                          scrollTo="login-panel"
                           header={workflow.header}
                           items={workflow.items}
                         />
