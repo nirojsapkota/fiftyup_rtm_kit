@@ -20,8 +20,8 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: ${props => props.theme.grid.sm}em) {
-    max-width: 110px;
-    min-width: 110px;
+    max-width: 120px;
+    min-width: 120px;
   }
 `;
 
