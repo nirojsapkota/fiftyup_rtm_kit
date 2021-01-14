@@ -48,6 +48,7 @@ const Column = styled(Box)`
 
 const ContentSection = styled(Box)`
   position: relative;
+  min-height: 500px;
 `;
 
 const ContentBox = styled(Box)`
