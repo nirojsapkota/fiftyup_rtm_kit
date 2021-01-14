@@ -203,7 +203,9 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
             )}
             {asSeenOnImage && (
               <ImageWrapper m="auto">
-                <Img src={asSeenOnImage} alt="As Seen On" />
+                <Img src={asSeenOnImage} alt="As Seen On" onClick={e => {
+                  scrollToElement(e, 'login-panel');
+                }}/>
               </ImageWrapper>
             )}
           </Box>
