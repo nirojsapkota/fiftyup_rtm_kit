@@ -9,6 +9,7 @@ const categoryKeys = {
     'state',
     'fuel_type',
     'solar_nonsolar',
+    'existing_customer'
   ],
   car: ['category', 'campaign_type', 'action', 'renewal_month'],
   home: ['category', 'campaign_type', 'action', 'renewal_month'],
@@ -17,7 +18,7 @@ const categoryKeys = {
 
 const optionalKeys = {
   signin: [],
-  energy: ['campaign_type', 'solar_nonsolar', 'internal_external'],
+  energy: ['campaign_type', 'solar_nonsolar', 'internal_external', 'existing_customer'],
   generic: ['campaign_type'],
   home: [ 'campaign_type', 'renewal_month'],
   car: [ 'campaign_type', 'renewal_month']

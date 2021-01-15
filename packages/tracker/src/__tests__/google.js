@@ -362,4 +362,24 @@ describe(`Google`, () => {
       page: 'virtual/car/renewal-month-tile-click/dont-have',
     });
   })
+
+  it(`with energy category and existing customer question`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'tile-click',
+      meta: {
+        state: 'NSW',
+        existing_customer: 'isnewcustomer',
+        plan_type: 'EG'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/tile-click/NSW/DualFuel/isnewcustomer',
+    });
+  })
 });
