@@ -67,6 +67,8 @@ describe('<Dashboard />', () => {
     expect(queryByTestId('test-modal')).toBeNull();
   });
 
+
+
   it('closes the modal after selecting a product and clicking on close button', async () => {
     axios.get.mockResolvedValue({ data: { showSurvey: true } });
     const { getByText, queryByTestId, getByTestId } = render(<Dashboard {...dummyData} survey={dummyData.survey} />);
@@ -83,7 +85,7 @@ describe('<Dashboard />', () => {
       expect(getByText(dummyData.survey.cta_label)).toBeInTheDocument();
     })
 
-    await fireEvent.click(getByText(dummyData.survey.cta_label));
+    await fireEvent.click(getByText(dummyData.survey.skip_label));
     await wait(async () => {
       expect(axios.post).toHaveBeenCalled();
     })
@@ -156,4 +158,45 @@ describe('submitSurvey', () => {
     await expect(submitSurvey(API, TEST_EMAIL, ['energy'])).resolves.toEqual(false);
   });
 
+});
+
+
+describe('dashboard preference ga tracking', () => {
+  it('tracks dashboard preference', async () => {
+
+  global.ga = jest.fn();
+  const spyGa = jest.spyOn(global, 'ga');
+
+  axios.get.mockResolvedValue({ data: { showSurvey: true } });
+  const { getByText} = render(<Dashboard {...dummyData} />);
+
+  await expect(axios.get).toHaveBeenCalled();
+
+  await wait(async () => {
+    expect(getByText('HEALTH INSURANCE')).toBeInTheDocument();
+  })
+  const healthProduct = getByText('HEALTH INSURANCE');
+  await fireEvent.click(healthProduct);
+
+  await wait(async () => {
+    expect(getByText('LIFE INSURANCE')).toBeInTheDocument();
+  })
+  const lifeProduct = getByText('LIFE INSURANCE');
+  await fireEvent.click(lifeProduct);
+
+
+  await wait(async () => {
+    expect(getByText(dummyData.survey.cta_label)).toBeInTheDocument();
+  })
+
+  await fireEvent.click(getByText(dummyData.survey.cta_label));
+
+
+  await wait(async () => {
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/dashboard-preferences/cta/health-insurance+life-insurance',
+    });
+  })
+  })
 });

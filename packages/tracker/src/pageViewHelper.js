@@ -14,6 +14,7 @@ const categoryKeys = {
   car: ['category', 'campaign_type', 'action', 'renewal_month'],
   home: ['category', 'campaign_type', 'action', 'renewal_month'],
   generic: ['category', 'campaign_type', 'action'],
+  "dashboard-preferences": ['category','action', 'products']
 };
 
 const optionalKeys = {
@@ -21,7 +22,8 @@ const optionalKeys = {
   energy: ['campaign_type', 'solar_nonsolar', 'internal_external', 'existing_customer'],
   generic: ['campaign_type'],
   home: [ 'campaign_type', 'renewal_month'],
-  car: [ 'campaign_type', 'renewal_month']
+  car: [ 'campaign_type', 'renewal_month'],
+  "dashboard-preferences": ['products']
 };
 
 const getTrackingValues = (keys, tracking, requiredOnly = false) => {

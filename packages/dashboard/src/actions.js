@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { track } from '@rtm-ui/tracker';
 
 export const submitSurvey = async (url, email, products) => {
   const config = {
@@ -33,6 +34,20 @@ export const getSurvey = async (url, query) => {
     return false
   }
 
+};
+
+export const callTracker =  (options, action, products) => {
+
+  const requiredOrder = options.map(option => option.value).sort();;
+  const selectedProducts = []
+  requiredOrder.forEach((product)=> {
+    if (products.includes(product)) {
+      selectedProducts.push(product);
+    }
+  })
+
+  const formattedSelectedProducts = selectedProducts.map(product => product.replace(/ /g,"-").toLowerCase()).join('+')
+  track( action, {category: 'dashboard-preferences', meta: {products: formattedSelectedProducts }});
 };
 
 

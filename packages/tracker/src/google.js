@@ -7,7 +7,6 @@ class Google {
 
     const requiredKeys = keys.filter((e) => !getOptionalKeys(tracking.category).includes(e))
     const requiredValues = getValues(requiredKeys, tracking, true)
-
     if (
       !requiredValues.every(value => value && value !== '') &&
       process.env.NODE_ENV !== 'test'

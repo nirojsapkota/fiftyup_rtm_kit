@@ -363,6 +363,26 @@ describe(`Google`, () => {
     });
   })
 
+
+  it(`with dashboard-preferences category, should track all products`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'dashboard-preferences',
+      action: 'cta',
+      meta: {
+        products: 'car+electricity'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/dashboard-preferences/cta/car+electricity',
+    });
+  })
+  
+
   it(`with energy category and existing customer question`, () => {
     global.ga = jest.fn();
     const spyGa = jest.spyOn(global, 'ga');

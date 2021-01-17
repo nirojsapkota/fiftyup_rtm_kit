@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -11,7 +10,7 @@ import { Button } from '@rtm-ui/button';
 import { Icon } from '@rtm-ui/icon';
 import { Form } from '@rtm-ui/form';
 import { Header, Markdown, Paragraph } from '@rtm-ui/typography';
-import { getSurvey, submitSurvey } from './actions';
+import { getSurvey, submitSurvey, callTracker } from './actions';
 
 
 const MainWrapper = styled(Box)`
@@ -98,6 +97,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         if (result && result.data && result.data.showSurvey) {    // empty
           setModalOpen(true);
         }
+         // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
       })();
     }
   }, []);
@@ -105,18 +105,20 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [products, setProducts] = React.useState([]);
 
-  const sendSurvey = () => {
-    submitSurvey(survey.url, survey.email, products)
-    setModalOpen(!isModalOpen)
+  const sendSurvey = (action) => {
+    submitSurvey(survey.url, survey.email, products);
+    callTracker(survey.productSelection.options, action, products);
+    setModalOpen(!isModalOpen);
   };
+
 
   return (
     <MainWrapper>
       {isModalOpen && (
-        <Modal onClose={sendSurvey} data-testid='test-modal'>
+        <Modal onClose={()=>sendSurvey('clickout')} data-testid='test-modal'>
           <StyledCard>
             <CloseDialogWrapper>
-              <CloseButton data-testid="close-modal" asWrapper onClick={sendSurvey}>
+              <CloseButton data-testid="close-modal" asWrapper onClick={()=>sendSurvey('close')}>
                 <Header weight="normal" color="text" tag="h6" align="right">
                   <Icon center glyph="view-close" />
                 </Header>
@@ -153,12 +155,12 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
             <SkipSurveyWrapper>
               <Box style={{ display: 'flex', flexDirection: 'column' }}>
                 <Box mb={10} style={{ display: 'flex', alignSelf: 'center' }}>
-                  <CloseButton align="center" onClick={sendSurvey}>
+                  <CloseButton align="center" onClick={()=>sendSurvey('cta')}>
                     {survey.cta_label}
                   </CloseButton>
                 </Box>
               </Box>
-              <CloseButton asWrapper onClick={sendSurvey}>
+              <CloseButton asWrapper onClick={()=>{sendSurvey('skip')}}>
                 <Header weight="normal" color="text" tag="h5">
                   {survey.skip_label}
                 </Header>

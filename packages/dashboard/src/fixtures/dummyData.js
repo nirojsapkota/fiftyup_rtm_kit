@@ -24,22 +24,22 @@ export const dummyData = {
         },
         {
           "label": "HEALTH INSURANCE",
-          "value": "health insurance",
+          "value": "Health Insurance",
           "icon": "health"
         },
         {
           "label": "LIFE INSURANCE",
-          "value": "life insurance",
+          "value": "Life Insurance",
           "icon": "life"
         },
         {
           "label": "HOME",
-          "value": "energy1",
+          "value": "home insurnace",
           "icon": "home-2"
         },
         {
-          "label": "INTERNET",
-          "value": "energy2",
+          "label": "BROADBAND",
+          "value": "Broadband",
           "icon": "internet"
         },
         {
