@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.94](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/readfile@1.0.93...@rtm-ui/readfile@1.0.94) (2021-01-18)
+
+**Note:** Version bump only for package @rtm-ui/readfile
+
+
+
+
+
 ## [1.0.93](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/readfile@1.0.90...@rtm-ui/readfile@1.0.93) (2021-01-15)
 
 **Note:** Version bump only for package @rtm-ui/readfile
