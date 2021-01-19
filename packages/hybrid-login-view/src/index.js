@@ -215,7 +215,7 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
   );
 };
 
-const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlMobileUrl }) => {
+const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlTabletUrl, heroImageUrlMobileUrl }) => {
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
@@ -230,7 +230,8 @@ const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlMobileUrl }) => {
               <Box m="auto" width={1}>
                 <ResponsiveImage
                   desktopImgView={heroImageUrlDesktopUrl}
-                  tabletImgView={heroImageUrlMobileUrl}
+                  tabletImgView={heroImageUrlTabletUrl}
+                  mobileImgView={heroImageUrlMobileUrl}
                   alt="Hero image"
                 />
               </Box>

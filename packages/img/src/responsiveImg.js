@@ -32,12 +32,21 @@ const useResponsiveWidth = () => {
   return window.innerWidth;
 };
 
-const ResponsiveImage = ({ desktopImgView, tabletImgView }) => {
+const ResponsiveImage = ({ desktopImgView, tabletImgView, mobileImgView }) => {
   const theme = React.useContext(ThemeContext);
 
-  const minWidth = theme.width[1];
-  const imageUrl =
-    useResponsiveWidth() >= minWidth ? desktopImgView : tabletImgView;
+  const minWidth = theme.width[0];
+  const midWidth = theme.width[1];
+  let imageUrl = '';
+
+  let currentWidth = useResponsiveWidth();
+  if(currentWidth <= minWidth) 
+    imageUrl = mobileImgView
+  else if(currentWidth > minWidth && currentWidth <= midWidth)
+    imageUrl = tabletImgView ? tabletImgView : desktopImgView
+  else 
+    imageUrl = desktopImgView
+    
   return (
     <Wrapper>
       <Img src={imageUrl} alt={imageUrl} />
@@ -50,4 +59,5 @@ export default ResponsiveImage;
 ResponsiveImage.propTypes = {
   desktopImgView: PropTypes.string.isRequired,
   tabletImgView: PropTypes.string.isRequired,
+  mobileImgView: PropTypes.string.isRequired
 };

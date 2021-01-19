@@ -1,9 +1,12 @@
 const image = {
   desktopImgView:
-    'https://www.onebigswitch.com.au/entities/1/desktop_client_logo_image/original-1557361035.png',
+    'https://placehold.it/2080x400',
 
   tabletImgView:
-    'https://www.onebigswitch.com.au/entities/1/tablet_client_logo_image/original-1557361035.png',
+    'https://placehold.it/990x400',
+
+  mobileImgView:
+    'https://placehold.it/700x400'
 };
 
 export default image;

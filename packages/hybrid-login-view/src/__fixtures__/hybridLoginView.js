@@ -9,6 +9,7 @@ const hybridLoginView = {
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
   heroImageUrlDesktopUrl: 'https://placehold.it/2080x400',
+  heroImageUrlTabletUrl: 'https://placehold.it/990x400',
   heroImageUrlMobileUrl: 'https://placehold.it/700x400',
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',

@@ -34,6 +34,9 @@ describe(`<ResponsiveImage />`, () => {
       window.dispatchEvent(new Event('resize'));
     };
     resizeWindow(500);
+    expect(props.getAttribute(`src`)).toEqual(imageProps.mobileImgView);
+
+    resizeWindow(800);
     expect(props.getAttribute(`src`)).toEqual(imageProps.tabletImgView);
 
     resizeWindow(2880);
