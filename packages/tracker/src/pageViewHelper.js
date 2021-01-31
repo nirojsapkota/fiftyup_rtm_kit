@@ -63,7 +63,8 @@ export const getValues = (keys, tracking, requiredOnly = false) => {
     tracking.category === 'energy' &&
     (tracking.action === 'presignup' ||
       tracking.action === 'preoffer' ||
-      tracking.action === 'signin')
+      tracking.action === 'signin' ||
+      tracking.page === 'landing_page')
   ) {
     return getTrackingValues(categoryKeys.generic, tracking, requiredOnly);
   }

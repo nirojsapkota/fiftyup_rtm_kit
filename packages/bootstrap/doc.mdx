@@ -6,6 +6,7 @@ menu: Utilities
 
 import { Playground } from 'docz';
 import { Bootstrap } from './src';
+import { Button } from '@rtm-ui/button';
 import { DummyComponent } from './dummy-component';
 
 # Bootstrap
@@ -36,3 +37,13 @@ Below is an example of a component which errors:
     <DummyComponent />
   </Bootstrap>
 </Playground>
+
+Sample usage of tracking for landing page
+
+```
+
+<Bootstrap trackingData={{category:'default', page:'landing_page'}} >
+</Bootstrap>
+
+```
+

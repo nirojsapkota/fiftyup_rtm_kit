@@ -102,6 +102,22 @@ describe(`Google`, () => {
     });
   });
 
+  it(`with energy category from landing page and no props provided`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'energy',
+      action: 'click_to_call',
+      page: 'landing_page',
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/energy/click_to_call',
+    });
+  });
+
   it(`with energy category, presignup action and campaign_type`, () => {
     global.ga = jest.fn();
     const spyGa = jest.spyOn(global, 'ga');
