@@ -27,7 +27,7 @@ body of the link bracket: [Click|get_started](https://example.com)
 
 or you can have the link open in a new tab by adding a target attribute after the tracking action's pipe like 'Click|get_started|{"target": "_blank"}': [Click|get_started|{"target": "_blank"}](https://example.com)
 
-or add some data attributes 'Click||{"data-test": "sample", "data-sample": "sample2"}': [Click||{"data-test": "sample", "data-sample": "sample2"}](https://example.com)
+or add some data attributes 'Click||{"style": {"color": "red", "textDecoration": "none"}, "data-test": "sample", "data-sample": "sample2"}': [Click222||{"style": {"color": "red", "textDecoration": "none"}, "data-test": "sample", "data-sample": "sample2"}](https://example.com)
 
 If there is an empty value after the pipe - it still works: [Click|](https://example.com)
 
