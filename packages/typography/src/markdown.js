@@ -95,7 +95,7 @@ const primitiveMap = {
   }),
   link: ({ children, ...rest }) => {
     let props = {};
-    // FIXME: we may want some sort of error when more
+    // FIXME: we may want some sort of error when more than
     // just plaintext is dropped into a link tag
     if (children[0].value.split('|').length >= 1) {
       try {
