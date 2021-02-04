@@ -15,14 +15,14 @@ const categoryKeys = {
   home: ['category', 'campaign_type', 'action', 'renewal_month'],
   broadband: ['category', 'campaign_type', 'action', 'existing_customer'],
   mobile: ['category', 'campaign_type', 'action', 'existing_customer'],
-  generic: ['category', 'campaign_type', 'action'],
+  generic: ['category', 'campaign_type', 'action', 'existing_customer'],
   "dashboard-preferences": ['category','action', 'products']
 };
 
 const optionalKeys = {
   signin: [],
   energy: ['campaign_type', 'solar_nonsolar', 'internal_external', 'existing_customer'],
-  generic: ['campaign_type'],
+  generic: ['campaign_type', 'existing_customer'],
   home: [ 'campaign_type', 'renewal_month'],
   car: [ 'campaign_type', 'renewal_month'],
   broadband: [ 'campaign_type', 'existing_customer'],
