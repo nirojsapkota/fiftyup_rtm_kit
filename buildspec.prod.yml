@@ -7,13 +7,14 @@ env:
 phases:
   install:
     commands:
-      - npm install -g npm
+      - npm install -g npm@6.14.11
       - git remote set-url origin $GITHUB_URL
       - git fetch
       - git config --global user.email $GIT_USER_EMAIL
       - git config --global user.name $GIT_USER_NAME
       - git checkout master
       - npm install
+      - npm config list
 
   pre_build:
     commands:

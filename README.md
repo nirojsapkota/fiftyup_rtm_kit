@@ -17,12 +17,20 @@ always-auth=true
 registry=http://registry.npmjs.org/ # All other packages
 ```
 
-
 ## Lerna
 
 [Lerna](!https://lernajs.io/) is a tool for managing monorepos, it handles dependencies and versioning. One of it's key features is to share a common `node_modules` directory so that if two packages require the same package you'll still only need to store it once. It also ensures that we follow semantic versioning by automatically bumping the versions of our packages based on [conventional commits](#conventional-commits).
 
 # Getting Started
+
+### Node version
+
+For consistency, we've fixed the node and npm version as below on dev/prod environments. So let's stick to this and change this readme if we do the version upgrade.
+
+```
+npm 6.14.11
+node 12.13.0
+```
 
 ### Install dependencies
 
@@ -167,11 +175,13 @@ module.exports = {
 ```
 
 ## Note
-While using rtm-core in the package,  `rtm-scripts` provides all the required scripts.
+
+While using rtm-core in the package, `rtm-scripts` provides all the required scripts.
 
 Project `rtm-offer-spa` has been configured to use the packages from rtm-core. In this case to link the packages from rtm-kit, there's an option to link the `rtm-ui` packages from local development. Just use `--alias` while starting the app and provide the absolute url to rtm-kit project location on your machine.
 
 #### Command
+
 ```
 npm start -- --alias '/Users/niroj/prects/rtm-kit/packages'
 ```
