@@ -45,6 +45,16 @@ const planInput = {
     campaign_id: 276,
     main_image_file_url: 'https://placehold.it/950x400',
     mobile_image_file_url: 'https://placehold.it/300x400',
+    multi_image_data: [
+      {
+        desktop_img: 'https://placeimg.com/600/500/any',
+        mobile_img: 'https://placeimg.com/400/300/any'
+      },
+       {
+        desktop_img: 'https://placeimg.com/600/500/any',
+        mobile_img: 'https://placeimg.com/400/300/any'
+      }
+    ],
     plan_features: [
       {
         icon: null,

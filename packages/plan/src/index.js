@@ -86,6 +86,12 @@ Plan.propTypes = {
     main_image_file_url: PropTypes.string,
     sub_header_text: PropTypes.string,
     disclaimer_html: PropTypes.string,
+    multi_image_data: PropTypes.arrayOf(
+      PropTypes.shape({
+        desktop_img: PropTypes.string,
+        mobile_img: PropTypes.string,
+      })
+    ),
     plan_features: PropTypes.arrayOf(
       PropTypes.shape({
         icon: PropTypes.string,
