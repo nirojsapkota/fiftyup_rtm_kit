@@ -39,6 +39,12 @@ export const ContentWrapper = styled(Box)`
   width: 100%;
 `;
 
+export const ImageContentWrapper = styled(Box)`
+  @media screen and (min-width: 750px) {
+    width: 50%;
+  }
+`;
+
 export const Sidebar = styled(Box)`
   position: sticky;
   top: 0;

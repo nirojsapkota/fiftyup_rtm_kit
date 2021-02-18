@@ -9,5 +9,18 @@ describe('<EnergyPlan />', () => {
     it('gets parsed in to valid html', () => {
       const { getByText } = render(<Plan {...energyPlanProps} />);
     });
+
+    it('renders the multiple header images when multi_image_data is passed', () => {
+      const { getAllByAltText } = render(<Plan {...energyPlanProps} />);
+      const planImages = getAllByAltText('Main Header Text')
+      expect(planImages).toHaveLength(4)
+    });
+
+    it('renders the single header image when multi_image_data is not passed', () => {
+      energyPlanProps.plan.multi_image_data = []
+      const { getAllByAltText } = render(<Plan {...energyPlanProps} />);
+      const planImages = getAllByAltText('Main Header Text')
+      expect(planImages).toHaveLength(2)
+    });
   });
 });

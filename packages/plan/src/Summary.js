@@ -59,6 +59,7 @@ const Summary = props => {
     ({ actionType }) => actionType === 'back'
   );
   const refer = React.useContext(PlanReferenceContext);
+  const imageDataArr = props.multi_image_data || [];
 
   return (
     <Box p={[0, 0, 0, 2]}>
@@ -68,23 +69,57 @@ const Summary = props => {
         </Header>
       </Box>
       <Block showAt="md">
-        {props.main_image_file_url && (
-          <PrimaryAction
+      {imageDataArr.length ? (
+       <S.ContentWrapper>
+        {imageDataArr.map(data => 
+          <S.ImageContentWrapper>
+            <PrimaryAction
             {...props.primaryActionProps}
             renderTrigger={triggerProps => (
               <A {...triggerProps}>
                 <PlanImg
-                  src={props.main_image_file_url}
+                  src={data.desktop_img}
                   alt={props.main_header_text}
                 />
               </A>
             )}
-          />
+            />
+            </S.ImageContentWrapper>
         )}
+        </S.ContentWrapper>
+      ) : (
+        <PrimaryAction
+        {...props.primaryActionProps}
+        renderTrigger={triggerProps => (
+          <A {...triggerProps}>
+            <PlanImg
+              src={props.main_image_file_url}
+              alt={props.main_header_text}
+            />
+          </A>
+        )}
+        />
+      )}
       </Block>
       <Block hideAt="md">
-        {(props.mobile_image_file_url || props.main_image_file_url) && (
-          <PrimaryAction
+      {imageDataArr.length ? (
+        imageDataArr.map(data => 
+          <S.ImageContentWrapper>
+              <PrimaryAction
+              {...props.primaryActionProps}
+              renderTrigger={triggerProps => (
+                <A {...triggerProps}>
+                  <PlanImg
+                    src={data.mobile_img ? data.mobile_img : data.desktop_img}
+                    alt={props.main_header_text}
+                  />
+                </A>
+              )}
+              />
+          </S.ImageContentWrapper>
+        )
+      ) : (
+            <PrimaryAction
             {...props.primaryActionProps}
             renderTrigger={triggerProps => (
               <A {...triggerProps}>
@@ -95,7 +130,7 @@ const Summary = props => {
               </A>
             )}
           />
-        )}
+          )}
       </Block>
       <Box px={[2, 2, 3, 0]} py={[20]}>
         <Box width={1}>
@@ -199,6 +234,12 @@ Summary.propTypes = {
   main_header_text: PropTypes.string,
   main_image_file_url: PropTypes.string,
   mobile_image_file_url: PropTypes.string,
+  multi_image_data: PropTypes.arrayOf(
+    PropTypes.shape({
+      desktop_img: PropTypes.string,
+      mobile_img: PropTypes.string,
+    })
+  ),
   sub_header_text: PropTypes.string,
   merchant: PropTypes.shape({
     name: PropTypes.string,
