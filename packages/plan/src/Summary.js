@@ -59,7 +59,11 @@ const Summary = props => {
     ({ actionType }) => actionType === 'back'
   );
   const refer = React.useContext(PlanReferenceContext);
-  const imageDataArr = props.multi_image_data || [];
+  const imageDataArr1 = props.multi_image_data || [];
+
+  const imageDataArr = imageDataArr1.filter(function(obj) {
+    return obj !== null;
+  });
 
   return (
     <Box p={[0, 0, 0, 2]}>
@@ -69,7 +73,7 @@ const Summary = props => {
         </Header>
       </Box>
       <Block showAt="md">
-      {imageDataArr.length ? (
+      {imageDataArr.length == 2 ? (
        <S.ContentWrapper>
         {imageDataArr.map(data => 
           <S.ImageContentWrapper>
