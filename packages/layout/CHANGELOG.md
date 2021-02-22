@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.60](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@4.0.59...@rtm-ui/layout@4.0.60) (2021-02-22)
+
+**Note:** Version bump only for package @rtm-ui/layout
+
+
+
+
+
 ## [4.0.59](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/layout@4.0.58...@rtm-ui/layout@4.0.59) (2021-02-04)
 
 **Note:** Version bump only for package @rtm-ui/layout
