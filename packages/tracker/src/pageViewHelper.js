@@ -9,30 +9,36 @@ const categoryKeys = {
     'state',
     'fuel_type',
     'solar_nonsolar',
-    'existing_customer'
+    'existing_customer',
   ],
   car: ['category', 'campaign_type', 'action', 'renewal_month'],
   home: ['category', 'campaign_type', 'action', 'renewal_month'],
   broadband: ['category', 'campaign_type', 'action', 'existing_customer'],
   mobile: ['category', 'campaign_type', 'action', 'existing_customer'],
   generic: ['category', 'campaign_type', 'action', 'existing_customer'],
-  "dashboard-preferences": ['category','action', 'products']
+  'dashboard-preferences': ['category', 'action', 'products'],
 };
 
 const optionalKeys = {
   signin: [],
-  energy: ['campaign_type', 'solar_nonsolar', 'internal_external', 'existing_customer'],
+  energy: [
+    'campaign_type',
+    'solar_nonsolar',
+    'internal_external',
+    'existing_customer',
+    'fuel_type',
+  ],
   generic: ['campaign_type', 'existing_customer'],
-  home: [ 'campaign_type', 'renewal_month'],
-  car: [ 'campaign_type', 'renewal_month'],
-  broadband: [ 'campaign_type', 'existing_customer'],
-  mobile: [ 'campaign_type', 'existing_customer'],
-  "dashboard-preferences": ['products']
+  home: ['campaign_type', 'renewal_month'],
+  car: ['campaign_type', 'renewal_month'],
+  broadband: ['campaign_type', 'existing_customer'],
+  mobile: ['campaign_type', 'existing_customer'],
+  'dashboard-preferences': ['products'],
 };
 
 const getTrackingValues = (keys, tracking, requiredOnly = false) => {
   if (requiredOnly) {
-    keys = keys.filter((e) => !getOptionalKeys(tracking.category).includes(e) )
+    keys = keys.filter(e => !getOptionalKeys(tracking.category).includes(e));
   }
   return keys.map(
     key => tracking[key] || (tracking.meta && tracking.meta[key]) || undefined
@@ -46,7 +52,12 @@ const energyTrackingValues = (keys, tracking) => {
     G: 'Gas',
   };
 
-  const solarValue = typeof tracking.meta.is_solar === 'boolean' ? (tracking.meta.is_solar ? 'solar' : 'nonsolar') : undefined;
+  const solarValue =
+    typeof tracking.meta.is_solar === 'boolean'
+      ? tracking.meta.is_solar
+        ? 'solar'
+        : 'nonsolar'
+      : undefined;
   const energyTracking = {
     ...tracking,
     fuel_type: fuelTypes[tracking.meta.plan_type] || undefined,
@@ -83,4 +94,4 @@ export const getKeys = category => {
 
 export const getOptionalKeys = category => {
   return optionalKeys[category] || optionalKeys.generic;
-}
+};
