@@ -59,10 +59,10 @@ const Summary = props => {
     ({ actionType }) => actionType === 'back'
   );
   const refer = React.useContext(PlanReferenceContext);
-  const imageDataArr1 = props.multi_image_data || [];
-
-  const imageDataArr = imageDataArr1.filter(function(obj) {
-    return obj !== null;
+  const urlsArray = props.multi_image_file_urls || [];
+  
+  const imageDataArr = urlsArray.filter(function(str) {
+    return str !== null;
   });
 
   return (
@@ -82,7 +82,7 @@ const Summary = props => {
             renderTrigger={triggerProps => (
               <A {...triggerProps}>
                 <PlanImg
-                  src={data.desktop_img}
+                  src={data}
                   alt={props.main_header_text}
                 />
               </A>
@@ -114,7 +114,7 @@ const Summary = props => {
               renderTrigger={triggerProps => (
                 <A {...triggerProps}>
                   <PlanImg
-                    src={data.mobile_img ? data.mobile_img : data.desktop_img}
+                    src={data}
                     alt={props.main_header_text}
                   />
                 </A>
@@ -238,12 +238,7 @@ Summary.propTypes = {
   main_header_text: PropTypes.string,
   main_image_file_url: PropTypes.string,
   mobile_image_file_url: PropTypes.string,
-  multi_image_data: PropTypes.arrayOf(
-    PropTypes.shape({
-      desktop_img: PropTypes.string,
-      mobile_img: PropTypes.string,
-    })
-  ),
+  multi_image_file_urls: PropTypes.arrayOf(PropTypes.string),
   sub_header_text: PropTypes.string,
   merchant: PropTypes.shape({
     name: PropTypes.string,
