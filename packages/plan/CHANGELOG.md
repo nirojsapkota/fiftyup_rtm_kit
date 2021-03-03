@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.145](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.144...@rtm-ui/plan@2.0.145) (2021-03-03)
+
+
+### Bug Fixes
+
+* **Plan:** display multiimage in mobile view when there are only 2 va… ([#360](https://github.com/OBSAU/rtm-kit/issues/360)) ([454dec6](https://github.com/OBSAU/rtm-kit/commit/454dec6d5082df9829ec870b442faf26551da599))
+
+
+
+
+
 ## [2.0.144](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.143...@rtm-ui/plan@2.0.144) (2021-03-02)
 
 **Note:** Version bump only for package @rtm-ui/plan
