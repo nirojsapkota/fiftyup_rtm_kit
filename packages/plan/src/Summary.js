@@ -106,7 +106,8 @@ const Summary = props => {
       )}
       </Block>
       <Block hideAt="md">
-      {imageDataArr.length ? (
+      {imageDataArr.length == 2 ? (   
+  //The current requirement is only to display 2 graphics in multigraphic feature. If backend is sending more than 2 image data, fall back to main image
         imageDataArr.map(data => 
           <S.ImageContentWrapper>
               <PrimaryAction
