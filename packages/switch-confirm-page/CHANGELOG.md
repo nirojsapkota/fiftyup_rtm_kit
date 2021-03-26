@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@4.0.9...@rtm-ui/switch-confirm-page@5.0.0) (2021-03-26)
+
+
+* Shweta/ob-3310v2 (#361) ([0944394](https://github.com/OBSAU/rtm-kit/commit/094439436071e0e791e0124f4b13c4f64461b566)), closes [#361](https://github.com/OBSAU/rtm-kit/issues/361)
+
+
+### BREAKING CHANGES
+
+* switch confirm page submit
+
+* feat(switch-confirm-page): added dom manipulation for mobile view, added post request to hit the API
+* switch confirm page submit
+
+* feat(switch-confirm-page): abitlity to take screeshot of eic and save in s3
+
+added service to save image in s3, read switchId and upload url from props
+* the form submit may break
+
+* feat(switch-confirm-page): adding dom manipulation and tests for the feature
+
+* chore(switch-confirm-page): ignore test for captureAndSubmit function
+
+* fix(switch-confirm-page): added ConfirmationWrapper to named exports list
+
+* improvement(switch-confirm-page): added review comment changes
+
+* test(switch-confirm-page): changed return type of catch block to true
+
+* feat(switch-confirm-page): added switch type to the Eic screenshot
+
+
+
+
+
 ## [4.0.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@4.0.8...@rtm-ui/switch-confirm-page@4.0.9) (2021-02-22)
 
 **Note:** Version bump only for package @rtm-ui/switch-confirm-page
