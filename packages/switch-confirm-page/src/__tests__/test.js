@@ -71,62 +71,63 @@ describe('<SwitchConfirmPage />', () => {
     fireEvent.click(submitLink);
     expect(queryByText(/Switch Now/i)).toBeInTheDocument();
   });
-});
 
-it('Take screenshot of page and upload successfully to server', async () => {
-  const response = {
-    data: {
-      Bucket: "s3-bucket",
-      ETag: "c3762497dea5bc3762497dea5b",
-      Key: "1234.png",
-      Location: "https://someurl/1234.png",
-      key: "1234.png"
-    },
-    status: 200
-  };
-
-  axios.post.mockResolvedValue(response);
-  const instance = new ConfirmationWrapper(dummyData);
-
-  await wait(async () => {
-    expect(instance.saveImgToS3(switchId, switchType, uploadURL, image)).resolves.toEqual(response)
-    expect(axios.post).toHaveBeenCalledWith(
-      uploadURL,
-      {
-        switchId: switchId,
-        switchType: switchType,
-        imageURL: image,
+  it('Take screenshot of page and upload successfully to server', async () => {
+    const response = {
+      data: {
+        Bucket: "s3-bucket",
+        ETag: "c3762497dea5bc3762497dea5b",
+        Key: "1234.png",
+        Location: "https://someurl/1234.png",
+        key: "1234.png"
       },
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+      status: 200
+    };
+  
+    axios.post.mockResolvedValue(response);
+    const instance = new ConfirmationWrapper(dummyData);
+  
+    await wait(async () => {
+      expect(instance.saveImgToS3(switchId, switchType, uploadURL, image)).resolves.toEqual(response)
+      expect(axios.post).toHaveBeenCalledWith(
+        uploadURL,
+        {
+          switchId: switchId,
+          switchType: switchType,
+          imageURL: image,
         },
-      }
-    );
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    });
+  
   });
-
-});
-
-it('Screenshot upload to server fails', async () => {
-  axios.post.mockRejectedValue(Error());
-  const instance = new ConfirmationWrapper(dummyData);
-
-  await wait(async () => {
-    expect(instance.saveImgToS3(switchId, switchType, uploadURL, image)).resolves.toEqual(true)
-    expect(axios.post).toHaveBeenCalledWith(
-      uploadURL,
-      {
-        switchId: switchId,
-        switchType: switchType,
-        imageURL: image,
-      },
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+  
+  it('Screenshot upload to server fails', async () => {
+    axios.post.mockRejectedValue(Error());
+    const instance = new ConfirmationWrapper(dummyData);
+  
+    await wait(async () => {
+      expect(instance.saveImgToS3(switchId, switchType, uploadURL, image)).resolves.toEqual(true)
+      expect(axios.post).toHaveBeenCalledWith(
+        uploadURL,
+        {
+          switchId: switchId,
+          switchType: switchType,
+          imageURL: image,
         },
-      }
-    );
-  });
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    });
+  });  
+
 });
