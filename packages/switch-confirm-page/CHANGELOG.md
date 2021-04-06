@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@5.0.0...@rtm-ui/switch-confirm-page@5.0.1) (2021-04-06)
+
+
+### Bug Fixes
+
+* **switch-confirm-page:** added condition to check if upload url exists only then take screenshot ([f2b96b3](https://github.com/OBSAU/rtm-kit/commit/f2b96b34b4570ae063a8655b74564eacb83e7faa))
+* **switch-confirm-page:** added condition to skip dom manipulation when eic data not present ([710ea2c](https://github.com/OBSAU/rtm-kit/commit/710ea2cd17e615d1c5c16c82cf1fbccfe2ff3fb0))
+
+
+
+
+
 # [5.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@4.0.9...@rtm-ui/switch-confirm-page@5.0.0) (2021-03-26)
 
 
