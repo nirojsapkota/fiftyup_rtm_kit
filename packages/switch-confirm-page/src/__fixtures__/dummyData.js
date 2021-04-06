@@ -8,7 +8,7 @@ export const dummyData = {
   authenticityToken: '252n2h5fosfsnlr9252h9s0a8fv8',
   switchId: 1234,
   switchType: 'energy',
-  uploadUrl: 'https://dh64wdls9d.execute-api.ap-southeast-2.amazonaws.com/prod/uploadImag',
+  uploadUrl: 'https://example.com/uploadEicImage',
   entity: {
     brand: 'obs',
     footer_items: {},

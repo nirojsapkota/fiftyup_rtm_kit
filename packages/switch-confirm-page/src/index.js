@@ -192,19 +192,25 @@ class ConfirmationWrapper extends React.Component {
     /* istanbul ignore next: Unable to test this method currently.
     The coverage test is statement: 89%, lines: 89%, functions: 82% when the next block is not ignored. */
     const captureAndSubmit = () => {
-      // Expanding the disclaimer box in mobile view to capture all the conditions
-      this.mobileDisclaimerBoxRef.current.getElementsByTagName("div")[1].style.maxHeight = 'none';
+      if (!rest.uploadUrl || rest.uploadUrl === null) {
+        this.handleSubmit();
+      } else {
+        // Check to ensure that disclaimer content exists. This disclaimer content does not exist for the providers with external switching engine
+        if (this.mobileDisclaimerBoxRef.current.getElementsByTagName("div").length > 1 && this.disclaimerBoxRef.current.getElementsByTagName("div").length > 1) {
+          // Expanding the disclaimer box in mobile view to capture all the conditions
+          this.mobileDisclaimerBoxRef.current.getElementsByTagName("div")[1].style.maxHeight = 'none';
 
-      // Expanding the disclaimer box to capture all the conditions
-      this.disclaimerBoxRef.current.getElementsByTagName("div")[1].style.maxHeight = 'none';
-
-      rest.capture()
-        .then((result) => {
-          this.saveImgToS3(rest.switchId, rest.switchType, rest.uploadUrl, result)
-            .finally(() => {
-              this.handleSubmit();
-            })
-        });
+          // Expanding the disclaimer box to capture all the conditions
+          this.disclaimerBoxRef.current.getElementsByTagName("div")[1].style.maxHeight = 'none';
+        }
+        rest.capture()
+          .then((result) => {
+            this.saveImgToS3(rest.switchId, rest.switchType, rest.uploadUrl, result)
+              .finally(() => {
+                this.handleSubmit();
+              })
+          });
+      }
     }
 
     return (
