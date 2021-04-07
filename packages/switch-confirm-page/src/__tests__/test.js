@@ -91,11 +91,11 @@ describe('<SwitchConfirmPage />', () => {
       expect(instance.saveImgToS3(switchId, switchType, uploadURL, image)).resolves.toEqual(response)
       expect(axios.post).toHaveBeenCalledWith(
         uploadURL,
-        {
+        JSON.stringify({
           switchId: switchId,
           switchType: switchType,
           imageURL: image,
-        },
+        }),
         {
           headers: {
             Accept: 'application/json',
@@ -115,11 +115,11 @@ describe('<SwitchConfirmPage />', () => {
       expect(instance.saveImgToS3(switchId, switchType, uploadURL, image)).resolves.toEqual(true)
       expect(axios.post).toHaveBeenCalledWith(
         uploadURL,
-        {
+        JSON.stringify({
           switchId: switchId,
           switchType: switchType,
           imageURL: image,
-        },
+        }),
         {
           headers: {
             Accept: 'application/json',

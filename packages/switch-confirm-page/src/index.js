@@ -170,9 +170,10 @@ class ConfirmationWrapper extends React.Component {
     };
 
     try {
-      return await axios.post(url, data, config);
+      return await axios.post(url, JSON.stringify(data), config);
     }
     catch (error) {
+      console.error(error)
       return true;
     }
   };
@@ -205,6 +206,7 @@ class ConfirmationWrapper extends React.Component {
         }
         rest.capture()
           .then((result) => {
+            //console.log(result)
             this.saveImgToS3(rest.switchId, rest.switchType, rest.uploadUrl, result)
               .finally(() => {
                 this.handleSubmit();
