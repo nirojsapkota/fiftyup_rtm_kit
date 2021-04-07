@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@5.0.1...@rtm-ui/switch-confirm-page@5.0.2) (2021-04-07)
+
+
+### Bug Fixes
+
+* **switch-confirm-page:** added fix to prevent dropping of image uri in post request ([#365](https://github.com/OBSAU/rtm-kit/issues/365)) ([c0de42e](https://github.com/OBSAU/rtm-kit/commit/c0de42e34f5f67426d8f77da4a392e7632d72606))
+
+
+
+
+
 ## [5.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@5.0.0...@rtm-ui/switch-confirm-page@5.0.1) (2021-04-06)
 
 
