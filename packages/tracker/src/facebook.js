@@ -1,3 +1,4 @@
+import { sendToConversionAPI } from './fbConversions'
 /* eslint-disable no-console */
 // import Cookies from 'universal-cookie';
 
@@ -19,6 +20,10 @@ const trackCustomEvent = (eventName, data) => {
     // setCookie(eventCookieName);
     // }
   }
+  sendToConversionAPI(eventName, data)
+    .then(result => {
+      console.log('Fb Conversions Api response - ', result)
+    })
 };
 
 const actionMap = {
