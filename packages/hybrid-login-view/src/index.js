@@ -224,7 +224,7 @@ const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlTabletUrl, heroImageU
         }}>
           <ContainerWrapper
             className="content-wrapper"
-            style={mainHeading ? { paddingTop: '4px' } : { paddingTop: '24px' }}
+            style={{ paddingTop: mainHeading ? '4px' : '24px' }}
           >
             <Box className="hero" {...expandedProps} width={1}>
               <Box m="auto" width={1}>
