@@ -65,7 +65,7 @@ const LoginPanelWrapper = styled(Box)`
   @media (min-width: ${props => props.theme.grid.md}em) {
     left: 58%; /* Fallback if needed */
     left: calc(50% + 90px);
-    top: -125px;
+    top: -75px;
     position: absolute;
   }
   @media (min-width: ${props => props.theme.grid.lg}em) {
