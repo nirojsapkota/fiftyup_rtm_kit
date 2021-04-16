@@ -205,7 +205,7 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
               <ImageWrapper m="auto">
                 <Img src={asSeenOnImage} alt="As Seen On" onClick={e => {
                   scrollToElement(e, 'login-panel');
-                }}/>
+                }} />
               </ImageWrapper>
             )}
           </Box>
@@ -215,7 +215,7 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
   );
 };
 
-const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlTabletUrl, heroImageUrlMobileUrl }) => {
+const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlTabletUrl, heroImageUrlMobileUrl, mainHeading }) => {
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
@@ -224,7 +224,7 @@ const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlTabletUrl, heroImageU
         }}>
           <ContainerWrapper
             className="content-wrapper"
-            style={{ paddingTop: '4px' }}
+            style={{ paddingTop: mainHeading ? '4px' : '24px' }}
           >
             <Box className="hero" {...expandedProps} width={1}>
               <Box m="auto" width={1}>
@@ -275,41 +275,41 @@ const HybridLoginView = ({
             {(workflowOffer.header ||
               workflowOffer.items.length > 0 ||
               accordion.length > 0) && (
-              <ContainerWrapper className="content-wrapper">
-                <ContentWrapper>
-                  <Box {...defaultProps}>
-                    <Variant variant="a">
-                      <WorkFlowContainer>
-                        <WorkFlow 
-                          multiContent
-                          scrollTo="login-panel"
-                          header={workflowOffer.header}
-                          items={workflowOffer.items}
-                        />
-                      </WorkFlowContainer>
-                    </Variant>
+                <ContainerWrapper className="content-wrapper">
+                  <ContentWrapper>
+                    <Box {...defaultProps}>
+                      <Variant variant="a">
+                        <WorkFlowContainer>
+                          <WorkFlow
+                            multiContent
+                            scrollTo="login-panel"
+                            header={workflowOffer.header}
+                            items={workflowOffer.items}
+                          />
+                        </WorkFlowContainer>
+                      </Variant>
 
-                    {accordion.length > 0 && (
-                      <Column variant="b" pb="20px">
-                        <Accordion
-                          items={accordion}
-                          renderItem={item => (
-                            <Variant variant="a">
-                              <Box p={[2, 2, 3]}>
-                                <MarkdownWrapper content={item.content} />
-                              </Box>
-                            </Variant>
-                          )}
-                          renderHeader={item => (
-                            <Header tag="h5">{item.name}</Header>
-                          )}
-                        />
-                      </Column>
-                    )}
-                  </Box>
-                </ContentWrapper>
-              </ContainerWrapper>
-            )}
+                      {accordion.length > 0 && (
+                        <Column variant="b" pb="20px">
+                          <Accordion
+                            items={accordion}
+                            renderItem={item => (
+                              <Variant variant="a">
+                                <Box p={[2, 2, 3]}>
+                                  <MarkdownWrapper content={item.content} />
+                                </Box>
+                              </Variant>
+                            )}
+                            renderHeader={item => (
+                              <Header tag="h5">{item.name}</Header>
+                            )}
+                          />
+                        </Column>
+                      )}
+                    </Box>
+                  </ContentWrapper>
+                </ContainerWrapper>
+              )}
           </div>
 
           {(workflow.header || workflow.items.length > 0) && (
