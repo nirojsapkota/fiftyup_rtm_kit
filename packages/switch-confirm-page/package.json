@@ -1,13 +1,14 @@
 {
   "name": "@rtm-ui/switch-confirm-page",
-  "version": "4.0.8",
+  "version": "5.0.2",
   "description": "Description for SwitchConfirmPage",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "switch-confirm-page",
     "namedExports": [
-      "SwitchConfirmPage"
+      "SwitchConfirmPage",
+      "ConfirmationWrapper"
     ]
   },
   "main": "build/index.js",
@@ -24,7 +25,8 @@
     "@rtm-ui/form": "file:../form",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/typography": "file:../typography"
+    "@rtm-ui/typography": "file:../typography",
+    "use-screenshot-hook": "^1.0.2"
   },
   "peerDependencies": {
     "prop-types": "15.x",

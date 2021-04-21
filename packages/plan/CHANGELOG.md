@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.145](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.144...@rtm-ui/plan@2.0.145) (2021-03-03)
+
+
+### Bug Fixes
+
+* **Plan:** display multiimage in mobile view when there are only 2 va… ([#360](https://github.com/OBSAU/rtm-kit/issues/360)) ([454dec6](https://github.com/OBSAU/rtm-kit/commit/454dec6d5082df9829ec870b442faf26551da599))
+
+
+
+
+
+## [2.0.144](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.143...@rtm-ui/plan@2.0.144) (2021-03-02)
+
+**Note:** Version bump only for package @rtm-ui/plan
+
+
+
+
+
+## [2.0.143](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.142...@rtm-ui/plan@2.0.143) (2021-02-22)
+
+**Note:** Version bump only for package @rtm-ui/plan
+
+
+
+
+
+## [2.0.142](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.141...@rtm-ui/plan@2.0.142) (2021-02-21)
+
+
+### Bug Fixes
+
+* **plan:** handle null values in multi image array ([#357](https://github.com/OBSAU/rtm-kit/issues/357)) ([13a2d84](https://github.com/OBSAU/rtm-kit/commit/13a2d84a4ec9c8784e65ff71996c75073cf237e3))
+
+
+
+
+
 ## [2.0.141](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@2.0.140...@rtm-ui/plan@2.0.141) (2021-02-09)
 
 **Note:** Version bump only for package @rtm-ui/plan

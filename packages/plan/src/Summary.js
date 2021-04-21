@@ -59,7 +59,11 @@ const Summary = props => {
     ({ actionType }) => actionType === 'back'
   );
   const refer = React.useContext(PlanReferenceContext);
-  const imageDataArr = props.multi_image_data || [];
+  const urlsArray = props.multi_image_file_urls || [];
+  
+  const imageDataArr = urlsArray.filter(function(str) {
+    return str !== null;
+  });
 
   return (
     <Box p={[0, 0, 0, 2]}>
@@ -69,7 +73,7 @@ const Summary = props => {
         </Header>
       </Box>
       <Block showAt="md">
-      {imageDataArr.length ? (
+      {imageDataArr.length == 2 ? (
        <S.ContentWrapper>
         {imageDataArr.map(data => 
           <S.ImageContentWrapper>
@@ -78,7 +82,7 @@ const Summary = props => {
             renderTrigger={triggerProps => (
               <A {...triggerProps}>
                 <PlanImg
-                  src={data.desktop_img}
+                  src={data}
                   alt={props.main_header_text}
                 />
               </A>
@@ -102,7 +106,8 @@ const Summary = props => {
       )}
       </Block>
       <Block hideAt="md">
-      {imageDataArr.length ? (
+      {imageDataArr.length == 2 ? (   
+  //The current requirement is only to display 2 graphics in multigraphic feature. If backend is sending more than 2 image data, fall back to main image
         imageDataArr.map(data => 
           <S.ImageContentWrapper>
               <PrimaryAction
@@ -110,7 +115,7 @@ const Summary = props => {
               renderTrigger={triggerProps => (
                 <A {...triggerProps}>
                   <PlanImg
-                    src={data.mobile_img ? data.mobile_img : data.desktop_img}
+                    src={data}
                     alt={props.main_header_text}
                   />
                 </A>
@@ -234,12 +239,7 @@ Summary.propTypes = {
   main_header_text: PropTypes.string,
   main_image_file_url: PropTypes.string,
   mobile_image_file_url: PropTypes.string,
-  multi_image_data: PropTypes.arrayOf(
-    PropTypes.shape({
-      desktop_img: PropTypes.string,
-      mobile_img: PropTypes.string,
-    })
-  ),
+  multi_image_file_urls: PropTypes.arrayOf(PropTypes.string),
   sub_header_text: PropTypes.string,
   merchant: PropTypes.shape({
     name: PropTypes.string,
