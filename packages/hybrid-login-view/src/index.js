@@ -280,7 +280,7 @@ const HybridLoginView = ({
                   <Box {...defaultProps}>
                     <Variant variant="a">
                       <WorkFlowContainer>
-                        <WorkFlow 
+                        <WorkFlow
                           multiContent
                           scrollTo="login-panel"
                           header={workflowOffer.header}
@@ -399,6 +399,7 @@ WrappedHybridLoginView.propTypes = {
   trackingData: t.shape({}),
   entity: t.shape({
     brand: t.string,
+    facebook_pixel_id: t.string,
     footer_items: t.shape({
       logo: t.string,
     }),

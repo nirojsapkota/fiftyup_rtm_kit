@@ -20,10 +20,6 @@ const trackCustomEvent = (eventName, data) => {
     // setCookie(eventCookieName);
     // }
   }
-  sendToConversionAPI(eventName, data)
-    .then(result => {
-      console.log('Fb Conversions Api response - ', result)
-    })
 };
 
 const actionMap = {
@@ -68,6 +64,12 @@ const chooseCategoryKeys = category =>
 class Facebook {
   static sendData(tracking) {
     const categoryKeys = chooseCategoryKeys(tracking.category);
+
+    let conversionEvents = ['presignup', 'homepage/signup', 'signin', 'get_started', 'solar_tile_button', 'fuelType_tile_button'];
+    if(conversionEvents.includes(tracking.action)) {
+      sendToConversionAPI(tracking);
+    }
+
     trackCustomEvent(
       actionMap[tracking.action] || tracking.action,
       filterObject(categoryKeys(tracking))

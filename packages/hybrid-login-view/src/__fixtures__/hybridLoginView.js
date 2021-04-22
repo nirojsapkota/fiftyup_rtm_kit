@@ -17,6 +17,7 @@ const hybridLoginView = {
   mainContent: 'I am main content',
   entity: {
     brand: 'obs',
+    facebook_pixel_id: '2222222',
     navigation_items: {
       user: '',
       tagline: "I'm a tagline",
