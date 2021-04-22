@@ -60,8 +60,12 @@ export const Phoneback = ({
   thankYouProps,
   ...props
 }) => {
-  const [phonebackSubmitted, setPhonebackSubmitted] = React.useState(isPhonebacked);
-  const [phonebackSubmitting, setPhonebackSubmitting] = React.useState(isFormSubmitting);
+  const [phonebackSubmitted, setPhonebackSubmitted] = React.useState(
+    isPhonebacked
+  );
+  const [phonebackSubmitting, setPhonebackSubmitting] = React.useState(
+    isFormSubmitting
+  );
 
   React.useEffect(() => {
     setPhonebackSubmitted(isPhonebacked);
@@ -89,7 +93,7 @@ export const Phoneback = ({
                     onSuccess: (values, ctx) => {
                       setPhonebackSubmitted(true);
                       form.onSuccess && form.onSuccess(values, ctx);
-                    }
+                    },
                   }}
                 />
               </Box>
@@ -149,7 +153,11 @@ export const PhonebackForm = ({ form, ...props }) => {
           <>
             {props.agreement && <Box my={2}>{props.agreement}</Box>}
             <CenterBox>
-              <Button disabled={props.phonebackSubmitting} type="submit" track={props.track}>
+              <Button
+                disabled={props.phonebackSubmitting}
+                type="submit"
+                track={props.track + '/submit'}
+              >
                 {props.submitText}
               </Button>
             </CenterBox>
