@@ -6,15 +6,15 @@ export const sendToConversionAPI = (data) => {
 
   if(data.meta && data.meta.fb_pixel_id) {
     try {
-      axios.post(url,
+      return axios.post(url,
         {
           event_name: data.action,
           email: data.meta.email,
           postcode: data.meta.postcode,
           state: data.meta.state,
-          pixel_id: "495286158496858"
+          pixel_id: data.meta.fb_pixel_id
         }
-      );
+      )
     }
     catch (error) {
       console.error('caught exception', error)
