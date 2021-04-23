@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.53](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.0.52...@rtm-ui/hybrid-login-view@5.0.53) (2021-04-16)
+
+
+### Bug Fixes
+
+* **hybrid-login-view:** increase space between heading div and hero banner when heading is not prese ([222fd27](https://github.com/OBSAU/rtm-kit/commit/222fd276c4b2edd401a8396f06919cacf6079e61))
+* **hybrid-login-view:** The top spacing increased for login box to be in line with the media box nex ([2440875](https://github.com/OBSAU/rtm-kit/commit/2440875ecd58e5a2d853fc0b72aca53f4e6e6e24))
+* **hybrid-login-view:** The top spacing increased for the login box so that it dos not overlap the b ([969d4ef](https://github.com/OBSAU/rtm-kit/commit/969d4efb1290a9482f877f7d18687474c8171ce7))
+
+
+
+
+
 ## [5.0.52](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.0.51...@rtm-ui/hybrid-login-view@5.0.52) (2021-02-22)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
