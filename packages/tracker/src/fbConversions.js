@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { dummyData } from './__fixtures__/dummyData';
 
 export const sendToConversionAPI = (data) => {
-  const url = dummyData.conversionApiUrl;
+  const url = data.meta.fbConversionApiUrl;
 
-  if(data.meta && data.meta.fb_pixel_id) {
+  if(data.meta && data.meta.fb_pixel_id && data.meta.fbConversionApiUrl) {
     try {
       return axios.post(url,
         {

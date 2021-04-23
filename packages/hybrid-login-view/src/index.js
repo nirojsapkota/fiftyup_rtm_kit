@@ -376,15 +376,8 @@ HybridLoginView.defaultProps = {
 const WrappedHybridLoginView = props => {
   const { trackingData, entity, navLinks, ...rest } = props;
 
-  let fbtrackingData = trackingData;
-  fbtrackingData = {
-    meta: {
-      fb_pixel_id: props.entity.facebook_pixel_id,
-    }
-  }
-
   useEffect(() => {
-    track('presignup', fbtrackingData);
+    track('presignup', trackingData);
   });
 
   return (
