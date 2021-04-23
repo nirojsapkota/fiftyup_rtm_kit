@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 export const sendToConversionAPI = (data) => {
-  const url = data.meta.fbConversionApiUrl;
-
-  if(data.meta && data.meta.fb_pixel_id && data.meta.fbConversionApiUrl) {
+  if(data.meta && data.meta.fb_pixel_id && data.meta.fb_conversion_api_url) {
+    const url = data.meta.fb_conversion_api_url;
     try {
       return axios.post(url,
         {

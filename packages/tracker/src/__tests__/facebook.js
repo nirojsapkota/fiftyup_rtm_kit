@@ -99,7 +99,8 @@ describe(`Facebook`, () => {
         email: 'user@email.com',
         postcode: 2000,
         state: 'AU',
-        fb_pixel_id: '333333333'
+        fb_pixel_id: '333333333',
+        fb_conversion_api_url: 'https://amazonaws.com/'
       },
     })).resolves.toEqual(response);
   });
