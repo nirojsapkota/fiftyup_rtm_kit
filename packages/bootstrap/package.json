@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/bootstrap",
-  "version": "4.0.53",
+  "version": "4.0.54",
   "rtmRollup": {
     "namespace": "bootstrap",
     "namedExports": [

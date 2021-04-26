@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.3.8...@rtm-ui/tracker@5.4.0) (2021-04-26)
+
+
+### Bug Fixes
+
+* **Tracker:** Twitter tracker proper tracking ([69de3c2](https://github.com/OBSAU/rtm-kit/commit/69de3c21e01edd9910fa67dc543abf80f4bbca04))
+* **Tracker:** Twitter tracker test fix ([eb117ce](https://github.com/OBSAU/rtm-kit/commit/eb117ced66a4f9f3531ef9483c8fe77d2ac099d4))
+
+
+### Features
+
+* **Tracker:** Twitter tracking ([f0d3edd](https://github.com/OBSAU/rtm-kit/commit/f0d3edd9b866471661fafe03c9e5fde786481f4f))
+
+
+
+
+
 ## [5.3.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.3.7...@rtm-ui/tracker@5.3.8) (2021-02-22)
 
 **Note:** Version bump only for package @rtm-ui/tracker

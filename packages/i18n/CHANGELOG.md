@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.31](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/i18n@1.0.30...@rtm-ui/i18n@1.0.31) (2021-04-26)
+
+**Note:** Version bump only for package @rtm-ui/i18n
+
+
+
+
+
 ## [1.0.30](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/i18n@1.0.29...@rtm-ui/i18n@1.0.30) (2021-02-22)
 
 **Note:** Version bump only for package @rtm-ui/i18n
