@@ -3,6 +3,7 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { useTracker, track, TrackerRegistration } from '..';
 import Google from '../google';
+import Twitter from '../twitter';
 import Facebook from '../facebook';
 
 afterEach(cleanup);
@@ -54,18 +55,20 @@ describe(`track`, () => {
       throw new Error();
     };
     Google.sendData = jest.fn().mockImplementation(throwError);
+    Twitter.sendData = jest.fn().mockImplementation(throwError);
     Facebook.sendData = jest.fn().mockImplementation(throwError);
 
     const logSpy = jest.spyOn(console, 'log');
 
     track('get_started', { some: 'data', meta: {} });
 
-    expect(logSpy).toHaveBeenCalledTimes(2);
+    expect(logSpy).toHaveBeenCalledTimes(3);
   });
 });
 
 describe('<TrackerRegistration />', () => {
   it(`renders the script with given IDs`, () => {
+    const twitter_analytics_id = 'QQQ-TTT-RRR';
     const ga_code = 'UA-121324450-2';
     const bing_uet_tag_code = '25041030';
     const google_tag_mgr_id = 'GMT-1111111';
@@ -82,6 +85,7 @@ describe('<TrackerRegistration />', () => {
       <TrackerRegistration
         google_tag_mgr_id={google_tag_mgr_id}
         ga_code={ga_code}
+        twitter_analytics_id={twitter_analytics_id}
         bing_uet_tag_code={bing_uet_tag_code}
         google_adwords_id={google_adwords_id}
         facebook_pixel_id={facebook_pixel_id}
@@ -95,7 +99,9 @@ describe('<TrackerRegistration />', () => {
       />
     );
 
-    expect(getByTestId('TrackingRegister').innerHTML).toContain(google_tag_mgr_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      google_tag_mgr_id
+    );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(ga_code);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       bing_uet_tag_code
@@ -105,6 +111,9 @@ describe('<TrackerRegistration />', () => {
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       facebook_pixel_id
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      twitter_analytics_id
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(fullstory_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);

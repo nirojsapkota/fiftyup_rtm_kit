@@ -1,0 +1,418 @@
+import Twitter from '../twitter';
+
+describe(`Twitter`, () => {
+  it(`sends an event to the TWQ object`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'signin',
+      action: 'get_started',
+      hybrid_nonhybrid: 'nonhybrid',
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/signin/get_started/nonhybrid',
+    });
+  });
+
+  it(`with meta values sends an event to the TWQ object`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'signin',
+      action: 'get_started',
+      meta: { hybrid_nonhybrid: 'nonhybrid' },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/signin/get_started/nonhybrid',
+    });
+  });
+
+  it(`falls back to generic keys when a category can't be determined`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'some_product',
+      action: 'get_started',
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/some_product/get_started',
+    });
+
+    Twitter.sendData({
+      category: 'some_product',
+      action: 'get_started',
+      meta: {
+        campaign_type: 'business',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/some_product/business/get_started',
+    });
+  });
+
+  it(`when there is no ga object on the window`, () => {
+    global.twq = undefined;
+    const spyError = jest.spyOn(console, 'error');
+
+    Twitter.sendData({
+      category: 'signin',
+      action: 'get_started',
+      meta: { hybrid_nonhybrid: 'nonhybrid' },
+    });
+
+    // FIXME: This is to implicit
+    expect(spyError).not.toHaveBeenCalled();
+  });
+
+  it(`when not enough data is present it logs the failure`, () => {
+    process.env.NODE_ENV = 'development';
+    const logSpy = jest.spyOn(console, 'log');
+
+    Twitter.sendData({
+      category: 'signin',
+      action: 'get_started',
+    });
+
+    expect(logSpy).toHaveBeenCalled();
+  });
+
+  it(`with energy category and presignup action`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'presignup',
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/presignup',
+    });
+  });
+
+  it(`with energy category from landing page and no props provided`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'click_to_call',
+      page: 'landing_page',
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/click_to_call',
+    });
+  });
+
+  it(`with energy category, presignup action and campaign_type`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'presignup',
+      meta: {
+        campaign_type: 'business',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/business/presignup',
+    });
+  });
+
+  it(`with energy category and preoffer action`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'preoffer',
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/preoffer',
+    });
+  });
+
+  it(`with energy category, preoffer action and campaign_type`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'preoffer',
+      meta: {
+        campaign_type: 'residential',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/residential/preoffer',
+    });
+  });
+
+  it(`with energy category and signin action`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'signin',
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/signin',
+    });
+  });
+
+  it(`with energy category, signin action and campaign_type`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'signin',
+      meta: {
+        campaign_type: 'business',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/business/signin',
+    });
+  });
+
+  describe(`energy category`, () => {
+    it(`get_started action, Electricity and solar`, () => {
+      global.twq = jest.fn();
+      const spyTwq = jest.spyOn(global, 'twq');
+
+      Twitter.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'E',
+          is_solar: true,
+        },
+      });
+
+      expect(spyTwq).toHaveBeenCalledWith('send', {
+        hitType: 'PageView',
+        page: 'virtual/energy/get_started/internal/NSW/Electricity/solar',
+      });
+    });
+
+    it(`get_started action, DualFuel and non solar`, () => {
+      global.twq = jest.fn();
+      const spyTwq = jest.spyOn(global, 'twq');
+
+      Twitter.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'EG',
+          is_solar: false,
+        },
+      });
+
+      expect(spyTwq).toHaveBeenCalledWith('send', {
+        hitType: 'PageView',
+        page: 'virtual/energy/get_started/internal/NSW/DualFuel/nonsolar',
+      });
+    });
+
+    it(`get_started action, missing is_solar`, () => {
+      process.env.NODE_ENV = 'development';
+      const logSpy = jest.spyOn(console, 'log');
+
+      Twitter.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'EG',
+        },
+      });
+
+      expect(logSpy).toHaveBeenCalled();
+    });
+
+    it(`get_started action, missing plan_type`, () => {
+      process.env.NODE_ENV = 'development';
+      const logSpy = jest.spyOn(console, 'log');
+
+      Twitter.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          is_solar: false,
+        },
+      });
+
+      expect(logSpy).toHaveBeenCalled();
+    });
+
+    it(`works with campaign_type meta`, () => {
+      global.twq = jest.fn();
+      const spyTwq = jest.spyOn(global, 'twq');
+
+      Twitter.sendData({
+        category: 'energy',
+        action: 'get_started',
+        meta: {
+          internal_external: 'internal',
+          state: 'NSW',
+          plan_type: 'E',
+          is_solar: true,
+          campaign_type: 'business',
+        },
+      });
+
+      expect(spyTwq).toHaveBeenCalledWith('send', {
+        hitType: 'PageView',
+        page:
+          'virtual/energy/business/get_started/internal/NSW/Electricity/solar',
+      });
+    });
+  });
+
+  it(`with energy category, tile-click action and category energy, state VIC, plan_type EG  without optional fields campaign_type, solar_nonsolar, internal_external`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'tile-click',
+      meta: {
+        state: 'VIC',
+        plan_type: 'EG',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/tile-click/VIC/DualFuel',
+    });
+  });
+
+  it(`with energy category, tile-click action and category energy, state VIC, plan_type EG,  solar true,  without optional fields campaign_type, internal_external`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'tile-click',
+      meta: {
+        state: 'NSW',
+        plan_type: 'EG',
+        is_solar: true,
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/tile-click/NSW/DualFuel/solar',
+    });
+  });
+
+  it(`with home category, tile-click action and category home month-selected june`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'home',
+      action: 'renewal-month-tile-click',
+      meta: {
+        renewal_month: 'june',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/home/renewal-month-tile-click/june',
+    });
+  });
+
+  it(`with car category, tile-click action and category car month-selected dont-have`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'car',
+      action: 'renewal-month-tile-click',
+      meta: {
+        renewal_month: 'dont-have',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/car/renewal-month-tile-click/dont-have',
+    });
+  });
+
+  it(`with dashboard-preferences category, should track all products`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'dashboard-preferences',
+      action: 'cta',
+      meta: {
+        products: 'car+electricity',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/dashboard-preferences/cta/car+electricity',
+    });
+  });
+
+  it(`with energy category and existing customer question`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'energy',
+      action: 'tile-click',
+      meta: {
+        state: 'NSW',
+        existing_customer: 'isnewcustomer',
+        plan_type: 'EG',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('send', {
+      hitType: 'PageView',
+      page: 'virtual/energy/tile-click/NSW/DualFuel/isnewcustomer',
+    });
+  });
+});

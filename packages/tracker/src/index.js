@@ -1,10 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-console */
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import Google from './google';
 import Facebook from './facebook';
 import Funnel from './funnel';
+import Twitter from './twitter';
 import Bing from './bing';
 
 const safeSendTo = (service, data) => {
@@ -22,6 +23,7 @@ export const track = (action, trackingData) => {
   safeSendTo(Facebook, data);
   safeSendTo(Funnel, data);
   safeSendTo(Bing, data);
+  safeSendTo(Twitter, data);
 };
 
 const trackEvent = (e, action, trackingData, callback) => {
@@ -80,6 +82,26 @@ export const TrackingProvider = ({
 
 class TrackerRegistration extends React.Component {
   componentDidMount() {
+    // Twitter Business Conversion tracking
+    if (this.props.twitter_analytics_id) {
+      let twitter_tracker = document.createElement('script');
+      twitter_tracker.innerHTML = `!(function(e, t, n, s, u, a) {
+        e.twq ||
+          ((s = e.twq = function() {
+            s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+          }),
+          (s.version = '1.1'),
+          (s.queue = []),
+          (u = t.createElement(n)),
+          (u.async = !0),
+          (u.src = '//static.ads-twitter.com/uwt.js'),
+          (a = t.getElementsByTagName(n)[0]),
+          a.parentNode.insertBefore(u, a));
+      })(window, document, 'script');
+      twq('init', ${this.props.twitter_analytics_id});`;
+      this.instance.appendChild(twitter_tracker);
+    }
+
     // Google Tag Manager
     if (this.props.google_tag_mgr_id) {
       let gtag_mgr = document.createElement('script');
@@ -87,7 +109,9 @@ class TrackerRegistration extends React.Component {
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','${this.props.google_tag_mgr_id}');`;
+      })(window,document,'script','dataLayer','${
+        this.props.google_tag_mgr_id
+      }');`;
       this.instance.appendChild(gtag_mgr);
     }
 
@@ -335,6 +359,7 @@ TrackingProvider.propTypes = {
 };
 
 TrackerRegistration.propTypes = {
+  twitter_analytics_id: string,
   ga_code: PropTypes.string,
   bing_uet_tag_code: PropTypes.string,
   google_adwords_id: PropTypes.string,
