@@ -3,6 +3,7 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { useTracker, track, TrackerRegistration } from '..';
 import Google from '../google';
+import Twitter from '../twitter';
 import Facebook from '../facebook';
 
 afterEach(cleanup);
@@ -54,13 +55,14 @@ describe(`track`, () => {
       throw new Error();
     };
     Google.sendData = jest.fn().mockImplementation(throwError);
+    Twitter.sendData = jest.fn().mockImplementation(throwError);
     Facebook.sendData = jest.fn().mockImplementation(throwError);
 
     const logSpy = jest.spyOn(console, 'log');
 
     track('get_started', { some: 'data', meta: {} });
 
-    expect(logSpy).toHaveBeenCalledTimes(2);
+    expect(logSpy).toHaveBeenCalledTimes(3);
   });
 });
 
@@ -110,6 +112,9 @@ describe('<TrackerRegistration />', () => {
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       facebook_pixel_id
     );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      twitter_analytics_id
+    );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(fullstory_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
@@ -124,9 +129,6 @@ describe('<TrackerRegistration />', () => {
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       jackmedia_pixel_id
-    );
-    expect(getByTestId('TrackingRegister').innerHTML).toContain(
-      twitter_analytics_id
     );
   });
 });

@@ -5,6 +5,7 @@ import PropTypes, { string } from 'prop-types';
 import Google from './google';
 import Facebook from './facebook';
 import Funnel from './funnel';
+import Twitter from './twitter';
 import Bing from './bing';
 
 const safeSendTo = (service, data) => {
@@ -22,6 +23,7 @@ export const track = (action, trackingData) => {
   safeSendTo(Facebook, data);
   safeSendTo(Funnel, data);
   safeSendTo(Bing, data);
+  safeSendTo(Twitter, data);
 };
 
 const trackEvent = (e, action, trackingData, callback) => {
@@ -82,7 +84,8 @@ class TrackerRegistration extends React.Component {
   componentDidMount() {
     // Twitter Business Conversion tracking
     if (this.props.twitter_analytics_id) {
-      !(function(e, t, n, s, u, a) {
+      let twitter_tracker = document.createElement('script');
+      twitter_tracker.innerHTML = `!(function(e, t, n, s, u, a) {
         e.twq ||
           ((s = e.twq = function() {
             s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
@@ -95,7 +98,8 @@ class TrackerRegistration extends React.Component {
           (a = t.getElementsByTagName(n)[0]),
           a.parentNode.insertBefore(u, a));
       })(window, document, 'script');
-      twq('init', this.props.twitter_analytics_id);
+      twq('init', ${this.props.twitter_analytics_id});`;
+      this.instance.appendChild(twitter_tracker);
     }
 
     // Google Tag Manager
