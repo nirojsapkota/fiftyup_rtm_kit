@@ -11,8 +11,7 @@ describe(`Twitter`, () => {
       hybrid_nonhybrid: 'nonhybrid',
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/signin/get_started/nonhybrid',
     });
   });
@@ -27,8 +26,7 @@ describe(`Twitter`, () => {
       meta: { hybrid_nonhybrid: 'nonhybrid' },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/signin/get_started/nonhybrid',
     });
   });
@@ -42,8 +40,7 @@ describe(`Twitter`, () => {
       action: 'get_started',
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/some_product/get_started',
     });
 
@@ -55,8 +52,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/some_product/business/get_started',
     });
   });
@@ -96,8 +92,7 @@ describe(`Twitter`, () => {
       action: 'presignup',
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/presignup',
     });
   });
@@ -112,8 +107,7 @@ describe(`Twitter`, () => {
       page: 'landing_page',
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/click_to_call',
     });
   });
@@ -130,8 +124,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/business/presignup',
     });
   });
@@ -145,8 +138,7 @@ describe(`Twitter`, () => {
       action: 'preoffer',
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/preoffer',
     });
   });
@@ -163,8 +155,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/residential/preoffer',
     });
   });
@@ -178,8 +169,7 @@ describe(`Twitter`, () => {
       action: 'signin',
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/signin',
     });
   });
@@ -196,8 +186,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/business/signin',
     });
   });
@@ -218,8 +207,7 @@ describe(`Twitter`, () => {
         },
       });
 
-      expect(spyTwq).toHaveBeenCalledWith('send', {
-        hitType: 'PageView',
+      expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
         page: 'virtual/energy/get_started/internal/NSW/Electricity/solar',
       });
     });
@@ -239,8 +227,7 @@ describe(`Twitter`, () => {
         },
       });
 
-      expect(spyTwq).toHaveBeenCalledWith('send', {
-        hitType: 'PageView',
+      expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
         page: 'virtual/energy/get_started/internal/NSW/DualFuel/nonsolar',
       });
     });
@@ -295,8 +282,7 @@ describe(`Twitter`, () => {
         },
       });
 
-      expect(spyTwq).toHaveBeenCalledWith('send', {
-        hitType: 'PageView',
+      expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
         page:
           'virtual/energy/business/get_started/internal/NSW/Electricity/solar',
       });
@@ -316,8 +302,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/tile-click/VIC/DualFuel',
     });
   });
@@ -336,8 +321,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/tile-click/NSW/DualFuel/solar',
     });
   });
@@ -354,8 +338,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/home/renewal-month-tile-click/june',
     });
   });
@@ -372,8 +355,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/car/renewal-month-tile-click/dont-have',
     });
   });
@@ -390,8 +372,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/dashboard-preferences/cta/car+electricity',
     });
   });
@@ -410,8 +391,7 @@ describe(`Twitter`, () => {
       },
     });
 
-    expect(spyTwq).toHaveBeenCalledWith('send', {
-      hitType: 'PageView',
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
       page: 'virtual/energy/tile-click/NSW/DualFuel/isnewcustomer',
     });
   });

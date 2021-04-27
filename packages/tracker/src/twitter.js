@@ -19,7 +19,7 @@ class Twitter {
       const eventPath = values.filter(e => e && e !== '').join('/');
       console.log('eventPath: ', eventPath);
       if (typeof window.twq === 'function') {
-        window.twq('track', 'PageView', { path: `virtual/${eventPath}` });
+        window.twq('track', 'PageView', { page: `virtual/${eventPath}` });
       }
     }
   }
