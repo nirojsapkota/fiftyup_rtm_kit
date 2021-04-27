@@ -98,7 +98,7 @@ class TrackerRegistration extends React.Component {
           (a = t.getElementsByTagName(n)[0]),
           a.parentNode.insertBefore(u, a));
       })(window, document, 'script');
-      twq('init', ${this.props.twitter_analytics_id});`;
+      twq('init', '${this.props.twitter_analytics_id}');`;
       this.instance.appendChild(twitter_tracker);
     }
 
