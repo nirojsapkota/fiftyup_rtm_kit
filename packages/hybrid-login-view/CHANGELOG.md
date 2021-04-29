@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.0.55...@rtm-ui/hybrid-login-view@5.1.0) (2021-04-29)
+
+
+### Bug Fixes
+
+* **tracker:** read fb pixel id and fb conversion api url from tracking data ([5ef1369](https://github.com/OBSAU/rtm-kit/commit/5ef13694e44e24e9211e0876b777eb696f786484))
+
+
+### Features
+
+* **hybrid-login-view:** added pixel id to hybrid-login-tracking ([3178f21](https://github.com/OBSAU/rtm-kit/commit/3178f21d95ae6f4654beeaf1ac17b6567715ea16))
+* **tracker, hybrid-login-view:** add pixel id to tracking meta, added fb conversion API service req ([56bcf78](https://github.com/OBSAU/rtm-kit/commit/56bcf78ece9efb6b2450dedd7efcd35a0fcaa40d))
+
+
+
+
+
 ## [5.0.55](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.0.54...@rtm-ui/hybrid-login-view@5.0.55) (2021-04-27)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view

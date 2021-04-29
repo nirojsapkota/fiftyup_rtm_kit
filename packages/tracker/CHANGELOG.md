@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.4.1...@rtm-ui/tracker@5.5.0) (2021-04-29)
+
+
+### Bug Fixes
+
+* **tracker:** added axios as package dependency ([2312a54](https://github.com/OBSAU/rtm-kit/commit/2312a540da13680b42c91fd2db03a1ae56d0a21a))
+* **tracker:** fixed test for conversion api request ([5d95662](https://github.com/OBSAU/rtm-kit/commit/5d95662a6ac2583fd57f054af19afd4318de66da))
+* **tracker:** read fb pixel id and fb conversion api url from tracking data ([5ef1369](https://github.com/OBSAU/rtm-kit/commit/5ef13694e44e24e9211e0876b777eb696f786484))
+
+
+### Features
+
+* **hybrid-login-view:** added pixel id to hybrid-login-tracking ([3178f21](https://github.com/OBSAU/rtm-kit/commit/3178f21d95ae6f4654beeaf1ac17b6567715ea16))
+* **tracker:** conversion api tracking parameters added ([cd0202a](https://github.com/OBSAU/rtm-kit/commit/cd0202a45d6c2f435016d5eeef3699a3a6e97a87))
+* **tracker, hybrid-login-view:** add pixel id to tracking meta, added fb conversion API service req ([56bcf78](https://github.com/OBSAU/rtm-kit/commit/56bcf78ece9efb6b2450dedd7efcd35a0fcaa40d))
+* **tracking:** fb conversions api tracking added ([5c67c1b](https://github.com/OBSAU/rtm-kit/commit/5c67c1b0c30e405ac6622f5cf0c67698e5d14383))
+
+
+
+
+
 ## [5.4.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.4.0...@rtm-ui/tracker@5.4.1) (2021-04-27)
 
 **Note:** Version bump only for package @rtm-ui/tracker
