@@ -86,8 +86,7 @@ describe(`Facebook`, () => {
 
   it('pushes successfully data to an API', async () => {
     const response = {
-      status: 200,
-      data : {
+      data: {
         _events_received: 1,
         _fbtrace_id: "AbcdE",
         messages: []
@@ -106,10 +105,46 @@ describe(`Facebook`, () => {
         email: 'user@email.com',
         postcode: 2000,
         state: 'AU',
-        fb_pixel_id: '333333333',
+        fb_pixel_id: '1111111111',
         fb_conversion_api_url: 'https://amazonaws.com/'
       },
-    })).resolves.toEqual(response);
+    })).resolves.toEqual(response.data);
+  });
+
+  it('does not push data to conversion API when pixel id is missing', async () => {
+    await expect(sendToConversionAPI({
+      category: 'energy',
+      action: 'get_started',
+      meta: {
+        tracking_id: 8,
+        state: 'nsw',
+        plan_type: 'E',
+        solar_nonsolar: 'solar',
+        email: 'user@email.com',
+        postcode: 2000,
+        state: 'AU',
+        fb_pixel_id: '',
+        fb_conversion_api_url: 'https://amazonaws.com/'
+      },
+    })).resolves.toEqual(false);
+  });
+
+  it('does not push data to conversion API when api url is missing', async () => {
+    await expect(sendToConversionAPI({
+      category: 'energy',
+      action: 'get_started',
+      meta: {
+        tracking_id: 8,
+        state: 'nsw',
+        plan_type: 'E',
+        solar_nonsolar: 'solar',
+        email: 'user@email.com',
+        postcode: 2000,
+        state: 'AU',
+        fb_pixel_id: '1111111111',
+        fb_conversion_api_url: ''
+      },
+    })).resolves.toEqual(false);
   });
 
   it(`does nothing when fbq does not exist`, () => {
