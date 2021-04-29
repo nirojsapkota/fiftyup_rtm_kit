@@ -85,7 +85,14 @@ describe(`Facebook`, () => {
   });
 
   it('pushes successfully data to an API', async () => {
-    const response = Promise
+    const response = {
+      status: 200,
+      data : {
+        _events_received: 1,
+        _fbtrace_id: "AbcdE",
+        messages: []
+      }
+    }
     axios.post.mockResolvedValue(response);
 
     await expect(sendToConversionAPI({
