@@ -1,3 +1,4 @@
+import { sendToConversionAPI } from './fbConversions'
 /* eslint-disable no-console */
 // import Cookies from 'universal-cookie';
 
@@ -61,12 +62,18 @@ const chooseCategoryKeys = category =>
   categoryKeys[category] || categoryKeys.generic;
 
 class Facebook {
-  static sendData(tracking) {
+  static async sendData(tracking) {
     const categoryKeys = chooseCategoryKeys(tracking.category);
+
     trackCustomEvent(
       actionMap[tracking.action] || tracking.action,
       filterObject(categoryKeys(tracking))
     );
+
+    let conversionEvents = ['presignup', 'homepage/signup', 'get_started', 'solar_tile_button', 'fuelType_tile_button'];
+    if (conversionEvents.includes(tracking.action)) {
+      await sendToConversionAPI(tracking);
+    }
   }
 }
 

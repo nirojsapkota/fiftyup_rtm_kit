@@ -21,6 +21,7 @@
     "test": "rtm-scripts test --p ../../setupTests.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "logrocket": "^0.6.16",
     "universal-cookie": "^3.0.3"
   },
