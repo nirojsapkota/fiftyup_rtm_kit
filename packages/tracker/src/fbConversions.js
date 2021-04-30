@@ -26,12 +26,7 @@ export const sendToConversionAPI = async (data) => {
       })
     return result;
   } else {
-    if (!data.pixelId) {
-      console.log('Missing facebook pixel id in meta');
-    }
-    if (!data.conversionUrl) {
-      console.log('Missing facebook conversion api url in meta');
-    }
+    console.log('Missing conversion api data');
     return false;
   }
 };
