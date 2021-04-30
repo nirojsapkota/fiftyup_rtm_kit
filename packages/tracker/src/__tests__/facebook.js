@@ -97,6 +97,8 @@ describe(`Facebook`, () => {
     await expect(sendToConversionAPI({
       category: 'energy',
       action: 'get_started',
+      pixelId: '1111111111',
+      conversionUrl: 'https://amazonaws.com/',
       meta: {
         tracking_id: 8,
         state: 'nsw',
@@ -104,9 +106,7 @@ describe(`Facebook`, () => {
         solar_nonsolar: 'solar',
         email: 'user@email.com',
         postcode: 2000,
-        state: 'AU',
-        fb_pixel_id: '1111111111',
-        fb_conversion_api_url: 'https://amazonaws.com/'
+        state: 'AU'
       },
     })).resolves.toEqual(response.data);
   });
@@ -115,6 +115,8 @@ describe(`Facebook`, () => {
     await expect(sendToConversionAPI({
       category: 'energy',
       action: 'get_started',
+      pixelId: '',
+      conversionUrl: 'https://amazonaws.com/',
       meta: {
         tracking_id: 8,
         state: 'nsw',
@@ -123,8 +125,6 @@ describe(`Facebook`, () => {
         email: 'user@email.com',
         postcode: 2000,
         state: 'AU',
-        fb_pixel_id: '',
-        fb_conversion_api_url: 'https://amazonaws.com/'
       },
     })).resolves.toEqual(false);
   });
@@ -133,6 +133,8 @@ describe(`Facebook`, () => {
     await expect(sendToConversionAPI({
       category: 'energy',
       action: 'get_started',
+      pixelId: '1111111111',
+      conversionUrl: '',
       meta: {
         tracking_id: 8,
         state: 'nsw',
@@ -141,8 +143,6 @@ describe(`Facebook`, () => {
         email: 'user@email.com',
         postcode: 2000,
         state: 'AU',
-        fb_pixel_id: '1111111111',
-        fb_conversion_api_url: ''
       },
     })).resolves.toEqual(false);
   });

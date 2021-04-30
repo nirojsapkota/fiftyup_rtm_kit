@@ -19,8 +19,13 @@ const safeSendTo = (service, data) => {
 export const track = (action, trackingData) => {
   const data = { ...trackingData, action };
 
+  const trackerRegister = new TrackerRegistration();
+  const pixelId = trackerRegister.pixel_id;
+  const conversionUrl = trackerRegister.conversion_api_url;
+  const fbData = { ...trackingData, action, pixelId, conversionUrl }
+
   safeSendTo(Google, data);
-  safeSendTo(Facebook, data);
+  safeSendTo(Facebook, fbData);
   safeSendTo(Funnel, data);
   safeSendTo(Bing, data);
   safeSendTo(Twitter, data);
@@ -81,6 +86,9 @@ export const TrackingProvider = ({
 };
 
 class TrackerRegistration extends React.Component {
+  pixel_id = this.props.facebook_pixel_id;
+  conversion_api_url = this.props.fb_conversion_api_url;
+
   componentDidMount() {
     // Twitter Business Conversion tracking
     if (this.props.twitter_analytics_id) {
@@ -109,9 +117,8 @@ class TrackerRegistration extends React.Component {
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','${
-        this.props.google_tag_mgr_id
-      }');`;
+      })(window,document,'script','dataLayer','${this.props.google_tag_mgr_id
+        }');`;
       this.instance.appendChild(gtag_mgr);
     }
 
@@ -129,9 +136,8 @@ class TrackerRegistration extends React.Component {
       g_optimze.innerHTML = g_optimze_html;
       this.instance.appendChild(g_optimze);
       let g_optimize_source = document.createElement('script');
-      g_optimize_source.src = `https://www.googleoptimize.com/optimize.js?id=${
-        this.props.google_optimize_id
-      }`;
+      g_optimize_source.src = `https://www.googleoptimize.com/optimize.js?id=${this.props.google_optimize_id
+        }`;
       g_optimize_source.setAttribute(
         'onerror',
         `dataLayer.hide.end && dataLayer.hide.end()`
@@ -253,9 +259,8 @@ class TrackerRegistration extends React.Component {
 
       const zd2 = document.createElement('script');
       zd2.id = 'ze-snippet';
-      zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${
-        this.props.zendesk_id
-      }`;
+      zd2.src = `https://static.zdassets.com/ekr/snippet.js?key=${this.props.zendesk_id
+        }`;
       zd2.defer = true;
       this.instance.appendChild(zd2);
     }
@@ -271,8 +276,7 @@ class TrackerRegistration extends React.Component {
       if (this.props.user && this.props.user.email) {
         sfmc_script_html =
           sfmc_script_html +
-          `_etmc.push(['setUserInfo', { 'email': '${
-            this.props.user.email
+          `_etmc.push(['setUserInfo', { 'email': '${this.props.user.email
           }' }]);`;
       }
       sfmc_script_html =
@@ -288,9 +292,8 @@ class TrackerRegistration extends React.Component {
       sfmc_script_html =
         sfmc_script_html +
         `_etmc.push(['trackPageView', { "item" : "${window.location.origin +
-          window.location
-            .pathname}" }]);}})(window, document, 'script', 'https://${
-          this.props.sfmc_business_account_id
+        window.location
+          .pathname}" }]);}})(window, document, 'script', 'https://${this.props.sfmc_business_account_id
         }.collect.igodigital.com/collect.js', '_etmc');`;
       sfmc.innerHTML = sfmc_script_html;
       this.instance.appendChild(sfmc);
@@ -327,9 +330,9 @@ class TrackerRegistration extends React.Component {
       jackmedia_pixel.id = 'jackmedia_pixel';
       const jackmedia_pixel_html = `
       window._tfa = window._tfa || [];
-      window._tfa.push({notify: 'event', name: 'page_view', id: ${
-        this.props.jackmedia_pixel_id
-      }});
+      window._tfa.push({notify: 'event', name: 'page_view', id: $
+      {this.props.jackmedia_pixel_id
+        }});
       !function (t, f, a, x) {
       if (!document.getElementById(x)) {
       t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
@@ -367,4 +370,5 @@ TrackerRegistration.propTypes = {
   fullstory_id: PropTypes.string,
   zendesk_id: PropTypes.string,
   sfmc_business_account_id: PropTypes.string,
+  fb_conversion_api_url: PropTypes.string,
 };

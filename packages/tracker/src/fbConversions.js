@@ -2,15 +2,15 @@ import axios from 'axios';
 
 export const sendToConversionAPI = async (data) => {
   const fbpValue = getFbClientId();
-  if (data.meta && data.meta.fb_pixel_id && data.meta.fb_conversion_api_url) {
-    const url = data.meta.fb_conversion_api_url;
+  if (data.meta && data.pixelId && data.conversionUrl) {
+    const url = data.conversionUrl;
     const result = await axios.post(url,
       {
         event_name: data.action,
         email: data.meta.email,
         postcode: data.meta.postcode,
         state: data.meta.state,
-        pixel_id: data.meta.fb_pixel_id,
+        pixel_id: data.pixelId,
         fbp: fbpValue,
         category: data.category,
         plan_type: data.meta.plan_type,
@@ -26,10 +26,10 @@ export const sendToConversionAPI = async (data) => {
       })
     return result;
   } else {
-    if (!data.meta.fb_pixel_id) {
+    if (!data.pixelId) {
       console.log('Missing facebook pixel id in meta');
     }
-    if (!data.meta.fb_conversion_api_url) {
+    if (!data.conversionUrl) {
       console.log('Missing facebook conversion api url in meta');
     }
     return false;
