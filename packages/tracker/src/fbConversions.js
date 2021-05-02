@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const sendToConversionAPI = async (data) => {
   const fbpValue = getFbClientId();
-  if (data.meta && data.pixelId && data.conversionUrl) {
+  if (data.pixelId && data.conversionUrl) {
     const url = data.conversionUrl;
     const result = await axios.post(url,
       {
@@ -26,7 +26,6 @@ export const sendToConversionAPI = async (data) => {
       })
     return result;
   } else {
-    console.log('Missing conversion api data');
     return false;
   }
 };

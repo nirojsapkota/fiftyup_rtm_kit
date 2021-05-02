@@ -20,7 +20,6 @@ const safeSendTo = (service, data) => {
 
 export const track = (action, trackingData) => {
   const data = { ...trackingData, action };
-
   const fbData = { ...trackingData, action, pixelId, conversionUrl }
 
   safeSendTo(Google, data);
