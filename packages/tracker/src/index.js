@@ -87,7 +87,7 @@ class TrackerRegistration extends React.Component {
   constructor(props) {
     super(props);
     pixelId = props.facebook_pixel_id;
-    conversionUrl = props.fb_conversion_api_url;
+    conversionUrl = props.facebook_conversion_url;
   }
 
   componentDidMount() {
@@ -376,5 +376,5 @@ TrackerRegistration.propTypes = {
   fullstory_id: PropTypes.string,
   zendesk_id: PropTypes.string,
   sfmc_business_account_id: PropTypes.string,
-  fb_conversion_api_url: PropTypes.string,
+  facebook_conversion_url: PropTypes.string,
 };
