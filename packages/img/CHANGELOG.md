@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.67](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/img@4.0.66...@rtm-ui/img@4.0.67) (2021-05-03)
+
+**Note:** Version bump only for package @rtm-ui/img
+
+
+
+
+
 ## [4.0.66](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/img@4.0.65...@rtm-ui/img@4.0.66) (2021-04-29)
 
 **Note:** Version bump only for package @rtm-ui/img

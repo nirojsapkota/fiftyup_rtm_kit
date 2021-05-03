@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.6.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.5.0...@rtm-ui/tracker@5.6.0) (2021-05-03)
+
+
+### Bug Fixes
+
+* **tracker:** fixed tracker tests ([c7e3f06](https://github.com/OBSAU/rtm-kit/commit/c7e3f0693da5971ad08a915b63e1155c9e66ecd6))
+
+
+### Features
+
+* **tracker:** read pixel_id and conversion_url from tracker registration class ([8436062](https://github.com/OBSAU/rtm-kit/commit/8436062f1325df743517ba390d1df8b8ed8431a7))
+
+
+
+
+
 # [5.5.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.4.1...@rtm-ui/tracker@5.5.0) (2021-04-29)
 
 
