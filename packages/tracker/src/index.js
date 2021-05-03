@@ -8,6 +8,8 @@ import Funnel from './funnel';
 import Twitter from './twitter';
 import Bing from './bing';
 
+let pixelId, conversionUrl;
+
 const safeSendTo = (service, data) => {
   try {
     service.sendData(data);
@@ -18,9 +20,10 @@ const safeSendTo = (service, data) => {
 
 export const track = (action, trackingData) => {
   const data = { ...trackingData, action };
+  const fbData = { ...trackingData, action, pixelId, conversionUrl }
 
   safeSendTo(Google, data);
-  safeSendTo(Facebook, data);
+  safeSendTo(Facebook, fbData);
   safeSendTo(Funnel, data);
   safeSendTo(Bing, data);
   safeSendTo(Twitter, data);
@@ -81,6 +84,12 @@ export const TrackingProvider = ({
 };
 
 class TrackerRegistration extends React.Component {
+  constructor(props) {
+    super(props);
+    pixelId = props.facebook_pixel_id;
+    conversionUrl = props.fb_conversion_api_url;
+  }
+
   componentDidMount() {
     // Twitter Business Conversion tracking
     if (this.props.twitter_analytics_id) {
@@ -367,4 +376,5 @@ TrackerRegistration.propTypes = {
   fullstory_id: PropTypes.string,
   zendesk_id: PropTypes.string,
   sfmc_business_account_id: PropTypes.string,
+  fb_conversion_api_url: PropTypes.string,
 };
