@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const sendToConversionAPI = async (data) => {
+  console.log('sendToConversionAPI data ',data)
   const fbpValue = getFbClientId();
   if (data.pixelId && data.conversionUrl) {
     const url = data.conversionUrl;

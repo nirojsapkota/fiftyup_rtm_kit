@@ -19,6 +19,7 @@ const safeSendTo = (service, data) => {
 };
 
 export const track = (action, trackingData) => {
+  console.log('track - ', action, trackingData, pixelId, conversionUrl)
   const data = { ...trackingData, action };
   const fbData = { ...trackingData, action, pixelId, conversionUrl }
 

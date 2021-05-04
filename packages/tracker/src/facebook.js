@@ -70,8 +70,10 @@ class Facebook {
       filterObject(categoryKeys(tracking))
     );
 
-    let conversionEvents = ['presignup', 'homepage/signup', 'get_started', 'solar_tile_button', 'fuelType_tile_button'];
+    console.log('Facebook tracking', tracking)
+    let conversionEvents = ['presignup', 'homepage/signup', 'signin', 'get_started', 'solar_tile_button', 'fuelType_tile_button'];
     if (conversionEvents.includes(tracking.action)) {
+      tracking.action = actionMap[tracking.action] || tracking.action;
       await sendToConversionAPI(tracking);
     }
   }
