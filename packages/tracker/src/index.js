@@ -8,8 +8,6 @@ import Funnel from './funnel';
 import Twitter from './twitter';
 import Bing from './bing';
 
-let pixelId, conversionUrl;
-
 const safeSendTo = (service, data) => {
   try {
     service.sendData(data);
@@ -20,10 +18,8 @@ const safeSendTo = (service, data) => {
 
 export const track = (action, trackingData) => {
   const data = { ...trackingData, action };
-  const fbData = { ...trackingData, action, pixelId, conversionUrl }
-
   safeSendTo(Google, data);
-  safeSendTo(Facebook, fbData);
+  safeSendTo(Facebook, data);
   safeSendTo(Funnel, data);
   safeSendTo(Bing, data);
   safeSendTo(Twitter, data);
@@ -74,6 +70,7 @@ export const TrackingProvider = ({
 }) => {
   /* istanbul ignore next */
   const realTrackEvent = trackEventOverride || trackEvent;
+
   return (
     <TrackingContext.Provider
       value={{ trackingData, trackEvent: realTrackEvent }}
@@ -84,12 +81,6 @@ export const TrackingProvider = ({
 };
 
 class TrackerRegistration extends React.Component {
-  constructor(props) {
-    super(props);
-    pixelId = props.facebook_pixel_id;
-    conversionUrl = props.facebook_conversion_url;
-  }
-
   componentDidMount() {
     // Twitter Business Conversion tracking
     if (this.props.twitter_analytics_id) {
@@ -237,6 +228,8 @@ class TrackerRegistration extends React.Component {
     }
 
     if (this.props.facebook_pixel_id) {
+      //FOR FACEBOOK CONVERSION API
+      window.facebook_pixel_id = this.props.facebook_pixel_id;
       //FOR FACEBOOK PIXEL
       const fb1 = document.createElement('script');
       fb1.innerHTML =
@@ -250,6 +243,10 @@ class TrackerRegistration extends React.Component {
         "');" +
         "fbq('track', 'PageView');";
       this.instance.appendChild(fb1);
+    }
+
+    if (this.props.facebook_conversion_url) {
+      window.facebook_conversion_url = this.props.facebook_conversion_url;
     }
 
     if (this.props.zendesk_id) {
@@ -364,7 +361,6 @@ export { TrackerRegistration };
 
 TrackingProvider.propTypes = {
   children: PropTypes.node,
-  trackingData: PropTypes.shape({ category: PropTypes.string.isRequired }),
 };
 
 TrackerRegistration.propTypes = {

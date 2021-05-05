@@ -1,29 +1,31 @@
 import axios from 'axios';
 
-export const sendToConversionAPI = async (data) => {
+export const sendToConversionAPI = async (tracking, fullEventPath) => {
+  console.log('sendToConversionAPI data ', tracking);
   const fbpValue = getFbClientId();
-  if (data.pixelId && data.conversionUrl) {
-    const url = data.conversionUrl;
-    const result = await axios.post(url,
-      {
-        event_name: data.action,
-        email: data.meta.email,
-        postcode: data.meta.postcode,
-        state: data.meta.state,
-        pixel_id: data.pixelId,
+  const conversionUrl = window.facebook_conversion_url;
+  const pixelId = window.facebook_pixel_id;
+
+  if (pixelId && conversionUrl) {
+    const result = await axios
+      .post(conversionUrl, {
+        event_name: fullEventPath,
+        email: tracking.meta.email,
+        postcode: tracking.meta.postcode,
+        state: tracking.meta.state,
+        pixel_id: pixelId,
         fbp: fbpValue,
-        category: data.category,
-        plan_type: data.meta.plan_type,
-        tracking_id: data.meta.tracking_id
-      }
-    )
-      .then((response) => {
+        category: tracking.category,
+        plan_type: tracking.meta.plan_type,
+        tracking_id: tracking.meta.tracking_id,
+      })
+      .then(response => {
         return response.data;
       })
-      .catch((ex) => {
+      .catch(ex => {
         console.error(ex);
         return false;
-      })
+      });
     return result;
   } else {
     return false;

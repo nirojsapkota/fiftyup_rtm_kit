@@ -1,4 +1,5 @@
-import { sendToConversionAPI } from './fbConversions'
+import { sendToConversionAPI } from './fbConversions';
+import { getKeys, getValues, getOptionalKeys } from './pageViewHelper';
 /* eslint-disable no-console */
 // import Cookies from 'universal-cookie';
 
@@ -70,9 +71,22 @@ class Facebook {
       filterObject(categoryKeys(tracking))
     );
 
-    let conversionEvents = ['presignup', 'homepage/signup', 'get_started', 'solar_tile_button', 'fuelType_tile_button'];
-    if (conversionEvents.includes(tracking.action)) {
-      await sendToConversionAPI(tracking);
+    const keys = getKeys(tracking.category);
+    const values = getValues(keys, tracking);
+    const requiredKeys = keys.filter(
+      e => !getOptionalKeys(tracking.category).includes(e)
+    );
+    const requiredValues = getValues(requiredKeys, tracking, true);
+    if (
+      !requiredValues.every(value => value && value !== '') &&
+      process.env.NODE_ENV !== 'test'
+    ) {
+      console.log('Missing keys for facebook conversion event');
+    } else {
+      // Remove empty or null values in the eventPath
+      const eventPath = values.filter(e => e && e !== '').join('/');
+      console.log('eventPath fb conversion: ', eventPath);
+      await sendToConversionAPI(tracking, `virtual/${eventPath}`);
     }
   }
 }
