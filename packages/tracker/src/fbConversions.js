@@ -3,13 +3,12 @@ import axios from 'axios';
 export const sendToConversionAPI = async (tracking, fullEventPath) => {
   console.log('sendToConversionAPI data ', tracking);
   const fbpValue = getFbClientId();
-  const url = window.facebook_conversion_url || '';
-  const pixelId = window.facebook_pixel_id || '';
-  console.log('FB params', url, pixelId, typeof pixelId);
+  const conversionUrl = window.facebook_conversion_url;
+  const pixelId = window.facebook_pixel_id;
 
-  if (pixelId.length > 0 && url.length > 0) {
+  if (pixelId && conversionUrl) {
     const result = await axios
-      .post(url, {
+      .post(conversionUrl, {
         event_name: fullEventPath,
         email: tracking.meta.email,
         postcode: tracking.meta.postcode,
