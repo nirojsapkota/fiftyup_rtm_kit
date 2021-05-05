@@ -361,7 +361,6 @@ export { TrackerRegistration };
 
 TrackingProvider.propTypes = {
   children: PropTypes.node,
-  // trackingData: PropTypes.shape({ category: PropTypes.string.isRequired }),
 };
 
 TrackerRegistration.propTypes = {

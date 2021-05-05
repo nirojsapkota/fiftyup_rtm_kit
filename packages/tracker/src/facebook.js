@@ -86,7 +86,7 @@ class Facebook {
       // Remove empty or null values in the eventPath
       const eventPath = values.filter(e => e && e !== '').join('/');
       console.log('eventPath fb conversion: ', eventPath);
-      await sendToConversionAPI(tracking, `virtual/${eventpath}`);
+      await sendToConversionAPI(tracking, `virtual/${eventPath}`);
     }
   }
 }
