@@ -81,7 +81,7 @@ class Facebook {
       !requiredValues.every(value => value && value !== '') &&
       process.env.NODE_ENV !== 'test'
     ) {
-      console.log('Missing keys for google analytics pageview');
+      console.log('Missing keys for facebook conversion event');
     } else {
       // Remove empty or null values in the eventPath
       const eventPath = values.filter(e => e && e !== '').join('/');
