@@ -322,7 +322,6 @@ describe(`Google`, () => {
     });
   })
 
-
   it(`with energy category, tile-click action and category energy, state VIC, plan_type EG,  solar true,  without optional fields campaign_type, internal_external`, () => {
     global.ga = jest.fn();
     const spyGa = jest.spyOn(global, 'ga');
@@ -379,6 +378,23 @@ describe(`Google`, () => {
     });
   })
 
+  it(`with health category, tile-click action and category health familyType-selected couple`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'health',
+      action: 'family-type-tile-click',
+      meta: {
+        family_type: 'couple'
+      }
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/health/family-type-tile-click/couple',
+    });
+  })
 
   it(`with dashboard-preferences category, should track all products`, () => {
     global.ga = jest.fn();
@@ -397,7 +413,6 @@ describe(`Google`, () => {
       page: 'virtual/dashboard-preferences/cta/car+electricity',
     });
   })
-  
 
   it(`with energy category and existing customer question`, () => {
     global.ga = jest.fn();

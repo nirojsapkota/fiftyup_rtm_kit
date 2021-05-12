@@ -16,6 +16,7 @@ const categoryKeys = {
   broadband: ['category', 'campaign_type', 'action', 'existing_customer'],
   mobile: ['category', 'campaign_type', 'action', 'existing_customer'],
   generic: ['category', 'campaign_type', 'action', 'existing_customer'],
+  health: ['category', 'campaign_type', 'action', 'family_type'],
   'dashboard-preferences': ['category', 'action', 'products'],
 };
 
@@ -33,6 +34,7 @@ const optionalKeys = {
   car: ['campaign_type', 'renewal_month'],
   broadband: ['campaign_type', 'existing_customer'],
   mobile: ['campaign_type', 'existing_customer'],
+  health: ['campaign_type', 'family_type'],
   'dashboard-preferences': ['products'],
 };
 
