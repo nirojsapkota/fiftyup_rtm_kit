@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.6.2...@rtm-ui/tracker@5.7.0) (2021-05-12)
+
+
+### Features
+
+* **tracker:** added GA tracking for health offer ([#377](https://github.com/OBSAU/rtm-kit/issues/377)) ([d8f5c38](https://github.com/OBSAU/rtm-kit/commit/d8f5c387276cbe4152f872f93780bbe548473cf0))
+
+
+
+
+
 ## [5.6.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.6.1...@rtm-ui/tracker@5.6.2) (2021-05-05)
 
 **Note:** Version bump only for package @rtm-ui/tracker
