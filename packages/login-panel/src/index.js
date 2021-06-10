@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
   }
 
   async handleSubmit(fieldsWithValues) {
-    const { loginUrl, authenticityToken, stateField } = this.props;
+    const { trackingData, loginUrl, authenticityToken, stateField } = this.props;
 
     const values = { user: {} };
     fieldsWithValues.forEach(field => {
@@ -50,7 +50,7 @@ class LoginForm extends React.Component {
       }
     });
 
-    const result = await submitLogin(loginUrl, values, authenticityToken);
+    const result = await submitLogin(loginUrl, values, authenticityToken, trackingData);
     const { data } = result;
 
     if (data.errors) {

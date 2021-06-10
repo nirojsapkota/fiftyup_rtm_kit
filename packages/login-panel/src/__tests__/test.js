@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import * as Tracker from '../../../tracker';
 // eslint-disable-next-line import/named
 import {
   render,
@@ -79,6 +80,8 @@ describe('<LoginPanel />', () => {
     const submit = getByText(loginPanelProps.buttonText).closest('button');
     fireEvent.click(submit);
 
+    const spiedTrack = jest.spyOn(Tracker, 'track');
+
     // expect props event was fired
     await wait(() => {
       expect(axios.post).toHaveBeenCalledWith(
@@ -101,6 +104,7 @@ describe('<LoginPanel />', () => {
         }
       );
     });
+    expect(spiedTrack).toHaveBeenCalled();
   });
 
   it('Get unauthorize errors from server when submit login', async () => {
@@ -159,10 +163,13 @@ describe('<LoginPanel />', () => {
     const submit = getByText(loginPanelProps.buttonText).closest('button');
     fireEvent.click(submit);
 
-    await wait(() => {
+    const spiedTrack = jest.spyOn(Tracker, 'track');
+
+    await wait(async () => {
       expect(container).toHaveTextContent(
         'An error has occurred, please try again in a few minutes'
       );
+      expect(spiedTrack).toHaveBeenCalled();
     });
   });
 

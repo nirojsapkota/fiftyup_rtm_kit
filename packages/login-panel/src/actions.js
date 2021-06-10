@@ -1,8 +1,14 @@
+import { track } from '@rtm-ui/tracker';
 // NOTE: there is a rollup bug when compile file with import axios
 // import axios from 'axios';
 const axios = require('axios');
 
-export const submitLogin = async (url, data, authenticityToken) => {
+export const submitLogin = async (
+  url,
+  data,
+  authenticityToken,
+  trackingData
+) => {
   const config = {
     headers: {
       Accept: 'application/json',
@@ -15,10 +21,17 @@ export const submitLogin = async (url, data, authenticityToken) => {
     .post(url, data, config)
     .then(response => {
       const { data, status } = response;
+
+      track('signin/submit', trackingData);
+
       return { status, data };
     })
     .catch(error => {
       const { data, status } = error.response;
+
+      // TODO: replace this with a proper error logging (e.g airbrake)
+      track('signin/submit_error', trackingData);
+
       if (status !== 401) {
         return {
           status,

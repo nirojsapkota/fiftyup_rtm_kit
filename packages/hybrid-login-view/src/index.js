@@ -390,7 +390,7 @@ const WrappedHybridLoginView = props => {
         signOutPath=""
         subHeader=""
       />
-      <HybridLoginView {...rest} />
+      <HybridLoginView {...rest} trackingData={trackingData} />
     </React.Fragment>
   );
 };
