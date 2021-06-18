@@ -1,11 +1,9 @@
-// // FIXME: this should be from the testSetup file somehow. Not having it breaks things
 // eslint-disable-next-line import/no-extraneous-dependencies
-import 'react-testing-library/cleanup-after-each';
 import 'jest-dom/extend-expect';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'jest-styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import React from 'react';
 import TestBootstrap from './docSetup';
 
@@ -21,5 +19,7 @@ const bootstrapRender = (
   );
 };
 
-export * from 'react-testing-library';
+// (FORMER LIBRARY -  DEPRECIATED)
+//export * from 'react-testing-library';
+export * from '@testing-library/react';
 export { bootstrapRender as render };
