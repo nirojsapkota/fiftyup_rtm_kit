@@ -20,7 +20,7 @@
     "format": "rtm-scripts format --p templates/plopfile.js",
     "lint": "eslint packages",
     "test:scope": "node scripts/scoped-test tracker",
-    "test:ci": " lerna run test --parallel --stream --concurrency 999 -- -- --coverage --silent --verbose",
+    "test:ci": "CI=True lerna run test --parallel --stream --concurrency 999 -- -- --coverage --silent --verbose",
     "test:watch": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --watch",
     "test:coverage": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --coverage",
     "release": "lerna publish --yes",
@@ -152,8 +152,6 @@
     "*.{js,css,json,md}": [
       "prettier --write"
     ],
-    "*.js": [
-      "eslint --fix"
-    ]
+    "*.js": []
   }
 }
