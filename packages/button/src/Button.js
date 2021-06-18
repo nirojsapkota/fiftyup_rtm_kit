@@ -45,4 +45,5 @@ Button.propTypes = {
   asWrapper: PropTypes.bool,
   block: PropTypes.bool,
   secondary: PropTypes.bool,
+  appearDisabled: PropTypes.bool,
 };
