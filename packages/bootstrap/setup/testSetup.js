@@ -3,7 +3,9 @@ import 'jest-dom/extend-expect';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'jest-styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { render } from '@testing-library/react';
+//import { render } from '@testing-library/react';
+import { render } from 'react-testing';
+
 import React from 'react';
 import TestBootstrap from './docSetup';
 
@@ -20,6 +22,6 @@ const bootstrapRender = (
 };
 
 // (FORMER LIBRARY -  DEPRECIATED)
-//export * from 'react-testing-library';
-export * from '@testing-library/react';
+export * from 'react-testing-library';
+// export * from '@testing-library/react';
 export { bootstrapRender as render };
