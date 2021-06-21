@@ -601,8 +601,7 @@ function LoginCalculatorForm({
         })),
       ],
     });
-  }, []);
-  //  }, [hasResgisterd]);
+  }, [hasRegistered]);
 
   return !submittedCallbackRequest ? (
     <RowFlexBox>
