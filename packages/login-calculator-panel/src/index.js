@@ -15,7 +15,7 @@ import {
   submitCallbackTime,
 } from './actions';
 
-import GdprAgreement from './GdprAgreement';
+// import GdprAgreement from './GdprAgreement';
 
 const ButtonIConWrapper = styled(Box)`
   margin-top: -3px;
@@ -622,7 +622,7 @@ function LoginCalculatorForm({
                     onSuccess={handleSuccess}
                     renderFooter={({ formError }) => (
                       <React.Fragment>
-                        <GdprAgreement {...gdprProps} />
+                        {/* <GdprAgreement {...gdprProps} /> */}
                         <ButtonWrapper py={3}>
                           <Button
                             type="submit"
@@ -745,7 +745,7 @@ LoginCalculatorForm.propTypes = {
   pane: t.bool,
   gdprProps: t.shape({
     enableCheckBox: t.bool,
-    isRequire: t.string,
+    isRequired: t.string,
     isChecked: t.bool,
     getCheckBoxValue: t.func,
     content: t.string,
