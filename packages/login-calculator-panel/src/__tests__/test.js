@@ -3,12 +3,11 @@ import axios from 'axios';
 
 import {
   render,
-  // TODO replace "wait" with "waitFor" (testing-library/@react) versionß
-  wait,
+  waitFor,
   fireEvent,
   cleanup,
   screen,
-} from '../../../bootstrap/setup/testSetup';
+} from '../../../bootstrap/setup/testSetup.new.js';
 
 import { LoginCalculatorPanel } from '../index';
 
@@ -82,7 +81,7 @@ describe('<LoginCalculatorPanel />', () => {
     fireEvent.click(submit);
 
     // expect props event was fired
-    await wait(() => {
+    await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
         loginPanelProps.loginUrl,
         {
@@ -132,7 +131,7 @@ describe('<LoginCalculatorPanel />', () => {
     const submit = getByText(loginPanelProps.buttonText).closest('button');
     fireEvent.click(submit);
 
-    await wait(() => {
+    await waitFor(() => {
       expect(container).toHaveTextContent('Email is not valid');
       expect(container).toHaveTextContent('Postcode is not valid');
     });
@@ -166,7 +165,7 @@ describe('<LoginCalculatorPanel />', () => {
     const submit = getByText(loginPanelProps.buttonText).closest('button');
     fireEvent.click(submit);
 
-    await wait(() => {
+    await waitFor(() => {
       expect(container).toHaveTextContent(
         'An error has occurred, please try again in a few minutes'
       );
@@ -186,7 +185,7 @@ describe('<LoginCalculatorPanel />', () => {
       target: { value: '5000' },
     });
 
-    await wait(async () => {
+    await waitFor(async () => {
       expect(axios.get).toHaveBeenCalledWith(
         loginPanelProps.autocompletePostcodeUrl,
         {
@@ -203,7 +202,7 @@ describe('<LoginCalculatorPanel />', () => {
       expect(item).toBeInTheDocument();
     });
 
-    await wait(async () => {
+    await waitFor(async () => {
       // setup reject
       axios.get.mockRejectedValue({
         response: {
@@ -216,7 +215,7 @@ describe('<LoginCalculatorPanel />', () => {
         target: { value: '5000, ADELAIDE' },
       });
 
-      await wait(async () => {
+      await waitFor(async () => {
         expect(axios.get).toHaveBeenCalled();
         expect(container).not.toHaveTextContent('5000, ADELAIDE BC');
       });
@@ -257,7 +256,7 @@ describe('<LoginCalculatorPanel />', () => {
       target: { value: 'Carlow' },
     });
 
-    await wait(async () => {
+    await waitFor(async () => {
       // Wait until popup arrives
       const item = await findByLabelText(stateField.options[0].label);
       expect(item).toBeInTheDocument();
