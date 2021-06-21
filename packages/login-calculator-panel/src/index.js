@@ -249,9 +249,6 @@ function LoginCalculatorForm({
   const [ageOptions, setAgeOptions] = useState(generateAgeOptions());
   const [quoteAmount, setQuoteAmount] = useState('$ - -.- -');
   const [formInput, setFormInput] = useState(null);
-  const [submittedCallbackRequest, setSubmittedCallbackRequest] = useState(
-    false
-  );
 
   const {
     campaignId,
@@ -305,25 +302,30 @@ function LoginCalculatorForm({
       }
     });
 
-    if (isDevelopment) {
-    } else if (!hasRegistered) {
-      const resultSubmitLogin = await submitLogin(
-        loginUrl,
-        authenticateValues,
-        authenticityToken
-      );
+    //   if (isDevelopment) {
+    // Pretends that the user has been authenticated/registered.
+    //     // Allows for selecting of call back time.
+    //     setHasRegistered(true);
 
-      const { data } = resultSubmitLogin;
-      if (data.errors) {
-        const fieldErrors = {};
-        data.errors.forEach(error => {
-          if (error.toLowerCase().indexOf(stateField.errorValue) !== -1) {
-            fieldErrors[stateField.fieldName] = error;
-          } else if (error.toLowerCase().indexOf('email') !== -1) {
-            fieldErrors['email'] = error;
-          }
-        });
+    //   } else if (!hasRegistered) {
 
+    const resultSubmitLogin = await submitLogin(
+      loginUrl,
+      authenticateValues,
+      authenticityToken
+    );
+
+    const { data } = resultSubmitLogin;
+    if (data.errors) {
+      const fieldErrors = {};
+      data.errors.forEach(error => {
+        if (error.toLowerCase().indexOf(stateField.errorValue) !== -1) {
+          fieldErrors[stateField.fieldName] = error;
+        } else if (error.toLowerCase().indexOf('email') !== -1) {
+          fieldErrors['email'] = error;
+        }
+      });
+      if (!isDevelopment) {
         throw new FormError({
           formError:
             Object.keys(fieldErrors).length > 0
@@ -332,9 +334,10 @@ function LoginCalculatorForm({
           fieldErrors: fieldErrors,
         });
       }
-
-      setHasRegistered(true);
     }
+
+    setHasRegistered(true);
+    // }
     // API CALL FOR fetching the LifeInsurance quote value
     if (isDevelopment !== true) {
       const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
@@ -523,6 +526,7 @@ function LoginCalculatorForm({
           label: emailField.label || 'My Email:',
           name: 'email',
           type: 'text',
+
           disabled: hasRegistered,
           placeholder: emailField.placeholder || 'Email',
           config: {
@@ -603,7 +607,7 @@ function LoginCalculatorForm({
     });
   }, [hasRegistered]);
 
-  return !submittedCallbackRequest ? (
+  return (
     <RowFlexBox>
       <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
         <CalculatorPanelContentBox>
@@ -621,7 +625,6 @@ function LoginCalculatorForm({
                     onSuccess={handleSuccess}
                     renderFooter={({ formError }) => (
                       <React.Fragment>
-                        {/* <GdprAgreement {...gdprProps} /> */}
                         <ButtonWrapper py={3}>
                           <Button
                             type="submit"
@@ -692,12 +695,6 @@ function LoginCalculatorForm({
         props
       />
     </RowFlexBox>
-  ) : (
-    <ThankYouMessageContainer>
-      <Pane id="check" px={[20, 20, 30, 40]} py={10} backgroundColor="white">
-        <Header>Thank you! :) {/* TODO center text */}</Header>{' '}
-      </Pane>
-    </ThankYouMessageContainer>
   );
 }
 
