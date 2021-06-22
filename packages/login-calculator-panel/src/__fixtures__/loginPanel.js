@@ -9,7 +9,7 @@ const loginPanel = {
   },
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
-  buttonText: 'See the offers',
+  buttonText: 'Get quote',
   gdprProps: {
     enableCheckBox: false,
     isRequire: 'required',

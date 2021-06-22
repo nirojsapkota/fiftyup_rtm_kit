@@ -152,6 +152,7 @@ const hybridLoginViewWCalc = {
       [Privacy Policy](https://staging.onebigswitch.com.au/privacy-policy)',
   },
   isDevelopment: true,
+  buttonText: 'Get Quote',
 };
 
 export default hybridLoginViewWCalc;

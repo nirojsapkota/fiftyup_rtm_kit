@@ -1,7 +1,7 @@
 // NOTE: there is a rollup bug when compile file with import axios
 // import axios from 'axios';
-const axios = require('axios');
-
+//const axios = require('axios');
+import axios from 'axios';
 export const submitLogin = async (url, data, authenticityToken) => {
   const config = {
     headers: {
@@ -11,7 +11,7 @@ export const submitLogin = async (url, data, authenticityToken) => {
     },
   };
 
-  const result = await axios
+  return await axios
     .post(url, data, config)
     .then(response => {
       const { data, status } = response;
@@ -31,8 +31,6 @@ export const submitLogin = async (url, data, authenticityToken) => {
       }
       return { status, data };
     });
-
-  return result;
 };
 
 export const getAutoCompletePostcode = async (url, data, authenticityToken) => {
@@ -56,6 +54,9 @@ export const getAutoCompletePostcode = async (url, data, authenticityToken) => {
       return [];
     });
 
+  // TODO REMOVE THIS
+  // console.log("THY RESPONSE IS")
+  // console.log(result)
   return result;
 };
 
