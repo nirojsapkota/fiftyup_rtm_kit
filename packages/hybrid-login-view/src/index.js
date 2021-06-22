@@ -574,6 +574,7 @@ WrappedHybridLoginView.propTypes = {
     showQuoteCalculator: t.bool,
     campaignId: t.number,
     quoteText: t.string,
+    quoteTitle: t.string,
     getQuoteDisclaimerTextHtml: t.string,
     percentDiscount: t.number,
     discountText: t.string,
@@ -583,6 +584,9 @@ WrappedHybridLoginView.propTypes = {
     timeToCallBackText: t.string,
     callbackUrl: t.string,
     quoteUrl: t.string,
+    thankyouHeader: t.string,
+    thankyouBody: t.string,
+    seeMoreOffersText: t.string,
   }),
 };
 
