@@ -210,6 +210,7 @@ const Form = ({
 
 export default Form;
 
+// TODO EXTEND PROP TYPES FOR FORM COMPONENT
 Form.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),

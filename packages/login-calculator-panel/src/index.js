@@ -222,9 +222,9 @@ function LoginCalculatorForm({
   setFormComplete,
   ...props
 }) {
-  const [coverOptions, setCoverOptions] = useState(generateCoverAmount());
+  const [coverOptions] = useState(generateCoverAmount());
   const [hasRegistered, setHasRegistered] = useState(false);
-  const [ageOptions, setAgeOptions] = useState(generateAgeOptions());
+  const [ageOptions] = useState(generateAgeOptions());
   const [quoteAmount, setQuoteAmount] = useState('$ - -.- -');
   const [formInput, setFormInput] = useState(null);
   const [lifeInsuranceQuoteValues, setLifeInsuranceQuoteValues] = useState({
@@ -233,12 +233,9 @@ function LoginCalculatorForm({
     age: null,
     phoneNumber: null,
   });
-  const [submittedCallbackRequest, setSubmittedCallbackRequest] = useState(
-    false
-  );
 
-  console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
-  console.log(calculatorProps);
+  // console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
+  // console.log(calculatorProps);
 
   const {
     campaignId,
@@ -292,13 +289,6 @@ function LoginCalculatorForm({
     });
     setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
 
-    //   if (isDevelopment) {
-    // Pretends that the user has been authenticated/registered.
-    //     // Allows for selecting of call back time.
-    //     setHasRegistered(true);
-
-    //   } else if (!hasRegistered) {
-
     const resultSubmitLogin = await submitLogin(
       loginUrl,
       authenticateValues,
@@ -315,6 +305,7 @@ function LoginCalculatorForm({
           fieldErrors['email'] = error;
         }
       });
+      // We want to ignore this error in development mode
       if (!isDevelopment) {
         throw new FormError({
           formError:
@@ -606,7 +597,7 @@ function LoginCalculatorForm({
         },
       },
     ];
-    let fields = [];
+
     if (hasRegistered) {
       lifeInsuranceQuoteFields;
     } else {
