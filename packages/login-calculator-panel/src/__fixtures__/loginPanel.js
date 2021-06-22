@@ -30,6 +30,8 @@ const loginPanel = {
   },
   calculatorProps: {
     showQuoteCalculator: true,
+    quoteTitle:
+      'Join One Big Switch today for FREE and instantly unlock your special offers!',
     quoteText:
       'An insurance team member will call you back in a day or so. You can change the details below if you wish to explore other quotes or levels of cover.',
     getQuoteDisclaimerTextHtml:

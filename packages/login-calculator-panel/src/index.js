@@ -3,7 +3,7 @@ import t from 'prop-types';
 import styled from 'styled-components';
 
 import { Card, Box, Pane } from '@rtm-ui/layout';
-import { Header, Small, Paragraph } from '@rtm-ui/typography';
+import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
 import { Icon } from '@rtm-ui/icon';
@@ -85,7 +85,7 @@ const SeeMoreOffers = props => {
   return (
     <SeeMoreOffersWrapper>
       <Button as="a" href={'/campaigns'}>
-        See More Offers
+        {props.seeMoreOfferText}
       </Button>
     </SeeMoreOffersWrapper>
   );
@@ -155,16 +155,17 @@ const QuoteContent = ({
           <CustomerContainerWrapper className="content-wrapper">
             <ContentWrapper>
               <Box className="hero" {...QuoteContentDefaultProps}>
-                <Paragraph>{calculatorProps.quoteHeaderText}</Paragraph>
+                <Markdown raw={calculatorProps.quoteHeaderText} />
                 <Header>{quoteValue} </Header>
-                <h1>{calculatorProps.paymentCycleText}</h1>
+                <Markdown raw={calculatorProps.paymentCycleText} />
                 <br />
                 <Paragraph py={3}>
                   {calculatorProps.timeToCallBackText}
                 </Paragraph>
-                {props.buttons.map(button => (
+                {props.buttons.map((button, index) => (
                   <ButtonWrapper>
                     <Button
+                      key={index}
                       disabled={quoteValue === '$ - -.- -' ? true : false}
                       appearDisabled={quoteValue === '$ - -.- -' ? true : false}
                       onClick={() =>
@@ -178,8 +179,8 @@ const QuoteContent = ({
                     </Button>
                   </ButtonWrapper>
                 ))}
-                <Paragraph py={3}>{calculatorProps.discountText}</Paragraph>
-                <Header>{calculatorProps.phoneNumber} </Header>
+                <Markdown py={3} raw={calculatorProps.discountText} />
+                <Markdown raw={calculatorProps.phoneNumber} />
 
                 <br />
                 <br />
@@ -207,13 +208,11 @@ function LoginCalculatorForm({
   authenticityToken,
   stateField,
   lifeInsuranceCalcProps,
-  title,
   hiddenFields,
   buttonText,
   buttonIcon,
   gdprProps,
   emailField,
-  quoteText,
   autocompletePostcodeUrl,
   pane,
   calculatorProps,
@@ -228,6 +227,18 @@ function LoginCalculatorForm({
   const [ageOptions, setAgeOptions] = useState(generateAgeOptions());
   const [quoteAmount, setQuoteAmount] = useState('$ - -.- -');
   const [formInput, setFormInput] = useState(null);
+  const [lifeInsuranceQuoteValues, setLifeInsuranceQuoteValues] = useState({
+    firstName: '',
+    gender: null,
+    age: null,
+    phoneNumber: null,
+  });
+  const [submittedCallbackRequest, setSubmittedCallbackRequest] = useState(
+    false
+  );
+
+  console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
+  console.log(calculatorProps);
 
   const {
     campaignId,
@@ -241,7 +252,6 @@ function LoginCalculatorForm({
     const authenticateValues = { user: {}, noRedirect: true };
 
     // Values to be submitted to the life insurance calculator API to get a quote
-    const lifeInsuranceQuoteValues = {};
 
     const lifeInsuranceQuoteKeys = [
       'age',
@@ -258,7 +268,7 @@ function LoginCalculatorForm({
      * A: It "crawls" the form submission & extracts values.
      *
      */
-
+    const tempLifeInsuranceQuoteValues = lifeInsuranceQuoteValues;
     fieldsWithValues.forEach(field => {
       if (field.name === 'email') {
         authenticateValues['user'][field.name] = field.value;
@@ -274,12 +284,13 @@ function LoginCalculatorForm({
         // Checks for field that belongs to the lifeInsuranceQuote API
         // Allocates the field to the lifeInsuranceQuote object in the event of a match.
         if (lifeInsuranceQuoteKeys.includes(field.name)) {
-          lifeInsuranceQuoteValues[field.name] = field.value;
+          tempLifeInsuranceQuoteValues[field.name] = field.value;
         } else {
           authenticateValues[field.name] = field.value;
         }
       }
     });
+    setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
 
     //   if (isDevelopment) {
     // Pretends that the user has been authenticated/registered.
@@ -448,150 +459,160 @@ function LoginCalculatorForm({
   };
 
   useEffect(() => {
-    // TODO RE_ENABLE stateField's for testing??????
-    // TODO Verify if stateField(s) are even needed.
+    const lifeInsuranceQuoteFields = [
+      {
+        label: 'First name', // || stateField.label
+        name: 'firstName',
+        type: 'text',
+        initialValue: lifeInsuranceQuoteValues.firstName,
+        placeholder: 'First name', // || stateField.placeholder
+        autoComplete: 'off',
+        config: {
+          //component: 'autocomplete',
+          validator: 'required',
+          //validatorArgs: stateField.options
+          //  ? [stateField.options.map(option => option['label'])]
+          //  : undefined,
+          // searchFunction: () => console.log("first name being called"),
+          //onEmptyResult: this.handleEmptyResult,
+        },
+      },
+      {
+        label: 'Surname', // || stateField.label
+        name: 'surname',
+        type: 'text',
+        initialValue: lifeInsuranceQuoteValues.surname,
+        placeholder: 'Surname', // || stateField.placeholder
+        autoComplete: 'off',
+        config: {
+          //component: 'autocomplete',
+          //validator: 'required',
+          //validatorArgs: stateField.options
+          //  ? [stateField.options.map(option => option['label'])]
+          //  : undefined,
+          //searchFunction: this.autoCompleteSearch,
+          //onEmptyResult: this.handleEmptyResult,
+        },
+      },
+      {
+        label: 'Phone number', // || stateField.label
+        name: 'phoneNumber',
+        type: 'tel',
+        initialValue: lifeInsuranceQuoteValues.phoneNumber,
+        placeholder: 'Phone number', // || stateField.placeholder
+        autoComplete: 'off',
+        config: {
+          validator: 'valueMatch',
+          validatorArgs: [
+            '(^(([0][1-9][0-9]{8})|([1-9][0-9]{7})))',
+            'Please enter a valid phone number',
+          ],
+        },
+      },
+      {
+        label: 'Age',
+        config: {
+          component: 'dropdownfield',
+          scrollable: true,
+          validator: 'lifeInsuranceAgeDropdown',
+        },
+        type: 'text',
+        initialValue: lifeInsuranceQuoteValues.age,
+        name: 'age',
+        options: ageOptions,
+      },
+      {
+        label: 'Gender',
+        config: {
+          validator: 'requiredRadio',
+        },
+        name: 'gender',
+        type: 'radio',
+        initialValue: lifeInsuranceQuoteValues.gender,
+        options: [
+          { label: 'Male', value: 'M' },
+          { label: 'Female', value: 'F' },
+        ],
+      },
+      {
+        label: 'Smoking status',
+        config: {
+          validator: 'requiredRadio',
+        },
+        name: 'smoker',
+        initialValue: lifeInsuranceQuoteValues.firstName,
+        type: 'radio',
+        options: [
+          { label: 'Non Smoker', value: false },
+          { label: 'Smoker', value: true },
+        ],
+      },
+      {
+        label: 'Amount of cover',
+        config: {
+          component: 'dropdownfield',
+          scrollable: true,
+          validator: 'required',
+        },
+        type: 'text',
+        name: 'cover',
+        initialValue: '',
+        options: coverOptions,
+      },
+      {
+        label: '',
+        name: 'authenticity_token',
+        type: 'hidden',
+        initialValue: authenticityToken,
+        config: {},
+      },
+      {
+        label: '',
+        name: 'redirectPath',
+        type: 'hidden',
+        config: {},
+      },
+      ...Object.keys(hiddenFields).map(key => ({
+        label: '',
+        name: key,
+        type: 'hidden',
+        initialValue: hiddenFields[key],
+        config: {},
+      })),
+    ];
+
+    const registrationFields = [
+      {
+        label: stateField.label || 'My Postcode:',
+        name: stateField.fieldName,
+        disabled: hasRegistered,
+        hint: stateField.hint || 'e.g. 5000, Adelaide',
+
+        type: 'text',
+        placeholder: stateField.placeholder || 'Postcode',
+        autoComplete: 'off',
+        config: handlePostcodeConfig(),
+      },
+      {
+        label: emailField.label || 'My Email:',
+        name: 'email',
+        type: 'text',
+        disabled: hasRegistered,
+        placeholder: emailField.placeholder || 'Email',
+        config: {
+          validator: 'email',
+        },
+      },
+    ];
+    let fields = [];
+    if (hasRegistered) {
+      lifeInsuranceQuoteFields;
+    } else {
+      lifeInsuranceQuoteFields.splice(2, 0, ...registrationFields);
+    }
     setFormInput({
       id: 'signup',
-      fields: [
-        {
-          label: 'First name', // || stateField.label
-          name: 'firstName',
-          type: 'text',
-          placeholder: 'First name', // || stateField.placeholder
-          autoComplete: 'off',
-          config: {
-            //component: 'autocomplete',
-            validator: 'required',
-            //validatorArgs: stateField.options
-            //  ? [stateField.options.map(option => option['label'])]
-            //  : undefined,
-            // searchFunction: () => console.log("first name being called"),
-            //onEmptyResult: this.handleEmptyResult,
-          },
-        },
-        {
-          label: 'Surname', // || stateField.label
-          name: 'surname',
-          type: 'text',
-          placeholder: 'Surname', // || stateField.placeholder
-          autoComplete: 'off',
-          config: {
-            //component: 'autocomplete',
-            validator: 'required',
-            //validatorArgs: stateField.options
-            //  ? [stateField.options.map(option => option['label'])]
-            //  : undefined,
-            //searchFunction: this.autoCompleteSearch,
-            //onEmptyResult: this.handleEmptyResult,
-          },
-        },
-        {
-          label: 'Phone number', // || stateField.label
-          name: 'phoneNumber',
-          type: 'tel',
-          placeholder: 'Phone number', // || stateField.placeholder
-          autoComplete: 'off',
-          config: {
-            validator: 'valueMatch',
-            validatorArgs: [
-              '(^(([0][1-9][0-9]{8})|([1-9][0-9]{7})))',
-              'Please enter a valid phone number',
-            ],
-          },
-        },
-        {
-          label: stateField.label || 'My Postcode:',
-          name: stateField.fieldName,
-          disabled: hasRegistered,
-          hint: stateField.hint || 'e.g. 5000, Adelaide',
-          type: 'text',
-          placeholder: stateField.placeholder || 'Postcode',
-          autoComplete: 'off',
-          config: handlePostcodeConfig(),
-        },
-        {
-          label: emailField.label || 'My Email:',
-          name: 'email',
-          type: 'text',
-
-          disabled: hasRegistered,
-          placeholder: emailField.placeholder || 'Email',
-          config: {
-            validator: 'email',
-          },
-        },
-        {
-          label: 'Age',
-          config: {
-            component: 'dropdownfield',
-            scrollable: true,
-            validator: 'lifeInsuranceAgeDropdown',
-          },
-          type: 'text',
-          name: 'age',
-          value: '',
-          options: ageOptions,
-        },
-        {
-          label: 'Gender',
-          config: {
-            validator: 'requiredRadio',
-          },
-          name: 'gender',
-          value: '',
-          type: 'radio',
-          options: [
-            { label: 'Male', value: 'M' },
-            { label: 'Female', value: 'F' },
-          ],
-        },
-        {
-          id: 69,
-          label: 'Smoking status',
-          config: {
-            validator: 'requiredRadio',
-          },
-          name: 'smoker',
-          value: '',
-          type: 'radio',
-          options: [
-            { label: 'Non Smoker', value: false },
-            { label: 'Smoker', value: true },
-          ],
-        },
-        {
-          label: 'Amount of cover',
-          config: {
-            component: 'dropdownfield',
-            scrollable: true,
-            validator: 'required',
-          },
-          type: 'text',
-          name: 'cover',
-          value: '',
-          options: coverOptions,
-        },
-        {
-          label: '',
-          name: 'authenticity_token',
-          type: 'hidden',
-          initialValue: authenticityToken,
-          config: {},
-        },
-        {
-          label: '',
-          name: 'redirectPath',
-          type: 'hidden',
-          config: {},
-        },
-        ...Object.keys(hiddenFields).map(key => ({
-          label: '',
-          name: key,
-          type: 'hidden',
-          initialValue: hiddenFields[key],
-          config: {},
-        })),
-      ],
+      fields: lifeInsuranceQuoteFields,
     });
   }, [hasRegistered]);
 
@@ -602,13 +623,17 @@ function LoginCalculatorForm({
           <div scroll-target="login-panel">
             <PaddingStyleWrapper pane={pane}>
               <>
-                <Header py={2} tag="h6">
-                  {title || 'Get A Quick Quote Now'}
-                </Header>
-                <Paragraph>{quoteText || ''}</Paragraph>
+                {calculatorProps.quoteTitle && (
+                  <Markdown py={2} raw={calculatorProps.quoteTitle} />
+                )}
+                {calculatorProps.quoteText && (
+                  <Markdown raw={calculatorProps.quoteText} />
+                )}
+                {/* TODO NULL CHECK AS THAT IS WHAT IS MOST LIKELY BREAKING IT */}
                 {formInput != null && (
                   <Form
                     {...formInput}
+                    dynamicFields={true}
                     onSubmit={handleSubmit}
                     onSuccess={handleSuccess}
                     renderFooter={({ formError }) => (
@@ -645,7 +670,11 @@ function LoginCalculatorForm({
                             __html: `<div style="color:black;text-align:center;font-size: medium;">${getQuoteDisclaimerTextHtml}</div>`,
                           }}
                         />
-                        {hasRegistered && <SeeMoreOffers />}
+                        {hasRegistered && (
+                          <SeeMoreOffers
+                            btnText={calculatorProps.seeMoreOfferText}
+                          />
+                        )}
                       </React.Fragment>
                     )}
                   />
@@ -666,13 +695,11 @@ function LoginCalculatorForm({
           authenticityToken,
           stateField,
           lifeInsuranceCalcProps,
-          title,
           hiddenFields,
           buttonText,
           buttonIcon,
           gdprProps,
           emailField,
-          quoteText,
           getQuoteDisclaimerTextHtml,
           autocompletePostcodeUrl,
           pane,
@@ -688,6 +715,7 @@ function LoginCalculatorForm({
 
 LoginCalculatorForm.propTypes = {
   calculatorProps: t.shape({
+    quoteTitle: t.string,
     showQuoteCalculator: t.bool,
     campaignId: t.number,
     quoteText: t.string,
@@ -700,6 +728,7 @@ LoginCalculatorForm.propTypes = {
     timeToCallBackText: t.string,
     callbackUrl: t.string,
     quoteUrl: t.string,
+    seeMoreOffersText: t.string,
   }),
   onSubmit: t.func,
   authenticityToken: t.string.isRequired,
@@ -708,7 +737,6 @@ LoginCalculatorForm.propTypes = {
   handleSubmit: t.func,
   // eslint-disable-next-line react/forbid-prop-types
   hiddenFields: t.object,
-  title: t.string,
   buttonText: t.string,
   buttonIcon: t.string,
   autocompletePostcodeUrl: t.string,
@@ -741,8 +769,6 @@ LoginCalculatorForm.propTypes = {
 };
 
 LoginCalculatorForm.defaultProps = {
-  title:
-    'Join One Big Switch today for FREE and instantly unlock your special offers!',
   buttonText: 'Get quote',
   buttonIcon: null,
   stateField: {},
@@ -758,18 +784,22 @@ const ThankYouContent = styled(Box)`
   padding: 8rem 1rem;
 `;
 
-const ThankYou = () => {
+const ThankYou = props => {
   return (
     <RowFlexBox>
       <CalculatorPanelContentBox>
         <ThankYouContent>
-          <Header tag="h2" align="center" color="primary">
-            Thank you for requesting a call back
-          </Header>
-          <Header tag="h6" align="center" color="text">
-            An insurance team member will call you back within 2 business days.
-          </Header>
-          <SeeMoreOffers />
+          <Markdown
+            align="center"
+            color="primary"
+            raw={props.calculatorProps.thankyouHeader}
+          />
+          <Markdown
+            align="center"
+            color="text"
+            raw={props.calculatorProps.thankyouBody}
+          />
+          <SeeMoreOffers btnText={props.calculatorProps.seeMoreOfferText} />
         </ThankYouContent>
       </CalculatorPanelContentBox>
     </RowFlexBox>
@@ -779,7 +809,7 @@ const ThankYou = () => {
 const LoginCalculatorPanel = props => {
   const [formComplete, setFormComplete] = useState(false);
   return formComplete ? (
-    <ThankYou />
+    <ThankYou {...props} />
   ) : (
     <LoginCalculatorForm {...props} setFormComplete={setFormComplete} />
   );
