@@ -243,8 +243,8 @@ function LoginCalculatorForm({
     phoneNumber: null,
   });
 
-  console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
-  console.log(calculatorProps);
+  //  console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
+  //  console.log(calculatorProps);
 
   const handleSubmit = async fieldsWithValues => {
     // Values for the first request (register/login the user to authenticate their session)
@@ -333,10 +333,6 @@ function LoginCalculatorForm({
     } else {
       setQuoteAmount('$2.50');
     }
-    // TODO Verify that this has been made redundant & remove this prop
-    // if (this.props.onSubmit != null && this.props.onSubmit != undefined)
-    //   // TODO Pass the calculate quote that is received from the API!
-    //   this.props.onSubmit();
 
     // TODO Figure out if this is still needed
     // return fieldsWithValues.map(field => {
@@ -715,7 +711,6 @@ LoginCalculatorForm.propTypes = {
     quoteUrl: t.string,
     seeMoreOffersText: t.string,
   }),
-  onSubmit: t.func,
   authenticityToken: t.string.isRequired,
   loginUrl: t.string.isRequired,
   handleSuccess: t.func,
@@ -758,7 +753,6 @@ LoginCalculatorForm.defaultProps = {
   buttonIcon: null,
   stateField: {},
   emailField: {},
-  onSubmit: () => null,
   pane: false,
   // TODO Remove this for production deployment
   offerText: 'See more offers',
@@ -783,6 +777,7 @@ const ThankYou = props => (
           color="text"
           raw={props.calculatorProps.thankyouBody}
         />
+        {/* TODO MAKE THIS BUTTON FUNCTIONAL */}
         <SeeMoreOffers btnText={props.calculatorProps.seeMoreOfferText} />
       </ThankYouContent>
     </CalculatorPanelContentBox>
