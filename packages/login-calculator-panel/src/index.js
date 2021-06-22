@@ -85,7 +85,7 @@ const SeeMoreOffers = props => {
   return (
     <SeeMoreOffersWrapper>
       <Button as="a" href={'/campaigns'}>
-        {props.seeMoreOfferText}
+        {props.btnText}
       </Button>
     </SeeMoreOffersWrapper>
   );
@@ -139,6 +139,15 @@ const QuoteContent = ({
   ...props
 }) => {
   const onSelectCallbackTime = async value => {
+    console.log('onSelectCallbackTime HAS BEEN CALLED!!!!!');
+
+    console.log([
+      calculatorProps.callbackUrl,
+      calculatorProps.campaignId,
+      { phoneBackPrefferedTime: value },
+      props.authenticityToken,
+    ]);
+
     await submitCallbackTime(
       calculatorProps.callbackUrl,
       calculatorProps.campaignId,
@@ -234,15 +243,8 @@ function LoginCalculatorForm({
     phoneNumber: null,
   });
 
-  // console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
-  // console.log(calculatorProps);
-
-  const {
-    campaignId,
-    quoteUrl,
-    callbackUrl,
-    getQuoteDisclaimerTextHtml,
-  } = calculatorProps;
+  console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
+  console.log(calculatorProps);
 
   const handleSubmit = async fieldsWithValues => {
     // Values for the first request (register/login the user to authenticate their session)
@@ -322,8 +324,8 @@ function LoginCalculatorForm({
     // API CALL FOR fetching the LifeInsurance quote value
     if (isDevelopment !== true) {
       const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
-        quoteUrl,
-        campaignId,
+        calculatorProps.quoteUrl,
+        calculatorProps.campaignId,
         lifeInsuranceQuoteValues,
         authenticityToken
       );
@@ -461,13 +463,7 @@ function LoginCalculatorForm({
         placeholder: 'First name', // || stateField.placeholder
         autoComplete: 'off',
         config: {
-          //component: 'autocomplete',
           validator: 'required',
-          //validatorArgs: stateField.options
-          //  ? [stateField.options.map(option => option['label'])]
-          //  : undefined,
-          // searchFunction: () => console.log("first name being called"),
-          //onEmptyResult: this.handleEmptyResult,
         },
       },
       {
@@ -478,13 +474,7 @@ function LoginCalculatorForm({
         placeholder: 'Surname', // || stateField.placeholder
         autoComplete: 'off',
         config: {
-          //component: 'autocomplete',
-          //validator: 'required',
-          //validatorArgs: stateField.options
-          //  ? [stateField.options.map(option => option['label'])]
-          //  : undefined,
-          //searchFunction: this.autoCompleteSearch,
-          //onEmptyResult: this.handleEmptyResult,
+          validator: 'required',
         },
       },
       {
@@ -660,7 +650,9 @@ function LoginCalculatorForm({
                         </ButtonWrapper>
                         <DisclaimerWrapper
                           dangerouslySetInnerHTML={{
-                            __html: `<div style="color:black;text-align:center;font-size: medium;">${getQuoteDisclaimerTextHtml}</div>`,
+                            __html: `<div style="color:black;text-align:center;font-size: medium;">${
+                              calculatorProps.getQuoteDisclaimerTextHtml
+                            }</div>`,
                           }}
                         />
                         {hasRegistered && (
@@ -693,7 +685,7 @@ function LoginCalculatorForm({
           buttonIcon,
           gdprProps,
           emailField,
-          getQuoteDisclaimerTextHtml,
+          calculatorProps.getQuoteDisclaimerTextHtml,
           autocompletePostcodeUrl,
           pane,
         ]}
@@ -777,27 +769,25 @@ const ThankYouContent = styled(Box)`
   padding: 8rem 1rem;
 `;
 
-const ThankYou = props => {
-  return (
-    <RowFlexBox>
-      <CalculatorPanelContentBox>
-        <ThankYouContent>
-          <Markdown
-            align="center"
-            color="primary"
-            raw={props.calculatorProps.thankyouHeader}
-          />
-          <Markdown
-            align="center"
-            color="text"
-            raw={props.calculatorProps.thankyouBody}
-          />
-          <SeeMoreOffers btnText={props.calculatorProps.seeMoreOfferText} />
-        </ThankYouContent>
-      </CalculatorPanelContentBox>
-    </RowFlexBox>
-  );
-};
+const ThankYou = props => (
+  <RowFlexBox>
+    <CalculatorPanelContentBox>
+      <ThankYouContent>
+        <Markdown
+          align="center"
+          color="primary"
+          raw={props.calculatorProps.thankyouHeader}
+        />
+        <Markdown
+          align="center"
+          color="text"
+          raw={props.calculatorProps.thankyouBody}
+        />
+        <SeeMoreOffers btnText={props.calculatorProps.seeMoreOfferText} />
+      </ThankYouContent>
+    </CalculatorPanelContentBox>
+  </RowFlexBox>
+);
 
 const LoginCalculatorPanel = props => {
   const [formComplete, setFormComplete] = useState(false);

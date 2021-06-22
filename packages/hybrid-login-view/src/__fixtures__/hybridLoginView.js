@@ -139,6 +139,7 @@ const hybridLoginView = {
     quoteHeaderText: 'Your Quote from NobleOak Life Insurance⁶',
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
+    seeMoreOfferText: 'See more offers',
   },
 };
 

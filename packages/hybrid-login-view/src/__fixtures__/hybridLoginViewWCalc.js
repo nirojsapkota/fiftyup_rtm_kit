@@ -141,6 +141,11 @@ const hybridLoginViewWCalc = {
     quoteHeaderText: 'Your Quote from NobleOak Life Insurance⁶',
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
+    seeMoreOfferText: 'See more offers',
+    campaignId: 0,
+    callbackUrl: '/temp_REPLACE_ME',
+    thankyouHeader: '# Thank you',
+    thankyouBody: 'See below for more offers',
   },
   gdprProps: {
     enableCheckBox: true,

@@ -43,6 +43,7 @@ const loginPanel = {
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
     campaignId: 1,
+    seeMoreOfferText: 'See more offers',
   },
 };
 
