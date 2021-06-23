@@ -226,6 +226,7 @@ function LoginCalculatorForm({
   //  console.log(calculatorProps);
 
   const handleSubmit = async fieldsWithValues => {
+    console.log('SUBMIT CALLED????');
     // Values for the first request (register/login the user to authenticate their session)
     const authenticateValues = { user: {}, noRedirect: true };
 
@@ -269,6 +270,10 @@ function LoginCalculatorForm({
       }
     });
     setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
+
+    console.log('SUBMITTING LOGIN VALUES');
+
+    console.log([loginUrl, authenticateValues, authenticityToken]);
 
     const resultSubmitLogin = await submitLogin(
       loginUrl,
@@ -338,7 +343,7 @@ function LoginCalculatorForm({
           offset: -100,
         });
       } catch (e) {
-        // TODO Connect to recent logging service
+        // TODO Connect to relevant logging service
         console.log(e);
       }
     }, 100);
@@ -622,6 +627,9 @@ function LoginCalculatorForm({
                             type="submit"
                             className="signup-button"
                             track="signin"
+                            onClick={event => {
+                              console.log('I HAVE BEEN PRESSED!');
+                            }}
                           >
                             {buttonText}
                             {buttonIcon && (
@@ -755,6 +763,7 @@ const ThankYouContent = styled(Box)`
   padding: 8rem 1rem;
 `;
 
+// TODO Double check the fixture for the button component (appears to be broken)
 const ThankYou = props => (
   <RowFlexBox>
     <CalculatorPanelContentBox>

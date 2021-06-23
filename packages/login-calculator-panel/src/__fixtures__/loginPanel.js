@@ -14,9 +14,7 @@ const loginPanel = {
     enableCheckBox: false,
     isRequire: 'required',
     isChecked: false,
-    getCheckBoxValue: function(e) {
-      console.log('checkbox: ', e);
-    },
+    getCheckBoxValue: null,
     content:
       'By ticking this box, you agree to our [Confirmation of Consent](https://staging.onebigswitch.com.au/confirmation-of-consent),\
       [Terms and Conditions](https://staging.onebigswitch.com.au/terms-and-conditions) and \

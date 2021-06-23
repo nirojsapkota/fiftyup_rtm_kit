@@ -58,6 +58,8 @@ const Form = ({
       const fieldsWithValues = fields.map(field => {
         return { ...field, value: submitValues[field.name] };
       });
+      console.log('CHECK FIELDS WITH VALUES');
+      console.log(fieldsWithValues);
       const response = await onSubmit(fieldsWithValues, context);
       if (Array.isArray(response)) {
         setFields(response);
@@ -108,6 +110,10 @@ const Form = ({
       validationSchema={validationSchema}
       enableReinitialize
       onSubmit={submitWrapper}
+      onValidationError={errorValues => {
+        console.log('WHAT ARE THE ERRORS');
+        console.log(errorValues);
+      }}
       render={({
         handleSubmit,
         zisSubmitting,
@@ -127,7 +133,6 @@ const Form = ({
               },
               {}
             );
-
             // update server errors message
             setServerErrors({
               formError: serverErrors.formError,

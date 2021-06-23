@@ -3,6 +3,9 @@
 //const axios = require('axios');
 import axios from 'axios';
 export const submitLogin = async (url, data, authenticityToken) => {
+  // TODO REMOVE THIS
+  // console.log("I AM BEING CALLED")
+  // console.log(data)
   const config = {
     headers: {
       Accept: 'application/json',

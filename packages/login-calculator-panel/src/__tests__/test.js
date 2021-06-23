@@ -11,7 +11,11 @@ import {
 } from '../../../bootstrap/setup/testSetup.new.js';
 
 import { LoginCalculatorPanel } from '../index';
-
+import {
+  submitLogin,
+  submitCallbackTime,
+  submitLifeInsuranceQuoteDetails,
+} from '../actions';
 import loginPanelProps from '../__fixtures__/loginPanel';
 
 jest.mock('axios');
@@ -187,6 +191,76 @@ describe('<LoginCalculatorPanel />', () => {
     expect(await screen.findByText('Invalid email address')).toBeVisible();
   });
 
+  it('Successful form submission to get quote', async () => {
+    console.log('START DEBUGG TEST');
+    // set Up
+    axios.post.mockRejectedValue({
+      response: {
+        status: 401,
+        data: { errors: ['Email is not valid', 'Postcode is not valid'] },
+      },
+    });
+    // TODO ADD MOCK GET REQUTEST AND ADJUST ABOVE POST REQUEST
+    // TODO ALSO MAKE SURE THE AUTOCOMPLETE DOESNT FIRE FOR THIS TEST!!!!!1
+
+    const { getByText, getByLabelText } = render(
+      <LoginCalculatorPanel {...loginPanelProps} />
+    );
+    // This awaits for the useEffect within login-calculator-panel (index) (think like onCompleteMount) to fire off.
+    await screen.findByLabelText('My Email:');
+
+    const firstName = getByLabelText('First name');
+    fireEvent.change(firstName, { target: { value: 'STEVE' } });
+
+    const lastName = getByLabelText('Surname');
+    fireEvent.change(lastName, { target: { value: 'From Accounting' } });
+
+    const phoneNumber = getByLabelText('Phone number');
+    fireEvent.change(phoneNumber, { target: { value: '0432922222' } });
+
+    const genderRadio = screen.getByTestId('radio-gender_M');
+    fireEvent.click(genderRadio);
+
+    const smokingRadio = screen.getByTestId('radio-smoker_false');
+    fireEvent.click(smokingRadio);
+
+    const email = getByLabelText('My Email:');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+
+    const postcode = getByLabelText('My Postcode:');
+    fireEvent.change(postcode, {
+      target: { value: '2000, BARANGAROO' },
+    });
+
+    const ageDropdown = getByLabelText('Age');
+    fireEvent.change(ageDropdown, {
+      target: {
+        label: '18 years old',
+        value: '18',
+      },
+    });
+
+    const coverDropdown = getByLabelText('Amount of cover');
+    fireEvent.change(coverDropdown, {
+      target: {
+        label: `300000`,
+        value: 300000,
+      },
+    });
+
+    // FORM SUBMISSION
+    const submit = getByText(loginPanelProps.buttonText).closest('button');
+    fireEvent.click(submit);
+    // TODO FOLLOWING SUBMISSION FIND THE CALLBACK TIME TO SATISFY THE THANK YOU SCREEN COVERAGE
+    console.log('END DEBUGG TEST');
+    console.log('------------------');
+    console.log('------------------');
+    console.log('------------------');
+    console.log('------------------');
+  });
+
   // TODO ADJUST THIS TEST
   //  it('Get internal errors from server when submit login', async () => {
   //    // set Up
@@ -318,4 +392,104 @@ it('state field with pre-populated data', async () => {
   await waitFor(() => expect(item).toBeInTheDocument());
   fireEvent.click(item);
   await waitFor(() => expect(state.value).toEqual(stateField.options[0].label));
+});
+
+// TODO ADD ERROR THROWING MOCK REQUESTS!
+it('ensure that actions are functioning as designed', async () => {
+  // TODO MOCK ALL THE FUNCTION !!!
+
+  // TODO ADD MOCKED RESULT FOR (POST) REQUESTS
+  axios.post.mockResolvedValue({
+    data: 'TEST',
+    status: 200,
+  });
+
+  axios.get.mockResolvedValue({
+    data: 'TEST',
+  });
+
+  // POST request
+  const RESULT = await submitLogin('TEST', { TEST: 'TEST' }, '7');
+
+  // GET request (it should really be a POST request)
+  const RESULT_2 = await submitCallbackTime(
+    'TEST',
+    0,
+    { phoneBackPrefferedTime: '8:00' },
+    '7'
+  );
+
+  // GET request (it should really be a POST request)
+  const RESULT_3 = await submitLifeInsuranceQuoteDetails(
+    'TEST',
+    0,
+    {
+      firstName: 'Steve',
+      surname: 'From Accounting',
+      phoneNumber: '0432222222',
+      age: '5',
+      gender: 'M',
+      smoker: false,
+      cover: '200000',
+    },
+    '42'
+  );
+  // TODO ADD EXPECT CASES!
+});
+
+it('ensure submitLogin handles non-401 error cases', async () => {
+  axios.post.mockRejectedValue({
+    response: {
+      status: 500,
+      data: { errors: ['error'] },
+    },
+  });
+
+  // POST request
+  const RESULT = await submitLogin('TEST', { TEST: 'TEST' }, '7');
+  // TODO ADD EXPECT CASES!
+});
+
+it('ensure that actions are throw exceptions as designed', async () => {
+  axios.post.mockRejectedValue({
+    response: {
+      status: 401,
+      data: { errors: ['error'] },
+    },
+  });
+
+  axios.get.mockRejectedValue({
+    response: {
+      status: 500,
+      data: { errors: ['error'] },
+    },
+  });
+
+  // POST request
+  const RESULT = await submitLogin('TEST', { TEST: 'TEST' }, '7');
+
+  // GET request (it should really be a POST request)
+  const RESULT_2 = await submitCallbackTime(
+    'TEST',
+    0,
+    { phoneBackPrefferedTime: '8:00' },
+    '7'
+  );
+
+  // GET request (it should really be a POST request)
+  const RESULT_3 = await submitLifeInsuranceQuoteDetails(
+    'TEST',
+    0,
+    {
+      firstName: 'Steve',
+      surname: 'From Accounting',
+      phoneNumber: '0432222222',
+      age: '5',
+      gender: 'M',
+      smoker: false,
+      cover: '200000',
+    },
+    '42'
+  );
+  // TODO ADD EXPECT CASES!
 });
