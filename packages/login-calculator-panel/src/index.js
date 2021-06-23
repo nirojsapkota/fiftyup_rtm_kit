@@ -15,6 +15,9 @@ import {
   submitCallbackTime,
 } from './actions';
 
+// TODO Verify this approach doesn't break any of the builds or tests.
+import { scroller } from 'react-scroll';
+
 // import GdprAgreement from './GdprAgreement';
 
 const ButtonIConWrapper = styled(Box)`
@@ -132,22 +135,12 @@ const QuoteContent = ({
   quoteValue,
   calculatorProps,
   onSeeOffersClick,
-  offerText,
   setFormComplete,
   hasRegistered,
   isDevelopment,
   ...props
 }) => {
   const onSelectCallbackTime = async value => {
-    console.log('onSelectCallbackTime HAS BEEN CALLED!!!!!');
-
-    console.log([
-      calculatorProps.callbackUrl,
-      calculatorProps.campaignId,
-      { phoneBackPrefferedTime: value },
-      props.authenticityToken,
-    ]);
-
     await submitCallbackTime(
       calculatorProps.callbackUrl,
       calculatorProps.campaignId,
@@ -159,7 +152,7 @@ const QuoteContent = ({
 
   return (
     <>
-      <div scroll-target="mainHeading" data-testid="quoteContentDiv">
+      <div name="quoteContentName" data-testid="quoteContentDiv">
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
             <ContentWrapper>
@@ -190,19 +183,6 @@ const QuoteContent = ({
                 ))}
                 <Markdown py={3} raw={calculatorProps.discountText} />
                 <Markdown raw={calculatorProps.phoneNumber} />
-
-                <br />
-                <br />
-
-                {hasRegistered && offerText && (
-                  <Button
-                    onClick={() =>
-                      onSeeOffersClick ? onSeeOffersClick() : null
-                    }
-                  >
-                    {offerText}
-                  </Button>
-                )}
               </Box>
             </ContentWrapper>
           </CustomerContainerWrapper>
@@ -226,7 +206,6 @@ function LoginCalculatorForm({
   pane,
   calculatorProps,
   onSeeOffersClick,
-  offerText,
   isDevelopment,
   setFormComplete,
   ...props
@@ -320,6 +299,7 @@ function LoginCalculatorForm({
     }
 
     setHasRegistered(true);
+
     // }
     // API CALL FOR fetching the LifeInsurance quote value
     if (isDevelopment !== true) {
@@ -343,6 +323,27 @@ function LoginCalculatorForm({
     //   }
     // });
 
+    // Duration that will be used for both the scrollTo duration.
+    const DURATION = 750;
+
+    // Waits a very brief moment for the form state to change.
+    setTimeout(() => {
+      // TODO Capture the state of the display (e.g. is Mobile or Not)
+      // TODO as the offset will be slightly different in the case of mobile!
+      try {
+        // On success ->  scroll to the provided quote value.
+        scroller.scrollTo('quoteContentName', {
+          duration: DURATION,
+          smooth: true,
+          offset: -100,
+        });
+      } catch (e) {
+        // TODO Connect to recent logging service
+        console.log(e);
+      }
+    }, 100);
+
+    // This is a hack (pls no remove). See "submitWrapper" in "form" package for context.
     return [];
   };
 
@@ -608,7 +609,6 @@ function LoginCalculatorForm({
                 {calculatorProps.quoteText && (
                   <Markdown raw={calculatorProps.quoteText} />
                 )}
-                {/* TODO NULL CHECK AS THAT IS WHAT IS MOST LIKELY BREAKING IT */}
                 {formInput != null && (
                   <Form
                     {...formInput}
@@ -651,11 +651,6 @@ function LoginCalculatorForm({
                             }</div>`,
                           }}
                         />
-                        {hasRegistered && (
-                          <SeeMoreOffers
-                            btnText={calculatorProps.seeMoreOfferText}
-                          />
-                        )}
                       </React.Fragment>
                     )}
                   />
@@ -669,6 +664,7 @@ function LoginCalculatorForm({
         calculatorProps={calculatorProps}
         authenticityToken={authenticityToken}
         setFormComplete={setFormComplete}
+        hasRegistered={hasRegistered}
         {...props}
         // TODO The below is hacky, purely for development only
         {...[
@@ -686,7 +682,6 @@ function LoginCalculatorForm({
           pane,
         ]}
         onSeeOffersClick={onSeeOffersClick}
-        offerText={offerText}
         quoteValue={quoteAmount}
         props
       />
@@ -743,7 +738,6 @@ LoginCalculatorForm.propTypes = {
     content: t.string,
   }),
   onSeeOffersClick: t.func,
-  offerText: t.string,
   // isDevelopment is a flag to signal that requests should be mocked due to no-backend being available.
   isDevelopment: t.bool,
 };
@@ -754,8 +748,6 @@ LoginCalculatorForm.defaultProps = {
   stateField: {},
   emailField: {},
   pane: false,
-  // TODO Remove this for production deployment
-  offerText: 'See more offers',
   isDevelopment: false,
 };
 

@@ -27,7 +27,8 @@
     "@rtm-ui/typography": "file:../typography",
     "@rtm-ui/tracker": "file:../tracker",
     "axios": "^0.18.0",
-    "formik": "^1.4.1"
+    "formik": "^1.4.1",
+    "react-scroll": "^1.8.2"
   },
   "peerDependencies": {
     "prop-types": "15.x",
