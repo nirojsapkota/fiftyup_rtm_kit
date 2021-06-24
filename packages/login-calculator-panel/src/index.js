@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import React, { useEffect, useState } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
@@ -654,9 +656,7 @@ function LoginCalculatorForm({
                         </ButtonWrapper>
                         <DisclaimerWrapper
                           dangerouslySetInnerHTML={{
-                            __html: `<div style="color:black;text-align:center;font-size: medium;">${
-                              calculatorProps.getQuoteDisclaimerTextHtml
-                            }</div>`,
+                            __html: `<div style="color:black;text-align:center;font-size: medium;">${calculatorProps.getQuoteDisclaimerTextHtml}</div>`,
                           }}
                         />
                       </React.Fragment>
