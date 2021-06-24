@@ -65,4 +65,19 @@ describe(`<Button />`, () => {
 
     expect(getByText(`Welcome to React`)).toBeInTheDocument();
   });
+
+  it(`renders disabled buttons `, () => {
+    const { getByText } = render(
+      <ButtonGroup>
+        <Button appearDisabled={true} disabled={true}>
+          Welcome to React
+        </Button>
+        <Button appearDisabled={true} disabled={true}>
+          Welcome to React
+        </Button>
+      </ButtonGroup>
+    );
+
+    expect(getByText(`Welcome to React`)).toBeInTheDocument();
+  });
 });
