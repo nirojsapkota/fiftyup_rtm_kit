@@ -58,8 +58,6 @@ const Form = ({
       const fieldsWithValues = fields.map(field => {
         return { ...field, value: submitValues[field.name] };
       });
-      console.log('CHECK FIELDS WITH VALUES');
-      console.log(fieldsWithValues);
       const response = await onSubmit(fieldsWithValues, context);
       if (Array.isArray(response)) {
         setFields(response);
