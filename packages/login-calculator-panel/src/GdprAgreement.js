@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import React, { useState, useEffect } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';

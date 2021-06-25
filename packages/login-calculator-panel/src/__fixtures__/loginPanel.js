@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const loginPanel = {
   title:
     'Join One Big Switch today for FREE and instantly unlock your special offers!',
