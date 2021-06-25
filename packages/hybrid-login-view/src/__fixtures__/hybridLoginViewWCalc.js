@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const hybridLoginViewWCalc = {
   title: 'Get a Quick Quote now!',
   authenticityToken:

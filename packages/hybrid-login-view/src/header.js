@@ -1,8 +1,10 @@
+/* istanbul ignore file */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Nav } from '@rtm-ui/nav';
 
-const BasicHeader = ({entity, ...props}) => {
+const BasicHeader = ({ entity, ...props }) => {
   return (
     <Nav
       user={null}
@@ -16,7 +18,8 @@ const BasicHeader = ({entity, ...props}) => {
 
 BasicHeader.propTypes = {
   entity: PropTypes.shape({
-    navigation_items: PropTypes.shape({})})
+    navigation_items: PropTypes.shape({}),
+  }),
 };
 
 export default BasicHeader;

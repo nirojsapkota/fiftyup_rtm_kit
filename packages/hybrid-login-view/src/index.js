@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Accordion } from '@rtm-ui/accordion';
 import { Img, ResponsiveImage } from '@rtm-ui/img';
 import { Box, Block, scrollToElement, useElementVisible } from '@rtm-ui/layout';

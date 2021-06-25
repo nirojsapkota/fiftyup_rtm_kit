@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 // NOTE: there is a rollup bug when compile file with import axios
 // import axios from 'axios';
 //const axios = require('axios');
