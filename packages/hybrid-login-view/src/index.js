@@ -259,10 +259,6 @@ const HybridLoginView = ({
   calculatorProps,
   ...props
 }) => {
-  console.log('PROP CHECK');
-  console.log(workflow);
-  console.log('--------');
-  console.log(workflowOffer);
   const defaultButtonVisible = useElementVisible(
     '[scroll-target="login-panel"]'
   );
