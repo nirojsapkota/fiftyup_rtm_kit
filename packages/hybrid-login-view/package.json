@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/hybrid-login-view",
-  "version": "5.1.5",
+  "version": "5.1.6",
   "description": "hybrid login view",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -25,13 +25,13 @@
     "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/list": "file:../list",
+    "@rtm-ui/login-calculator-panel": "file:../login-calculator-panel",
     "@rtm-ui/login-panel": "file:../login-panel",
     "@rtm-ui/nav": "file:../nav",
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography",
-    "@rtm-ui/video-dialog": "file:../video-dialog",
-    "@rtm-ui/login-calculator-panel": "file:../login-calculator-panel"
+    "@rtm-ui/video-dialog": "file:../video-dialog"
   },
   "peerDependencies": {
     "prop-types": "15.x",
