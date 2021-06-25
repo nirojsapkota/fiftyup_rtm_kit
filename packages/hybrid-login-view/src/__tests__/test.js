@@ -122,18 +122,19 @@ describe('<HybridLoginView />', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  // TODO Extend this to be a bit more meaningful
+  // Currently on for coverage sake
+  it(`selects asSeenOn image`, async () => {
+    const { getByTestId } = render(<HybridLoginView {...props} />);
+
+    const asSeenOnImage = getByTestId('asSeenOnImage');
+    fireEvent.click(asSeenOnImage);
+  });
+
   // Tests for hybridLoginView with Life insurance form.
 
   it(`life insurance calculator appears if showQuoteCalculator={true}`, async () => {
-    const { getByTestId } = render(
-      <HybridLoginView
-        {...calcProps}
-        // heroImageUrlMobileUrl=""
-        // heroImageUrlDesktopUrl=""
-        // mainContent=""
-        // videoSrc=""
-      />
-    );
+    const { getByTestId } = render(<HybridLoginView {...calcProps} />);
     const quoteContent = getByTestId('quoteContentDiv');
 
     // Non-null / undefined check

@@ -13,7 +13,7 @@ const hybridLoginViewWCalc = {
   heroImageUrlMobileUrl: 'https://placehold.it/700x400',
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
-  asSeenOnImage: 'https://placehold.it/1080x100',
+  asSeenOnImage: 'https://via.placeholder.com/1080x100',
   mainContent: 'I am main content',
   entity: {
     brand: 'obs',
@@ -149,9 +149,7 @@ const hybridLoginViewWCalc = {
     enableCheckBox: true,
     isRequire: 'required',
     isChecked: false,
-    getCheckBoxValue: function(e) {
-      console.log('checkbox: ', e);
-    },
+    getCheckBoxValue: null,
     content:
       'By ticking this box, you agree to our [Confirmation of Consent](https://staging.onebigswitch.com.au/confirmation-of-consent),\
       [Terms and Conditions](https://staging.onebigswitch.com.au/terms-and-conditions) and \

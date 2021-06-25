@@ -14,25 +14,11 @@ import t from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BasicHeader from './header';
+
 const HybridLoginReferenceContext = React.createContext();
 
 const BodyWrapper = styled(Box)`
   background: ${props => getColor('light', props.theme)};
-`;
-
-const CustomerContainerWrapper = styled(Box)`
-  height: 100%;
-  background: none;
-  padding-top: 1rem;
-  background: #f3f3f3;
-  border-top: 1px solid #e0e0e0;
-  padding-bottom: 4px;
-`;
-
-const ButtonWrapper = styled.div`
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: 100%;
 `;
 
 const ContainerWrapper = styled(Box)`
@@ -91,18 +77,6 @@ const LoginPanelWrapper = styled(Box)`
   }
 `;
 
-const CalculatorPanelWrapper = styled(Box)`
-  height: 100%;
-  overflow: unset;
-  padding: 0px;
-`;
-const CalculatorPanelContentBox = styled(ContentBox)`
-  position: sticky;
-  top: 0%
-  padding: 0px;
-  align-self: flex-start;
-`;
-
 const LoginPanelContentBox = styled(ContentBox)`
   position: sticky;
   @media (min-width: ${props => props.theme.grid.md}em) {
@@ -131,81 +105,16 @@ const expandedProps = {
   maxWidth: '100%',
 };
 
-const QuoteContentDefaultProps = {
-  width: [1, 1, 1],
-  px: [10, 10],
-  // maxWidth: ['100%', '100%', '648px'],
-};
-const QuoteFormDefaultProps = {
-  width: [1, 1, 1 / 2, 1 / 2],
-  px: [10, 10, 15, 10],
-  // maxWidth: ['100%', '100%', '388px', '460px'],
-};
 const LoginDefaultProps = {
   width: [1, 1, 2 / 5, 2 / 5],
   px: [10, 10, 15, 10],
   maxWidth: ['100%', '100%', '388px', '460px'],
 };
 
-const TitleMarkdown = styled(Markdown)`
-  margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
-`;
-
-const ContentMarkdown = styled(Markdown)`
-  margin-bottom: 1rem;
-`;
-
 const WorkFlowContainer = styled(Box)`
   margin-top: 0.7rem;
   margin-bottom: 2rem;
 `;
-
-const onSelectCallbackTime = btnName => {};
-
-const QuoteContent = ({
-  mainHeading,
-  quoteValue,
-  calculatorProps,
-  ...props
-}) => {
-  return (
-    <>
-      <div scroll-target="mainHeading" data-testid="quoteContentDiv">
-        {mainHeading && (
-          <CustomerContainerWrapper className="content-wrapper">
-            <ContentWrapper>
-              <Box className="hero" {...QuoteContentDefaultProps}>
-                <Paragraph>{calculatorProps.quoteHeaderText}</Paragraph>
-                <Header>{showQuote(quoteValue)} </Header>
-                <h1>{calculatorProps.paymentCycleText}</h1>
-                <br />
-                <Paragraph py={3}>
-                  {calculatorProps.timeToCallBackText}
-                </Paragraph>
-                {props.buttons.map(button => (
-                  <ButtonWrapper>
-                    <Button
-                      disabled={quoteValue === null ? true : false}
-                      appearDisabled={quoteValue === null ? true : false}
-                      onClick={() =>
-                        onSelectCallbackTime(button.value.toString())
-                      }
-                    >
-                      {button.text}
-                    </Button>
-                  </ButtonWrapper>
-                ))}
-                <Paragraph py={3}>{calculatorProps.discountText}</Paragraph>
-                <Header>{calculatorProps.phoneNumber} </Header>
-              </Box>
-            </ContentWrapper>
-          </CustomerContainerWrapper>
-        )}
-      </div>
-    </>
-  );
-};
 
 const MarkdownWrapper = ({ content, isEnabledMarkdown, ...rest }) => {
   const referenceObject = React.useContext(HybridLoginReferenceContext);
@@ -291,6 +200,7 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
                 <Img
                   src={asSeenOnImage}
                   alt="As Seen On"
+                  data-testid="asSeenOnImage"
                   onClick={e => {
                     scrollToElement(e, 'login-panel');
                   }}
@@ -349,6 +259,10 @@ const HybridLoginView = ({
   calculatorProps,
   ...props
 }) => {
+  console.log('PROP CHECK');
+  console.log(workflow);
+  console.log('--------');
+  console.log(workflowOffer);
   const defaultButtonVisible = useElementVisible(
     '[scroll-target="login-panel"]'
   );
