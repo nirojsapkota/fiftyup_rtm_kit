@@ -1,5 +1,7 @@
-const hybridLoginView = {
-  title: 'Login panel title',
+/* istanbul ignore file */
+
+const hybridLoginViewWCalc = {
+  title: 'Get a Quick Quote now!',
   authenticityToken:
     'I7t3w13syZv9gWaz0kbQA3fL6NqrhwiZlfIt9HixtbKNZIy5nsB36XE8eQHC+AtA5lT2p7Kt182TIrUDgSZ+gw==',
   hiddenFields: {
@@ -13,7 +15,7 @@ const hybridLoginView = {
   heroImageUrlMobileUrl: 'https://placehold.it/700x400',
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
-  asSeenOnImage: 'https://placehold.it/1080x100',
+  asSeenOnImage: 'https://via.placeholder.com/1080x100',
   mainContent: 'I am main content',
   entity: {
     brand: 'obs',
@@ -78,7 +80,6 @@ const hybridLoginView = {
       updated_at: '2017-06-29T14:37:01.000+10:00',
     },
   ],
-
   workflow: {
     header: '### How it Works',
     items: [
@@ -128,7 +129,9 @@ const hybridLoginView = {
   ],
 
   lifeInsuranceCalcProps: {
-    showQuoteCalculator: false,
+    quoteTitle:
+      '**Join One Big Switch today for FREE and instantly unlock your special offers!**',
+    showQuoteCalculator: true,
     quoteText:
       'An insurance team member will call you back in a day or so. You can change the details below if you wish to explore other quotes or levels of cover.',
     getQuoteDisclaimerTextHtml:
@@ -139,7 +142,23 @@ const hybridLoginView = {
     quoteHeaderText: 'Your Quote from NobleOak Life Insurance⁶',
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
+    campaignId: 0,
+    callbackUrl: '/temp_REPLACE_ME',
+    thankyouHeader: '# Thank you',
+    thankyouBody: 'See below for more offers',
   },
+  gdprProps: {
+    enableCheckBox: true,
+    isRequire: 'required',
+    isChecked: false,
+    getCheckBoxValue: null,
+    content:
+      'By ticking this box, you agree to our [Confirmation of Consent](https://staging.onebigswitch.com.au/confirmation-of-consent),\
+      [Terms and Conditions](https://staging.onebigswitch.com.au/terms-and-conditions) and \
+      [Privacy Policy](https://staging.onebigswitch.com.au/privacy-policy)',
+  },
+  isDevelopment: true,
+  buttonText: 'Get Quote',
 };
 
-export default hybridLoginView;
+export default hybridLoginViewWCalc;

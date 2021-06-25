@@ -92,12 +92,13 @@ export const buttonStyling = css`
 `;
 
 export const ButtonLink = styled.a`
-  ${buttonStyling};  
+  ${buttonStyling};
   ${contentStyling};
 `;
 
 export const StyledButton = styled.button`
   ${buttonStyling};
+  opacity: ${props => (props.appearDisabled === true ? '0.5' : '1')};
 `;
 
 export const WrapperButton = styled.button`

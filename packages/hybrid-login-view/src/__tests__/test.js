@@ -2,10 +2,11 @@ import React from 'react';
 import { fireEvent, render } from '../../../bootstrap/setup/testSetup';
 import { HybridLoginView } from '../index';
 import hybridLoginViewProps from '../__fixtures__/hybridLoginView';
+import hybridLoginViewPropsWCalc from '../__fixtures__/hybridLoginViewWCalc';
 
 describe('<HybridLoginView />', () => {
   const props = hybridLoginViewProps;
-
+  const calcProps = hybridLoginViewPropsWCalc;
   it('Test the Offer Content section to have header and content', () => {
     const { queryByText, getByText, container } = render(
       <HybridLoginView {...props} />
@@ -119,6 +120,24 @@ describe('<HybridLoginView />', () => {
     const contentImg = getByTestId('main-content');
     fireEvent.click(contentImg);
     expect(spy).toHaveBeenCalled();
-  })
+  });
 
+  // TODO Extend this to be a bit more meaningful
+  // Currently on for coverage sake
+  it(`selects asSeenOn image`, async () => {
+    const { getByTestId } = render(<HybridLoginView {...props} />);
+
+    const asSeenOnImage = getByTestId('asSeenOnImage');
+    fireEvent.click(asSeenOnImage);
+  });
+
+  // Tests for hybridLoginView with Life insurance form.
+
+  it(`life insurance calculator appears if showQuoteCalculator={true}`, async () => {
+    const { getByTestId } = render(<HybridLoginView {...calcProps} />);
+    const quoteContent = getByTestId('quoteContentDiv');
+
+    // Non-null / undefined check
+    expect(quoteContent).toEqual(expect.anything());
+  });
 });

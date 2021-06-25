@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import * as Yup from 'yup';
 import maskPatterns from './maskPatterns';
 
@@ -18,22 +20,22 @@ export const maskValidator = (regex, fieldName) => {
     });
 };
 
-export const minimumCharsValidator = (min) => {
+export const minimumCharsValidator = min => {
   return Yup.string()
     .required('Required')
     .min(min, `Must be at least ${min} characters`);
-}
+};
 
 export const valueMatchValidator = (regexStr, message) => {
-  if (typeof(regexStr) === 'function') {
+  if (typeof regexStr === 'function') {
     return regexStr();
   } else {
     var re = new RegExp(regexStr);
     return Yup.string()
       .required('Required')
-      .matches(re, message)
+      .matches(re, message);
   }
-}
+};
 
 // 4 Digit AU Postcode Validation
 export const postcodeValidator = Yup.string()
@@ -65,9 +67,7 @@ export const monthValidator = Yup.string()
 
 export const monthButtonGroupValidator = Yup.string()
   .required('Required')
-  .matches(/[A-Za-z0-9]+/,
-    'Please select a month or other options'
-);
+  .matches(/[A-Za-z0-9]+/, 'Please select a month or other options');
 
 export const monthYearValidator = Yup.string()
   .required('Required')
@@ -88,11 +88,11 @@ export const emailValidator = Yup.string()
   .email('Invalid email address')
   .required('Required');
 
-export const passwordConfirmValidator = (passwordFieldValue='') => {
+export const passwordConfirmValidator = (passwordFieldValue = '') => {
   return Yup.string()
     .required('Confirm password is required')
-    .oneOf([passwordFieldValue, null], "Passwords don't match")
-}
+    .oneOf([passwordFieldValue, null], "Passwords don't match");
+};
 
 export const dropdownValidator = options => {
   return Yup.string()
@@ -105,4 +105,3 @@ export const passwordComplexityValidator = Yup.string()
   .min(8, 'Password is too short - should be 8 chars minimum')
   .matches(/[a-zA-Z]/, 'Password should contain a letter')
   .matches(/[0-9]/, 'Password should contain a number');
-

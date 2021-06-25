@@ -13,7 +13,12 @@ const Wrapper = styled.div`
 `;
 
 // This is used by jest and Docz
-const TestBootstrap = ({ themeName = 'obs', overrides, children }) => {
+const TestBootstrap = ({
+  themeName = 'obs',
+  overrides,
+  trackerOff,
+  children,
+}) => {
   const [localThemeName] = useLocalStorage('themeName', themeName);
   return (
     <Bootstrap
@@ -30,8 +35,12 @@ TestBootstrap.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   theme: PropTypes.object,
   children: PropTypes.node,
+  trackerOff: PropTypes.bool,
 };
 
+TestBootstrap.defaultProps = {
+  trackerOff: false,
+};
 export { TestBootstrap };
 // Docz needs a default export
 export default TestBootstrap;

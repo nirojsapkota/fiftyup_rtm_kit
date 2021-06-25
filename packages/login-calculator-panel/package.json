@@ -1,0 +1,38 @@
+{
+  "name": "@rtm-ui/login-calculator-panel",
+  "version": "5.0.48",
+  "description": "Description for loginCalculatorPanel",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "login-calculator-panel",
+    "namedExports": [
+      "LoginCalculatorPanel"
+    ]
+  },
+  "main": "build/index.js",
+  "module": "build/index.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
+  },
+  "dependencies": {
+    "@rtm-ui/button": "file:../button",
+    "@rtm-ui/form": "file:../form",
+    "@rtm-ui/icon": "file:../icon",
+    "@rtm-ui/img": "file:../img",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/typography": "file:../typography",
+    "@rtm-ui/tracker": "file:../tracker",
+    "axios": "^0.18.0",
+    "formik": "^1.4.1",
+    "react-scroll": "^1.8.2"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}

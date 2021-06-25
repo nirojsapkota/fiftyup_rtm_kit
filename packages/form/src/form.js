@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import styled from 'styled-components';
@@ -22,20 +22,26 @@ export const getFormValues = fields => {
 
 const FooterBox = styled(Box)`
   display: flex;
-  justify-content: ${props => props.centeredSubmit ? "center" : "flex-end"};
+  justify-content: ${props => (props.centeredSubmit ? 'center' : 'flex-end')};
 `;
 
 const Form = ({
   onSubmit,
   quickSubmit,
   autoSearch,
+  dynamicFields,
   getNewestFieldValue,
   fields: providedFields,
   id,
   ...props
 }) => {
-
   const [fields, setFields] = React.useState(providedFields);
+  if (dynamicFields) {
+    useEffect(() => {
+      setFields(providedFields);
+    }, [providedFields]);
+  }
+
   const [serverErrors, setServerErrors] = React.useState({
     formError: props.formError || null,
     fieldErrors: props.fieldErrors || {},
@@ -54,7 +60,7 @@ const Form = ({
       });
       const response = await onSubmit(fieldsWithValues, context);
       if (Array.isArray(response)) {
-        await setFields(response);
+        setFields(response);
       } else {
         throw new FormError({
           formError: 'Something went wrong',
@@ -86,7 +92,7 @@ const Form = ({
   };
 
   // Pass these values straight through with no submission
-  React.useEffect(function () {
+  React.useEffect(function() {
     if (props.passThru) {
       validationSchema.isValid(initialValues).then(valid => {
         if (valid) {
@@ -102,6 +108,10 @@ const Form = ({
       validationSchema={validationSchema}
       enableReinitialize
       onSubmit={submitWrapper}
+      onValidationError={errorValues => {
+        console.log('WHAT ARE THE ERRORS');
+        console.log(errorValues);
+      }}
       render={({
         handleSubmit,
         zisSubmitting,
@@ -121,7 +131,6 @@ const Form = ({
               },
               {}
             );
-
             // update server errors message
             setServerErrors({
               formError: serverErrors.formError,
@@ -129,10 +138,13 @@ const Form = ({
             });
 
             rest.setFieldValue(field, value);
-            getNewestFieldValue && typeof getNewestFieldValue == 'function' && getNewestFieldValue(field, value);
-            (autoSearch || quickSubmit) && validateForm().then(() => { 
-              autoSubmit();
-            });
+            getNewestFieldValue &&
+              typeof getNewestFieldValue == 'function' &&
+              getNewestFieldValue(field, value);
+            (autoSearch || quickSubmit) &&
+              validateForm().then(() => {
+                autoSubmit();
+              });
           },
           setFieldTouched: rest.setFieldTouched,
           setFieldError: rest.setFieldError,
@@ -160,30 +172,38 @@ const Form = ({
                 />
               )}
             </FieldGroup>
-            {(typeof props.renderFooter === 'function')
+            {typeof props.renderFooter === 'function'
               ? props.renderFooter({ formError: serverErrors.formError })
-              : props.renderFooter || (
-                !quickSubmit && <FooterBox centeredSubmit={props.centeredSubmit}>
-                  <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Box mb={10} style={{ display: 'flex', alignSelf: 'flex-end' }}>
-                      <Button align="center" data-testid={`submit-${id}`} type="submit">
-                        {props.submitText || 'Submit'}
-                      </Button>
+              : props.renderFooter ||
+                (!quickSubmit && (
+                  <FooterBox centeredSubmit={props.centeredSubmit}>
+                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                      <Box
+                        mb={10}
+                        style={{ display: 'flex', alignSelf: 'flex-end' }}
+                      >
+                        <Button
+                          align="center"
+                          data-testid={`submit-${id}`}
+                          type="submit"
+                        >
+                          {props.submitText || 'Submit'}
+                        </Button>
+                      </Box>
+                      <Box
+                        style={{
+                          height: '12px',
+                          display: 'flex',
+                          alignSelf: 'flex-end',
+                        }}
+                      >
+                        <Small align="left" color="error">
+                          {serverErrors.formError}
+                        </Small>
+                      </Box>
                     </Box>
-                    <Box
-                      style={{
-                        height: '12px',
-                        display: 'flex',
-                        alignSelf: 'flex-end',
-                      }}
-                    >
-                      <Small align="left" color="error">
-                        {serverErrors.formError}
-                      </Small>
-                    </Box>
-                  </Box>
-                </FooterBox>
-              )}
+                  </FooterBox>
+                ))}
           </form>
         );
       }}
@@ -193,6 +213,7 @@ const Form = ({
 
 export default Form;
 
+// TODO EXTEND PROP TYPES FOR FORM COMPONENT
 Form.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),

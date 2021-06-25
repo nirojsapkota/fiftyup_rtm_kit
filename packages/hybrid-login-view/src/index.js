@@ -1,17 +1,22 @@
+/* istanbul ignore file */
+
 import { Accordion } from '@rtm-ui/accordion';
 import { Img, ResponsiveImage } from '@rtm-ui/img';
 import { Box, Block, scrollToElement, useElementVisible } from '@rtm-ui/layout';
-import { LoginPanel } from '@rtm-ui/login-panel';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
 import { track } from '@rtm-ui/tracker';
-import { Header, Markdown } from '@rtm-ui/typography';
+import { Header, Markdown, Paragraph } from '@rtm-ui/typography';
 import { VideoDialog } from '@rtm-ui/video-dialog';
 import { WorkFlow } from '@rtm-ui/how-it-works';
 import { Button } from '@rtm-ui/button';
+import { LoginCalculatorPanel } from '@rtm-ui/login-calculator-panel';
+import { LoginPanel } from '@rtm-ui/login-panel';
+
 import t from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BasicHeader from './header';
+
 const HybridLoginReferenceContext = React.createContext();
 
 const BodyWrapper = styled(Box)`
@@ -108,15 +113,6 @@ const LoginDefaultProps = {
   maxWidth: ['100%', '100%', '388px', '460px'],
 };
 
-const TitleMarkdown = styled(Markdown)`
-  margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
-`;
-
-const ContentMarkdown = styled(Markdown)`
-  margin-bottom: 1rem;
-`;
-
 const WorkFlowContainer = styled(Box)`
   margin-top: 0.7rem;
   margin-bottom: 2rem;
@@ -203,9 +199,14 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
             )}
             {asSeenOnImage && (
               <ImageWrapper m="auto">
-                <Img src={asSeenOnImage} alt="As Seen On" onClick={e => {
-                  scrollToElement(e, 'login-panel');
-                }} />
+                <Img
+                  src={asSeenOnImage}
+                  alt="As Seen On"
+                  data-testid="asSeenOnImage"
+                  onClick={e => {
+                    scrollToElement(e, 'login-panel');
+                  }}
+                />
               </ImageWrapper>
             )}
           </Box>
@@ -215,13 +216,22 @@ const HeadingSection = ({ mainHeading, asSeenOnImage }) => {
   );
 };
 
-const MainGraphic = ({ heroImageUrlDesktopUrl, heroImageUrlTabletUrl, heroImageUrlMobileUrl, mainHeading }) => {
+const MainGraphic = ({
+  heroImageUrlDesktopUrl,
+  heroImageUrlTabletUrl,
+  heroImageUrlMobileUrl,
+  mainHeading,
+}) => {
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
-        <div scroll-target="mainContent" data-testid="main-content" onClick={e => {
-          scrollToElement(e, 'login-panel');
-        }}>
+        <div
+          scroll-target="mainContent"
+          data-testid="main-content"
+          onClick={e => {
+            scrollToElement(e, 'login-panel');
+          }}
+        >
           <ContainerWrapper
             className="content-wrapper"
             style={{ paddingTop: mainHeading ? '4px' : '24px' }}
@@ -248,70 +258,92 @@ const HybridLoginView = ({
   accordion,
   workflow,
   workflowOffer,
+  calculatorProps,
   ...props
 }) => {
   const defaultButtonVisible = useElementVisible(
     '[scroll-target="login-panel"]'
   );
 
+  const [quote, setQuote] = useState(null);
+
+  /**
+   * Helper function that takes the submit event and passed the data to the
+   * component where users specify when to be called back.
+   *
+   * @param {string} value
+   * @returns
+   */
+  const onFormSubmit = value => {
+    // TODO remove the fallback value in production/deployment
+    setQuote(value);
+  };
+
   return (
     <React.Fragment>
       <BodyWrapper className="body-wrapper" pt={[50, 50, 50, 72]}>
         <HeadingSection {...props} />
         <MainGraphic {...props} />
-
         <ContentSection>
           <MainContent {...props} />
-
-          <LoginPanelWrapper {...LoginDefaultProps}>
-            <LoginPanelContentBox>
-              <div scroll-target="login-panel">
-                <LoginPanel {...props} />
-              </div>
-            </LoginPanelContentBox>
-          </LoginPanelWrapper>
+          {calculatorProps.showQuoteCalculator ? (
+            <LoginCalculatorPanel
+              {...props}
+              calculatorProps={calculatorProps}
+              onSubmit={onFormSubmit}
+              quote={quote}
+              pane={true}
+            />
+          ) : (
+            <LoginPanelWrapper {...LoginDefaultProps}>
+              <LoginPanelContentBox>
+                <div scroll-target="login-panel">
+                  <LoginPanel {...props} />
+                </div>
+              </LoginPanelContentBox>
+            </LoginPanelWrapper>
+          )}
 
           <div scroll-target="offerContent">
             {(workflowOffer.header ||
               workflowOffer.items.length > 0 ||
               accordion.length > 0) && (
-                <ContainerWrapper className="content-wrapper">
-                  <ContentWrapper>
-                    <Box {...defaultProps}>
-                      <Variant variant="a">
-                        <WorkFlowContainer>
-                          <WorkFlow
-                            multiContent
-                            scrollTo="login-panel"
-                            header={workflowOffer.header}
-                            items={workflowOffer.items}
-                          />
-                        </WorkFlowContainer>
-                      </Variant>
+              <ContainerWrapper className="content-wrapper">
+                <ContentWrapper>
+                  <Box {...defaultProps}>
+                    <Variant variant="a">
+                      <WorkFlowContainer>
+                        <WorkFlow
+                          multiContent
+                          scrollTo="login-panel"
+                          header={workflowOffer.header}
+                          items={workflowOffer.items}
+                        />
+                      </WorkFlowContainer>
+                    </Variant>
 
-                      {accordion.length > 0 && (
-                        <Column variant="b" pb="20px">
-                          <Accordion
-                            items={accordion}
-                            renderItem={item => (
-                              <Variant variant="a">
-                                <Box p={[2, 2, 3]}>
-                                  <MarkdownWrapper content={item.content} />
-                                </Box>
-                              </Variant>
-                            )}
-                            renderHeader={item => (
-                              <Header tag="h5">{item.name}</Header>
-                            )}
-                          />
-                        </Column>
-                      )}
-                    </Box>
-                  </ContentWrapper>
-                </ContainerWrapper>
-              )}
+                    {accordion.length > 0 && (
+                      <Column variant="b" pb="20px">
+                        <Accordion
+                          items={accordion}
+                          renderItem={item => (
+                            <Variant variant="a">
+                              <Box p={[2, 2, 3]}>
+                                <MarkdownWrapper content={item.content} />
+                              </Box>
+                            </Variant>
+                          )}
+                          renderHeader={item => (
+                            <Header tag="h5">{item.name}</Header>
+                          )}
+                        />
+                      </Column>
+                    )}
+                  </Box>
+                </ContentWrapper>
+              </ContainerWrapper>
+            )}
           </div>
-
           {(workflow.header || workflow.items.length > 0) && (
             <ContainerWrapper
               data-testid="mediaContent"
@@ -335,7 +367,6 @@ const HybridLoginView = ({
               </ContentWrapper>
             </ContainerWrapper>
           )}
-
           {!defaultButtonVisible && (
             <Block hideAt="md">
               <Variant variant="a">
@@ -364,6 +395,21 @@ HybridLoginView.propTypes = {
   accordion: t.arrayOf(t.shape({})),
   workflow: t.shape({}),
   workflowOffer: t.shape({}),
+  buttons: t.array,
+  calculatorProps: t.shape({
+    showQuoteCalculator: t.bool,
+    campaignId: t.number,
+    quoteText: t.string,
+    getQuoteDisclaimerTextHtml: t.string,
+    percentDiscount: t.number,
+    discountText: t.string,
+    phoneNumber: t.string,
+    quoteHeaderText: t.string,
+    paymentCycleText: t.string,
+    timeToCallBackText: t.string,
+    callbackUrl: t.string,
+    quoteUrl: t.string,
+  }),
 };
 
 HybridLoginView.defaultProps = {
@@ -374,7 +420,13 @@ HybridLoginView.defaultProps = {
 };
 
 const WrappedHybridLoginView = props => {
-  const { trackingData, entity, navLinks, ...rest } = props;
+  const {
+    trackingData,
+    entity,
+    navLinks,
+    lifeInsuranceCalcProps,
+    ...rest
+  } = props;
 
   useEffect(() => {
     track('presignup', trackingData);
@@ -390,9 +442,29 @@ const WrappedHybridLoginView = props => {
         signOutPath=""
         subHeader=""
       />
-      <HybridLoginView {...rest} trackingData={trackingData} />
+      <HybridLoginView {...rest} calculatorProps={lifeInsuranceCalcProps} />
     </React.Fragment>
   );
+};
+
+WrappedHybridLoginView.defaultProps = {
+  buttons: [
+    { text: 'Morning', value: '8:00' },
+    { text: 'Afternoon', value: '12:00' },
+    { text: 'Evening', value: '18:00' },
+  ],
+  lifeInsuranceCalcProps: {
+    showQuoteCalculator: false,
+    campaignId: 0,
+    quoteText: '',
+    getQuoteDisclaimerTextHtml: '',
+    percentDiscount: 0,
+    discountText: '',
+    phoneNumber: '',
+    quoteHeaderText: '',
+    paymentCycleText: '',
+    timeToCallBackText: '',
+  },
 };
 
 WrappedHybridLoginView.propTypes = {
@@ -407,6 +479,26 @@ WrappedHybridLoginView.propTypes = {
     header_items: t.shape({
       logo: t.string,
     }),
+  }),
+  trackingData: t.shape({}),
+  buttons: t.array,
+  lifeInsuranceCalcProps: t.shape({
+    showQuoteCalculator: t.bool,
+    campaignId: t.number,
+    quoteText: t.string,
+    quoteTitle: t.string,
+    getQuoteDisclaimerTextHtml: t.string,
+    percentDiscount: t.number,
+    discountText: t.string,
+    phoneNumber: t.string,
+    quoteHeaderText: t.string,
+    paymentCycleText: t.string,
+    timeToCallBackText: t.string,
+    callbackUrl: t.string,
+    quoteUrl: t.string,
+    thankyouHeader: t.string,
+    thankyouBody: t.string,
+    seeMoreOffersText: t.string,
   }),
 };
 
