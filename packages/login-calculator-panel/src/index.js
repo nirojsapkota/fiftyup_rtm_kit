@@ -4,13 +4,7 @@ import React, { useEffect, useState } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 
-import {
-  Card,
-  Box,
-  Pane,
-  scrollToElement,
-  scrollToElementExtended,
-} from '@rtm-ui/layout';
+import { Card, Box, Pane, scrollToElementExtended } from '@rtm-ui/layout';
 import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
@@ -81,7 +75,6 @@ const DisclaimerWrapper = styled.div`
 `;
 
 const ContentWrapper = styled(Box)`
-  max-width: 1080px;
   margin: auto;
 `;
 
@@ -110,6 +103,14 @@ const QuoteFormDefaultProps = {
   px: [10, 10, 15, 10],
   // maxWidth: ['100%', '100%', '388px', '460px'],
 };
+
+const QuoteFormDefaultSubmittedProps = {
+  width: [1, 1, 1 / 2, 1 / 3],
+  px: [10, 10, 15, 10],
+  // maxWidth: ['100%', '100%', '388px', '460px'],
+};
+
+const QuoteContentWrapper = styled(Box)``;
 
 /**
  *
@@ -155,9 +156,28 @@ const QuoteContent = ({
     setFormComplete(true);
   };
 
+  /**
+   * Passed the element styling in a functionality
+   *
+   * Styling in based on the "isRegistered" state variable
+   *
+   * @returns
+   */
+  const handleStyle = () => {
+    if (hasRegistered) {
+      return { width: [1, 1, 1 / 2, 1 / 2] };
+    }
+    // If user hasn't registered return no extra styling
+    return {};
+  };
+
   return (
     <>
-      <div name="quoteContentName" data-testid="quoteContentDiv">
+      <QuoteContentWrapper
+        name="quoteContentName"
+        data-testid="quoteContentDiv"
+        {...handleStyle()}
+      >
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
             <ContentWrapper>
@@ -192,7 +212,7 @@ const QuoteContent = ({
             </ContentWrapper>
           </CustomerContainerWrapper>
         )}
-      </div>
+      </QuoteContentWrapper>
     </>
   );
 };
@@ -322,6 +342,7 @@ function LoginCalculatorForm({
       );
       setQuoteAmount(`$ ${resultLifeInsuranceQuoteDetails.obs}`);
     } else {
+      // We set a hard-coded value in the development mode as it is assumed there is no backend API to call.
       setQuoteAmount('$2.50');
     }
 
@@ -604,9 +625,17 @@ function LoginCalculatorForm({
     });
   }, [hasRegistered]);
 
+  const handleQuoteFormProps = () => {
+    if (hasRegistered) {
+      return QuoteFormDefaultSubmittedProps;
+    } else {
+      return QuoteFormDefaultProps;
+    }
+  };
+
   return (
     <RowFlexBox>
-      <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
+      <CalculatorPanelWrapper {...handleQuoteFormProps()}>
         <CalculatorPanelContentBox>
           <div scroll-target="login-panel">
             <PaddingStyleWrapper pane={pane}>
