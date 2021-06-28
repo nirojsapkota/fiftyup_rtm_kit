@@ -4,7 +4,13 @@ import React, { useEffect, useState } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 
-import { Card, Box, Pane, scrollToElementExtended } from '@rtm-ui/layout';
+import {
+  Card,
+  Box,
+  Pane,
+  scrollToElementExtended,
+  useWindowSize,
+} from '@rtm-ui/layout';
 import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
@@ -248,6 +254,8 @@ function LoginCalculatorForm({
     phoneNumber: null,
   });
 
+  const windowSize = useWindowSize();
+
   useEffect(() => {
     if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
       setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
@@ -361,12 +369,23 @@ function LoginCalculatorForm({
     // TODO as the offset will be slightly different in the case of mobile! (Currently is passable but can be slightly improved)
     try {
       // On success ->  scroll to the provided quote value.
-      scrollToElementExtended(null, 'quoteContentName', {
-        DURATION: 750,
-        smooth: true,
-        delay: 150,
-        offsetY: -100,
-      });
+
+      if (windowSize.width > 990) {
+        scrollToElementExtended(null, 'quoteContentName', {
+          DURATION: 750,
+          smooth: true,
+          delay: 150,
+          offsetY: -100,
+        });
+      } else {
+        // Scroll for mobile/small screens
+        scrollToElementExtended(null, 'quoteContentName', {
+          DURATION: 750,
+          smooth: true,
+          delay: 150,
+          offsetY: -250,
+        });
+      }
     } catch (e) {
       // TODO Connect to relevant logging service
       console.log(e);
