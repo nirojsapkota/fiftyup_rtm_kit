@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { scroller } from 'react-scroll';
 
 function getSize() {
   return {
@@ -24,6 +25,39 @@ export function useWindowSize() {
   }, [windowSize]);
 
   return windowSize;
+}
+
+/**
+ * ScrollTo functionality with added config option.
+ *
+ * Note: the passed "ref" needs to match the "name" tag for the specific item being scrolled to
+ *
+ * e.g. `ref = "itemA"` | `<div name="itemA" />`
+ *
+ * See https://github.com/fisshy/react-scroll for more information on configuration options
+ *
+ * @param {*} e
+ * @param {string} ref
+ * @param {{DURATION? : number, smooth?: boolean, offsetY?: number, delay?: number}} config
+ *
+ *
+ */
+export function scrollToElementExtended(e, ref, config) {
+  if (e) {
+    e.preventDefault();
+  }
+  if (config == undefined) {
+    // Prevents expection being throwning in the event of "config" not being supplied
+    // Assumes default values in this case.
+    config = {};
+  }
+  // react-scroll
+  scroller.scrollTo(ref, {
+    duration: config.DURATION || 750,
+    smooth: config.smooth || true,
+    offset: config.offsetY || -100,
+    delay: config.delay || 0,
+  });
 }
 
 export function scrollToElement(e, ref) {

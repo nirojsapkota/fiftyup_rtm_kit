@@ -31,6 +31,5 @@ const bootstrapRender = (
     options
   );
 };
-
 export * from '@testing-library/react';
 export { bootstrapRender as render };
