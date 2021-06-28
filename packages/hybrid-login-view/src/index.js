@@ -498,7 +498,7 @@ WrappedHybridLoginView.propTypes = {
     quoteUrl: t.string,
     thankyouHeader: t.string,
     thankyouBody: t.string,
-    seeMoreOffersText: t.string,
+    seeMoreOffersButtonText: t.string,
     formSubmitButtonText: t.string,
   }),
 };

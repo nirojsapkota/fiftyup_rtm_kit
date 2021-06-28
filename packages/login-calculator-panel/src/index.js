@@ -712,7 +712,7 @@ LoginCalculatorForm.propTypes = {
     timeToCallBackText: t.string,
     callbackUrl: t.string,
     quoteUrl: t.string,
-    seeMoreOffersText: t.string,
+    seeMoreOffersButtonText: t.string,
     formSubmitButtonText: t.string,
   }),
   authenticityToken: t.string.isRequired,
@@ -780,7 +780,9 @@ const ThankYou = props => (
           color="text"
           raw={props.calculatorProps.thankyouBody}
         />
-        <SeeMoreOffers btnText={props.calculatorProps.seeMoreOfferText} />
+        <SeeMoreOffers
+          btnText={props.calculatorProps.seeMoreOffersButtonText}
+        />
       </ThankYouContent>
     </CalculatorPanelContentBox>
   </RowFlexBox>
