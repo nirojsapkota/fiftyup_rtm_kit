@@ -464,6 +464,9 @@ WrappedHybridLoginView.defaultProps = {
     quoteHeaderText: '',
     paymentCycleText: '',
     timeToCallBackText: '',
+    callMeBackTrack: '',
+    seeMoreOffersButtonTrack: '',
+    formSubmitButtonTrack: '',
   },
 };
 
@@ -500,6 +503,9 @@ WrappedHybridLoginView.propTypes = {
     thankyouBody: t.string,
     seeMoreOffersButtonText: t.string,
     formSubmitButtonText: t.string,
+    callMeBackTrack: t.string,
+    seeMoreOffersButtonTrack: t.string,
+    formSubmitButtonTrack: t.string,
   }),
 };
 
