@@ -28,7 +28,7 @@
     "watch": "lerna run --parallel build -- -- --watch --colors",
     "zip": "rtm-scripts zip --p ./aws/GithubDocumentationFunction",
     "temp:test": "lerna run test --stream --scope @rtm-ui/login-calculator-panel -- -- --colors --coverage",
-    "temp:test2": "lerna run test --stream --scope @rtm-ui/hybrid-login-view -- -- --colors --coverage"
+    "temp:test2": "lerna run test --stream --scope @rtm-ui/layout -- -- --colors --coverage"
   },
   "devDependencies": {
     "@rtm/core": "^1.0.54",

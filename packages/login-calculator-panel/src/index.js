@@ -157,11 +157,7 @@ const QuoteContent = ({
 
   return (
     <>
-      <div
-        name="quoteContentName"
-        scroll-target="quoteContentName"
-        data-testid="quoteContentDiv"
-      >
+      <div name="quoteContentName" data-testid="quoteContentDiv">
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
             <ContentWrapper>

@@ -46,7 +46,11 @@ export function scrollToElementExtended(e, ref, config) {
   if (e) {
     e.preventDefault();
   }
-
+  if (config == undefined) {
+    // Prevents expection being throwning in the event of "config" not being supplied
+    // Assumes default values in this case.
+    config = {};
+  }
   // react-scroll
   scroller.scrollTo(ref, {
     duration: config.DURATION || 750,
