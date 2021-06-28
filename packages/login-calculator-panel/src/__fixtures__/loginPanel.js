@@ -43,7 +43,19 @@ const loginPanel = {
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
     campaignId: 1,
+    callbackUrl: '/temp_REPLACE_ME',
+    thankyouHeader: '# Thank you',
+    thankyouBody: 'See below for more offers',
   },
+  // TODO EXTEND THE PROPS FOR THIS CASE
+  // REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED: true,
+  mainHeading: 'Hello',
+  //isDevelopment: true,
+  buttons: [
+    { text: 'Morning', value: '8:00' },
+    { text: 'Afternoon', value: '12:00' },
+    { text: 'Evening', value: '18:00' },
+  ],
 };
 
 export default loginPanel;

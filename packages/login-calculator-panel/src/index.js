@@ -4,7 +4,13 @@ import React, { useEffect, useState } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 
-import { Card, Box, Pane } from '@rtm-ui/layout';
+import {
+  Card,
+  Box,
+  Pane,
+  scrollToElement,
+  scrollToElementExtended,
+} from '@rtm-ui/layout';
 import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
@@ -16,9 +22,6 @@ import {
   submitLifeInsuranceQuoteDetails,
   submitCallbackTime,
 } from './actions';
-
-// TODO Verify this approach doesn't break any of the builds or tests.
-import { scroller } from 'react-scroll';
 
 // import GdprAgreement from './GdprAgreement';
 
@@ -89,7 +92,7 @@ const SeeMoreOffersWrapper = styled(Box)`
 const SeeMoreOffers = props => {
   return (
     <SeeMoreOffersWrapper>
-      <Button as="a" href={'/campaigns'}>
+      <Button as="a" href={'/campaigns'} data-testid="SeeMoreOfferButton">
         {props.btnText}
       </Button>
     </SeeMoreOffersWrapper>
@@ -154,7 +157,11 @@ const QuoteContent = ({
 
   return (
     <>
-      <div name="quoteContentName" data-testid="quoteContentDiv">
+      <div
+        name="quoteContentName"
+        scroll-target="quoteContentName"
+        data-testid="quoteContentDiv"
+      >
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
             <ContentWrapper>
@@ -210,6 +217,7 @@ function LoginCalculatorForm({
   onSeeOffersClick,
   isDevelopment,
   setFormComplete,
+  REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED,
   ...props
 }) {
   const [coverOptions] = useState(generateCoverAmount());
@@ -224,11 +232,14 @@ function LoginCalculatorForm({
     phoneNumber: null,
   });
 
-  //  console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
-  //  console.log(calculatorProps);
+  useEffect(() => {
+    if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
+      setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
+      setQuoteAmount(' $ - -.- -');
+    }
+  }, []);
 
   const handleSubmit = async fieldsWithValues => {
-    console.log('SUBMIT CALLED????');
     // Values for the first request (register/login the user to authenticate their session)
     const authenticateValues = { user: {}, noRedirect: true };
 
@@ -271,11 +282,8 @@ function LoginCalculatorForm({
         }
       }
     });
+
     setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
-
-    console.log('SUBMITTING LOGIN VALUES');
-
-    console.log([loginUrl, authenticateValues, authenticityToken]);
 
     const resultSubmitLogin = await submitLogin(
       loginUrl,
@@ -331,24 +339,21 @@ function LoginCalculatorForm({
     // });
 
     // Duration that will be used for both the scrollTo duration.
-    const DURATION = 750;
 
-    // Waits a very brief moment for the form state to change.
-    setTimeout(() => {
-      // TODO Capture the state of the display (e.g. is Mobile or Not)
-      // TODO as the offset will be slightly different in the case of mobile!
-      try {
-        // On success ->  scroll to the provided quote value.
-        scroller.scrollTo('quoteContentName', {
-          duration: DURATION,
-          smooth: true,
-          offset: -100,
-        });
-      } catch (e) {
-        // TODO Connect to relevant logging service
-        console.log(e);
-      }
-    }, 100);
+    // TODO (Consider!) capturing the state of the display (e.g. is Mobile or Not)
+    // TODO as the offset will be slightly different in the case of mobile! (Currently is passable but can be slightly improved)
+    try {
+      // On success ->  scroll to the provided quote value.
+      scrollToElementExtended(null, 'quoteContentName', {
+        DURATION: 750,
+        smooth: true,
+        delay: 150,
+        offset: -100,
+      });
+    } catch (e) {
+      // TODO Connect to relevant logging service
+      console.log(e);
+    }
 
     // This is a hack (pls no remove). See "submitWrapper" in "form" package for context.
     return [];
@@ -630,7 +635,7 @@ function LoginCalculatorForm({
                             className="signup-button"
                             track="signin"
                             onClick={event => {
-                              console.log('I HAVE BEEN PRESSED!');
+                              // console.log('I HAVE BEEN PRESSED!');
                             }}
                           >
                             {buttonText}
@@ -656,7 +661,9 @@ function LoginCalculatorForm({
                         </ButtonWrapper>
                         <DisclaimerWrapper
                           dangerouslySetInnerHTML={{
-                            __html: `<div style="color:black;text-align:center;font-size: medium;">${calculatorProps.getQuoteDisclaimerTextHtml}</div>`,
+                            __html: `<div style="color:black;text-align:center;font-size: medium;">${
+                              calculatorProps.getQuoteDisclaimerTextHtml
+                            }</div>`,
                           }}
                         />
                       </React.Fragment>
@@ -778,7 +785,6 @@ const ThankYou = props => (
           color="text"
           raw={props.calculatorProps.thankyouBody}
         />
-        {/* TODO MAKE THIS BUTTON FUNCTIONAL */}
         <SeeMoreOffers btnText={props.calculatorProps.seeMoreOfferText} />
       </ThankYouContent>
     </CalculatorPanelContentBox>
@@ -787,6 +793,15 @@ const ThankYou = props => (
 
 const LoginCalculatorPanel = props => {
   const [formComplete, setFormComplete] = useState(false);
+
+  // TODO Think of a smarter way to handle this!
+
+  useEffect(() => {
+    if (props.thankYou) {
+      setFormComplete(props.thankYou);
+    }
+  });
+
   return formComplete ? (
     <ThankYou {...props} />
   ) : (

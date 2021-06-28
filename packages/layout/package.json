@@ -28,7 +28,8 @@
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
     "@rtm-ui/bootstrap": "file:../bootstrap",
-    "@rtm-ui/theme": "file:../theme"
+    "@rtm-ui/theme": "file:../theme",
+    "react-scroll": "^1.8.2"
   },
   "peerDependencies": {
     "prop-types": "15.x",
