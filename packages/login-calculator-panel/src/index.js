@@ -167,9 +167,8 @@ const QuoteContent = ({
                   {calculatorProps.timeToCallBackText}
                 </Paragraph>
                 {props.buttons.map((button, index) => (
-                  <ButtonWrapper>
+                  <ButtonWrapper key={index}>
                     <Button
-                      key={index}
                       disabled={quoteValue === '$ - -.- -' ? true : false}
                       appearDisabled={quoteValue === '$ - -.- -' ? true : false}
                       onClick={() =>
@@ -184,7 +183,7 @@ const QuoteContent = ({
                   </ButtonWrapper>
                 ))}
                 <Markdown py={3} raw={calculatorProps.discountText} />
-                <Markdown raw={calculatorProps.phoneNumber} />
+                <Header tag="h2">{calculatorProps.phoneNumber}</Header>
               </Box>
             </ContentWrapper>
           </CustomerContainerWrapper>
@@ -200,7 +199,6 @@ function LoginCalculatorForm({
   stateField,
   lifeInsuranceCalcProps,
   hiddenFields,
-  buttonText,
   buttonIcon,
   gdprProps,
   emailField,
@@ -633,7 +631,7 @@ function LoginCalculatorForm({
                               console.log('I HAVE BEEN PRESSED!');
                             }}
                           >
-                            {buttonText}
+                            {calculatorProps.formSubmitButtonText}
                             {buttonIcon && (
                               <ButtonIConWrapper>
                                 <Icon
@@ -656,7 +654,9 @@ function LoginCalculatorForm({
                         </ButtonWrapper>
                         <DisclaimerWrapper
                           dangerouslySetInnerHTML={{
-                            __html: `<div style="color:black;text-align:center;font-size: medium;">${calculatorProps.getQuoteDisclaimerTextHtml}</div>`,
+                            __html: `<div style="color:black;text-align:center;font-size: medium;">${
+                              calculatorProps.getQuoteDisclaimerTextHtml
+                            }</div>`,
                           }}
                         />
                       </React.Fragment>
@@ -681,7 +681,6 @@ function LoginCalculatorForm({
           stateField,
           lifeInsuranceCalcProps,
           hiddenFields,
-          buttonText,
           buttonIcon,
           gdprProps,
           emailField,
@@ -713,6 +712,7 @@ LoginCalculatorForm.propTypes = {
     callbackUrl: t.string,
     quoteUrl: t.string,
     seeMoreOffersText: t.string,
+    formSubmitButtonText: t.string,
   }),
   authenticityToken: t.string.isRequired,
   loginUrl: t.string.isRequired,
@@ -751,7 +751,8 @@ LoginCalculatorForm.propTypes = {
 };
 
 LoginCalculatorForm.defaultProps = {
-  buttonText: 'Get quote',
+  buttonText: 'see more offers',
+  formSubmitButtonText: 'Get Quote',
   buttonIcon: null,
   stateField: {},
   emailField: {},

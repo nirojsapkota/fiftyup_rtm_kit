@@ -499,6 +499,7 @@ WrappedHybridLoginView.propTypes = {
     thankyouHeader: t.string,
     thankyouBody: t.string,
     seeMoreOffersText: t.string,
+    formSubmitButtonText: t.string,
   }),
 };
 
