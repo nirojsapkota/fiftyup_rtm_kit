@@ -348,7 +348,7 @@ function LoginCalculatorForm({
         DURATION: 750,
         smooth: true,
         delay: 150,
-        offset: -100,
+        offsetY: -100,
       });
     } catch (e) {
       // TODO Connect to relevant logging service

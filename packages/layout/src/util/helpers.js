@@ -34,10 +34,11 @@ export function useWindowSize() {
  *
  * e.g. `ref = "itemA"` | `<div name="itemA" />`
  *
+ * See https://github.com/fisshy/react-scroll for more information on configuration options
  *
  * @param {*} e
  * @param {string} ref
- * @param {{DURATION? : number, smooth?: boolean, offset?: number, delay?: number}} config
+ * @param {{DURATION? : number, smooth?: boolean, offsetY?: number, delay?: number}} config
  *
  *
  */
@@ -45,13 +46,12 @@ export function scrollToElementExtended(e, ref, config) {
   if (e) {
     e.preventDefault();
   }
-  console.log('CONFIG BE LIKE');
-  console.log(config);
+
   // react-scroll
   scroller.scrollTo(ref, {
     duration: config.DURATION || 750,
     smooth: config.smooth || true,
-    offset: config.offset || -100,
+    offset: config.offsetY || -100,
     delay: config.delay || 0,
   });
 }
