@@ -4,7 +4,13 @@ import React, { useEffect, useState } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 
-import { Card, Box, Pane } from '@rtm-ui/layout';
+import {
+  Card,
+  Box,
+  Pane,
+  scrollToElementExtended,
+  useWindowSize,
+} from '@rtm-ui/layout';
 import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
@@ -16,9 +22,6 @@ import {
   submitLifeInsuranceQuoteDetails,
   submitCallbackTime,
 } from './actions';
-
-// TODO Verify this approach doesn't break any of the builds or tests.
-import { scroller } from 'react-scroll';
 
 // import GdprAgreement from './GdprAgreement';
 
@@ -78,7 +81,6 @@ const DisclaimerWrapper = styled.div`
 `;
 
 const ContentWrapper = styled(Box)`
-  max-width: 1080px;
   margin: auto;
 `;
 
@@ -89,7 +91,12 @@ const SeeMoreOffersWrapper = styled(Box)`
 const SeeMoreOffers = props => {
   return (
     <SeeMoreOffersWrapper>
-      <Button as="a" href={'/campaigns'}>
+      <Button
+        track={props.track}
+        as="a"
+        href={'/campaigns'}
+        data-testid="SeeMoreOfferButton"
+      >
         {props.btnText}
       </Button>
     </SeeMoreOffersWrapper>
@@ -107,6 +114,14 @@ const QuoteFormDefaultProps = {
   px: [10, 10, 15, 10],
   // maxWidth: ['100%', '100%', '388px', '460px'],
 };
+
+const QuoteFormDefaultSubmittedProps = {
+  width: [1, 1, 1 / 2, 1 / 3],
+  px: [10, 10, 15, 10],
+  // maxWidth: ['100%', '100%', '388px', '460px'],
+};
+
+const QuoteContentWrapper = styled(Box)``;
 
 /**
  *
@@ -152,9 +167,28 @@ const QuoteContent = ({
     setFormComplete(true);
   };
 
+  /**
+   * Passed the element styling in a functionality
+   *
+   * Styling in based on the "isRegistered" state variable
+   *
+   * @returns
+   */
+  const handleStyle = () => {
+    if (hasRegistered) {
+      return { width: [1, 1, 1 / 2, 1 / 2] };
+    }
+    // If user hasn't registered return no extra styling
+    return {};
+  };
+
   return (
     <>
-      <div name="quoteContentName" data-testid="quoteContentDiv">
+      <QuoteContentWrapper
+        name="quoteContentName"
+        data-testid="quoteContentDiv"
+        {...handleStyle()}
+      >
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
             <ContentWrapper>
@@ -167,9 +201,9 @@ const QuoteContent = ({
                   {calculatorProps.timeToCallBackText}
                 </Paragraph>
                 {props.buttons.map((button, index) => (
-                  <ButtonWrapper>
+                  <ButtonWrapper key={index}>
                     <Button
-                      key={index}
+                      track={calculatorProps.callMeBackTrack}
                       disabled={quoteValue === '$ - -.- -' ? true : false}
                       appearDisabled={quoteValue === '$ - -.- -' ? true : false}
                       onClick={() =>
@@ -184,12 +218,12 @@ const QuoteContent = ({
                   </ButtonWrapper>
                 ))}
                 <Markdown py={3} raw={calculatorProps.discountText} />
-                <Markdown raw={calculatorProps.phoneNumber} />
+                <Header tag="h2">{calculatorProps.phoneNumber}</Header>
               </Box>
             </ContentWrapper>
           </CustomerContainerWrapper>
         )}
-      </div>
+      </QuoteContentWrapper>
     </>
   );
 };
@@ -200,7 +234,6 @@ function LoginCalculatorForm({
   stateField,
   lifeInsuranceCalcProps,
   hiddenFields,
-  buttonText,
   buttonIcon,
   gdprProps,
   emailField,
@@ -210,6 +243,7 @@ function LoginCalculatorForm({
   onSeeOffersClick,
   isDevelopment,
   setFormComplete,
+  REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED,
   ...props
 }) {
   const [coverOptions] = useState(generateCoverAmount());
@@ -224,11 +258,16 @@ function LoginCalculatorForm({
     phoneNumber: null,
   });
 
-  //  console.log('WHAT ARE THE CALCULATOR PROP!!!!!!');
-  //  console.log(calculatorProps);
+  const windowSize = useWindowSize();
+
+  useEffect(() => {
+    if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
+      setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
+      setQuoteAmount(' $ - -.- -');
+    }
+  }, []);
 
   const handleSubmit = async fieldsWithValues => {
-    console.log('SUBMIT CALLED????');
     // Values for the first request (register/login the user to authenticate their session)
     const authenticateValues = { user: {}, noRedirect: true };
 
@@ -271,11 +310,8 @@ function LoginCalculatorForm({
         }
       }
     });
+
     setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
-
-    console.log('SUBMITTING LOGIN VALUES');
-
-    console.log([loginUrl, authenticateValues, authenticityToken]);
 
     const resultSubmitLogin = await submitLogin(
       loginUrl,
@@ -307,9 +343,9 @@ function LoginCalculatorForm({
 
     setHasRegistered(true);
 
-    // }
-    // API CALL FOR fetching the LifeInsurance quote value
     if (isDevelopment !== true) {
+      // API CALL FOR fetching the LifeInsurance quote value
+
       const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
         calculatorProps.quoteUrl,
         calculatorProps.campaignId,
@@ -318,6 +354,7 @@ function LoginCalculatorForm({
       );
       setQuoteAmount(`$ ${resultLifeInsuranceQuoteDetails.obs}`);
     } else {
+      // We set a hard-coded value in the development mode as it is assumed there is no backend API to call.
       setQuoteAmount('$2.50');
     }
 
@@ -331,24 +368,31 @@ function LoginCalculatorForm({
     // });
 
     // Duration that will be used for both the scrollTo duration.
-    const DURATION = 750;
 
-    // Waits a very brief moment for the form state to change.
-    setTimeout(() => {
-      // TODO Capture the state of the display (e.g. is Mobile or Not)
-      // TODO as the offset will be slightly different in the case of mobile!
-      try {
-        // On success ->  scroll to the provided quote value.
-        scroller.scrollTo('quoteContentName', {
-          duration: DURATION,
+    try {
+      // On success ->  scroll to the provided quote value.
+      // (Note) 750 = "wsm" (in "theme" package)
+      // ScrollTo for table/desktop screens
+      if (windowSize.width > 750) {
+        scrollToElementExtended(null, 'quoteContentName', {
+          DURATION: 750,
           smooth: true,
-          offset: -100,
+          delay: 150,
+          offsetY: -100,
         });
-      } catch (e) {
-        // TODO Connect to relevant logging service
-        console.log(e);
+      } else {
+        // ScrollTo for mobile/small screens
+        scrollToElementExtended(null, 'quoteContentName', {
+          DURATION: 750,
+          smooth: true,
+          delay: 150,
+          offsetY: -250,
+        });
       }
-    }, 100);
+    } catch (e) {
+      // TODO Connect to relevant logging service
+      console.log(e);
+    }
 
     // This is a hack (pls no remove). See "submitWrapper" in "form" package for context.
     return [];
@@ -603,9 +647,17 @@ function LoginCalculatorForm({
     });
   }, [hasRegistered]);
 
+  const handleQuoteFormProps = () => {
+    if (hasRegistered) {
+      return QuoteFormDefaultSubmittedProps;
+    } else {
+      return QuoteFormDefaultProps;
+    }
+  };
+
   return (
     <RowFlexBox>
-      <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
+      <CalculatorPanelWrapper {...handleQuoteFormProps()}>
         <CalculatorPanelContentBox>
           <div scroll-target="login-panel">
             <PaddingStyleWrapper pane={pane}>
@@ -628,12 +680,12 @@ function LoginCalculatorForm({
                           <Button
                             type="submit"
                             className="signup-button"
-                            track="signin"
+                            track={calculatorProps.formSubmitButtonTrack}
                             onClick={event => {
-                              console.log('I HAVE BEEN PRESSED!');
+                              // console.log('I HAVE BEEN PRESSED!');
                             }}
                           >
-                            {buttonText}
+                            {calculatorProps.formSubmitButtonText}
                             {buttonIcon && (
                               <ButtonIConWrapper>
                                 <Icon
@@ -656,7 +708,9 @@ function LoginCalculatorForm({
                         </ButtonWrapper>
                         <DisclaimerWrapper
                           dangerouslySetInnerHTML={{
-                            __html: `<div style="color:black;text-align:center;font-size: medium;">${calculatorProps.getQuoteDisclaimerTextHtml}</div>`,
+                            __html: `<div style="color:black;text-align:center;font-size: medium;">${
+                              calculatorProps.getQuoteDisclaimerTextHtml
+                            }</div>`,
                           }}
                         />
                       </React.Fragment>
@@ -681,7 +735,6 @@ function LoginCalculatorForm({
           stateField,
           lifeInsuranceCalcProps,
           hiddenFields,
-          buttonText,
           buttonIcon,
           gdprProps,
           emailField,
@@ -712,7 +765,11 @@ LoginCalculatorForm.propTypes = {
     timeToCallBackText: t.string,
     callbackUrl: t.string,
     quoteUrl: t.string,
-    seeMoreOffersText: t.string,
+    seeMoreOffersButtonText: t.string,
+    formSubmitButtonText: t.string,
+    callMeBackTrack: t.string,
+    seeMoreOffersButtonTrack: t.string,
+    formSubmitButtonTrack: t.string,
   }),
   authenticityToken: t.string.isRequired,
   loginUrl: t.string.isRequired,
@@ -751,7 +808,8 @@ LoginCalculatorForm.propTypes = {
 };
 
 LoginCalculatorForm.defaultProps = {
-  buttonText: 'Get quote',
+  buttonText: 'see more offers',
+  formSubmitButtonText: 'Get Quote',
   buttonIcon: null,
   stateField: {},
   emailField: {},
@@ -778,8 +836,10 @@ const ThankYou = props => (
           color="text"
           raw={props.calculatorProps.thankyouBody}
         />
-        {/* TODO MAKE THIS BUTTON FUNCTIONAL */}
-        <SeeMoreOffers btnText={props.calculatorProps.seeMoreOfferText} />
+        <SeeMoreOffers
+          btnText={props.calculatorProps.seeMoreOffersButtonText}
+          track={props.calculatorProps.seeMoreOffersButtonTrack}
+        />
       </ThankYouContent>
     </CalculatorPanelContentBox>
   </RowFlexBox>
@@ -787,6 +847,15 @@ const ThankYou = props => (
 
 const LoginCalculatorPanel = props => {
   const [formComplete, setFormComplete] = useState(false);
+
+  // TODO Think of a smarter way to handle this!
+
+  useEffect(() => {
+    if (props.thankYou) {
+      setFormComplete(props.thankYou);
+    }
+  });
+
   return formComplete ? (
     <ThankYou {...props} />
   ) : (

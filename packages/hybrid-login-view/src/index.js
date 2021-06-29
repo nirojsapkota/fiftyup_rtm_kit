@@ -442,16 +442,20 @@ const WrappedHybridLoginView = props => {
         signOutPath=""
         subHeader=""
       />
-      <HybridLoginView {...rest} trackingData={trackingData} calculatorProps={lifeInsuranceCalcProps} />
+      <HybridLoginView
+        {...rest}
+        trackingData={trackingData}
+        calculatorProps={lifeInsuranceCalcProps}
+      />
     </React.Fragment>
   );
 };
 
 WrappedHybridLoginView.defaultProps = {
   buttons: [
-    { text: 'Morning', value: '8:00' },
-    { text: 'Afternoon', value: '12:00' },
-    { text: 'Evening', value: '18:00' },
+    { text: 'Morning', value: '800' },
+    { text: 'Afternoon', value: '1200' },
+    { text: 'Evening', value: '1800' },
   ],
   lifeInsuranceCalcProps: {
     showQuoteCalculator: false,
@@ -464,6 +468,9 @@ WrappedHybridLoginView.defaultProps = {
     quoteHeaderText: '',
     paymentCycleText: '',
     timeToCallBackText: '',
+    callMeBackTrack: '',
+    seeMoreOffersButtonTrack: '',
+    formSubmitButtonTrack: '',
   },
 };
 
@@ -498,7 +505,11 @@ WrappedHybridLoginView.propTypes = {
     quoteUrl: t.string,
     thankyouHeader: t.string,
     thankyouBody: t.string,
-    seeMoreOffersText: t.string,
+    seeMoreOffersButtonText: t.string,
+    formSubmitButtonText: t.string,
+    callMeBackTrack: t.string,
+    seeMoreOffersButtonTrack: t.string,
+    formSubmitButtonTrack: t.string,
   }),
 };
 

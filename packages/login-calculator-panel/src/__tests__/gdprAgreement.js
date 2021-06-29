@@ -6,7 +6,7 @@ import {
   fireEvent,
   // eslint-disable-next-line import/named
   cleanup,
-} from '../../../bootstrap/setup/testSetup';
+} from '../../../bootstrap/setup/testSetup.js';
 
 import GdprAgreement from '../GdprAgreement';
 

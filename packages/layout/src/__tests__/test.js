@@ -1,6 +1,16 @@
 import React from 'react';
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import { Block, Card, Pane, Flex, useWindowSize, TopBorderCard, scrollToElement, useElementVisible } from '../index';
+import {
+  Block,
+  Card,
+  Pane,
+  Flex,
+  useWindowSize,
+  TopBorderCard,
+  scrollToElement,
+  scrollToElementExtended,
+  useElementVisible,
+} from '../index';
 
 const text = 'Hello, World';
 
@@ -105,7 +115,7 @@ describe('useWindowSize', () => {
       window.innerWidth = x;
       window.innerHeight = y;
       window.dispatchEvent(new Event('resize'));
-    }
+    };
 
     resizeWindow(200, 300);
     expect(getByTestId('width')).toHaveTextContent('200');
@@ -116,22 +126,30 @@ describe('useWindowSize', () => {
   describe('<TopBorderCard />', () => {
     it('renders the border color of the variant provided', () => {
       const { getByText } = render(
-        <TopBorderCard variant="c" bordercolor="primary">{text}</TopBorderCard>, {
-        themeOverrides: { 'colors.variants.c.primary': '#1566ad' },
-      });
+        <TopBorderCard variant="c" bordercolor="primary">
+          {text}
+        </TopBorderCard>,
+        {
+          themeOverrides: { 'colors.variants.c.primary': '#1566ad' },
+        }
+      );
 
       expect(getByText(text)).toHaveStyleRule('border-top-color', '#1566ad');
     });
 
     it('provides the theme border color to the Card', () => {
-      const { getByText } = render(<TopBorderCard variant="c" bordercolor="accent">{text}</ TopBorderCard>, {
-        themeOverrides: { 'colors.variants.c.accent': '#ef8612' },
-      });
+      const { getByText } = render(
+        <TopBorderCard variant="c" bordercolor="accent">
+          {text}
+        </TopBorderCard>,
+        {
+          themeOverrides: { 'colors.variants.c.accent': '#ef8612' },
+        }
+      );
 
       expect(getByText(text)).toHaveStyleRule('border-top-color', '#ef8612');
     });
   });
-
 });
 
 describe('scrollToElement', () => {
@@ -140,35 +158,54 @@ describe('scrollToElement', () => {
     const spy = jest.spyOn(window, 'scrollTo');
     const { getByText } = await render(
       <>
-        <a onClick={(e) => scrollToElement(e, 'findMe')}>Test</a>
+        <a onClick={e => scrollToElement(e, 'findMe')}>Test</a>
         <div scroll-target="findMe" />
       </>
     );
-    const navItem = getByText("Test");
+    const navItem = getByText('Test');
     fireEvent.click(navItem);
 
     await wait(() => {
       expect(spy).toHaveBeenCalled();
-    })
-  })
+    });
+  });
 
   it('scrolls to a given element attribute regardless of event', async () => {
     window.scrollTo = jest.fn();
     const spy = jest.spyOn(window, 'scrollTo');
     const { getByText } = await render(
       <>
-        <a onClick={(e) => scrollToElement(null, 'findMe')}>Test</a>
+        <a onClick={e => scrollToElement(null, 'findMe')}>Test</a>
         <div scroll-target="findMe" />
       </>
     );
-    const navItem = getByText("Test");
+    const navItem = getByText('Test');
     fireEvent.click(navItem);
 
     await wait(() => {
       expect(spy).toHaveBeenCalled();
-    })
-  })
-})
+    });
+  });
+});
+
+describe('scrollToElementExtended', () => {
+  it('scrolls to a given element attribute', async () => {
+    window.scrollTo = jest.fn();
+    const spy = jest.spyOn(window, 'scrollTo');
+    const { getByText } = await render(
+      <>
+        <a onClick={e => scrollToElementExtended(e, 'findMe')}>Test</a>
+        <div name="findMe" />
+      </>
+    );
+    const navItem = getByText('Test');
+    fireEvent.click(navItem);
+
+    await wait(() => {
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+});
 
 describe('useElementVisible', () => {
   beforeEach(() => {
@@ -179,12 +216,10 @@ describe('useElementVisible', () => {
   const TestFn = ({ element, ...props }) => {
     const elemIsVisible = useElementVisible(element);
     return (
-      <div style={{ "minHeight": "1000px" }}>
-        <span data-testid="elem-visible">{elemIsVisible ? "Yes" : "No"}</span>
-        <div style={{ "marginTop": "20px", "width": "100%" }}></div>
-        <div className="target-element">
-          I am target element
-          </div>
+      <div style={{ minHeight: '1000px' }}>
+        <span data-testid="elem-visible">{elemIsVisible ? 'Yes' : 'No'}</span>
+        <div style={{ marginTop: '20px', width: '100%' }} />
+        <div className="target-element">I am target element</div>
         <div data-testid="response">
           <p>I am {elemIsVisible}</p>
         </div>
@@ -193,19 +228,22 @@ describe('useElementVisible', () => {
   };
 
   it('checks if the given element is visible in the window viewport', async () => {
-    const { getByTestId, rerender } = await render(<TestFn element='.target-element' />);
+    const { getByTestId, rerender } = await render(
+      <TestFn element=".target-element" />
+    );
     window.dispatchEvent(new Event('scroll'));
     expect(getByTestId('elem-visible')).toHaveTextContent('Yes');
     window.scrollTo(0, 10000);
     window.dispatchEvent(new Event('scroll'));
-    rerender(<TestFn element='.target-element' />);
+    rerender(<TestFn element=".target-element" />);
     expect(getByTestId('elem-visible')).toHaveTextContent('No');
   });
 
   it('raises error while passing invalid element', async () => {
-    const { getByTestId, rerender } = render(<TestFn element='.not-existing' />);
+    const { getByTestId, rerender } = render(
+      <TestFn element=".not-existing" />
+    );
     window.dispatchEvent(new Event('scroll'));
     expect(getByTestId('response')).toHaveTextContent('I am invalid element');
-  })
-
-})
+  });
+});
