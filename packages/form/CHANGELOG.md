@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.23](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.1.22...@rtm-ui/form@5.1.23) (2021-06-29)
+
+
+### Bug Fixes
+
+* **login-calculator-panel:** Extended lifeInsuranceQuoteValues to remember form values post-submit ([819a3fa](https://github.com/OBSAU/rtm-kit/commit/819a3fad8e27d415617ca457cac0199ccdbe55e0))
+* **login-calculator-panel:** Fixed multiple-submission form bug ([7bcbd58](https://github.com/OBSAU/rtm-kit/commit/7bcbd58c13982960865b5aa55c59aa0e5010c3a2))
+
+
+
+
+
 ## [5.1.22](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.1.21...@rtm-ui/form@5.1.22) (2021-06-25)
 
 **Note:** Version bump only for package @rtm-ui/form

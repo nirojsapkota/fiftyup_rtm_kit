@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.1.6...@rtm-ui/hybrid-login-view@5.2.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* **login-calculator-panel:** Fixed broken markdown component (in development mode) ([21520dc](https://github.com/OBSAU/rtm-kit/commit/21520dcbd347e5de702efde4808648e3d162337c))
+* **login-calculator-panel:** Fixed incorrect values for callback buttons ([b9105fa](https://github.com/OBSAU/rtm-kit/commit/b9105fad30bc5a04953dfef8d05ec2501dd3263b))
+
+
+### Features
+
+* **login-calculator-panel:** Added scorll on quote form submission ([046e7ba](https://github.com/OBSAU/rtm-kit/commit/046e7ba0b24eaa28f8de710716e3a7f3b26d63c6))
+* **LoginCalculatorPanel:** add tracking to all buttons ([19c33fb](https://github.com/OBSAU/rtm-kit/commit/19c33fb3f230071f1290b6a87a47e0ec634536f1))
+
+
+
+
+
 ## [5.1.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.1.5...@rtm-ui/hybrid-login-view@5.1.6) (2021-06-25)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view

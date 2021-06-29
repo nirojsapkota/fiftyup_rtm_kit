@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@4.0.61...@rtm-ui/bootstrap@4.1.0) (2021-06-29)
+
+
+### Features
+
+* **layout package:** Added configurable scrollTo functionality ([b1c058f](https://github.com/OBSAU/rtm-kit/commit/b1c058ff52fa7a19ffa4e4130f01508d9330c4ce))
+
+
+
+
+
 ## [4.0.61](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/bootstrap@4.0.60...@rtm-ui/bootstrap@4.0.61) (2021-06-25)
 
 **Note:** Version bump only for package @rtm-ui/bootstrap
