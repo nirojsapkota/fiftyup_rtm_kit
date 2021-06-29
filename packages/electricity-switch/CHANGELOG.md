@@ -5,15 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [3.0.17](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@3.0.16...@rtm-ui/electricity-switch@3.0.17) (2021-06-25)
 
-<<<<<<< HEAD
-
 **Note:** Version bump only for package @rtm-ui/electricity-switch
 
 ## [3.0.16](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@3.0.15...@rtm-ui/electricity-switch@3.0.16) (2021-05-12)
-
-=======
-
-> > > > > > > praj/ob-3405v3
 
 **Note:** Version bump only for package @rtm-ui/electricity-switch
 
