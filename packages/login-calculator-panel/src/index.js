@@ -253,13 +253,18 @@ function LoginCalculatorForm({
   const [formInput, setFormInput] = useState(null);
   const [lifeInsuranceQuoteValues, setLifeInsuranceQuoteValues] = useState({
     firstName: '',
+    surname: '',
     gender: null,
     age: null,
     phoneNumber: null,
+    cover: null,
+    smoker: null,
   });
 
   const windowSize = useWindowSize();
 
+  // TODO REMOVE THIS
+  // This is a very hacky approach to solve test coverage.
   useEffect(() => {
     if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
       setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
@@ -577,7 +582,7 @@ function LoginCalculatorForm({
           validator: 'requiredRadio',
         },
         name: 'smoker',
-        initialValue: lifeInsuranceQuoteValues.firstName,
+        initialValue: lifeInsuranceQuoteValues.smoker,
         type: 'radio',
         options: [
           { label: 'Non Smoker', value: false },
@@ -593,7 +598,7 @@ function LoginCalculatorForm({
         },
         type: 'text',
         name: 'cover',
-        initialValue: '',
+        initialValue: lifeInsuranceQuoteValues.cover,
         options: coverOptions,
       },
       {
