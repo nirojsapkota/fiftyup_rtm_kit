@@ -68,8 +68,8 @@ export const getFieldErrors = (rest, field) => {
   const { errors, touched } = rest;
   if (errors[field.name] && touched[field.name]) {
     // Prints out which fields fail validation.
-    console.log(field.name);
-    console.log(errors[field.name]);
+    // console.log(field.name);
+    // console.log(errors[field.name]);
 
     return errors[field.name];
   }

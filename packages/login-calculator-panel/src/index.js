@@ -371,7 +371,7 @@ function LoginCalculatorForm({
 
     try {
       // On success ->  scroll to the provided quote value.
-      // (Note) 750 = "wsm" (in "theme" package)
+      // (Note) 750 == "wsm" (in "theme" package)
       // ScrollTo for table/desktop screens
       if (windowSize.width > 750) {
         scrollToElementExtended(null, 'quoteContentName', {
@@ -393,9 +393,12 @@ function LoginCalculatorForm({
       // TODO Connect to relevant logging service
       console.log(e);
     }
-
-    // This is a hack (pls no remove). See "submitWrapper" in "form" package for context.
-    return [];
+    // So this returns the current state variable for the formInput
+    // In this case we only return the "fields" as that is all the form "submitWrapper" functions expects
+    // It then refreshes the form with the passed fields.
+    // TODO The implementation of the form package following a unique design pattern.
+    // TODO It might be worth evaluating if such a unique design pattern is necessary.
+    return formInput.fields;
   };
 
   const handleSuccess = async form => {
