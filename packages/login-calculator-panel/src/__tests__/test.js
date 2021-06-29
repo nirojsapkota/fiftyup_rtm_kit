@@ -7,6 +7,7 @@ import {
   fireEvent,
   cleanup,
   screen,
+  getByTestId,
 } from '../../../bootstrap/setup/testSetup.new.js';
 
 import { LoginCalculatorPanel } from '../index';
@@ -15,7 +16,6 @@ import {
   submitCallbackTime,
   submitLifeInsuranceQuoteDetails,
 } from '../actions';
-
 import loginPanelProps from '../__fixtures__/loginPanel';
 
 jest.mock('axios');

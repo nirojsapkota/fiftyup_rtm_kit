@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/login-calculator-panel",
-  "version": "5.0.48",
+  "version": "5.0.49",
   "description": "Description for loginCalculatorPanel",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -24,10 +24,11 @@
     "@rtm-ui/img": "file:../img",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
-    "@rtm-ui/typography": "file:../typography",
     "@rtm-ui/tracker": "file:../tracker",
+    "@rtm-ui/typography": "file:../typography",
     "axios": "^0.18.0",
-    "formik": "^1.4.1"
+    "formik": "^1.4.1",
+    "react-scroll": "^1.8.2"
   },
   "peerDependencies": {
     "prop-types": "15.x",
