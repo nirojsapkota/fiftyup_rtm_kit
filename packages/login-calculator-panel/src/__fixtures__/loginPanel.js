@@ -44,6 +44,7 @@ const loginPanel = {
     timeToCallBackText: 'Best time to call you back?',
     campaignId: 1,
     callbackUrl: '/temp_REPLACE_ME',
+    formSubmitButtonText: 'Get Quote',
     thankyouHeader: '# Thank you',
     thankyouBody: 'See below for more offers',
   },

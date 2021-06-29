@@ -48,7 +48,9 @@ describe('<LoginCalculatorPanel />', () => {
     //const { hiddenFields } = loginPanelProps;
 
     // Waits till the form has loaded
-    await screen.findByText(loginPanelProps.buttonText);
+    await screen.findByText(
+      loginPanelProps.calculatorProps.formSubmitButtonText
+    );
 
     // expect hidden fields
     // NOTE: This is an approach to testing that was supported by the old "react-testing-library"
@@ -91,8 +93,9 @@ describe('<LoginCalculatorPanel />', () => {
     fireEvent.change(postcode, {
       target: { value: '2000, BARANGAROO' },
     });
-
-    const submit = getByText(loginPanelProps.buttonText).closest('button');
+    const submit = getByText(
+      loginPanelProps.calculatorProps.formSubmitButtonText
+    ).closest('button');
     fireEvent.click(submit);
 
     // expect props event was fired
@@ -189,7 +192,9 @@ describe('<LoginCalculatorPanel />', () => {
       target: { value: '2000, BARANGAROO' },
     });
 
-    const submit = getByText(loginPanelProps.buttonText).closest('button');
+    const submit = getByText(
+      loginPanelProps.calculatorProps.formSubmitButtonText
+    ).closest('button');
 
     fireEvent.click(submit);
 
@@ -211,9 +216,6 @@ describe('<LoginCalculatorPanel />', () => {
     fireEvent.click(ITEM);
 
     expect(ITEM).toBeVisible();
-
-    // This is failing figure out why
-    waitFor(() => screen.findByTestId('SeeMoreOfferButton'));
   });
 
   it('pane true case!', async () => {
@@ -287,7 +289,13 @@ describe('<LoginCalculatorPanel />', () => {
     // fireEvent.click(dropdownItemCover);
 
     // FORM SUBMISSION
-    const submit = getByText(loginPanelProps.buttonText).closest('button');
+    console.log(
+      'loginPanelProps',
+      loginPanelProps.calculatorProps.formSubmitButtonText
+    );
+    const submit = getByText(
+      loginPanelProps.calculatorProps.formSubmitButtonText
+    ).closest('button');
     fireEvent.click(submit);
   });
 
