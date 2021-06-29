@@ -343,9 +343,9 @@ function LoginCalculatorForm({
 
     setHasRegistered(true);
 
-    // }
-    // API CALL FOR fetching the LifeInsurance quote value
     if (isDevelopment !== true) {
+      // API CALL FOR fetching the LifeInsurance quote value
+
       const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
         calculatorProps.quoteUrl,
         calculatorProps.campaignId,
@@ -371,7 +371,9 @@ function LoginCalculatorForm({
 
     try {
       // On success ->  scroll to the provided quote value.
-      if (windowSize.width > 990) {
+      // (Note) 750 = "wsm" (in "theme" package)
+      // ScrollTo for table/desktop screens
+      if (windowSize.width > 750) {
         scrollToElementExtended(null, 'quoteContentName', {
           DURATION: 750,
           smooth: true,
@@ -379,7 +381,7 @@ function LoginCalculatorForm({
           offsetY: -100,
         });
       } else {
-        // Scroll for mobile/small screens
+        // ScrollTo for mobile/small screens
         scrollToElementExtended(null, 'quoteContentName', {
           DURATION: 750,
           smooth: true,

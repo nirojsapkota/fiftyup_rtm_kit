@@ -47,7 +47,6 @@ const loginPanel = {
     thankyouHeader: '# Thank you',
     thankyouBody: 'See below for more offers',
   },
-  // TODO EXTEND THE PROPS FOR THIS CASE
   // REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED: true,
   mainHeading: 'Hello',
   //isDevelopment: true,
