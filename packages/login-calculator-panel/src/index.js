@@ -370,22 +370,25 @@ function LoginCalculatorForm({
     // Duration that will be used for both the scrollTo duration.
 
     try {
+      const DURATION = 750; // time unit (ms)
+      const SMOOTH_TRANSITION = true; // Leave as "true". "false" is bad UX in majority of cases.
+      const TRANSITION_DELAY = 150; // time unit (ms)
       // On success ->  scroll to the provided quote value.
       // (Note) 750 == "wsm" (in "theme" package)
       // ScrollTo for table/desktop screens
       if (windowSize.width > 750) {
         scrollToElementExtended(null, 'quoteContentName', {
-          DURATION: 750,
-          smooth: true,
-          delay: 150,
+          DURATION: DURATION,
+          smooth: SMOOTH_TRANSITION,
+          delay: TRANSITION_DELAY,
           offsetY: -100,
         });
       } else {
         // ScrollTo for mobile/small screens
         scrollToElementExtended(null, 'quoteContentName', {
-          DURATION: 750,
-          smooth: true,
-          delay: 150,
+          DURATION: DURATION,
+          smooth: SMOOTH_TRANSITION,
+          delay: TRANSITION_DELAY,
           offsetY: -250,
         });
       }
