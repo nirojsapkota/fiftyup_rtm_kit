@@ -445,7 +445,7 @@ it('ensure that actions are functioning as designed', async () => {
   const RESULT_2 = await submitCallbackTime(
     'TEST',
     0,
-    { phoneBackPrefferedTime: '8:00' },
+    { phoneBackPrefferedTime: '800' },
     '7'
   );
 
@@ -502,7 +502,7 @@ it('ensure that actions are throw exceptions as designed', async () => {
   const RESULT_2 = await submitCallbackTime(
     'TEST',
     0,
-    { phoneBackPrefferedTime: '8:00' },
+    { phoneBackPrefferedTime: '800' },
     '7'
   );
 

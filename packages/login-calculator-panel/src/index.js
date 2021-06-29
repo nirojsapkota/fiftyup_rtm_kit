@@ -363,11 +363,8 @@ function LoginCalculatorForm({
 
     // Duration that will be used for both the scrollTo duration.
 
-    // TODO (Consider!) capturing the state of the display (e.g. is Mobile or Not)
-    // TODO as the offset will be slightly different in the case of mobile! (Currently is passable but can be slightly improved)
     try {
       // On success ->  scroll to the provided quote value.
-
       if (windowSize.width > 990) {
         scrollToElementExtended(null, 'quoteContentName', {
           DURATION: 750,
