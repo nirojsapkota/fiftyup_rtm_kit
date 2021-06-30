@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.24](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.1.23...@rtm-ui/form@5.1.24) (2021-06-30)
+
+
+### Bug Fixes
+
+* **form package:** removed change that was breaking tests. ([3fa5d17](https://github.com/OBSAU/rtm-kit/commit/3fa5d1794eeceaff3ca2e8ec3e453aae8a16f256))
+
+
+
+
+
 ## [5.1.23](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.1.22...@rtm-ui/form@5.1.23) (2021-06-29)
 
 

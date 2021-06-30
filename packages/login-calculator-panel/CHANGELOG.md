@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-calculator-panel@5.1.0...@rtm-ui/login-calculator-panel@5.1.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* **login calculator view:** form not showing anymore ([a8425fd](https://github.com/OBSAU/rtm-kit/commit/a8425fd784595a3589f7442a866513c719bb2964))
+
+
+
+
+
 # [5.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-calculator-panel@5.0.49...@rtm-ui/login-calculator-panel@5.1.0) (2021-06-29)
 
 
