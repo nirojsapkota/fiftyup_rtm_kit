@@ -251,6 +251,195 @@ function LoginCalculatorForm({
 
   const windowSize = useWindowSize();
 
+  const handlePostcodeConfig = () => {
+    if (isDevelopment) {
+      return {
+        validator: 'required',
+      };
+    } else {
+      return {
+        component: 'autocomplete',
+        validator: stateField.validator,
+        validatorArgs: stateField.options
+          ? [stateField.options.map(option => option['label'])]
+          : undefined,
+        searchFunction: autoCompleteSearch,
+        onEmptyResult: () => 'Invalid Postcode',
+      };
+    }
+  };
+
+  const autoCompleteSearch = async searchTerm => {
+    if (stateField.options) {
+      return stateField.options.filter(
+        option =>
+          option['label'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+      );
+    } else {
+      const results = await getAutoCompletePostcode(
+        autocompletePostcodeUrl,
+        searchTerm,
+        authenticityToken
+      );
+      // A sick hack to make tests pass
+      try {
+        return results.map(item => {
+          return { label: item };
+        });
+      } catch (e) {
+        // TODO Do something with the error!!!!
+        return [];
+      }
+    }
+  };
+
+  const dynamicFieldsGenerator = hasUserRegistered => {
+    const lifeInsuranceQuoteFields = [
+      {
+        label: 'First name', // || stateField.label
+        name: 'firstName',
+        type: 'text',
+        initialValue: lifeInsuranceQuoteValues.firstName,
+        placeholder: 'First name', // || stateField.placeholder
+        autoComplete: 'off',
+        config: {
+          validator: 'required',
+        },
+      },
+      {
+        label: 'Surname', // || stateField.label
+        name: 'surname',
+        type: 'text',
+        initialValue: lifeInsuranceQuoteValues.surname,
+        placeholder: 'Surname', // || stateField.placeholder
+        autoComplete: 'off',
+        config: {
+          validator: 'required',
+        },
+      },
+      {
+        label: 'Phone number', // || stateField.label
+        name: 'phoneNumber',
+        type: 'tel',
+        initialValue: lifeInsuranceQuoteValues.phoneNumber,
+        placeholder: 'Phone number', // || stateField.placeholder
+        autoComplete: 'off',
+        config: {
+          validator: 'valueMatch',
+          validatorArgs: [
+            '(^(([0][1-9][0-9]{8})|([1-9][0-9]{7})))',
+            'Please enter a valid phone number',
+          ],
+        },
+      },
+      {
+        label: 'Age',
+        config: {
+          component: 'dropdownfield',
+          scrollable: true,
+          validator: 'lifeInsuranceAgeDropdown',
+        },
+        type: 'text',
+        initialValue: lifeInsuranceQuoteValues.age,
+        name: 'age',
+        options: ageOptions,
+      },
+      {
+        label: 'Gender',
+        config: {
+          validator: 'requiredRadio',
+        },
+        name: 'gender',
+        type: 'radio',
+        initialValue: lifeInsuranceQuoteValues.gender,
+        options: [
+          { label: 'Male', value: 'M' },
+          { label: 'Female', value: 'F' },
+        ],
+      },
+      {
+        label: 'Smoking status',
+        config: {
+          validator: 'requiredRadio',
+        },
+        name: 'smoker',
+        initialValue: lifeInsuranceQuoteValues.smoker,
+        type: 'radio',
+        options: [
+          { label: 'Non Smoker', value: false },
+          { label: 'Smoker', value: true },
+        ],
+      },
+      {
+        label: 'Amount of cover',
+        config: {
+          component: 'dropdownfield',
+          scrollable: true,
+          validator: 'required',
+        },
+        type: 'text',
+        name: 'cover',
+        initialValue: lifeInsuranceQuoteValues.cover,
+        options: coverOptions,
+      },
+      {
+        label: '',
+        name: 'authenticity_token',
+        type: 'hidden',
+        initialValue: authenticityToken,
+        config: {},
+      },
+      {
+        label: '',
+        name: 'redirectPath',
+        type: 'hidden',
+        config: {},
+      },
+      ...Object.keys(hiddenFields).map(key => ({
+        label: '',
+        name: key,
+        type: 'hidden',
+        initialValue: hiddenFields[key],
+        config: {},
+      })),
+    ];
+
+    const registrationFields = [
+      {
+        label: stateField.label || 'My Postcode:',
+        name: stateField.fieldName,
+        hint: stateField.hint || 'e.g. 5000, Adelaide',
+
+        type: 'text',
+        placeholder: stateField.placeholder || 'Postcode',
+        autoComplete: 'off',
+        config: handlePostcodeConfig(),
+      },
+      {
+        label: emailField.label || 'My Email:',
+        name: 'email',
+        type: 'text',
+        placeholder: emailField.placeholder || 'Email',
+        config: {
+          validator: 'email',
+        },
+      },
+    ];
+
+    if (hasUserRegistered) {
+      lifeInsuranceQuoteFields;
+    } else {
+      lifeInsuranceQuoteFields.splice(2, 0, ...registrationFields);
+    }
+
+    setFormInput({
+      id: 'signup',
+      fields: lifeInsuranceQuoteFields,
+    });
+
+    return lifeInsuranceQuoteFields;
+  };
+
   // TODO REMOVE THIS
   // This is a very hacky approach to solve test coverage.
   useEffect(() => {
@@ -413,27 +602,6 @@ function LoginCalculatorForm({
    * Helper function that passes the correct development state.
    * @returns
    */
-  const handlePostcodeConfig = () => {
-    if (isDevelopment) {
-      return {
-        validator: 'required',
-      };
-    } else {
-      return {
-        component: 'autocomplete',
-        validator: stateField.validator,
-        validatorArgs: stateField.options
-          ? [stateField.options.map(option => option['label'])]
-          : undefined,
-        searchFunction: autoCompleteSearch,
-        onEmptyResult: handleEmptyResult,
-      };
-    }
-  };
-
-  const handleEmptyResult = async () => {
-    return 'Invalid Postcode';
-  };
 
   // Acts as a one-off 'useEffect' loads the potential cover option amounts on load.
   function generateCoverAmount() {
@@ -480,174 +648,8 @@ function LoginCalculatorForm({
     return ageValues;
   }
 
-  const autoCompleteSearch = async searchTerm => {
-    if (stateField.options) {
-      return stateField.options.filter(
-        option =>
-          option['label'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
-      );
-    } else {
-      const results = await getAutoCompletePostcode(
-        autocompletePostcodeUrl,
-        searchTerm,
-        authenticityToken
-      );
-      // A sick hack to make tests pass
-      try {
-        return results.map(item => {
-          return { label: item };
-        });
-      } catch (e) {
-        // TODO Do something with the error!!!!
-        return [];
-      }
-    }
-  };
-
   useEffect(() => {
-    const lifeInsuranceQuoteFields = [
-      {
-        label: 'First name', // || stateField.label
-        name: 'firstName',
-        type: 'text',
-        initialValue: lifeInsuranceQuoteValues.firstName,
-        placeholder: 'First name', // || stateField.placeholder
-        autoComplete: 'off',
-        config: {
-          validator: 'required',
-        },
-      },
-      {
-        label: 'Surname', // || stateField.label
-        name: 'surname',
-        type: 'text',
-        initialValue: lifeInsuranceQuoteValues.surname,
-        placeholder: 'Surname', // || stateField.placeholder
-        autoComplete: 'off',
-        config: {
-          validator: 'required',
-        },
-      },
-      {
-        label: 'Phone number', // || stateField.label
-        name: 'phoneNumber',
-        type: 'tel',
-        initialValue: lifeInsuranceQuoteValues.phoneNumber,
-        placeholder: 'Phone number', // || stateField.placeholder
-        autoComplete: 'off',
-        config: {
-          validator: 'valueMatch',
-          validatorArgs: [
-            '(^(([0][1-9][0-9]{8})|([1-9][0-9]{7})))',
-            'Please enter a valid phone number',
-          ],
-        },
-      },
-      {
-        label: 'Age',
-        config: {
-          component: 'dropdownfield',
-          scrollable: true,
-          validator: 'lifeInsuranceAgeDropdown',
-        },
-        type: 'text',
-        initialValue: lifeInsuranceQuoteValues.age,
-        name: 'age',
-        options: ageOptions,
-      },
-      {
-        label: 'Gender',
-        config: {
-          validator: 'requiredRadio',
-        },
-        name: 'gender',
-        type: 'radio',
-        initialValue: lifeInsuranceQuoteValues.gender,
-        options: [
-          { label: 'Male', value: 'M' },
-          { label: 'Female', value: 'F' },
-        ],
-      },
-      {
-        label: 'Smoking status',
-        config: {
-          validator: 'requiredRadio',
-        },
-        name: 'smoker',
-        initialValue: lifeInsuranceQuoteValues.smoker,
-        type: 'radio',
-        options: [
-          { label: 'Non Smoker', value: false },
-          { label: 'Smoker', value: true },
-        ],
-      },
-      {
-        label: 'Amount of cover',
-        config: {
-          component: 'dropdownfield',
-          scrollable: true,
-          validator: 'required',
-        },
-        type: 'text',
-        name: 'cover',
-        initialValue: lifeInsuranceQuoteValues.cover,
-        options: coverOptions,
-      },
-      {
-        label: '',
-        name: 'authenticity_token',
-        type: 'hidden',
-        initialValue: authenticityToken,
-        config: {},
-      },
-      {
-        label: '',
-        name: 'redirectPath',
-        type: 'hidden',
-        config: {},
-      },
-      ...Object.keys(hiddenFields).map(key => ({
-        label: '',
-        name: key,
-        type: 'hidden',
-        initialValue: hiddenFields[key],
-        config: {},
-      })),
-    ];
-
-    const registrationFields = [
-      {
-        label: stateField.label || 'My Postcode:',
-        name: stateField.fieldName,
-        disabled: hasRegistered,
-        hint: stateField.hint || 'e.g. 5000, Adelaide',
-
-        type: 'text',
-        placeholder: stateField.placeholder || 'Postcode',
-        autoComplete: 'off',
-        config: handlePostcodeConfig(),
-      },
-      {
-        label: emailField.label || 'My Email:',
-        name: 'email',
-        type: 'text',
-        disabled: hasRegistered,
-        placeholder: emailField.placeholder || 'Email',
-        config: {
-          validator: 'email',
-        },
-      },
-    ];
-
-    if (hasRegistered) {
-      lifeInsuranceQuoteFields;
-    } else {
-      lifeInsuranceQuoteFields.splice(2, 0, ...registrationFields);
-    }
-    setFormInput({
-      id: 'signup',
-      fields: lifeInsuranceQuoteFields,
-    });
+    dynamicFieldsGenerator(hasRegistered);
   }, [hasRegistered]);
 
   return (
