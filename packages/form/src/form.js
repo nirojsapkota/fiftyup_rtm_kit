@@ -107,7 +107,6 @@ const Form = ({
     if (TURN_OFF_AUTOCOMPLETE) {
       return 'off';
     }
-    return 'on';
   };
   return (
     <Formik
