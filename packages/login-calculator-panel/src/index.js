@@ -68,6 +68,11 @@ const RowFlexBox = styled.div`
   justify-content: center;
   flex-direction: row;
   color: #2d3747;
+  padding-top: 40px;
+
+  @media screen and (max-width: 750px) {
+    padding-top: 0px;
+  }
 `;
 
 const CustomerContainerWrapper = styled(Box)`
