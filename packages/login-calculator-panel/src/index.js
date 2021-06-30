@@ -39,7 +39,11 @@ const ButtonWrapper = styled(Box)`
 const CalculatorPanelWrapper = styled(Box)`
   height: 100%;
   overflow: unset;
-  padding: 0px;
+  padding: 0px 50px 0px 0px;
+
+  @media screen and (max-width: 750px) {
+    padding: 0px 0px 0px 0px;
+  }
 `;
 
 const ContentBox = styled(Box)`
@@ -112,7 +116,7 @@ const QuoteContentDefaultProps = {
 const QuoteFormDefaultProps = {
   width: [1, 1, 1 / 2, 1 / 2],
   px: [10, 10, 15, 10],
-  // maxWidth: ['100%', '100%', '388px', '460px'],
+  maxWidth: ['100%', '100%', '1080px', '1080px'],
 };
 
 const QuoteContentWrapper = styled(Box)``;
@@ -668,6 +672,8 @@ function LoginCalculatorForm({
                             type="submit"
                             className="signup-button"
                             track={calculatorProps.formSubmitButtonTrack}
+                            // TODO Implement this styling in a cleaner way.
+                            style={{ width: '66%' }}
                             onClick={event => {
                               // console.log('I HAVE BEEN PRESSED!');
                             }}
