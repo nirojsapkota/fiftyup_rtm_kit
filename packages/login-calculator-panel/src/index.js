@@ -39,7 +39,7 @@ const ButtonWrapper = styled(Box)`
 const CalculatorPanelWrapper = styled(Box)`
   height: 100%;
   overflow: unset;
-  padding: 0px 50px 0px 0px;
+  padding: 0px 50px 00px 0px;
 
   @media screen and (max-width: 750px) {
     padding: 0px 0px 0px 0px;
@@ -69,9 +69,11 @@ const RowFlexBox = styled.div`
   flex-direction: row;
   color: #2d3747;
   padding-top: 40px;
+  padding-bottom: 50px;
 
   @media screen and (max-width: 750px) {
     padding-top: 0px;
+    padding-bottom: 0px;
   }
 `;
 
