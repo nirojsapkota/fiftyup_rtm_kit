@@ -39,7 +39,11 @@ const ButtonWrapper = styled(Box)`
 const CalculatorPanelWrapper = styled(Box)`
   height: 100%;
   overflow: unset;
-  padding: 0px;
+  padding: 0px 50px 0px 0px;
+
+  @media screen and (max-width: 750px) {
+    padding: 0px 0px 0px 0px;
+  }
 `;
 
 const ContentBox = styled(Box)`
@@ -64,6 +68,11 @@ const RowFlexBox = styled.div`
   justify-content: center;
   flex-direction: row;
   color: #2d3747;
+  padding-top: 40px;
+
+  @media screen and (max-width: 750px) {
+    padding-top: 0px;
+  }
 `;
 
 const CustomerContainerWrapper = styled(Box)`
@@ -112,13 +121,7 @@ const QuoteContentDefaultProps = {
 const QuoteFormDefaultProps = {
   width: [1, 1, 1 / 2, 1 / 2],
   px: [10, 10, 15, 10],
-  // maxWidth: ['100%', '100%', '388px', '460px'],
-};
-
-const QuoteFormDefaultSubmittedProps = {
-  width: [1, 1, 1 / 2, 1 / 3],
-  px: [10, 10, 15, 10],
-  // maxWidth: ['100%', '100%', '388px', '460px'],
+  maxWidth: ['100%', '100%', '1080px', '1080px'],
 };
 
 const QuoteContentWrapper = styled(Box)``;
@@ -167,27 +170,11 @@ const QuoteContent = ({
     setFormComplete(true);
   };
 
-  /**
-   * Passed the element styling in a functionality
-   *
-   * Styling in based on the "isRegistered" state variable
-   *
-   * @returns
-   */
-  const handleStyle = () => {
-    if (hasRegistered) {
-      return { width: [1, 1, 1 / 2, 1 / 2] };
-    }
-    // If user hasn't registered return no extra styling
-    return {};
-  };
-
   return (
     <>
       <QuoteContentWrapper
         name="quoteContentName"
         data-testid="quoteContentDiv"
-        {...handleStyle()}
       >
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
@@ -669,17 +656,9 @@ function LoginCalculatorForm({
   //   dynamicFieldsGenerator(hasRegistered);
   // }, [hasRegistered]);
 
-  const handleQuoteFormProps = () => {
-    if (hasRegistered) {
-      return QuoteFormDefaultSubmittedProps;
-    } else {
-      return QuoteFormDefaultProps;
-    }
-  };
-
   return (
     <RowFlexBox>
-      <CalculatorPanelWrapper {...handleQuoteFormProps()}>
+      <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
         <CalculatorPanelContentBox>
           <div scroll-target="login-panel">
             <PaddingStyleWrapper pane={pane}>
@@ -703,6 +682,8 @@ function LoginCalculatorForm({
                             type="submit"
                             className="signup-button"
                             track={calculatorProps.formSubmitButtonTrack}
+                            // TODO Implement this styling in a cleaner way.
+                            style={{ width: '66%' }}
                             onClick={event => {
                               // console.log('I HAVE BEEN PRESSED!');
                             }}
