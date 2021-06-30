@@ -349,7 +349,7 @@ describe('<LoginCalculatorPanel />', () => {
     await screen.findByLabelText('My Postcode:');
 
     const postcode = screen.getByLabelText('My Postcode:');
-    await fireEvent.change(postcode, {
+    fireEvent.change(postcode, {
       target: { value: '5000' },
     });
 
@@ -421,7 +421,7 @@ it('state field with pre-populated data', async () => {
 
   const state = await findByLabelText(stateField.label);
 
-  await fireEvent.change(state, {
+  fireEvent.change(state, {
     target: { value: 'Carlow' },
   });
   const item = await screen.findByText(stateField.options[0].label);

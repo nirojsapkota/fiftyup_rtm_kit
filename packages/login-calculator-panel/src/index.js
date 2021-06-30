@@ -251,6 +251,7 @@ function LoginCalculatorForm({
   const [ageOptions] = useState(generateAgeOptions());
   const [quoteAmount, setQuoteAmount] = useState('$ - -.- -');
   const [formInput, setFormInput] = useState(null);
+
   const [lifeInsuranceQuoteValues, setLifeInsuranceQuoteValues] = useState({
     firstName: '',
     surname: '',
@@ -268,7 +269,7 @@ function LoginCalculatorForm({
   useEffect(() => {
     if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
       setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
-      setQuoteAmount(' $ - -.- -');
+      setQuoteAmount('$ - -.- -');
     }
   }, []);
 
@@ -318,31 +319,35 @@ function LoginCalculatorForm({
 
     setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
 
-    const resultSubmitLogin = await submitLogin(
-      loginUrl,
-      authenticateValues,
-      authenticityToken
-    );
+    // If the user has already authenticated (e.g. Gotten the first quote)
+    // Don't authenticate again
+    if (hasRegistered === false) {
+      const resultSubmitLogin = await submitLogin(
+        loginUrl,
+        authenticateValues,
+        authenticityToken
+      );
 
-    const { data } = resultSubmitLogin;
-    if (data.errors) {
-      const fieldErrors = {};
-      data.errors.forEach(error => {
-        if (error.toLowerCase().indexOf(stateField.errorValue) !== -1) {
-          fieldErrors[stateField.fieldName] = error;
-        } else if (error.toLowerCase().indexOf('email') !== -1) {
-          fieldErrors['email'] = error;
-        }
-      });
-      // We want to ignore this error in development mode
-      if (!isDevelopment) {
-        throw new FormError({
-          formError:
-            Object.keys(fieldErrors).length > 0
-              ? ''
-              : 'An error has occurred, please try again in a few minutes',
-          fieldErrors: fieldErrors,
+      const { data } = resultSubmitLogin;
+      if (data.errors) {
+        const fieldErrors = {};
+        data.errors.forEach(error => {
+          if (error.toLowerCase().indexOf(stateField.errorValue) !== -1) {
+            fieldErrors[stateField.fieldName] = error;
+          } else if (error.toLowerCase().indexOf('email') !== -1) {
+            fieldErrors['email'] = error;
+          }
         });
+        // We want to ignore this error in development mode
+        if (!isDevelopment) {
+          throw new FormError({
+            formError:
+              Object.keys(fieldErrors).length > 0
+                ? ''
+                : 'An error has occurred, please try again in a few minutes',
+            fieldErrors: fieldErrors,
+          });
+        }
       }
     }
 
@@ -682,6 +687,7 @@ function LoginCalculatorForm({
                 {formInput != null && (
                   <Form
                     {...formInput}
+                    TURN_OFF_AUTOCOMPLETE={true}
                     dynamicFields={true}
                     onSubmit={handleSubmit}
                     onSuccess={handleSuccess}
@@ -860,7 +866,6 @@ const LoginCalculatorPanel = props => {
   const [formComplete, setFormComplete] = useState(false);
 
   // TODO Think of a smarter way to handle this!
-
   useEffect(() => {
     if (props.thankYou) {
       setFormComplete(props.thankYou);

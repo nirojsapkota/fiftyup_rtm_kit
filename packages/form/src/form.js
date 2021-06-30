@@ -33,6 +33,7 @@ const Form = ({
   getNewestFieldValue,
   fields: providedFields,
   id,
+  TURN_OFF_AUTOCOMPLETE,
   ...props
 }) => {
   const [fields, setFields] = React.useState(providedFields);
@@ -102,6 +103,12 @@ const Form = ({
     }
   }, []);
 
+  const handleTurnOffAutoComplete = () => {
+    if (TURN_OFF_AUTOCOMPLETE) {
+      return 'off';
+    }
+    return 'on';
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -151,7 +158,10 @@ const Form = ({
         };
 
         return (
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            autocomplete={handleTurnOffAutoComplete()}
+          >
             <button type="submit" hidden id={`hidden-submit-${id}`} />
             <FieldGroup
               fields={fields}
@@ -217,4 +227,5 @@ export default Form;
 Form.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),
+  TURN_OFF_AUTOCOMPLETE: PropTypes.bool,
 };
