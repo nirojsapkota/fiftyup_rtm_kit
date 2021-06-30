@@ -59,6 +59,7 @@ const Form = ({
         return { ...field, value: submitValues[field.name] };
       });
       const response = await onSubmit(fieldsWithValues, context);
+
       if (Array.isArray(response)) {
         setFields(response);
       } else {
@@ -108,10 +109,6 @@ const Form = ({
       validationSchema={validationSchema}
       enableReinitialize
       onSubmit={submitWrapper}
-      onValidationError={errorValues => {
-        console.log('WHAT ARE THE ERRORS');
-        console.log(errorValues);
-      }}
       render={({
         handleSubmit,
         zisSubmitting,
@@ -131,6 +128,7 @@ const Form = ({
               },
               {}
             );
+
             // update server errors message
             setServerErrors({
               formError: serverErrors.formError,
@@ -213,7 +211,6 @@ const Form = ({
 
 export default Form;
 
-// TODO EXTEND PROP TYPES FOR FORM COMPONENT
 Form.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),

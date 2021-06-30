@@ -39,7 +39,11 @@ const ButtonWrapper = styled(Box)`
 const CalculatorPanelWrapper = styled(Box)`
   height: 100%;
   overflow: unset;
-  padding: 0px;
+  padding: 0px 50px 0px 0px;
+
+  @media screen and (max-width: 750px) {
+    padding: 0px 0px 0px 0px;
+  }
 `;
 
 const ContentBox = styled(Box)`
@@ -64,6 +68,11 @@ const RowFlexBox = styled.div`
   justify-content: center;
   flex-direction: row;
   color: #2d3747;
+  padding-top: 40px;
+
+  @media screen and (max-width: 750px) {
+    padding-top: 0px;
+  }
 `;
 
 const CustomerContainerWrapper = styled(Box)`
@@ -112,13 +121,7 @@ const QuoteContentDefaultProps = {
 const QuoteFormDefaultProps = {
   width: [1, 1, 1 / 2, 1 / 2],
   px: [10, 10, 15, 10],
-  // maxWidth: ['100%', '100%', '388px', '460px'],
-};
-
-const QuoteFormDefaultSubmittedProps = {
-  width: [1, 1, 1 / 2, 1 / 3],
-  px: [10, 10, 15, 10],
-  // maxWidth: ['100%', '100%', '388px', '460px'],
+  maxWidth: ['100%', '100%', '1080px', '1080px'],
 };
 
 const QuoteContentWrapper = styled(Box)``;
@@ -167,27 +170,11 @@ const QuoteContent = ({
     setFormComplete(true);
   };
 
-  /**
-   * Passed the element styling in a functionality
-   *
-   * Styling in based on the "isRegistered" state variable
-   *
-   * @returns
-   */
-  const handleStyle = () => {
-    if (hasRegistered) {
-      return { width: [1, 1, 1 / 2, 1 / 2] };
-    }
-    // If user hasn't registered return no extra styling
-    return {};
-  };
-
   return (
     <>
       <QuoteContentWrapper
         name="quoteContentName"
         data-testid="quoteContentDiv"
-        {...handleStyle()}
       >
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
@@ -251,6 +238,7 @@ function LoginCalculatorForm({
   const [ageOptions] = useState(generateAgeOptions());
   const [quoteAmount, setQuoteAmount] = useState('$ - -.- -');
   const [formInput, setFormInput] = useState(null);
+
   const [lifeInsuranceQuoteValues, setLifeInsuranceQuoteValues] = useState({
     firstName: '',
     surname: '',
@@ -263,164 +251,6 @@ function LoginCalculatorForm({
 
   const windowSize = useWindowSize();
 
-  // TODO REMOVE THIS
-  // This is a very hacky approach to solve test coverage.
-  useEffect(() => {
-    if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
-      setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
-      setQuoteAmount(' $ - -.- -');
-    }
-  }, []);
-
-  const handleSubmit = async fieldsWithValues => {
-    // Values for the first request (register/login the user to authenticate their session)
-    const authenticateValues = { user: {}, noRedirect: true };
-
-    // Values to be submitted to the life insurance calculator API to get a quote
-
-    const lifeInsuranceQuoteKeys = [
-      'age',
-      'gender',
-      'smoker',
-      'cover',
-      'phoneNumber',
-      'surname',
-      'firstName',
-    ];
-    /**
-     * Q: What does this do?
-     *
-     * A: It "crawls" the form submission & extracts values.
-     *
-     */
-    const tempLifeInsuranceQuoteValues = lifeInsuranceQuoteValues;
-    fieldsWithValues.forEach(field => {
-      if (field.name === 'email') {
-        authenticateValues['user'][field.name] = field.value;
-      } else if (field.name === stateField.fieldName) {
-        if (stateField.options) {
-          authenticateValues['user'][field.name] = stateField.options.filter(
-            option => option['label'] === field.value
-          )[0]['value'];
-        } else {
-          authenticateValues['user'][field.name] = field.value;
-        }
-      } else {
-        // Checks for field that belongs to the lifeInsuranceQuote API
-        // Allocates the field to the lifeInsuranceQuote object in the event of a match.
-        if (lifeInsuranceQuoteKeys.includes(field.name)) {
-          tempLifeInsuranceQuoteValues[field.name] = field.value;
-        } else {
-          authenticateValues[field.name] = field.value;
-        }
-      }
-    });
-
-    setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
-
-    const resultSubmitLogin = await submitLogin(
-      loginUrl,
-      authenticateValues,
-      authenticityToken
-    );
-
-    const { data } = resultSubmitLogin;
-    if (data.errors) {
-      const fieldErrors = {};
-      data.errors.forEach(error => {
-        if (error.toLowerCase().indexOf(stateField.errorValue) !== -1) {
-          fieldErrors[stateField.fieldName] = error;
-        } else if (error.toLowerCase().indexOf('email') !== -1) {
-          fieldErrors['email'] = error;
-        }
-      });
-      // We want to ignore this error in development mode
-      if (!isDevelopment) {
-        throw new FormError({
-          formError:
-            Object.keys(fieldErrors).length > 0
-              ? ''
-              : 'An error has occurred, please try again in a few minutes',
-          fieldErrors: fieldErrors,
-        });
-      }
-    }
-
-    setHasRegistered(true);
-
-    if (isDevelopment !== true) {
-      // API CALL FOR fetching the LifeInsurance quote value
-
-      const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
-        calculatorProps.quoteUrl,
-        calculatorProps.campaignId,
-        lifeInsuranceQuoteValues,
-        authenticityToken
-      );
-      setQuoteAmount(`$ ${resultLifeInsuranceQuoteDetails.obs}`);
-    } else {
-      // We set a hard-coded value in the development mode as it is assumed there is no backend API to call.
-      setQuoteAmount('$2.50');
-    }
-
-    // TODO Figure out if this is still needed
-    // return fieldsWithValues.map(field => {
-    //   if (data.redirectPath && field.name === 'redirectPath') {
-    //     return { ...field, value: data.redirectPath };
-    //   } else {
-    //     return field;
-    //   }
-    // });
-
-    // Duration that will be used for both the scrollTo duration.
-
-    try {
-      const DURATION = 750; // time unit (ms)
-      const SMOOTH_TRANSITION = true; // Leave as "true". "false" is bad UX in majority of cases.
-      const TRANSITION_DELAY = 150; // time unit (ms)
-      // On success ->  scroll to the provided quote value.
-      // (Note) 750 == "wsm" (in "theme" package)
-      // ScrollTo for table/desktop screens
-      if (windowSize.width > 750) {
-        scrollToElementExtended(null, 'quoteContentName', {
-          DURATION: DURATION,
-          smooth: SMOOTH_TRANSITION,
-          delay: TRANSITION_DELAY,
-          offsetY: -100,
-        });
-      } else {
-        // ScrollTo for mobile/small screens
-        scrollToElementExtended(null, 'quoteContentName', {
-          DURATION: DURATION,
-          smooth: SMOOTH_TRANSITION,
-          delay: TRANSITION_DELAY,
-          offsetY: -250,
-        });
-      }
-    } catch (e) {
-      // TODO Connect to relevant logging service
-      console.log(e);
-    }
-    // So this returns the current state variable for the formInput
-    // In this case we only return the "fields" as that is all the form "submitWrapper" functions expects
-    // It then refreshes the form with the passed fields.
-    // TODO The implementation of the form package following a unique design pattern.
-    // TODO It might be worth evaluating if such a unique design pattern is necessary.
-    return formInput.fields;
-  };
-
-  const handleSuccess = async form => {
-    // Redirects to specified path
-    const redirectPath = form.values.redirectPath;
-    if (redirectPath) {
-      window.location.href = redirectPath;
-    }
-  };
-
-  /**
-   * Helper function that passes the correct development state.
-   * @returns
-   */
   const handlePostcodeConfig = () => {
     if (isDevelopment) {
       return {
@@ -434,59 +264,10 @@ function LoginCalculatorForm({
           ? [stateField.options.map(option => option['label'])]
           : undefined,
         searchFunction: autoCompleteSearch,
-        onEmptyResult: handleEmptyResult,
+        onEmptyResult: () => 'Invalid Postcode',
       };
     }
   };
-
-  const handleEmptyResult = async () => {
-    return 'Invalid Postcode';
-  };
-
-  // Acts as a one-off 'useEffect' loads the potential cover option amounts on load.
-  function generateCoverAmount() {
-    // JS Implementation of (Ruby Method - ERB file)( cover_list = (100_000..950_000).step(50_000).to_a + (1_000_000..2_000_000).step(100_000).to_a )
-    const coverAmounts = [];
-
-    for (let coverLimit = 100000; coverLimit < 1000000; coverLimit += 50000) {
-      coverAmounts.push({
-        label: `$${coverLimit}`,
-        value: coverLimit.toString(),
-      });
-    }
-    for (let coverLimit = 1000000; coverLimit < 2000001; coverLimit += 100000) {
-      coverAmounts.push({
-        label: `$${coverLimit}`,
-        value: coverLimit.toString(),
-      });
-    }
-    return coverAmounts;
-  }
-
-  // Acts as a one-off 'useEffect' loads the potential age options on load.
-  function generateAgeOptions() {
-    // Ruby (Rails) equivalent code
-    // def age_options(age_range)
-    // [].tap do |ages|
-    //   ages << ["#{age_range.first - 1} years old or younger", age_range.first - 1]
-    //   ages.concat age_range.map { |i| ["#{i} years old", i] }
-    //   ages << ["#{age_range.last  + 1} years old or older", age_range.last + 1]
-    // end
-
-    // Lower bound - Hardcode
-    const ageValues = [{ label: '15 years old or younger', value: '15' }];
-
-    for (let age = 16; age < 70; age += 1) {
-      ageValues.push({ label: `${age} years old`, value: age.toString() });
-    }
-
-    // Upper bound - Hardcode
-    ageValues.push({
-      label: '70 years old or older',
-      value: '70',
-    });
-    return ageValues;
-  }
 
   const autoCompleteSearch = async searchTerm => {
     if (stateField.options) {
@@ -512,7 +293,7 @@ function LoginCalculatorForm({
     }
   };
 
-  useEffect(() => {
+  const dynamicFieldsGenerator = hasUserRegistered => {
     const lifeInsuranceQuoteFields = [
       {
         label: 'First name', // || stateField.label
@@ -627,7 +408,6 @@ function LoginCalculatorForm({
       {
         label: stateField.label || 'My Postcode:',
         name: stateField.fieldName,
-        disabled: hasRegistered,
         hint: stateField.hint || 'e.g. 5000, Adelaide',
 
         type: 'text',
@@ -639,7 +419,6 @@ function LoginCalculatorForm({
         label: emailField.label || 'My Email:',
         name: 'email',
         type: 'text',
-        disabled: hasRegistered,
         placeholder: emailField.placeholder || 'Email',
         config: {
           validator: 'email',
@@ -647,28 +426,236 @@ function LoginCalculatorForm({
       },
     ];
 
-    if (hasRegistered) {
+    if (hasUserRegistered) {
       lifeInsuranceQuoteFields;
     } else {
       lifeInsuranceQuoteFields.splice(2, 0, ...registrationFields);
     }
+
     setFormInput({
       id: 'signup',
       fields: lifeInsuranceQuoteFields,
     });
-  }, [hasRegistered]);
 
-  const handleQuoteFormProps = () => {
-    if (hasRegistered) {
-      return QuoteFormDefaultSubmittedProps;
+    return lifeInsuranceQuoteFields;
+  };
+
+  // TODO REMOVE THIS
+  // This is a very hacky approach to solve test coverage.
+  useEffect(() => {
+    if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
+      setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
+      setQuoteAmount('$ - -.- -');
+    }
+  }, []);
+
+  const handleSubmit = async fieldsWithValues => {
+    // Values for the first request (register/login the user to authenticate their session)
+    const authenticateValues = { user: {}, noRedirect: true };
+
+    // Values to be submitted to the life insurance calculator API to get a quote
+
+    const lifeInsuranceQuoteKeys = [
+      'age',
+      'gender',
+      'smoker',
+      'cover',
+      'phoneNumber',
+      'surname',
+      'firstName',
+    ];
+    /**
+     * Q: What does this do?
+     *
+     * A: It "crawls" the form submission & extracts values.
+     *
+     */
+    const tempLifeInsuranceQuoteValues = lifeInsuranceQuoteValues;
+    fieldsWithValues.forEach(field => {
+      if (field.name === 'email') {
+        authenticateValues['user'][field.name] = field.value;
+      } else if (field.name === stateField.fieldName) {
+        if (stateField.options) {
+          authenticateValues['user'][field.name] = stateField.options.filter(
+            option => option['label'] === field.value
+          )[0]['value'];
+        } else {
+          authenticateValues['user'][field.name] = field.value;
+        }
+      } else {
+        // Checks for field that belongs to the lifeInsuranceQuote API
+        // Allocates the field to the lifeInsuranceQuote object in the event of a match.
+        if (lifeInsuranceQuoteKeys.includes(field.name)) {
+          tempLifeInsuranceQuoteValues[field.name] = field.value;
+        } else {
+          authenticateValues[field.name] = field.value;
+        }
+      }
+    });
+
+    setLifeInsuranceQuoteValues(tempLifeInsuranceQuoteValues);
+
+    // If the user has already authenticated (e.g. Gotten the first quote)
+    // Don't authenticate again
+    if (hasRegistered === false) {
+      const resultSubmitLogin = await submitLogin(
+        loginUrl,
+        authenticateValues,
+        authenticityToken
+      );
+
+      const { data } = resultSubmitLogin;
+      if (data.errors) {
+        const fieldErrors = {};
+        data.errors.forEach(error => {
+          if (error.toLowerCase().indexOf(stateField.errorValue) !== -1) {
+            fieldErrors[stateField.fieldName] = error;
+          } else if (error.toLowerCase().indexOf('email') !== -1) {
+            fieldErrors['email'] = error;
+          }
+        });
+        // We want to ignore this error in development mode
+        if (!isDevelopment) {
+          throw new FormError({
+            formError:
+              Object.keys(fieldErrors).length > 0
+                ? ''
+                : 'An error has occurred, please try again in a few minutes',
+            fieldErrors: fieldErrors,
+          });
+        }
+      }
+    }
+
+    setHasRegistered(true);
+
+    if (isDevelopment !== true) {
+      // API CALL FOR fetching the LifeInsurance quote value
+
+      const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
+        calculatorProps.quoteUrl,
+        calculatorProps.campaignId,
+        lifeInsuranceQuoteValues,
+        authenticityToken
+      );
+      setQuoteAmount(`$ ${resultLifeInsuranceQuoteDetails.obs}`);
     } else {
-      return QuoteFormDefaultProps;
+      // We set a hard-coded value in the development mode as it is assumed there is no backend API to call.
+      setQuoteAmount('$2.50');
+    }
+
+    // TODO Figure out if this is still needed
+    // return fieldsWithValues.map(field => {
+    //   if (data.redirectPath && field.name === 'redirectPath') {
+    //     return { ...field, value: data.redirectPath };
+    //   } else {
+    //     return field;
+    //   }
+    // });
+
+    // Duration that will be used for both the scrollTo duration.
+
+    try {
+      const DURATION = 750; // time unit (ms)
+      const SMOOTH_TRANSITION = true; // Leave as "true". "false" is bad UX in majority of cases.
+      const TRANSITION_DELAY = 150; // time unit (ms)
+      // On success ->  scroll to the provided quote value.
+      // (Note) 750 == "wsm" (in "theme" package)
+      // ScrollTo for table/desktop screens
+      if (windowSize.width > 750) {
+        scrollToElementExtended(null, 'quoteContentName', {
+          DURATION: DURATION,
+          smooth: SMOOTH_TRANSITION,
+          delay: TRANSITION_DELAY,
+          offsetY: -100,
+        });
+      } else {
+        // ScrollTo for mobile/small screens
+        scrollToElementExtended(null, 'quoteContentName', {
+          DURATION: DURATION,
+          smooth: SMOOTH_TRANSITION,
+          delay: TRANSITION_DELAY,
+          offsetY: -250,
+        });
+      }
+    } catch (e) {
+      // TODO Connect to relevant logging service
+      console.log(e);
+    }
+    // So this returns the current state variable for the formInput
+    // In this case we only return the "fields" as that is all the form "submitWrapper" functions expects
+    // It then refreshes the form with the passed fields.
+    // TODO The implementation of the form package following a unique design pattern.
+    // TODO It might be worth evaluating if such a unique design pattern is necessary.
+
+    return dynamicFieldsGenerator(true);
+  };
+
+  const handleSuccess = async form => {
+    // Redirects to specified path
+    const redirectPath = form.values.redirectPath;
+    if (redirectPath) {
+      window.location.href = redirectPath;
     }
   };
 
+  /**
+   * Helper function that passes the correct development state.
+   * @returns
+   */
+
+  // Acts as a one-off 'useEffect' loads the potential cover option amounts on load.
+  function generateCoverAmount() {
+    // JS Implementation of (Ruby Method - ERB file)( cover_list = (100_000..950_000).step(50_000).to_a + (1_000_000..2_000_000).step(100_000).to_a )
+    const coverAmounts = [];
+
+    for (let coverLimit = 100000; coverLimit < 1000000; coverLimit += 50000) {
+      coverAmounts.push({
+        label: `$${coverLimit}`,
+        value: coverLimit.toString(),
+      });
+    }
+    for (let coverLimit = 1000000; coverLimit < 2000001; coverLimit += 100000) {
+      coverAmounts.push({
+        label: `$${coverLimit}`,
+        value: coverLimit.toString(),
+      });
+    }
+    return coverAmounts;
+  }
+
+  // Acts as a one-off 'useEffect' loads the potential age options on load.
+  function generateAgeOptions() {
+    // Ruby (Rails) equivalent code
+    // def age_options(age_range)
+    // [].tap do |ages|
+    //   ages << ["#{age_range.first - 1} years old or younger", age_range.first - 1]
+    //   ages.concat age_range.map { |i| ["#{i} years old", i] }
+    //   ages << ["#{age_range.last  + 1} years old or older", age_range.last + 1]
+    // end
+
+    // Lower bound - Hardcode
+    const ageValues = [{ label: '15 years old or younger', value: '15' }];
+
+    for (let age = 16; age < 70; age += 1) {
+      ageValues.push({ label: `${age} years old`, value: age.toString() });
+    }
+
+    // Upper bound - Hardcode
+    ageValues.push({
+      label: '70 years old or older',
+      value: '70',
+    });
+    return ageValues;
+  }
+
+  useEffect(() => {
+    dynamicFieldsGenerator(hasRegistered);
+  }, [hasRegistered]);
+
   return (
     <RowFlexBox>
-      <CalculatorPanelWrapper {...handleQuoteFormProps()}>
+      <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
         <CalculatorPanelContentBox>
           <div scroll-target="login-panel">
             <PaddingStyleWrapper pane={pane}>
@@ -692,6 +679,8 @@ function LoginCalculatorForm({
                             type="submit"
                             className="signup-button"
                             track={calculatorProps.formSubmitButtonTrack}
+                            // TODO Implement this styling in a cleaner way.
+                            style={{ width: '66%' }}
                             onClick={event => {
                               // console.log('I HAVE BEEN PRESSED!');
                             }}
@@ -860,7 +849,6 @@ const LoginCalculatorPanel = props => {
   const [formComplete, setFormComplete] = useState(false);
 
   // TODO Think of a smarter way to handle this!
-
   useEffect(() => {
     if (props.thankYou) {
       setFormComplete(props.thankYou);
