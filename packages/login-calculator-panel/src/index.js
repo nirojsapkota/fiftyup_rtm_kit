@@ -398,6 +398,8 @@ function LoginCalculatorForm({
     return lifeInsuranceQuoteFields;
   };
 
+  dynamicFieldsGenerator(hasRegistered);
+
   // TODO REMOVE THIS
   // This is a very hacky approach to solve test coverage.
   useEffect(() => {
@@ -857,6 +859,8 @@ const LoginCalculatorPanel = props => {
       setFormComplete(props.thankYou);
     }
   });
+
+  debugger;
 
   return formComplete ? (
     <ThankYou {...props} />
