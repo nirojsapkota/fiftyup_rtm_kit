@@ -251,6 +251,48 @@ function LoginCalculatorForm({
 
   const windowSize = useWindowSize();
 
+  const handlePostcodeConfig = () => {
+    if (isDevelopment) {
+      return {
+        validator: 'required',
+      };
+    } else {
+      return {
+        component: 'autocomplete',
+        validator: stateField.validator,
+        validatorArgs: stateField.options
+          ? [stateField.options.map(option => option['label'])]
+          : undefined,
+        searchFunction: autoCompleteSearch,
+        onEmptyResult: () => 'Invalid Postcode',
+      };
+    }
+  };
+
+  const autoCompleteSearch = async searchTerm => {
+    if (stateField.options) {
+      return stateField.options.filter(
+        option =>
+          option['label'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+      );
+    } else {
+      const results = await getAutoCompletePostcode(
+        autocompletePostcodeUrl,
+        searchTerm,
+        authenticityToken
+      );
+      // A sick hack to make tests pass
+      try {
+        return results.map(item => {
+          return { label: item };
+        });
+      } catch (e) {
+        // TODO Do something with the error!!!!
+        return [];
+      }
+    }
+  };
+
   const dynamicFieldsGenerator = hasUserRegistered => {
     const lifeInsuranceQuoteFields = [
       {
@@ -397,8 +439,6 @@ function LoginCalculatorForm({
 
     return lifeInsuranceQuoteFields;
   };
-
-  dynamicFieldsGenerator(hasRegistered);
 
   // TODO REMOVE THIS
   // This is a very hacky approach to solve test coverage.
@@ -563,27 +603,6 @@ function LoginCalculatorForm({
    * Helper function that passes the correct development state.
    * @returns
    */
-  const handlePostcodeConfig = () => {
-    if (isDevelopment) {
-      return {
-        validator: 'required',
-      };
-    } else {
-      return {
-        component: 'autocomplete',
-        validator: stateField.validator,
-        validatorArgs: stateField.options
-          ? [stateField.options.map(option => option['label'])]
-          : undefined,
-        searchFunction: autoCompleteSearch,
-        onEmptyResult: handleEmptyResult,
-      };
-    }
-  };
-
-  const handleEmptyResult = async () => {
-    return 'Invalid Postcode';
-  };
 
   // Acts as a one-off 'useEffect' loads the potential cover option amounts on load.
   function generateCoverAmount() {
@@ -630,33 +649,9 @@ function LoginCalculatorForm({
     return ageValues;
   }
 
-  const autoCompleteSearch = async searchTerm => {
-    if (stateField.options) {
-      return stateField.options.filter(
-        option =>
-          option['label'].toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
-      );
-    } else {
-      const results = await getAutoCompletePostcode(
-        autocompletePostcodeUrl,
-        searchTerm,
-        authenticityToken
-      );
-      // A sick hack to make tests pass
-      try {
-        return results.map(item => {
-          return { label: item };
-        });
-      } catch (e) {
-        // TODO Do something with the error!!!!
-        return [];
-      }
-    }
-  };
-
-  // useEffect(() => {
-  //   dynamicFieldsGenerator(hasRegistered);
-  // }, [hasRegistered]);
+  useEffect(() => {
+    dynamicFieldsGenerator(hasRegistered);
+  }, [hasRegistered]);
 
   return (
     <RowFlexBox>
@@ -859,8 +854,6 @@ const LoginCalculatorPanel = props => {
       setFormComplete(props.thankYou);
     }
   });
-
-  debugger;
 
   return formComplete ? (
     <ThankYou {...props} />
