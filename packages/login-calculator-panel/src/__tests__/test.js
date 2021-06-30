@@ -225,15 +225,6 @@ describe('<LoginCalculatorPanel />', () => {
     );
   });
 
-  it('straight to thank you screen  case!', async () => {
-    // COVERAGE ONLY TESTS!
-    const {} = render(
-      <LoginCalculatorPanel {...loginPanelProps} thankYou={true} />
-    );
-  });
-
-  // TODO ADD TEST CASE FOR WHEN PANE = TRUE
-
   it('Successful form submission to get quote', async () => {
     // set Up
     axios.post.mockRejectedValue({
