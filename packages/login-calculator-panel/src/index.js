@@ -115,12 +115,6 @@ const QuoteFormDefaultProps = {
   // maxWidth: ['100%', '100%', '388px', '460px'],
 };
 
-const QuoteFormDefaultSubmittedProps = {
-  width: [1, 1, 1 / 2, 1 / 3],
-  px: [10, 10, 15, 10],
-  // maxWidth: ['100%', '100%', '388px', '460px'],
-};
-
 const QuoteContentWrapper = styled(Box)``;
 
 /**
@@ -167,27 +161,11 @@ const QuoteContent = ({
     setFormComplete(true);
   };
 
-  /**
-   * Passed the element styling in a functionality
-   *
-   * Styling in based on the "isRegistered" state variable
-   *
-   * @returns
-   */
-  const handleStyle = () => {
-    if (hasRegistered) {
-      return { width: [1, 1, 1 / 2, 1 / 2] };
-    }
-    // If user hasn't registered return no extra styling
-    return {};
-  };
-
   return (
     <>
       <QuoteContentWrapper
         name="quoteContentName"
         data-testid="quoteContentDiv"
-        {...handleStyle()}
       >
         {mainHeading && (
           <CustomerContainerWrapper className="content-wrapper">
@@ -663,17 +641,9 @@ function LoginCalculatorForm({
     });
   }, [hasRegistered]);
 
-  const handleQuoteFormProps = () => {
-    if (hasRegistered) {
-      return QuoteFormDefaultSubmittedProps;
-    } else {
-      return QuoteFormDefaultProps;
-    }
-  };
-
   return (
     <RowFlexBox>
-      <CalculatorPanelWrapper {...handleQuoteFormProps()}>
+      <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
         <CalculatorPanelContentBox>
           <div scroll-target="login-panel">
             <PaddingStyleWrapper pane={pane}>
