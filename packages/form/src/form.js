@@ -33,7 +33,6 @@ const Form = ({
   getNewestFieldValue,
   fields: providedFields,
   id,
-  TURN_OFF_AUTOCOMPLETE,
   ...props
 }) => {
   const [fields, setFields] = React.useState(providedFields);
@@ -60,6 +59,7 @@ const Form = ({
         return { ...field, value: submitValues[field.name] };
       });
       const response = await onSubmit(fieldsWithValues, context);
+
       if (Array.isArray(response)) {
         setFields(response);
       } else {
@@ -103,21 +103,12 @@ const Form = ({
     }
   }, []);
 
-  const handleTurnOffAutoComplete = () => {
-    if (TURN_OFF_AUTOCOMPLETE) {
-      return 'off';
-    }
-  };
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       enableReinitialize
       onSubmit={submitWrapper}
-      onValidationError={errorValues => {
-        console.log('WHAT ARE THE ERRORS');
-        console.log(errorValues);
-      }}
       render={({
         handleSubmit,
         zisSubmitting,
@@ -137,6 +128,7 @@ const Form = ({
               },
               {}
             );
+
             // update server errors message
             setServerErrors({
               formError: serverErrors.formError,
@@ -157,10 +149,7 @@ const Form = ({
         };
 
         return (
-          <form
-            onSubmit={handleSubmit}
-            autocomplete={handleTurnOffAutoComplete()}
-          >
+          <form onSubmit={handleSubmit}>
             <button type="submit" hidden id={`hidden-submit-${id}`} />
             <FieldGroup
               fields={fields}
@@ -222,9 +211,7 @@ const Form = ({
 
 export default Form;
 
-// TODO EXTEND PROP TYPES FOR FORM COMPONENT
 Form.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),
-  TURN_OFF_AUTOCOMPLETE: PropTypes.bool,
 };
