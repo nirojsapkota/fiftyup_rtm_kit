@@ -105,3 +105,16 @@ export const passwordComplexityValidator = Yup.string()
   .min(8, 'Password is too short - should be 8 chars minimum')
   .matches(/[a-zA-Z]/, 'Password should contain a letter')
   .matches(/[0-9]/, 'Password should contain a number');
+
+const rangeArr = (start, end) => {
+  return Array(end - start + 1)
+    .fill()
+    .map((_, idx) => (start + idx).toString());
+};
+
+export const lifeInsuranceAgeDropdownValidator = Yup.string()
+  .oneOf(
+    rangeArr(16, 69),
+    'Sorry, but you must be between 16 and 69 years old to be eligible for this offer.'
+  )
+  .required('Required');
