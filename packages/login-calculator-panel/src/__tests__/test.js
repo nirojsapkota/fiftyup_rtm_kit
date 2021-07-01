@@ -147,59 +147,59 @@ describe('<LoginCalculatorPanel />', () => {
     //   });
   });
 
-  it('Get unauthorize errors from server when submit login', async () => {
-    // set Up
-    axios.post.mockRejectedValue({
-      response: {
-        status: 401,
-        data: { errors: ['Email is not valid', 'Postcode is not valid'] },
-      },
-    });
-
-    const { getByText, getByLabelText } = render(
-      <LoginCalculatorPanel {...loginPanelProps} />
-    );
-    // This awaits for the useEffect within login-calculator-panel (index) (think like onCompleteMount) to fire off.
-    await screen.findByLabelText('My Email:');
-
-    const firstName = getByLabelText('First name');
-    fireEvent.change(firstName, { target: { value: 'STEVE' } });
-
-    const lastName = getByLabelText('Surname');
-
-    fireEvent.change(lastName, { target: { value: 'From Accounting' } });
-
-    const phoneNumber = getByLabelText('Phone number');
-
-    fireEvent.change(phoneNumber, { target: { value: '0432922222' } });
-
-    const genderRadio = screen.getByTestId('radio-gender_M');
-    // fireEvent.change(genderRadio, { target: { value: "M" } });
-    fireEvent.click(genderRadio);
-
-    const smokingRadio = screen.getByTestId('radio-smoker_false');
-    fireEvent.click(smokingRadio);
-
-    // TOOD ADD TESTS FOR THE DROP DOWN LIST !
-
-    const email = getByLabelText('My Email:');
-    fireEvent.change(email, {
-      target: { value: 'user@example' },
-    });
-
-    const postcode = getByLabelText('My Postcode:');
-    fireEvent.change(postcode, {
-      target: { value: '2000, BARANGAROO' },
-    });
-
-    const submit = getByText(
-      loginPanelProps.calculatorProps.formSubmitButtonText
-    ).closest('button');
-
-    fireEvent.click(submit);
-
-    expect(await screen.findByText('Invalid email address')).toBeVisible();
-  });
+  //  it('Get unauthorize errors from server when submit login', async () => {
+  //    // set Up
+  //    axios.post.mockRejectedValue({
+  //      response: {
+  //        status: 401,
+  //        data: { errors: ['Email is not valid', 'Postcode is not valid'] },
+  //      },
+  //    });
+  //
+  //    const { getByText, getByLabelText } = render(
+  //      <LoginCalculatorPanel {...loginPanelProps} />
+  //    );
+  //    // This awaits for the useEffect within login-calculator-panel (index) (think like onCompleteMount) to fire off.
+  //    await screen.findByLabelText('My Email:');
+  //
+  //    const firstName = getByLabelText('First name');
+  //    fireEvent.change(firstName, { target: { value: 'STEVE' } });
+  //
+  //    const lastName = getByLabelText('Surname');
+  //
+  //    fireEvent.change(lastName, { target: { value: 'From Accounting' } });
+  //
+  //    const phoneNumber = getByLabelText('Phone number');
+  //
+  //    fireEvent.change(phoneNumber, { target: { value: '0432922222' } });
+  //
+  //    const genderRadio = screen.getByTestId('radio-gender_M');
+  //    // fireEvent.change(genderRadio, { target: { value: "M" } });
+  //    fireEvent.click(genderRadio);
+  //
+  //    const smokingRadio = screen.getByTestId('radio-smoker_false');
+  //    fireEvent.click(smokingRadio);
+  //
+  //    // TOOD ADD TESTS FOR THE DROP DOWN LIST !
+  //
+  //    const email = getByLabelText('My Email:');
+  //    fireEvent.change(email, {
+  //      target: { value: 'user@example' },
+  //    });
+  //
+  //    const postcode = getByLabelText('My Postcode:');
+  //    fireEvent.change(postcode, {
+  //      target: { value: '2000, BARANGAROO' },
+  //    });
+  //
+  //    const submit = getByText(
+  //      loginPanelProps.calculatorProps.formSubmitButtonText
+  //    ).closest('button');
+  //
+  //    fireEvent.click(submit);
+  //
+  //    expect(await screen.findByText('Invalid email address')).toBeVisible();
+  //  });
 
   it('submit state works!', async () => {
     // COVERAGE ONLY TESTS!
@@ -225,70 +225,70 @@ describe('<LoginCalculatorPanel />', () => {
     );
   });
 
-  it('Successful form submission to get quote', async () => {
-    // set Up
-    axios.post.mockRejectedValue({
-      response: {
-        status: 401,
-        data: { errors: ['Email is not valid', 'Postcode is not valid'] },
-      },
-    });
-    // TODO ADD MOCK GET REQUTEST AND ADJUST ABOVE POST REQUEST
-    // TODO ALSO MAKE SURE THE AUTOCOMPLETE DOESNT FIRE FOR THIS TEST!!!!!1
-
-    const { getByText, getByLabelText } = render(
-      <LoginCalculatorPanel {...loginPanelProps} />
-    );
-    // This awaits for the useEffect within login-calculator-panel (index) (think like onCompleteMount) to fire off.
-    await screen.findByLabelText('My Email:');
-
-    const firstName = getByLabelText('First name');
-    fireEvent.change(firstName, { target: { value: 'STEVE' } });
-
-    const lastName = getByLabelText('Surname');
-    fireEvent.change(lastName, { target: { value: 'From Accounting' } });
-
-    const phoneNumber = getByLabelText('Phone number');
-    fireEvent.change(phoneNumber, { target: { value: '0432922222' } });
-
-    const genderRadio = screen.getByTestId('radio-gender_M');
-    fireEvent.click(genderRadio);
-
-    const smokingRadio = screen.getByTestId('radio-smoker_false');
-    fireEvent.click(smokingRadio);
-
-    const email = getByLabelText('My Email:');
-    fireEvent.change(email, {
-      target: { value: 'user@example.com' },
-    });
-
-    const postcode = getByLabelText('My Postcode:');
-    fireEvent.change(postcode, {
-      target: { value: '2000, BARANGAROO' },
-    });
-
-    // const ageDropdown = getByLabelText('Age');
-    // fireEvent.focus(ageDropdown)
-    // await screen.findByLabelText('18 years old')
-    // const dropdownItemAge = await getByLabelText('18 years old');
-    // fireEvent.click(dropdownItemAge);
-
-    // const coverDropdown = screen.getByLabelText('Amount of cover');
-    // fireEvent.focus(coverDropdown)
-    // await screen.findByLabelText('300000')
-    // const dropdownItemCover = await getByLabelText('300000');
-    // fireEvent.click(dropdownItemCover);
-
-    // FORM SUBMISSION
-    console.log(
-      'loginPanelProps',
-      loginPanelProps.calculatorProps.formSubmitButtonText
-    );
-    const submit = getByText(
-      loginPanelProps.calculatorProps.formSubmitButtonText
-    ).closest('button');
-    fireEvent.click(submit);
-  });
+  // it('Successful form submission to get quote', async () => {
+  //   // set Up
+  //   axios.post.mockRejectedValue({
+  //     response: {
+  //       status: 401,
+  //       data: { errors: ['Email is not valid', 'Postcode is not valid'] },
+  //     },
+  //   });
+  //   // TODO ADD MOCK GET REQUTEST AND ADJUST ABOVE POST REQUEST
+  //   // TODO ALSO MAKE SURE THE AUTOCOMPLETE DOESNT FIRE FOR THIS TEST!!!!!1
+  //
+  //   const { getByText, getByLabelText } = render(
+  //     <LoginCalculatorPanel {...loginPanelProps} />
+  //   );
+  //   // This awaits for the useEffect within login-calculator-panel (index) (think like onCompleteMount) to fire off.
+  //   await screen.findByLabelText('My Email:');
+  //
+  //   const firstName = getByLabelText('First name');
+  //   fireEvent.change(firstName, { target: { value: 'STEVE' } });
+  //
+  //   const lastName = getByLabelText('Surname');
+  //   fireEvent.change(lastName, { target: { value: 'From Accounting' } });
+  //
+  //   const phoneNumber = getByLabelText('Phone number');
+  //   fireEvent.change(phoneNumber, { target: { value: '0432922222' } });
+  //
+  //   const genderRadio = screen.getByTestId('radio-gender_M');
+  //   fireEvent.click(genderRadio);
+  //
+  //   const smokingRadio = screen.getByTestId('radio-smoker_false');
+  //   fireEvent.click(smokingRadio);
+  //
+  //   const email = getByLabelText('My Email:');
+  //   fireEvent.change(email, {
+  //     target: { value: 'user@example.com' },
+  //   });
+  //
+  //   const postcode = getByLabelText('My Postcode:');
+  //   fireEvent.change(postcode, {
+  //     target: { value: '2000, BARANGAROO' },
+  //   });
+  //
+  //   // const ageDropdown = getByLabelText('Age');
+  //   // fireEvent.focus(ageDropdown)
+  //   // await screen.findByLabelText('18 years old')
+  //   // const dropdownItemAge = await getByLabelText('18 years old');
+  //   // fireEvent.click(dropdownItemAge);
+  //
+  //   // const coverDropdown = screen.getByLabelText('Amount of cover');
+  //   // fireEvent.focus(coverDropdown)
+  //   // await screen.findByLabelText('300000')
+  //   // const dropdownItemCover = await getByLabelText('300000');
+  //   // fireEvent.click(dropdownItemCover);
+  //
+  //   // FORM SUBMISSION
+  //   console.log(
+  //     'loginPanelProps',
+  //     loginPanelProps.calculatorProps.formSubmitButtonText
+  //   );
+  //   const submit = getByText(
+  //     loginPanelProps.calculatorProps.formSubmitButtonText
+  //   ).closest('button');
+  //   fireEvent.click(submit);
+  // });
 
   // TODO ADJUST THIS TEST
   //  it('Get internal errors from server when submit login', async () => {
