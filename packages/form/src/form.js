@@ -32,6 +32,7 @@ const Form = ({
   dynamicFields,
   getNewestFieldValue,
   fields: providedFields,
+  TURN_OFF_AUTOCOMPLETE,
   id,
   ...props
 }) => {
@@ -102,7 +103,13 @@ const Form = ({
       });
     }
   }, []);
-
+  const handleTurnOffAutoComplete = () => {
+    if (TURN_OFF_AUTOCOMPLETE) {
+      return 'off';
+    }
+    // If this function returns null/undefined
+    // the HTML property "autocomplete" isn't applied
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -149,7 +156,10 @@ const Form = ({
         };
 
         return (
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            autocomplete={handleTurnOffAutoComplete()}
+          >
             <button type="submit" hidden id={`hidden-submit-${id}`} />
             <FieldGroup
               fields={fields}

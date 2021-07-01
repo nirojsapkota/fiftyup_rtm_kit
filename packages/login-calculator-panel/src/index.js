@@ -69,9 +69,11 @@ const RowFlexBox = styled.div`
   flex-direction: row;
   color: #2d3747;
   padding-top: 40px;
+  padding-bottom: 50px;
 
   @media screen and (max-width: 750px) {
     padding-top: 0px;
+    padding-bottom: 0px;
   }
 `;
 
@@ -587,8 +589,7 @@ function LoginCalculatorForm({
     // It then refreshes the form with the passed fields.
     // TODO The implementation of the form package following a unique design pattern.
     // TODO It might be worth evaluating if such a unique design pattern is necessary.
-
-    return dynamicFieldsGenerator(true);
+    return formInput.fields;
   };
 
   const handleSuccess = async form => {
@@ -669,6 +670,7 @@ function LoginCalculatorForm({
                 {formInput != null && (
                   <Form
                     {...formInput}
+                    TURN_OFF_AUTOCOMPLETE={true}
                     dynamicFields={true}
                     onSubmit={handleSubmit}
                     onSuccess={handleSuccess}
@@ -847,13 +849,6 @@ const ThankYou = props => (
 
 const LoginCalculatorPanel = props => {
   const [formComplete, setFormComplete] = useState(false);
-
-  // TODO Think of a smarter way to handle this!
-  useEffect(() => {
-    if (props.thankYou) {
-      setFormComplete(props.thankYou);
-    }
-  });
 
   return formComplete ? (
     <ThankYou {...props} />
