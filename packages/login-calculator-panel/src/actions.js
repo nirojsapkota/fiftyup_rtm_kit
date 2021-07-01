@@ -4,7 +4,15 @@
 // import axios from 'axios';
 //const axios = require('axios');
 import axios from 'axios';
-export const submitLogin = async (url, data, authenticityToken) => {
+import { track } from '@rtm-ui/tracker';
+
+export const submitLogin = async (
+  url,
+  data,
+  authenticityToken,
+  trackingKey,
+  trackingData
+) => {
   // TODO REMOVE THIS
   // console.log("I AM BEING CALLED")
   // console.log(data)
@@ -19,6 +27,7 @@ export const submitLogin = async (url, data, authenticityToken) => {
   return await axios
     .post(url, data, config)
     .then(response => {
+      track(trackingKey, trackingData);
       const { data, status } = response;
       return { status, data };
     })
@@ -80,7 +89,7 @@ export const submitLifeInsuranceQuoteDetails = async (
     'lead[primary_contact_no]': data.phoneNumber,
     'lead[age]': data.age,
     'lead[gender]': data.gender,
-    'life_insurance_lead_fragment[smoker]': data.smoker,
+    'life_insurance_lead_fragment[smoker]': data.smoker === 'S',
     'life_insurance_lead_fragment[cover_required]': data.cover,
   };
   const result = await axios

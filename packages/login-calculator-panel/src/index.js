@@ -192,7 +192,9 @@ const QuoteContent = ({
                 {props.buttons.map((button, index) => (
                   <ButtonWrapper key={index}>
                     <Button
-                      track={`calculatorProps.callMeBackTrack/${button.text}`}
+                      track={`${calculatorProps.callMeBackTrack}/${
+                        button.text
+                      }`}
                       disabled={quoteValue === '$ - -.- -' ? true : false}
                       appearDisabled={quoteValue === '$ - -.- -' ? true : false}
                       onClick={() =>
@@ -219,6 +221,7 @@ const QuoteContent = ({
 
 function LoginCalculatorForm({
   loginUrl,
+  trackingData,
   authenticityToken,
   stateField,
   lifeInsuranceCalcProps,
@@ -368,8 +371,8 @@ function LoginCalculatorForm({
         initialValue: lifeInsuranceQuoteValues.smoker,
         type: 'radio',
         options: [
-          { label: 'Non Smoker', value: false },
-          { label: 'Smoker', value: true },
+          { label: 'Non Smoker', value: 'NS' },
+          { label: 'Smoker', value: 'S' },
         ],
       },
       {
@@ -500,10 +503,13 @@ function LoginCalculatorForm({
     // If the user has already authenticated (e.g. Gotten the first quote)
     // Don't authenticate again
     if (hasRegistered === false) {
+      debugger;
       const resultSubmitLogin = await submitLogin(
         loginUrl,
         authenticateValues,
-        authenticityToken
+        authenticityToken,
+        calculatorProps.formSubmitButtonTrack,
+        trackingData
       );
 
       const { data } = resultSubmitLogin;
@@ -589,7 +595,7 @@ function LoginCalculatorForm({
     // It then refreshes the form with the passed fields.
     // TODO The implementation of the form package following a unique design pattern.
     // TODO It might be worth evaluating if such a unique design pattern is necessary.
-    return formInput.fields;
+    return dynamicFieldsGenerator(true);
   };
 
   const handleSuccess = async form => {
@@ -680,7 +686,6 @@ function LoginCalculatorForm({
                           <Button
                             type="submit"
                             className="signup-button"
-                            track={calculatorProps.formSubmitButtonTrack}
                             // TODO Implement this styling in a cleaner way.
                             style={{ width: '66%' }}
                             onClick={event => {
