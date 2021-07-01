@@ -332,7 +332,7 @@ function LoginCalculatorForm({
         config: {
           validator: 'valueMatch',
           validatorArgs: [
-            '(^(([0][1-9][0-9]{8})|([1-9][0-9]{7})))',
+            '^(([0][1-9][0-9]{8}))$',
             'Please enter a valid phone number',
           ],
         },
@@ -538,7 +538,7 @@ function LoginCalculatorForm({
 
     if (isDevelopment !== true) {
       // API CALL FOR fetching the LifeInsurance quote value
-
+      number;
       const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
         calculatorProps.quoteUrl,
         calculatorProps.campaignId,
@@ -551,7 +551,7 @@ function LoginCalculatorForm({
       setQuoteAmount('$2.50');
     }
 
-    // TODO Figure out if this is still needed
+    // TODO Figure out if this is still needednumber
     // return fieldsWithValues.map(field => {
     //   if (data.redirectPath && field.name === 'redirectPath') {
     //     return { ...field, value: data.redirectPath };
