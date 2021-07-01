@@ -147,6 +147,7 @@ describe('<LoginCalculatorPanel />', () => {
     //   });
   });
 
+  // TODO RE_ENABLE_TEST_POST_DEPLOYMENT
   //  it('Get unauthorize errors from server when submit login', async () => {
   //    // set Up
   //    axios.post.mockRejectedValue({

@@ -714,7 +714,7 @@ function LoginCalculatorForm({
                         </ButtonWrapper>
                         <DisclaimerWrapper
                           dangerouslySetInnerHTML={{
-                            __html: `<div style="color:black;text-align:center;font-size: medium;">${
+                            __html: `<div style="color:black;text-align:center;font-size: medium;line-height: 1.5;margin: auto; width: 75%;">${
                               calculatorProps.getQuoteDisclaimerTextHtml
                             }</div>`,
                           }}
