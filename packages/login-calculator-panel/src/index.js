@@ -503,7 +503,6 @@ function LoginCalculatorForm({
     // If the user has already authenticated (e.g. Gotten the first quote)
     // Don't authenticate again
     if (hasRegistered === false) {
-      debugger;
       const resultSubmitLogin = await submitLogin(
         loginUrl,
         authenticateValues,
