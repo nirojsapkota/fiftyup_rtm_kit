@@ -162,14 +162,16 @@ export const fieldConfig = {
     },
   },
   services: {
-    validateField: async (context) => {
-      const validatorArgs = context.validatorArgs
-      const validator = context.validator
+    validateField: async context => {
+      const validatorArgs = context.validatorArgs;
+      const validator = context.validator;
       if (context.config.validate_if) {
         // Use the validator in the context rather than context.config
         // These are validator manipulated/set from the component
         if (validatorArgs) {
-          await validatorMap[`${validator}Validator`](...validatorArgs).validate(context.value);
+          await validatorMap[`${validator}Validator`](
+            ...validatorArgs
+          ).validate(context.value);
         } else if (validator) {
           await validatorMap[`${validator}Validator`].validate(context.value);
         } else {
@@ -178,9 +180,13 @@ export const fieldConfig = {
       } else {
         // Use the validator in the context.config
         if (context.config.validatorArgs) {
-          await validatorMap[`${context.config.validator}Validator`](...validatorArgs).validate(context.value);
+          await validatorMap[`${context.config.validator}Validator`](
+            ...validatorArgs
+          ).validate(context.value);
         } else if (context.config.validator) {
-          await validatorMap[`${context.config.validator}Validator`].validate(context.value);
+          await validatorMap[`${context.config.validator}Validator`].validate(
+            context.value
+          );
         } else {
           // do nothing
         }
@@ -217,7 +223,10 @@ export const textMachine = {
       states: {
         unknown: {
           on: {
-            '': [{ target: 'complete', cond: 'autoValidateValues' }, { target: 'idle' }],
+            '': [
+              { target: 'complete', cond: 'autoValidateValues' },
+              { target: 'idle' },
+            ],
           },
         },
         idle: {
@@ -461,7 +470,7 @@ const fieldGroupConfig = {
           return context.next;
         }
       } catch (e) {
-        console.error('xform error: ',e);
+        console.error('xform error: ', e);
       }
 
       // We're treating a rejected promise as a way of saying we have no 'next'
@@ -529,7 +538,7 @@ const fieldGroupMachineConfig = options => ({
             parentRequestSubmitting: { actions: 'sendRequestToSubmit' },
             bubble: { actions: 'notifyParentSubmitting' },
             fieldTouched: '#validating',
-            submit: '#validating'
+            submit: '#validating',
           },
         },
         submitter: {
@@ -606,11 +615,13 @@ const formMachine = {
  */
 export const useField = (machine, groupIsValidating, fieldValidator = {}) => {
   const [state, send] = useService(machine);
-  const { validator, validatorArgs } = fieldValidator
+  const { validator, validatorArgs } = fieldValidator;
 
   React.useEffect(() => {
     if (groupIsValidating) {
-      validatorArgs ? send({type: 'validate', validator, validatorArgs}) : send({type: 'validate', validator});
+      validatorArgs
+        ? send({ type: 'validate', validator, validatorArgs })
+        : send({ type: 'validate', validator });
     }
   }, [groupIsValidating, send]);
 
@@ -625,12 +636,12 @@ export const useInitialFieldValue = (field, value) => {
   React.useEffect(() => {
     send({
       type: 'change',
-      value: value
+      value: value,
     });
-  }, [value, send])
+  }, [value, send]);
 
   return {};
-}
+};
 
 export const useFieldGroup = service => {
   const [state, send] = useService(service);

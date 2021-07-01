@@ -109,7 +109,9 @@ export const passwordComplexityValidator = Yup.string()
 const rangeArr = (start, end) => {
   return Array(end - start + 1)
     .fill()
-    .map((_, idx) => (start + idx).toString());
+    .map((_, idx) => {
+      return (start + idx).toString();
+    });
 };
 
 export const lifeInsuranceAgeDropdownValidator = Yup.string()
