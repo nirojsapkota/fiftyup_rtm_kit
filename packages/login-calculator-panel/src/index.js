@@ -538,7 +538,7 @@ function LoginCalculatorForm({
 
     if (isDevelopment !== true) {
       // API CALL FOR fetching the LifeInsurance quote value
-      number;
+      // number;
       const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
         calculatorProps.quoteUrl,
         calculatorProps.campaignId,
