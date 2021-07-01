@@ -617,13 +617,13 @@ function LoginCalculatorForm({
 
     for (let coverLimit = 100000; coverLimit < 1000000; coverLimit += 50000) {
       coverAmounts.push({
-        label: `$${coverLimit}`,
+        label: `$${coverLimit.toLocaleString()}`,
         value: coverLimit.toString(),
       });
     }
     for (let coverLimit = 1000000; coverLimit < 2000001; coverLimit += 100000) {
       coverAmounts.push({
-        label: `$${coverLimit}`,
+        label: `$${coverLimit.toLocaleString()}`,
         value: coverLimit.toString(),
       });
     }
