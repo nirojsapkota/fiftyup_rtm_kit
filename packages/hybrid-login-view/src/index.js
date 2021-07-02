@@ -367,7 +367,7 @@ const HybridLoginView = ({
               </ContentWrapper>
             </ContainerWrapper>
           )}
-          {!defaultButtonVisible && (
+          {/*defaultButtonVisible && (
             <Block hideAt="md">
               <Variant variant="a">
                 <FloatingCtaWrapper
@@ -380,7 +380,7 @@ const HybridLoginView = ({
                 </FloatingCtaWrapper>
               </Variant>
             </Block>
-          )}
+          )*/}
         </ContentSection>
       </BodyWrapper>
     </React.Fragment>

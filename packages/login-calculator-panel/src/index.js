@@ -333,7 +333,7 @@ function LoginCalculatorForm({
           validator: 'valueMatch',
           validatorArgs: [
             '^(([0][1-9][0-9]{8}))$',
-            'Please enter a valid phone number',
+            'Must be 10 digits long and start with 0',
           ],
         },
       },
