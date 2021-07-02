@@ -275,7 +275,6 @@ const HybridLoginView = ({
    * @returns
    */
   const onFormSubmit = value => {
-    // TODO remove the fallback value in production/deployment
     setQuote(value);
   };
 
@@ -367,20 +366,22 @@ const HybridLoginView = ({
               </ContentWrapper>
             </ContainerWrapper>
           )}
-          {/*defaultButtonVisible && (
-            <Block hideAt="md">
-              <Variant variant="a">
-                <FloatingCtaWrapper
-                  {...defaultProps}
-                  py={4}
-                  px={4}
-                  className="floating-cta"
-                >
-                  <FloatingCta />
-                </FloatingCtaWrapper>
-              </Variant>
-            </Block>
-          )*/}
+          {/* For Life Insurance Quote Calculator we hide the floating CTA for mobile */}
+          {calculatorProps.showQuoteCalculator === false &&
+            defaultButtonVisible && (
+              <Block hideAt="md">
+                <Variant variant="a">
+                  <FloatingCtaWrapper
+                    {...defaultProps}
+                    py={4}
+                    px={4}
+                    className="floating-cta"
+                  >
+                    <FloatingCta />
+                  </FloatingCtaWrapper>
+                </Variant>
+              </Block>
+            )}
         </ContentSection>
       </BodyWrapper>
     </React.Fragment>
