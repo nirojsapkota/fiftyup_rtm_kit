@@ -332,7 +332,7 @@ function LoginCalculatorForm({
         config: {
           validator: 'valueMatch',
           validatorArgs: [
-            '(^(([0][1-9][0-9]{8})|([1-9][0-9]{7})))',
+            '^(([0][1-9][0-9]{8}))$',
             'Please enter a valid phone number',
           ],
         },
@@ -538,7 +538,7 @@ function LoginCalculatorForm({
 
     if (isDevelopment !== true) {
       // API CALL FOR fetching the LifeInsurance quote value
-
+      // number;
       const resultLifeInsuranceQuoteDetails = await submitLifeInsuranceQuoteDetails(
         calculatorProps.quoteUrl,
         calculatorProps.campaignId,
@@ -551,7 +551,7 @@ function LoginCalculatorForm({
       setQuoteAmount('$2.50');
     }
 
-    // TODO Figure out if this is still needed
+    // TODO Figure out if this is still needednumber
     // return fieldsWithValues.map(field => {
     //   if (data.redirectPath && field.name === 'redirectPath') {
     //     return { ...field, value: data.redirectPath };
@@ -617,13 +617,13 @@ function LoginCalculatorForm({
 
     for (let coverLimit = 100000; coverLimit < 1000000; coverLimit += 50000) {
       coverAmounts.push({
-        label: `$${coverLimit}`,
+        label: `$${coverLimit.toLocaleString()}`,
         value: coverLimit.toString(),
       });
     }
     for (let coverLimit = 1000000; coverLimit < 2000001; coverLimit += 100000) {
       coverAmounts.push({
-        label: `$${coverLimit}`,
+        label: `$${coverLimit.toLocaleString()}`,
         value: coverLimit.toString(),
       });
     }
@@ -714,7 +714,7 @@ function LoginCalculatorForm({
                         </ButtonWrapper>
                         <DisclaimerWrapper
                           dangerouslySetInnerHTML={{
-                            __html: `<div style="color:black;text-align:center;font-size: medium;">${
+                            __html: `<div style="color:black;text-align:center;font-size: medium;line-height: 1.5;margin: auto; width: 75%;">${
                               calculatorProps.getQuoteDisclaimerTextHtml
                             }</div>`,
                           }}
