@@ -220,7 +220,6 @@ const QuoteContent = ({
   );
 };
 
-let INITIAL_RENDER_LISTENER = false;
 function LoginCalculatorForm({
   loginUrl,
   trackingData,
@@ -664,12 +663,15 @@ function LoginCalculatorForm({
   }, [hasRegistered]);
 
   // Helper function that listens to change on specific fields.
+  // "age"
+  // "smoker"
+  // "gender"
+  // "cover"
   const FormListener = () => {
     // If the quote amount is already not set exit this function.
     if (quoteAmount === '$ - -.- -') return null;
 
     const { values } = useFormikContext();
-
     const ageField = getIn(values, 'age');
     const smokerField = getIn(values, 'smoker');
     const genderField = getIn(values, 'gender');
@@ -691,11 +693,11 @@ function LoginCalculatorForm({
       )
         return;
 
-      if (INITIAL_RENDER_LISTENER) {
+      // Condition will only fail on the first pass through (which is ok, designed to do that)
+      if (quoteFieldState) {
         setQuoteAmount('$ - -.- -');
-      } else {
-        INITIAL_RENDER_LISTENER = true;
       }
+
       setQuoteFieldState(CURRENT_QUOTE_FIELDS_STATE);
     }, [ageField, smokerField, genderField, coverField]);
 
