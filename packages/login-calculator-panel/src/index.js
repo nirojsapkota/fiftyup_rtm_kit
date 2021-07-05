@@ -208,7 +208,7 @@ const QuoteContent = ({
                     </Button>
                   </ButtonWrapper>
                 ))}
-                <Markdown py={3} raw={calculatorProps.discountText} />
+                <p>or Call</p>
                 <Header tag="h2">{calculatorProps.phoneNumber}</Header>
               </Box>
             </ContentWrapper>
