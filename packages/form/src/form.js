@@ -34,6 +34,7 @@ const Form = ({
   fields: providedFields,
   TURN_OFF_AUTOCOMPLETE,
   id,
+  FormListener,
   ...props
 }) => {
   const [fields, setFields] = React.useState(providedFields);
@@ -110,19 +111,23 @@ const Form = ({
     // If this function returns null/undefined
     // the HTML property "autocomplete" isn't applied
   };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       enableReinitialize
       onSubmit={submitWrapper}
-      render={({
-        handleSubmit,
-        zisSubmitting,
-        validateForm,
-        isValidating,
-        ...rest
-      }) => {
+    >
+      {props => {
+        const {
+          handleSubmit,
+          zisSubmitting,
+          validateForm,
+          isValidating,
+          handleChange,
+          ...rest
+        } = props;
         const fieldUtils = {
           setFieldValue: (field, value) => {
             // filter out field's error message from server errors.
@@ -172,7 +177,7 @@ const Form = ({
                   fieldUtils={fieldUtils}
                   {...field}
                   value={rest.values[field.name]}
-                  onChange={rest.handleChange}
+                  onChange={handleChange}
                   error={
                     serverErrors.fieldErrors[field.name] ||
                     (!autoSearch && getFieldErrors(rest, field))
@@ -212,10 +217,12 @@ const Form = ({
                     </Box>
                   </FooterBox>
                 ))}
+            {/* Form value(s) change listener */}
+            {FormListener && <FormListener />}
           </form>
         );
       }}
-    />
+    </Formik>
   );
 };
 
@@ -224,4 +231,5 @@ export default Form;
 Form.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),
+  FormListener: PropTypes.element,
 };

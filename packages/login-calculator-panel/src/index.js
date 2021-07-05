@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
+import { useFormikContext, getIn } from 'formik';
 
 import {
   Card,
@@ -219,6 +220,7 @@ const QuoteContent = ({
   );
 };
 
+let INITIAL_RENDER_LISTENER = false;
 function LoginCalculatorForm({
   loginUrl,
   trackingData,
@@ -253,6 +255,8 @@ function LoginCalculatorForm({
     cover: null,
     smoker: null,
   });
+
+  const [quoteFieldState, setQuoteFieldState] = useState(null);
 
   const windowSize = useWindowSize();
 
@@ -659,6 +663,44 @@ function LoginCalculatorForm({
     dynamicFieldsGenerator(hasRegistered);
   }, [hasRegistered]);
 
+  // Helper function that listens to change on specific fields.
+  const FormListener = () => {
+    // If the quote amount is already not set exit this function.
+    if (quoteAmount === '$ - -.- -') return null;
+
+    const { values } = useFormikContext();
+
+    const ageField = getIn(values, 'age');
+    const smokerField = getIn(values, 'smoker');
+    const genderField = getIn(values, 'gender');
+    const coverField = getIn(values, 'cover');
+
+    useEffect(() => {
+      // Gets the current value
+      let CURRENT_QUOTE_FIELDS_STATE = {
+        age: ageField,
+        smoker: smokerField,
+        gender: genderField,
+        cover: coverField,
+      };
+
+      // If the current value and prior state match then exit the function call.
+      if (
+        JSON.stringify(CURRENT_QUOTE_FIELDS_STATE) ===
+        JSON.stringify(quoteFieldState)
+      )
+        return;
+
+      if (INITIAL_RENDER_LISTENER) {
+        setQuoteAmount('$ - -.- -');
+      } else {
+        INITIAL_RENDER_LISTENER = true;
+      }
+      setQuoteFieldState(CURRENT_QUOTE_FIELDS_STATE);
+    }, [ageField, smokerField, genderField, coverField]);
+
+    return null;
+  };
   return (
     <RowFlexBox>
       <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
@@ -679,6 +721,7 @@ function LoginCalculatorForm({
                     dynamicFields={true}
                     onSubmit={handleSubmit}
                     onSuccess={handleSuccess}
+                    FormListener={FormListener}
                     renderFooter={({ formError }) => (
                       <React.Fragment>
                         <ButtonWrapper py={3}>
