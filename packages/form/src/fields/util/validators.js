@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import * as Yup from 'yup';
 import maskPatterns from './maskPatterns';
 
