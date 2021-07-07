@@ -12,7 +12,9 @@ import {
   scrollToElementExtended,
   useWindowSize,
 } from '@rtm-ui/layout';
+
 import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
+
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
 import { Icon } from '@rtm-ui/icon';
