@@ -27,8 +27,9 @@
     "generate": "plop --plopfile ./templates/plopfile.js",
     "watch": "lerna run --parallel build -- -- --watch --colors",
     "zip": "rtm-scripts zip --p ./aws/GithubDocumentationFunction",
-    "temp:test": "lerna run test --stream --scope @rtm-ui/login-calculator-panel -- -- --colors --coverage",
-    "temp:test2": "lerna run test --stream --scope @rtm-ui/form -- -- --colors --coverage"
+    "temp:test1": "lerna run test --stream --scope @rtm-ui/login-calculator-panel -- -- --colors --coverage",
+    "temp:test2": "lerna run test --stream --scope @rtm-ui/form -- -- --colors --coverage",
+    "temp:test3": "lerna run test --stream --scope @rtm-ui/electricity-switch -- -- --colors --coverage"
   },
   "devDependencies": {
     "@rtm/core": "^1.0.54",

@@ -22,6 +22,7 @@ const form = {
 };
 
 describe(`<Form />`, () => {
+  // TODO RENABLE AND SOLVE
   it(`progressiveReveal doesn't break`, async () => {
     const handleSubmit = jest.fn(() => {
       throw new FormError({
@@ -75,6 +76,7 @@ describe(`<Form />`, () => {
     });
   });
 
+  // TODO RENABLE AND SOLVE
   it(`renderFooter is a function`, async () => {
     const handleSubmit = jest.fn(() => {
       throw new FormError({

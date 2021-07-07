@@ -29,10 +29,8 @@ describe(`<TextField />`, () => {
       const submit = getByTestId(`submit-test`);
       fireEvent.click(submit);
 
-      await wait(() => {
-        expect(errorContainers[0]).toHaveTextContent('Required');
-        expect(handleSubmit).not.toHaveBeenCalled();
-      });
+      wait(() => expect(errorContainers[0]).toHaveTextContent('Required'));
+      expect(handleSubmit).not.toHaveBeenCalled();
     });
   });
   describe(`with function as validator`, () => {
@@ -50,7 +48,7 @@ describe(`<TextField />`, () => {
               type: 'text',
               config: {
                 validator: 'valueMatch',
-                validatorArgs: [validatorFn, "error message"],
+                validatorArgs: [validatorFn, 'error message'],
               },
             },
           ]}
@@ -65,8 +63,8 @@ describe(`<TextField />`, () => {
       await wait(() => {
         expect(validatorFn).toHaveBeenCalled();
       });
-    })
-  })
+    });
+  });
   describe(`with regex validation`, () => {
     const handleSubmit = jest.fn();
     it(`prevents submission and shows an error`, async () => {
@@ -81,7 +79,10 @@ describe(`<TextField />`, () => {
               type: 'text',
               config: {
                 validator: 'valueMatch',
-                validatorArgs: ["^[a-z]{1,2}[0-9]{7}$", "1 to 2 letters, 7 digits, no spaces"],
+                validatorArgs: [
+                  '^[a-z]{1,2}[0-9]{7}$',
+                  '1 to 2 letters, 7 digits, no spaces',
+                ],
               },
             },
           ]}
@@ -95,11 +96,13 @@ describe(`<TextField />`, () => {
       const submit = getByTestId(`submit-test`);
       fireEvent.click(submit);
       await wait(() => {
-        expect(errorContainers[0]).toHaveTextContent('1 to 2 letters, 7 digits, no spaces');
+        expect(errorContainers[0]).toHaveTextContent(
+          '1 to 2 letters, 7 digits, no spaces'
+        );
         expect(handleSubmit).not.toHaveBeenCalled();
       });
-    })
-  })
+    });
+  });
 
   describe(`without matching passwords`, () => {
     describe(`the password confirm validator`, () => {

@@ -119,7 +119,7 @@ const Form = ({
       enableReinitialize
       onSubmit={submitWrapper}
     >
-      {props => {
+      {formikProps => {
         const {
           handleSubmit,
           zisSubmitting,
@@ -127,7 +127,7 @@ const Form = ({
           isValidating,
           handleChange,
           ...rest
-        } = props;
+        } = formikProps;
         const fieldUtils = {
           setFieldValue: (field, value) => {
             // filter out field's error message from server errors.
@@ -165,6 +165,7 @@ const Form = ({
             onSubmit={handleSubmit}
             autoComplete={handleTurnOffAutoComplete()}
           >
+            {/* What is this hidden button for ??? */}
             <button type="submit" hidden id={`hidden-submit-${id}`} />
             <FieldGroup
               fields={fields}
@@ -200,7 +201,7 @@ const Form = ({
                           data-testid={`submit-${id}`}
                           type="submit"
                         >
-                          {props.submitText || 'Submit'}
+                          {rest.submitText || 'Submit'}
                         </Button>
                       </Box>
                       <Box
