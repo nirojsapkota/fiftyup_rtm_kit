@@ -209,8 +209,12 @@ const QuoteContent = ({
                     </Button>
                   </ButtonWrapper>
                 ))}
-                <Markdown py={3} raw={calculatorProps.discountText} />
-                <Header tag="h2">{calculatorProps.phoneNumber}</Header>
+                {calculatorProps.phoneNumber && (
+                  <>
+                    <p>or call</p>
+                    <Header tag="h2">{calculatorProps.phoneNumber}</Header>
+                  </>
+                )}
               </Box>
             </ContentWrapper>
           </CustomerContainerWrapper>
@@ -254,7 +258,6 @@ function LoginCalculatorForm({
     cover: null,
     smoker: null,
   });
-
   const [quoteFieldState, setQuoteFieldState] = useState(null);
 
   const windowSize = useWindowSize();
@@ -661,7 +664,6 @@ function LoginCalculatorForm({
   useEffect(() => {
     dynamicFieldsGenerator(hasRegistered);
   }, [hasRegistered]);
-
   // Helper function that listens to change on specific fields.
   // "age"
   // "smoker"
