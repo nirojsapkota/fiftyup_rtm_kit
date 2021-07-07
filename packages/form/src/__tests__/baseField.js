@@ -19,17 +19,18 @@ describe(`<BaseField />`, () => {
         <Form onSubmit={handleSubmit} {...form} />
       );
       const itemInput = await getByLabelText(form.fields[0].label);
-      fireEvent.change(itemInput, {
+      await fireEvent.change(itemInput, {
         target: { value: 'user@example.com' },
       });
 
       const submit = await getByTestId(`submit-test-form`);
-      fireEvent.click(submit);
+      await fireEvent.click(submit);
 
       await wait(async () => {
         await expect(itemInput).toHaveAttribute('disabled');
       });
     });
+
     it(`highlights the error message when not focused`, async () => {
       const handleSubmit = jest.fn();
       const { getByLabelText, getByTestId } = await render(

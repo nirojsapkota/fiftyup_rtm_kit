@@ -128,6 +128,7 @@ const Form = ({
           handleChange,
           ...rest
         } = formikProps;
+
         const fieldUtils = {
           setFieldValue: (field, value) => {
             // filter out field's error message from server errors.
