@@ -202,23 +202,6 @@ describe('<LoginCalculatorPanel />', () => {
   //    expect(await screen.findByText('Invalid email address')).toBeVisible();
   //  });
 
-  it('submit state works!', async () => {
-    // COVERAGE ONLY TESTS!
-    const {} = render(
-      <LoginCalculatorPanel
-        {...loginPanelProps}
-        REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED={true}
-      />
-    );
-
-    await screen.findByText('Morning');
-    const ITEM = screen.getByText('Morning');
-
-    fireEvent.click(ITEM);
-
-    expect(ITEM).toBeVisible();
-  });
-
   it('pane true case!', async () => {
     // COVERAGE ONLY TESTS!
     const {} = render(

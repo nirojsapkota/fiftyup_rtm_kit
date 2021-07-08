@@ -242,7 +242,6 @@ function LoginCalculatorForm({
   onSeeOffersClick,
   isDevelopment,
   setFormComplete,
-  REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED,
   ...props
 }) {
   const [coverOptions] = useState(generateCoverAmount());
@@ -452,15 +451,6 @@ function LoginCalculatorForm({
 
     return lifeInsuranceQuoteFields;
   };
-
-  // TODO REMOVE THIS
-  // This is a very hacky approach to solve test coverage.
-  useEffect(() => {
-    if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
-      setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
-      setQuoteAmount('$ - -.- -');
-    }
-  }, []);
 
   const handleSubmit = async fieldsWithValues => {
     // Values for the first request (register/login the user to authenticate their session)
