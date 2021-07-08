@@ -26,7 +26,8 @@
     "release": "lerna publish --yes",
     "generate": "plop --plopfile ./templates/plopfile.js",
     "watch": "lerna run --parallel build -- -- --watch --colors",
-    "zip": "rtm-scripts zip --p ./aws/GithubDocumentationFunction"
+    "zip": "rtm-scripts zip --p ./aws/GithubDocumentationFunction",
+    "temp:test": "lerna run test --stream --scope @rtm-ui/login-calculator-panel -- -- --colors --coverage"
   },
   "devDependencies": {
     "@rtm/core": "^1.0.54",
