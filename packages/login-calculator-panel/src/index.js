@@ -662,9 +662,6 @@ function LoginCalculatorForm({
   // "gender"
   // "cover"
   const FormListener = () => {
-    // If the quote amount is already not set exit this function.
-    if (quoteAmount === '$ - -.- -') return null;
-
     const { values } = useFormikContext();
     const ageField = getIn(values, 'age');
     const smokerField = getIn(values, 'smoker');
@@ -697,6 +694,7 @@ function LoginCalculatorForm({
 
     return null;
   };
+
   return (
     <RowFlexBox>
       <CalculatorPanelWrapper {...QuoteFormDefaultProps}>
