@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
+import { useFormikContext, getIn } from 'formik';
 
 import {
   Card,
@@ -11,7 +12,9 @@ import {
   scrollToElementExtended,
   useWindowSize,
 } from '@rtm-ui/layout';
+
 import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
+
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
 import { Icon } from '@rtm-ui/icon';
@@ -239,7 +242,6 @@ function LoginCalculatorForm({
   onSeeOffersClick,
   isDevelopment,
   setFormComplete,
-  REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED,
   ...props
 }) {
   const [coverOptions] = useState(generateCoverAmount());
@@ -257,6 +259,7 @@ function LoginCalculatorForm({
     cover: null,
     smoker: null,
   });
+  const [quoteFieldState, setQuoteFieldState] = useState(null);
 
   const windowSize = useWindowSize();
 
@@ -448,15 +451,6 @@ function LoginCalculatorForm({
 
     return lifeInsuranceQuoteFields;
   };
-
-  // TODO REMOVE THIS
-  // This is a very hacky approach to solve test coverage.
-  useEffect(() => {
-    if (REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED) {
-      setHasRegistered(REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED);
-      setQuoteAmount('$ - -.- -');
-    }
-  }, []);
 
   const handleSubmit = async fieldsWithValues => {
     // Values for the first request (register/login the user to authenticate their session)
@@ -662,6 +656,44 @@ function LoginCalculatorForm({
   useEffect(() => {
     dynamicFieldsGenerator(hasRegistered);
   }, [hasRegistered]);
+  // Helper function that listens to change on specific fields.
+  // "age"
+  // "smoker"
+  // "gender"
+  // "cover"
+  const FormListener = () => {
+    const { values } = useFormikContext();
+    const ageField = getIn(values, 'age');
+    const smokerField = getIn(values, 'smoker');
+    const genderField = getIn(values, 'gender');
+    const coverField = getIn(values, 'cover');
+
+    useEffect(() => {
+      // Gets the current value
+      let CURRENT_QUOTE_FIELDS_STATE = {
+        age: ageField,
+        smoker: smokerField,
+        gender: genderField,
+        cover: coverField,
+      };
+
+      // If the current value and prior state match then exit the function call.
+      if (
+        JSON.stringify(CURRENT_QUOTE_FIELDS_STATE) ===
+        JSON.stringify(quoteFieldState)
+      )
+        return;
+
+      // Condition will only fail on the first pass through (which is ok, designed to do that)
+      if (quoteFieldState) {
+        setQuoteAmount('$ - -.- -');
+      }
+
+      setQuoteFieldState(CURRENT_QUOTE_FIELDS_STATE);
+    }, [ageField, smokerField, genderField, coverField]);
+
+    return null;
+  };
 
   return (
     <RowFlexBox>
@@ -683,6 +715,7 @@ function LoginCalculatorForm({
                     dynamicFields={true}
                     onSubmit={handleSubmit}
                     onSuccess={handleSuccess}
+                    FormListener={FormListener}
                     renderFooter={({ formError }) => (
                       <React.Fragment>
                         <ButtonWrapper py={3}>

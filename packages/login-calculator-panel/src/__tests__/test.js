@@ -74,9 +74,7 @@ describe('<LoginCalculatorPanel />', () => {
     expect(getByText(emailField.label)).toBeInTheDocument();
   });
 
-  // TODO: Skipping this test for now due to odd failing results
-  // Please revisit and make this work after we push to staging/prod
-  it.skip('success call with input props', async () => {
+  it('success call with input props', async () => {
     // set Up
     axios.get.mockResolvedValue({ data: { redirectPath: '/' } });
 
@@ -102,25 +100,21 @@ describe('<LoginCalculatorPanel />', () => {
 
     // This checks for the autocomplete being fired off!!!!!!!!
 
-    // TODO RE_ENABLE THIS
-    //  await waitFor(() => {
-    //    // TODO CHANGE THE EXPECTED VALUES TO BETTER MATCH THE NEW FORM!
-    //    //e.g. NAME (FIRST + LAST), AGE, IS SMOKER !
-    //    // TODO FIND THE TEST CASES FOR THE RADIO COMPONENT
-    //    const config = {
-    //      params: {
-    //        term: '2000, BARANGAROO',
-    //      },
-    //      headers: {
-    //        Accept: 'application/json',
-    //        'X-CSRF-Token': loginPanelProps.authenticityToken,
-    //      },
-    //    };
-    //    expect(axios.get).toHaveBeenCalledWith(
-    //      loginPanelProps.autocompletePostcodeUrl,
-    //      config
-    //    );
-    //  });
+    const config = {
+      params: {
+        term: '2000, BARANGAROO',
+      },
+      headers: {
+        Accept: 'application/json',
+        'X-CSRF-Token': loginPanelProps.authenticityToken,
+      },
+    };
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        loginPanelProps.autocompletePostcodeUrl,
+        config
+      );
+    });
 
     // This was meant to check for the response from the server regarding the quote submission
     //   await waitFor(() => {
@@ -201,23 +195,6 @@ describe('<LoginCalculatorPanel />', () => {
   //
   //    expect(await screen.findByText('Invalid email address')).toBeVisible();
   //  });
-
-  it('submit state works!', async () => {
-    // COVERAGE ONLY TESTS!
-    const {} = render(
-      <LoginCalculatorPanel
-        {...loginPanelProps}
-        REMOVE_BEFORE_PRODUCTION_IS_SUBMITTED={true}
-      />
-    );
-
-    await screen.findByText('Morning');
-    const ITEM = screen.getByText('Morning');
-
-    fireEvent.click(ITEM);
-
-    expect(ITEM).toBeVisible();
-  });
 
   it('pane true case!', async () => {
     // COVERAGE ONLY TESTS!
