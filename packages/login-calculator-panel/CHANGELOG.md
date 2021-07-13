@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-calculator-panel@5.1.6...@rtm-ui/login-calculator-panel@6.0.0) (2021-07-13)
+
+
+### Bug Fixes
+
+* **LoginCalculatorPanel:** fix issue where getting second quite after multiple field changes not wor ([487ebd2](https://github.com/OBSAU/rtm-kit/commit/487ebd2d4a4eb0cb98ea93b91bfc13d33759e6be))
+
+
+### Tests
+
+* **form package:** Resolved unexpected broken tests ([03b632a](https://github.com/OBSAU/rtm-kit/commit/03b632a7de3ae84f7124f4fddd64ae8d02823ba0))
+
+
+### BREAKING CHANGES
+
+* **form package:** This branch and Master are out of sync (Change log)
+
+
+
+
+
 ## [5.1.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-calculator-panel@5.1.5...@rtm-ui/login-calculator-panel@5.1.6) (2021-07-06)
 
 **Note:** Version bump only for package @rtm-ui/login-calculator-panel

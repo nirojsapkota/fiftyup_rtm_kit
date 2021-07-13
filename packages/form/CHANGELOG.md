@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.1.27...@rtm-ui/form@6.0.0) (2021-07-13)
+
+
+### Tests
+
+* **form package:** Adjusted tests for formik version bump (v2) ([86ed214](https://github.com/OBSAU/rtm-kit/commit/86ed2141cec7611c9856736885bc23d1a1f382d9))
+
+
+### BREAKING CHANGES
+
+* **form package:** Formik version bump (v1.x -> v2.x)
+
+
+
+
+
 ## [5.1.27](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@5.1.26...@rtm-ui/form@5.1.27) (2021-07-06)
 
 **Note:** Version bump only for package @rtm-ui/form
