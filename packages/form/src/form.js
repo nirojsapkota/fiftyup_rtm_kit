@@ -233,5 +233,5 @@ export default Form;
 Form.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),
-  FormListener: PropTypes.element,
+  FormListener: PropTypes.function,
 };
