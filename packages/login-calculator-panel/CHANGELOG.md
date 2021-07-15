@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-calculator-panel@6.0.0...@rtm-ui/login-calculator-panel@6.0.1) (2021-07-15)
+
+**Note:** Version bump only for package @rtm-ui/login-calculator-panel
+
+
+
+
+
 # [6.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-calculator-panel@5.1.6...@rtm-ui/login-calculator-panel@6.0.0) (2021-07-13)
 
 
