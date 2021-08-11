@@ -25,23 +25,33 @@ const defaultCategoryKeys = (category = '') => {
       return {
         step_code: `${category.replace(/-/g, '_')}_click_get_started`,
         plan_id: tracking.meta.tracking_id,
+        product: `${category.replace(/-/g, '_')}`
       };
     }
   }
 };
 
+// Returns a key value pairs that we will send to the server
+// step_code: the funnel step code
+// plan_id: can be the id of the plan, campaign, etc. (this is a bit confusing, doule check in rails funnel_report_controller)
+// product: product mapped to the user profile (e.g life = life_insurance_profile in the server)
+// get_started: whether we want to record the last get started event or not
 const categoryKeys = {
   'life-insurance': {
     get_quote: tracking => {
       return {
         step_code: 'life_get_a_quote_page',
         plan_id: tracking.meta.tracking_id,
+        product: 'life',
+        get_started: true,
       };
     },
     call_me_back: tracking => {
       return {
         step_code: 'life_submit_call_me_back_page',
         plan_id: tracking.meta.tracking_id,
+        product: 'life',
+        get_started: false,
       };
     },
   },
@@ -53,18 +63,24 @@ const categoryKeys = {
         return {
           step_code: 'click_get_started',
           plan_id: tracking.meta.tracking_id,
+          product: 'energy',
+          get_started: true,
         };
       }
 
       return {
         step_code: 'click_get_started',
         plan_id: tracking.meta.tracking_id,
+        product: 'energy',
+        get_started: true,
       };
     },
     switch_confirm: tracking => {
       return {
         step_code: 'energy_click_switch_confirm',
         plan_id: tracking.meta.tracking_id,
+        product: 'energy',
+        get_started: false,
       };
     },
   },
@@ -73,6 +89,8 @@ const categoryKeys = {
       return {
         step_code: 'health_click_get_started',
         plan_id: tracking.meta.tracking_id,
+        product: 'health',
+        get_started: true,
       };
     },
   },
@@ -81,6 +99,8 @@ const categoryKeys = {
       return {
         step_code: 'car_click_get_started',
         plan_id: tracking.meta.tracking_id,
+        product: 'car',
+        get_started: true,
       };
     },
   },
@@ -89,6 +109,8 @@ const categoryKeys = {
       return {
         step_code: 'home_and_contents_click_get_started',
         plan_id: tracking.meta.tracking_id,
+        product: 'home',
+        get_started: true,
       };
     },
   }

@@ -87,6 +87,7 @@ describe(`Funnel`, () => {
     const sendingData = categoryKeys['energy']['get_started'](data);
 
     expect(sendingData.step_code).toEqual('click_get_started');
+    expect(sendingData.product).toEqual('energy');
     expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
   });
 
@@ -99,6 +100,7 @@ describe(`Funnel`, () => {
       const sendingData = categoryKeys['life-insurance']['get_quote'](data);
 
       expect(sendingData.step_code).toEqual('life_get_a_quote_page');
+      expect(sendingData.product).toEqual('life');
       expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
     });
 
@@ -110,6 +112,7 @@ describe(`Funnel`, () => {
       const sendingData = categoryKeys['life-insurance']['call_me_back'](data);
 
       expect(sendingData.step_code).toEqual('life_submit_call_me_back_page');
+      expect(sendingData.product).toEqual('life');
       expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
     });
   });
@@ -123,6 +126,7 @@ describe(`Funnel`, () => {
       const sendingData = categoryKeys['health-insurance']['get_started'](data);
 
       expect(sendingData.step_code).toEqual('health_click_get_started');
+      expect(sendingData.product).toEqual('health');
       expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
     });
   });
@@ -136,6 +140,7 @@ describe(`Funnel`, () => {
       const sendingData = categoryKeys['car-insurance']['get_started'](data);
 
       expect(sendingData.step_code).toEqual('car_click_get_started');
+      expect(sendingData.product).toEqual('car');
       expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
     });
   });
