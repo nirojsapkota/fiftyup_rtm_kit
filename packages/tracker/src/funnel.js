@@ -25,7 +25,8 @@ const defaultCategoryKeys = (category = '') => {
       return {
         step_code: `${category.replace(/-/g, '_')}_click_get_started`,
         plan_id: tracking.meta.tracking_id,
-        product: `${category.replace(/-/g, '_')}`
+        product: `${category.replace(/-/g, '_')}`,
+        get_started: true
       };
     }
   }
