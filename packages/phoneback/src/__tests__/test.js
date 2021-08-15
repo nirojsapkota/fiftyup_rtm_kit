@@ -36,8 +36,9 @@ const setup = phonebackProps => {
     const formSubmitButton = rendered
       .getByText(Sample.submitText)
       .closest('button');
-    fireEvent.click(formSubmitButton);
+    fireEvent.click(formSubmitButton)
   }
+
   return rendered;
 };
 
@@ -60,14 +61,13 @@ describe('<Phoneback />', () => {
       });
 
       await wait(async () => {
-        expect(onSubmit).toHaveBeenCalled();
-        expect(onSuccess).toHaveBeenCalled();
-        await wait(() => {
-          expect(
-            getByText('Thank you for requesting a call back.')
-          ).toBeInTheDocument();
-        });
+        expect(
+          getByText('Thank you for requesting a call back.')
+        ).toBeInTheDocument();
       });
+
+      expect(onSubmit).toHaveBeenCalled();
+      expect(onSuccess).toHaveBeenCalled();
     });
   });
 
