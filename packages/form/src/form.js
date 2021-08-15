@@ -41,6 +41,8 @@ const Form = ({
   if (dynamicFields) {
     useEffect(() => {
       setFields(providedFields);
+
+      return () => { dynamicFields = false; }
     }, [providedFields]);
   }
 
@@ -103,6 +105,8 @@ const Form = ({
         }
       });
     }
+
+    return () => { props.passThru = false }
   }, []);
 
   const handleTurnOffAutoComplete = () => {
