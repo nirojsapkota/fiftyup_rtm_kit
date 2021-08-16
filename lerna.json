@@ -1,6 +1,6 @@
 {
   "version": "independent",
-  "lerna": "3.5.0",
+  "lerna": "3.22.0",
   "npmClient": "npm",
   "npmCLientArgs": "--loglevel verbose",
   "command": {

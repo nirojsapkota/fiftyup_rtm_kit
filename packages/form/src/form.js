@@ -41,6 +41,8 @@ const Form = ({
   if (dynamicFields) {
     useEffect(() => {
       setFields(providedFields);
+
+      return () => { dynamicFields = false; }
     }, [providedFields]);
   }
 
@@ -103,7 +105,10 @@ const Form = ({
         }
       });
     }
+
+    return () => { props.passThru = false }
   }, []);
+
   const handleTurnOffAutoComplete = () => {
     if (TURN_OFF_AUTOCOMPLETE) {
       return 'off';
@@ -232,6 +237,5 @@ export default Form;
 
 Form.propTypes = {
   id: PropTypes.string.isRequired,
-  fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),
-  FormListener: PropTypes.function,
+  fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes }))
 };

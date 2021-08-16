@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent, wait, cleanup } from '../../../bootstrap/setup/testSetup';
 import { Box } from '@rtm-ui/layout';
 import { Small } from '@rtm-ui/typography';
 import { Button } from '@rtm-ui/button';
@@ -20,6 +20,9 @@ const form = {
   id: 'test-form',
   fields: [getFieldProps('email'), getFieldProps('postcode')],
 };
+
+afterEach(cleanup);
+afterEach(jest.clearAllMocks);
 
 describe(`<Form />`, () => {
   it(`progressiveReveal doesn't break`, async () => {

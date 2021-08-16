@@ -20,9 +20,9 @@
     "format": "rtm-scripts format --p templates/plopfile.js",
     "lint": "eslint packages",
     "test:scope": "node scripts/scoped-test tracker",
-    "test:ci": "CI=true lerna run test --parallel --stream --concurrency 999 -- -- --coverage --silent --verbose",
-    "test:watch": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --watch",
-    "test:coverage": "lerna run test --parallel --no-sort --stream --concurrency 999 -- -- --colors --coverage",
+    "test:ci": "CI=true lerna run test --parallel --stream --concurrency 1200 -- -- --coverage --silent --verbose",
+    "test:watch": "lerna run test --parallel --no-sort --stream --concurrency 1200 -- -- --colors --watch",
+    "test:coverage": "lerna run test --parallel --no-sort --stream --concurrency 1299 -- -- --colors --coverage",
     "release": "lerna publish --yes",
     "generate": "plop --plopfile ./templates/plopfile.js",
     "watch": "lerna run --parallel build -- -- --watch --colors",
@@ -57,7 +57,7 @@
     "handlebars": "^4.1.2",
     "husky": "4.2.3",
     "is-react": "^1.3.3",
-    "lerna": "^3.18.1",
+    "lerna": "^3.22.0",
     "lerna-changelog": "^0.7.0",
     "lint-staged": "^10.1.2",
     "lodash.get": "^4.4.2",
@@ -123,10 +123,7 @@
     "@rtm-ui/tracker": "file:packages/tracker",
     "@rtm-ui/typography": "file:packages/typography",
     "@rtm-ui/video-dialog": "file:packages/video-dialog",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "core-js": "^3.4.7",
-    "react-testing-library": "^6.1.2"
+    "core-js": "^3.4.7"
   },
   "eslintConfig": {
     "extends": [
