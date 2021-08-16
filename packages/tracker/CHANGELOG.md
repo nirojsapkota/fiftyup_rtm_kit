@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.7.0...@rtm-ui/tracker@5.7.1) (2021-08-16)
+
+**Note:** Version bump only for package @rtm-ui/tracker
+
+
+
+
+
 # [5.7.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.6.2...@rtm-ui/tracker@5.7.0) (2021-05-12)
 
 

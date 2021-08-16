@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@6.0.1...@rtm-ui/form@6.0.2) (2021-08-16)
+
+
+### Performance Improvements
+
+* **Form:** Clean useEffect side-effects ([13188ac](https://github.com/OBSAU/rtm-kit/commit/13188ac2c31ffd34375cd879d424d9ec9d4cbb67))
+
+
+
+
+
 ## [6.0.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@6.0.0...@rtm-ui/form@6.0.1) (2021-07-15)
 
 **Note:** Version bump only for package @rtm-ui/form
