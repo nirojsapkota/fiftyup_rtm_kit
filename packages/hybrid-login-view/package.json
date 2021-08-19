@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@rtm-ui/accordion": "file:../accordion",
+    "@rtm-ui/carousel": "file:../carousel",
     "@rtm-ui/button": "file:../button",
     "@rtm-ui/how-it-works": "file:../how-it-works",
     "@rtm-ui/icon": "file:../icon",
