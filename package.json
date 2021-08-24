@@ -89,6 +89,7 @@
     "@rtm-ui/a": "file:packages/a",
     "@rtm-ui/accordion": "file:packages/accordion",
     "@rtm-ui/animate": "file:packages/animate",
+    "@rtm-ui/carousel": "file:packages/carousel",
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
     "@rtm-ui/csrf": "file:packages/csrf",

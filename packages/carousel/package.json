@@ -1,0 +1,30 @@
+{
+  "name": "@rtm-ui/carousel",
+  "version": "1.0.0",
+  "description": "Description for carousel",
+  "author": "RevTech Media",
+  "license": "UNLICENSED",
+  "rtmRollup": {
+    "namespace": "carousel",
+    "namedExports": [
+      "Carousel"
+    ]
+  },
+  "main": "build/index.js",
+  "_module": "src/index",
+  "scripts": {
+    "build": "rtm-scripts rollup --f umd",
+    "test": "rtm-scripts test --p '../../setupTests.js'"
+  },
+  "dependencies": {
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/icon": "file:../icon",
+    "@rtm-ui/layout": "file:../layout",
+    "@rtm-ui/theme": "file:../theme"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "styled-components": "4.x"
+  }
+}
