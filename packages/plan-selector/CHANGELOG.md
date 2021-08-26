@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.87](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan-selector@1.0.86...@rtm-ui/plan-selector@1.0.87) (2021-08-26)
+
+**Note:** Version bump only for package @rtm-ui/plan-selector
+
+
+
+
+
 ## [1.0.86](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan-selector@1.0.85...@rtm-ui/plan-selector@1.0.86) (2021-08-16)
 
 **Note:** Version bump only for package @rtm-ui/plan-selector
