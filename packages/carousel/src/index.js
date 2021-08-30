@@ -87,7 +87,7 @@ export const Carousel = ({ slides, duration }) => {
     if (duration > 0 && length > 1) {
       let interval = null;
       interval = setInterval(() => {
-        setCurrent(current === length - 1 ? 0 : current + 1);
+        nextSlide();
       }, duration * 1000);
 
       return () => {
