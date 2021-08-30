@@ -64,7 +64,6 @@ const NavItemPane = styled(Pane)`
 `;
 
 export const Carousel = ({ slides, duration }) => {
-  debugger;
   const [current, setCurrent] = useState(0);
   const length = slides.length;
 
