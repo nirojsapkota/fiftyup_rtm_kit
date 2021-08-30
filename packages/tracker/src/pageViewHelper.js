@@ -17,6 +17,7 @@ const categoryKeys = {
   mobile: ['category', 'campaign_type', 'action', 'existing_customer'],
   generic: ['category', 'campaign_type', 'action', 'existing_customer'],
   health: ['category', 'campaign_type', 'action', 'family_type'],
+  default: ['category', 'campaign_type', 'action', 'offer_type'],
   'dashboard-preferences': ['category', 'action', 'products'],
 };
 
