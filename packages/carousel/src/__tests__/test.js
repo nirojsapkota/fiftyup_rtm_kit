@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/named
 import { render, shallow } from '../../../bootstrap/setup/testSetup';
-import Carousel from '../index';
+import { Carousel } from '../index';
 
 describe('<Carousel />', () => {
   const props = {
@@ -27,9 +27,20 @@ describe('<Carousel />', () => {
       },
     ],
   };
-  it('renders expected images', () => {
-    const carousel = shallow(<Carousel {...props} />);
-    expect(carousel.find('img').prop('src')).toEqual(slides[0].image);
-    expect(carousel.find('img').prop('alt')).toEqual(slides[0].alt);
+  it('renders expected images', async () => {
+    console.log('>>>>>>>>>>1', typeof Carousel);
+    const { getByAltText } = await render(
+      <Carousel slides={props.slides} duration={props.duration} />
+    );
+    const image = getByAltText(props.slides[0].altText);
+    expect(image.src).toContain(props.slides[0].image);
+    setTimeout(() => {
+      const image = getByAltText(props.slides[1].altText);
+      expect(image.src).toContain(props.slides[1].image);
+    }, props.duration * 1000 + 100);
+    setTimeout(() => {
+      const image = getByAltText(props.slides[2].altText);
+      expect(image.src).toContain(props.slides[2].image);
+    }, props.duration * 1000 * 2 + 100);
   });
 });
