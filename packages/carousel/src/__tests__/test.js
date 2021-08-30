@@ -27,8 +27,8 @@ describe('<Carousel /> with multiple images', () => {
       },
     ],
   };
-  it('renders expected images and auto cycles with duration', async () => {
-    const { container } = await render(
+  it('renders expected images and auto cycles with duration', () => {
+    const { container } = render(
       <Carousel slides={props.slides} duration={props.duration} />
     );
     const firstImage = container.querySelector('img');
@@ -36,11 +36,15 @@ describe('<Carousel /> with multiple images', () => {
     setTimeout(() => {
       const secondImage = container.querySelector('img');
       expect(secondImage.src).toContain(props.slides[1].image);
-    }, props.duration * 1000 + 100);
+    }, props.duration * 1000);
     setTimeout(() => {
       const thirdImage = container.querySelector('img');
       expect(thirdImage.src).toContain(props.slides[2].image);
-    }, props.duration * 1000 * 2 + 100);
+    }, props.duration * 1000 * 2);
+    setTimeout(() => {
+      const fourthImage = container.querySelector('img');
+      expect(fourthImage.src).toContain(props.slides[0].image);
+    }, props.duration * 1000 * 3);
   });
 
   it('switches to next image, on next arrow click', async () => {
@@ -106,5 +110,18 @@ describe('<Carousel /> with single image', () => {
     expect(prevIcon).toBeNull;
     expect(radioIcon).toBeNull;
     expect(image).not.toBeNull;
+  });
+});
+
+describe('<Carousel /> without any image', () => {
+  const props = {
+    duration: 4,
+    slides: [],
+  };
+  it("doesn't render component, if there is no image", async () => {
+    const { container } = await render(
+      <Carousel slides={props.slides} duration={props.duration} />
+    );
+    expect(container).toBeNull;
   });
 });
