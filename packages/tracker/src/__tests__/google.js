@@ -51,8 +51,8 @@ describe(`Google`, () => {
       category: 'some_product',
       action: 'get_started',
       meta: {
-        campaign_type: 'business'
-      }
+        campaign_type: 'business',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
@@ -126,15 +126,15 @@ describe(`Google`, () => {
       category: 'energy',
       action: 'presignup',
       meta: {
-        campaign_type: 'business'
-      }
+        campaign_type: 'business',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/energy/business/presignup',
     });
-  })
+  });
 
   it(`with energy category and preoffer action`, () => {
     global.ga = jest.fn();
@@ -159,15 +159,15 @@ describe(`Google`, () => {
       category: 'energy',
       action: 'preoffer',
       meta: {
-        campaign_type: 'residential'
-      }
+        campaign_type: 'residential',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/energy/residential/preoffer',
     });
-  })
+  });
 
   it(`with energy category and signin action`, () => {
     global.ga = jest.fn();
@@ -192,15 +192,15 @@ describe(`Google`, () => {
       category: 'energy',
       action: 'signin',
       meta: {
-        campaign_type: 'business'
-      }
+        campaign_type: 'business',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/energy/business/signin',
     });
-  })
+  });
 
   describe(`energy category`, () => {
     it(`get_started action, Electricity and solar`, () => {
@@ -291,16 +291,16 @@ describe(`Google`, () => {
           state: 'NSW',
           plan_type: 'E',
           is_solar: true,
-          campaign_type: 'business'
+          campaign_type: 'business',
         },
       });
 
       expect(spyGa).toHaveBeenCalledWith('send', {
         hitType: 'pageview',
-        page: 'virtual/energy/business/get_started/internal/NSW/Electricity/solar',
+        page:
+          'virtual/energy/business/get_started/internal/NSW/Electricity/solar',
       });
-    })
-
+    });
   });
 
   it(`with energy category, tile-click action and category energy, state VIC, plan_type EG  without optional fields campaign_type, solar_nonsolar, internal_external`, () => {
@@ -312,15 +312,15 @@ describe(`Google`, () => {
       action: 'tile-click',
       meta: {
         state: 'VIC',
-        plan_type: 'EG'
-      }
+        plan_type: 'EG',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/energy/tile-click/VIC/DualFuel',
     });
-  })
+  });
 
   it(`with energy category, tile-click action and category energy, state VIC, plan_type EG,  solar true,  without optional fields campaign_type, internal_external`, () => {
     global.ga = jest.fn();
@@ -332,15 +332,15 @@ describe(`Google`, () => {
       meta: {
         state: 'NSW',
         plan_type: 'EG',
-        is_solar: true
-      }
+        is_solar: true,
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/energy/tile-click/NSW/DualFuel/solar',
     });
-  })
+  });
 
   it(`with home category, tile-click action and category home month-selected june`, () => {
     global.ga = jest.fn();
@@ -350,15 +350,15 @@ describe(`Google`, () => {
       category: 'home',
       action: 'renewal-month-tile-click',
       meta: {
-        renewal_month: 'june'
-      }
+        renewal_month: 'june',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/home/renewal-month-tile-click/june',
     });
-  })
+  });
 
   it(`with car category, tile-click action and category car month-selected dont-have`, () => {
     global.ga = jest.fn();
@@ -368,15 +368,15 @@ describe(`Google`, () => {
       category: 'car',
       action: 'renewal-month-tile-click',
       meta: {
-        renewal_month: 'dont-have'
-      }
+        renewal_month: 'dont-have',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/car/renewal-month-tile-click/dont-have',
     });
-  })
+  });
 
   it(`with health category, tile-click action and category health familyType-selected couple`, () => {
     global.ga = jest.fn();
@@ -386,15 +386,34 @@ describe(`Google`, () => {
       category: 'health',
       action: 'family-type-tile-click',
       meta: {
-        family_type: 'couple'
-      }
+        family_type: 'couple',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/health/family-type-tile-click/couple',
     });
-  })
+  });
+
+  it(`with home-loans(default) category, tile-click action and category default offertype-selected investment`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'default',
+      action: 'home-loans-offer-type-tile-click',
+      meta: {
+        offer_type: 'investment',
+        defaultProduct: 'home-loans',
+      },
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/home-loans/home-loans-offer-type-tile-click/investment',
+    });
+  });
 
   it(`with dashboard-preferences category, should track all products`, () => {
     global.ga = jest.fn();
@@ -404,15 +423,15 @@ describe(`Google`, () => {
       category: 'dashboard-preferences',
       action: 'cta',
       meta: {
-        products: 'car+electricity'
-      }
+        products: 'car+electricity',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/dashboard-preferences/cta/car+electricity',
     });
-  })
+  });
 
   it(`with energy category and existing customer question`, () => {
     global.ga = jest.fn();
@@ -424,13 +443,13 @@ describe(`Google`, () => {
       meta: {
         state: 'NSW',
         existing_customer: 'isnewcustomer',
-        plan_type: 'EG'
-      }
+        plan_type: 'EG',
+      },
     });
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/energy/tile-click/NSW/DualFuel/isnewcustomer',
     });
-  })
+  });
 });
