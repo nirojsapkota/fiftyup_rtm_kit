@@ -1,9 +1,14 @@
-import { getKeys, getValues, getOptionalKeys } from './pageViewHelper';
+import {
+  getKeys,
+  getValues,
+  reformatDefault,
+  getOptionalKeys,
+} from './pageViewHelper';
 
 class Google {
   static sendData(tracking) {
     const keys = getKeys(tracking.category);
-    const values = getValues(keys, tracking);
+    let values = getValues(keys, tracking);
 
     const requiredKeys = keys.filter(
       e => !getOptionalKeys(tracking.category).includes(e)
@@ -15,9 +20,12 @@ class Google {
     ) {
       console.log('Missing keys for google analytics pageview');
     } else {
+      if (tracking.category === 'default') {
+        values = reformatDefault(keys, values, tracking.meta);
+      }
       // Remove empty or null values in the eventPath
       const eventPath = values.filter(e => e && e !== '').join('/');
-      console.log('Google EventPath: ', eventPath);
+      console.log('GOOGLE EventPath: ', eventPath);
       if (typeof window.ga === 'function') {
         window.ga('send', {
           hitType: 'pageview',

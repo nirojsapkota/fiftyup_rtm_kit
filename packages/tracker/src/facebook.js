@@ -1,5 +1,10 @@
 import { sendToConversionAPI } from './fbConversions';
-import { getKeys, getValues, getOptionalKeys } from './pageViewHelper';
+import {
+  getKeys,
+  getValues,
+  reformatDefault,
+  getOptionalKeys,
+} from './pageViewHelper';
 /* eslint-disable no-console */
 // import Cookies from 'universal-cookie';
 
@@ -72,20 +77,25 @@ class Facebook {
     );
 
     const keys = getKeys(tracking.category);
-    const values = getValues(keys, tracking);
+    let values = getValues(keys, tracking);
     const requiredKeys = keys.filter(
       e => !getOptionalKeys(tracking.category).includes(e)
     );
     const requiredValues = getValues(requiredKeys, tracking, true);
+
     if (
       !requiredValues.every(value => value && value !== '') &&
       process.env.NODE_ENV !== 'test'
     ) {
       console.log('Missing keys for facebook conversion event');
     } else {
+      if (tracking.category === 'default') {
+        values = reformatDefault(keys, values, tracking.meta);
+        tracking.category = tracking.meta.defaultProduct || 'default';
+      }
       // Remove empty or null values in the eventPath
       const eventPath = values.filter(e => e && e !== '').join('/');
-      console.log('eventPath fb conversion: ', eventPath);
+      console.log('FACEBOOK EventPath: ', eventPath);
       await sendToConversionAPI(tracking, `virtual/${eventPath}`);
     }
   }

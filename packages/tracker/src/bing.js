@@ -1,24 +1,40 @@
 import LogRocket from 'logrocket';
-import { getKeys, getValues, getOptionalKeys } from './pageViewHelper';
+import {
+  getKeys,
+  getValues,
+  reformatDefault,
+  getOptionalKeys,
+} from './pageViewHelper';
 
 class Bing {
   static sendData(tracking) {
     const keys = getKeys(tracking.category);
-    const values = getValues(keys, tracking);
+    let values = getValues(keys, tracking);
 
-    const requiredKeys = keys.filter((e) => !getOptionalKeys(tracking.category).includes(e))
-    const requiredValues = getValues(requiredKeys, tracking, true)
+    const requiredKeys = keys.filter(
+      e => !getOptionalKeys(tracking.category).includes(e)
+    );
+    const requiredValues = getValues(requiredKeys, tracking, true);
 
     if (!requiredValues.every(value => value && value !== '')) {
-      LogRocket.captureException('Missing keys for Bing Analytics UET page_view', {
-        tags: {
-          service: 'uet',
-        },
-      });
+      LogRocket.captureException(
+        'Missing keys for Bing Analytics UET page_view',
+        {
+          tags: {
+            service: 'uet',
+          },
+        }
+      );
     } else {
-      const eventPath = values.filter((e) => e && e !== '' ).join('/');
+      if (tracking.category === 'default') {
+        values = reformatDefault(keys, values, tracking.meta);
+      }
+      const eventPath = values.filter(e => e && e !== '').join('/');
+      console.log('BING EventPath: ', eventPath);
       if (window.uetq) {
-        window.uetq.push('event', 'page_view', { 'page_path': `/virtual/${eventPath}` });
+        window.uetq.push('event', 'page_view', {
+          page_path: `/virtual/${eventPath}`,
+        });
       }
     }
   }

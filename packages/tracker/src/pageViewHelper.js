@@ -95,6 +95,18 @@ export const getKeys = category => {
   return categoryKeys[category] || categoryKeys.generic;
 };
 
+export const reformatDefault = (keys, values, meta) => {
+  const categoryIndex = keys.indexOf('category');
+  if (categoryIndex === -1) {
+    return values;
+  } else if (!meta.defaultProduct) {
+    return values;
+  } else {
+    values[categoryIndex] = meta.defaultProduct;
+    return values;
+  }
+};
+
 export const getOptionalKeys = category => {
   return optionalKeys[category] || optionalKeys.generic;
 };
