@@ -396,7 +396,7 @@ describe(`Google`, () => {
     });
   });
 
-  it(`with home-loans(default) category, tile-click action and category default offertype-selected investment`, () => {
+  it(`with home-loans(default) category, tile-click action and category default offer-type-selected investment`, () => {
     global.ga = jest.fn();
     const spyGa = jest.spyOn(global, 'ga');
 
@@ -412,6 +412,24 @@ describe(`Google`, () => {
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
       page: 'virtual/home-loans/home-loans-offer-type-tile-click/investment',
+    });
+  });
+
+  it(`with home-loans(default) category, tile-click action and category default offer-type-selected investment no default product provided`, () => {
+    global.ga = jest.fn();
+    const spyGa = jest.spyOn(global, 'ga');
+
+    Google.sendData({
+      category: 'default',
+      action: 'home-loans-offer-type-tile-click',
+      meta: {
+        offer_type: 'investment',
+      },
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('send', {
+      hitType: 'pageview',
+      page: 'virtual/default/home-loans-offer-type-tile-click/investment',
     });
   });
 

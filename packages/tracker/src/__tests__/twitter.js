@@ -360,6 +360,41 @@ describe(`Twitter`, () => {
     });
   });
 
+  it(`with home-loans(default) category, tile-click action and category default offer-type-selected investment`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'default',
+      action: 'home-loans-offer-type-tile-click',
+      meta: {
+        offer_type: 'investment',
+        defaultProduct: 'home-loans',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
+      page: 'virtual/home-loans/home-loans-offer-type-tile-click/investment',
+    });
+  });
+
+  it(`with home-loans(default) category, tile-click action and category default offer-type-selected investment no default product provided`, () => {
+    global.twq = jest.fn();
+    const spyTwq = jest.spyOn(global, 'twq');
+
+    Twitter.sendData({
+      category: 'default',
+      action: 'home-loans-offer-type-tile-click',
+      meta: {
+        offer_type: 'investment',
+      },
+    });
+
+    expect(spyTwq).toHaveBeenCalledWith('track', 'PageView', {
+      page: 'virtual/default/home-loans-offer-type-tile-click/investment',
+    });
+  });
+
   it(`with dashboard-preferences category, should track all products`, () => {
     global.twq = jest.fn();
     const spyTwq = jest.spyOn(global, 'twq');

@@ -71,13 +71,19 @@ class Facebook {
   static async sendData(tracking) {
     const categoryKeys = chooseCategoryKeys(tracking.category);
 
+    const keys = getKeys(tracking.category);
+    let values = getValues(keys, tracking);
+
+    if (tracking.category === 'default') {
+      values = reformatDefault(keys, values, tracking.meta);
+      tracking.category = tracking.meta.defaultProduct || 'default';
+    }
+
     trackCustomEvent(
       actionMap[tracking.action] || tracking.action,
       filterObject(categoryKeys(tracking))
     );
 
-    const keys = getKeys(tracking.category);
-    let values = getValues(keys, tracking);
     const requiredKeys = keys.filter(
       e => !getOptionalKeys(tracking.category).includes(e)
     );
@@ -89,10 +95,6 @@ class Facebook {
     ) {
       console.log('Missing keys for facebook conversion event');
     } else {
-      if (tracking.category === 'default') {
-        values = reformatDefault(keys, values, tracking.meta);
-        tracking.category = tracking.meta.defaultProduct || 'default';
-      }
       // Remove empty or null values in the eventPath
       const eventPath = values.filter(e => e && e !== '').join('/');
       console.log('FACEBOOK EventPath: ', eventPath);
