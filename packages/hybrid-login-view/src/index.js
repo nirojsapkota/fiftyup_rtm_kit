@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { Accordion } from '@rtm-ui/accordion';
+import { Carousel } from '@rtm-ui/carousel';
 import { Img, ResponsiveImage } from '@rtm-ui/img';
 import { Box, Block, scrollToElement, useElementVisible } from '@rtm-ui/layout';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
@@ -256,6 +257,7 @@ const MainGraphic = ({
 const HybridLoginView = ({
   rightSideMarkDownContent,
   accordion,
+  carousel,
   workflow,
   workflowOffer,
   calculatorProps,
@@ -320,6 +322,15 @@ const HybridLoginView = ({
                         />
                       </WorkFlowContainer>
                     </Variant>
+
+                    {carousel && carousel.slides && carousel.slides.length > 0 && (
+                      <Column variant="b" pb="20px">
+                        <Carousel
+                          slides={carousel.slides}
+                          duration={carousel.duration}
+                        />
+                      </Column>
+                    )}
 
                     {accordion.length > 0 && (
                       <Column variant="b" pb="20px">
@@ -394,6 +405,10 @@ HybridLoginView.propTypes = {
     body: t.string,
   }),
   accordion: t.arrayOf(t.shape({})),
+  carousel: t.shape({
+    slides: t.arrayOf(t.shape({})),
+    duration: t.number,
+  }),
   workflow: t.shape({}),
   workflowOffer: t.shape({}),
   buttons: t.array,
@@ -415,6 +430,7 @@ HybridLoginView.propTypes = {
 
 HybridLoginView.defaultProps = {
   accordion: [],
+  carousel: {},
   mainContent: '',
   workflow: { header: '', items: [] },
   workflowOffer: { header: '', items: [] },
