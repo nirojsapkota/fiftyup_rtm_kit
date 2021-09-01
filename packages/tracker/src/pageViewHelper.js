@@ -99,7 +99,7 @@ export const reformatDefault = (keys, values, meta) => {
   const categoryIndex = keys.indexOf('category');
   if (categoryIndex === -1) {
     return values;
-  } else if (!meta.defaultProduct) {
+  } else if (!meta || !meta.defaultProduct) {
     return values;
   } else {
     values[categoryIndex] = meta.defaultProduct;
