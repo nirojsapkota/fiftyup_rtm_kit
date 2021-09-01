@@ -42,6 +42,53 @@ describe(`Facebook`, () => {
     });
   });
 
+  describe(`when default multi offer`, () => {
+    it(`with home-loans(default) category, tile-click action and category default offer-type-selected investment`, () => {
+      global.fbq = jest.fn();
+      const spyFbq = jest.spyOn(global, 'fbq');
+
+      Facebook.sendData({
+        category: 'default',
+        action: 'home-loans-offer-type-tile-click',
+        meta: {
+          offer_type: 'investment',
+          defaultProduct: 'home-loans',
+        },
+      });
+
+      expect(spyFbq).toHaveBeenCalledWith(
+        'trackCustom',
+        'home-loans-offer-type-tile-click',
+        {
+          action: 'home-loans-offer-type-tile-click',
+          product: 'home-loans',
+        }
+      );
+    });
+
+    it(`with home-loans(default) category, tile-click action and category default offer-type-selected investment no default product provided`, () => {
+      global.fbq = jest.fn();
+      const spyFbq = jest.spyOn(global, 'fbq');
+
+      Facebook.sendData({
+        category: 'default',
+        action: 'home-loans-offer-type-tile-click',
+        meta: {
+          offer_type: 'investment',
+        },
+      });
+
+      expect(spyFbq).toHaveBeenCalledWith(
+        'trackCustom',
+        'home-loans-offer-type-tile-click',
+        {
+          action: 'home-loans-offer-type-tile-click',
+          product: 'default',
+        }
+      );
+    });
+  });
+
   describe(`when there are no special mappings`, () => {
     it(`the name of the action is used as the event name`, () => {
       global.fbq = jest.fn();
