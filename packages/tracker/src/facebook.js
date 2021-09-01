@@ -76,7 +76,10 @@ class Facebook {
 
     if (tracking.category === 'default') {
       values = reformatDefault(keys, values, tracking.meta);
-      tracking.category = tracking.meta.defaultProduct || 'default';
+      tracking.category =
+        tracking.meta && tracking.meta.defaultProduct
+          ? defaultProduct
+          : 'default';
     }
 
     trackCustomEvent(
