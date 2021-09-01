@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.8.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.7.2...@rtm-ui/tracker@5.8.0) (2021-09-01)
+
+
+### Features
+
+* **Tracking:** added support for default multi offer  tracking ([7781330](https://github.com/OBSAU/rtm-kit/commit/7781330707bd9a5b8699a1b72134f7832ea6c8d5))
+
+
+
+
+
 ## [5.7.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.7.1...@rtm-ui/tracker@5.7.2) (2021-08-30)
 
 **Note:** Version bump only for package @rtm-ui/tracker

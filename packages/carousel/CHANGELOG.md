@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.1.0 (2021-09-01)
+
+
+### Features
+
+* **Carousel:** advanced features ([6aa9d5f](https://github.com/OBSAU/rtm-kit/commit/6aa9d5fe10c28c48a0be3214c5977dcee615e18d))

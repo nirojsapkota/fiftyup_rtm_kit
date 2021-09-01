@@ -1,6 +1,6 @@
 {
   "name": "@rtm-ui/hybrid-login-view",
-  "version": "5.2.11",
+  "version": "5.3.0",
   "description": "hybrid login view",
   "author": "RevTech Media",
   "license": "UNLICENSED",
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@rtm-ui/accordion": "file:../accordion",
-    "@rtm-ui/carousel": "file:../carousel",
     "@rtm-ui/button": "file:../button",
+    "@rtm-ui/carousel": "file:../carousel",
     "@rtm-ui/how-it-works": "file:../how-it-works",
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/img": "file:../img",
