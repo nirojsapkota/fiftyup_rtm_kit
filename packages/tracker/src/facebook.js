@@ -78,7 +78,7 @@ class Facebook {
       values = reformatDefault(keys, values, tracking.meta);
       tracking.category =
         tracking.meta && tracking.meta.defaultProduct
-          ? defaultProduct
+          ? tracking.meta.defaultProduct
           : 'default';
     }
 
