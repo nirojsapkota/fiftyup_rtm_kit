@@ -15,6 +15,7 @@ const categoryKeys = {
   home: ['category', 'campaign_type', 'action', 'renewal_month'],
   broadband: ['category', 'campaign_type', 'action', 'existing_customer'],
   mobile: ['category', 'campaign_type', 'action', 'existing_customer'],
+  genericEnergy: ['category', 'campaign_type', 'action', 'existing_customer'],
   generic: [
     'category',
     'campaign_type',
@@ -37,6 +38,7 @@ const optionalKeys = {
     'fuel_type',
   ],
   generic: ['campaign_type', 'existing_customer', 'offer_type'],
+  genericEnergy: ['campaign_type', 'existing_customer'],
   home: ['campaign_type', 'renewal_month'],
   car: ['campaign_type', 'renewal_month'],
   broadband: ['campaign_type', 'existing_customer'],
@@ -90,7 +92,11 @@ export const getValues = (keys, tracking, requiredOnly = false) => {
       tracking.action === 'signin' ||
       tracking.page === 'landing_page')
   ) {
-    return getTrackingValues(categoryKeys.generic, tracking, requiredOnly);
+    return getTrackingValues(
+      categoryKeys.genericEnergy,
+      tracking,
+      requiredOnly
+    );
   }
 
   const getValuesFunc = getValuesMap[tracking.category] || getValuesMap.generic;
