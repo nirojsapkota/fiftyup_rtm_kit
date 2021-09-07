@@ -257,7 +257,7 @@ const MainGraphic = ({
 const HybridLoginView = ({
   rightSideMarkDownContent,
   accordion,
-  carousel,
+  primaryCarousel,
   workflow,
   workflowOffer,
   calculatorProps,
@@ -323,14 +323,16 @@ const HybridLoginView = ({
                       </WorkFlowContainer>
                     </Variant>
 
-                    {carousel && carousel.slides && carousel.slides.length > 0 && (
-                      <Column variant="b" pb="20px">
-                        <Carousel
-                          slides={carousel.slides}
-                          duration={carousel.duration}
-                        />
-                      </Column>
-                    )}
+                    {primaryCarousel &&
+                      primaryCarousel.slides &&
+                      primaryCarousel.slides.length > 0 && (
+                        <Column variant="b" pb="20px">
+                          <Carousel
+                            slides={primaryCarousel.slides}
+                            duration={primaryCarousel.duration}
+                          />
+                        </Column>
+                      )}
 
                     {accordion.length > 0 && (
                       <Column variant="b" pb="20px">
@@ -405,7 +407,7 @@ HybridLoginView.propTypes = {
     body: t.string,
   }),
   accordion: t.arrayOf(t.shape({})),
-  carousel: t.shape({
+  primaryCarousel: t.shape({
     slides: t.arrayOf(t.shape({})),
     duration: t.number,
   }),
@@ -430,7 +432,7 @@ HybridLoginView.propTypes = {
 
 HybridLoginView.defaultProps = {
   accordion: [],
-  carousel: {},
+  primaryCarousel: {},
   mainContent: '',
   workflow: { header: '', items: [] },
   workflowOffer: { header: '', items: [] },
