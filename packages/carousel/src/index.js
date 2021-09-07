@@ -103,14 +103,14 @@ export const Carousel = ({ slides, duration }) => {
           <PrevPane onClick={prevSlide}>
             <PrevIcon
               glyph="view-back"
-              fill={slides[current].controlColor}
+              fill={slides[current].controlsColor}
               size={45}
             />
           </PrevPane>
           <NextPane onClick={nextSlide}>
             <Icon
               glyph="view-forward"
-              fill={slides[current].controlColor}
+              fill={slides[current].controlsColor}
               size={45}
             />
           </NextPane>
@@ -133,7 +133,7 @@ export const Carousel = ({ slides, duration }) => {
                 <NavItemPane>
                   <Icon
                     glyph="radio-active"
-                    fill={slide.controlColor}
+                    fill={slide.controlsColor}
                     size={15}
                   />
                 </NavItemPane>
@@ -141,7 +141,7 @@ export const Carousel = ({ slides, duration }) => {
             } else {
               return (
                 <NavItemPane onClick={() => goToSlide(index)}>
-                  <Icon glyph="radio" fill={slide.controlColor} size={15} />
+                  <Icon glyph="radio" fill={slide.controlsColor} size={15} />
                 </NavItemPane>
               );
             }
