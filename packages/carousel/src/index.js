@@ -13,44 +13,44 @@ const SliderBox = styled(Box)`
 `;
 
 const ImageWrapper = styled('div')`
-  opacity: 0;
+  opacity: 0.5;
   transition-duration: 1s ease;
   ${props =>
     props.isActive &&
     css`
       opacity: 1;
-      transition-duration: 1s;
+      transition-duration: 2s;
       transform: scale(1.08);
     `}
   ${props => !props.isActive && css``}
 `;
 
 const Image = styled('img')`
-  // flex-shrink: 0;
-  // min-width: 100%;
   width: 100%;
-  height: auto;
+  min-height: 350px;
   margin: auto;
 `;
 
 const PrevPane = styled(Pane)`
+  height: 100%;
   position: absolute;
   left: 0.1px;
   z-index: 10;
+  display: flex;
+  align-items: center;
 `;
 
-const PrevIcon = styled(Icon)`
-  height: 100%;
+const PrevIconWrapper = styled(Icon)`
+  top: 50%;
 `;
 
 const NextPane = styled(Pane)`
+  height: 100%;
   position: absolute;
   right: 0.1px;
   z-index: 10;
-`;
-
-const NextIcon = styled(Icon)`
-  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const NavBox = styled(Box)`
@@ -101,18 +101,22 @@ export const Carousel = ({ slides, duration }) => {
       {length > 1 && (
         <>
           <PrevPane onClick={prevSlide}>
-            <PrevIcon
-              glyph="view-back"
-              fill={slides[current].controlsColor}
-              size={45}
-            />
+            <div>
+              <Icon
+                glyph="view-back"
+                fill={slides[current].controlsColor}
+                size={45}
+              />
+            </div>
           </PrevPane>
           <NextPane onClick={nextSlide}>
-            <Icon
-              glyph="view-forward"
-              fill={slides[current].controlsColor}
-              size={45}
-            />
+            <div>
+              <Icon
+                glyph="view-forward"
+                fill={slides[current].controlsColor}
+                size={45}
+              />
+            </div>
           </NextPane>
         </>
       )}
@@ -133,7 +137,7 @@ export const Carousel = ({ slides, duration }) => {
                 <NavItemPane>
                   <Icon
                     glyph="radio-active"
-                    fill={slide.controlsColor}
+                    fill={slides[current].controlsColor}
                     size={15}
                   />
                 </NavItemPane>
@@ -141,7 +145,11 @@ export const Carousel = ({ slides, duration }) => {
             } else {
               return (
                 <NavItemPane onClick={() => goToSlide(index)}>
-                  <Icon glyph="radio" fill={slide.controlsColor} size={15} />
+                  <Icon
+                    glyph="radio"
+                    fill={slides[current].controlsColor}
+                    size={15}
+                  />
                 </NavItemPane>
               );
             }
