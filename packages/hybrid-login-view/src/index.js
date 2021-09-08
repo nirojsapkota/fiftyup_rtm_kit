@@ -3,8 +3,16 @@
 import { Accordion } from '@rtm-ui/accordion';
 import { Carousel } from '@rtm-ui/carousel';
 import { Img, ResponsiveImage } from '@rtm-ui/img';
-import { Box, Block, scrollToElement, useElementVisible } from '@rtm-ui/layout';
+import {
+  Box,
+  Block,
+  scrollToElement,
+  useElementVisible,
+  Card,
+} from '@rtm-ui/layout';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
+import { Modal } from '@rtm-ui/dialog';
+import { Icon } from '@rtm-ui/icon';
 import { track } from '@rtm-ui/tracker';
 import { Header, Markdown, Paragraph } from '@rtm-ui/typography';
 import { VideoDialog } from '@rtm-ui/video-dialog';
@@ -17,6 +25,8 @@ import t from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BasicHeader from './header';
+
+import useMouseLeave from './useMouseLeaveHooks';
 
 const HybridLoginReferenceContext = React.createContext();
 
@@ -36,6 +46,32 @@ const ContainerWrapper = styled(Box)`
   );
   border-top: 1px solid #e0e0e0;
   padding-bottom: 4px;
+`;
+
+const StyledCard = styled(Card)`
+  max-width: 400px;
+  padding: 15px;
+  @media (min-width: ${props => props.theme.grid.sm}em) {
+    max-width: 550px;
+    padding: 25px;
+    justify-content: space-between;
+  }
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+`;
+
+const CloseDialogWrapper = styled(Box)`
+  display: flex;
+  background: 'white';
+  justify-content: 'flex-end';
+  flex-flow: column;
+`;
+
+const CloseButton = styled(Button)`
+  outline: none;
 `;
 
 const ContentWrapper = styled(Box)`
@@ -267,7 +303,21 @@ const HybridLoginView = ({
     '[scroll-target="login-panel"]'
   );
 
+  const [mouseLeft, ref] = useMouseLeave();
+
   const [quote, setQuote] = useState(null);
+  const [showExitIntent, setShowExitIntent] = useState(true);
+
+  const closeExitIntent = () => {
+    setShowExitIntent(false);
+  };
+
+  useEffect(() => {
+    if (mouseLeft) {
+      debugger;
+      setShowExitIntent(false);
+    }
+  }, [mouseLeft]);
 
   /**
    * Helper function that takes the submit event and passed the data to the
@@ -397,6 +447,24 @@ const HybridLoginView = ({
             )}
         </ContentSection>
       </BodyWrapper>
+      {showExitIntent && (
+        <Modal onClose={() => 0} data-testid="test-exit-intent">
+          <StyledCard>
+            <CloseDialogWrapper>
+              <CloseButton
+                data-testid="close-modal"
+                asWrapper
+                onClick={closeExitIntent}
+              >
+                <Header weight="normal" color="text" tag="h6" align="right">
+                  <Icon center glyph="view-close" />
+                </Header>
+              </CloseButton>
+            </CloseDialogWrapper>
+            <LoginPanel borderless={true} {...props} />
+          </StyledCard>
+        </Modal>
+      )}
     </React.Fragment>
   );
 };
