@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Icon } from '@rtm-ui/icon';
 import styled, { css } from 'styled-components';
 import { Box, Pane } from '@rtm-ui/layout';
@@ -25,9 +25,9 @@ const ImageWrapper = styled('div')`
   ${props => !props.isActive && css``}
 `;
 
-const Image = styled('img')`
+const ImageElement = styled('img')`
   width: 100%;
-  min-height: 350px;
+  min-height: ${props => `${props.imgHeight}px`};
   margin: auto;
 `;
 
@@ -38,10 +38,6 @@ const PrevPane = styled(Pane)`
   z-index: 10;
   display: flex;
   align-items: center;
-`;
-
-const PrevIconWrapper = styled(Icon)`
-  top: 50%;
 `;
 
 const NextPane = styled(Pane)`
@@ -65,7 +61,10 @@ const NavItemPane = styled(Pane)`
 
 export const Carousel = ({ slides, duration }) => {
   const [current, setCurrent] = useState(0);
+  const [imgHeight, setImgHeight] = useState(0);
   const length = slides.length;
+
+  const ref = useRef(null);
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -84,6 +83,14 @@ export const Carousel = ({ slides, duration }) => {
   }
 
   useEffect(() => {
+    const img = new Image();
+    img.onload = function() {
+      const maxWidth = ref.current ? ref.current.offsetWidth : 0;
+      const maxHeight = (maxWidth / this.width) * this.height;
+      setImgHeight(maxHeight);
+    };
+    img.src = slides[current].image;
+
     if (duration > 0 && length > 1) {
       let interval = null;
       interval = setInterval(() => {
@@ -124,7 +131,12 @@ export const Carousel = ({ slides, duration }) => {
         return (
           <ImageWrapper key={index} isActive={index === current}>
             {index === current && (
-              <Image src={slide.image} alt={slide.altText} />
+              <ImageElement
+                ref={ref}
+                src={slide.image}
+                alt={slide.altText}
+                imgHeight={imgHeight}
+              />
             )}
           </ImageWrapper>
         );
