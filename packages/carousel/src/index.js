@@ -86,8 +86,7 @@ export const Carousel = ({ slides, duration }) => {
     const img = new Image();
     img.onload = function() {
       const maxWidth = ref.current ? ref.current.offsetWidth : 0;
-      const maxHeight = (maxWidth / this.width) * this.height;
-      setImgHeight(maxHeight);
+      setImgHeight((maxWidth / this.width) * this.height);
     };
     img.src = slides[current].image;
 
