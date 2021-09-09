@@ -15,6 +15,7 @@ const SliderBox = styled(Box)`
 const ImageWrapper = styled('div')`
   opacity: 0.5;
   transition-duration: 1s ease;
+  min-height: 350px;
   ${props =>
     props.isActive &&
     css`
