@@ -15,7 +15,6 @@ const SliderBox = styled(Box)`
 const ImageWrapper = styled('div')`
   opacity: 0.5;
   transition-duration: 1s ease;
-  min-height: 350px;
   ${props =>
     props.isActive &&
     css`
@@ -23,12 +22,12 @@ const ImageWrapper = styled('div')`
       transition-duration: 2s;
       transform: scale(1.08);
     `}
-  ${props => !props.isActive && css``}
+  ${props => !props.isActive && css``};
+  min-height: ${props => `${props.imgHeight}px`};
 `;
 
 const ImageElement = styled('img')`
   width: 100%;
-  min-height: ${props => `${props.imgHeight}px`};
   margin: auto;
 `;
 
@@ -130,14 +129,13 @@ export const Carousel = ({ slides, duration }) => {
       )}
       {slides.map((slide, index) => {
         return (
-          <ImageWrapper key={index} isActive={index === current}>
+          <ImageWrapper
+            key={index}
+            isActive={index === current}
+            imgHeight={imgHeight}
+          >
             {index === current && (
-              <ImageElement
-                ref={ref}
-                src={slide.image}
-                alt={slide.altText}
-                imgHeight={imgHeight}
-              />
+              <ImageElement ref={ref} src={slide.image} alt={slide.altText} />
             )}
           </ImageWrapper>
         );
