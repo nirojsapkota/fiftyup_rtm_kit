@@ -85,6 +85,7 @@ export const Carousel = ({ slides, duration }) => {
 
   useEffect(() => {
     const img = new Image();
+    /* istanbul ignore next */
     img.onload = function() {
       const maxWidth = ref.current ? ref.current.offsetWidth : 0;
       setImgHeight((maxWidth / this.width) * this.height);
