@@ -25,19 +25,21 @@ describe('<Plan />', () => {
   describe('actions', () => {
     describe('with the get_started option', () => {
       it('renders the get_started cta', async () => {
-        const { getByText } = render(
+        const { getAllByText } = render(
           <Plan {...planProps} actions={[actions.get_started]} />
         );
-        expect(getByText(actions.get_started.cta)).toBeInTheDocument();
+        expect(getAllByText(actions.get_started.cta)[0]).toBeInTheDocument();
       });
     });
     describe('with the callback option', () => {
       it('renders the phoneback cta', async () => {
-        const { getByText } = render(
+        const { getAllByText } = render(
           <Plan {...planProps} actions={[actions.request_call_back]} />
         );
 
-        expect(getByText(actions.request_call_back.cta)).toBeInTheDocument();
+        expect(
+          getAllByText(actions.request_call_back.cta)[0]
+        ).toBeInTheDocument();
       });
     });
   });

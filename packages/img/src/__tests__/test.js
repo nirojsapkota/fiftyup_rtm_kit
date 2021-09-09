@@ -1,7 +1,9 @@
 import React from 'react';
-import { render } from '../../../bootstrap/setup/testSetup';
+import { render, cleanup } from '../../../bootstrap/setup/testSetup';
 import { Img, ResponsiveImage } from '../index';
 import sampleResp from '../__fixtures__/sampleImgResp';
+
+afterEach(cleanup);
 
 const setup = () => {
   const { container } = render(

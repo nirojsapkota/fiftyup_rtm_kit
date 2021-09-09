@@ -129,14 +129,18 @@ describe('<Markdown />', () => {
     const { container } = render(
       <Markdown raw='Hello [world!|get_started|{"target": "_blank"}](https://example.com)' />
     );
-    expect(container).toContainElement(document.querySelector('a[target="_blank"]'));
-  })
+    expect(container).toContainElement(
+      document.querySelector('a[target="_blank"]')
+    );
+  });
   it('does not break when we pass a single quoted additional attribute', () => {
     const { container } = render(
       <Markdown raw="Hello [world!|get_started|{'target': '_blank'}](https://example.com)" />
     );
-    expect(container).not.toContainElement(document.querySelector('a[target="_blank"]'));
-  })
+    expect(container).not.toContainElement(
+      document.querySelector('a[target="_blank"]')
+    );
+  });
   it('interpolates values when given a reference object', () => {
     const { getByText } = render(
       <Markdown
@@ -192,28 +196,36 @@ describe('<Markdown />', () => {
     const { container } = render(<Markdown raw="## Hello" />);
     expect(container).toContainElement(document.querySelector('h2'));
   });
-  it('renders left aligned text properly', async() => {
+  it('renders left aligned text properly', async () => {
     const { getByText } = await render(<Markdown raw="<- Hello <-" />);
-    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute('style','text-align: left;')
-  })
-  it('renders right aligned text properly', async() => {
+    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute(
+      'style',
+      'text-align: left;'
+    );
+  });
+  it('renders right aligned text properly', async () => {
     const { getByText } = await render(<Markdown raw="-> Hello ->" />);
-    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute('style','text-align: right;')
-  })
-  it('renders center aligned text properly', async() => {
+    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute(
+      'style',
+      'text-align: right;'
+    );
+  });
+  it('renders center aligned text properly', async () => {
     const { getByText } = await render(<Markdown raw="-> Hello <-" />);
-    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute('style','text-align: center;')
-  })
+    expect(getByText('Hello').parentNode.parentNode).toHaveAttribute(
+      'style',
+      'text-align: center;'
+    );
+  });
   it('renders blocks properly', () => {
-    const { getByText } = render(<Markdown raw={blocks} />);
-    expect(getByText(/hello, world/i).closest('p')).toHaveStyleRule(
+    const { getAllByText } = render(<Markdown raw={blocks} />);
+    expect(getAllByText(/hello, world/i)[0].closest('p')).toHaveStyleRule(
       'font-size',
       '1em'
     );
-    expect(getByText(/hello, world larger/i).closest('div')).toHaveStyleRule(
-      'font-size',
-      '32px'
-    );
+    expect(
+      getAllByText(/hello, world larger/i)[0].closest('div')
+    ).toHaveStyleRule('font-size', '32px');
   });
   it('strips out html', () => {
     const { getByText } = render(<Markdown raw={`<span>Raw html</span>`} />);

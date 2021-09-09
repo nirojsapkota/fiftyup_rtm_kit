@@ -6,7 +6,12 @@ import { Form } from '../index';
 describe(`Month Picker `, () => {
   it(`can select the month picker when valid`, async () => {
     const handleSubmit = jest.fn();
-    const { getByLabelText, getByValue, container, getByTestId } = await render(
+    const {
+      getByLabelText,
+      getByDisplayValue,
+      container,
+      getByTestId,
+    } = await render(
       <Form
         id="test"
         onSubmit={handleSubmit}
@@ -24,7 +29,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByValue('');
+    const itemInput = getByDisplayValue('');
     fireEvent.change(itemInput, {
       target: { value: 'Sep, 2019' },
     });
@@ -51,10 +56,15 @@ describe(`Month Picker `, () => {
     const input = container.querySelector('input');
     fireEvent.keyDown(input);
   });
-  
+
   it(`preselects default value when available`, async () => {
     const handleSubmit = jest.fn();
-    const { getByLabelText, getByValue, container, getByTestId } = await render(
+    const {
+      getByLabelText,
+      getByDisplayValue,
+      container,
+      getByTestId,
+    } = await render(
       <Form
         id="test"
         onSubmit={handleSubmit}
@@ -73,7 +83,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByValue('');
+    const itemInput = getByDisplayValue('');
     fireEvent.change(itemInput, {
       target: { value: 'Sep, 2019' },
     });
@@ -103,7 +113,12 @@ describe(`Month Picker `, () => {
 
   it(`doesnt show date when date is false`, async () => {
     const handleSubmit = jest.fn();
-    const { getByLabelText, getByValue, container, getByTestId } = await render(
+    const {
+      getByLabelText,
+      getByDisplayValue,
+      container,
+      getByTestId,
+    } = await render(
       <Form
         id="test"
         onSubmit={handleSubmit}
@@ -122,7 +137,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByValue('');
+    const itemInput = getByDisplayValue('');
     fireEvent.change(itemInput, {
       target: { value: 'Sep' },
     });

@@ -24,14 +24,14 @@ describe('<EnergyPlan />', () => {
       planBrief: 'Plan brief data',
     };
 
-    const { getByText, getByAltText } = render(<EnergyPlan {...plan} />);
+    const { getByText, getAllByAltText } = render(<EnergyPlan {...plan} />);
 
     expect(getByText(plan.displayName)).toBeInTheDocument();
     expect(getByText(plan.planRate.text)).toBeInTheDocument();
     expect(getByText(plan.planBrief)).toBeInTheDocument();
     expect(getByText(plan.button.text)).toBeInTheDocument();
 
-    const logo = getByAltText(plan.merchant.fullName);
+    const logo = getAllByAltText(plan.merchant.fullName)[0];
     expect(logo).toBeInTheDocument();
     expect(logo.tagName).toEqual('IMG');
     expect(logo.src).toEqual(plan.merchant.logo);

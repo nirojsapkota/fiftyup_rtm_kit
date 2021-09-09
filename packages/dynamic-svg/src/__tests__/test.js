@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait } from '../../../bootstrap/setup/testSetup';
+import { render, wait, cleanup } from '../../../bootstrap/setup/testSetup';
 import { DynamicSvg } from '../index';
 
 jest.mock('axios', () => {
@@ -18,6 +18,8 @@ jest.mock('axios', () => {
     },
   };
 });
+
+afterEach(cleanup);
 
 describe('<DynamicSvg />', () => {
   it('dispays the reference object text', async () => {

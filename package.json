@@ -20,7 +20,7 @@
     "format": "rtm-scripts format --p templates/plopfile.js",
     "lint": "eslint packages",
     "test:scope": "node scripts/scoped-test tracker",
-    "test:ci": "CI=true lerna run test --parallel --stream --concurrency 1200 -- -- --coverage --silent --verbose",
+    "test:ci": "CI=true lerna run test --parallel --stream --concurrency 1299 -- -- --coverage --silent --verbose",
     "test:watch": "lerna run test --parallel --no-sort --stream --concurrency 1200 -- -- --colors --watch",
     "test:coverage": "lerna run test --parallel --no-sort --stream --concurrency 1299 -- -- --colors --coverage",
     "release": "lerna publish --yes",
@@ -30,7 +30,7 @@
     "temp:test": "lerna run test --stream --scope @rtm-ui/login-calculator-panel -- -- --colors --coverage"
   },
   "devDependencies": {
-    "@rtm/core": "^1.0.54",
+    "@rtm/core": "^1.1.0",
     "@upstatement/prettier-config": "^0.3.0",
     "@xstate/react": "^0.7.1",
     "acorn": "^6.1.1",

@@ -6,7 +6,7 @@ import { Form } from '../index';
 describe(`<HiddenField />`, () => {
   it(`matches expected output`, async () => {
     const handleSubmit = jest.fn();
-    const { getByValue } = render(
+    const { getByDisplayValue } = render(
       <Form
         id="test"
         onSubmit={handleSubmit}
@@ -23,7 +23,7 @@ describe(`<HiddenField />`, () => {
     );
 
     // expect hidden fields
-    const field = getByValue('token_key');
+    const field = getByDisplayValue('token_key');
     expect(field.name).toEqual('authenticity_token');
   });
 });
