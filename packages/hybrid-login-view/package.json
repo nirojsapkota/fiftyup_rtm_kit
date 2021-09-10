@@ -32,7 +32,8 @@
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography",
-    "@rtm-ui/video-dialog": "file:../video-dialog"
+    "@rtm-ui/video-dialog": "file:../video-dialog",
+    "throttle-debounce": "^3.0.1"
   },
   "peerDependencies": {
     "prop-types": "15.x",

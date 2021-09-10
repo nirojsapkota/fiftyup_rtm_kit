@@ -26,7 +26,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BasicHeader from './header';
 
-import useMouseLeave from './useMouseLeaveHooks';
+import exitIntent from './exitIntentUtil';
 
 const HybridLoginReferenceContext = React.createContext();
 
@@ -303,21 +303,28 @@ const HybridLoginView = ({
     '[scroll-target="login-panel"]'
   );
 
-  const [mouseLeft, ref] = useMouseLeave();
-
   const [quote, setQuote] = useState(null);
-  const [showExitIntent, setShowExitIntent] = useState(true);
+  const [displayCounter, addDisplayCounter] = useState(0);
 
-  const closeExitIntent = () => {
-    setShowExitIntent(false);
-  };
+  const [showExitIntent, setShowExitIntent] = useState(false);
+
+  const closeExitIntent = () => setShowExitIntent(false);
 
   useEffect(() => {
-    if (mouseLeft) {
-      debugger;
-      setShowExitIntent(false);
+    if (!props.exitIntent) {
+      const removeExitIntent = exitIntent({
+        displayCounter,
+        displayTimes: props.displayTimes || 1,
+        onExitIntent: () => {
+          setShowExitIntent(true);
+          addDisplayCounter(displayCounter + 1);
+        },
+      });
+      return () => {
+        removeExitIntent();
+      };
     }
-  }, [mouseLeft]);
+  });
 
   /**
    * Helper function that takes the submit event and passed the data to the
