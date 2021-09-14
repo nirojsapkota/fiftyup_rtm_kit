@@ -1,6 +1,7 @@
 import { throttle } from 'throttle-debounce';
 import { A } from '../../a/build';
 
+/* istanbul ignore next */
 export default function ExitIntent(options = {}) {
   const defaultOptions = {
     displayCounter: 0,
