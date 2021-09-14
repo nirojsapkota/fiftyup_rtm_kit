@@ -36,6 +36,7 @@ class LoginForm extends React.Component {
       loginUrl,
       authenticityToken,
       stateField,
+      buttonTrack,
     } = this.props;
 
     const values = { user: {} };
@@ -59,7 +60,8 @@ class LoginForm extends React.Component {
       loginUrl,
       values,
       authenticityToken,
-      trackingData
+      trackingData,
+      buttonTrack
     );
     const { data } = result;
 
@@ -129,6 +131,7 @@ class LoginForm extends React.Component {
       hiddenFields,
       authenticityToken,
       buttonText,
+      buttonTrack,
       buttonIcon,
       gdprProps,
       stateField,
@@ -199,7 +202,11 @@ class LoginForm extends React.Component {
             <React.Fragment>
               <GdprAgreement {...gdprProps} />
               <ButtonWrapper py={3}>
-                <Button type="submit" className="signup-button" track="signin">
+                <Button
+                  type="submit"
+                  className="signup-button"
+                  track={buttonTrack || 'signin'}
+                >
                   {buttonText}
                   {buttonIcon && (
                     <ButtonIConWrapper>

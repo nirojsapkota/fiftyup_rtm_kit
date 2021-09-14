@@ -22,7 +22,7 @@ export const submitLogin = async (
     .then(response => {
       const { data, status } = response;
 
-      track('signin/submit', trackingData);
+      track(`${buttonTrack ? buttonTrack : 'signin'}/submit`, trackingData);
 
       return { status, data };
     })
@@ -30,7 +30,11 @@ export const submitLogin = async (
       const { data, status } = error.response;
 
       // TODO: replace this with a proper error logging (e.g airbrake)
-      track('signin/submit_error', trackingData);
+
+      track(
+        `${buttonTrack ? buttonTrack : 'signin'}/submit_error`,
+        trackingData
+      );
 
       if (status !== 401) {
         return {
