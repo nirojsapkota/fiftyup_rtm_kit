@@ -482,6 +482,7 @@ const HybridLoginView = ({
               title={exitIntentProps.title}
               buttonText={exitIntentProps.buttonText}
               buttonIcon={exitIntentProps.icon}
+              buttonTrack="signin/exit-intent"
             />
           </StyledCard>
         </Modal>
