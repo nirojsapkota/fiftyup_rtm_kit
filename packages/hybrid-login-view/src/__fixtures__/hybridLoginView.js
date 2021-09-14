@@ -169,6 +169,15 @@ const hybridLoginView = {
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
   },
+  exitIntentProps: {
+    enable: true,
+    title: 'Exit Intent Title Goes Here',
+    buttonText: 'Login',
+    icon: 'view-forward',
+    displayTimes: 1,
+    topOnly: false,
+  },
+  subOfferContent: '# heading',
 };
 
 export default hybridLoginView;

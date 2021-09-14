@@ -293,6 +293,8 @@ const MainGraphic = ({
 const HybridLoginView = ({
   rightSideMarkDownContent,
   accordion,
+  subOfferContent,
+  exitIntentProps,
   primaryCarousel,
   workflow,
   workflowOffer,
@@ -311,7 +313,7 @@ const HybridLoginView = ({
   const closeExitIntent = () => setShowExitIntent(false);
 
   useEffect(() => {
-    if (!props.exitIntent) {
+    if (exitIntentProps && exitIntentProps.enable) {
       const removeExitIntent = exitIntent({
         displayCounter,
         displayTimes: props.displayTimes || 1,
@@ -391,6 +393,12 @@ const HybridLoginView = ({
                         </Column>
                       )}
 
+                    {subOfferContent && (
+                      <ContentBox px={[3, 3, 4]}>
+                        <Markdown raw={subOfferContent} />
+                      </ContentBox>
+                    )}
+
                     {accordion.length > 0 && (
                       <Column variant="b" pb="20px">
                         <Accordion
@@ -454,7 +462,7 @@ const HybridLoginView = ({
             )}
         </ContentSection>
       </BodyWrapper>
-      {showExitIntent && (
+      {exitIntentProps && exitIntentProps.enable && showExitIntent && (
         <Modal onClose={() => 0} data-testid="test-exit-intent">
           <StyledCard>
             <CloseDialogWrapper>
@@ -468,7 +476,13 @@ const HybridLoginView = ({
                 </Header>
               </CloseButton>
             </CloseDialogWrapper>
-            <LoginPanel borderless={true} {...props} />
+            <LoginPanel
+              borderless={true}
+              {...props}
+              title={exitIntentProps.title}
+              buttonText={exitIntentProps.buttonText}
+              buttonIcon={exitIntentProps.icon}
+            />
           </StyledCard>
         </Modal>
       )}
@@ -583,6 +597,15 @@ WrappedHybridLoginView.propTypes = {
   }),
   trackingData: t.shape({}),
   buttons: t.array,
+  exitIntentProps: t.shape({
+    enable: t.bool,
+    title: t.string,
+    buttonText: t.string,
+    icon: t.string,
+    displayTimes: t.number,
+    topOnly: t.bool,
+  }),
+  subOfferContent: t.string,
   lifeInsuranceCalcProps: t.shape({
     showQuoteCalculator: t.bool,
     campaignId: t.number,
