@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const hybridLoginView = {
   title: 'Login panel title',
   authenticityToken:

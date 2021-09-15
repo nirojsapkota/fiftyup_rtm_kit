@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { throttle } from 'throttle-debounce';
 import { A } from '../../a/build';
 

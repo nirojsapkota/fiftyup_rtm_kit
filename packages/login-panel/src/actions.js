@@ -7,7 +7,8 @@ export const submitLogin = async (
   url,
   data,
   authenticityToken,
-  trackingData
+  trackingData,
+  buttonTrack
 ) => {
   const config = {
     headers: {
@@ -21,7 +22,13 @@ export const submitLogin = async (
     .post(url, data, config)
     .then(response => {
       const { data, status } = response;
-
+      console.log('we are here');
+      console.log('1>>>>>>>>>>>', buttonTrack, '>>>>>>>>>>>');
+      console.log('we are here 2');
+      console.log(
+        '>>>>>>>>>>>',
+        `${buttonTrack ? buttonTrack : 'signin'}/submit`
+      );
       track(`${buttonTrack ? buttonTrack : 'signin'}/submit`, trackingData);
 
       return { status, data };

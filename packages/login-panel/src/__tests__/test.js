@@ -13,6 +13,7 @@ import {
 } from '../../../bootstrap/setup/testSetup';
 import { LoginPanel } from '../index';
 import loginPanelProps from '../__fixtures__/loginPanel';
+import loginPanelExitIntentProps from '../__fixtures__/loginPanelExitIntent';
 
 jest.mock('axios');
 
@@ -263,6 +264,151 @@ describe('<LoginPanel />', () => {
 
       await fireEvent.click(item);
       expect(state.value).toEqual(stateField.options[0].label);
+    });
+  });
+});
+
+describe('<LoginPanel />', () => {
+  it('matches expected output', async () => {
+    const postCodeField = {
+      label: 'My Postcode:',
+      placeholder: 'Postcode',
+      fieldName: 'postcode',
+      hint: '10001, New York',
+    };
+    const emailField = {
+      label: 'My Email:',
+      fieldName: 'postcode',
+      placeholder: 'Email',
+    };
+
+    const { getByText, getByValue } = render(
+      <LoginPanel
+        {...loginPanelExitIntentProps}
+        stateField={postCodeField}
+        emailField={emailField}
+      />
+    );
+
+    const { hiddenFields } = loginPanelProps;
+
+    // expect hidden fields
+    const jumpPath = getByValue(hiddenFields.jump_path);
+    expect(jumpPath.name).toEqual('jump_path');
+    const registeringCampaignId = getByValue(
+      hiddenFields.registering_campaign_id.toString()
+    );
+    expect(registeringCampaignId.name).toEqual('registering_campaign_id');
+
+    expect(getByText(loginPanelProps.title)).toBeInTheDocument();
+    expect(getByText(loginPanelProps.buttonText)).toBeInTheDocument();
+
+    expect(getByText(postCodeField.label)).toBeInTheDocument();
+    expect(getByText(postCodeField.hint)).toBeInTheDocument();
+
+    expect(getByText(emailField.label)).toBeInTheDocument();
+  });
+
+  it('Get unauthorize errors from server when submit login on', async () => {
+    // set Up
+    axios.post.mockRejectedValue({
+      response: {
+        status: 401,
+        data: { errors: ['Email is not valid', 'Postcode is not valid'] },
+      },
+    });
+
+    const { getByText, getByLabelText, container } = render(
+      <LoginPanel {...loginPanelExitIntentProps} />
+    );
+
+    const email = getByLabelText('My Email:');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByLabelText('My Postcode:');
+    fireEvent.change(postcode, {
+      target: { value: '2000, BARANGAROO' },
+    });
+
+    const submit = getByText(loginPanelExitIntentProps.buttonText).closest(
+      'button'
+    );
+    fireEvent.click(submit);
+
+    await wait(() => {
+      expect(container).toHaveTextContent('Email is not valid');
+      expect(container).toHaveTextContent('Postcode is not valid');
+    });
+  });
+
+  it('Get unauthorize errors from server when submit login', async () => {
+    // set Up
+    axios.post.mockRejectedValue({
+      response: {
+        status: 401,
+        data: { errors: ['Email is not valid', 'Postcode is not valid'] },
+      },
+    });
+
+    const { getByText, getByLabelText, container } = render(
+      <LoginPanel {...loginPanelExitIntentProps} />
+    );
+
+    const email = getByLabelText('My Email:');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByLabelText('My Postcode:');
+    fireEvent.change(postcode, {
+      target: { value: '2000, BARANGAROO' },
+    });
+
+    const submit = getByText(loginPanelExitIntentProps.buttonText).closest(
+      'button'
+    );
+    fireEvent.click(submit);
+
+    await wait(() => {
+      expect(container).toHaveTextContent('Email is not valid');
+      expect(container).toHaveTextContent('Postcode is not valid');
+    });
+  });
+
+  it('Get internal errors from server when submit login - exit intent', async () => {
+    // set Up
+    axios.post.mockRejectedValue({
+      response: {
+        status: 500,
+        data: { errors: ['Random error'] },
+      },
+    });
+
+    const { getByText, getByLabelText, container } = render(
+      <LoginPanel {...loginPanelExitIntentProps} />
+    );
+
+    const email = getByLabelText('My Email:');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByLabelText('My Postcode:');
+    fireEvent.change(postcode, {
+      target: { value: '2000, BARANGAROO' },
+    });
+
+    const submit = getByText(loginPanelExitIntentProps.buttonText).closest(
+      'button'
+    );
+    fireEvent.click(submit);
+
+    const spiedTrack = jest.spyOn(Tracker, 'track');
+
+    await wait(async () => {
+      expect(container).toHaveTextContent(
+        'An error has occurred, please try again in a few minutes'
+      );
+      expect(spiedTrack).toHaveBeenCalled();
     });
   });
 });
