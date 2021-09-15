@@ -381,24 +381,6 @@ const HybridLoginView = ({
                         />
                       </WorkFlowContainer>
                     </Variant>
-
-                    {primaryCarousel &&
-                      primaryCarousel.slides &&
-                      primaryCarousel.slides.length > 0 && (
-                        <Column variant="b" pb="20px">
-                          <Carousel
-                            slides={primaryCarousel.slides}
-                            duration={primaryCarousel.duration}
-                          />
-                        </Column>
-                      )}
-
-                    {subOfferContent && (
-                      <ContentBox px={[3, 3, 4]}>
-                        <Markdown raw={subOfferContent} />
-                      </ContentBox>
-                    )}
-
                     {accordion.length > 0 && (
                       <Column variant="b" pb="20px">
                         <Accordion
@@ -420,6 +402,28 @@ const HybridLoginView = ({
                 </ContentWrapper>
               </ContainerWrapper>
             )}
+            <ContainerWrapper className="content-wrapper">
+              <ContentWrapper>
+                <Box {...defaultProps}>
+                  {primaryCarousel &&
+                    primaryCarousel.slides &&
+                    primaryCarousel.slides.length > 0 && (
+                      <Column variant="b" pb="20px">
+                        <Carousel
+                          slides={primaryCarousel.slides}
+                          duration={primaryCarousel.duration}
+                        />
+                      </Column>
+                    )}
+
+                  {subOfferContent && (
+                    <ContentBox px={[3, 3, 4]}>
+                      <Markdown raw={subOfferContent} />
+                    </ContentBox>
+                  )}
+                </Box>
+              </ContentWrapper>
+            </ContainerWrapper>
           </div>
           {(workflow.header || workflow.items.length > 0) && (
             <ContainerWrapper

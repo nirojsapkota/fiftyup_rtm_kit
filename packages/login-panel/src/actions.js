@@ -17,11 +17,6 @@ export const submitLogin = async (
     },
   };
 
-  console.log(
-    'TRACKING=========>',
-    `${buttonTrack ? buttonTrack : 'signin'}/submit`
-  );
-  debugger;
   const result = await axios
     .post(url, data, config)
     .then(response => {
