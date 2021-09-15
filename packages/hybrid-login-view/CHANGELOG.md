@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.3.6...@rtm-ui/hybrid-login-view@5.4.0) (2021-09-15)
+
+
+### Bug Fixes
+
+* **HybridLoginView:** attempt to fix ci ([7fe81db](https://github.com/OBSAU/rtm-kit/commit/7fe81dbab5419fb25f65d39531cda245069dc955))
+* **HybridLoginView:** fix ci issue ([4d06d5d](https://github.com/OBSAU/rtm-kit/commit/4d06d5dce31ff39f7c2a86cdcd85b851139d3d9b))
+* **HybridLoginView:** import dialog as dependancy ([95157da](https://github.com/OBSAU/rtm-kit/commit/95157da0482edfaefc6c8a1a4c90b4ab9b3a89fe))
+
+
+### Features
+
+* **Hybrid Login View:** add support for exit intent specific tracking ([14b2c3b](https://github.com/OBSAU/rtm-kit/commit/14b2c3b59cd6b5e79af8f3cddac211fcc45f225d))
+* **HybridLoginPage:** add exit intent work-in-progress ([e81c6c1](https://github.com/OBSAU/rtm-kit/commit/e81c6c16c9faea1830946b5b47797fb8a55db092))
+* **HybridLoginView:** Exit Intent ([e1afef3](https://github.com/OBSAU/rtm-kit/commit/e1afef31c2da6d551574867ff0d3725daacec5a0))
+
+
+
+
+
 ## [5.3.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.3.5...@rtm-ui/hybrid-login-view@5.3.6) (2021-09-09)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/carousel@1.1.6...@rtm-ui/carousel@1.2.0) (2021-09-15)
+
+
+### Features
+
+* **Hybrid Login View:** add support for exit intent specific tracking ([14b2c3b](https://github.com/OBSAU/rtm-kit/commit/14b2c3b59cd6b5e79af8f3cddac211fcc45f225d))
+
+
+
+
+
 ## [1.1.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/carousel@1.1.5...@rtm-ui/carousel@1.1.6) (2021-09-09)
 
 **Note:** Version bump only for package @rtm-ui/carousel
