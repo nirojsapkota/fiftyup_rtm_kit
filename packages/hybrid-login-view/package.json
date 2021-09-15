@@ -18,6 +18,7 @@
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
+    "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/accordion": "file:../accordion",
     "@rtm-ui/button": "file:../button",
     "@rtm-ui/carousel": "file:../carousel",
