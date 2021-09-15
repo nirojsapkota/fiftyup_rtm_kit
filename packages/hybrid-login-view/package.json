@@ -33,6 +33,7 @@
     "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography",
     "@rtm-ui/video-dialog": "file:../video-dialog",
+    "@rtm-ui/dialog": "file:../dialog",
     "throttle-debounce": "^3.0.1"
   },
   "peerDependencies": {
