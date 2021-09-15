@@ -14,13 +14,13 @@ const SliderBox = styled(Box)`
 
 const ImageWrapper = styled('div')`
   opacity: 0.5;
-  transition-duration: 1s ease;
+  transition-duration: 1s ease-in-out;
   ${props =>
     props.isActive &&
     css`
       opacity: 1;
       transition-duration: 2s;
-      transform: scale(1.08);
+      transform: scale(1.02);
     `}
   ${props => !props.isActive && css``};
   min-height: ${props => `${props.imgHeight}px`};
@@ -38,6 +38,7 @@ const PrevPane = styled(Pane)`
   z-index: 10;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const NextPane = styled(Pane)`
@@ -47,6 +48,7 @@ const NextPane = styled(Pane)`
   z-index: 10;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const NavBox = styled(Box)`
@@ -57,6 +59,7 @@ const NavBox = styled(Box)`
 
 const NavItemPane = styled(Pane)`
   padding: 2px;
+  cursor: pointer;
 `;
 
 export const Carousel = ({ slides, duration }) => {

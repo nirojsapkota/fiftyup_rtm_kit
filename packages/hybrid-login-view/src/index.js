@@ -3,8 +3,16 @@
 import { Accordion } from '@rtm-ui/accordion';
 import { Carousel } from '@rtm-ui/carousel';
 import { Img, ResponsiveImage } from '@rtm-ui/img';
-import { Box, Block, scrollToElement, useElementVisible } from '@rtm-ui/layout';
+import {
+  Box,
+  Block,
+  scrollToElement,
+  useElementVisible,
+  Card,
+} from '@rtm-ui/layout';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
+import { Modal } from '@rtm-ui/dialog';
+import { Icon } from '@rtm-ui/icon';
 import { track } from '@rtm-ui/tracker';
 import { Header, Markdown, Paragraph } from '@rtm-ui/typography';
 import { VideoDialog } from '@rtm-ui/video-dialog';
@@ -17,6 +25,8 @@ import t from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BasicHeader from './header';
+
+import exitIntent from './exitIntentUtil';
 
 const HybridLoginReferenceContext = React.createContext();
 
@@ -36,6 +46,32 @@ const ContainerWrapper = styled(Box)`
   );
   border-top: 1px solid #e0e0e0;
   padding-bottom: 4px;
+`;
+
+const StyledCard = styled(Card)`
+  max-width: 400px;
+  padding: 15px;
+  @media (min-width: ${props => props.theme.grid.sm}em) {
+    max-width: 550px;
+    padding: 25px;
+    justify-content: space-between;
+  }
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+`;
+
+const CloseDialogWrapper = styled(Box)`
+  display: flex;
+  background: 'white';
+  justify-content: 'flex-end';
+  flex-flow: column;
+`;
+
+const CloseButton = styled(Button)`
+  outline: none;
 `;
 
 const ContentWrapper = styled(Box)`
@@ -257,6 +293,8 @@ const MainGraphic = ({
 const HybridLoginView = ({
   rightSideMarkDownContent,
   accordion,
+  subOfferContent,
+  exitIntentProps,
   primaryCarousel,
   workflow,
   workflowOffer,
@@ -268,6 +306,27 @@ const HybridLoginView = ({
   );
 
   const [quote, setQuote] = useState(null);
+  const [displayCounter, addDisplayCounter] = useState(0);
+
+  const [showExitIntent, setShowExitIntent] = useState(false);
+
+  const closeExitIntent = () => setShowExitIntent(false);
+
+  useEffect(() => {
+    if (exitIntentProps && exitIntentProps.enable) {
+      const removeExitIntent = exitIntent({
+        displayCounter,
+        displayTimes: props.displayTimes || 1,
+        onExitIntent: () => {
+          setShowExitIntent(true);
+          addDisplayCounter(displayCounter + 1);
+        },
+      });
+      return () => {
+        removeExitIntent();
+      };
+    }
+  });
 
   /**
    * Helper function that takes the submit event and passed the data to the
@@ -322,18 +381,6 @@ const HybridLoginView = ({
                         />
                       </WorkFlowContainer>
                     </Variant>
-
-                    {primaryCarousel &&
-                      primaryCarousel.slides &&
-                      primaryCarousel.slides.length > 0 && (
-                        <Column variant="b" pb="20px">
-                          <Carousel
-                            slides={primaryCarousel.slides}
-                            duration={primaryCarousel.duration}
-                          />
-                        </Column>
-                      )}
-
                     {accordion.length > 0 && (
                       <Column variant="b" pb="20px">
                         <Accordion
@@ -355,6 +402,28 @@ const HybridLoginView = ({
                 </ContentWrapper>
               </ContainerWrapper>
             )}
+            <ContainerWrapper className="content-wrapper">
+              <ContentWrapper>
+                <Box {...defaultProps}>
+                  {primaryCarousel &&
+                    primaryCarousel.slides &&
+                    primaryCarousel.slides.length > 0 && (
+                      <Column variant="b" pb="20px">
+                        <Carousel
+                          slides={primaryCarousel.slides}
+                          duration={primaryCarousel.duration}
+                        />
+                      </Column>
+                    )}
+
+                  {subOfferContent && (
+                    <ContentBox px={[3, 3, 4]}>
+                      <Markdown raw={subOfferContent} />
+                    </ContentBox>
+                  )}
+                </Box>
+              </ContentWrapper>
+            </ContainerWrapper>
           </div>
           {(workflow.header || workflow.items.length > 0) && (
             <ContainerWrapper
@@ -397,6 +466,31 @@ const HybridLoginView = ({
             )}
         </ContentSection>
       </BodyWrapper>
+      {exitIntentProps && exitIntentProps.enable && showExitIntent && (
+        <Modal onClose={() => 0} data-testid="test-exit-intent">
+          <StyledCard>
+            <CloseDialogWrapper>
+              <CloseButton
+                data-testid="close-modal"
+                asWrapper
+                onClick={closeExitIntent}
+              >
+                <Header weight="normal" color="text" tag="h6" align="right">
+                  <Icon center glyph="view-close" />
+                </Header>
+              </CloseButton>
+            </CloseDialogWrapper>
+            <LoginPanel
+              borderless={true}
+              {...props}
+              title={exitIntentProps.title}
+              buttonText={exitIntentProps.buttonText}
+              buttonIcon={exitIntentProps.icon}
+              buttonTrack="signin/exit-intent"
+            />
+          </StyledCard>
+        </Modal>
+      )}
     </React.Fragment>
   );
 };
@@ -508,6 +602,15 @@ WrappedHybridLoginView.propTypes = {
   }),
   trackingData: t.shape({}),
   buttons: t.array,
+  exitIntentProps: t.shape({
+    enable: t.bool,
+    title: t.string,
+    buttonText: t.string,
+    icon: t.string,
+    displayTimes: t.number,
+    topOnly: t.bool,
+  }),
+  subOfferContent: t.string,
   lifeInsuranceCalcProps: t.shape({
     showQuoteCalculator: t.bool,
     campaignId: t.number,
