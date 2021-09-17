@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@5.0.62...@rtm-ui/login-panel@5.1.0) (2021-09-15)
+
+
+### Features
+
+* **Hybrid Login View:** add support for exit intent specific tracking ([14b2c3b](https://github.com/OBSAU/rtm-kit/commit/14b2c3b59cd6b5e79af8f3cddac211fcc45f225d))
+* **HybridLoginPage:** add exit intent work-in-progress ([e81c6c1](https://github.com/OBSAU/rtm-kit/commit/e81c6c16c9faea1830946b5b47797fb8a55db092))
+
+
+
+
+
 ## [5.0.62](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@5.0.61...@rtm-ui/login-panel@5.0.62) (2021-09-02)
 
 **Note:** Version bump only for package @rtm-ui/login-panel

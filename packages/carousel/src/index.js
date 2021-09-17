@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Icon } from '@rtm-ui/icon';
 import styled, { css } from 'styled-components';
 import { Box, Pane } from '@rtm-ui/layout';
@@ -14,20 +14,20 @@ const SliderBox = styled(Box)`
 
 const ImageWrapper = styled('div')`
   opacity: 0.5;
-  transition-duration: 1s ease;
+  transition-duration: 1s ease-in-out;
   ${props =>
     props.isActive &&
     css`
       opacity: 1;
       transition-duration: 2s;
-      transform: scale(1.08);
+      transform: scale(1.02);
     `}
-  ${props => !props.isActive && css``}
+  ${props => !props.isActive && css``};
+  min-height: ${props => `${props.imgHeight}px`};
 `;
 
-const Image = styled('img')`
+const ImageElement = styled('img')`
   width: 100%;
-  min-height: 350px;
   margin: auto;
 `;
 
@@ -38,10 +38,7 @@ const PrevPane = styled(Pane)`
   z-index: 10;
   display: flex;
   align-items: center;
-`;
-
-const PrevIconWrapper = styled(Icon)`
-  top: 50%;
+  cursor: pointer;
 `;
 
 const NextPane = styled(Pane)`
@@ -51,6 +48,7 @@ const NextPane = styled(Pane)`
   z-index: 10;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const NavBox = styled(Box)`
@@ -61,11 +59,15 @@ const NavBox = styled(Box)`
 
 const NavItemPane = styled(Pane)`
   padding: 2px;
+  cursor: pointer;
 `;
 
 export const Carousel = ({ slides, duration }) => {
   const [current, setCurrent] = useState(0);
+  const [imgHeight, setImgHeight] = useState(0);
   const length = slides.length;
+
+  const ref = useRef(null);
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -84,6 +86,14 @@ export const Carousel = ({ slides, duration }) => {
   }
 
   useEffect(() => {
+    const img = new Image();
+    /* istanbul ignore next */
+    img.onload = function() {
+      const maxWidth = ref.current ? ref.current.offsetWidth : 0;
+      setImgHeight((maxWidth / this.width) * this.height);
+    };
+    img.src = slides[current].image;
+
     if (duration > 0 && length > 1) {
       let interval = null;
       interval = setInterval(() => {
@@ -122,9 +132,13 @@ export const Carousel = ({ slides, duration }) => {
       )}
       {slides.map((slide, index) => {
         return (
-          <ImageWrapper key={index} isActive={index === current}>
+          <ImageWrapper
+            key={index}
+            isActive={index === current}
+            imgHeight={imgHeight}
+          >
             {index === current && (
-              <Image src={slide.image} alt={slide.altText} />
+              <ImageElement ref={ref} src={slide.image} alt={slide.altText} />
             )}
           </ImageWrapper>
         );
