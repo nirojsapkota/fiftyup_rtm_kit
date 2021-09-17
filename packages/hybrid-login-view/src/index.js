@@ -313,10 +313,10 @@ const HybridLoginView = ({
   const closeExitIntent = () => setShowExitIntent(false);
 
   useEffect(() => {
-    if (exitIntentProps && exitIntentProps.enable) {
+    if (exitIntentProps && exitIntentProps.enable && !showExitIntent) {
       const removeExitIntent = exitIntent({
         displayCounter,
-        displayTimes: props.displayTimes || 1,
+        displayTimes: exitIntentProps.displayTimes || 1,
         onExitIntent: () => {
           setShowExitIntent(true);
           addDisplayCounter(displayCounter + 1);
@@ -365,9 +365,7 @@ const HybridLoginView = ({
           )}
 
           <div scroll-target="offerContent">
-            {(workflowOffer.header ||
-              workflowOffer.items.length > 0 ||
-              accordion.length > 0) && (
+            {(workflowOffer.header || workflowOffer.items.length > 0) && (
               <ContainerWrapper className="content-wrapper">
                 <ContentWrapper>
                   <Box {...defaultProps}>
@@ -381,6 +379,35 @@ const HybridLoginView = ({
                         />
                       </WorkFlowContainer>
                     </Variant>
+                  </Box>
+                </ContentWrapper>
+              </ContainerWrapper>
+            )}
+            {((primaryCarousel &&
+              primaryCarousel.slides &&
+              primaryCarousel.slides.length > 0) ||
+              subOfferContent ||
+              accordion.length > 0) && (
+              <ContainerWrapper className="content-wrapper">
+                <ContentWrapper>
+                  <Box {...defaultProps}>
+                    {primaryCarousel &&
+                      primaryCarousel.slides &&
+                      primaryCarousel.slides.length > 0 && (
+                        <Column variant="b" pb="20px">
+                          <Carousel
+                            slides={primaryCarousel.slides}
+                            duration={primaryCarousel.duration}
+                          />
+                        </Column>
+                      )}
+
+                    {subOfferContent && (
+                      <ContentBox px={[3, 3, 4]}>
+                        <Markdown raw={subOfferContent} />
+                      </ContentBox>
+                    )}
+
                     {accordion.length > 0 && (
                       <Column variant="b" pb="20px">
                         <Accordion
@@ -402,28 +429,6 @@ const HybridLoginView = ({
                 </ContentWrapper>
               </ContainerWrapper>
             )}
-            <ContainerWrapper className="content-wrapper">
-              <ContentWrapper>
-                <Box {...defaultProps}>
-                  {primaryCarousel &&
-                    primaryCarousel.slides &&
-                    primaryCarousel.slides.length > 0 && (
-                      <Column variant="b" pb="20px">
-                        <Carousel
-                          slides={primaryCarousel.slides}
-                          duration={primaryCarousel.duration}
-                        />
-                      </Column>
-                    )}
-
-                  {subOfferContent && (
-                    <ContentBox px={[3, 3, 4]}>
-                      <Markdown raw={subOfferContent} />
-                    </ContentBox>
-                  )}
-                </Box>
-              </ContentWrapper>
-            </ContainerWrapper>
           </div>
           {(workflow.header || workflow.items.length > 0) && (
             <ContainerWrapper
@@ -483,9 +488,9 @@ const HybridLoginView = ({
             <LoginPanel
               borderless={true}
               {...props}
-              title={exitIntentProps.title}
-              buttonText={exitIntentProps.buttonText}
-              buttonIcon={exitIntentProps.icon}
+              title={exitIntentProps.title || props.title}
+              buttonText={exitIntentProps.buttonText || props.buttonText}
+              buttonIcon={exitIntentProps.icon || props.buttonIcon}
               buttonTrack="signin/exit-intent"
             />
           </StyledCard>
