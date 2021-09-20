@@ -316,6 +316,7 @@ const HybridLoginView = ({
     if (exitIntentProps && exitIntentProps.enable && !showExitIntent) {
       const removeExitIntent = exitIntent({
         displayCounter,
+        topOnly: exitIntentProps.displayTimes,
         displayTimes: exitIntentProps.displayTimes || 1,
         onExitIntent: () => {
           setShowExitIntent(true);
