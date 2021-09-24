@@ -282,7 +282,7 @@ describe('<LoginPanel />', () => {
       placeholder: 'Email',
     };
 
-    const { getByText, getByValue } = render(
+    const { getByText, getByDisplayValue } = render(
       <LoginPanel
         {...loginPanelExitIntentProps}
         stateField={postCodeField}
@@ -293,9 +293,9 @@ describe('<LoginPanel />', () => {
     const { hiddenFields } = loginPanelProps;
 
     // expect hidden fields
-    const jumpPath = getByValue(hiddenFields.jump_path);
+    const jumpPath = getByDisplayValue(hiddenFields.jump_path);
     expect(jumpPath.name).toEqual('jump_path');
-    const registeringCampaignId = getByValue(
+    const registeringCampaignId = getByDisplayValue(
       hiddenFields.registering_campaign_id.toString()
     );
     expect(registeringCampaignId.name).toEqual('registering_campaign_id');
