@@ -8,7 +8,7 @@ describe(`Month Picker `, () => {
     const handleSubmit = jest.fn();
     const {
       getByLabelText,
-      getByDisplayValue,
+      getAllByDisplayValue,
       container,
       getByTestId,
     } = await render(
@@ -29,7 +29,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByDisplayValue('');
+    const itemInput = getAllByDisplayValue('')[0];
     fireEvent.change(itemInput, {
       target: { value: 'Sep, 2019' },
     });
@@ -83,7 +83,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByDisplayValue('');
+    const itemInput = getByDisplayValue('Feb, 2020');
     fireEvent.change(itemInput, {
       target: { value: 'Sep, 2019' },
     });
@@ -104,7 +104,7 @@ describe(`Month Picker `, () => {
     fireEvent.click(icon1);
     fireEvent.click(icon2);
 
-    const iconSelected = container.querySelector(`div.selected`);
+    const iconSelected = container.querySelector(`.selected`);
     fireEvent.click(iconSelected);
 
     const input = container.querySelector('input');
@@ -137,7 +137,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByDisplayValue('');
+    const itemInput = getByDisplayValue('Sep');
     fireEvent.change(itemInput, {
       target: { value: 'Sep' },
     });
@@ -149,7 +149,8 @@ describe(`Month Picker `, () => {
       fireEvent.focus(itemInput);
     });
 
-    const iconSelected = container.querySelector(`div.selected`);
+    const iconSelected = container.querySelector(`.selected`);
+    console.log('ICON SELECTED: ', iconSelected);
     fireEvent.click(iconSelected);
 
     const input = container.querySelector('input');

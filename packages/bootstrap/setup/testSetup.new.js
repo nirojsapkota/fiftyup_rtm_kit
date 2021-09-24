@@ -12,7 +12,7 @@
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'jest-styled-components';
-import '@testing-library/jest-dom'; // (Replaces) 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect'; // (Replaces) 'jest-dom/extend-expect';
 import { render } from '@testing-library/react';
 import React from 'react';
 import TestBootstrap from './docSetup';

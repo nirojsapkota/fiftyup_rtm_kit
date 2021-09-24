@@ -18,10 +18,10 @@ const TEST_EMAIL = 'user@mail.com';
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
-afterAll(async done => {
-  axios.cancel;
-  done();
-});
+// afterAll(async done => {
+//   axios.cancel;
+//   done();
+// });
 
 describe('<Dashboard />', () => {
   it('matches expected output', () => {
@@ -83,7 +83,7 @@ describe('<Dashboard />', () => {
 
   it('closes the modal after selecting a product and clicking on close button', async () => {
     axios.get.mockResolvedValue({ data: { showSurvey: true } });
-    const { getAllByText, queryByTestId, getByTestId } = render(
+    const { getAllByText, queryAllByTestId } = await render(
       <Dashboard {...dummyData} survey={dummyData.survey} />
     );
 
@@ -101,13 +101,13 @@ describe('<Dashboard />', () => {
     await fireEvent.click(getAllByText(dummyData.survey.skip_label)[0]);
     await wait(async () => {
       expect(axios.post).toHaveBeenCalled();
+      expect(queryAllByTestId('test-modal')[0]).toBeUndefined();
     });
-    expect(queryByTestId('test-modal')).toBeNull();
   });
 
   it('submits selected products and closes modal when submitting', async () => {
     axios.get.mockResolvedValue({ data: { showSurvey: true } });
-    const { getAllByText, queryByTestId, getByTestId } = render(
+    const { getAllByText, queryAllByTestId } = await render(
       <Dashboard {...dummyData} />
     );
 
@@ -128,12 +128,9 @@ describe('<Dashboard />', () => {
     await fireEvent.click(getAllByText(dummyData.survey.cta_label)[0]);
     await wait(async () => {
       expect(axios.post).toHaveBeenCalled();
+      expect(queryAllByTestId('test-modal')[0]).toBeUndefined();
     });
-
-    await wait(async () => {
-      expect(queryByTestId('test-modal')).toBeNull();
-    });
-  }, 30000);
+  });
 });
 
 describe('getSurvey', () => {
@@ -214,5 +211,5 @@ describe('dashboard preference ga tracking', () => {
           'virtual/dashboard-preferences/cta/health-insurance+life-insurance',
       });
     });
-  });
+  }, 30000);
 });
