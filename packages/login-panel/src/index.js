@@ -191,7 +191,7 @@ class LoginForm extends React.Component {
     };
     return (
       <React.Fragment>
-        <Header py={4} tag="h6">
+        <Header py={4} tag="h6" align="center">
           {title}
         </Header>
         <Form
