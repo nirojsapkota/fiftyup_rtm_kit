@@ -63,6 +63,10 @@ describe('<LoginPanel />', () => {
 
   it('success call with input props', async () => {
     // set Up
+    const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
+    axios.get.mockResolvedValue({
+      data,
+    });
     axios.post.mockResolvedValue({ data: { redirectPath: '/' } });
     axios.post.mockImplementation(() =>
       Promise.resolve({
