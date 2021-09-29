@@ -211,5 +211,5 @@ describe('dashboard preference ga tracking', () => {
           'virtual/dashboard-preferences/cta/health-insurance+life-insurance',
       });
     });
-  }, 30000);
+  });
 });
