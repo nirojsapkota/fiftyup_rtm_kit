@@ -182,27 +182,27 @@ describe('dashboard preference ga tracking', () => {
     const spyGa = jest.spyOn(global, 'ga');
 
     axios.get.mockResolvedValue({ data: { showSurvey: true } });
-    const { getByText } = render(<Dashboard {...dummyData} />);
+    const { getAllByText } = render(<Dashboard {...dummyData} />);
 
     await expect(axios.get).toHaveBeenCalled();
 
     await wait(async () => {
-      expect(getByText('HEALTH INSURANCE')).toBeInTheDocument();
+      expect(getAllByText('HEALTH INSURANCE')[0]).toBeInTheDocument();
     });
-    const healthProduct = getByText('HEALTH INSURANCE');
+    const healthProduct = getAllByText('HEALTH INSURANCE')[0];
     await fireEvent.click(healthProduct);
 
     await wait(async () => {
-      expect(getByText('LIFE INSURANCE')).toBeInTheDocument();
+      expect(getAllByText('LIFE INSURANCE')[0]).toBeInTheDocument();
     });
-    const lifeProduct = getByText('LIFE INSURANCE');
+    const lifeProduct = getAllByText('LIFE INSURANCE')[0];
     await fireEvent.click(lifeProduct);
 
     await wait(async () => {
-      expect(getByText(dummyData.survey.cta_label)).toBeInTheDocument();
+      expect(getAllByText(dummyData.survey.cta_label)[0]).toBeInTheDocument();
     });
 
-    await fireEvent.click(getByText(dummyData.survey.cta_label));
+    await fireEvent.click(getAllByText(dummyData.survey.cta_label)[0]);
 
     await wait(async () => {
       expect(spyGa).toHaveBeenCalledWith('send', {
