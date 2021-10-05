@@ -52,7 +52,7 @@ describe(`<GdprAgreement/>`, () => {
 
     fireEvent.click(chkbAgreement);
 
-    expect(handleCheck).toHaveBeenCalledTimes(1);
+    expect(handleCheck).toHaveBeenCalled();
     expect(chkbAgreement.checked).toBe(true);
   });
 

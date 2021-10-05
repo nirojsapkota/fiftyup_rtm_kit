@@ -34,7 +34,7 @@ describe('<LoginPanel />', () => {
       placeholder: 'Email',
     };
 
-    const { getByText, getByValue } = render(
+    const { getByText, getByDisplayValue } = await render(
       <LoginPanel
         {...loginPanelProps}
         stateField={postCodeField}
@@ -45,9 +45,9 @@ describe('<LoginPanel />', () => {
     const { hiddenFields } = loginPanelProps;
 
     // expect hidden fields
-    const jumpPath = getByValue(hiddenFields.jump_path);
+    const jumpPath = getByDisplayValue(hiddenFields.jump_path);
     expect(jumpPath.name).toEqual('jump_path');
-    const registeringCampaignId = getByValue(
+    const registeringCampaignId = getByDisplayValue(
       hiddenFields.registering_campaign_id.toString()
     );
     expect(registeringCampaignId.name).toEqual('registering_campaign_id');
@@ -63,9 +63,19 @@ describe('<LoginPanel />', () => {
 
   it('success call with input props', async () => {
     // set Up
+    const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
+    axios.get.mockResolvedValue({
+      data,
+    });
     axios.post.mockResolvedValue({ data: { redirectPath: '/' } });
+    axios.post.mockImplementation(() =>
+      Promise.resolve({
+        status: 500,
+        data: { redirectPath: '/' },
+      })
+    );
 
-    const { getByText, getByLabelText } = render(
+    const { getByText, getByLabelText } = await render(
       <LoginPanel {...loginPanelProps} />
     );
 
@@ -141,14 +151,21 @@ describe('<LoginPanel />', () => {
 
   it('Get internal errors from server when submit login', async () => {
     // set Up
-    axios.post.mockRejectedValue({
-      response: {
+    // axios.post.mockRejectedValue({
+    //   response: {
+    //     status: 500,
+    //     data: { errors: ['Random error'] },
+    //   },
+    // });
+
+    axios.post.mockImplementation(() =>
+      Promise.resolve({
         status: 500,
         data: { errors: ['Random error'] },
-      },
-    });
+      })
+    );
 
-    const { getByText, getByLabelText, container } = render(
+    const { getByText, getByLabelText, container } = await render(
       <LoginPanel {...loginPanelProps} />
     );
 
@@ -177,11 +194,18 @@ describe('<LoginPanel />', () => {
   it('autocompelete api was called', async () => {
     // setup resolve
     const data = ['5000, ADELAIDE', '5000, ADELAIDE BC'];
-    axios.get.mockResolvedValue({
-      data,
-    });
+    // axios.get.mockResolvedValue({
+    //   data,
+    // });
 
-    const { getByLabelText, container } = render(
+    axios.get.mockImplementation(() =>
+      Promise.resolve({
+        status: 200,
+        data: data,
+      })
+    );
+
+    const { getByLabelText, container } = await render(
       <LoginPanel {...loginPanelProps} />
     );
 
@@ -282,7 +306,7 @@ describe('<LoginPanel />', () => {
       placeholder: 'Email',
     };
 
-    const { getByText, getByValue } = render(
+    const { getByText, getByDisplayValue } = render(
       <LoginPanel
         {...loginPanelExitIntentProps}
         stateField={postCodeField}
@@ -293,9 +317,9 @@ describe('<LoginPanel />', () => {
     const { hiddenFields } = loginPanelProps;
 
     // expect hidden fields
-    const jumpPath = getByValue(hiddenFields.jump_path);
+    const jumpPath = getByDisplayValue(hiddenFields.jump_path);
     expect(jumpPath.name).toEqual('jump_path');
-    const registeringCampaignId = getByValue(
+    const registeringCampaignId = getByDisplayValue(
       hiddenFields.registering_campaign_id.toString()
     );
     expect(registeringCampaignId.name).toEqual('registering_campaign_id');

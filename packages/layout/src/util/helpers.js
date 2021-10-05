@@ -98,6 +98,8 @@ export function useElementVisible(elem) {
  * return true/false
  * element passed is a dom element and not an object
  */
+
+/* istanbul ignore next */
 function elementIsVisible(element) {
   const elem = document.querySelector(element);
   if (!elem) {

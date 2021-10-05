@@ -5,7 +5,7 @@ import { dummyData } from '../fixtures/dummyData';
 
 describe('<FeatureTile />', () => {
   it('matches expected output', async () => {
-    const { getByText, container } = await render(
+    const { getAllByText, container } = await render(
       <React.Fragment>
         <FeatureTile {...dummyData[0]} />
         <FeatureTile {...dummyData[1]} />
@@ -16,11 +16,11 @@ describe('<FeatureTile />', () => {
     dummyData.forEach(data => {
       const img = container.querySelector(`img[src="${data.image}"]`);
       expect(img).toBeInTheDocument();
-      expect(getByText(data.flagText)).toBeInTheDocument();
-      expect(getByText(data.headerText)).toBeInTheDocument();
-      expect(getByText(data.descriptionText)).toBeInTheDocument();
-      expect(getByText(data.titleText)).toBeInTheDocument();
-      expect(getByText(data.ctaText)).toBeInTheDocument();
+      expect(getAllByText(data.flagText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.headerText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.descriptionText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.titleText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.ctaText)[0]).toBeInTheDocument();
     });
   });
 });
@@ -42,17 +42,17 @@ describe('<FeatureRow />', () => {
 
 describe('<GroupedFeatureTiles />', () => {
   it('matches expected output', async () => {
-    const { getByText, container } = await render(
+    const { getAllByText, container } = await render(
       <GroupedFeatureTiles featureTiles={dummyData} />
     );
     dummyData.forEach(data => {
       const img = container.querySelector(`img[src="${data.image}"]`);
       expect(img).toBeInTheDocument();
-      expect(getByText(data.flagText)).toBeInTheDocument();
-      expect(getByText(data.headerText)).toBeInTheDocument();
-      expect(getByText(data.descriptionText)).toBeInTheDocument();
-      expect(getByText(data.titleText)).toBeInTheDocument();
-      expect(getByText(data.ctaText)).toBeInTheDocument();
+      expect(getAllByText(data.flagText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.headerText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.descriptionText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.titleText)[0]).toBeInTheDocument();
+      expect(getAllByText(data.ctaText)[0]).toBeInTheDocument();
     });
   });
 });

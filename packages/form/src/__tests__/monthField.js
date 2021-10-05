@@ -6,7 +6,12 @@ import { Form } from '../index';
 describe(`Month Picker `, () => {
   it(`can select the month picker when valid`, async () => {
     const handleSubmit = jest.fn();
-    const { getByLabelText, getByValue, container, getByTestId } = await render(
+    const {
+      getByLabelText,
+      getAllByDisplayValue,
+      container,
+      getByTestId,
+    } = await render(
       <Form
         id="test"
         onSubmit={handleSubmit}
@@ -24,7 +29,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByValue('');
+    const itemInput = getAllByDisplayValue('')[0];
     fireEvent.change(itemInput, {
       target: { value: 'Sep, 2019' },
     });
@@ -51,10 +56,15 @@ describe(`Month Picker `, () => {
     const input = container.querySelector('input');
     fireEvent.keyDown(input);
   });
-  
+
   it(`preselects default value when available`, async () => {
     const handleSubmit = jest.fn();
-    const { getByLabelText, getByValue, container, getByTestId } = await render(
+    const {
+      getByLabelText,
+      getByDisplayValue,
+      container,
+      getByTestId,
+    } = await render(
       <Form
         id="test"
         onSubmit={handleSubmit}
@@ -73,7 +83,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByValue('');
+    const itemInput = getByDisplayValue('Feb, 2020');
     fireEvent.change(itemInput, {
       target: { value: 'Sep, 2019' },
     });
@@ -94,7 +104,7 @@ describe(`Month Picker `, () => {
     fireEvent.click(icon1);
     fireEvent.click(icon2);
 
-    const iconSelected = container.querySelector(`div.selected`);
+    const iconSelected = container.querySelector(`.selected`);
     fireEvent.click(iconSelected);
 
     const input = container.querySelector('input');
@@ -103,7 +113,12 @@ describe(`Month Picker `, () => {
 
   it(`doesnt show date when date is false`, async () => {
     const handleSubmit = jest.fn();
-    const { getByLabelText, getByValue, container, getByTestId } = await render(
+    const {
+      getByLabelText,
+      getByDisplayValue,
+      container,
+      getByTestId,
+    } = await render(
       <Form
         id="test"
         onSubmit={handleSubmit}
@@ -122,7 +137,7 @@ describe(`Month Picker `, () => {
         ]}
       />
     );
-    const itemInput = getByValue('');
+    const itemInput = getByDisplayValue('Sep');
     fireEvent.change(itemInput, {
       target: { value: 'Sep' },
     });
@@ -134,7 +149,8 @@ describe(`Month Picker `, () => {
       fireEvent.focus(itemInput);
     });
 
-    const iconSelected = container.querySelector(`div.selected`);
+    const iconSelected = container.querySelector(`.selected`);
+    console.log('ICON SELECTED: ', iconSelected);
     fireEvent.click(iconSelected);
 
     const input = container.querySelector('input');

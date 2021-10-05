@@ -9,6 +9,10 @@ function runPendingTimer() {
 }
 
 afterEach(cleanup);
+afterEach(() => {
+  jest.clearAllMocks();
+  jest.resetAllMocks();
+});
 
 describe('<Animate />', () => {
   const slidesContents = ['Slide1', 'Slide2', 'Slide3', 'Slide4'];
@@ -89,7 +93,6 @@ describe('<Animate />', () => {
     await expect(
       document.getElementsByClassName(currentSlideClassName)[0].textContent
     ).toBe('Slide1');
-
   });
 
   describe('slider size', () => {

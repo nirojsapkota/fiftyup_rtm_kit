@@ -1,7 +1,7 @@
 import React from 'react';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 import { TrackingProvider } from '@rtm-ui/tracker';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import { Bootstrap } from '../index';
 import { ErrorBoundary } from '../error-boundary';
 import { DummyComponent as ThisComponentThrowsAnError } from '../../dummy-component';

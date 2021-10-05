@@ -11,7 +11,11 @@ import {
 import GdprAgreement from '../GdprAgreement';
 
 // automatically unmount and cleanup DOM after the test is finished.
-afterEach(cleanup);
+afterEach(() => {
+  cleanup;
+  jest.clearAllMocks();
+  jest.resetAllMocks();
+});
 
 describe(`<GdprAgreement/>`, () => {
   const props = {
@@ -22,9 +26,11 @@ describe(`<GdprAgreement/>`, () => {
   };
 
   it(`renders Gdpr content with markdown link`, () => {
-    const { getByText, container} = render(<GdprAgreement {...props} />);
+    const { getByText, container } = render(<GdprAgreement {...props} />);
     const agreementText = getByText('Some agreement text and');
-    const linkNode = container.querySelector("a[href='https://someagreementlink.com']")
+    const linkNode = container.querySelector(
+      "a[href='https://someagreementlink.com']"
+    );
     expect(agreementText).toBeInTheDocument();
     expect(linkNode).toBeInTheDocument();
   });
@@ -50,7 +56,7 @@ describe(`<GdprAgreement/>`, () => {
 
     fireEvent.click(chkbAgreement);
 
-    expect(handleCheck).toHaveBeenCalledTimes(1);
+    expect(handleCheck).toHaveBeenCalled();
     expect(chkbAgreement.checked).toBe(true);
   });
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import 'jest-dom/extend-expect';
-import { render } from 'react-testing-library';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 import { Theme, BootstrapTheme } from '../index';
 import { obs, fuc, ninesaver } from '../themes';
 import { tintColor, getColor, setIn, getWeight } from '../util';

@@ -33,15 +33,15 @@ describe('<Testimonial />', () => {
   });
 
   it('can handle more than one items', async () => {
-    const { getByText, getByAltText } = await render(
+    const { getAllByText, getAllByAltText } = await render(
       <Testimonial items={items} />
     );
 
     items.forEach(async item => {
-      await expect(getByText(item.author)).toBeInTheDocument();
-      await expect(getByText(item.bio)).toBeInTheDocument();
-      await expect(getByText(item.body)).toBeInTheDocument();
-      await expect(getByAltText(item.author)).toBeInTheDocument();
+      await expect(getAllByText(item.author)[0]).toBeInTheDocument();
+      await expect(getAllByText(item.bio)[0]).toBeInTheDocument();
+      await expect(getAllByText(item.body)[0]).toBeInTheDocument();
+      await expect(getAllByAltText(item.author)[0]).toBeInTheDocument();
     });
   });
 
