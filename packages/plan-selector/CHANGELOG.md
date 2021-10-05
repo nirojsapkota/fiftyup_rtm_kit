@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan-selector@1.0.90...@rtm-ui/plan-selector@2.0.0) (2021-10-05)
+
+
+### Tests
+
+* Use react-testing-library v7.0.0 ([5b9fa23](https://github.com/OBSAU/rtm-kit/commit/5b9fa23a5842ff844c0b9832aba7b473659e075e))
+
+
+### BREAKING CHANGES
+
+* New version of the react-testing-library breaks some of the tests
+
+
+
+
+
 ## [1.0.90](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan-selector@1.0.89...@rtm-ui/plan-selector@1.0.90) (2021-09-02)
 
 **Note:** Version bump only for package @rtm-ui/plan-selector

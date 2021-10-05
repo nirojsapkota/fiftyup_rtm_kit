@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/img@4.0.76...@rtm-ui/img@5.0.0) (2021-10-05)
+
+
+### Tests
+
+* Use react-testing-library v7.0.0 ([5b9fa23](https://github.com/OBSAU/rtm-kit/commit/5b9fa23a5842ff844c0b9832aba7b473659e075e))
+
+
+### BREAKING CHANGES
+
+* New version of the react-testing-library breaks some of the tests
+
+
+
+
+
 ## [4.0.76](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/img@4.0.75...@rtm-ui/img@4.0.76) (2021-09-02)
 
 **Note:** Version bump only for package @rtm-ui/img
