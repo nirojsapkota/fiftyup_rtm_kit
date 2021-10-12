@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  cleanup,
-  wait,
-} from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import { Dashboard } from '../index';
 import { getSurvey, submitSurvey } from '../actions';
 import { dummyData } from '../fixtures/dummyData';
@@ -15,13 +10,6 @@ jest.mock('axios');
 
 const API = dummyData.survey.url || 'xyz.app.com/abc';
 const TEST_EMAIL = 'user@mail.com';
-
-// automatically unmount and cleanup DOM after the test is finished.
-afterEach(cleanup);
-// afterAll(async done => {
-//   axios.cancel;
-//   done();
-// });
 
 describe('<Dashboard />', () => {
   it('matches expected output', () => {
