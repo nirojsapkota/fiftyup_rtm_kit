@@ -5,7 +5,6 @@ import axios from 'axios';
 //   render,
 //   waitFor,
 //   fireEvent,
-//   cleanup,
 //   screen,
 //   getByTestId,
 // } from '../../../bootstrap/setup/testSetup.new.js';
@@ -16,8 +15,6 @@ import {
   fireEvent,
   // eslint-disable-next-line import/named
   wait,
-  // eslint-disable-next-line import/named
-  cleanup,
   sreen,
 } from '../../../bootstrap/setup/testSetup';
 
@@ -31,13 +28,10 @@ import loginPanelProps from '../__fixtures__/loginPanel';
 
 jest.mock('axios');
 
-// automatically unmount and cleanup DOM after the test is finished.
-afterEach(cleanup);
-
 describe('<LoginCalculatorPanel />', () => {
   it('works', () => {
-    expect(true).toEqual(true)
-  })
+    expect(true).toEqual(true);
+  });
   // it('matches expected output', async () => {
   //   const postCodeField = {
   //     label: 'My Postcode:',

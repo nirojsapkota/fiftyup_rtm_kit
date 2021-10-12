@@ -1,12 +1,10 @@
 import React from 'react';
 // eslint-disable-next-line import/named
-import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { useTracker, track, TrackerRegistration } from '..';
 import Google from '../google';
 import Twitter from '../twitter';
 import Facebook from '../facebook';
-
-afterEach(cleanup);
 
 describe(`useTracker`, () => {
   it(`exposes the trackEvent function and still calls the callback`, () => {

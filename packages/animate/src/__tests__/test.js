@@ -8,7 +8,6 @@ function runPendingTimer() {
   });
 }
 
-afterEach(cleanup);
 afterEach(() => {
   jest.clearAllMocks();
   jest.resetAllMocks();

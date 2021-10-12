@@ -4,14 +4,9 @@ import {
   render,
   // eslint-disable-next-line import/named
   fireEvent,
-  // eslint-disable-next-line import/named
-  cleanup,
 } from '../../../bootstrap/setup/testSetup.js';
 
 import GdprAgreement from '../GdprAgreement';
-
-// automatically unmount and cleanup DOM after the test is finished.
-afterEach(cleanup);
 
 describe(`<GdprAgreement/>`, () => {
   const props = {

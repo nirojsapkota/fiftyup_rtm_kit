@@ -2,8 +2,6 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { A } from '../index';
 
-afterEach(cleanup);
-
 const mockTrackEvent = jest.fn((_, callback) => callback);
 jest.mock('@rtm-ui/tracker', () => {
   const original = require.requireActual('@rtm-ui/tracker');

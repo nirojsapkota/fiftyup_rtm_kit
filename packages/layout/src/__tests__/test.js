@@ -4,7 +4,6 @@ import {
   fireEvent,
   wait,
   screen,
-  cleanup,
 } from '../../../bootstrap/setup/testSetup';
 import {
   Block,
@@ -20,7 +19,6 @@ import {
 
 const text = 'Hello, World';
 
-afterEach(cleanup);
 afterEach(() => {
   jest.clearAllMocks();
 });

@@ -3,8 +3,6 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '../../../bootstrap/setup/testSetup';
 import { Button, ButtonGroup } from '../index';
 
-afterEach(cleanup);
-
 describe(`<Button />`, () => {
   const welcomeMessage = 'Welcome to React';
   it(`renders welcome message`, () => {

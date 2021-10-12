@@ -5,15 +5,11 @@ import {
   fireEvent,
   // eslint-disable-next-line import/named
   wait,
-  // eslint-disable-next-line import/named
-  cleanup,
 } from '../../../bootstrap/setup/testSetup';
 import { default as energyPlanProp } from '../__fixtures__/energyPlan';
 import { EnergyPlan } from '../energyPlan';
 import { GenericPlan } from '../genericPlan';
 import { PlanSelector, PlanCard } from '../index';
-
-afterEach(cleanup);
 
 describe('<EnergyPlan />', () => {
   it('matches expected output', async () => {

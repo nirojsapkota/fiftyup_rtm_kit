@@ -1,12 +1,9 @@
 import axios from 'axios';
 
 // eslint-disable-next-line import/named
-import { cleanup } from '../../../bootstrap/setup/testSetup';
 import Funnel, { categoryKeys, defaultCategoryKeys } from '../funnel';
 
 jest.mock('axios');
-
-afterEach(cleanup);
 
 const expectRequestCall = (axios, sendingData) => {
   expect(axios.post).toHaveBeenCalledWith(
@@ -168,11 +165,11 @@ describe(`Funnel`, () => {
 
       const data = prepareData('travel', 'get_started');
       Funnel.sendData(data);
-      const keys = categoryKeys['travel'] || defaultCategoryKeys('travel')
+      const keys = categoryKeys['travel'] || defaultCategoryKeys('travel');
       const sendingData = keys['get_started'](data);
 
       expect(sendingData.step_code).toEqual('travel_click_get_started');
       expect(sendingData.plan_id).toEqual(data.meta.tracking_id);
-    })
-  })
+    });
+  });
 });
