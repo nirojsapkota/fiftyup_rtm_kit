@@ -1,11 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line import/named
-import {
-  cleanup,
-  fireEvent,
-  render,
-  wait,
-} from '../../../bootstrap/setup/testSetup';
+import { fireEvent, render, wait } from '../../../bootstrap/setup/testSetup';
 import { Form } from '../index';
 import { setupGoogleMock } from '../__mocks__/googlePayload';
 
@@ -51,8 +46,6 @@ const NOFIELDS = [
     },
   },
 ];
-
-afterEach(cleanup);
 
 describe('Component', () => {
   beforeEach(() => {

@@ -12,9 +12,6 @@ import { Csrf } from '../index';
 
 jest.mock('axios');
 
-// automatically unmount and cleanup DOM after the test is finished.
-afterEach(cleanup);
-
 describe('<Csrf />', () => {
   const data = {
     authenticityToken: 'token',

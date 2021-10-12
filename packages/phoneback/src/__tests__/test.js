@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  wait,
-  cleanup,
-} from '../../../bootstrap/setup/testSetup';
+import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import { PhonebackBox, Phoneback } from '../index';
 import Sample from '../../sample';
-
-afterEach(cleanup);
 
 const setup = phonebackProps => {
   const rendered = render(<PhonebackBox {...phonebackProps} />);
@@ -36,7 +29,7 @@ const setup = phonebackProps => {
     const formSubmitButton = rendered
       .getByText(Sample.submitText)
       .closest('button');
-    fireEvent.click(formSubmitButton)
+    fireEvent.click(formSubmitButton);
   }
 
   return rendered;

@@ -1,12 +1,9 @@
 // eslint-disable-next-line import/named
-import { cleanup } from '../../../bootstrap/setup/testSetup';
 import Facebook from '../facebook';
 import { sendToConversionAPI } from '../fbConversions';
 import axios from 'axios';
 
 jest.mock('axios');
-
-afterEach(cleanup);
 
 describe(`Facebook`, () => {
   describe(`when there are special mappings`, () => {

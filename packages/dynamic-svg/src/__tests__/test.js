@@ -19,8 +19,6 @@ jest.mock('axios', () => {
   };
 });
 
-afterEach(cleanup);
-
 describe('<DynamicSvg />', () => {
   it('dispays the reference object text', async () => {
     const { getByText } = await render(

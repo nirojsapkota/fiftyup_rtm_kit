@@ -1,11 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line import/named
-import {
-  cleanup,
-  fireEvent,
-  render,
-  wait,
-} from '../../../bootstrap/setup/testSetup';
+import { fireEvent, render, wait } from '../../../bootstrap/setup/testSetup';
 import { Form } from '../index';
 
 const handleSubmit = jest.fn();
@@ -35,7 +30,6 @@ const setup = async flag => {
   );
   return util;
 };
-afterEach(cleanup);
 
 describe(`Testing Component with scrollable set to true `, () => {
   it(`Should render all options in the dropdown and should have a scrollbar`, async () => {
