@@ -1,6 +1,5 @@
 // // FIXME: this should be from the testSetup file somehow. Not having it breaks things
 // eslint-disable-next-line import/no-extraneous-dependencies
-import '@testing-library/react/cleanup-after-each';
 import '@testing-library/jest-dom/extend-expect'; // (Replaces) 'jest-dom/extend-expect';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'jest-styled-components';

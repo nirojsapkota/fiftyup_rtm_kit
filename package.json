@@ -30,7 +30,7 @@
     "temp:test": "lerna run test --stream --scope @rtm-ui/login-calculator-panel -- -- --colors --coverage"
   },
   "devDependencies": {
-    "@rtm/core": "^1.2.4",
+    "@rtm/core": "^1.3.0",
     "@upstatement/prettier-config": "^0.3.0",
     "@xstate/react": "^0.7.1",
     "acorn": "^6.1.1",
