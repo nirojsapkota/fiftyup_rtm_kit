@@ -14,10 +14,13 @@ const loginPanel = {
     enableCheckBox: true,
     isRequire: 'required',
     isChecked: false,
-    getCheckBoxValue: function(e){ console.log('checkbox: ',e); },
-    content: "By ticking this box, you agree to our [Confirmation of Consent](https://staging.onebigswitch.com.au/confirmation-of-consent),\
+    getCheckBoxValue: function(e) {
+      console.log('checkbox: ', e);
+    },
+    content:
+      'By ticking this box, you agree to our [Confirmation of Consent](https://staging.onebigswitch.com.au/confirmation-of-consent),\
       [Terms and Conditions](https://staging.onebigswitch.com.au/terms-and-conditions) and \
-      [Privacy Policy](https://staging.onebigswitch.com.au/privacy-policy)"
+      [Privacy Policy](https://staging.onebigswitch.com.au/privacy-policy)',
   },
   buttonIcon: 'view-forward',
   stateField: {
@@ -25,6 +28,8 @@ const loginPanel = {
     validator: 'postcode',
     errorValue: 'postcode',
   },
+  // showFullNameField: true,
+  // showPhoneNumberField: true,
 };
 
 export default loginPanel;

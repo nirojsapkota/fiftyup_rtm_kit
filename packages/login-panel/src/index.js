@@ -220,7 +220,7 @@ class LoginForm extends React.Component {
           initialValue: hiddenFields[key],
           config: {},
         })),
-      ],
+      ].filter(item => item !== false),
     };
 
     return (
@@ -320,7 +320,7 @@ LoginPanel.defaultProps = {
   stateField: {},
   emailField: {},
   showFullNameField: false,
-  showFullNameField: false,
+  showPhoneNumberField: false,
   isExitIntent: false,
 };
 
