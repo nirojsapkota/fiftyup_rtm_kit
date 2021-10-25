@@ -22,7 +22,7 @@ export default {
       },
       {
         label: 'Phone Number:',
-        hint: 'Enter 10 digit phone number without spaces',
+        hint: '# Enter 10 digit phone number without spaces',
         name: 'phone',
         type: 'tel',
         config: {

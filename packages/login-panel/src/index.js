@@ -136,11 +136,34 @@ class LoginForm extends React.Component {
       gdprProps,
       stateField,
       emailField,
+      showFullNameField,
+      showPhoneNumberField,
+      isExitIntent,
     } = this.props;
 
     const formInput = {
       id: 'signup',
       fields: [
+        showFullNameField &&
+          !isExitIntent && {
+            label: 'First Name:',
+            name: 'firstName',
+            type: 'text',
+            placeholder: 'First Name',
+            config: {
+              validator: 'required',
+            },
+          },
+        showFullNameField &&
+          !isExitIntent && {
+            label: 'Last Name:',
+            name: 'lastName',
+            type: 'text',
+            placeholder: 'Last Name',
+            config: {
+              validator: 'required',
+            },
+          },
         {
           label: stateField.label || 'My Postcode:',
           name: stateField.fieldName,
@@ -167,6 +190,16 @@ class LoginForm extends React.Component {
             validator: 'email',
           },
         },
+        showPhoneNumberField &&
+          !isExitIntent && {
+            label: 'Phone Number:',
+            name: 'phone',
+            type: 'text',
+            placeholder: 'Phone Number',
+            config: {
+              validator: 'required',
+            },
+          },
         {
           label: '',
           name: 'authenticity_token',
@@ -189,6 +222,7 @@ class LoginForm extends React.Component {
         })),
       ],
     };
+
     return (
       <React.Fragment>
         <Header py={4} tag="h6" align="center">
@@ -237,7 +271,7 @@ class LoginForm extends React.Component {
 }
 
 const LoginPanel = ({ wrapperStyle, ...props }) => {
-  if (props.borderless) {
+  if (props.isExitIntent) {
     return <LoginForm {...props} />;
   } else {
     return (
@@ -249,7 +283,7 @@ const LoginPanel = ({ wrapperStyle, ...props }) => {
 };
 
 LoginPanel.propTypes = {
-  borderless: t.boolean,
+  isExitIntent: t.bool,
   authenticityToken: t.string.isRequired,
   loginUrl: t.string.isRequired,
   handleSuccess: t.func,
@@ -273,6 +307,8 @@ LoginPanel.propTypes = {
     label: t.string,
     placeholder: t.string,
   }),
+  showFullNameField: t.bool,
+  showPhoneNumberField: t.bool,
   wrapperStyle: t.object,
 };
 
@@ -283,7 +319,9 @@ LoginPanel.defaultProps = {
   buttonIcon: null,
   stateField: {},
   emailField: {},
-  borderless: false,
+  showFullNameField: false,
+  showFullNameField: false,
+  isExitIntent: false,
 };
 
 export { LoginPanel };

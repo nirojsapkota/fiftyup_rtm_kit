@@ -487,7 +487,7 @@ const HybridLoginView = ({
               </CloseButton>
             </CloseDialogWrapper>
             <LoginPanel
-              borderless={true}
+              isExitIntent={true}
               {...props}
               title={exitIntentProps.title || props.title}
               buttonText={exitIntentProps.buttonText || props.buttonText}
