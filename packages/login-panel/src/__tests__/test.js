@@ -62,9 +62,9 @@ describe('<LoginPanel />', () => {
 
     expect(getByText(emailField.label)).toBeInTheDocument();
 
-    expect(getByText('First Name')).toBeInTheDocument();
-    expect(getByText('Last Name')).toBeInTheDocument();
-    expect(getByText('Phone Number')).toBeInTheDocument();
+    expect(getByText('First Name:')).toBeInTheDocument();
+    expect(getByText('Last Name:')).toBeInTheDocument();
+    expect(getByText('Phone Number:')).toBeInTheDocument();
   });
 
   it('success call with input props', async () => {
