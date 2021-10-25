@@ -55,7 +55,7 @@ export const PhonebackBox = ({ form, children, ...props }) => {
 
 export const Phoneback = ({
   form,
-  isPhonebacked = true,
+  isPhonebacked = false,
   isFormSubmitting,
   thankYouProps,
   ...props
