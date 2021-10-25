@@ -62,9 +62,9 @@ describe('<LoginPanel />', () => {
 
     expect(getByText(emailField.label)).toBeInTheDocument();
 
-    expect(queryByText('First Name:')).toBeInTheDocument();
-    expect(queryByText('Last Name:')).toBeInTheDocument();
-    expect(queryByText('Phone Number:')).toBeInTheDocument();
+    expect(getByText('First Name:')).toBeInTheDocument();
+    expect(getByText('Last Name:')).toBeInTheDocument();
+    expect(getByText('Phone Number:')).toBeInTheDocument();
   });
 
   it('matches expected output without phone and name fields', async () => {
@@ -106,9 +106,9 @@ describe('<LoginPanel />', () => {
 
     expect(getByText(emailField.label)).toBeInTheDocument();
 
-    expect(getByText('First Name:')).not.toBeInTheDocument();
-    expect(getByText('Last Name:')).not.toBeInTheDocument();
-    expect(getByText('Phone Number:')).not.toBeInTheDocument();
+    expect(queryByText('First Name:')).not.toBeInTheDocument();
+    expect(queryByText('Last Name:')).not.toBeInTheDocument();
+    expect(queryByText('Phone Number:')).not.toBeInTheDocument();
   });
 
   it('success call with input props', async () => {
