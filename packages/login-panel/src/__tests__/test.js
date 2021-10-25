@@ -39,6 +39,8 @@ describe('<LoginPanel />', () => {
         {...loginPanelProps}
         stateField={postCodeField}
         emailField={emailField}
+        showFullNameField={true}
+        showPhoneNumberField={true}
       />
     );
 
@@ -59,6 +61,10 @@ describe('<LoginPanel />', () => {
     expect(getByText(postCodeField.hint)).toBeInTheDocument();
 
     expect(getByText(emailField.label)).toBeInTheDocument();
+
+    expect(getByText('First Name')).toBeInTheDocument();
+    expect(getByText('Last Name')).toBeInTheDocument();
+    expect(getByText('Phone Number')).toBeInTheDocument();
   });
 
   it('success call with input props', async () => {
