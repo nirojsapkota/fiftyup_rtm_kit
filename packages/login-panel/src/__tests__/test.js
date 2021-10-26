@@ -80,7 +80,7 @@ describe('<LoginPanel />', () => {
       placeholder: 'Email',
     };
 
-    const { getByText, getByDisplayValue } = await render(
+    const { getByText, queryByText, getByDisplayValue } = await render(
       <LoginPanel
         {...loginPanelProps}
         stateField={postCodeField}
