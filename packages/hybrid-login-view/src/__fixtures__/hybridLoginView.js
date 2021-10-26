@@ -17,6 +17,8 @@ const hybridLoginView = {
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
   asSeenOnImage: 'https://placehold.it/1080x100',
   mainContent: 'I am main content',
+  showPhoneNumberField: true,
+  showFullNameField: true,
   entity: {
     brand: 'obs',
     facebook_pixel_id: '2222222',

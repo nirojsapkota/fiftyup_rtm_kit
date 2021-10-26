@@ -21,7 +21,7 @@ jest.mock('axios');
 afterEach(cleanup);
 
 describe('<LoginPanel />', () => {
-  it('matches expected output', async () => {
+  it('matches expected output with phone and name fields', async () => {
     const postCodeField = {
       label: 'My Postcode:',
       placeholder: 'Postcode',
@@ -35,6 +35,52 @@ describe('<LoginPanel />', () => {
     };
 
     const { getByText, getByDisplayValue } = await render(
+      <LoginPanel
+        {...loginPanelProps}
+        stateField={postCodeField}
+        emailField={emailField}
+        showFullNameField={true}
+        showPhoneNumberField={true}
+      />
+    );
+
+    const { hiddenFields } = loginPanelProps;
+
+    // expect hidden fields
+    const jumpPath = getByDisplayValue(hiddenFields.jump_path);
+    expect(jumpPath.name).toEqual('jump_path');
+    const registeringCampaignId = getByDisplayValue(
+      hiddenFields.registering_campaign_id.toString()
+    );
+    expect(registeringCampaignId.name).toEqual('registering_campaign_id');
+
+    expect(getByText(loginPanelProps.title)).toBeInTheDocument();
+    expect(getByText(loginPanelProps.buttonText)).toBeInTheDocument();
+
+    expect(getByText(postCodeField.label)).toBeInTheDocument();
+    expect(getByText(postCodeField.hint)).toBeInTheDocument();
+
+    expect(getByText(emailField.label)).toBeInTheDocument();
+
+    expect(getByText('First Name:')).toBeInTheDocument();
+    expect(getByText('Last Name:')).toBeInTheDocument();
+    expect(getByText('Phone Number:')).toBeInTheDocument();
+  });
+
+  it('matches expected output without phone and name fields', async () => {
+    const postCodeField = {
+      label: 'My Postcode:',
+      placeholder: 'Postcode',
+      fieldName: 'postcode',
+      hint: '10001, New York',
+    };
+    const emailField = {
+      label: 'My Email:',
+      fieldName: 'postcode',
+      placeholder: 'Email',
+    };
+
+    const { getByText, queryByText, getByDisplayValue } = await render(
       <LoginPanel
         {...loginPanelProps}
         stateField={postCodeField}
@@ -59,6 +105,10 @@ describe('<LoginPanel />', () => {
     expect(getByText(postCodeField.hint)).toBeInTheDocument();
 
     expect(getByText(emailField.label)).toBeInTheDocument();
+
+    expect(queryByText('First Name:')).not.toBeInTheDocument();
+    expect(queryByText('Last Name:')).not.toBeInTheDocument();
+    expect(queryByText('Phone Number:')).not.toBeInTheDocument();
   });
 
   it('success call with input props', async () => {
