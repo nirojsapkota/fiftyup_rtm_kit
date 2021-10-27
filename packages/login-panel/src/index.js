@@ -51,11 +51,17 @@ class LoginForm extends React.Component {
         } else {
           values['user'][field.name] = field.value;
         }
+      } else if (field.name === 'first_name') {
+        values['user'][field.name] = field.value;
+      } else if (field.name === 'last_name') {
+        values['user'][field.name] = field.value;
+      } else if (field.name === 'primary_contact_no') {
+        values['user'][field.name] = field.value;
       } else {
         values[field.name] = field.value;
       }
     });
-
+    debugger;
     const result = await submitLogin(
       loginUrl,
       values,
@@ -147,7 +153,7 @@ class LoginForm extends React.Component {
         showFullNameField &&
           !isExitIntent && {
             label: 'First Name:',
-            name: 'firstName',
+            name: 'first_name',
             type: 'text',
             placeholder: 'First Name',
             config: {
@@ -157,7 +163,7 @@ class LoginForm extends React.Component {
         showFullNameField &&
           !isExitIntent && {
             label: 'Last Name:',
-            name: 'lastName',
+            name: 'last_name',
             type: 'text',
             placeholder: 'Last Name',
             config: {
@@ -193,7 +199,7 @@ class LoginForm extends React.Component {
         showPhoneNumberField &&
           !isExitIntent && {
             label: 'Phone Number:',
-            name: 'phone',
+            name: 'primary_contact_no',
             type: 'text',
             placeholder: 'Phone Number',
             config: {
