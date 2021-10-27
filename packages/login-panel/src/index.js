@@ -41,7 +41,12 @@ class LoginForm extends React.Component {
 
     const values = { user: {} };
     fieldsWithValues.forEach(field => {
-      if (field.name === 'email') {
+      if (
+        field.name === 'email' ||
+        field.name === 'first_name' ||
+        field.name === 'last_name' ||
+        field.name === 'primary_contact_no'
+      ) {
         values['user'][field.name] = field.value;
       } else if (field.name === stateField.fieldName) {
         if (stateField.options) {
@@ -51,12 +56,6 @@ class LoginForm extends React.Component {
         } else {
           values['user'][field.name] = field.value;
         }
-      } else if (field.name === 'first_name') {
-        values['user'][field.name] = field.value;
-      } else if (field.name === 'last_name') {
-        values['user'][field.name] = field.value;
-      } else if (field.name === 'primary_contact_no') {
-        values['user'][field.name] = field.value;
       } else {
         values[field.name] = field.value;
       }
