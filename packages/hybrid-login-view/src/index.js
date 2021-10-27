@@ -70,6 +70,14 @@ const CloseDialogWrapper = styled(Box)`
   flex-flow: column;
 `;
 
+const ExtraPadding = styled('div')`
+  background-color: white;
+  height: 250px;
+  @media (max-width: ${props => props.theme.grid.md}em) {
+    height: 0px;
+  }
+`;
+
 const CloseButton = styled(Button)`
   outline: none;
 `;
@@ -470,6 +478,7 @@ const HybridLoginView = ({
                 </Variant>
               </Block>
             )}
+          {props.showFullNameField && <ExtraPadding />}
         </ContentSection>
       </BodyWrapper>
       {exitIntentProps && exitIntentProps.enable && showExitIntent && (
