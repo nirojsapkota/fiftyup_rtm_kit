@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
         values['user'][field.name] = field.value;
       } else if (field.name === 'last_name') {
         values['user'][field.name] = field.value;
-      } else if (field.name === 'phone_number') {
+      } else if (field.name === 'primary_contact_no') {
         values['user'][field.name] = field.value;
       } else {
         values[field.name] = field.value;
@@ -199,7 +199,7 @@ class LoginForm extends React.Component {
         showPhoneNumberField &&
           !isExitIntent && {
             label: 'Phone Number:',
-            name: 'phone_number',
+            name: 'primary_contact_no',
             type: 'text',
             placeholder: 'Phone Number',
             config: {
