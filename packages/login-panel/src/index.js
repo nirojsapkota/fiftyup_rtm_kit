@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
         values[field.name] = field.value;
       }
     });
-    debugger;
+
     const result = await submitLogin(
       loginUrl,
       values,
