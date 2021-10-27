@@ -72,7 +72,7 @@ const CloseDialogWrapper = styled(Box)`
 
 const ExtraPadding = styled('div')`
   background-color: white;
-  height: 250px;
+  height: 450px;
   @media (max-width: ${props => props.theme.grid.md}em) {
     height: 0px;
   }
