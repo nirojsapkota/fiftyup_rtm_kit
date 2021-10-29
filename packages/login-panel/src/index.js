@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
         values[field.name] = field.value;
       }
     });
-    debugger;
+
     const result = await submitLogin(
       loginUrl,
       values,
@@ -145,6 +145,7 @@ class LoginForm extends React.Component {
       showFullNameField,
       showPhoneNumberField,
       isExitIntent,
+      phoneNumberValidation,
     } = this.props;
 
     const formInput = {
@@ -203,7 +204,7 @@ class LoginForm extends React.Component {
             type: 'text',
             placeholder: 'Phone Number',
             config: {
-              validator: 'required',
+              ...phoneNumberValidation,
             },
           },
         {
@@ -315,6 +316,7 @@ LoginPanel.propTypes = {
   }),
   showFullNameField: t.bool,
   showPhoneNumberField: t.bool,
+  phoneNumberValidation: t.object,
   wrapperStyle: t.object,
 };
 

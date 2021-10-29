@@ -17,7 +17,7 @@ export const submitLogin = async (
       'X-CSRF-Token': authenticityToken,
     },
   };
-  debugger;
+
   const result = await axios
     .post(url, data, config)
     .then(response => {
