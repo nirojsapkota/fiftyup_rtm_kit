@@ -93,11 +93,11 @@ describe('<SwitchConfirmPage />', () => {
       ).resolves.toEqual(response);
       expect(axios.post).toHaveBeenCalledWith(
         uploadURL,
-        JSON.stringify({
+        {
           switchId: switchId,
           switchType: switchType,
           imageURL: image,
-        }),
+        },
         {
           headers: {
             Accept: 'application/json',
@@ -118,11 +118,11 @@ describe('<SwitchConfirmPage />', () => {
       ).resolves.toEqual(true);
       expect(axios.post).toHaveBeenCalledWith(
         uploadURL,
-        JSON.stringify({
+        {
           switchId: switchId,
           switchType: switchType,
           imageURL: image,
-        }),
+        },
         {
           headers: {
             Accept: 'application/json',

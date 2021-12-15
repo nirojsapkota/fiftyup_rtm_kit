@@ -8,7 +8,7 @@ export const dummyData = {
   authenticityToken: '252n2h5fosfsnlr9252h9s0a8fv8',
   switchId: 1234,
   switchType: 'energy',
-  uploadUrl: 'https://example.com/uploadEicImage',
+  uploadUrl: 'https://api.staging.9saver.com.au/uploadEicImage',
   entity: {
     brand: 'obs',
     footer_items: {},
@@ -63,21 +63,22 @@ export const dummyData = {
       type: 'confirm',
       body: 'I understand and agree that I am entering.',
       label: null,
-      name: 'first'
+      name: 'first',
     },
     {
       type: 'confirm',
-      body: 'Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box',
+      body:
+        'Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box Yes, I agree lorem Welcome to react. this is a content of this is a content of disclaimer box and Welcome to react. this is a content of disclaimer box',
       label: 'Yes, I agree lorem Welcome to react.',
       optional: false,
-      name: 'second'
+      name: 'second',
     },
     {
       type: 'confirm',
       body: 'I understand and agree that I am entering.',
       label: 'Yes, I agree',
       optional: true,
-      name: 'third'
+      name: 'third',
     },
   ],
   planDetails: {
