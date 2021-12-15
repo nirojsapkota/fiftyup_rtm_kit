@@ -12,7 +12,7 @@ import {
   Disclaimer,
   ConfirmSwitch,
 } from '@rtm-ui/electricity-switch';
-import { useScreenshot } from "use-screenshot-hook";
+import { useScreenshot } from 'use-screenshot-hook';
 const axios = require('axios');
 
 const StyledAccordion = styled(Box)`
@@ -151,15 +151,15 @@ class ConfirmationWrapper extends React.Component {
   }
   // FIXME handle trigger button form child component
   handleButtonClick(e) {
-    scrollToElement(e, "confirm-switch");
+    scrollToElement(e, 'confirm-switch');
   }
 
   saveImgToS3 = async (switchId, switchType, uploadUrl, image) => {
-    const url = uploadUrl
+    const url = uploadUrl;
     const data = {
       switchId: switchId,
       switchType: switchType,
-      imageURL: image
+      imageURL: image,
     };
 
     const config = {
@@ -170,10 +170,9 @@ class ConfirmationWrapper extends React.Component {
     };
 
     try {
-      return await axios.post(url, JSON.stringify(data), config);
-    }
-    catch (error) {
-      console.error(error)
+      return await axios.post(url, data, config);
+    } catch (error) {
+      console.error(error);
       return true;
     }
   };
@@ -197,23 +196,34 @@ class ConfirmationWrapper extends React.Component {
         this.handleSubmit();
       } else {
         // Check to ensure that disclaimer content exists. This disclaimer content does not exist for the providers with external switching engine
-        if (this.mobileDisclaimerBoxRef.current.getElementsByTagName("div").length > 1 && this.disclaimerBoxRef.current.getElementsByTagName("div").length > 1) {
+        if (
+          this.mobileDisclaimerBoxRef.current.getElementsByTagName('div')
+            .length > 1 &&
+          this.disclaimerBoxRef.current.getElementsByTagName('div').length > 1
+        ) {
           // Expanding the disclaimer box in mobile view to capture all the conditions
-          this.mobileDisclaimerBoxRef.current.getElementsByTagName("div")[1].style.maxHeight = 'none';
+          this.mobileDisclaimerBoxRef.current.getElementsByTagName(
+            'div'
+          )[1].style.maxHeight = 'none';
 
           // Expanding the disclaimer box to capture all the conditions
-          this.disclaimerBoxRef.current.getElementsByTagName("div")[1].style.maxHeight = 'none';
+          this.disclaimerBoxRef.current.getElementsByTagName(
+            'div'
+          )[1].style.maxHeight = 'none';
         }
-        rest.capture()
-          .then((result) => {
-            //console.log(result)
-            this.saveImgToS3(rest.switchId, rest.switchType, rest.uploadUrl, result)
-              .finally(() => {
-                this.handleSubmit();
-              })
+        rest.capture().then(result => {
+          //console.log(result)
+          this.saveImgToS3(
+            rest.switchId,
+            rest.switchType,
+            rest.uploadUrl,
+            result
+          ).finally(() => {
+            this.handleSubmit();
           });
+        });
       }
-    }
+    };
 
     return (
       <PageWrapper>
@@ -230,7 +240,7 @@ class ConfirmationWrapper extends React.Component {
           <div ref={this.mobileDisclaimerBoxRef}>
             <Disclaimer items={disclaimers} />
           </div>
-          <div scroll-target="confirm-switch" >
+          <div scroll-target="confirm-switch">
             <ConfirmSwitch
               completeUrl={rest.completeUrl}
               editUrl={rest.editUrl}
