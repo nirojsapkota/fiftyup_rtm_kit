@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@6.0.2...@rtm-ui/switch-confirm-page@6.0.3) (2021-12-15)
+
+
+### Bug Fixes
+
+* **SwitchConfirmPage:** Fixup the API gateway error of eic screenshot api ([c43948c](https://github.com/OBSAU/rtm-kit/commit/c43948c6be1e79cd0cdfddf1f9b2023378e9ad46))
+
+
+
+
+
 ## [6.0.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@6.0.1...@rtm-ui/switch-confirm-page@6.0.2) (2021-10-29)
 
 **Note:** Version bump only for package @rtm-ui/switch-confirm-page
