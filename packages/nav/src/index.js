@@ -27,7 +27,7 @@ const ProfileStatus = ({
   signOutPath,
   signInPath,
   signOutText,
-  signInText
+  signInText,
 }) => {
   return user ? (
     <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -85,7 +85,6 @@ const ToggleList = styled(Box)`
   }
 `;
 
-
 const NoToggleList = styled(Box)`
   display: flex;
   align-items: center;
@@ -103,15 +102,21 @@ const NavGroupWrapper = styled(NavGroup)`
 `;
 
 const FixedPosition = styled.div`
-  position: fixed;
-  top: 0;
+  position: sticky;
+  top: ${props => (props.withCookieBanner ? '36px' : 0)};
   width: 100%;
   z-index: 9999;
   background: white;
+  @media (max-width: ${props => props.theme.grid.md}em) {
+    top: ${props => (props.withCookieBanner ? '50px' : 0)};
+  }
+  @media (max-width: ${props => props.theme.grid.sm}em) {
+    top: ${props => (props.withCookieBanner ? '70px' : 0)};
+  }
 `;
 
 const StyledNavbar = styled(Flex)`
-  box-shadow: ${props => props.sticky ? 'none' : 'inherit'};
+  box-shadow: ${props => (props.sticky ? 'none' : 'inherit')};
 `;
 
 const BrandItems = styled(Box)`
@@ -124,15 +129,20 @@ const BrandItems = styled(Box)`
       padding-right: 20px;
     }
   }
-`
+`;
 
 const Navbar = ({ variant, ...props }) => {
   const { logoGlyph } = React.useContext(ThemeContext);
   return (
-    <StyledNavbar variant={variant} px={[10, 20]} py={[0, 0, 0, 10]} elevation={1}>
+    <StyledNavbar
+      variant={variant}
+      px={[10, 20]}
+      py={[0, 0, 0, 10]}
+      elevation={1}
+    >
       {props.isDesktop && <div style={{ wdith: '32px' }} />}
       <NavGroupWrapper px={[0, 0, 32]}>
-        <BrandItems data-testid="brand-items" className={props.logoPosition} >
+        <BrandItems data-testid="brand-items" className={props.logoPosition}>
           {props.isDesktop && props.tagline && (
             <Paragraph pr={10} weight="bold" color="tertiary" tag="h6">
               {props.tagline}
@@ -150,7 +160,6 @@ const Navbar = ({ variant, ...props }) => {
               )}
             </LogoA>
           </Box>
-
         </BrandItems>
         <NavList>
           {props.isDesktop ? (
@@ -158,7 +167,14 @@ const Navbar = ({ variant, ...props }) => {
               {props.items
                 .filter(item => item.navbar)
                 .map(({ label, id, ...item }) => {
-                  if (item.scrollTo) {item = {...item, onClick: (e) => { scrollToElement(e, item.scrollTo) }}}
+                  if (item.scrollTo) {
+                    item = {
+                      ...item,
+                      onClick: e => {
+                        scrollToElement(e, item.scrollTo);
+                      },
+                    };
+                  }
                   return (
                     <NavA key={id} color="primary" weight="bold" {...item}>
                       {label}
@@ -171,17 +187,18 @@ const Navbar = ({ variant, ...props }) => {
           )}
         </NavList>
       </NavGroupWrapper>
-      {((props.isDesktop && props.showSideNav) || !props.isDesktop)?
-      <ToggleList p={10}>
-        {props.children}
-        <A onClick={() => props.onNavClick()}>
-          <StyledParagraph ml="5px" showHover data-testid="toggle-nav">
-            <Icon size={48} fill="primary" glyph="menu" />
-          </StyledParagraph>
-        </A>
-      </ToggleList>
-      :
-      <NoToggleList/>}
+      {(props.isDesktop && props.showSideNav) || !props.isDesktop ? (
+        <ToggleList p={10}>
+          {props.children}
+          <A onClick={() => props.onNavClick()}>
+            <StyledParagraph ml="5px" showHover data-testid="toggle-nav">
+              <Icon size={48} fill="primary" glyph="menu" />
+            </StyledParagraph>
+          </A>
+        </ToggleList>
+      ) : (
+        <NoToggleList />
+      )}
     </StyledNavbar>
   );
 };
@@ -198,21 +215,20 @@ const SubHeaderWrapper = styled(Box)`
   margin: auto;
 `;
 
-const NavbarPositioner = (props) => {
+const NavbarPositioner = props => {
   if (props.sticky) {
-    return(
-      <FixedPosition data-testid="nav-fixed">
+    return (
+      <FixedPosition
+        data-testid="nav-fixed"
+        withCookieBanner={props.withCookieBanner}
+      >
         {props.children}
       </FixedPosition>
-    )
+    );
   } else {
-    return(
-      <React.Fragment>
-        {props.children}
-      </React.Fragment>
-    )
+    return <React.Fragment>{props.children}</React.Fragment>;
   }
-}
+};
 const Nav = props => {
   const size = useWindowSize();
   const [isDesktop, setIsDesktop] = React.useState();
@@ -227,9 +243,14 @@ const Nav = props => {
   const [isClosed, toggleClosed] = React.useState(true);
   const toggle = () => toggleClosed(!isClosed);
   return (
-    <NavbarPositioner sticky={props.sticky}>
+    <NavbarPositioner
+      sticky={props.sticky}
+      withCookieBanner={props.withCookieBanner}
+    >
       <Navbar
-        showSideNav = {props.user !== null || props.items.some(i => i.navbar !== true) }
+        showSideNav={
+          props.user !== null || props.items.some(i => i.navbar !== true)
+        }
         sticky={props.sticky}
         variant={props.variant}
         isDesktop={isDesktop}
@@ -291,7 +312,7 @@ Nav.propTypes = {
 };
 
 Nav.defaultProps = {
-  logoPosition: "left",
+  logoPosition: 'left',
 };
 
 Navbar.propTypes = {

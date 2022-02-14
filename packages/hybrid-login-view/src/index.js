@@ -350,7 +350,7 @@ const HybridLoginView = ({
 
   return (
     <React.Fragment>
-      <BodyWrapper className="body-wrapper" pt={[50, 50, 50, 72]}>
+      <BodyWrapper className="body-wrapper">
         <HeadingSection {...props} />
         <MainGraphic {...props} />
         <ContentSection>
@@ -553,6 +553,7 @@ const WrappedHybridLoginView = props => {
     entity,
     navLinks,
     lifeInsuranceCalcProps,
+    withCookieBanner,
     ...rest
   } = props;
 
@@ -569,6 +570,7 @@ const WrappedHybridLoginView = props => {
         signInPath=""
         signOutPath=""
         subHeader=""
+        withCookieBanner={withCookieBanner}
       />
       <HybridLoginView
         {...rest}
