@@ -145,6 +145,13 @@ const primitiveMap = {
     tag: 'p',
     children: renderChildren(children),
   }),
+  html: ({ value }) => {
+    return {
+    ...Paragraph.defaultProps,
+    as: 'p',
+    tag: 'p',
+    dangerousHTML: value
+  }}
 };
 
 // Add margin-bottom to each child except last
@@ -176,7 +183,6 @@ export const Markdown = ({ raw, referenceObject = {}, ...boxProps }) => {
     .use(interpolator, referenceObject)
     .use(remarkAlign)
     .use(blocks)
-    .use(remark2rehype)
     .use(stringify)
     .parse(raw.toString());
 

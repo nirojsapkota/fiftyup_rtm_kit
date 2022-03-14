@@ -249,6 +249,14 @@ class TrackerRegistration extends React.Component {
       window.facebook_conversion_url = this.props.facebook_conversion_url;
     }
 
+    if (this.props.include_trustpilot_js_script) {
+      const tpilot = document.createElement('script');
+      tpilot.type = 'text/javascript';
+      tpilot.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js'
+      tpilot.async = true
+      this.instance.appendChild(tpilot);
+    }
+
     if (this.props.zendesk_id) {
       //FOR ZENDESK
       const zd1 = document.createElement('script');
