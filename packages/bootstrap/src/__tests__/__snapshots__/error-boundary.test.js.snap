@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error_boundary.ErrorBoundary.componentDidCatch 0 1`] = `undefined`;
+
+exports[`error_boundary.ErrorBoundary.componentDidCatch 1 1`] = `undefined`;

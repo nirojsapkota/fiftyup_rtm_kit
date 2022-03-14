@@ -74,6 +74,7 @@ describe('<TrackerRegistration />', () => {
     const facebook_pixel_id = '1111111111';
     const fullstory_id = 'NQGXA';
     const zendesk_id = 'a85c71b0-2af3-4bb0-9cd3-3a9eb0ebcb67';
+    const enable_trustpilot_js_script = true;
     const google_optimize_id = 'OPT-123456';
     const sfmc_business_account_id = '123456';
     const outbrain_tracking_id = '000123456';
@@ -89,6 +90,7 @@ describe('<TrackerRegistration />', () => {
         facebook_pixel_id={facebook_pixel_id}
         fullstory_id={fullstory_id}
         zendesk_id={zendesk_id}
+        enable_trustpilot_js_script={enable_trustpilot_js_script}
         sfmc_business_account_id={sfmc_business_account_id}
         google_optimize_id={google_optimize_id}
         outbrain_tracking_id={outbrain_tracking_id}
@@ -115,6 +117,7 @@ describe('<TrackerRegistration />', () => {
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(fullstory_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain('widget.trustpilot.com')
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       google_optimize_id
     );
