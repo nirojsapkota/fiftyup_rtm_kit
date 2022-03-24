@@ -56,6 +56,7 @@ const DropdownField = ({ onWaiting,
       <div>
         <DropdownTextBox
           {...inputProps}
+          autoComplete="off"
           aria-haspopup="listbox"
           onFocus={() => {
             setModalOpen(true);
