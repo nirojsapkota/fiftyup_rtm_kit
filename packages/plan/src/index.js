@@ -22,14 +22,17 @@ export const Plan = ({
   reference,
   phonebackProps,
   isEnabledMarkdown,
+  calculatorProps,
+  ...rest
 }) => {
   const [isPhonebackSubmitted, setPhonebackSubmitted] = React.useState(plan.has_phoneback);
   const clickAction = actions.find(({ track }) => track === 'get_started');
   const callbackAction = actions.find(
     ({ track }) => track === 'request_call_back'
   );
+  const getQuoteAction = actions.find(({ track }) => track === 'get_quote');
 
-  const primaryAction = callbackAction || clickAction;
+  const primaryAction = callbackAction || getQuoteAction || clickAction;
   const primaryActionWithPhonebackProps = {
     ...primaryAction,
     ...phonebackProps,
@@ -57,6 +60,8 @@ export const Plan = ({
                   actions={actions}
                   primaryActionProps={primaryActionWithPhonebackProps}
                   merchant={plan.merchant}
+                  calculatorProps={calculatorProps}
+                  userApiAuthToken={rest.userApiAuthToken}
                 />
               </Block>
             </Summary>
@@ -67,6 +72,8 @@ export const Plan = ({
                 actions={actions}
                 primaryActionProps={primaryActionWithPhonebackProps}
                 merchant={plan.merchant}
+                calculatorProps={calculatorProps}
+                userApiAuthToken={rest.userApiAuthToken}
               />
             </Block>
           </PlanSidebar>
