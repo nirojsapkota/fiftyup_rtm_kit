@@ -61,7 +61,7 @@ const planInput = {
       },
     ],
     merchant: {
-      logoUrl: 'https://placehold.it/300x200',
+      logoUrl: 'https://placeimg.com/300/200/any',
       full_name: 'InsureandGo',
     },
     tweet_text: 'some text',
@@ -107,10 +107,6 @@ const planInput = {
       message: 'Testing',
       track: 'get_quote',
       link: "https://somegetquoteurl.com"
-    },
-    {
-      track: 'phoneback',
-      link: "https://somegetquoteurl.com"
     }
   ],
   tracking_meta: { merchant_code: 'insureandgo', tracking_id: 1066 },
@@ -118,23 +114,18 @@ const planInput = {
     'RQjlAz4wHnOIAsuM3aSZ73OAa0J8wF3cLjscByZRh1WNJzs53Eu7yf9S9O7FWK/n6dnl3rUVoF/DPOm0pwJQMQ==',
   calculatorProps: {
     showQuoteCalculator: true,
-    quoteTitle:
-      'Join One Big Switch today for FREE and instantly unlock your special offers!',
-    quoteText:
-      'An insurance team member will call you back in a day or so. You can change the details below if you wish to explore other quotes or levels of cover.',
-    getQuoteDisclaimerTextHtml:
+    quoteHeader: '#### Get A Quick Quote Now',
+    getQuoteDisclaimerText:
       'By clicking on Get Quote you confirm you have read our <a target="_blank" href="https://onebigswitch.com.au/privacy-policy">Privacy Policy</a> and that you would like to be contacted by NobleOak regarding Life Insurance. Your information entered here will also be provided to NobleOak so please read their privacy policy <a target="_blank" href="https://www.nobleoak.com.au/privacy-policy/">here</a>.',
     percentDiscount: 0,
-    discountText: 'Or Call:',
-    phoneNumber: '#### 1800-978-000',
-    quoteHeaderText: '<- ##### Your Quote from NobleOak Life Insurance⁶ <-',
+    phoneNumber: 'Or Call #### 1800-978-000',
+    quoteHeaderText: '<- #### Your Quote from NobleOak Life Insurance⁶ <-',
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
-    campaignId: 524,
-    callbackUrl: '/temp_REPLACE_ME',
+    callbackUrl: 'http://obsau.develop:3000/api/v2/life_phoneback',
     formSubmitButtonText: 'Get Quote',
-    thankyouHeader: '# Thank you',
-    thankyouBody: 'See below for more offers',
+    thankyouBody: "Thanks",
+    newQuoteText: 'Generate a new quote'
   }
 };
 

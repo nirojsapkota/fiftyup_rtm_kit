@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Form, FormError, getFormValues } from '@rtm-ui/form';
-import { Button, ButtonGroup } from '@rtm-ui/button';
-import { Theme as Variant } from '@rtm-ui/theme';
-import { Card, Box } from '@rtm-ui/layout';
-import { A, Header, Markdown, Paragraph } from '@rtm-ui/typography';
+import { Button } from '@rtm-ui/button';
+import { Box } from '@rtm-ui/layout';
+import { Header, Markdown, Small } from '@rtm-ui/typography';
 
 const axios = require('axios');
 
@@ -93,7 +92,6 @@ const generateCoverAmount = () => {
 };
 
 const GetQuote = props => {
-  const sampleResult = {'obs': '38.61', 'standard': '200', 'savings': '20', 'lead_id': '222'};
   const [quoteResult, setQuoteResult] = React.useState(null);
   const [quoteStep, setQuoteStep] = React.useState(1);
   const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({})
@@ -193,7 +191,12 @@ const GetQuote = props => {
     }
   ]
 
-  const submitHandler = async (values, userApiAuthToken, campaignId, link) => {
+  const submitHandler = async ({
+    values,
+    userApiAuthToken,
+    campaignId,
+    link
+  }) => {
     let data = {
       campaign_id: campaignId,
       life_insurance_lead_fragment: {},
@@ -239,7 +242,12 @@ const GetQuote = props => {
     return values;
   };
 
-  const submitPhoneback = async (link, value) => {
+  const submitPhoneback = async ({
+    link,
+    campaignId,
+    userApiAuthToken,
+    value
+  }) => {
     let data = {
       campaign_id: campaignId,
       phoneback: {preferred_time: value},
@@ -253,46 +261,58 @@ const GetQuote = props => {
       }
     };
 
-    await axios.post(link, data, config).then(response => {
+    await axios.patch(link, data, config).then(response => {
       setQuoteStep(3);
-      setQuoteFieldsValues(getFormValues(values));
       return response.data;
     }).catch(error => {
-      // Comment out for now
       throw new FormError({
         formError: 'Unexpected problem, please contact support.',
-        fieldErrors: { username: 'That username already exists' } //sample
+        fieldErrors: { } //sample
       });
     });
   }
 
-
-
   return (
     <Box py={10} px={15}>
       {/* STEP ONE: Display the quote form */}
-      {quoteStep === 1 && <Form
-        id="life-form"
-        onSubmit={async values => {
-          const data = await submitHandler(values, props.userApiAuthToken, props.campaignId, props.link)
-          return submitHandler(values, props.userApiAuthToken, props.campaignId, props.link)
-        }}
-        onSuccess={successHandler}
-        fields={calculatorFields}
-        renderFooter={({FormError}) => (
-          <React.Fragment>
-            <Button block width="100%" type="submit">Submit</Button>
-            {FormError && (
-              <Box pt={2}>
-                <Small align="left" color="error">
-                  <Icon fill="error" glyph="error" size={15} />
-                  {FormError}
-                </Small>
-              </Box>
+      {quoteStep === 1 && (
+        <React.Fragment>
+          {props.calculatorProps.quoteHeader && <Markdown raw={props.calculatorProps.quoteHeader} />}
+          <Form
+            id="life-form"
+            onSubmit={async values => {
+              return submitHandler({
+                values: values,
+                userApiAuthToken: props.userApiAuthToken,
+                campaignId: props.campaignId,
+                link: props.link
+              })
+            }}
+            onSuccess={successHandler}
+            fields={calculatorFields}
+            renderFooter={({FormError}) => (
+              <React.Fragment>
+                {FormError && (
+                  <Box pt={2}>
+                    <Small align="left" color="error">
+                      <Icon fill="error" glyph="error" size={15} />
+                      {FormError}
+                    </Small>
+                  </Box>
+                )}
+                <Button block track='get_quote' width="100%" type="submit">{props.calculatorProps.formSubmitButtonText}</Button>
+                {props.calculatorProps.getQuoteDisclaimerText && (
+                  <Box>
+                    <Small>
+                      <Markdown scale={0.75} py={2} raw={props.calculatorProps.getQuoteDisclaimerText} />
+                    </Small>
+                  </Box>
+                )}
+              </React.Fragment>
             )}
-          </React.Fragment>
-        )}
-      />}
+          />
+        </React.Fragment>
+      )}
 
       {/* STEP STEP: Show the quote */}
       {quoteStep === 2 && <QuoteContentWrapper>
@@ -303,9 +323,14 @@ const GetQuote = props => {
           <Markdown pt={4} pb={3} raw={props.calculatorProps.timeToCallBackText} />
           {phonebackButtons.map((button, index) => (
             <ButtonWrapper>
-              <Button block py={3} track='virtual/call_me_back' key={index}
+              <Button block py={3} track='call_me_back' key={index}
                 onClick={() =>{
-                  submitPhoneback(props.link2, button.value)
+                  submitPhoneback({
+                    link: props.calculatorProps.callbackUrl,
+                    campaignId: props.campaignId,
+                    value: button.value,
+                    userApiAuthToken: props.userApiAuthToken
+                  })
                 }} >
                 {button.text}
               </Button>
@@ -313,16 +338,17 @@ const GetQuote = props => {
           ))}
         </ButtonWrapper>
         {props.calculatorProps.phoneNumber && <Box py={2}>
-          <p>or call</p>
           <Markdown py={2} raw={props.calculatorProps.phoneNumber} />
         </Box>}
-        <Button asWrapper
-          onClick={() => {
-            setQuoteResult(0);
-            setQuoteStep(1);
-        }}>
-          <Paragraph>{`Generate a new quote`}</Paragraph>
-        </Button>
+        {props.calculatorProps.newQuoteText && (
+          <Button asWrapper
+            onClick={() => {
+              setQuoteResult(0);
+              setQuoteStep(1);
+          }}>
+            <Markdown raw={props.calculatorProps.newQuoteText} />
+          </Button>
+        )}
       </QuoteContentWrapper>}
 
       {/* STEP THREE: Show a thank you message */}
