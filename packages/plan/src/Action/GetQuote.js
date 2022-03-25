@@ -18,7 +18,7 @@ const QuoteValueText = styled(Header)`
   font-family: 'MuseoSans';
   font-weight: 500;
   font-size: 3em;
-`
+`;
 
 const formContainer = styled(Box)`
   display: block;
@@ -94,7 +94,7 @@ const generateCoverAmount = () => {
 const GetQuote = props => {
   const [quoteResult, setQuoteResult] = React.useState(null);
   const [quoteStep, setQuoteStep] = React.useState(1);
-  const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({})
+  const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({});
   const calculatorFields = [
     {
       label: 'First name', // || stateField.label
@@ -104,7 +104,7 @@ const GetQuote = props => {
       placeholder: 'First name', // || stateField.placeholder
       autoComplete: 'off',
       config: {
-      validator: 'required',
+        validator: 'required',
       },
     },
     {
@@ -115,7 +115,7 @@ const GetQuote = props => {
       placeholder: 'Surname', // || stateField.placeholder
       autoComplete: 'off',
       config: {
-      validator: 'required',
+        validator: 'required',
       },
     },
     {
@@ -126,19 +126,19 @@ const GetQuote = props => {
       placeholder: 'Phone number', // || stateField.placeholder
       autoComplete: 'off',
       config: {
-      validator: 'valueMatch',
-      validatorArgs: [
+        validator: 'valueMatch',
+        validatorArgs: [
           '^(([0][1-9][0-9]{8}))$',
           'Phone number must start with 0 and be 10 digits long',
-      ],
+        ],
       },
     },
     {
       label: 'Age',
       config: {
-      component: 'dropdownfield',
-      scrollable: true,
-      validator: 'lifeInsuranceAgeDropdown',
+        component: 'dropdownfield',
+        scrollable: true,
+        validator: 'lifeInsuranceAgeDropdown',
       },
       type: 'text',
       initialValue: quoteFieldsValues.age,
@@ -148,35 +148,32 @@ const GetQuote = props => {
     {
       label: 'Gender',
       config: {
-      validator: 'requiredRadio',
+        validator: 'requiredRadio',
       },
       name: 'gender',
       type: 'radio',
       initialValue: quoteFieldsValues.gender,
-      options: [
-      { label: 'Male', value: 'M' },
-      { label: 'Female', value: 'F' },
-      ],
+      options: [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }],
     },
     {
       label: 'Smoking status',
       config: {
-      validator: 'requiredRadio',
+        validator: 'requiredRadio',
       },
       name: 'smoker',
       initialValue: quoteFieldsValues.smoker,
       type: 'radio',
       options: [
-      { label: 'Non Smoker', value: 'false' },
-      { label: 'Smoker', value: 'true' },
+        { label: 'Non Smoker', value: 'false' },
+        { label: 'Smoker', value: 'true' },
       ],
     },
     {
       label: 'Amount of cover',
       config: {
-      component: 'dropdownfield',
-      scrollable: true,
-      validator: 'required',
+        component: 'dropdownfield',
+        scrollable: true,
+        validator: 'required',
       },
       type: 'text',
       name: 'cover_required',
@@ -188,19 +185,19 @@ const GetQuote = props => {
       name: 'redirectPath',
       type: 'hidden',
       config: {},
-    }
-  ]
+    },
+  ];
 
   const submitHandler = async ({
     values,
     userApiAuthToken,
     campaignId,
-    link
+    link,
   }) => {
     let data = {
       campaign_id: campaignId,
       life_insurance_lead_fragment: {},
-      lead: {}
+      lead: {},
     };
 
     values.forEach(field => {
@@ -218,27 +215,30 @@ const GetQuote = props => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'X-Authorization': userApiAuthToken,
-      }
+      },
     };
 
-    await axios.post(link, data, config).then(response => {
-      // response = {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
-      setQuoteResult(response.data);
-      setQuoteStep(2);
-      setQuoteFieldsValues(getFormValues(values));
-      return response.data;
-    }).catch(error => {
-      // Comment out for now
-      throw new FormError({
-        formError: 'Unexpected problem, please contact support.',
-        fieldErrors: { username: 'That username already exists' } //sample
+    await axios
+      .post(link, data, config)
+      .then(response => {
+        // response = {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
+        setQuoteResult(response.data);
+        setQuoteStep(2);
+        setQuoteFieldsValues(getFormValues(values));
+        return response.data;
+      })
+      .catch(error => {
+        // Comment out for now
+        throw new FormError({
+          formError: 'Unexpected problem, please contact support.',
+          fieldErrors: { username: 'That username already exists' }, //sample
+        });
       });
-    });
 
     // return response;
   };
 
-  const successHandler = async (values) => {
+  const successHandler = async values => {
     return values;
   };
 
@@ -246,11 +246,11 @@ const GetQuote = props => {
     link,
     campaignId,
     userApiAuthToken,
-    value
+    value,
   }) => {
     let data = {
       campaign_id: campaignId,
-      phoneback: {preferred_time: value},
+      phoneback: { preferred_time: value },
     };
 
     const config = {
@@ -258,26 +258,31 @@ const GetQuote = props => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'X-Authorization': userApiAuthToken,
-      }
+      },
     };
 
-    await axios.patch(link, data, config).then(response => {
-      setQuoteStep(3);
-      return response.data;
-    }).catch(error => {
-      throw new FormError({
-        formError: 'Unexpected problem, please contact support.',
-        fieldErrors: { } //sample
+    await axios
+      .patch(link, data, config)
+      .then(response => {
+        setQuoteStep(3);
+        return response.data;
+      })
+      .catch(error => {
+        throw new FormError({
+          formError: 'Unexpected problem, please contact support.',
+          fieldErrors: {}, //sample
+        });
       });
-    });
-  }
+  };
 
   return (
     <Box py={10} px={15}>
       {/* STEP ONE: Display the quote form */}
       {quoteStep === 1 && (
         <React.Fragment>
-          {props.calculatorProps.quoteHeader && <Markdown raw={props.calculatorProps.quoteHeader} />}
+          {props.calculatorProps.quoteHeader && (
+            <Markdown raw={props.calculatorProps.quoteHeader} />
+          )}
           <Form
             id="life-form"
             onSubmit={async values => {
@@ -285,12 +290,12 @@ const GetQuote = props => {
                 values: values,
                 userApiAuthToken: props.userApiAuthToken,
                 campaignId: props.campaignId,
-                link: props.link
-              })
+                link: props.link,
+              });
             }}
             onSuccess={successHandler}
             fields={calculatorFields}
-            renderFooter={({FormError}) => (
+            renderFooter={({ FormError }) => (
               <React.Fragment>
                 {FormError && (
                   <Box pt={2}>
@@ -300,11 +305,17 @@ const GetQuote = props => {
                     </Small>
                   </Box>
                 )}
-                <Button block track='get_quote' width="100%" type="submit">{props.calculatorProps.formSubmitButtonText}</Button>
+                <Button block track="get_quote" width="100%" type="submit">
+                  {props.calculatorProps.formSubmitButtonText}
+                </Button>
                 {props.calculatorProps.getQuoteDisclaimerText && (
                   <Box>
                     <Small>
-                      <Markdown scale={0.75} py={2} raw={props.calculatorProps.getQuoteDisclaimerText} />
+                      <Markdown
+                        scale={0.75}
+                        py={2}
+                        raw={props.calculatorProps.getQuoteDisclaimerText}
+                      />
                     </Small>
                   </Box>
                 )}
@@ -315,51 +326,71 @@ const GetQuote = props => {
       )}
 
       {/* STEP STEP: Show the quote */}
-      {quoteStep === 2 && <QuoteContentWrapper>
-        <ButtonWrapper>
-          <Markdown py={3} raw={props.calculatorProps.quoteHeaderText} />
-          <QuoteValueText>${quoteResult.obs}</QuoteValueText>
-          <Markdown raw={props.calculatorProps.paymentCycleText} />
-          <Markdown pt={4} pb={3} raw={props.calculatorProps.timeToCallBackText} />
-          {phonebackButtons.map((button, index) => (
-            <ButtonWrapper>
-              <Button block py={3} track='call_me_back' key={index}
-                onClick={() =>{
-                  submitPhoneback({
-                    link: props.calculatorProps.callbackUrl,
-                    campaignId: props.campaignId,
-                    value: button.value,
-                    userApiAuthToken: props.userApiAuthToken
-                  })
-                }} >
-                {button.text}
-              </Button>
-            </ButtonWrapper>
-          ))}
-        </ButtonWrapper>
-        {props.calculatorProps.phoneNumber && <Box py={2}>
-          <Markdown py={2} raw={props.calculatorProps.phoneNumber} />
-        </Box>}
-        {props.calculatorProps.newQuoteText && (
-          <Button asWrapper
-            onClick={() => {
-              setQuoteResult(0);
-              setQuoteStep(1);
-          }}>
-            <Markdown raw={props.calculatorProps.newQuoteText} />
-          </Button>
-        )}
-      </QuoteContentWrapper>}
+      {quoteStep === 2 && (
+        <QuoteContentWrapper>
+          <ButtonWrapper>
+            <Markdown
+              py={3}
+              raw={props.calculatorProps.quoteResultHeaderText}
+            />
+            <QuoteValueText>${quoteResult.obs}</QuoteValueText>
+            <Markdown raw={props.calculatorProps.paymentCycleText} />
+            <Markdown
+              pt={4}
+              pb={3}
+              raw={props.calculatorProps.timeToCallBackText}
+            />
+            {phonebackButtons.map((button, index) => (
+              <ButtonWrapper>
+                <Button
+                  block
+                  py={3}
+                  track="call_me_back"
+                  key={index}
+                  onClick={() => {
+                    submitPhoneback({
+                      link: props.calculatorProps.callbackUrl,
+                      campaignId: props.campaignId,
+                      value: button.value,
+                      userApiAuthToken: props.userApiAuthToken,
+                    });
+                  }}
+                >
+                  {button.text}
+                </Button>
+              </ButtonWrapper>
+            ))}
+          </ButtonWrapper>
+          {props.calculatorProps.phoneNumber && (
+            <Box py={2}>
+              <Markdown py={2} raw={props.calculatorProps.phoneNumber} />
+            </Box>
+          )}
+          {props.calculatorProps.newQuoteText && (
+            <Button
+              asWrapper
+              onClick={() => {
+                setQuoteResult(0);
+                setQuoteStep(1);
+              }}
+            >
+              <Markdown raw={props.calculatorProps.newQuoteText} />
+            </Button>
+          )}
+        </QuoteContentWrapper>
+      )}
 
       {/* STEP THREE: Show a thank you message */}
-      {quoteStep === 3 && <Markdown py={2} raw={props.calculatorProps.thankyouBody} />}
+      {quoteStep === 3 && (
+        <Markdown py={2} raw={props.calculatorProps.thankyouBody} />
+      )}
     </Box>
-  )
+  );
 };
 
 GetQuote.propTypes = {
   onSuccess: PropTypes.func,
   formInput: PropTypes.shape({}),
-}
+};
 
 export default GetQuote;

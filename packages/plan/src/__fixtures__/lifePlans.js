@@ -106,27 +106,26 @@ const planInput = {
       header: 'Get a quote now',
       message: 'Testing',
       track: 'get_quote',
-      link: "https://somegetquoteurl.com"
-    }
+      link: 'https://somegetquoteurl.com',
+    },
   ],
   tracking_meta: { merchant_code: 'insureandgo', tracking_id: 1066 },
   authenticityToken:
     'RQjlAz4wHnOIAsuM3aSZ73OAa0J8wF3cLjscByZRh1WNJzs53Eu7yf9S9O7FWK/n6dnl3rUVoF/DPOm0pwJQMQ==',
   calculatorProps: {
-    showQuoteCalculator: true,
     quoteHeader: '#### Get A Quick Quote Now',
     getQuoteDisclaimerText:
       'By clicking on Get Quote you confirm you have read our <a target="_blank" href="https://onebigswitch.com.au/privacy-policy">Privacy Policy</a> and that you would like to be contacted by NobleOak regarding Life Insurance. Your information entered here will also be provided to NobleOak so please read their privacy policy <a target="_blank" href="https://www.nobleoak.com.au/privacy-policy/">here</a>.',
-    percentDiscount: 0,
     phoneNumber: 'Or Call #### 1800-978-000',
-    quoteHeaderText: '<- #### Your Quote from NobleOak Life Insurance⁶ <-',
+    quoteResultHeaderText:
+      '<- #### Your Quote from NobleOak Life Insurance⁶ <-',
     paymentCycleText: 'a month',
     timeToCallBackText: 'Best time to call you back?',
     callbackUrl: 'http://obsau.develop:3000/api/v2/life_phoneback',
     formSubmitButtonText: 'Get Quote',
-    thankyouBody: "Thanks",
-    newQuoteText: 'Generate a new quote'
-  }
+    thankyouBody: 'Thanks',
+    newQuoteText: 'Generate a new quote',
+  },
 };
 
-  export default planInput;
+export default planInput;
