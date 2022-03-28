@@ -1,4 +1,10 @@
 export const actions = {
+  get_quote: {
+    header: 'Get a quote now',
+    message: 'Testing',
+    track: 'get_quote',
+    link: 'https://somegetquoteurl.com',
+  },
   get_started: {
     header: 'Get Started',
     message: 'Get a quote to discount your bill',

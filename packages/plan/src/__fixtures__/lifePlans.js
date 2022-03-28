@@ -14,6 +14,7 @@ const planInput = {
     campaign_id: 524,
     main_image_file_url: 'https://placeimg.com/600/500/any',
     mobile_image_file_url: 'https://placehold.it/400x300',
+    multi_image_file_urls: ['https://placeimg.com/600/500/any', 'https://placeimg.com/600/500/any'],
     plan_features: [
       {
         body:
