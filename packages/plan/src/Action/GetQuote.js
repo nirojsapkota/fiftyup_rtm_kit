@@ -28,7 +28,11 @@ const formContainer = styled(Box)`
   padding: 15px;
 `;
 
+const QuoteFormWrapper = styled(Box)``;
+
 const QuoteContentWrapper = styled(Box)``;
+
+const ThanyouWrapper = styled(Box)``;
 
 const ButtonWrapper = styled(Box)`
   padding-top: 5px;
@@ -188,14 +192,9 @@ const GetQuote = props => {
     },
   ];
 
-  const submitHandler = async ({
-    values,
-    userApiAuthToken,
-    campaignId,
-    link,
-  }) => {
+  const submitHandler = async values => {
     let data = {
-      campaign_id: campaignId,
+      campaign_id: props.campaignId,
       life_insurance_lead_fragment: {},
       lead: {},
     };
@@ -214,18 +213,18 @@ const GetQuote = props => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'X-Authorization': userApiAuthToken,
+        'X-Authorization': props.userApiAuthToken,
       },
     };
 
-    await axios
-      .post(link, data, config)
+    const response = await axios
+      .post(props.link, data, config)
       .then(response => {
         // response = {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
         setQuoteResult(response.data);
         setQuoteStep(2);
         setQuoteFieldsValues(getFormValues(values));
-        return response.data;
+        return response;
       })
       .catch(error => {
         // Comment out for now
@@ -235,11 +234,7 @@ const GetQuote = props => {
         });
       });
 
-    // return response;
-  };
-
-  const successHandler = async values => {
-    return values;
+    return response;
   };
 
   const submitPhoneback = async ({
@@ -279,21 +274,14 @@ const GetQuote = props => {
     <Box py={10} px={15}>
       {/* STEP ONE: Display the quote form */}
       {quoteStep === 1 && (
-        <React.Fragment>
+        <QuoteFormWrapper data-testid="quoteStep1">
           {props.calculatorProps.quoteHeader && (
             <Markdown raw={props.calculatorProps.quoteHeader} />
           )}
           <Form
             id="life-form"
-            onSubmit={async values => {
-              return submitHandler({
-                values: values,
-                userApiAuthToken: props.userApiAuthToken,
-                campaignId: props.campaignId,
-                link: props.link,
-              });
-            }}
-            onSuccess={successHandler}
+            TURN_OFF_AUTOCOMPLETE={true}
+            onSubmit={submitHandler}
             fields={calculatorFields}
             renderFooter={({ FormError }) => (
               <React.Fragment>
@@ -322,12 +310,12 @@ const GetQuote = props => {
               </React.Fragment>
             )}
           />
-        </React.Fragment>
+        </QuoteFormWrapper>
       )}
 
       {/* STEP STEP: Show the quote */}
       {quoteStep === 2 && (
-        <QuoteContentWrapper>
+        <QuoteContentWrapper data-testid="quoteStep2">
           <ButtonWrapper>
             <Markdown
               py={3}
@@ -341,7 +329,7 @@ const GetQuote = props => {
               raw={props.calculatorProps.timeToCallBackText}
             />
             {phonebackButtons.map((button, index) => (
-              <ButtonWrapper>
+              <ButtonWrapper key={index}>
                 <Button
                   block
                   py={3}
@@ -382,7 +370,9 @@ const GetQuote = props => {
 
       {/* STEP THREE: Show a thank you message */}
       {quoteStep === 3 && (
-        <Markdown py={2} raw={props.calculatorProps.thankyouBody} />
+        <ThanyouWrapper data-testid="quoteStep3">
+          <Markdown py={2} raw={props.calculatorProps.thankyouBody} />
+        </ThanyouWrapper>
       )}
     </Box>
   );

@@ -17,49 +17,43 @@ describe('<Plan />', () => {
 
     it('renders the multiple header images when multi_image_file_urls is passed', () => {
       const { getAllByAltText } = render(<Plan {...lifePlanProps} />);
-      const planImages = getAllByAltText('Main Header Text')
-      expect(planImages).toHaveLength(4)
+      const planImages = getAllByAltText('Main Header Text');
+      expect(planImages).toHaveLength(4);
     });
 
     it('renders the single header image when multi_image_file_urls is not passed', () => {
-      lifePlanProps.plan.multi_image_file_urls = []
+      lifePlanProps.plan.multi_image_file_urls = [];
       const { getAllByAltText } = render(<Plan {...lifePlanProps} />);
-      const planImages = getAllByAltText('Main Header Text')
-      expect(planImages).toHaveLength(2)
+      const planImages = getAllByAltText('Main Header Text');
+      expect(planImages).toHaveLength(2);
     });
   });
 
   describe('with the get_quote option', () => {
     it('renders the get quote form', async () => {
-      const { getAllByText } = render(
-        <Plan {...lifePlanProps} />
-      );
+      const { getAllByText } = render(<Plan {...lifePlanProps} />);
 
-      expect(
-        getAllByText("Get A Quick Quote Now")[0]
-      ).toBeInTheDocument();
+      expect(getAllByText('Get A Quick Quote Now')[0]).toBeInTheDocument();
 
-      expect(
-        getAllByText("Get Quote")[0]
-      ).toBeInTheDocument();
-    })
+      expect(getAllByText('Get Quote')[0]).toBeInTheDocument();
+    });
 
     it('generates a quote', async () => {
-      const { getAllByText, getByLabelText, debug, container } = render(
+      const { getAllByText, getByLabelText, debug, getByTestId } = render(
         <Plan {...lifePlanProps} />
       );
 
       fireEvent.change(getByLabelText(/First name/i), {
-        target: {value: "Test" },
-      })
+        target: { value: 'Test' },
+      });
 
       fireEvent.change(getByLabelText(/Surname/i), {
-        target: {value: "Last" },
-      })
+        target: { value: 'Last' },
+      });
 
       fireEvent.change(getByLabelText(/Phone number/i), {
-        target: {value: "0222222222" },
-      })
+        target: { value: '0222222222' },
+      });
 
       let input = await getByLabelText('Age');
       await fireEvent.focus(input);
@@ -71,9 +65,9 @@ describe('<Plan />', () => {
         await fireEvent.click(dropdownItem);
       });
 
-      fireEvent.click(getAllByText(/Female/i)[0])
+      fireEvent.click(getAllByText(/Female/i)[0]);
 
-      fireEvent.click(getAllByText(/Smoker/i)[0])
+      fireEvent.click(getAllByText(/Smoker/i)[0]);
 
       let input2 = await getByLabelText('Amount of cover');
       await fireEvent.focus(input2);
@@ -83,38 +77,38 @@ describe('<Plan />', () => {
         const dropdownItem = await getByLabelText('$100,000');
         await expect(dropdownItem).toBeInTheDocument();
         await fireEvent.click(dropdownItem);
-      })
+      });
 
-      axios.post.mockResolvedValue({ data: { obs: '100' }});
+      axios.post.mockResolvedValue({ data: { obs: '100' }, status: 200 });
 
       const formSubmitButton = getAllByText(/Get quote/i)[0].closest('button');
       await fireEvent.click(formSubmitButton);
 
       await wait(async () => {
         await expect(axios.post).toHaveBeenCalled();
-        getAllByText("TestingGeee")[0];
-      })
+        expect(getByTestId('quoteStep2')).toBeInTheDocument();
+        expect(getAllByText('Morning')[0]).toBeInTheDocument();
+        expect(getAllByText('Afternoon')[0]).toBeInTheDocument();
+        expect(getAllByText('Evening')[0]).toBeInTheDocument();
+        expect(getAllByText('Generate a new quote')[0]).toBeInTheDocument();
+      });
 
-      // wait(() => {
-      //   expect(
-      //     getAllByText(/Your Quote from NobleOak Life Insurance/i)[0]
-      //   ).toBeInTheDocument()
-      // })
-
+      // await fireEvent.click(getAllByText(/Generate a new quote/i)[0].closest('button'));
+      //expect(getByTestId('quoteStep1')).toBeInTheDocument();
       // await wait(async () => {
+      //   await expect(getByTestId('quoteStep1')).toBeInTheDocument();
+      // });
 
+      axios.patch.mockResolvedValue({
+        message: 'Phoneback saved',
+        status: 200,
+      });
 
-      //   debug(getAllByText("Your Quote")[0]);
-      //   expect(
-      //     getAllByText("Phone number must start with 0 and be 10 digits long")[0]
-      //   ).toBeInTheDocument();
-
-      //   expect(
-      //     getAllByText("Your Quote from NobleOak Life Insurance")[0]
-      //   ).toBeInTheDocument();
-      // })
-
-
-    })
-  })
+      fireEvent.click(getAllByText(/Morning/i)[0]);
+      await wait(async () => {
+        await expect(axios.patch).toHaveBeenCalled();
+        expect(getByTestId('quoteStep3')).toBeInTheDocument();
+      });
+    });
+  });
 });
