@@ -63,6 +63,11 @@ Or perhaps...
 2. I think
 3. It does
 
+## Images
+
+<img style="height: 50px; width: 50px" src="https://staging.onebigswitch.com.au/assets/obs-image-assets/tick-round-acbe8b301d3fb45b4d1dbbbe91e021334bfc69fea93f96cc5eb2eb45bcf0a48c.jpg" />
+
 And lastly, does it work with custom link logic? [Hello](https://example.com)
 :::
+
 `;

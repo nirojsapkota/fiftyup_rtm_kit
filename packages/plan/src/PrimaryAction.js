@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@rtm-ui/button';
+import { Box } from '@rtm-ui/layout';
 import RequestCallback from './Action/RequestCallback';
 
 export const PrimaryAction = props => {
@@ -20,6 +21,8 @@ export const PrimaryAction = props => {
     />
   ) : typeof props.renderTrigger === 'function' ? (
     props.renderTrigger({ track: props.track, as: 'a', href: props.link })
+  ) : props.track === 'get_quote' ? (
+      <Box />
   ) : (
     <Button track={props.track} as="a" href={props.link}>
       {props.cta}
