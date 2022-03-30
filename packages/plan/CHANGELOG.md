@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.0.5...@rtm-ui/plan@3.1.0) (2022-03-30)
+
+
+### Features
+
+* **Plan:** Add support for life insurance get quote form ([f0f2c6b](https://github.com/OBSAU/rtm-kit/commit/f0f2c6bfad3a2a62214fed35af16af234fd30f09))
+
+
+
+
+
 ## [3.0.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.0.4...@rtm-ui/plan@3.0.5) (2022-03-14)
 
 **Note:** Version bump only for package @rtm-ui/plan

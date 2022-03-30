@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.162](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/phoneback@1.0.161...@rtm-ui/phoneback@1.0.162) (2022-03-30)
+
+**Note:** Version bump only for package @rtm-ui/phoneback
+
+
+
+
+
 ## [1.0.161](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/phoneback@1.0.160...@rtm-ui/phoneback@1.0.161) (2022-03-14)
 
 **Note:** Version bump only for package @rtm-ui/phoneback
