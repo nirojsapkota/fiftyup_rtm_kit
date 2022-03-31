@@ -99,6 +99,8 @@ const GetQuote = props => {
   const [quoteResult, setQuoteResult] = React.useState(null);
   const [quoteStep, setQuoteStep] = React.useState(1);
   const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({});
+  const [submittingQuote, setSubmittingQuote] = React.useState(false);
+  const [submittingPhoneback, setSubmittingPhoneback] = React.useState(false);
   const calculatorFields = [
     {
       label: 'First name', // || stateField.label
@@ -115,7 +117,7 @@ const GetQuote = props => {
       label: 'Surname', // || stateField.label
       name: 'last_name',
       type: 'text',
-      initialValue: quoteFieldsValues.surname,
+      initialValue: quoteFieldsValues.last_name,
       placeholder: 'Surname', // || stateField.placeholder
       autoComplete: 'off',
       config: {
@@ -126,7 +128,7 @@ const GetQuote = props => {
       label: 'Phone number', // || stateField.label
       name: 'primary_contact_no',
       type: 'tel',
-      initialValue: quoteFieldsValues.phone_number,
+      initialValue: quoteFieldsValues.primary_contact_no,
       placeholder: 'Phone number', // || stateField.placeholder
       autoComplete: 'off',
       config: {
@@ -187,6 +189,8 @@ const GetQuote = props => {
   ];
 
   const submitHandler = async values => {
+    setSubmittingQuote(true);
+
     let data = {
       campaign_id: props.campaignId,
       life_insurance_lead_fragment: {},
@@ -201,8 +205,6 @@ const GetQuote = props => {
       }
     });
 
-    console.log('data: ', data);
-
     const config = {
       headers: {
         Accept: 'application/json',
@@ -214,19 +216,19 @@ const GetQuote = props => {
     const response = await axios
       .post(props.link, data, config)
       .then(response => {
-        // response = {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
+        //  Sample Response: {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
         setQuoteResult(response.data);
         setQuoteStep(2);
         setQuoteFieldsValues(getFormValues(values));
         return response;
       })
       .catch(error => {
-        // Comment out for now
         throw new FormError({
-          formError: 'Unexpected problem, please contact support.',
-          fieldErrors: { username: 'That username already exists' }, //sample
+          formError: 'Unexpected problem, please contact support.'
         });
       });
+
+    setSubmittingQuote(false);
 
     return response;
   };
@@ -237,6 +239,8 @@ const GetQuote = props => {
     userApiAuthToken,
     value,
   }) => {
+    setSubmittingPhoneback(true);
+
     let data = {
       campaign_id: campaignId,
       phoneback: { preferred_time: value },
@@ -254,9 +258,11 @@ const GetQuote = props => {
       .patch(link, data, config)
       .then(response => {
         setQuoteStep(3);
+        setSubmittingPhoneback(false);
         return response.data;
       })
       .catch(error => {
+        setSubmittingPhoneback(false);
         throw new FormError({
           formError: 'Unexpected problem, please contact support.',
           fieldErrors: {}, //sample
@@ -265,7 +271,7 @@ const GetQuote = props => {
   };
 
   return (
-    <Box py={10} px={15}>
+    <Box py={16} px={16}>
       {/* STEP ONE: Display the quote form */}
       {quoteStep === 1 && (
         <QuoteFormWrapper data-testid="quoteStep1">
@@ -287,7 +293,13 @@ const GetQuote = props => {
                     </Small>
                   </Box>
                 )}
-                <Button block track="get_quote" width="100%" type="submit">
+                <Button
+                  appearDisabled={submittingQuote}
+                  disabled={submittingQuote}
+                  block track="get_quote"
+                  width="100%"
+                  type="submit"
+                >
                   {props.calculatorProps.formSubmitButtonText}
                 </Button>
                 {props.calculatorProps.getQuoteDisclaimerText && (
@@ -329,6 +341,8 @@ const GetQuote = props => {
                   py={3}
                   track="call_me_back"
                   key={index}
+                  disabled={submittingPhoneback}
+                  appearDisabled={submittingPhoneback}
                   onClick={() => {
                     submitPhoneback({
                       link: props.calculatorProps.callbackUrl,
