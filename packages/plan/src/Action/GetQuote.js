@@ -113,7 +113,7 @@ const GetQuote = props => {
     },
     {
       label: 'Surname', // || stateField.label
-      name: 'surname',
+      name: 'last_name',
       type: 'text',
       initialValue: quoteFieldsValues.surname,
       placeholder: 'Surname', // || stateField.placeholder
@@ -124,7 +124,7 @@ const GetQuote = props => {
     },
     {
       label: 'Phone number', // || stateField.label
-      name: 'phone_number',
+      name: 'primary_contact_no',
       type: 'tel',
       initialValue: quoteFieldsValues.phone_number,
       placeholder: 'Phone number', // || stateField.placeholder
@@ -183,13 +183,7 @@ const GetQuote = props => {
       name: 'cover_required',
       initialValue: quoteFieldsValues.cover_required,
       options: generateCoverAmount(),
-    },
-    {
-      label: '',
-      name: 'redirectPath',
-      type: 'hidden',
-      config: {},
-    },
+    }
   ];
 
   const submitHandler = async values => {
