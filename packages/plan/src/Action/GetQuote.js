@@ -112,6 +112,7 @@ const GetQuote = props => {
       config: {
         validator: 'required',
       },
+      className: 'inline-fields'
     },
     {
       label: 'Surname', // || stateField.label
@@ -123,6 +124,7 @@ const GetQuote = props => {
       config: {
         validator: 'required',
       },
+      className: 'inline-fields'
     },
     {
       label: 'Phone number', // || stateField.label
@@ -135,9 +137,10 @@ const GetQuote = props => {
         validator: 'valueMatch',
         validatorArgs: [
           '^(([0][1-9][0-9]{8}))$',
-          'Phone number must start with 0 and be 10 digits long',
+          'Must start with 0 and be 10 digits long',
         ],
       },
+      className: 'inline-fields'
     },
     {
       label: 'Age',
@@ -150,6 +153,7 @@ const GetQuote = props => {
       initialValue: quoteFieldsValues.age,
       name: 'age',
       options: generateAgeOptions(),
+      className: 'inline-fields'
     },
     {
       label: 'Gender',
@@ -160,6 +164,7 @@ const GetQuote = props => {
       type: 'radio',
       initialValue: quoteFieldsValues.gender,
       options: [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }],
+      className: 'inline-fields'
     },
     {
       label: 'Smoking status',
@@ -173,6 +178,7 @@ const GetQuote = props => {
         { label: 'Non Smoker', value: 'false' },
         { label: 'Smoker', value: 'true' },
       ],
+      className: 'inline-fields'
     },
     {
       label: 'Amount of cover',
@@ -185,6 +191,7 @@ const GetQuote = props => {
       name: 'cover_required',
       initialValue: quoteFieldsValues.cover_required,
       options: generateCoverAmount(),
+      className: 'inline-fields'
     }
   ];
 
