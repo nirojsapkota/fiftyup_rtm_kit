@@ -13,6 +13,14 @@ const SmallText = styled(Paragraph)`
   font-size: 0.6em;
 `;
 
+const BaseFieldWrapper = styled(Box)`
+  &.inline-fields {
+    width: 50%;
+    display: inline-block;
+    padding-right: 15px;
+  }
+`
+
 const Wrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
@@ -104,7 +112,7 @@ const BaseField = props => {
   const { initialValue: _iv, ...inputProps } = props;
 
   return props.type !== 'hidden' ? (
-    <Box mb={10}>
+    <BaseFieldWrapper mb={10} className={props.className}>
       <AnimateableWrapper initial={false} animate={closed ? 'closed' : 'open'} exit={{ opacity: 0 }}>
         <AnimateableWrapper variants={variants}>
           <AnimateableWrapper variants={variantChild}>
@@ -155,7 +163,7 @@ const BaseField = props => {
           </AnimateableWrapper>
         </AnimateableWrapper>
       </AnimateableWrapper>
-    </Box>
+    </BaseFieldWrapper>
   ) : (
       <Input {...inputProps} id={`${props.name}`} />
     );
