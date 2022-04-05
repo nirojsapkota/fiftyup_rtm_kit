@@ -99,7 +99,7 @@ const GetQuote = props => {
       config: {
         validator: 'required',
       },
-      className: 'inline-fields',
+      className: 'inline-fields first',
     },
     {
       label: 'Surname', // || stateField.label
@@ -127,7 +127,7 @@ const GetQuote = props => {
           'Must start with 0 and be 10 digits long',
         ],
       },
-      className: 'inline-fields',
+      className: 'inline-fields first',
     },
     {
       label: 'Age',
@@ -151,7 +151,7 @@ const GetQuote = props => {
       type: 'radio',
       initialValue: quoteFieldsValues.gender,
       options: [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }],
-      className: 'inline-fields',
+      className: 'inline-fields first',
     },
     {
       label: 'Smoking status',
@@ -264,7 +264,7 @@ const GetQuote = props => {
   };
 
   return (
-    <Box py={16} px={16}>
+    <Box py={16} px={30}>
       {/* STEP ONE: Display the quote form */}
       {quoteStep === 1 && (
         <QuoteFormWrapper data-testid="quoteStep1">
