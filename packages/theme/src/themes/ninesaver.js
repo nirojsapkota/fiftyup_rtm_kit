@@ -108,6 +108,8 @@ const variants = Object.assign(baseVariants, {
 export default {
   ...base,
   logoGlyph: 'ninesaver',
+  loadingLogo:
+    'https://digital-au.s3.ap-southeast-2.amazonaws.com/9Saver/website-assets/9saver-loading-unlock.gif',
   fonts: {
     serif: 'Proxima',
     sansSerif: 'Proxima',
