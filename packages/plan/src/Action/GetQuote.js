@@ -20,14 +20,6 @@ const QuoteValueText = styled(Header)`
   font-size: 3em;
 `;
 
-const formContainer = styled(Box)`
-  display: block;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-`;
-
 const QuoteFormWrapper = styled(Box)``;
 
 const QuoteContentWrapper = styled(Box)``;
@@ -38,11 +30,6 @@ const ButtonWrapper = styled(Box)`
   padding-top: 5px;
   padding-bottom: 5px;
   width: 100%;
-`;
-
-const FooterBox = styled(Box)`
-  display: flex;
-  justify-content: 'center';
 `;
 
 // Acts as a one-off 'useEffect' loads the potential age options on load.
@@ -112,7 +99,7 @@ const GetQuote = props => {
       config: {
         validator: 'required',
       },
-      className: 'inline-fields'
+      className: 'inline-fields',
     },
     {
       label: 'Surname', // || stateField.label
@@ -124,7 +111,7 @@ const GetQuote = props => {
       config: {
         validator: 'required',
       },
-      className: 'inline-fields'
+      className: 'inline-fields',
     },
     {
       label: 'Phone number', // || stateField.label
@@ -140,7 +127,7 @@ const GetQuote = props => {
           'Must start with 0 and be 10 digits long',
         ],
       },
-      className: 'inline-fields'
+      className: 'inline-fields',
     },
     {
       label: 'Age',
@@ -153,7 +140,7 @@ const GetQuote = props => {
       initialValue: quoteFieldsValues.age,
       name: 'age',
       options: generateAgeOptions(),
-      className: 'inline-fields'
+      className: 'inline-fields',
     },
     {
       label: 'Gender',
@@ -164,7 +151,7 @@ const GetQuote = props => {
       type: 'radio',
       initialValue: quoteFieldsValues.gender,
       options: [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }],
-      className: 'inline-fields'
+      className: 'inline-fields',
     },
     {
       label: 'Smoking status',
@@ -178,7 +165,7 @@ const GetQuote = props => {
         { label: 'Non Smoker', value: 'false' },
         { label: 'Smoker', value: 'true' },
       ],
-      className: 'inline-fields'
+      className: 'inline-fields',
     },
     {
       label: 'Amount of cover',
@@ -191,8 +178,7 @@ const GetQuote = props => {
       name: 'cover_required',
       initialValue: quoteFieldsValues.cover_required,
       options: generateCoverAmount(),
-      className: 'inline-fields'
-    }
+    },
   ];
 
   const submitHandler = async values => {
@@ -231,7 +217,7 @@ const GetQuote = props => {
       })
       .catch(error => {
         throw new FormError({
-          formError: 'Unexpected problem, please contact support.'
+          formError: 'Unexpected problem, please contact support.',
         });
       });
 
@@ -303,7 +289,8 @@ const GetQuote = props => {
                 <Button
                   appearDisabled={submittingQuote}
                   disabled={submittingQuote}
-                  block track="get_quote"
+                  block
+                  track="get_quote"
                   width="100%"
                   type="submit"
                 >
