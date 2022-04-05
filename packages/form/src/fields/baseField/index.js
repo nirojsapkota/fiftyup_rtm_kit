@@ -18,7 +18,9 @@ const BaseFieldWrapper = styled(Box)`
     @media (min-width: ${props => props.theme.grid.lg}em) {
       width: 50%;
       display: inline-block;
-      padding-right: 15px;
+      &.first {
+        padding-right: 15px;
+      }
     }
   }
 `;
