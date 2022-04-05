@@ -122,6 +122,8 @@ const variants = Object.assign(baseVariants, {
 
 export default {
   logoGlyph: 'obs',
+  loadingLogo:
+    'https://digital-au.s3.ap-southeast-2.amazonaws.com/obs-au/website-assets/Obs-loading-unlock.gif',
   ...base,
   colors: {
     ...base.colors,

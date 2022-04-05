@@ -90,7 +90,6 @@ const variants = Object.assign(baseVariants, {
   f: {
     ...baseVariants.a,
     secondary: '#00005e',
-
   },
   g: {
     ...baseVariants.a,
@@ -105,7 +104,7 @@ const variants = Object.assign(baseVariants, {
   },
   j: {
     ...baseVariants.b,
-    primary: '#f4b534'
+    primary: '#f4b534',
   },
   regular: {
     ...baseVariants.a,
@@ -117,6 +116,8 @@ const variants = Object.assign(baseVariants, {
 
 export default {
   logoGlyph: 'fiftyup',
+  loadingLogo:
+    'https://digital-au.s3.ap-southeast-2.amazonaws.com/fiftyup/website-assets/LOADING-50-up.gif',
   ...base,
   colors: {
     ...base.colors,

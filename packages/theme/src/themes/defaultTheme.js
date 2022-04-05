@@ -122,6 +122,8 @@ const variants = Object.assign(baseVariants, {
 
 export default {
   logoGlyph: 'defaultTheme',
+  loadingLogo:
+    'https://digital-au.s3.ap-southeast-2.amazonaws.com/web/LOADING-UNLOCK-ALL-up.gif',
   ...base,
   colors: {
     ...base.colors,
