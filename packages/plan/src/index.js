@@ -7,10 +7,15 @@ import Summary from './Summary';
 import PlanReferenceContext from './PlanReferenceContext';
 import * as S from './styles';
 
-const PlanSidebar = ({ children, ...props }) => (
-  <Block showAt="lg" width={[1, 1, 1, 0.35]}>
+const PlanSidebar = ({ children, calculatorProps, ...props }) => (
+  <Block showAt="lg" width={[1, 1, 1, 0.40]}>
     <Sidebar flex={0} px={[0, 0, 0, 3]} {...props}>
-      <S.SidebarWrapper>{children}</S.SidebarWrapper>
+      {calculatorProps && (
+        <S.QuoteSidebarWrapper>{children}</S.QuoteSidebarWrapper>
+      )}
+      {!calculatorProps && (
+        <S.SidebarWrapper>{children}</S.SidebarWrapper>
+      )}
     </Sidebar>
   </Block>
 );
@@ -46,7 +51,7 @@ export const Plan = ({
     <PlanReferenceContext.Provider value={reference}>
       <S.StyledWrapper>
         <S.ContentWrapper pt={[2, 2, 3]} px={[0, 0, 0, 48]}>
-          <Box flex={1} px={[0, 0, 0, 3]} width={[1, 1, 1, 0.65]}>
+          <Box flex={1} px={[0, 0, 0, 3]} width={[1, 1, 1, 0.60]}>
             <Summary
               {...plan}
               campaignId={plan.campaign_id}
@@ -66,7 +71,7 @@ export const Plan = ({
               </Block>
             </Summary>
           </Box>
-          <PlanSidebar>
+          <PlanSidebar calculatorProps={calculatorProps}>
             <Block showAt="lg">
               <Cta
                 actions={actions}

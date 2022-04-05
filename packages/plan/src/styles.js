@@ -10,6 +10,10 @@ export const SidebarWrapper = styled.div`
   min-width: 340px;
 `;
 
+export const QuoteSidebarWrapper = styled.div`
+  min-width: 490px;
+`;
+
 export const StyledWrapper = styled(Box)`
   position: relative;
   justify-content: center;

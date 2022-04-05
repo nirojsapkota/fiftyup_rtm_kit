@@ -12,7 +12,7 @@ const Cta = ({ actions, primaryActionProps, merchant, userApiAuthToken, calculat
   const getQuoteAction = actions.find(({ track }) => track === 'get_quote');
 
   return (
-    <S.Cta my={2}>
+    <S.Cta my={2} pt={'6px'}>
       <Merchant {...merchant} />
       {callAction && <ClickToCall {...callAction} />}
       {getQuoteAction && <GetQuote

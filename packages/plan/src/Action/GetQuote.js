@@ -20,14 +20,6 @@ const QuoteValueText = styled(Header)`
   font-size: 3em;
 `;
 
-const formContainer = styled(Box)`
-  display: block;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-`;
-
 const QuoteFormWrapper = styled(Box)``;
 
 const QuoteContentWrapper = styled(Box)``;
@@ -38,11 +30,6 @@ const ButtonWrapper = styled(Box)`
   padding-top: 5px;
   padding-bottom: 5px;
   width: 100%;
-`;
-
-const FooterBox = styled(Box)`
-  display: flex;
-  justify-content: 'center';
 `;
 
 // Acts as a one-off 'useEffect' loads the potential age options on load.
@@ -99,6 +86,8 @@ const GetQuote = props => {
   const [quoteResult, setQuoteResult] = React.useState(null);
   const [quoteStep, setQuoteStep] = React.useState(1);
   const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({});
+  const [submittingQuote, setSubmittingQuote] = React.useState(false);
+  const [submittingPhoneback, setSubmittingPhoneback] = React.useState(false);
   const calculatorFields = [
     {
       label: 'First name', // || stateField.label
@@ -110,32 +99,35 @@ const GetQuote = props => {
       config: {
         validator: 'required',
       },
+      className: 'inline-fields',
     },
     {
       label: 'Surname', // || stateField.label
       name: 'last_name',
       type: 'text',
-      initialValue: quoteFieldsValues.surname,
+      initialValue: quoteFieldsValues.last_name,
       placeholder: 'Surname', // || stateField.placeholder
       autoComplete: 'off',
       config: {
         validator: 'required',
       },
+      className: 'inline-fields',
     },
     {
       label: 'Phone number', // || stateField.label
       name: 'primary_contact_no',
       type: 'tel',
-      initialValue: quoteFieldsValues.phone_number,
+      initialValue: quoteFieldsValues.primary_contact_no,
       placeholder: 'Phone number', // || stateField.placeholder
       autoComplete: 'off',
       config: {
         validator: 'valueMatch',
         validatorArgs: [
           '^(([0][1-9][0-9]{8}))$',
-          'Phone number must start with 0 and be 10 digits long',
+          'Must start with 0 and be 10 digits long',
         ],
       },
+      className: 'inline-fields',
     },
     {
       label: 'Age',
@@ -148,6 +140,7 @@ const GetQuote = props => {
       initialValue: quoteFieldsValues.age,
       name: 'age',
       options: generateAgeOptions(),
+      className: 'inline-fields',
     },
     {
       label: 'Gender',
@@ -158,6 +151,7 @@ const GetQuote = props => {
       type: 'radio',
       initialValue: quoteFieldsValues.gender,
       options: [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }],
+      className: 'inline-fields',
     },
     {
       label: 'Smoking status',
@@ -171,6 +165,7 @@ const GetQuote = props => {
         { label: 'Non Smoker', value: 'false' },
         { label: 'Smoker', value: 'true' },
       ],
+      className: 'inline-fields',
     },
     {
       label: 'Amount of cover',
@@ -183,10 +178,12 @@ const GetQuote = props => {
       name: 'cover_required',
       initialValue: quoteFieldsValues.cover_required,
       options: generateCoverAmount(),
-    }
+    },
   ];
 
   const submitHandler = async values => {
+    setSubmittingQuote(true);
+
     let data = {
       campaign_id: props.campaignId,
       life_insurance_lead_fragment: {},
@@ -201,8 +198,6 @@ const GetQuote = props => {
       }
     });
 
-    console.log('data: ', data);
-
     const config = {
       headers: {
         Accept: 'application/json',
@@ -214,19 +209,19 @@ const GetQuote = props => {
     const response = await axios
       .post(props.link, data, config)
       .then(response => {
-        // response = {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
+        //  Sample Response: {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
         setQuoteResult(response.data);
         setQuoteStep(2);
         setQuoteFieldsValues(getFormValues(values));
         return response;
       })
       .catch(error => {
-        // Comment out for now
         throw new FormError({
           formError: 'Unexpected problem, please contact support.',
-          fieldErrors: { username: 'That username already exists' }, //sample
         });
       });
+
+    setSubmittingQuote(false);
 
     return response;
   };
@@ -237,6 +232,8 @@ const GetQuote = props => {
     userApiAuthToken,
     value,
   }) => {
+    setSubmittingPhoneback(true);
+
     let data = {
       campaign_id: campaignId,
       phoneback: { preferred_time: value },
@@ -254,9 +251,11 @@ const GetQuote = props => {
       .patch(link, data, config)
       .then(response => {
         setQuoteStep(3);
+        setSubmittingPhoneback(false);
         return response.data;
       })
       .catch(error => {
+        setSubmittingPhoneback(false);
         throw new FormError({
           formError: 'Unexpected problem, please contact support.',
           fieldErrors: {}, //sample
@@ -265,7 +264,7 @@ const GetQuote = props => {
   };
 
   return (
-    <Box py={10} px={15}>
+    <Box py={16} px={16}>
       {/* STEP ONE: Display the quote form */}
       {quoteStep === 1 && (
         <QuoteFormWrapper data-testid="quoteStep1">
@@ -287,7 +286,14 @@ const GetQuote = props => {
                     </Small>
                   </Box>
                 )}
-                <Button block track="get_quote" width="100%" type="submit">
+                <Button
+                  appearDisabled={submittingQuote}
+                  disabled={submittingQuote}
+                  block
+                  track="get_quote"
+                  width="100%"
+                  type="submit"
+                >
                   {props.calculatorProps.formSubmitButtonText}
                 </Button>
                 {props.calculatorProps.getQuoteDisclaimerText && (
@@ -329,6 +335,8 @@ const GetQuote = props => {
                   py={3}
                   track="call_me_back"
                   key={index}
+                  disabled={submittingPhoneback}
+                  appearDisabled={submittingPhoneback}
                   onClick={() => {
                     submitPhoneback({
                       link: props.calculatorProps.callbackUrl,

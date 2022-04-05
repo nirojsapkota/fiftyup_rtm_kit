@@ -13,6 +13,16 @@ const SmallText = styled(Paragraph)`
   font-size: 0.6em;
 `;
 
+const BaseFieldWrapper = styled(Box)`
+  &.inline-fields {
+    @media (min-width: ${props => props.theme.grid.lg}em) {
+      width: 50%;
+      display: inline-block;
+      padding-right: 15px;
+    }
+  }
+`;
+
 const Wrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
@@ -20,10 +30,10 @@ const Wrapper = styled(Box)`
   flex-wrap: wrap;
   margin: 5px 0px;
 
-    &.radioTermWrapper {
-      justify-content: flex-start;
-      margin: 5px 0px 5px 30px;
-    }
+  &.radioTermWrapper {
+    justify-content: flex-start;
+    margin: 5px 0px 5px 30px;
+  }
 `;
 
 const variantChild = {
@@ -104,8 +114,12 @@ const BaseField = props => {
   const { initialValue: _iv, ...inputProps } = props;
 
   return props.type !== 'hidden' ? (
-    <Box mb={10}>
-      <AnimateableWrapper initial={false} animate={closed ? 'closed' : 'open'} exit={{ opacity: 0 }}>
+    <BaseFieldWrapper mb={10} className={props.className}>
+      <AnimateableWrapper
+        initial={false}
+        animate={closed ? 'closed' : 'open'}
+        exit={{ opacity: 0 }}
+      >
         <AnimateableWrapper variants={variants}>
           <AnimateableWrapper variants={variantChild}>
             {props.config.renderLabel ? (
@@ -116,18 +130,18 @@ const BaseField = props => {
                 helper,
               })
             ) : (
-                <Wrapper alignItems="flex-end">
-                  <>
-                    <Box>
-                      <Label font="serif" htmlFor={props.name}>
-                        {label}
-                      </Label>
-                      <SmallText>{description}</SmallText>
-                    </Box>
-                    <SmallText>{helper}</SmallText>
-                  </>
-                </Wrapper>
-              )}
+              <Wrapper alignItems="flex-end">
+                <>
+                  <Box>
+                    <Label font="serif" htmlFor={props.name}>
+                      {label}
+                    </Label>
+                    <SmallText>{description}</SmallText>
+                  </Box>
+                  <SmallText>{helper}</SmallText>
+                </>
+              </Wrapper>
+            )}
           </AnimateableWrapper>
           <AnimateableWrapper variants={variantChild}>
             <Input
@@ -143,7 +157,14 @@ const BaseField = props => {
           </AnimateableWrapper>
           <AnimateableWrapper variants={variantChildLast}>
             {/* Ensure the page doesn't jump if a message is inserted */}
-            <Wrapper style={{ minHeight: '15px' }} className={props.config && props.config.validator === 'requiredRadioTerms' ? 'radioTermWrapper' : ''}>
+            <Wrapper
+              style={{ minHeight: '15px' }}
+              className={
+                props.config && props.config.validator === 'requiredRadioTerms'
+                  ? 'radioTermWrapper'
+                  : ''
+              }
+            >
               <SmallText>{hint}</SmallText>
               <SmallText
                 data-testid="fieldError"
@@ -155,10 +176,10 @@ const BaseField = props => {
           </AnimateableWrapper>
         </AnimateableWrapper>
       </AnimateableWrapper>
-    </Box>
+    </BaseFieldWrapper>
   ) : (
-      <Input {...inputProps} id={`${props.name}`} />
-    );
+    <Input {...inputProps} id={`${props.name}`} />
+  );
 };
 
 export default BaseField;
