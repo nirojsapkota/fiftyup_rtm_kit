@@ -81,8 +81,7 @@ describe('<Plan />', () => {
 
       axios.post.mockResolvedValue({ data: { obs: '100' }, status: 200 });
 
-      const formSubmitButton = getAllByText(/Get quote/i)[0].closest('button');
-      await fireEvent.click(formSubmitButton);
+      await fireEvent.click(getAllByText(/Get quote/i)[0].closest('button'));
 
       await wait(async () => {
         await expect(axios.post).toHaveBeenCalled();
@@ -93,11 +92,18 @@ describe('<Plan />', () => {
         expect(getAllByText('Generate a new quote')[0]).toBeInTheDocument();
       });
 
-      // await fireEvent.click(getAllByText(/Generate a new quote/i)[0].closest('button'));
-      //expect(getByTestId('quoteStep1')).toBeInTheDocument();
-      // await wait(async () => {
-      //   await expect(getByTestId('quoteStep1')).toBeInTheDocument();
-      // });
+      await fireEvent.click(getAllByText(/Generate a new quote/i)[0]);
+      expect(getAllByText('Get A Quick Quote Now')[0]).toBeInTheDocument();
+
+      await fireEvent.click(getAllByText(/Get quote/i)[0].closest('button'));
+      await wait(async () => {
+        await expect(axios.post).toHaveBeenCalled();
+        expect(getByTestId('quoteStep2')).toBeInTheDocument();
+        expect(getAllByText('Morning')[0]).toBeInTheDocument();
+        expect(getAllByText('Afternoon')[0]).toBeInTheDocument();
+        expect(getAllByText('Evening')[0]).toBeInTheDocument();
+        expect(getAllByText('Generate a new quote')[0]).toBeInTheDocument();
+      });
 
       axios.patch.mockResolvedValue({
         message: 'Phoneback saved',
