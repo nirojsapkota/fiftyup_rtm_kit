@@ -357,15 +357,13 @@ const GetQuote = props => {
             </Box>
           )}
           {props.calculatorProps.newQuoteText && (
-            <Button
-              asWrapper
+            <Markdown
+              raw={props.calculatorProps.newQuoteText}
               onClick={() => {
                 setQuoteResult(0);
                 setQuoteStep(1);
               }}
-            >
-              <Markdown raw={props.calculatorProps.newQuoteText} />
-            </Button>
+            />
           )}
         </QuoteContentWrapper>
       )}
