@@ -60,7 +60,7 @@ const Summary = props => {
   );
   const refer = React.useContext(PlanReferenceContext);
   const urlsArray = props.multi_image_file_urls || [];
-  
+
   const imageDataArr = urlsArray.filter(function(str) {
     return str !== null;
   });
@@ -73,58 +73,52 @@ const Summary = props => {
         </Header>
       </Box>
       <Block showAt="md">
-      {imageDataArr.length == 2 ? (
-       <S.ContentWrapper>
-        {imageDataArr.map(data => 
-          <S.ImageContentWrapper>
-            <PrimaryAction
+        {imageDataArr.length == 2 ? (
+          <S.ContentWrapper>
+            {imageDataArr.map(data => (
+              <S.ImageContentWrapper>
+                <PrimaryAction
+                  {...props.primaryActionProps}
+                  renderTrigger={triggerProps => (
+                    <A {...triggerProps}>
+                      <PlanImg src={data} alt={props.main_header_text} />
+                    </A>
+                  )}
+                />
+              </S.ImageContentWrapper>
+            ))}
+          </S.ContentWrapper>
+        ) : (
+          <PrimaryAction
             {...props.primaryActionProps}
             renderTrigger={triggerProps => (
               <A {...triggerProps}>
                 <PlanImg
-                  src={data}
+                  src={props.main_image_file_url}
                   alt={props.main_header_text}
                 />
               </A>
             )}
-            />
-            </S.ImageContentWrapper>
+          />
         )}
-        </S.ContentWrapper>
-      ) : (
-        <PrimaryAction
-        {...props.primaryActionProps}
-        renderTrigger={triggerProps => (
-          <A {...triggerProps}>
-            <PlanImg
-              src={props.main_image_file_url}
-              alt={props.main_header_text}
-            />
-          </A>
-        )}
-        />
-      )}
       </Block>
       <Block hideAt="md">
-      {imageDataArr.length == 2 ? (   
-  //The current requirement is only to display 2 graphics in multigraphic feature. If backend is sending more than 2 image data, fall back to main image
-        imageDataArr.map(data => 
-          <S.ImageContentWrapper>
+        {imageDataArr.length == 2 ? (
+          //The current requirement is only to display 2 graphics in multigraphic feature. If backend is sending more than 2 image data, fall back to main image
+          imageDataArr.map(data => (
+            <S.ImageContentWrapper>
               <PrimaryAction
-              {...props.primaryActionProps}
-              renderTrigger={triggerProps => (
-                <A {...triggerProps}>
-                  <PlanImg
-                    src={data}
-                    alt={props.main_header_text}
-                  />
-                </A>
-              )}
+                {...props.primaryActionProps}
+                renderTrigger={triggerProps => (
+                  <A {...triggerProps}>
+                    <PlanImg src={data} alt={props.main_header_text} />
+                  </A>
+                )}
               />
-          </S.ImageContentWrapper>
-        )
-      ) : (
-            <PrimaryAction
+            </S.ImageContentWrapper>
+          ))
+        ) : (
+          <PrimaryAction
             {...props.primaryActionProps}
             renderTrigger={triggerProps => (
               <A {...triggerProps}>
@@ -135,16 +129,18 @@ const Summary = props => {
               </A>
             )}
           />
-          )}
+        )}
       </Block>
       <Box px={[2, 2, 3, 0]} py={[20]}>
-        <Box width={1}>
-          <Box width={1} py={3}>
-            <Header weight="normal" tag="h3">
-              {props.sub_header_text}
-            </Header>
+        {!props.sub_header_text && props.sub_header_text.length > 0 && (
+          <Box width={1}>
+            <Box width={1} py={3}>
+              <Header weight="normal" tag="h3">
+                {props.sub_header_text}
+              </Header>
+            </Box>
           </Box>
-        </Box>
+        )}
         <Box
           style={{
             display: 'flex',
