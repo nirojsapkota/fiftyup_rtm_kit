@@ -7,23 +7,35 @@ import GetQuote from './Action/GetQuote';
 import * as S from './styles';
 import { PrimaryAction } from './PrimaryAction';
 
-const Cta = ({ actions, primaryActionProps, merchant, userApiAuthToken, calculatorProps }) => {
+const Cta = ({
+  actions,
+  primaryActionProps,
+  merchant,
+  userApiAuthToken,
+  calculatorProps,
+}) => {
   const callAction = actions.find(({ track }) => track === 'click_to_call');
   const getQuoteAction = actions.find(({ track }) => track === 'get_quote');
 
   return (
     <S.Cta my={2} pt={'6px'}>
       <Merchant {...merchant} />
-      {callAction && <ClickToCall {...callAction} />}
-      {getQuoteAction && <GetQuote
-        userApiAuthToken={userApiAuthToken}
-        calculatorProps={calculatorProps}
-        campaignId={primaryActionProps.campaignId}
-        {...getQuoteAction}
-      />}
-      {!getQuoteAction && <Box p={[2, 3]} width={1}>
-        <PrimaryAction {...primaryActionProps} />
-      </Box> }
+      <div scroll-target="ctaSection">
+        {callAction && <ClickToCall {...callAction} />}
+        {getQuoteAction && (
+          <GetQuote
+            userApiAuthToken={userApiAuthToken}
+            calculatorProps={calculatorProps}
+            campaignId={primaryActionProps.campaignId}
+            {...getQuoteAction}
+          />
+        )}
+        {!getQuoteAction && (
+          <Box p={[2, 3]} width={1}>
+            <PrimaryAction {...primaryActionProps} />
+          </Box>
+        )}
+      </div>
     </S.Cta>
   );
 };
