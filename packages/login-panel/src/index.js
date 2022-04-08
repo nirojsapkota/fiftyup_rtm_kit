@@ -130,6 +130,18 @@ class LoginForm extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    /* NOTE: Hack for the Trustpilot JS widget which is rendered via markdown */
+    if (window.Trustpilot) {
+      var trustbox = document.getElementsByClassName("trustpilot-widget");
+      for (var i = 0; i < trustbox.length; i++) {
+        if (trustbox[i].firstChild.nodeName !== 'IFRAME') {
+          window.Trustpilot.loadFromElement(trustbox[i], true);
+        }
+      }
+    }
+  };
+
   render() {
     const {
       title,
