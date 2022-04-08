@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import * as Tracker from '../../../tracker';
+import { TrackerRegistration } from '../../../tracker';
 // eslint-disable-next-line import/named
 import {
   render,
@@ -340,7 +341,76 @@ describe('<LoginPanel />', () => {
       expect(state.value).toEqual(stateField.options[0].label);
     });
   });
+
+  it('loads a trustpilot widget', async () => {
+    window.Trustpilot = jest.fn();
+    const spiedTrustpilotElem = jest.spyOn(document, 'getElementsByClassName');
+
+    let node = document.createElement('div');
+    const { container, getByText } = render(
+      <div>
+        <TrackerRegistration enable_trustpilot_js_script={true} />
+        <LoginPanel {...loginPanelProps} />
+      </div>
+    );
+
+    render(
+      <div>
+        <TrackerRegistration enable_trustpilot_js_script={true} />
+        <LoginPanel {...loginPanelProps} />
+      </div>
+    , {container});
+    expect(spiedTrustpilotElem).toHaveBeenCalled();
+    expect(getByText('Trustpilot')).toBeInTheDocument();
+  })
 });
+
+describe('<LoginPanel isExitIntent={true} />', () => {
+  it('renders the exit intent login panel', () => {
+    const { getByText, getByLabelText, getByTestId } = render(
+      <LoginPanel isExitIntent={true} {...loginPanelExitIntentProps} />
+    );
+
+    expect(getByTestId('exit-intent-login')).toBeInTheDocument();
+
+  })
+  it('Get internal errors from server when submit login - exit intent', async () => {
+    // set Up
+    axios.post.mockRejectedValue({
+      response: {
+        status: 500,
+        data: { errors: ['Random error'] },
+      },
+    });
+
+    const { getByText, getByLabelText, container } = render(
+      <LoginPanel {...loginPanelExitIntentProps} />
+    );
+
+    const email = getByLabelText('My Email:');
+    fireEvent.change(email, {
+      target: { value: 'user@example.com' },
+    });
+    const postcode = getByLabelText('My Postcode:');
+    fireEvent.change(postcode, {
+      target: { value: '2000, BARANGAROO' },
+    });
+
+    const submit = getByText(loginPanelExitIntentProps.buttonText).closest(
+      'button'
+    );
+    fireEvent.click(submit);
+
+    const spiedTrack = jest.spyOn(Tracker, 'track');
+
+    await wait(async () => {
+      expect(container).toHaveTextContent(
+        'An error has occurred, please try again in a few minutes'
+      );
+      expect(spiedTrack).toHaveBeenCalled();
+    });
+  });
+})
 
 describe('<LoginPanel />', () => {
   it('matches expected output', async () => {
@@ -449,40 +519,4 @@ describe('<LoginPanel />', () => {
     });
   });
 
-  it('Get internal errors from server when submit login - exit intent', async () => {
-    // set Up
-    axios.post.mockRejectedValue({
-      response: {
-        status: 500,
-        data: { errors: ['Random error'] },
-      },
-    });
-
-    const { getByText, getByLabelText, container } = render(
-      <LoginPanel {...loginPanelExitIntentProps} />
-    );
-
-    const email = getByLabelText('My Email:');
-    fireEvent.change(email, {
-      target: { value: 'user@example.com' },
-    });
-    const postcode = getByLabelText('My Postcode:');
-    fireEvent.change(postcode, {
-      target: { value: '2000, BARANGAROO' },
-    });
-
-    const submit = getByText(loginPanelExitIntentProps.buttonText).closest(
-      'button'
-    );
-    fireEvent.click(submit);
-
-    const spiedTrack = jest.spyOn(Tracker, 'track');
-
-    await wait(async () => {
-      expect(container).toHaveTextContent(
-        'An error has occurred, please try again in a few minutes'
-      );
-      expect(spiedTrack).toHaveBeenCalled();
-    });
-  });
 });

@@ -135,7 +135,9 @@ class LoginForm extends React.Component {
     if (window.Trustpilot) {
       var trustbox = document.getElementsByClassName("trustpilot-widget");
       for (var i = 0; i < trustbox.length; i++) {
-        if (trustbox[i].firstChild.nodeName !== 'IFRAME') {
+        /* Only apply it if the widget has not loaded yet, */
+        /* the iframe elem will tell us which one has been loaded and which one's not */
+        if (trustbox[i].firstChild && trustbox[i].firstChild.nodeName !== 'IFRAME') {
           window.Trustpilot.loadFromElement(trustbox[i], true);
         }
       }
@@ -290,7 +292,11 @@ class LoginForm extends React.Component {
 
 const LoginPanel = ({ wrapperStyle, ...props }) => {
   if (props.isExitIntent) {
-    return <LoginForm {...props} />;
+    return (
+      <div data-testid="exit-intent-login">
+        <LoginForm {...props} />
+      </div>
+    );
   } else {
     return (
       <Card px={[20, 20, 30, 40]} py={10} style={wrapperStyle}>
