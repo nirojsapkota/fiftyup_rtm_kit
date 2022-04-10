@@ -20,7 +20,9 @@ const loginPanel = {
     content:
       'By ticking this box, you agree to our [Confirmation of Consent](https://staging.onebigswitch.com.au/confirmation-of-consent),\
       [Terms and Conditions](https://staging.onebigswitch.com.au/terms-and-conditions) and \
-      [Privacy Policy](https://staging.onebigswitch.com.au/privacy-policy)',
+      [Privacy Policy](https://staging.onebigswitch.com.au/privacy-policy) \
+      \n \
+      <div class="trustpilot-widget" data-businessunit-id="5fc0711c5c55e80001f365ce" data-locale="en-AU" data-style-height="40px" data-style-width="100%" data-template-id="5419b6ffb0d04a076446a9af" data-theme="light"><a href="https://au.trustpilot.com/review/onebigswitch.com.au" rel="noopener" target="_blank">Trustpilot</a></div>',
   },
   buttonIcon: 'view-forward',
   stateField: {
