@@ -43,7 +43,7 @@ const generateAgeOptions = () => {
   // end
 
   // Lower bound - Hardcode
-  let ageValues = [{ label: '70 years old or olrder', value: '70' }];
+  let ageValues = [{ label: '70 years old or older', value: '70' }];
 
   for (let age = 69; age > 15; age -= 1) {
     ageValues.push({ label: `${age} years old`, value: age.toString() });
