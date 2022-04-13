@@ -15,7 +15,7 @@ const Cta = ({
   calculatorProps,
 }) => {
   const callAction = actions.find(({ track }) => track === 'click_to_call');
-  const getQuoteAction = actions.find(({ track }) => track === 'get_quote');
+  const getQuoteAction = actions.find(({ track }) => track === 'quote_tool');
 
   return (
     <S.Cta my={2} pt={'6px'}>

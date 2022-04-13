@@ -23,7 +23,7 @@ export const PrimaryAction = props => {
     );
   } else if (
     typeof props.renderTrigger === 'function' &&
-    props.track === 'get_quote'
+    props.track === 'quote_tool'
   ) {
     return props.renderTrigger({
       track: props.track,
@@ -37,10 +37,10 @@ export const PrimaryAction = props => {
       as: 'a',
       href: props.link,
     });
-  } else if (props.track === 'get_quote') {
+  } else if (props.track === 'quote_tool') {
     return (
       <>
-        <Block hideAt="lg">
+        <Block hideAt="md">
           <Button
             track={props.track}
             as="a"

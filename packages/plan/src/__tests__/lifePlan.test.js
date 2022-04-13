@@ -29,7 +29,7 @@ describe('<Plan />', () => {
     });
   });
 
-  describe('with the get_quote option', () => {
+  describe('with the quote_tool option', () => {
     it('renders the get quote form', async () => {
       const { getAllByText } = render(<Plan {...lifePlanProps} />);
 
@@ -39,7 +39,7 @@ describe('<Plan />', () => {
     });
 
     it('generates a quote', async () => {
-      const { getAllByText, getByLabelText, debug, getByTestId } = render(
+      const { getAllByText, getByLabelText, getByTestId } = render(
         <Plan {...lifePlanProps} />
       );
 

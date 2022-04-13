@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Form, FormError, getFormValues } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
-import { Box } from '@rtm-ui/layout';
+import { Box, scrollToElement } from '@rtm-ui/layout';
 import { Header, Markdown, Small } from '@rtm-ui/typography';
 
 const axios = require('axios');
@@ -88,6 +88,10 @@ const GetQuote = props => {
   const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({});
   const [submittingQuote, setSubmittingQuote] = React.useState(false);
   const [submittingPhoneback, setSubmittingPhoneback] = React.useState(false);
+  const [serverErrors, setServerErrors] = React.useState({
+    formError: props.formError || null,
+    fieldErrors: props.fieldErrors || {},
+  });
   const calculatorFields = [
     {
       label: 'First name', // || stateField.label
@@ -139,6 +143,7 @@ const GetQuote = props => {
       type: 'text',
       initialValue: quoteFieldsValues.age,
       name: 'age',
+      inputMode: 'none',
       options: generateAgeOptions(),
       className: 'inline-fields',
     },
@@ -176,54 +181,62 @@ const GetQuote = props => {
       },
       type: 'text',
       name: 'cover_required',
+      inputMode: 'none',
       initialValue: quoteFieldsValues.cover_required,
       options: generateCoverAmount(),
     },
   ];
 
   const submitHandler = async values => {
-    setSubmittingQuote(true);
+    try {
+      setSubmittingQuote(true);
+      setServerErrors({ formError: '', fieldErrors: {} });
 
-    let data = {
-      campaign_id: props.campaignId,
-      life_insurance_lead_fragment: {},
-      lead: {},
-    };
+      let data = {
+        campaign_id: props.campaignId,
+        life_insurance_lead_fragment: {},
+        lead: {},
+      };
 
-    values.forEach(field => {
-      if (field.name === 'smoker' || field.name === 'cover_required') {
-        data['life_insurance_lead_fragment'][field.name] = field.value;
-      } else {
-        data['lead'][field.name] = field.value;
-      }
-    });
-
-    const config = {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-Authorization': props.userApiAuthToken,
-      },
-    };
-
-    const response = await axios
-      .post(props.link, data, config)
-      .then(response => {
-        //  Sample Response: {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
-        setQuoteResult(response.data);
-        setQuoteStep(2);
-        setQuoteFieldsValues(getFormValues(values));
-        return response;
-      })
-      .catch(error => {
-        throw new FormError({
-          formError: 'Unexpected problem, please contact support.',
-        });
+      values.forEach(field => {
+        if (field.name === 'smoker' || field.name === 'cover_required') {
+          data['life_insurance_lead_fragment'][field.name] = field.value;
+        } else {
+          data['lead'][field.name] = field.value;
+        }
       });
 
-    setSubmittingQuote(false);
+      const config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'X-Authorization': props.userApiAuthToken,
+        },
+      };
 
-    return response;
+      const response = await axios
+        .post(props.link, data, config)
+        .then(response => {
+          //  Sample Response: {"standard":"38.61","obs":"32.82","savings":"69.50","lead_id":1367596}
+          setQuoteResult(response.data);
+          setQuoteStep(2);
+          setQuoteFieldsValues(getFormValues(values));
+          scrollToElement(null, 'ctaSection');
+          return response;
+        })
+        .catch(error => {
+          throw new FormError({
+            formError: 'Unexpected problem, please contact support.',
+            fieldErrors: {}, //sample
+          });
+        });
+
+      setSubmittingQuote(false);
+      return response;
+    } catch (e) {
+      setSubmittingQuote(false);
+      setServerErrors(e.object);
+    }
   };
 
   const submitPhoneback = async ({
@@ -232,35 +245,41 @@ const GetQuote = props => {
     userApiAuthToken,
     value,
   }) => {
-    setSubmittingPhoneback(true);
+    try {
+      setSubmittingPhoneback(true);
 
-    let data = {
-      campaign_id: campaignId,
-      phoneback: { preferred_time: value },
-    };
+      let data = {
+        campaign_id: campaignId,
+        phoneback: { preferred_time: value },
+      };
 
-    const config = {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-Authorization': userApiAuthToken,
-      },
-    };
+      const config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'X-Authorization': userApiAuthToken,
+        },
+      };
 
-    await axios
-      .patch(link, data, config)
-      .then(response => {
-        setQuoteStep(3);
-        setSubmittingPhoneback(false);
-        return response.data;
-      })
-      .catch(error => {
-        setSubmittingPhoneback(false);
-        throw new FormError({
-          formError: 'Unexpected problem, please contact support.',
-          fieldErrors: {}, //sample
+      await axios
+        .patch(link, data, config)
+        .then(response => {
+          setQuoteStep(3);
+          setSubmittingPhoneback(false);
+          scrollToElement(null, 'ctaSection');
+          return response.data;
+        })
+        .catch(error => {
+          setSubmittingPhoneback(false);
+          throw new FormError({
+            formError: 'Unexpected problem, please contact support.',
+            fieldErrors: {}, //sample
+          });
         });
-      });
+    } catch (e) {
+      setSubmittingPhoneback(false);
+      setServerErrors(e.object);
+    }
   };
 
   return (
@@ -296,6 +315,17 @@ const GetQuote = props => {
                 >
                   {props.calculatorProps.formSubmitButtonText}
                 </Button>
+                <Box
+                  style={{
+                    height: '15px',
+                    display: 'flex',
+                    alignSelf: 'flex-end',
+                  }}
+                >
+                  <Small align="left" color="error">
+                    {serverErrors.formError}
+                  </Small>
+                </Box>
                 {props.calculatorProps.getQuoteDisclaimerText && (
                   <Box>
                     <Small>
@@ -350,6 +380,17 @@ const GetQuote = props => {
                 </Button>
               </ButtonWrapper>
             ))}
+            <Box
+              style={{
+                height: '15px',
+                display: 'flex',
+                alignSelf: 'flex-end',
+              }}
+            >
+              <Small align="left" color="error">
+                {serverErrors.formError}
+              </Small>
+            </Box>
           </ButtonWrapper>
           {props.calculatorProps.phoneNumber && (
             <Box py={2}>

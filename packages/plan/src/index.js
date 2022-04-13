@@ -8,14 +8,12 @@ import PlanReferenceContext from './PlanReferenceContext';
 import * as S from './styles';
 
 const PlanSidebar = ({ children, calculatorProps, ...props }) => (
-  <Block showAt="lg" width={[1, 1, 1, 0.40]}>
+  <Block showAt="lg" width={[1, 1, 1, 0.4]}>
     <Sidebar flex={0} px={[0, 0, 0, 3]} {...props}>
       {calculatorProps && (
         <S.QuoteSidebarWrapper>{children}</S.QuoteSidebarWrapper>
       )}
-      {!calculatorProps && (
-        <S.SidebarWrapper>{children}</S.SidebarWrapper>
-      )}
+      {!calculatorProps && <S.SidebarWrapper>{children}</S.SidebarWrapper>}
     </Sidebar>
   </Block>
 );
@@ -30,12 +28,14 @@ export const Plan = ({
   calculatorProps,
   ...rest
 }) => {
-  const [isPhonebackSubmitted, setPhonebackSubmitted] = React.useState(plan.has_phoneback);
+  const [isPhonebackSubmitted, setPhonebackSubmitted] = React.useState(
+    plan.has_phoneback
+  );
   const clickAction = actions.find(({ track }) => track === 'get_started');
   const callbackAction = actions.find(
     ({ track }) => track === 'request_call_back'
   );
-  const getQuoteAction = actions.find(({ track }) => track === 'get_quote');
+  const getQuoteAction = actions.find(({ track }) => track === 'quote_tool');
 
   const primaryAction = callbackAction || getQuoteAction || clickAction;
   const primaryActionWithPhonebackProps = {
@@ -51,7 +51,7 @@ export const Plan = ({
     <PlanReferenceContext.Provider value={reference}>
       <S.StyledWrapper>
         <S.ContentWrapper pt={[2, 2, 3]} px={[0, 0, 0, 48]}>
-          <Box flex={1} px={[0, 0, 0, 3]} width={[1, 1, 1, 0.60]}>
+          <Box flex={1} px={[0, 0, 0, 3]} width={[1, 1, 1, 0.6]}>
             <Summary
               {...plan}
               campaignId={plan.campaign_id}
