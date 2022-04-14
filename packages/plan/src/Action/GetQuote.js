@@ -95,6 +95,7 @@ const GetQuote = props => {
   const calculatorFields = [
     {
       label: 'First name', // || stateField.label
+      labelSuper: '*',
       name: 'first_name',
       type: 'text',
       initialValue: quoteFieldsValues.first_name,
@@ -112,13 +113,12 @@ const GetQuote = props => {
       initialValue: quoteFieldsValues.last_name,
       placeholder: 'Surname', // || stateField.placeholder
       autoComplete: 'off',
-      config: {
-        validator: 'required',
-      },
+      config: {},
       className: 'inline-fields',
     },
     {
       label: 'Phone number', // || stateField.label
+      labelSuper: '*',
       name: 'primary_contact_no',
       type: 'tel',
       initialValue: quoteFieldsValues.primary_contact_no,
@@ -135,6 +135,7 @@ const GetQuote = props => {
     },
     {
       label: 'Age',
+      labelSuper: '*',
       config: {
         component: 'dropdownfield',
         scrollable: true,
@@ -149,6 +150,7 @@ const GetQuote = props => {
     },
     {
       label: 'Gender',
+      labelSuper: '*',
       config: {
         validator: 'requiredRadio',
       },
@@ -160,6 +162,7 @@ const GetQuote = props => {
     },
     {
       label: 'Smoking status',
+      labelSuper: '*',
       config: {
         validator: 'requiredRadio',
       },
@@ -174,6 +177,7 @@ const GetQuote = props => {
     },
     {
       label: 'Amount of cover',
+      labelSuper: '*',
       config: {
         component: 'dropdownfield',
         scrollable: true,
