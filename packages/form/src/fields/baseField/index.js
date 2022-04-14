@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '@rtm-ui/layout';
+import { getColor } from '@rtm-ui/theme';
 import { Paragraph, Label } from '@rtm-ui/typography';
 import { getFieldComponent } from '../util/getFieldComponent';
 import { motion } from 'framer-motion';
@@ -36,6 +37,11 @@ const Wrapper = styled(Box)`
     justify-content: flex-start;
     margin: 5px 0px 5px 30px;
   }
+`;
+
+const StyledSup = styled.sup`
+  color: ${props =>
+    `${getColor(props.labelSuperColor || 'error', props.theme)}`};
 `;
 
 const variantChild = {
@@ -110,7 +116,15 @@ const BaseField = props => {
     setWaiting(!waiting);
   };
 
-  const { label, description, hint, helper, error } = props;
+  const {
+    label,
+    description,
+    labelSuper,
+    labelSuperColor,
+    hint,
+    helper,
+    error,
+  } = props;
   const Input = getFieldComponent(props.type, props.config);
 
   const { initialValue: _iv, ...inputProps } = props;
@@ -128,6 +142,7 @@ const BaseField = props => {
               props.config.renderLabel({
                 name: props.name,
                 label,
+                labelSuper,
                 description,
                 helper,
               })
@@ -137,6 +152,9 @@ const BaseField = props => {
                   <Box>
                     <Label font="serif" htmlFor={props.name}>
                       {label}
+                      <StyledSup labelSuperColor={labelSuperColor}>
+                        {labelSuper}
+                      </StyledSup>
                     </Label>
                     <SmallText>{description}</SmallText>
                   </Box>
