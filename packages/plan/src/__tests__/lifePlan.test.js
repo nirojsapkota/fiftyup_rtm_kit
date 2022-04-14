@@ -55,7 +55,7 @@ describe('<Plan />', () => {
         target: { value: '0222222222' },
       });
 
-      let input = await getByLabelText('Age');
+      let input = await getByLabelText(/Age/i);
       await fireEvent.focus(input);
       await fireEvent.click(input);
       // Wait for dropdown to appear
@@ -69,7 +69,7 @@ describe('<Plan />', () => {
 
       fireEvent.click(getAllByText(/Smoker/i)[0]);
 
-      let input2 = await getByLabelText('Amount of cover');
+      let input2 = await getByLabelText(/Amount of cover/i);
       await fireEvent.focus(input2);
       await fireEvent.click(input2);
       // Wait for dropdown to appear
@@ -79,6 +79,11 @@ describe('<Plan />', () => {
         await fireEvent.click(dropdownItem);
       });
 
+      /**
+       * To avoid Not implemented: window.scrollTo
+       * https://stackoverflow.com/a/62086079/1138156
+       */
+      window.scrollTo = jest.fn();
       axios.post.mockResolvedValue({ data: { obs: '100' }, status: 200 });
 
       await fireEvent.click(getAllByText(/Get quote/i)[0].closest('button'));
