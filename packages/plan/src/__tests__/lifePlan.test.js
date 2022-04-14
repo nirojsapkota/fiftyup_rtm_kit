@@ -69,7 +69,7 @@ describe('<Plan />', () => {
 
       fireEvent.click(getAllByText(/Smoker/i)[0]);
 
-      let input2 = await getByLabelText('Amount of cover');
+      let input2 = await getByLabelText(/Amount of cover/i);
       await fireEvent.focus(input2);
       await fireEvent.click(input2);
       // Wait for dropdown to appear
