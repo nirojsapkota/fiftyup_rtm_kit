@@ -314,7 +314,7 @@ const HybridLoginView = ({
   );
 
   const [quote, setQuote] = useState(null);
-  const [displayCounter, addDisplayCounter] = useState(0);
+  const [displayCounter, setDisplayCounter] = useState(0);
 
   const [showExitIntent, setShowExitIntent] = useState(false);
 
@@ -323,19 +323,20 @@ const HybridLoginView = ({
   useEffect(() => {
     if (exitIntentProps && exitIntentProps.enable && !showExitIntent) {
       const removeExitIntent = exitIntent({
-        displayCounter,
-        topOnly: exitIntentProps.displayTimes,
+        displayCounter: displayCounter,
+        delay: exitIntentProps.delay || 5,
+        topOnly: exitIntentProps.topOnly,
         displayTimes: exitIntentProps.displayTimes || 1,
         onExitIntent: () => {
           setShowExitIntent(true);
-          addDisplayCounter(displayCounter + 1);
+          setDisplayCounter(displayCounter + 1);
         },
       });
       return () => {
         removeExitIntent();
       };
     }
-  });
+  }, [null, showExitIntent]);
 
   /**
    * Helper function that takes the submit event and passed the data to the

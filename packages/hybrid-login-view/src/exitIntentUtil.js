@@ -9,6 +9,7 @@ export default function ExitIntent(options = {}) {
     topOnly: false,
     threshold: 20,
     displayTimes: 1,
+    delay: 5, // in seconds
     eventThrottleForTopOnly: 50,
     onExitIntent: () => {},
   };
@@ -30,8 +31,12 @@ export default function ExitIntent(options = {}) {
 
     const mouseDidMove = event => {
       if (args.displayCounter < args.displayTimes) {
-        if (event.clientY <= args.threshold) {
-          // args.displayCounter++
+        const shouldShowExitIntentWhenMouseMoved =
+          !event.toElement &&
+          !event.relatedTarget &&
+          event.clientY <= args.threshold;
+
+        if (shouldShowExitIntentWhenMouseMoved) {
           args.onExitIntent();
           if (args.displayCounter >= args.displayTimes) {
             removeEvents();
@@ -41,9 +46,12 @@ export default function ExitIntent(options = {}) {
     };
 
     const mouseDidLeave = event => {
-      console.log('displayCounter', args.displayCounter);
-      if (args.displayCounter < args.displayTimes) {
-        // displayCounter++
+      const shouldShowExitIntentWhenMouseLeaves =
+        !event.toElement &&
+        !event.relatedTarget &&
+        args.displayCounter < args.displayTimes;
+
+      if (shouldShowExitIntentWhenMouseLeaves) {
         args.onExitIntent();
         if (args.displayCounter >= args.displayTimes) {
           removeEvents();
@@ -55,14 +63,16 @@ export default function ExitIntent(options = {}) {
       eventListeners.forEach((value, key, map) => removeEvent(key));
     };
 
-    if (args.topOnly) {
-      addEvent(
-        'mousemove',
-        throttle(args.eventThrottleForTopOnly, mouseDidMove)
-      );
-    } else {
-      addEvent('mouseleave', mouseDidLeave);
-    }
+    setTimeout(() => {
+      if (args.topOnly) {
+        addEvent(
+          'mouseout',
+          throttle(args.eventThrottleForTopOnly, mouseDidMove)
+        );
+      } else {
+        addEvent('mouseleave', mouseDidLeave);
+      }
+    }, args.delay * 1000);
 
     return removeEvents;
   })();
