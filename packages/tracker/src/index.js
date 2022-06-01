@@ -143,7 +143,8 @@ class TrackerRegistration extends React.Component {
     }
 
     //FOR GOOGLE ANALYTICS
-    if (this.props.ga_code) {
+    /* istanbul ignore next */
+    if (this.props.universal_ga_code && !this.props.ga_code) {
       const googleAnalytics = document.createElement('script');
       googleAnalytics.type = 'text/javascript';
       googleAnalytics.innerHTML =
@@ -156,6 +157,28 @@ class TrackerRegistration extends React.Component {
         "', 'auto');" +
         "ga('send', 'pageview');";
       this.instance.appendChild(googleAnalytics);
+    }
+
+    //FOR GA4
+    if (this.props.ga_code) {
+      const googleAnalytics = document.createElement('script');
+      googleAnalytics.async = true;
+      googleAnalytics.src = `https://www.googletagmanager.com/gtag/js?id=${this.props.ga_code}`;
+
+      let universalConfig = ""
+      if (this.props.universal_ga_code) {
+        universalConfig = "gtag('config', " + `${this.props.universal_ga_code}` + ");"
+      }
+
+      const googleAnalytics2 = document.createElement('script');
+      googleAnalytics2.innerHTML = 'window.dataLayer = window.dataLayer || [];' +
+        'function gtag(){dataLayer.push(arguments);}' +
+        "gtag('js', new Date());" +
+        "gtag('config', " +
+        `${this.props.ga_code}` +
+        ");" + universalConfig
+
+      this.instance.appendChild(googleAnalytics2);
     }
 
     if (this.props.bing_uet_tag_code) {
