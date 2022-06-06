@@ -171,7 +171,7 @@ class TrackerRegistration extends React.Component {
       let universalConfig = '';
       if (this.props.universal_ga_code) {
         universalConfig =
-          "gtag('config', " + `${this.props.universal_ga_code}` + ');';
+          "gtag('config', '" + `${this.props.universal_ga_code}` + ');';
       }
 
       const googleAnalytics2 = document.createElement('script');
@@ -179,9 +179,9 @@ class TrackerRegistration extends React.Component {
         'window.dataLayer = window.dataLayer || [];' +
         'function gtag(){dataLayer.push(arguments);}' +
         "gtag('js', new Date());" +
-        "gtag('config', " +
+        "gtag('config', '" +
         `${this.props.ga_code}` +
-        ');' +
+        "');" +
         universalConfig;
 
       this.instance.appendChild(googleAnalytics2);
