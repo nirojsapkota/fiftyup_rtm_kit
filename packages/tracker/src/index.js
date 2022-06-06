@@ -163,20 +163,26 @@ class TrackerRegistration extends React.Component {
     if (this.props.ga_code) {
       const googleAnalytics = document.createElement('script');
       googleAnalytics.async = true;
-      googleAnalytics.src = `https://www.googletagmanager.com/gtag/js?id=${this.props.ga_code}`;
+      googleAnalytics.src = `https://www.googletagmanager.com/gtag/js?id=${
+        this.props.ga_code
+      }`;
+      this.instance.appendChild(googleAnalytics);
 
-      let universalConfig = ""
+      let universalConfig = '';
       if (this.props.universal_ga_code) {
-        universalConfig = "gtag('config', " + `${this.props.universal_ga_code}` + ");"
+        universalConfig =
+          "gtag('config', " + `${this.props.universal_ga_code}` + ');';
       }
 
       const googleAnalytics2 = document.createElement('script');
-      googleAnalytics2.innerHTML = 'window.dataLayer = window.dataLayer || [];' +
+      googleAnalytics2.innerHTML =
+        'window.dataLayer = window.dataLayer || [];' +
         'function gtag(){dataLayer.push(arguments);}' +
         "gtag('js', new Date());" +
         "gtag('config', " +
         `${this.props.ga_code}` +
-        ");" + universalConfig
+        ');' +
+        universalConfig;
 
       this.instance.appendChild(googleAnalytics2);
     }
@@ -275,8 +281,9 @@ class TrackerRegistration extends React.Component {
     if (this.props.enable_trustpilot_js_script) {
       const tpilot = document.createElement('script');
       tpilot.type = 'text/javascript';
-      tpilot.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js'
-      tpilot.async = true
+      tpilot.src =
+        '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+      tpilot.async = true;
       this.instance.appendChild(tpilot);
     }
 
