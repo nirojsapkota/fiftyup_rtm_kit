@@ -4,6 +4,7 @@ import { fireEvent, render, wait } from '../../../bootstrap/setup/testSetup';
 import { Form } from '../index';
 
 const handleSubmit = jest.fn();
+const dropdownChangeFunc = jest.fn();
 
 const setup = async flag => {
   const util = render(
@@ -16,6 +17,9 @@ const setup = async flag => {
           name: 'country',
           type: 'text',
           config: { component: 'dropdownfield', scrollable: flag },
+          onDropdownChange: val => {
+            dropdownChangeFunc();
+          },
           hint: 'eg. USA',
           value: '',
           options: [
@@ -43,7 +47,7 @@ describe(`Testing Component with scrollable set to true `, () => {
         // check for scrollbar and height of dropdown
         const resultsContainer = getByTestId('results-container');
         expect(resultsContainer).toHaveStyleRule('overflow', 'auto');
-        expect(resultsContainer).toHaveStyleRule('height', '204px');
+        expect(resultsContainer).toHaveStyleRule('max-height', '204px');
 
         const item1 = await getAllByText('Canada')[0];
 
@@ -95,7 +99,7 @@ describe(`Testing Component with scrollable set to false `, () => {
         // check for scrollbar and height of dropdown
         const resultsContainer = getByTestId('results-container');
         expect(resultsContainer).toHaveStyleRule('overflow', 'none');
-        expect(resultsContainer).toHaveStyleRule('height', 'none');
+        expect(resultsContainer).toHaveStyleRule('max-height', 'none');
 
         const item1 = await getAllByText('Canada')[0];
 
