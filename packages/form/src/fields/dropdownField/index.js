@@ -12,8 +12,12 @@ const ResultsContainer = styled(Card)`
   position: absolute;
   width: 100%;
   z-index: 100;
-  height:${({ scrollable }) => { return scrollable ? "204px" : "none"; }};
-  overflow:${({ scrollable }) => { return scrollable ? "auto" : "none"; }};
+  max-height: ${({ scrollable }) => {
+    return scrollable ? '204px' : 'none';
+  }};
+  overflow: ${({ scrollable }) => {
+    return scrollable ? 'auto' : 'none';
+  }};
 `;
 
 const ResultItem = styled(Button)`
@@ -26,30 +30,33 @@ const ResultItem = styled(Button)`
 `;
 
 const DropdownTextBox = styled(TextField)`
-border:1px solid #ccc;
-cursor: default;
-:hover, focus {
-  pointer:cursor;
-  outline:none;
-}
+  border: 1px solid #ccc;
+  cursor: default;
+  :hover,
+  focus {
+    pointer: cursor;
+    outline: none;
+  }
 `;
 
-const DropdownField = ({ onWaiting,
-  fieldUtils,
-  config,
-  ...inputProps }) => {
-
+const DropdownField = ({ onWaiting, fieldUtils, config, ...inputProps }) => {
   const dropdownRef = React.useRef();
   useOnClickOutside(dropdownRef, () => setModalOpen(false));
   const [isModalOpen, setModalOpen] = React.useState(false);
-  const [currentElement, setCurrentElement] = React.useState({label: null, value: null});
+  const [currentElement, setCurrentElement] = React.useState({
+    label: null,
+    value: null,
+  });
 
   // Pass these values straight through with no submission
-  React.useEffect(function () {
-    if (typeof inputProps.onDropdownChange == 'function') {
-      inputProps.onDropdownChange(currentElement.value);
-    }
-  }, [currentElement]);
+  React.useEffect(
+    function() {
+      if (typeof inputProps.onDropdownChange == 'function') {
+        inputProps.onDropdownChange(currentElement.value);
+      }
+    },
+    [currentElement]
+  );
 
   return (
     <div ref={dropdownRef} style={{ position: 'relative' }}>
@@ -68,26 +75,34 @@ const DropdownField = ({ onWaiting,
               }
             }
           }}
-          value={currentElement.label || inputProps.options.map((option) => option.value === inputProps.value ? option.label : null).filter((e) => !!e)}
+          value={
+            currentElement.label ||
+            inputProps.options
+              .map(option =>
+                option.value === inputProps.value ? option.label : null
+              )
+              .filter(e => !!e)
+          }
         />
-        <Box data-testid="arrow-box" onClick={() => setModalOpen(!isModalOpen)}
-          style={
-            {
-              position: 'relative',
-              width: 'auto',
-              float: 'right',
-              top: '-35px'
-            }
-          }>
-          <Icon
-            rotate={isModalOpen ? 90 : 270}
-            glyph="view-back"
-          />
+        <Box
+          data-testid="arrow-box"
+          onClick={() => setModalOpen(!isModalOpen)}
+          style={{
+            position: 'relative',
+            width: 'auto',
+            float: 'right',
+            top: '-35px',
+          }}
+        >
+          <Icon rotate={isModalOpen ? 90 : 270} glyph="view-back" />
         </Box>
       </div>
       {isModalOpen && (
         <div>
-          <ResultsContainer data-testid="results-container" scrollable={config.scrollable}>
+          <ResultsContainer
+            data-testid="results-container"
+            scrollable={config.scrollable}
+          >
             {inputProps.options.map((element, index) => {
               return (
                 <Label
@@ -105,7 +120,7 @@ const DropdownField = ({ onWaiting,
                       setModalOpen(false);
                       onWaiting('');
                       fieldUtils.setFieldValue(inputProps.name, element.value);
-                      setCurrentElement({...element});
+                      setCurrentElement({ ...element });
                     }}
                   >
                     <Header tag="h6" align="left" weight="thin" p={15}>
@@ -122,18 +137,18 @@ const DropdownField = ({ onWaiting,
   );
 };
 
-
 DropdownField.propTypes = {
   config: PropTypes.shape({
     component: PropTypes.string,
-    scrollable: PropTypes.bool
+    scrollable: PropTypes.bool,
   }),
   name: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.string
-  })),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
 };
-
 
 export default DropdownField;

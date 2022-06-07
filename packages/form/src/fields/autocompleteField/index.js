@@ -13,6 +13,12 @@ const ResultsContainer = styled(Card)`
   width: 100%;
   top: ${({ distanceFromTop }) => `${distanceFromTop}px`};
   z-index: 100;
+  max-height: ${({ scrollable }) => {
+    return scrollable ? '204px' : 'none';
+  }};
+  overflow: ${({ scrollable }) => {
+    return scrollable ? 'auto' : 'none';
+  }};
 `;
 
 const ResultItem = styled(Button)`
@@ -99,7 +105,10 @@ const AutocompleteField = ({
       </div>
       {isModalOpen && (
         <div ref={resultsRef}>
-          <ResultsContainer distanceFromTop={resultsPosition}>
+          <ResultsContainer
+            distanceFromTop={resultsPosition}
+            scrollable={config.scrollable}
+          >
             {results.map((result, index) => {
               return (
                 <Label
@@ -118,7 +127,11 @@ const AutocompleteField = ({
                       setModalOpen(false);
                       onWaiting('');
                       config.onDidSelect &&
-                        config.onDidSelect(inputProps.name, result.label, result);
+                        config.onDidSelect(
+                          inputProps.name,
+                          result.label,
+                          result
+                        );
                       fieldUtils.setFieldValue(inputProps.name, result.label);
                       onBlur(); // FIXME
                     }}
