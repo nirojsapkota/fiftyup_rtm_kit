@@ -8,7 +8,7 @@ const BasicHeader = ({ entity, ...props }) => {
   return (
     <Nav
       user={null}
-      sticky={true}
+      sticky={false}
       isClosed={true}
       {...entity.navigation_items}
       {...props}

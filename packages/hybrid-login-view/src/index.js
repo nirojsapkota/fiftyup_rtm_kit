@@ -31,20 +31,12 @@ import exitIntent from './exitIntentUtil';
 const HybridLoginReferenceContext = React.createContext();
 
 const BodyWrapper = styled(Box)`
-  background: ${props => getColor('light', props.theme)};
+  background: none;
 `;
 
 const ContainerWrapper = styled(Box)`
-  background: none;
   padding-top: 1rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(240, 240, 240, 1) 0%,
-    rgba(250, 250, 250, 1) 10%,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  border-top: 1px solid #e0e0e0;
+  background: none;
   padding-bottom: 4px;
 `;
 
