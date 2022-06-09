@@ -193,7 +193,7 @@ export const Footer = ({ entity, disclaimers, landing }) => {
           <Flex p={[2, 2, 4]} pt={[4, 4, 4]} style={{ justifyContent: 'flex-end' }}>
             {legals.map((item, index) => (
               <Box key={item.name} pb={[5, 5, 2]} mr={index === 0 ? 40 : 0}>
-                <A href={item.url}>{item.name}</A>
+                <A href={item.url} target={landing ? 'blank' : ''}>{item.name}</A>
               </Box>
             ))}
           </Flex>
