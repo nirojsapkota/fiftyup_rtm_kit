@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.8.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.3...@rtm-ui/tracker@5.8.4) (2022-06-14)
+
+
+### Bug Fixes
+
+* **Tracker:** Put back original GA codes for now ([0979417](https://github.com/OBSAU/rtm-kit/commit/097941725a47d940fe6a28d9b450a2f9cdd08882))
+
+
+
+
+
 ## [5.8.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.2...@rtm-ui/tracker@5.8.3) (2022-06-06)
 
 
