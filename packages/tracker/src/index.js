@@ -142,7 +142,7 @@ class TrackerRegistration extends React.Component {
       // Google Optimize Code ends
     }
 
-    //FOR GOOGLE ANALYTICS
+    //FOR UNIVERSAL GOOGLE ANALYTICS
     /* istanbul ignore next */
     if (this.props.universal_ga_code && !this.props.ga_code) {
       const googleAnalytics = document.createElement('script');
