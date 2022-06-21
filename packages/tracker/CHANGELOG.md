@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.8.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.5...@rtm-ui/tracker@5.8.6) (2022-06-21)
+
+
+### Bug Fixes
+
+* **Tracker:** Universal ga code fix ([bf7cfc4](https://github.com/OBSAU/rtm-kit/commit/bf7cfc46f63e1d31c202f0af2d23c8b961b0dcd6))
+
+
+
+
+
 ## [5.8.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.4...@rtm-ui/tracker@5.8.5) (2022-06-20)
 
 **Note:** Version bump only for package @rtm-ui/tracker
