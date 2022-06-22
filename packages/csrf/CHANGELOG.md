@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.76](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/csrf@1.0.75...@rtm-ui/csrf@1.0.76) (2022-06-22)
+
+**Note:** Version bump only for package @rtm-ui/csrf
+
+
+
+
+
 ## [1.0.75](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/csrf@1.0.74...@rtm-ui/csrf@1.0.75) (2022-06-21)
 
 **Note:** Version bump only for package @rtm-ui/csrf
