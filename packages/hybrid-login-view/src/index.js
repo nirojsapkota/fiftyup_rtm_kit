@@ -457,7 +457,8 @@ const HybridLoginView = ({
           )}
           {/* For Life Insurance Quote Calculator we hide the floating CTA for mobile */}
           {calculatorProps.showQuoteCalculator === false &&
-            !defaultButtonVisible && (
+            !defaultButtonVisible &&
+            props.enableFloatingCta && (
               <Block hideAt="md">
                 <Variant variant="a">
                   <FloatingCtaWrapper

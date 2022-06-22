@@ -15,41 +15,53 @@ const FlexBoxStyled = styled(Box)`
 
 const AgreementContainer = styled(Box)`
   display: inherit;
-`
+`;
 
-const GdprAgreement = ({
-  enableCheckBox,
-  isRequire,
-  content,
-  ...props
-}) => {
+const StyledCheckbox = styled.input`
+  margin-right: 5px;
+  margin-top: 1px;
+  padding: 10px;
+  -ms-transform: scale(1.2); /* IE */
+  -moz-transform: scale(1.2); /* FF */
+  -webkit-transform: scale(1.2); /* Safari and Chrome */
+  -o-transform: scale(1.2); /* Opera */
+  transform: scale(1.2);
+`;
+
+const GdprAgreement = ({ enableCheckBox, isRequire, content, ...props }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     if (typeof props.getCheckBoxValue === 'function') {
       props.getCheckBoxValue(isChecked);
     }
-  },[isChecked])
+  }, [isChecked]);
 
-  return(
+  return (
     <FlexBoxStyled>
       <AgreementContainer>
         <React.Fragment>
-          {enableCheckBox &&
-            <input
+          {enableCheckBox && (
+            <StyledCheckbox
               data-testid="ckAgreement"
               type="checkbox"
               required={isRequire}
-              onChange={(e) => {setIsChecked(e.target.checked)}}
+              onChange={e => {
+                setIsChecked(e.target.checked);
+              }}
               checked={isChecked}
-              style={{marginRight: "5px", marginTop: "1px"}}
-            />}
-          {content && <Small><Markdown raw={content} /></Small>}
+            />
+          )}
+          {content && (
+            <Small>
+              <Markdown raw={content} />
+            </Small>
+          )}
         </React.Fragment>
       </AgreementContainer>
     </FlexBoxStyled>
   );
-}
+};
 
 GdprAgreement.defaultProps = {
   enableCheckBox: true,
