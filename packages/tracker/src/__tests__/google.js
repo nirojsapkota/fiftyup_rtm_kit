@@ -1,7 +1,7 @@
 import Google from '../google';
 
 describe(`Google`, () => {
-  it(`sends an event to the GA object`, () => {
+  it(`sends an event to the universal GA object`, () => {
     global.ga = jest.fn();
     const spyGa = jest.spyOn(global, 'ga');
 
@@ -13,6 +13,21 @@ describe(`Google`, () => {
 
     expect(spyGa).toHaveBeenCalledWith('send', {
       hitType: 'pageview',
+      page: 'virtual/signin/get_started/nonhybrid',
+    });
+  });
+
+  it(`sends an event to the GA4 object`, () => {
+    global.gtag = jest.fn();
+    const spyGa = jest.spyOn(global, 'gtag');
+
+    Google.sendData({
+      category: 'signin',
+      action: 'get_started',
+      hybrid_nonhybrid: 'nonhybrid',
+    });
+
+    expect(spyGa).toHaveBeenCalledWith('event', 'pageview', {
       page: 'virtual/signin/get_started/nonhybrid',
     });
   });
