@@ -32,6 +32,11 @@ class Google {
           page: `virtual/${eventPath}`,
         });
       }
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'pageview', {
+          page: `virtual/${eventPath}`,
+        });
+      }
     }
   }
 }
