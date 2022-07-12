@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.8.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.7...@rtm-ui/tracker@5.8.8) (2022-07-12)
+
+
+### Bug Fixes
+
+* **Tracker:** Fixup syntax error around universalConfig ([e796a82](https://github.com/OBSAU/rtm-kit/commit/e796a82e954c66f56eca4becbad2ac68b4db47ea))
+
+
+
+
+
 ## [5.8.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.6...@rtm-ui/tracker@5.8.7) (2022-06-22)
 
 **Note:** Version bump only for package @rtm-ui/tracker
