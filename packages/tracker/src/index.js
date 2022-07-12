@@ -171,7 +171,7 @@ class TrackerRegistration extends React.Component {
       let universalConfig = '';
       if (this.props.universal_ga_code) {
         universalConfig =
-          "gtag('config', '" + `${this.props.universal_ga_code}` + ');';
+          "gtag('config', '" + `${this.props.universal_ga_code}` + "')";
       }
 
       const googleAnalytics2 = document.createElement('script');
