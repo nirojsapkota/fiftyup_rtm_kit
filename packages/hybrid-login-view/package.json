@@ -22,6 +22,7 @@
     "@rtm-ui/bootstrap": "file:../bootstrap",
     "@rtm-ui/button": "file:../button",
     "@rtm-ui/carousel": "file:../carousel",
+    "@rtm-ui/canvas": "file:../canvas",
     "@rtm-ui/dialog": "file:../dialog",
     "@rtm-ui/how-it-works": "file:../how-it-works",
     "@rtm-ui/icon": "file:../icon",

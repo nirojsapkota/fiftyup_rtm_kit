@@ -11,6 +11,7 @@ import {
   Card,
 } from '@rtm-ui/layout';
 import { getColor, Theme as Variant } from '@rtm-ui/theme';
+import { CanvasVideo } from '@rtm-ui/canvas';
 import { Modal } from '@rtm-ui/dialog';
 import { Icon } from '@rtm-ui/icon';
 import { track } from '@rtm-ui/tracker';
@@ -259,6 +260,19 @@ const MainGraphic = ({
   heroImageUrlMobileUrl,
   mainHeading,
 }) => {
+
+  const draw = (ctx, frameCount) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    ctx.fillStyle = '#000000'
+    ctx.beginPath()
+    ctx.arc(50, 100, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
+    ctx.fill()
+  }
+
+  const videoSources = [
+    {src: "https://obsau-staging-rails-assets.s3.ap-southeast-2.amazonaws.com/2200x500.mp4", type:"video/mp4"}
+  ]
+
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
@@ -275,12 +289,13 @@ const MainGraphic = ({
           >
             <Box className="hero" {...expandedProps} width={1}>
               <Box m="auto" width={1}>
-                <ResponsiveImage
+                {/* <ResponsiveImage
                   desktopImgView={heroImageUrlDesktopUrl}
                   tabletImgView={heroImageUrlTabletUrl}
                   mobileImgView={heroImageUrlMobileUrl}
                   alt="Hero image"
-                />
+                /> */}
+                <CanvasVideo src={videoSources}/>
               </Box>
             </Box>
           </ContainerWrapper>

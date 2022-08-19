@@ -92,6 +92,7 @@
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
     "@rtm-ui/carousel": "file:packages/carousel",
+    "@rtm-ui/canvas": "file:packages/canvas",
     "@rtm-ui/csrf": "file:packages/csrf",
     "@rtm-ui/dashboard": "file:packages/dashboard",
     "@rtm-ui/dialog": "file:packages/dialog",
