@@ -193,6 +193,7 @@ class LoginForm extends React.Component {
           hint: stateField.hint || '5000, Adelaide',
           config: {
             component: 'autocomplete',
+            scrollable: true,
             validator: stateField.validator,
             validatorArgs: stateField.options
               ? [stateField.options.map(option => option['label'])]
