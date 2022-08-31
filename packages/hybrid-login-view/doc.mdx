@@ -5,7 +5,7 @@ menu: Pages
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { HybridLoginView } from './src';
+import { HybridLoginView, LandingPage } from './src';
 import hybridLoginViewProps from './src/__fixtures__/hybridLoginView.js';
 import hybridLoginViewWCalc from './src/__fixtures__/hybridLoginViewWCalc.js';
 import { DocWrapper } from '../bootstrap/setup/docWrapper';
@@ -19,5 +19,15 @@ import { DocWrapper } from '../bootstrap/setup/docWrapper';
 ##### Note : Props "how" denotes the old "How it works" Component and the prop "Why" denotes the new "Why Join Component"
 
 ## PropsTable
-
 <PropsTable of={HybridLoginView} />
+
+## Landing Page View (landing page with background video)
+
+<DocWrapper>
+  <LandingPage {...hybridLoginViewProps} />
+</DocWrapper>
+
+## PropsTable
+
+<PropsTable of={LandingPage} />
+
