@@ -1,15 +1,12 @@
 {
-  "name": "@rtm-ui/canvas",
+  "name": "@rtm-ui/video",
   "version": "1.0.0",
-  "description": "Description for canvas",
+  "description": "Description for video",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
-    "namespace": "canvas",
-    "namedExports": [
-      "Canvas",
-      "CanvasVideo"
-    ]
+    "namespace": "video",
+    "namedExports": ["Video"]
   },
   "main": "build/index.js",
   "module": "build/index.js",
@@ -19,7 +16,8 @@
     "test": "rtm-scripts test --p '../../setupTests.js'"
   },
   "dependencies": {
-    "@rtm-ui/bootstrap": "file:../bootstrap"
+    "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/layout": "file:../layout"
   },
   "peerDependencies": {
     "prop-types": "15.x",

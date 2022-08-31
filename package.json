@@ -92,7 +92,6 @@
     "@rtm-ui/bootstrap": "file:packages/bootstrap",
     "@rtm-ui/button": "file:packages/button",
     "@rtm-ui/carousel": "file:packages/carousel",
-    "@rtm-ui/canvas": "file:packages/canvas",
     "@rtm-ui/csrf": "file:packages/csrf",
     "@rtm-ui/dashboard": "file:packages/dashboard",
     "@rtm-ui/dialog": "file:packages/dialog",
@@ -124,6 +123,7 @@
     "@rtm-ui/theme": "file:packages/theme",
     "@rtm-ui/tracker": "file:packages/tracker",
     "@rtm-ui/typography": "file:packages/typography",
+    "@rtm-ui/video": "file:packages/video",
     "@rtm-ui/video-dialog": "file:packages/video-dialog",
     "core-js": "^3.4.7",
     "throttle-debounce": "^3.0.1"
