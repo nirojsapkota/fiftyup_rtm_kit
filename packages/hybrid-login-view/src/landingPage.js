@@ -136,12 +136,19 @@ const VideoWrapper = styled(ImageWrapper)`
 
 const VideoHeader = styled('div')`
   background-size: cover;
-  height: 490px;
+  height: 500px;
   background: transparent;
   width: 100%;
   position: relative;
   z-index: 2;
   overflow: hidden;
+`;
+
+const VideoContent = styled(Box)`
+  margin: auto;
+  background: linear-gradient(184deg, #ffffff, #ffffff00);
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
 `;
 
 const defaultProps = {
@@ -308,22 +315,24 @@ const MainGraphic = ({
           <Video videoSource={heroVideoDesktopSrc}>
             {(heroVideoText || heroVideoCtaText) && (
               <Box style={{ minHeight: '200px', width: '100%', display: 'flex', flexDirection: 'column' }}>
-                {heroVideoText && <Markdown raw={heroVideoText} />}
-                {heroVideoCtaText && (
-                  <Box
-                    mb={10}
-                    style={{ margin: 'auto', display: 'flex', alignSelf: 'flex-end' }}
-                  >
-                    <Button
-                      align="center"
-                      onClick={e => {
-                        scrollToElement(e, 'login-panel');
-                      }}
+                <VideoContent width={[1,1,0.75,0.33]}>
+                  {heroVideoText && <Markdown raw={heroVideoText} />}
+                  {heroVideoCtaText && (
+                    <Box
+                      mb={10}
+                      style={{ margin: 'auto', display: 'table' }}
                     >
-                      {heroVideoCtaText}
-                    </Button>
-                  </Box>
-                )}
+                      <Button
+                        align="center"
+                        onClick={e => {
+                          scrollToElement(e, 'login-panel');
+                        }}
+                      >
+                        {heroVideoCtaText}
+                      </Button>
+                    </Box>
+                  )}
+                </VideoContent>
               </Box>
             )}
           </Video>

@@ -7,7 +7,7 @@ const VideoForeground = styled('div')`
   top: 0;
   left: 0;
   display: block;
-  height: 107% !important;
+  height: 100% !important;
 `;
 
 const VideoBackground = styled('div')`
@@ -25,13 +25,13 @@ const StyledVideo = styled('video')`
   display: block;
 `;
 
-const Content = styled('div')`
+const ContentWrapper = styled('div')`
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  transform: translateY(50%);
-`
+  //transform: translateY(50%);
+`;
 
 const Video = ({ videoSource, children }) => {
   return (
@@ -46,7 +46,7 @@ const Video = ({ videoSource, children }) => {
         >
           <source src={videoSource.src} type={videoSource.type}/>
         </StyledVideo>
-        <Content>{children}</Content>
+        <ContentWrapper>{children}</ContentWrapper>
       </VideoForeground>
     </VideoBackground>
   )
