@@ -15,7 +15,7 @@ const VideoBackground = styled('div')`
   background: rgba(0,0,0,.5);
   z-index: 1;
   width: 100%;
-  height: 700px;
+  height: 500px;
 `;
 
 const StyledVideo = styled('video')`
