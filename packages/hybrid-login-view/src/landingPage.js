@@ -7,6 +7,7 @@ import {
   Box,
   Block,
   scrollToElement,
+  scrollToElementExtended,
   useElementVisible,
   Card,
 } from '@rtm-ui/layout';
@@ -23,7 +24,7 @@ import { LoginCalculatorPanel } from '@rtm-ui/login-calculator-panel';
 import { LoginPanel } from '@rtm-ui/login-panel';
 
 import t from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import BasicHeader from './header';
 
@@ -80,18 +81,32 @@ const ContentWrapper = styled(Box)`
   margin: auto;
 `;
 
-const Column = styled(Box)`
+const Column = styled(Block)`
   background: inherit;
   margin: 0 auto;
-  max-width: 1080px;
+  // max-width: 1080px;
   @media (max-width: ${props => props.theme.grid.md}em) {
     flex-flow: column;
   }
 `;
 
+const LeftColumn = styled(Column)`
+`
+
+const RightColumn = styled(Column)`
+  // @media (min-width: ${props => props.theme.width.xlg}em) {
+  //   display: none;
+  // }
+`
+
 const ContentSection = styled(Box)`
+  display: flex;
+  margin: auto;
   position: relative;
   min-height: 500px;
+  max-width: 1216px;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
 const ContentBox = styled(Box)`
@@ -105,16 +120,16 @@ const ContentBox = styled(Box)`
 const LoginPanelWrapper = styled(Box)`
   height: 100%;
   overflow: unset;
-  @media (min-width: ${props => props.theme.grid.md}em) {
-    left: 58%; /* Fallback if needed */
-    left: calc(50% + 90px);
-    top: -75px;
-    position: absolute;
-  }
-  @media (min-width: ${props => props.theme.grid.lg}em) {
-    left: 58%; /* Fallback if needed */
-    left: calc(50% + 120px);
-  }
+  // @media (min-width: ${props => props.theme.grid.md}em) {
+  //   left: 58%; /* Fallback if needed */
+  //   left: calc(50% + 90px);
+  //   top: -75px;
+  //   position: absolute;
+  // }
+  // @media (min-width: ${props => props.theme.grid.lg}em) {
+  //   left: 58%; /* Fallback if needed */
+  //   left: calc(50% + 120px);
+  // }
 `;
 
 const LoginPanelContentBox = styled(ContentBox)`
@@ -149,7 +164,14 @@ const VideoContent = styled(Box)`
   background: linear-gradient(184deg, #ffffff, #ffffff00);
   padding: 20px;
   border-radius: 10px 10px 0 0;
+  max-width: 900px;
 `;
+
+const VideoCta = styled(Block)`
+  @media (max-width: ${props => props.theme.grid.md}em) {
+    display: table;
+  }
+`
 
 const defaultProps = {
   width: [1, 1, 3 / 5],
@@ -163,9 +185,9 @@ const expandedProps = {
 };
 
 const LoginDefaultProps = {
-  width: [1, 1, 2 / 5, 2 / 5],
+  width: [1],
   px: [10, 10, 15, 10],
-  maxWidth: ['100%', '100%', '388px', '460px'],
+  maxWidth: ['100%'],
 };
 
 const WorkFlowContainer = styled(Box)`
@@ -212,8 +234,7 @@ const MainContent = ({ mainHeading, videoSrc, mainContent }) => {
       <div scroll-target="mainHeading">
         {mainHeading && (
           <ContainerWrapper className="content-wrapper">
-            <ContentWrapper>
-              <Box className="hero" {...defaultProps}>
+             <Box className="hero">
                 {videoSrc && (
                   <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
                     <VideoDialog
@@ -233,7 +254,6 @@ const MainContent = ({ mainHeading, videoSrc, mainContent }) => {
                   </ContentBox>
                 )}
               </Box>
-            </ContentWrapper>
           </ContainerWrapper>
         )}
       </div>
@@ -280,6 +300,7 @@ const MainGraphic = ({
   heroVideoText,
   heroVideoCtaText,
   mainHeading,
+  loginRef,
 }) => {
 
   return (
@@ -318,9 +339,9 @@ const MainGraphic = ({
                 <VideoContent width={[1,1,0.75,0.33]}>
                   {heroVideoText && <Markdown raw={heroVideoText} />}
                   {heroVideoCtaText && (
-                    <Box
+                    <VideoCta
                       mb={10}
-                      style={{ margin: 'auto', display: 'table' }}
+                      style={{ margin: 'auto', display: 'table'}}
                     >
                       <Button
                         align="center"
@@ -330,7 +351,7 @@ const MainGraphic = ({
                       >
                         {heroVideoCtaText}
                       </Button>
-                    </Box>
+                    </VideoCta>
                   )}
                 </VideoContent>
               </Box>
@@ -353,6 +374,7 @@ const LandingPageView = ({
   calculatorProps,
   ...props
 }) => {
+  const loginRef = useRef(null);
   const defaultButtonVisible = useElementVisible(
     '[scroll-target="login-panel"]'
   );
@@ -397,32 +419,34 @@ const LandingPageView = ({
     <React.Fragment>
       <BodyWrapper className="body-wrapper">
         <HeadingSection {...props} />
-        <MainGraphic {...props} />
+        <MainGraphic {...props} loginRef={loginRef} />
         <ContentSection>
-          <MainContent {...props} />
-          {calculatorProps.showQuoteCalculator ? (
-            <LoginCalculatorPanel
-              {...props}
-              calculatorProps={calculatorProps}
-              onSubmit={onFormSubmit}
-              quote={quote}
-              pane={true}
-            />
-          ) : (
-            <LoginPanelWrapper {...LoginDefaultProps}>
-              <LoginPanelContentBox>
-                <div scroll-target="login-panel">
-                  <LoginPanel {...props} />
-                </div>
-              </LoginPanelContentBox>
-            </LoginPanelWrapper>
-          )}
-
-          <div scroll-target="offerContent">
-            {(workflowOffer.header || workflowOffer.items.length > 0) && (
-              <ContainerWrapper className="content-wrapper">
-                <ContentWrapper>
-                  <Box {...defaultProps}>
+          <LeftColumn width={[1,1,0.6]}>
+            <MainContent {...props} />
+            <Column hideAt="md">
+              {calculatorProps.showQuoteCalculator ? (
+                <LoginCalculatorPanel
+                  {...props}
+                  calculatorProps={calculatorProps}
+                  onSubmit={onFormSubmit}
+                  quote={quote}
+                  pane={true}
+                />
+              ) : (
+                <LoginPanelWrapper {...LoginDefaultProps}>
+                  <LoginPanelContentBox>
+                    <div scroll-target="login-panel">
+                      <LoginPanel {...props} />
+                    </div>
+                  </LoginPanelContentBox>
+                </LoginPanelWrapper>
+              )}
+            </Column>
+            <div scroll-target="login-panel"/>
+            <div scroll-target="offerContent">
+              {(workflowOffer.header || workflowOffer.items.length > 0) && (
+                <ContainerWrapper className="content-wrapper">
+                  <Box>
                     <Variant variant="a">
                       <WorkFlowContainer>
                         <WorkFlow
@@ -434,97 +458,117 @@ const LandingPageView = ({
                       </WorkFlowContainer>
                     </Variant>
                   </Box>
-                </ContentWrapper>
-              </ContainerWrapper>
-            )}
-            {((primaryCarousel &&
-              primaryCarousel.slides &&
-              primaryCarousel.slides.length > 0) ||
-              subOfferContent ||
-              accordion.length > 0) && (
-              <ContainerWrapper className="content-wrapper">
-                <ContentWrapper>
-                  <Box {...defaultProps}>
-                    {primaryCarousel &&
-                      primaryCarousel.slides &&
-                      primaryCarousel.slides.length > 0 && (
+                </ContainerWrapper>
+              )}
+              {((primaryCarousel &&
+                primaryCarousel.slides &&
+                primaryCarousel.slides.length > 0) ||
+                subOfferContent ||
+                accordion.length > 0) && (
+                <ContainerWrapper className="content-wrapper">
+                  <ContentWrapper>
+                    <Box>
+                      {primaryCarousel &&
+                        primaryCarousel.slides &&
+                        primaryCarousel.slides.length > 0 && (
+                          <Column variant="b" pb="20px">
+                            <Carousel
+                              slides={primaryCarousel.slides}
+                              duration={primaryCarousel.duration}
+                            />
+                          </Column>
+                        )}
+
+                      {subOfferContent && (
+                        <ContentBox px={[3, 3, 4]}>
+                          <Markdown raw={subOfferContent} />
+                        </ContentBox>
+                      )}
+
+                      {accordion.length > 0 && (
                         <Column variant="b" pb="20px">
-                          <Carousel
-                            slides={primaryCarousel.slides}
-                            duration={primaryCarousel.duration}
+                          <Accordion
+                            items={accordion}
+                            renderItem={item => (
+                              <Variant variant="a">
+                                <Box p={[2, 2, 3]}>
+                                  <MarkdownWrapper content={item.content} />
+                                </Box>
+                              </Variant>
+                            )}
+                            renderHeader={item => (
+                              <Header tag="h5">{item.name}</Header>
+                            )}
                           />
                         </Column>
                       )}
-
-                    {subOfferContent && (
-                      <ContentBox px={[3, 3, 4]}>
-                        <Markdown raw={subOfferContent} />
-                      </ContentBox>
-                    )}
-
-                    {accordion.length > 0 && (
-                      <Column variant="b" pb="20px">
-                        <Accordion
-                          items={accordion}
-                          renderItem={item => (
-                            <Variant variant="a">
-                              <Box p={[2, 2, 3]}>
-                                <MarkdownWrapper content={item.content} />
-                              </Box>
-                            </Variant>
-                          )}
-                          renderHeader={item => (
-                            <Header tag="h5">{item.name}</Header>
-                          )}
-                        />
-                      </Column>
-                    )}
+                    </Box>
+                  </ContentWrapper>
+                </ContainerWrapper>
+              )}
+            </div>
+            {(workflow.header || workflow.items.length > 0) && (
+              <ContainerWrapper
+                data-testid="mediaContent"
+                className="content-wrapper"
+              >
+                <ContentWrapper>
+                  <Box>
+                    <Variant variant="a">
+                      <WorkFlowContainer>
+                        <div scroll-target="mediaContent">
+                          <WorkFlow
+                            multiContent
+                            scrollTo="login-panel"
+                            header={workflow.header}
+                            items={workflow.items}
+                          />
+                        </div>
+                      </WorkFlowContainer>
+                    </Variant>
                   </Box>
                 </ContentWrapper>
               </ContainerWrapper>
             )}
-          </div>
-          {(workflow.header || workflow.items.length > 0) && (
-            <ContainerWrapper
-              data-testid="mediaContent"
-              className="content-wrapper"
-            >
-              <ContentWrapper>
-                <Box {...defaultProps}>
+            {/* For Life Insurance Quote Calculator we hide the floating CTA for mobile */}
+            {calculatorProps.showQuoteCalculator === false &&
+              !defaultButtonVisible &&
+              props.enableFloatingCta && (
+                <Block hideAt="md">
                   <Variant variant="a">
-                    <WorkFlowContainer>
-                      <div scroll-target="mediaContent">
-                        <WorkFlow
-                          multiContent
-                          scrollTo="login-panel"
-                          header={workflow.header}
-                          items={workflow.items}
-                        />
-                      </div>
-                    </WorkFlowContainer>
+                    <FloatingCtaWrapper
+                      {...defaultProps}
+                      py={4}
+                      px={4}
+                      className="floating-cta"
+                    >
+                      <FloatingCta />
+                    </FloatingCtaWrapper>
                   </Variant>
-                </Box>
-              </ContentWrapper>
-            </ContainerWrapper>
-          )}
-          {/* For Life Insurance Quote Calculator we hide the floating CTA for mobile */}
-          {calculatorProps.showQuoteCalculator === false &&
-            !defaultButtonVisible &&
-            props.enableFloatingCta && (
-              <Block hideAt="md">
-                <Variant variant="a">
-                  <FloatingCtaWrapper
-                    {...defaultProps}
-                    py={4}
-                    px={4}
-                    className="floating-cta"
-                  >
-                    <FloatingCta />
-                  </FloatingCtaWrapper>
-                </Variant>
-              </Block>
+                </Block>
+              )}
+            {props.showFullNameField && <ExtraPadding />}
+          </LeftColumn>
+
+          <RightColumn width={[1,1,0.4]} showAt="md">
+            {calculatorProps.showQuoteCalculator ? (
+              <LoginCalculatorPanel
+                {...props}
+                calculatorProps={calculatorProps}
+                onSubmit={onFormSubmit}
+                quote={quote}
+                pane={true}
+              />
+            ) : (
+              <LoginPanelWrapper {...LoginDefaultProps}>
+                <LoginPanelContentBox>
+                  <div scroll-target="login-panel">
+                    <LoginPanel {...props} />
+                  </div>
+                </LoginPanelContentBox>
+              </LoginPanelWrapper>
             )}
-          {props.showFullNameField && <ExtraPadding />}
+          </RightColumn>
         </ContentSection>
       </BodyWrapper>
       {exitIntentProps && exitIntentProps.enable && showExitIntent && (
