@@ -12,7 +12,7 @@ const VideoForeground = styled('div')`
 
 const VideoBackground = styled('div')`
   position: absolute;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
   width: 100%;
   height: 500px;
@@ -30,31 +30,29 @@ const ContentWrapper = styled('div')`
   bottom: 0;
   left: 0;
   width: 100%;
-  //transform: translateY(50%);
 `;
 
 const Video = ({ videoSource, children }) => {
   return (
-    <VideoBackground>
+    <VideoBackground data-testid="video-container">
       <VideoForeground>
         <StyledVideo
-          loop='loop'
+          loop="loop"
           autoPlay="autoplay"
           muted
           playsInline
           preload="auto"
         >
-          <source src={videoSource.src} type={videoSource.type}/>
+          <source src={videoSource.src} type={videoSource.type} />
         </StyledVideo>
         <ContentWrapper>{children}</ContentWrapper>
       </VideoForeground>
     </VideoBackground>
-  )
-}
-
-Video.propTypes = {
-  children: PropTypes.node
+  );
 };
 
+Video.propTypes = {
+  children: PropTypes.node,
+};
 
 export { Video };
