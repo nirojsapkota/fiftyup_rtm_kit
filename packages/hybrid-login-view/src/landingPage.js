@@ -354,14 +354,27 @@ const MainGraphic = ({
                       mb={10}
                       style={{ margin: 'auto', display: 'table' }}
                     >
-                      <Button
-                        align="center"
-                        onClick={e => {
-                          scrollToElement(e, 'login-panel');
-                        }}
-                      >
-                        {heroVideoCtaText}
-                      </Button>
+                      <Block hideAt="md">
+                        <Button
+                          align="center"
+                          onClick={e => {
+                            scrollToElement(e, 'login-panel');
+                          }}
+                        >
+                          {heroVideoCtaText}
+                        </Button>
+                      </Block>
+
+                      <Block showAt="md">
+                        <Button
+                          align="center"
+                          onClick={e => {
+                            scrollToElement(e, 'login-panel-desktop');
+                          }}
+                        >
+                          {heroVideoCtaText}
+                        </Button>
+                      </Block>
                     </VideoCta>
                   )}
                 </VideoContent>
@@ -573,7 +586,7 @@ const LandingPageView = ({
             ) : (
               <LoginPanelWrapper {...LoginDefaultProps}>
                 <LoginPanelContentBox>
-                  <div scroll-target="login-panel">
+                  <div scroll-target="login-panel-desktop">
                     <LoginPanel {...props} />
                   </div>
                 </LoginPanelContentBox>

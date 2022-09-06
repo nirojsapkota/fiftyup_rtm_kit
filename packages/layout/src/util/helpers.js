@@ -67,10 +67,6 @@ export function scrollToElement(e, ref) {
   const anchor = document.querySelector(`[scroll-target='${ref}']`);
   let offset = window.scrollY + anchor.getBoundingClientRect().top; // Y
 
-  if (offset == 0) {
-    offset = window.innerHeight;
-  }
-
   window.scrollTo({ left: 0, top: offset - 100, behavior: 'smooth' });
 }
 
