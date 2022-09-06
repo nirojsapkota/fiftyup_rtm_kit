@@ -90,14 +90,13 @@ const Column = styled(Block)`
   }
 `;
 
-const LeftColumn = styled(Column)`
-`
+const LeftColumn = styled(Column)``;
 
 const RightColumn = styled(Column)`
   // @media (min-width: ${props => props.theme.width.xlg}em) {
   //   display: none;
   // }
-`
+`;
 
 const ContentSection = styled(Box)`
   display: flex;
@@ -161,7 +160,10 @@ const VideoHeader = styled('div')`
 
 const VideoContent = styled(Box)`
   margin: auto;
-  background: linear-gradient(184deg, #ffffff, #ffffff00);
+  background: ${props =>
+    props.heroVideoTextBackground
+      ? props.heroVideoTextBackground
+      : 'transparent'};
   padding: 20px;
   border-radius: 10px 10px 0 0;
   max-width: 900px;
@@ -171,7 +173,7 @@ const VideoCta = styled(Block)`
   @media (max-width: ${props => props.theme.grid.md}em) {
     display: table;
   }
-`
+`;
 
 const defaultProps = {
   width: [1, 1, 3 / 5],
@@ -234,26 +236,26 @@ const MainContent = ({ mainHeading, videoSrc, mainContent }) => {
       <div scroll-target="mainHeading">
         {mainHeading && (
           <ContainerWrapper className="content-wrapper">
-             <Box className="hero">
-                {videoSrc && (
-                  <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
-                    <VideoDialog
-                      containerStyle={{
-                        position: 'relative',
-                        paddingTop: '56.25%',
-                      }}
-                      iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
-                      videoSrc={videoSrc}
-                      description={mainHeading || ''}
-                    />
-                  </VideoWrapper>
-                )}
-                {mainContent && (
-                  <ContentBox px={[3, 3, 4]}>
-                    <Markdown raw={mainContent} />
-                  </ContentBox>
-                )}
-              </Box>
+            <Box className="hero">
+              {videoSrc && (
+                <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
+                  <VideoDialog
+                    containerStyle={{
+                      position: 'relative',
+                      paddingTop: '56.25%',
+                    }}
+                    iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
+                    videoSrc={videoSrc}
+                    description={mainHeading || ''}
+                  />
+                </VideoWrapper>
+              )}
+              {mainContent && (
+                <ContentBox px={[3, 3, 4]}>
+                  <Markdown raw={mainContent} />
+                </ContentBox>
+              )}
+            </Box>
           </ContainerWrapper>
         )}
       </div>
@@ -298,11 +300,10 @@ const MainGraphic = ({
   enableVideoHero,
   heroVideoDesktopSrc,
   heroVideoText,
+  heroVideoTextBackground,
   heroVideoCtaText,
   mainHeading,
-  loginRef,
 }) => {
-
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && !enableVideoHero && (
@@ -335,13 +336,23 @@ const MainGraphic = ({
         <VideoHeader>
           <Video videoSource={heroVideoDesktopSrc}>
             {(heroVideoText || heroVideoCtaText) && (
-              <Box style={{ minHeight: '200px', width: '100%', display: 'flex', flexDirection: 'column' }}>
-                <VideoContent width={[1,1,0.75,0.33]}>
+              <Box
+                style={{
+                  minHeight: '200px',
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <VideoContent
+                  width={[1, 1, 0.75, 0.33]}
+                  heroVideoTextBackground={heroVideoTextBackground}
+                >
                   {heroVideoText && <Markdown raw={heroVideoText} />}
                   {heroVideoCtaText && (
                     <VideoCta
                       mb={10}
-                      style={{ margin: 'auto', display: 'table'}}
+                      style={{ margin: 'auto', display: 'table' }}
                     >
                       <Button
                         align="center"
@@ -421,7 +432,7 @@ const LandingPageView = ({
         <HeadingSection {...props} />
         <MainGraphic {...props} loginRef={loginRef} />
         <ContentSection>
-          <LeftColumn width={[1,1,0.6]}>
+          <LeftColumn width={[1, 1, 0.6]}>
             <MainContent {...props} />
             <Column hideAt="md">
               {calculatorProps.showQuoteCalculator ? (
@@ -442,7 +453,7 @@ const LandingPageView = ({
                 </LoginPanelWrapper>
               )}
             </Column>
-            <div scroll-target="login-panel"/>
+            <div scroll-target="login-panel" />
             <div scroll-target="offerContent">
               {(workflowOffer.header || workflowOffer.items.length > 0) && (
                 <ContainerWrapper className="content-wrapper">
@@ -550,7 +561,7 @@ const LandingPageView = ({
             {props.showFullNameField && <ExtraPadding />}
           </LeftColumn>
 
-          <RightColumn width={[1,1,0.4]} showAt="md">
+          <RightColumn width={[1, 1, 0.4]} showAt="md">
             {calculatorProps.showQuoteCalculator ? (
               <LoginCalculatorPanel
                 {...props}
@@ -741,4 +752,3 @@ LandingPage.propTypes = {
     formSubmitButtonTrack: t.string,
   }),
 };
-
