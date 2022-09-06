@@ -65,7 +65,12 @@ export function scrollToElement(e, ref) {
     e.preventDefault();
   }
   const anchor = document.querySelector(`[scroll-target='${ref}']`);
-  const offset = window.scrollY + anchor.getBoundingClientRect().top; // Y
+  let offset = window.scrollY + anchor.getBoundingClientRect().top; // Y
+
+  if (offset == 0) {
+    offset = window.innerHeight;
+  }
+
   window.scrollTo({ left: 0, top: offset - 100, behavior: 'smooth' });
 }
 
