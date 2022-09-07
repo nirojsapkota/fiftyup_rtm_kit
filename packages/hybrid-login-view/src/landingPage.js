@@ -7,7 +7,6 @@ import {
   Box,
   Block,
   scrollToElement,
-  scrollToElementExtended,
   useElementVisible,
   Card,
 } from '@rtm-ui/layout';
@@ -93,9 +92,6 @@ const Column = styled(Block)`
 const LeftColumn = styled(Column)``;
 
 const RightColumn = styled(Column)`
-  // @media (min-width: ${props => props.theme.width.xlg}em) {
-  //   display: none;
-  // }
 `;
 
 const ContentSection = styled(Box)`
@@ -119,16 +115,6 @@ const ContentBox = styled(Box)`
 const LoginPanelWrapper = styled(Box)`
   height: 100%;
   overflow: unset;
-  // @media (min-width: ${props => props.theme.grid.md}em) {
-  //   left: 58%; /* Fallback if needed */
-  //   left: calc(50% + 90px);
-  //   top: -75px;
-  //   position: absolute;
-  // }
-  // @media (min-width: ${props => props.theme.grid.lg}em) {
-  //   left: 58%; /* Fallback if needed */
-  //   left: calc(50% + 120px);
-  // }
 `;
 
 const LoginPanelContentBox = styled(ContentBox)`
