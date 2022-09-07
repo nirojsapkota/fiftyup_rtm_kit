@@ -126,6 +126,7 @@
     "@rtm-ui/video": "file:packages/video",
     "@rtm-ui/video-dialog": "file:packages/video-dialog",
     "core-js": "^3.4.7",
+    "npm": "6.14.11",
     "throttle-debounce": "^3.0.1"
   },
   "eslintConfig": {
