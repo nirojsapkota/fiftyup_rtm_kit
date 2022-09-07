@@ -7,7 +7,8 @@
   "rtmRollup": {
     "namespace": "hybrid-login-view",
     "namedExports": [
-      "HybridLoginView"
+      "HybridLoginView",
+      "LandingPage"
     ]
   },
   "main": "build/index.js",
@@ -34,6 +35,7 @@
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography",
+    "@rtm-ui/video": "file:../video",
     "@rtm-ui/video-dialog": "file:../video-dialog",
     "throttle-debounce": "^3.0.1"
   },

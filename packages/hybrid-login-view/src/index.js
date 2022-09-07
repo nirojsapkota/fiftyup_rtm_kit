@@ -27,6 +27,7 @@ import styled from 'styled-components';
 import BasicHeader from './header';
 
 import exitIntent from './exitIntentUtil';
+import { LandingPage} from './landingPage';
 
 const HybridLoginReferenceContext = React.createContext();
 
@@ -259,6 +260,7 @@ const MainGraphic = ({
   heroImageUrlMobileUrl,
   mainHeading,
 }) => {
+
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
@@ -646,4 +648,4 @@ WrappedHybridLoginView.propTypes = {
   }),
 };
 
-export { WrappedHybridLoginView as HybridLoginView };
+export { WrappedHybridLoginView as HybridLoginView, LandingPage };
