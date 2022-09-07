@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@4.1.17...@rtm-ui/theme@4.2.0) (2022-09-07)
+
+
+### Features
+
+* **HybridLoginView:** Change the layout of the landing page ([edbd90f](https://github.com/OBSAU/rtm-kit/commit/edbd90fcabf9f656057ff4de41b540048a9b5a5a))
+
+
+
+
+
 ## [4.1.17](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/theme@4.1.16...@rtm-ui/theme@4.1.17) (2022-04-05)
 
 **Note:** Version bump only for package @rtm-ui/theme

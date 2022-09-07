@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.4.31...@rtm-ui/hybrid-login-view@5.5.0) (2022-09-07)
+
+
+### Bug Fixes
+
+* **HybridLoginView:** Remove unecessary comments ([2b4c8d1](https://github.com/OBSAU/rtm-kit/commit/2b4c8d1f47d768235d19cc5a1d0cb87b1ca1c551))
+
+
+### Features
+
+* **HybridLoginView:** Change the layout of the landing page ([edbd90f](https://github.com/OBSAU/rtm-kit/commit/edbd90fcabf9f656057ff4de41b540048a9b5a5a))
+
+
+
+
+
 ## [5.4.31](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.4.30...@rtm-ui/hybrid-login-view@5.4.31) (2022-08-23)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view

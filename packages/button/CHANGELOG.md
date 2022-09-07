@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.11](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@5.0.10...@rtm-ui/button@5.0.11) (2022-09-07)
+
+**Note:** Version bump only for package @rtm-ui/button
+
+
+
+
+
 ## [5.0.10](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@5.0.9...@rtm-ui/button@5.0.10) (2022-07-12)
 
 **Note:** Version bump only for package @rtm-ui/button

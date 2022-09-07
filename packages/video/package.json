@@ -1,12 +1,14 @@
 {
   "name": "@rtm-ui/video",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Description for video",
   "author": "RevTech Media",
   "license": "UNLICENSED",
   "rtmRollup": {
     "namespace": "video",
-    "namedExports": ["Video"]
+    "namedExports": [
+      "Video"
+    ]
   },
   "main": "build/index.js",
   "module": "build/index.js",
