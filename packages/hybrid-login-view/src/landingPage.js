@@ -166,7 +166,7 @@ const VideoContent = styled(Box)`
       : 'transparent'};
   padding: 20px;
   border-radius: 10px 10px 0 0;
-  max-width: 900px;
+  max-width: 500px;
 `;
 
 const VideoCta = styled(Block)`
