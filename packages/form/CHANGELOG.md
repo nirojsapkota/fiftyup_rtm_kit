@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.0.19...@rtm-ui/form@7.1.0) (2022-09-27)
+
+
+### Features
+
+* **Form:** Add eir mask pattern ([9381ef5](https://github.com/OBSAU/rtm-kit/commit/9381ef57d0ed3b5c28b2ecb245175a9619a593b2))
+
+
+
+
+
 ## [7.0.19](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.0.18...@rtm-ui/form@7.0.19) (2022-09-07)
 
 **Note:** Version bump only for package @rtm-ui/form
