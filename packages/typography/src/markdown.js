@@ -2,10 +2,12 @@ import React from 'react';
 import Header from './header';
 import Paragraph from './paragraph';
 import { Box } from '@rtm-ui/layout';
+import { Img } from '@rtm-ui/img';
 import styled from 'styled-components';
 import { Text } from './text';
 import unified from 'unified';
 import markdown from 'remark-parse';
+import remarkImages from 'remark-images';
 import stringify from 'rehype-stringify';
 import remark2rehype from 'remark-rehype';
 import remarkAlign from 'remark-align';
@@ -17,6 +19,8 @@ const toComponent = (ast, i) => {
 };
 
 const renderComponent = ({ type, ...props }, i) => {
+  console.log('component type:', type);
+  console.log('ast i: ', i);
   const mappedType = primitiveMap[type];
   if (typeof mappedType !== 'function') {
     if (process.env.NODE_ENV === 'development') {
@@ -101,10 +105,12 @@ const primitiveMap = {
       try {
         var otherAttrs = JSON.parse(children[0].value.split('|')[2]);
       } catch {
-        var otherAttrs = {}
+        var otherAttrs = {};
       }
       const track = children[0].value.split('|')[1] || null;
       const value = children[0].value.split('|')[0];
+
+      console.log('children: ', children);
       props = {
         ...otherAttrs,
         track,
@@ -126,32 +132,40 @@ const primitiveMap = {
   },
   centerAligned: ({ children }) => ({
     ...Paragraph.defaultProps,
-    style: {textAlign: 'center'},
+    style: { textAlign: 'center' },
     as: 'p',
     tag: 'p',
     children: renderChildren(children),
   }),
   rightAligned: ({ children }) => ({
     ...Paragraph.defaultProps,
-    style: {textAlign: 'right'},
+    style: { textAlign: 'right' },
     as: 'p',
     tag: 'p',
     children: renderChildren(children),
   }),
   leftAligned: ({ children }) => ({
     ...Paragraph.defaultProps,
-    style: {textAlign: 'left'},
+    style: { textAlign: 'left' },
     as: 'p',
     tag: 'p',
     children: renderChildren(children),
   }),
+  image: ({ children, value, ...rest }) => {
+    return {
+      ...Img.defaultProps,
+      alt: value,
+      src: rest.url,
+    };
+  },
   html: ({ value }) => {
     return {
-    ...Paragraph.defaultProps,
-    as: 'p',
-    tag: 'p',
-    dangerousHTML: value
-  }}
+      ...Paragraph.defaultProps,
+      as: 'p',
+      tag: 'p',
+      dangerousHTML: value,
+    };
+  },
 };
 
 // Add margin-bottom to each child except last
