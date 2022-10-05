@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { Text } from './text';
 import unified from 'unified';
 import markdown from 'remark-parse';
-import remarkImages from 'remark-images';
 import stringify from 'rehype-stringify';
 import remark2rehype from 'remark-rehype';
 import remarkAlign from 'remark-align';
@@ -19,8 +18,6 @@ const toComponent = (ast, i) => {
 };
 
 const renderComponent = ({ type, ...props }, i) => {
-  console.log('component type:', type);
-  console.log('ast i: ', i);
   const mappedType = primitiveMap[type];
   if (typeof mappedType !== 'function') {
     if (process.env.NODE_ENV === 'development') {
@@ -30,7 +27,11 @@ const renderComponent = ({ type, ...props }, i) => {
   }
 
   const intrinsicProps = mappedType(props);
-  return <Text key={`${type}-${i}`} {...intrinsicProps} />;
+  if (type == 'image') {
+    return <Img key={`${type}-${i}`} {...intrinsicProps} />;
+  } else {
+    return <Text key={`${type}-${i}`} {...intrinsicProps} />;
+  }
 };
 
 const renderChildren = children =>
@@ -99,6 +100,17 @@ const primitiveMap = {
   }),
   link: ({ children, ...rest }) => {
     let props = {};
+    // NOTE: If an image link
+    if (children[0].type == 'image') {
+      return {
+        as: 'a',
+        tag: 'a',
+        color: 'link',
+        href: rest.url,
+        title: rest.title,
+        children: renderChildren(children),
+      };
+    }
     // FIXME: we may want some sort of error when more than
     // just plaintext is dropped into a link tag
     if (children[0].value.split('|').length >= 1) {
@@ -110,7 +122,6 @@ const primitiveMap = {
       const track = children[0].value.split('|')[1] || null;
       const value = children[0].value.split('|')[0];
 
-      console.log('children: ', children);
       props = {
         ...otherAttrs,
         track,
@@ -154,7 +165,7 @@ const primitiveMap = {
   image: ({ children, value, ...rest }) => {
     return {
       ...Img.defaultProps,
-      alt: value,
+      alt: rest.alt,
       src: rest.url,
     };
   },

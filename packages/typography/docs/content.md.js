@@ -36,6 +36,8 @@ If there is an empty value after the pipe - it still works: [Click|](https://exa
 
 Here is a [link]({{sample.url}})
 
+An image link [![](https://commonmark.org/help/images/favicon.png)]({{sample.url}})
+
 **Notes:**
 - Format should be 'TEXT|TRACKING_ACTION|ADDITIONAL_ATTRIBUTES'.
 - The ADDITIONAL_ATTRIBUTES should be an object and double quoted keys/values
