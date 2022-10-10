@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Small, Paragraph } from '@rtm-ui/typography';
+import { Header, Small, Paragraph, Markdown } from '@rtm-ui/typography';
 import styled from 'styled-components';
 import { Card, Box } from '@rtm-ui/layout';
 import { Icon } from '@rtm-ui/icon';
@@ -82,9 +82,12 @@ export const Phoneback = ({
           <Box p={[10, 20]}>
             {!phonebackSubmitted ? (
               <Box>
-                <Header tag="h6" align="center" color="text">
-                  {props.header}
-                </Header>
+                {props.header && (
+                  <Header tag="h6" align="center" color="text">
+                    {props.header}
+                  </Header>
+                )}
+                {props.title && <Markdown raw={props.title} />}
                 <PhonebackForm
                   {...props}
                   phonebackSubmitting={phonebackSubmitting}
@@ -99,12 +102,20 @@ export const Phoneback = ({
               </Box>
             ) : (
               <Box>
-                <Header pb={10} align="center" tag="h5" weight="normal">
-                  {thankYouProps.header}
-                </Header>
-                <Paragraph py={10} align="center">
-                  {thankYouProps.message}
-                </Paragraph>
+                {thankYouProps.content && (
+                  <Markdown raw={thankYouProps.content} />
+                )}
+                {!thankYouProps.content && (
+                  <>
+                    <Header pb={10} align="center" tag="h5" weight="normal">
+                      {thankYouProps.header}
+                    </Header>
+                    <Paragraph py={10} align="center">
+                      {thankYouProps.message}
+                    </Paragraph>
+                  </>
+                )}
+
                 <Box
                   style={{
                     display: 'flex',
