@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
 import { PhonebackBox, Phoneback } from '../index';
-import Sample from '../../sample';
+import Sample, { markdownSample } from '../../sample';
 
 const setup = phonebackProps => {
   const rendered = render(<PhonebackBox {...phonebackProps} />);
@@ -129,6 +129,26 @@ describe('<Phoneback />', () => {
           getByText('Thank you for requesting a call back.')
         ).toBeInTheDocument();
       });
+    });
+  });
+
+  describe('With title as markdown', async () => {
+    const { form, ...rest } = markdownSample;
+    const onSubmit = jest.fn(async fields => fields);
+    const onSuccess = jest.fn(async () => {});
+    const formProps = {
+      ...form,
+      ...rest,
+      onSubmit,
+      onSuccess,
+    };
+    const { getAllByText, getByText } = render(<PhonebackBox {...formProps} />);
+    const callbackButton = getByText(/request a callback/i).closest('button');
+    fireEvent.click(callbackButton);
+    await wait(() => {
+      expect(
+        getAllByText('I am a title from a markdown')[0]
+      ).toBeInTheDocument();
     });
   });
 

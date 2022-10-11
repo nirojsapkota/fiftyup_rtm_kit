@@ -54,7 +54,6 @@ export default {
   },
 };
 
-
 export const markdownSample = {
   form: {
     id: 'callback',
@@ -97,7 +96,7 @@ export const markdownSample = {
   requestButtonIcon: 'view-forward',
   extraMessage: 'Or Speak to a Health Insurance expert on 1800 444 423',
   submitText: 'Call me back',
-  title: '### To talk to People Power Loans home loan expert request an obligation free call back:',
+  title: '### I am a title from a markdown',
   disclaimer:
     'By clicking &quot;Call Me Back&quot; you agree to our [Confirmation of Consent](/confirmation-of-consent), [Terms and Conditions](/terms-and-conditions) and [Privacy Policy](/privacy-policy)',
   scrollToForm: 'Or click here to calculate how much you could save',
@@ -107,4 +106,4 @@ export const markdownSample = {
     link: '/',
     buttonText: 'Visit Dashboard',
   },
-}
+};
