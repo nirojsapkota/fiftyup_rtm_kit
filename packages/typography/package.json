@@ -27,6 +27,7 @@
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
+    "@rtm-ui/img": "file:../img",
     "lodash.get": "^4.4.2",
     "rehype-stringify": "^5.0.0",
     "remark-align": "^1.2.13",

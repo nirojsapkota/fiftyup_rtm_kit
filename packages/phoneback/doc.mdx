@@ -6,7 +6,7 @@ menu: Packages
 
 import { Playground } from 'docz'
 import { Phoneback, PhonebackBox, PhonebackForm } from './src'
-import sample from './sample'
+import sample, { markdownSample } from './sample'
 
 # Phoneback
 
@@ -16,6 +16,12 @@ In most cases the Phoneback can be used as a dialog popup:
 
 <Playground>
   <Phoneback {...sample} />
+</Playground>
+
+With props that supports markdown
+
+<Playground>
+  <Phoneback {...markdownSample} />
 </Playground>
 
 This package exports a standalone phoneback box:

@@ -29,7 +29,14 @@ export default function inlinePlugin(referenceObject) {
     // here https://github.com/remarkjs/remark/issues/410
     // If that's resolved we can remove this code
     if (value.startsWith('[') && value.includes('{{')) {
-      const endPosition = value.indexOf(')') + 1;
+      var endPosition = 0;
+      if (value.includes('[!')) {
+        endPosition = value.indexOf('})') + 2;
+        console.log('endPosition: ', endPosition);
+      } else {
+        endPosition = value.indexOf(')') + 1;
+      }
+
       const startHandlebarPosition = value.indexOf('{{') + 2;
       const endHandlebarPosition = value.indexOf('}}');
       const subbedValue = value.substring(
@@ -42,17 +49,38 @@ export default function inlinePlugin(referenceObject) {
         value.indexOf('[') + 1,
         value.indexOf(']')
       );
-      eat(eatValue)({
-        type: 'link',
-        url: subValue,
-        title: '',
-        children: [
-          {
-            type: 'text',
-            value: linkValue,
-          },
-        ],
-      });
+
+      if (eatValue.indexOf('!') >= 0) {
+        const imageValue = eatValue.substring(
+          value.indexOf('(') + 1,
+          value.indexOf(')]')
+        );
+
+        eat(eatValue)({
+          type: 'link',
+          url: subValue,
+          title: '',
+          children: [
+            {
+              type: 'image',
+              url: imageValue,
+              alt: imageValue,
+            },
+          ],
+        });
+      } else {
+        eat(eatValue)({
+          type: 'link',
+          url: subValue,
+          title: '',
+          children: [
+            {
+              type: 'text',
+              value: linkValue,
+            },
+          ],
+        });
+      }
     }
     // ENDFIXME
 
@@ -63,10 +91,6 @@ export default function inlinePlugin(referenceObject) {
         const innerValue = value.substring(2, endPosition);
         const eatValue = value.substring(0, endPosition + 2);
         const subValue = get(referenceObject, innerValue);
-        // console.log('refernce object', referenceObject.campaign);
-        // console.log('innerval', innerValue);
-        // console.log('eatval', eatValue);
-        // console.log('subval', subValue);
         const replacedText = subValue || 'undefined';
         eat(eatValue)({
           type: 'handlebars',

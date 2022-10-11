@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import Paragraph from './paragraph';
 import { Box } from '@rtm-ui/layout';
+import { Img } from '@rtm-ui/img';
 import styled from 'styled-components';
 import { Text } from './text';
 import unified from 'unified';
@@ -26,7 +27,11 @@ const renderComponent = ({ type, ...props }, i) => {
   }
 
   const intrinsicProps = mappedType(props);
-  return <Text key={`${type}-${i}`} {...intrinsicProps} />;
+  if (type == 'image') {
+    return <Img key={`${type}-${i}`} {...intrinsicProps} />;
+  } else {
+    return <Text key={`${type}-${i}`} {...intrinsicProps} />;
+  }
 };
 
 const renderChildren = children =>
@@ -95,16 +100,28 @@ const primitiveMap = {
   }),
   link: ({ children, ...rest }) => {
     let props = {};
+    // NOTE: If an image link
+    if (children[0].type == 'image') {
+      return {
+        as: 'a',
+        tag: 'a',
+        color: 'link',
+        href: rest.url,
+        title: rest.title,
+        children: renderChildren(children),
+      };
+    }
     // FIXME: we may want some sort of error when more than
     // just plaintext is dropped into a link tag
     if (children[0].value.split('|').length >= 1) {
       try {
         var otherAttrs = JSON.parse(children[0].value.split('|')[2]);
       } catch {
-        var otherAttrs = {}
+        var otherAttrs = {};
       }
       const track = children[0].value.split('|')[1] || null;
       const value = children[0].value.split('|')[0];
+
       props = {
         ...otherAttrs,
         track,
@@ -126,32 +143,40 @@ const primitiveMap = {
   },
   centerAligned: ({ children }) => ({
     ...Paragraph.defaultProps,
-    style: {textAlign: 'center'},
+    style: { textAlign: 'center' },
     as: 'p',
     tag: 'p',
     children: renderChildren(children),
   }),
   rightAligned: ({ children }) => ({
     ...Paragraph.defaultProps,
-    style: {textAlign: 'right'},
+    style: { textAlign: 'right' },
     as: 'p',
     tag: 'p',
     children: renderChildren(children),
   }),
   leftAligned: ({ children }) => ({
     ...Paragraph.defaultProps,
-    style: {textAlign: 'left'},
+    style: { textAlign: 'left' },
     as: 'p',
     tag: 'p',
     children: renderChildren(children),
   }),
+  image: ({ children, value, ...rest }) => {
+    return {
+      ...Img.defaultProps,
+      alt: rest.alt,
+      src: rest.url,
+    };
+  },
   html: ({ value }) => {
     return {
-    ...Paragraph.defaultProps,
-    as: 'p',
-    tag: 'p',
-    dangerousHTML: value
-  }}
+      ...Paragraph.defaultProps,
+      as: 'p',
+      tag: 'p',
+      dangerousHTML: value,
+    };
+  },
 };
 
 // Add margin-bottom to each child except last

@@ -227,6 +227,19 @@ describe('<Markdown />', () => {
       getAllByText(/hello, world larger/i)[0].closest('div')
     ).toHaveStyleRule('font-size', '32px');
   });
+  it('renders an image link', () => {
+    const { container } = render(
+      <Markdown raw="[![](https://someimage.com/image.png)](https://sample.com)" />
+    );
+    expect(container).toContainElement(document.querySelector('img'));
+  });
+  it('renders an image link with interpolation', () => {
+    const { container } = render(
+      <Markdown raw="[![](https://someimage.com/image.png)]({{campaign.link}})" />
+    );
+    expect(container).toContainElement(document.querySelector('a'));
+    expect(container).toContainElement(document.querySelector('img'));
+  });
   it('strips out html', () => {
     const { getByText } = render(<Markdown raw={`<span>Raw html</span>`} />);
     getByText('Raw html');
