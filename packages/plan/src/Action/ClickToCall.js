@@ -27,7 +27,7 @@ const ClickToCall = ({ header, link, footer, track, enableMarkdown, ...rest }) =
           <Box
             px={[2, 3]}
             pt={2}>
-            <Markdown raw={header} referencObject={referenceObject} />
+            <Markdown raw={header} referenceObject={referenceObject} />
           </Box>
         )}
 
@@ -51,7 +51,7 @@ const ClickToCall = ({ header, link, footer, track, enableMarkdown, ...rest }) =
           <Box
             px={[2, 3]}
             pt={2}>
-            <Markdown raw={footer} referencObject={referenceObject} />
+            <Markdown raw={footer} referenceObject={referenceObject} />
           </Box>
         )}
       </React.Fragment>
