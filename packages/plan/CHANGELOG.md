@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.21](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.1.20...@rtm-ui/plan@3.1.21) (2022-10-12)
+
+
+### Bug Fixes
+
+* **Plan:** Fixup typo ([5d1ec8c](https://github.com/OBSAU/rtm-kit/commit/5d1ec8c92f6ac22178079703dd852130a9d01b9c))
+
+
+
+
+
 ## [3.1.20](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.1.19...@rtm-ui/plan@3.1.20) (2022-10-11)
 
 **Note:** Version bump only for package @rtm-ui/plan
