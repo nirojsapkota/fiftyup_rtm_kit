@@ -28,7 +28,11 @@ export default function inlinePlugin(referenceObject) {
     // I think this is a bug so have created a ticket in
     // here https://github.com/remarkjs/remark/issues/410
     // If that's resolved we can remove this code
-    if (value.startsWith('[') && value.includes('{{')) {
+    if (
+      !value.startsWith('[^') &&
+      value.startsWith('[') &&
+      value.includes('{{')
+    ) {
       var endPosition = 0;
       if (value.includes('[!')) {
         endPosition = value.indexOf('})') + 2;
