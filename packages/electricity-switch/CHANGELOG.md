@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.52](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@3.0.51...@rtm-ui/electricity-switch@3.0.52) (2022-10-25)
+
+**Note:** Version bump only for package @rtm-ui/electricity-switch
+
+
+
+
+
 ## [3.0.51](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/electricity-switch@3.0.50...@rtm-ui/electricity-switch@3.0.51) (2022-10-11)
 
 **Note:** Version bump only for package @rtm-ui/electricity-switch
