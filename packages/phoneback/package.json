@@ -28,6 +28,7 @@
     "@rtm-ui/icon": "file:../icon",
     "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
+    "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography"
   },
   "peerDependencies": {
