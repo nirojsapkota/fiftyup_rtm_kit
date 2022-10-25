@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.13](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@5.0.12...@rtm-ui/typography@5.0.13) (2022-10-25)
+
+
+### Bug Fixes
+
+* **Typography:** Fix superscript issue when there is an interpolation ([f53b749](https://github.com/OBSAU/rtm-kit/commit/f53b749f9e16b0fa18012a7f73f4312a900264cb))
+
+
+
+
+
 ## [5.0.12](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/typography@5.0.11...@rtm-ui/typography@5.0.12) (2022-10-11)
 
 **Note:** Version bump only for package @rtm-ui/typography
