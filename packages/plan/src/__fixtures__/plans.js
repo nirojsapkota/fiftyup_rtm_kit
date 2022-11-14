@@ -5,6 +5,13 @@ export const actions = {
     track: 'get_quote',
     link: 'https://somegetquoteurl.com',
   },
+  additional_cta: {
+    header: '',
+    message: '',
+    cta: 'Check it out',
+    track: 'click_to_get_started_cta',
+    link: 'http://localhost/click_to_get_started_cta_action',
+  },
   get_started: {
     header: 'Get Started',
     message: 'Get a quote to discount your bill',

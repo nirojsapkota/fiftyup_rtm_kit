@@ -15,6 +15,9 @@ const Cta = ({
   calculatorProps,
 }) => {
   const callAction = actions.find(({ track }) => track === 'click_to_call');
+  const additionalGetStarted = actions.find(
+    ({ track }) => track === 'click_to_get_started_cta'
+  );
   const getQuoteAction = actions.find(({ track }) => track === 'quote_tool');
 
   return (
@@ -29,6 +32,11 @@ const Cta = ({
             campaignId={primaryActionProps.campaignId}
             {...getQuoteAction}
           />
+        )}
+        {!getQuoteAction && additionalGetStarted && (
+          <Box p={[2, 3]} py={[0, 0]} width={1}>
+            <PrimaryAction {...additionalGetStarted} />
+          </Box>
         )}
         {!getQuoteAction && (
           <Box p={[2, 3]} width={1}>
