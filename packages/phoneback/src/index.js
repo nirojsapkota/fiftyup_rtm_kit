@@ -95,7 +95,6 @@ export const Phoneback = ({
                     ...form,
                     onSuccess: (values, ctx) => {
                       setPhonebackSubmitted(true);
-                      track(`${props.track}/submit`);
                       form.onSuccess && form.onSuccess(values, ctx);
                     },
                   }}
