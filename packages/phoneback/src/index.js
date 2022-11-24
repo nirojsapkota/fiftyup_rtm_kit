@@ -6,7 +6,6 @@ import { Icon } from '@rtm-ui/icon';
 import { Button } from '@rtm-ui/button';
 import { Dialog } from '@rtm-ui/dialog';
 import { Form } from '@rtm-ui/form';
-import { track } from '@rtm-ui/tracker';
 
 const CenterBox = styled(Box)`
   display: flex;
@@ -169,7 +168,7 @@ export const PhonebackForm = ({ form, ...props }) => {
               <Button
                 disabled={props.phonebackSubmitting}
                 type="submit"
-                track={props.track}
+                track={props.track + '/submit'}
               >
                 {props.submitText}
               </Button>
