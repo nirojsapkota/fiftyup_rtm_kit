@@ -142,6 +142,12 @@ const VideoHeader = styled('div')`
   position: relative;
   z-index: 2;
   overflow: hidden;
+
+  @media (min-width: ${props => props.theme.width[2] + 1}px) {
+    display: flex;
+    height: 100%;
+    display: flex;
+  }
 `;
 
 const VideoContent = styled(Box)`

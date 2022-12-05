@@ -16,6 +16,12 @@ const VideoBackground = styled('div')`
   z-index: 1;
   width: 100%;
   height: 500px;
+
+  @media (min-width: ${props => props.theme.width[2] + 1}px){
+    height: 100%;
+    position: unset;
+    display: flow-root;
+  }
 `;
 
 const StyledVideo = styled('video')`
