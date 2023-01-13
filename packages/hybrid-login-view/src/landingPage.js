@@ -91,8 +91,7 @@ const Column = styled(Block)`
 
 const LeftColumn = styled(Column)``;
 
-const RightColumn = styled(Column)`
-`;
+const RightColumn = styled(Column)``;
 
 const ContentSection = styled(Box)`
   display: flex;
@@ -147,6 +146,10 @@ const VideoHeader = styled('div')`
     display: flex;
     height: 100%;
     display: flex;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    height: 330px;
   }
 `;
 
