@@ -17,10 +17,14 @@ const VideoBackground = styled('div')`
   width: 100%;
   height: 500px;
 
-  @media (min-width: ${props => props.theme.width[2] + 1}px){
+  @media (min-width: ${props => props.theme.width[2] + 1}px) {
     height: 100%;
     position: unset;
     display: flow-root;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    height: 330px;
   }
 `;
 
