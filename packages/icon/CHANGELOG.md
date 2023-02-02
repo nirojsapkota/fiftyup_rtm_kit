@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.107](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/icon@5.0.106...@rtm-ui/icon@5.0.107) (2023-02-02)
+
+
+### Reverts
+
+* Revert "improvement(Logo): Update fiftyup logo with cross obs" ([31697ed](https://github.com/OBSAU/rtm-kit/commit/31697edad57ef2f82f63137e20a686acb99039bf))
+
+
+
+
+
 ## [5.0.106](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/icon@5.0.105...@rtm-ui/icon@5.0.106) (2022-09-07)
 
 **Note:** Version bump only for package @rtm-ui/icon
