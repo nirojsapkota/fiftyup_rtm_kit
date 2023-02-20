@@ -193,32 +193,30 @@ const MainContent = ({ mainHeading, videoSrc, mainContent }) => {
   return (
     <>
       <div scroll-target="mainHeading">
-        {mainHeading && (
-          <ContainerWrapper className="content-wrapper">
-            <ContentWrapper>
-              <Box className="hero" {...defaultProps}>
-                {videoSrc && (
-                  <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
-                    <VideoDialog
-                      containerStyle={{
-                        position: 'relative',
-                        paddingTop: '56.25%',
-                      }}
-                      iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
-                      videoSrc={videoSrc}
-                      description={mainHeading || ''}
-                    />
-                  </VideoWrapper>
-                )}
-                {mainContent && (
-                  <ContentBox px={[3, 3, 4]}>
-                    <Markdown raw={mainContent} />
-                  </ContentBox>
-                )}
-              </Box>
-            </ContentWrapper>
-          </ContainerWrapper>
-        )}
+        <ContainerWrapper className="content-wrapper">
+          <ContentWrapper>
+            <Box className="hero" {...defaultProps}>
+              {videoSrc && (
+                <VideoWrapper m="auto" py={10} px={[2, 2, 3]}>
+                  <VideoDialog
+                    containerStyle={{
+                      position: 'relative',
+                      paddingTop: '56.25%',
+                    }}
+                    iframeStyle={{ position: 'absolute', top: 0, left: 0 }}
+                    videoSrc={videoSrc}
+                    description={mainHeading || ''}
+                  />
+                </VideoWrapper>
+              )}
+              {mainContent && (
+                <ContentBox px={[3, 3, 4]}>
+                  <Markdown raw={mainContent} />
+                </ContentBox>
+              )}
+            </Box>
+          </ContentWrapper>
+        </ContainerWrapper>
       </div>
     </>
   );
