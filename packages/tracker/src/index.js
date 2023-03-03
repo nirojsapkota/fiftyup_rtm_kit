@@ -144,7 +144,7 @@ class TrackerRegistration extends React.Component {
 
     //FOR UNIVERSAL GOOGLE ANALYTICS
     /* istanbul ignore next */
-    if (this.props.universal_ga_code && !this.props.ga_code) {
+    if (this.props.universal_ga_code) {
       const googleAnalytics = document.createElement('script');
       googleAnalytics.type = 'text/javascript';
       googleAnalytics.innerHTML =
