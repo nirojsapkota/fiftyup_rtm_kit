@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.109](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/accordion@2.0.108...@rtm-ui/accordion@2.0.109) (2023-03-03)
+
+**Note:** Version bump only for package @rtm-ui/accordion
+
+
+
+
+
 ## [2.0.108](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/accordion@2.0.107...@rtm-ui/accordion@2.0.108) (2023-02-02)
 
 **Note:** Version bump only for package @rtm-ui/accordion
