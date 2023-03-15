@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.28](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.1.27...@rtm-ui/plan@3.1.28) (2023-03-15)
+
+
+### Bug Fixes
+
+* **Plan:** Fixup missing offer sub header ([8af83dd](https://github.com/OBSAU/rtm-kit/commit/8af83ddac00cc26477d0348b5ac2ba2725ad6643))
+
+
+
+
+
 ## [3.1.27](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.1.26...@rtm-ui/plan@3.1.27) (2023-03-03)
 
 **Note:** Version bump only for package @rtm-ui/plan
