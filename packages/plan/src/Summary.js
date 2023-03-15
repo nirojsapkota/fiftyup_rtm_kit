@@ -132,7 +132,7 @@ const Summary = props => {
         )}
       </Block>
       <Box px={[2, 2, 3, 0]} py={[20]}>
-        {!props.sub_header_text && props.sub_header_text.length > 0 && (
+        {props.sub_header_text && props.sub_header_text.length > 0 && (
           <Box width={1}>
             <Box width={1} py={3}>
               <Header weight="normal" tag="h3">
