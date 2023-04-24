@@ -22,7 +22,7 @@ We can write _emphasized_ and **strong** text
 -> i am **right** aligned ->
 -> i am centered <-
 
-## Here is a [link](https://example.com)
+## Here is a [link](www.example.com)
 
 Links inside markdown can still provide a tracking action.
 To do this you neeed to add a pipe after the text you want to display

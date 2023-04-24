@@ -61,7 +61,7 @@ export const dummyData = {
       joined: true,
       ctaText: 'See Offer',
       canJoinMultipleTimes: false,
-      ctaLink: 'https://google.com',
+      ctaLink: 'www.google.com',
       titleText: 'Title Text',
     },
     {
@@ -74,7 +74,7 @@ export const dummyData = {
       joined: true,
       ctaText: 'See Offer',
       canJoinMultipleTimes: false,
-      ctaLink: 'https://google.com',
+      ctaLink: 'www.google.com',
       titleText: 'Title Text',
     },
     {
@@ -87,7 +87,7 @@ export const dummyData = {
       joined: false,
       ctaText: 'See Offer',
       canJoinMultipleTimes: false,
-      ctaLink: 'https://google.com',
+      ctaLink: 'www.google.com',
       titleText: 'Title Text',
     },
     {
@@ -100,7 +100,7 @@ export const dummyData = {
       joined: false,
       ctaText: 'See Offer',
       canJoinMultipleTimes: false,
-      ctaLink: 'https://google.com',
+      ctaLink: 'www.google.com',
       titleText: 'Title Text',
     },
     {
@@ -113,7 +113,7 @@ export const dummyData = {
       joined: false,
       ctaText: 'See Offer',
       canJoinMultipleTimes: false,
-      ctaLink: 'https://google.com',
+      ctaLink: 'www.google.com',
       titleText: 'Title Text',
     },
   ],

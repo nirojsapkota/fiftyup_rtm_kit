@@ -6,6 +6,8 @@ import { getColor, getWeight } from '@rtm-ui/theme';
 import { useTracker } from '@rtm-ui/tracker';
 import { Text } from '@rtm-ui/typography';
 
+var URL = require('url');
+
 const TextStyle = styled(Text)`
   text-decoration: none;
   font-weight: ${props => (props.weight ? getWeight(props.weight) : 400)};
@@ -16,13 +18,23 @@ const TextStyle = styled(Text)`
   }
 `;
 
-const A = ({ track, onClick, ...props }) => {
+const A = ({ track, onClick, href, ...props }) => {
   const { ref, trackEvent } = useTracker();
+
+  if (href) {
+    const parsedUrl = URL.parse(href);
+    var absoluteUrl = URL.format(parsedUrl);
+  } else {
+    var absoluteUrl = href;
+  }
+
+
   return (
     <TextStyle
       ref={ref}
       onClick={e => trackEvent(e, track, onClick)}
       {...props}
+      href={absoluteUrl}
     />
   );
 };
