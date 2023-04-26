@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { getColor, getWeight } from '@rtm-ui/theme';
 import { useTracker } from '@rtm-ui/tracker';
-import { Box } from '@rtm-ui/layout';
+import { Box, generateAbsoluteUrl } from '@rtm-ui/layout';
 
 const colorStyles = css`
   ${props =>
@@ -150,10 +150,18 @@ export const Text = React.forwardRef(
     let onClickProps = {};
     // NOTE: we might want to replace this with a document-wide event listener
     if (rest.as === 'a') {
+      let absoluteUrl = rest.href;
+      if (rest.href) {
+        absoluteUrl = generateAbsoluteUrl(rest.href);
+      } else {
+        absoluteUrl = rest.href;
+      }
+      tagParams.href = absoluteUrl;
       onClickProps = {
         onClick: e => trackEvent(e, rest.track, rest.onClick),
       };
     }
+
     return (
       <H1
         ref={ref}
