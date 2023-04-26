@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@rtm-ui/bootstrap": "file:../bootstrap",
+    "@rtm-ui/layout": "file:../layout",
     "@rtm-ui/theme": "file:../theme",
     "@rtm-ui/tracker": "file:../tracker",
     "@rtm-ui/typography": "file:../typography"
@@ -26,7 +27,6 @@
   "peerDependencies": {
     "prop-types": "15.x",
     "react": "16.x",
-    "styled-components": "4.x",
-    "url": "0.11.0"
+    "styled-components": "4.x"
   }
 }
