@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTracker } from '@rtm-ui/tracker';
-import { generateAbsoluteUrl  } from '@rtm-ui/layout';
+import { generateAbsoluteUrl } from '@rtm-ui/layout';
 import {
   StyledButton,
   WrapperButton,
@@ -32,21 +32,19 @@ export const Base = ({
       <ContentWrapper>{children}</ContentWrapper>
     );
 
-  // console.log('href: ', href);
-  // let absoluteUrl = href
-  // if (href) {
-  //   absoluteUrl = generateAbsoluteUrl(href);
-  // } else {
-  //   absoluteUrl = href;
-  // }
-
-  const absoluteUrl = href;
+  let absoluteUrl = href;
+  if (href) {
+    absoluteUrl = generateAbsoluteUrl(href);
+  } else {
+    absoluteUrl = href;
+  }
 
   return (
     <Component
       ref={ref}
       block={block}
       onClick={e => trackEvent(e, track, onClick)}
+      href={absoluteUrl}
       {...buttonProps}
     >
       {content}
