@@ -126,13 +126,15 @@ function elementIsVisible(element) {
   );
 }
 
-
 export function generateAbsoluteUrl(href) {
-  if (href && (href.indexOf('http://') === 0 || href.indexOf('https://') === 0)) {
+  if (
+    href &&
+    (href.indexOf('http://') === 0 || href.indexOf('https://') === 0)
+  ) {
     // do nothing
     return href;
-  } else if (href && (href.indexOf('www.') === 0)) {
-    return `${href}`;
+  } else if (href && href.indexOf('www.') === 0) {
+    return `//${href}`;
   } else {
     return href;
   }
