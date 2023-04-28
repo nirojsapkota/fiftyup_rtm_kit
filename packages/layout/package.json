@@ -14,7 +14,8 @@
       "useElementVisible",
       "scrollToElement",
       "scrollToElementExtended",
-      "TopBorderCard"
+      "TopBorderCard",
+      "generateAbsoluteUrl"
     ]
   },
   "author": "RevTech Media",
