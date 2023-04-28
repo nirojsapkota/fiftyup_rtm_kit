@@ -29,7 +29,6 @@
   "peerDependencies": {
     "prop-types": "15.x",
     "react": "16.x",
-    "styled-components": "4.x",
-    "url": "0.11.0"
+    "styled-components": "4.x"
   }
 }
