@@ -18,7 +18,9 @@ describe('<A />', () => {
   const text = 'Hello, World!';
 
   it('passes the track prop to the tracking context module', () => {
-    const { getByText } = render(<A track="test">{text}</A>);
+    const { getByText } = render(<A track="test" href="www.google.com">{text}</A>);
+
+    expect(getByText(text).closest('a')).toHaveAttribute('href','//www.google.com');
 
     fireEvent.click(getByText(text));
 
@@ -42,7 +44,8 @@ describe('<A />', () => {
   });
 
   it('defaults to link color when color prop is not set', () => {
-    const { getByText } = render(<A>{text}</A>);
+    const { getByText } = render(<A href="https://www.google.com">{text}</A>);
+    expect(getByText(text).closest('a')).toHaveAttribute('href','https://www.google.com');
     expect(getByText(text)).toHaveStyleRule('color', '#1566ad');
   });
 });
