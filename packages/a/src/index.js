@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { getColor, getWeight } from '@rtm-ui/theme';
+import { generateAbsoluteUrl } from '@rtm-ui/layout';
 import { useTracker } from '@rtm-ui/tracker';
 import { Text } from '@rtm-ui/typography';
 
@@ -16,12 +17,21 @@ const TextStyle = styled(Text)`
   }
 `;
 
-const A = ({ track, onClick, ...props }) => {
+const A = ({ track, onClick, href, ...props }) => {
   const { ref, trackEvent } = useTracker();
+
+  let absoluteUrl = href;
+  if (href) {
+    absoluteUrl = generateAbsoluteUrl(href);
+  } else {
+    absoluteUrl = href;
+  }
+
   return (
     <TextStyle
       ref={ref}
       onClick={e => trackEvent(e, track, onClick)}
+      href={absoluteUrl}
       {...props}
     />
   );

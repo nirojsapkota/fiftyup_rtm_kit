@@ -8,6 +8,7 @@ import {
   scrollToElement,
   useElementVisible,
   scrollToElementExtended,
+  generateAbsoluteUrl,
 } from './util/helpers';
 import TopBorderCard from './topbordercard';
 
@@ -18,6 +19,7 @@ export {
   Flex,
   Block,
   useWindowSize,
+  generateAbsoluteUrl,
   TopBorderCard,
   scrollToElement,
   scrollToElementExtended,
