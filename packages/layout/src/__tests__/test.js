@@ -15,6 +15,7 @@ import {
   scrollToElement,
   scrollToElementExtended,
   useElementVisible,
+  generateAbsoluteUrl,
 } from '../index';
 
 const text = 'Hello, World';
@@ -258,3 +259,29 @@ describe('useElementVisible', () => {
     expect(getByTestId('response')).toHaveTextContent('I am invalid element');
   });
 });
+
+describe('generateAbsoluteUrl', () => {
+  it('prepends a // to href that starts with www.', () => {
+    const absoluteUrl = generateAbsoluteUrl('www.helloworlds.com');
+    const { getByText } = render(<div>{absoluteUrl}</div>);
+    expect(getByText('//www.helloworlds.com')).toBeInTheDocument();
+  })
+
+  it('retains http of a href', () => {
+    const absoluteUrl = generateAbsoluteUrl('http://www.helloworlds.com');
+    const { getByText } = render(<div>{absoluteUrl}</div>);
+    expect(getByText('http://www.helloworlds.com')).toBeInTheDocument();
+  })
+
+  it('retains https of a href', () => {
+    const absoluteUrl = generateAbsoluteUrl('https://www.helloworlds.com');
+    const { getByText } = render(<div>{absoluteUrl}</div>);
+    expect(getByText('https://www.helloworlds.com')).toBeInTheDocument();
+  })
+
+  it('retains mailto of a href', () => {
+    const absoluteUrl = generateAbsoluteUrl('mailto:test@test.com');
+    const { getByText } = render(<div>{absoluteUrl}</div>);
+    expect(getByText('mailto:test@test.com')).toBeInTheDocument();
+  })
+})
