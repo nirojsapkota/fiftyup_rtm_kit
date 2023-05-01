@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.15](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@5.0.14...@rtm-ui/button@5.0.15) (2023-05-01)
+
+
+### Bug Fixes
+
+* **Button:** Remove unused url package ([7405b70](https://github.com/OBSAU/rtm-kit/commit/7405b70d6df1b1a1646d2944bced6f9d29548acc))
+
+
+
+
+
 ## [5.0.14](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/button@5.0.13...@rtm-ui/button@5.0.14) (2023-03-03)
 
 **Note:** Version bump only for package @rtm-ui/button
