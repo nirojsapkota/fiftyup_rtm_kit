@@ -2,7 +2,7 @@ import React from 'react';
 import t from 'prop-types';
 import styled from 'styled-components';
 
-import { Card, Box } from '@rtm-ui/layout';
+import { Card, Box, generateAbsoluteUrl } from '@rtm-ui/layout';
 import { Header, Small } from '@rtm-ui/typography';
 import { Form, FormError } from '@rtm-ui/form';
 import { Button } from '@rtm-ui/button';
@@ -99,9 +99,14 @@ class LoginForm extends React.Component {
   }
 
   async handleSuccess(form) {
+    const { customRedirectPath } = this.props;
     const redirectPath = form.values.redirectPath;
-    if (redirectPath) {
-      window.location.href = redirectPath;
+
+    let href = customRedirectPath || redirectPath;
+    if (href) {
+      window.location.href = generateAbsoluteUrl(href);
+    } else {
+      window.location.href = href;
     }
   }
 
