@@ -605,6 +605,7 @@ const LandingPageView = ({
             <LoginPanel
               isExitIntent={true}
               {...props}
+              customRedirectPath={exitIntentProps.customRedirectPath}
               title={exitIntentProps.title || props.title}
               buttonText={exitIntentProps.buttonText || props.buttonText}
               buttonIcon={exitIntentProps.icon || props.buttonIcon}
