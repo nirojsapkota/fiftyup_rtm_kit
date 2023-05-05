@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.32](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@6.0.31...@rtm-ui/login-panel@6.0.32) (2023-05-05)
+
+
+### Bug Fixes
+
+* **LoginPanel:** Fixup login action for an empty redirect url of exit intent ([abd03d5](https://github.com/OBSAU/rtm-kit/commit/abd03d545c4ec78ca8fe6cfd294c89196039afa3))
+
+
+
+
+
 ## [6.0.31](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/login-panel@6.0.30...@rtm-ui/login-panel@6.0.31) (2023-05-02)
 
 **Note:** Version bump only for package @rtm-ui/login-panel

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.5.12](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.5.11...@rtm-ui/hybrid-login-view@5.5.12) (2023-05-05)
+
+
+### Bug Fixes
+
+* **HybridLoginView:** Add exit intent redirect url for landingPage ([a733234](https://github.com/OBSAU/rtm-kit/commit/a733234fcb62a48b2d5d95a7d97b7d52755665af))
+
+
+
+
+
 ## [5.5.11](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.5.10...@rtm-ui/hybrid-login-view@5.5.11) (2023-05-02)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
