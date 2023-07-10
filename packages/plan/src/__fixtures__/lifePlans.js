@@ -129,6 +129,8 @@ const planInput = {
     formSubmitButtonText: 'Get Quote',
     thankyouBody: 'Thanks',
     newQuoteText: 'Generate a new quote',
+    minAgeAvailment: 16,
+    maxAgeAvailment: 74
   },
 };
 
