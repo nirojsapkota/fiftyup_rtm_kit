@@ -85,7 +85,6 @@ const generateCoverAmount = () => {
 };
 
 const GetQuote = props => {
-  console.log('props:', props.calculatorProps.minAgeAvailment)
   const [quoteResult, setQuoteResult] = React.useState(null);
   const [quoteStep, setQuoteStep] = React.useState(1);
   const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({});
