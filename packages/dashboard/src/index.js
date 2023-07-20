@@ -112,7 +112,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         if (result && result.data && result.data.showSurvey) {    // empty
           setModalOpen(true);
         }
-         // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
+        setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
       })();
     }
   }, []);
@@ -152,7 +152,6 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
           <QuestionsStyledCard>
             <Form
               centeredSubmit={true}
-              quickSubmit={true}
               onSubmit={(e) => setProducts(e[0].value)}
               autoSearch={true}
               fields={[
@@ -162,9 +161,9 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   type: survey.yearOfBirth.type,
                   hint: survey.yearOfBirth.hint,
                   config: {
-                    component: 'year_of_birth',
+                    component: survey.yearOfBirth.name,
                     validator: 'yearRange',
-                    validatorArgs: survey.yearOfBirth.config.validatorArgs,
+                    validatorArgs: [1930, 2009],
                   }
                 },
                 {

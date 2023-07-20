@@ -15,7 +15,7 @@ export const dummyData = {
       "label": "Year of birth",
       "name": "year_of_birth",
       "type": "text",
-      "hint": "'e.g. 1981'",
+      "hint": "e.g. 1981",
       "config": {
         "validatorArgs": [1930, 2009],
       }
