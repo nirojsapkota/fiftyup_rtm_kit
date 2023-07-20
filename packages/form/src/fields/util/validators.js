@@ -118,3 +118,13 @@ export const lifeInsuranceAgeDropdownValidator = Yup.string()
     'Sorry, but you must be between 16 and 69 years old to be eligible for this offer.'
   )
   .required('Required');
+
+export const yearRangeValidator = (minYear = 1930, maxYear = 2007) => {
+  const minAge = new Date().getFullYear() - maxYear;
+  const maxAge = new Date().getFullYear() - minYear;
+  return Yup.string()
+    .oneOf(
+      rangeArr(minYear, maxYear),
+      `Sorry, but you must be between ${minAge} and ${maxAge} years old`
+    );
+}
