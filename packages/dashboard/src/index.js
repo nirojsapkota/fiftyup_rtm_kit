@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { FeatureRow, GroupedFeatureTiles } from '@rtm-ui/feature-tile';
-import { Block, Box, Flex, Card } from '@rtm-ui/layout';
+import { Block, Box, Flex, Card, Pane } from '@rtm-ui/layout';
 import { Modal } from '@rtm-ui/dialog';
 import { Theme as Variant, getColor } from '@rtm-ui/theme';
 import { Button } from '@rtm-ui/button';
@@ -71,6 +71,21 @@ const StyledCard = styled(Card)`
   flex-wrap: wrap-reverse;
 `;
 
+const QuestionsStyledCard = styled(Card)`
+  max-width: 400px;
+  padding: 15px;
+  @media (min-width: ${props => props.theme.grid.sm}em) {
+    max-width: 550px;
+    padding: 25px 50px 25px 50px;
+    justify-content: space-between;
+  }
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+`;
+
 const CloseDialogWrapper = styled(Box)`
   display: flex;
   background: 'white';
@@ -116,20 +131,25 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
     <MainWrapper>
       {isModalOpen && (
         <Modal onClose={()=>sendSurvey('clickout')} data-testid='test-modal'>
-          <StyledCard>
-            <CloseDialogWrapper>
-              <CloseButton data-testid="close-modal" asWrapper onClick={()=>sendSurvey('close')}>
-                <Header weight="normal" color="text" tag="h6" align="right">
-                  <Icon center glyph="view-close" />
-                </Header>
-              </CloseButton>
-            </CloseDialogWrapper>
-            <Header tag="h5" align="center">
-              <Markdown raw={survey.title} />
-            </Header>
-            <div style={{ textAlign: 'center' }}>
-              <small align="center"><Markdown raw={survey.description} /></small>
-            </div>
+          <StyledCard backgroundColor="primary">
+            <Pane color="white">
+              <CloseDialogWrapper>
+                <CloseButton data-testid="close-modal" asWrapper onClick={()=>sendSurvey('close')}>
+                  <Header weight="normal" color="text" tag="h6" align="right">
+                    <Icon center glyph="view-close" />
+                  </Header>
+                </CloseButton>
+              </CloseDialogWrapper>
+              <Header tag="h5" align="center" color="white">
+                <Markdown raw={survey.title} />
+              </Header>
+              <div style={{ textAlign: 'center' }}>
+                <small align="center"><Markdown raw={survey.description} /></small>
+              </div>
+            </Pane>
+
+          </StyledCard>
+          <QuestionsStyledCard>
             <Form
               centeredSubmit={true}
               quickSubmit={true}
@@ -137,7 +157,18 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
               autoSearch={true}
               fields={[
                 {
-                  label: '',
+                  label: survey.yearOfBirth.label,
+                  name: survey.yearOfBirth.name,
+                  type: survey.yearOfBirth.type,
+                  hint: survey.yearOfBirth.hint,
+                  config: {
+                    component: 'year_of_birth',
+                    validator: 'yearRange',
+                    validatorArgs: survey.yearOfBirth.config.validatorArgs,
+                  }
+                },
+                {
+                  label: "Which bill do you most want to save money on?",
                   description: '',
                   config: {
                     component: 'panelCheck',
@@ -166,7 +197,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                 </Header>
               </CloseButton>
             </SkipSurveyWrapper>
-          </StyledCard>
+          </QuestionsStyledCard>
         </Modal>
       )}
 

@@ -7,10 +7,19 @@ export const dummyData = {
   survey: {
     url: 'https://api.staging.fiftyupclub.com/survey',
     title: '',
-    description: "##### What type of offers are you most interested in?\r\n(select all that apply)",
+    description: "#### What type of offers are you most interested in?\r\nPlease take a moment to answer these quick questions to ensure you get access to the most suitable deal:",
     "cta_label": "See the offers",
     "skip_label": "Skip this step",
     "email": "user28@email.com",
+    "yearOfBirth": {
+      "label": "Year of birth",
+      "name": "year_of_birth",
+      "type": "text",
+      "hint": "'e.g. 1981'",
+      "config": {
+        "validatorArgs": [1930, 2009],
+      }
+    },
     "productSelection": {
       "label": "",
       "name": "products",
