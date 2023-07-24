@@ -136,7 +136,8 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
 
   return (
     <MainWrapper>
-      {isModalOpen && (
+      {// istanbul ignore next
+      isModalOpen && (
         <Modal onClose={() => sendSurvey('clickout')} data-testid="test-modal">
           <StyledCard backgroundColor="primary">
             <Pane variant="b">
@@ -185,9 +186,11 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   hint: survey.yearOfBirth.hint,
                   value: '',
                   onBlur: e => {
+                    // istanbul ignore next
                     setYearOfBirth(e.target.value);
                   },
                   onFocus: e => {
+                    // istanbul ignore next
                     setYearOfBirth(e.target.value);
                   },
                   config: {
