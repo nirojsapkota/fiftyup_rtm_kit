@@ -7,57 +7,59 @@ export const dummyData = {
   survey: {
     url: 'https://api.staging.fiftyupclub.com/survey',
     title: '',
-    description: "#### What type of offers are you most interested in?\r\nPlease take a moment to answer these quick questions to ensure you get access to the most suitable deal:",
-    "cta_label": "See the offers",
-    "skip_label": "Skip this step",
-    "email": "user28@email.com",
-    "yearOfBirth": {
-      "label": "Year of birth",
-      "name": "year_of_birth",
-      "type": "text",
-      "hint": "e.g. 1981",
-      "config": {
-        "validatorArgs": [1930, 2009],
-      }
+    description:
+      '#### What type of offers are you most interested in?\r\nPlease take a moment to answer these quick questions to ensure you get access to the most suitable deal:',
+    cta_label: 'See the offers',
+    skip_label: 'Skip this step',
+    email: 'user28@email.com',
+    yearOfBirth: {
+      label: 'Year of birth',
+      name: 'year_of_birth',
+      type: 'number',
+      hint: 'e.g. 1981',
+      config: {
+        minYear: 1930,
+        maxYear: 2009,
+      },
     },
-    "productSelection": {
-      "label": "",
-      "name": "products",
-      "type": "checkbox",
-      "component": "panelCheck",
-      "options": [
+    productSelection: {
+      label: '',
+      name: 'products',
+      type: 'checkbox',
+      component: 'panelCheck',
+      options: [
         {
-          "label": "ENERGY",
-          "value": "energy",
-          "icon": "energy"
+          label: 'ENERGY',
+          value: 'energy',
+          icon: 'energy',
         },
         {
-          "label": "HEALTH INSURANCE",
-          "value": "Health Insurance",
-          "icon": "health"
+          label: 'HEALTH INSURANCE',
+          value: 'Health Insurance',
+          icon: 'health',
         },
         {
-          "label": "LIFE INSURANCE",
-          "value": "Life Insurance",
-          "icon": "life"
+          label: 'LIFE INSURANCE',
+          value: 'Life Insurance',
+          icon: 'life',
         },
         {
-          "label": "HOME",
-          "value": "home insurnace",
-          "icon": "home-2"
+          label: 'HOME',
+          value: 'home insurnace',
+          icon: 'home-2',
         },
         {
-          "label": "BROADBAND",
-          "value": "Broadband",
-          "icon": "internet"
+          label: 'BROADBAND',
+          value: 'Broadband',
+          icon: 'internet',
         },
         {
-          "label": "CAR INSURANCE",
-          "value": "car insurance",
-          "icon": "car"
-        }
-      ]
-    }
+          label: 'CAR INSURANCE',
+          value: 'car insurance',
+          icon: 'car',
+        },
+      ],
+    },
   },
   campaigns: [
     {
