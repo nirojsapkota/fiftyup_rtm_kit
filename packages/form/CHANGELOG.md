@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.5...@rtm-ui/form@7.1.6) (2023-07-24)
+
+
+### Bug Fixes
+
+* **Form:** Update the lifeInsuranceAgeDropdown validation ([85692d4](https://github.com/OBSAU/rtm-kit/commit/85692d46a6bc1af0cb410be109e65bd4c41116b3))
+
+
+
+
+
 ## [7.1.5](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.4...@rtm-ui/form@7.1.5) (2023-05-01)
 
 **Note:** Version bump only for package @rtm-ui/form
