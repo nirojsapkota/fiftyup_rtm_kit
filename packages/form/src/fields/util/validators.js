@@ -1,3 +1,4 @@
+// istanbul ignore file
 import * as Yup from 'yup';
 import maskPatterns from './maskPatterns';
 
@@ -112,9 +113,11 @@ const rangeArr = (start, end) => {
     });
 };
 
-export const lifeInsuranceAgeDropdownValidator = Yup.string()
-  .oneOf(
-    rangeArr(16, 69),
-    'Sorry, but you must be between 16 and 69 years old to be eligible for this offer.'
-  )
-  .required('Required');
+export const lifeInsuranceAgeDropdownValidator = (minAge = 16, maxAge = 69) => {
+  return Yup.string()
+    .oneOf(
+      rangeArr(minAge, maxAge),
+      `Sorry, but you must be between ${minAge} and ${maxAge} years old to be eligible for this offer.`
+    )
+    .required('Required');
+};

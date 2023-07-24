@@ -33,7 +33,7 @@ const ButtonWrapper = styled(Box)`
 `;
 
 // Acts as a one-off 'useEffect' loads the potential age options on load.
-const generateAgeOptions = (props) => {
+const generateAgeOptions = props => {
   // Ruby (Rails) equivalent code
   // def age_options(age_range)
   // [].tap do |ages|
@@ -42,12 +42,14 @@ const generateAgeOptions = (props) => {
   //   ages << ["#{age_range.last  + 1} years old or older", age_range.last + 1]
   // end
 
-  const minAge = props.minAge || 16
-  const maxAge = props.maxAge || 69
+  const minAge = props.minAge || 16;
+  const maxAge = props.maxAge || 69;
   // Lower bound - Hardcode
-  let ageValues = [{ label: `${maxAge + 1} years old or older`, value: `${maxAge + 1}` }];
+  let ageValues = [
+    { label: `${maxAge + 1} years old or older`, value: `${maxAge + 1}` },
+  ];
 
-  for (let age = maxAge; age > (minAge - 1); age -= 1) {
+  for (let age = maxAge; age > minAge - 1; age -= 1) {
     ageValues.push({ label: `${age} years old`, value: age.toString() });
   }
 
@@ -142,12 +144,19 @@ const GetQuote = props => {
         component: 'dropdownfield',
         scrollable: true,
         validator: 'lifeInsuranceAgeDropdown',
+        validatorArgs: [
+          props.calculatorProps.minAgeAvailment,
+          props.calculatorProps.maxAgeAvailment,
+        ],
       },
       type: 'text',
       initialValue: quoteFieldsValues.age,
       name: 'age',
       inputMode: 'none',
-      options: generateAgeOptions({minAge: props.calculatorProps.minAgeAvailment, maxAge: props.calculatorProps.maxAgeAvailment}),
+      options: generateAgeOptions({
+        minAge: props.calculatorProps.minAgeAvailment,
+        maxAge: props.calculatorProps.maxAgeAvailment,
+      }),
       className: 'inline-fields',
     },
     {
