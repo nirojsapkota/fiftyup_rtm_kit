@@ -58,6 +58,7 @@ const SkipSurveyWrapper = styled(Box)`
 const StyledCard = styled(Card)`
   max-width: 400px;
   padding: 15px;
+  border-radius: 5px 5px 0 0;
   @media (min-width: ${props => props.theme.grid.sm}em) {
     max-width: 550px;
     padding: 25px;
@@ -73,6 +74,7 @@ const StyledCard = styled(Card)`
 const QuestionsStyledCard = styled(Card)`
   max-width: 400px;
   padding: 15px;
+  border-radius: 0 0 5px 5px;
   @media (min-width: ${props => props.theme.grid.sm}em) {
     max-width: 550px;
     padding: 25px 50px 25px 50px;
