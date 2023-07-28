@@ -121,3 +121,12 @@ export const lifeInsuranceAgeDropdownValidator = (minAge = 16, maxAge = 69) => {
     )
     .required('Required');
 };
+
+export const yearRangeValidator = (minYear = 1930, maxYear = 2007) => {
+  const minAge = new Date().getFullYear() - maxYear;
+  const maxAge = new Date().getFullYear() - minYear;
+  return Yup.string().oneOf(
+    rangeArr(minYear, maxYear),
+    `Sorry, but you must be between ${minAge} and ${maxAge} years old`
+  );
+};

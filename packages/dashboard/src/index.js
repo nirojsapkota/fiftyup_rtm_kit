@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { FeatureRow, GroupedFeatureTiles } from '@rtm-ui/feature-tile';
-import { Block, Box, Flex, Card } from '@rtm-ui/layout';
+import { Block, Box, Flex, Card, Pane } from '@rtm-ui/layout';
 import { Modal } from '@rtm-ui/dialog';
 import { Theme as Variant, getColor } from '@rtm-ui/theme';
 import { Button } from '@rtm-ui/button';
@@ -11,7 +11,6 @@ import { Icon } from '@rtm-ui/icon';
 import { Form } from '@rtm-ui/form';
 import { Header, Markdown, Paragraph } from '@rtm-ui/typography';
 import { getSurvey, submitSurvey, callTracker } from './actions';
-
 
 const MainWrapper = styled(Box)`
   background: #f1f1f1;
@@ -59,9 +58,26 @@ const SkipSurveyWrapper = styled(Box)`
 const StyledCard = styled(Card)`
   max-width: 400px;
   padding: 15px;
+  border-radius: 5px 5px 0 0;
   @media (min-width: ${props => props.theme.grid.sm}em) {
     max-width: 550px;
     padding: 25px;
+    justify-content: space-between;
+  }
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+`;
+
+const QuestionsStyledCard = styled(Card)`
+  max-width: 400px;
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+  @media (min-width: ${props => props.theme.grid.sm}em) {
+    max-width: 550px;
+    padding: 25px 50px 25px 50px;
     justify-content: space-between;
   }
   margin: auto;
@@ -80,7 +96,7 @@ const CloseDialogWrapper = styled(Box)`
 
 const CloseButton = styled(Button)`
   outline: none;
-`
+`;
 
 export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   const featuredCampaign = campaigns.filter(
@@ -93,56 +109,108 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   React.useEffect(() => {
     if (survey) {
       (async () => {
-        const result = await getSurvey(survey.url, { email: survey.email })
-        if (result && result.data && result.data.showSurvey) {    // empty
+        const result = await getSurvey(survey.url, { email: survey.email });
+        if (result && result.data && result.data.showSurvey) {
+          // empty
           setModalOpen(true);
         }
-         // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
+        // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
       })();
     }
   }, []);
 
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [products, setProducts] = React.useState([]);
+  const [yearOfBirth, setYearOfBirth] = React.useState(null);
 
-  const sendSurvey = (action) => {
-    submitSurvey(survey.url, survey.email, products);
-    callTracker(survey.productSelection.options, action, products);
+  const sendSurvey = (action, data = null) => {
+    const answeredProducts = data ? data.products : products;
+    const answeredYearOfBirth = data ? data.yearOfBirth : yearOfBirth;
+    submitSurvey(
+      survey.url,
+      survey.email,
+      answeredYearOfBirth,
+      answeredProducts
+    );
+    callTracker(survey.productSelection.options, action, answeredProducts);
     setModalOpen(!isModalOpen);
   };
 
-
   return (
     <MainWrapper>
-      {isModalOpen && (
-        <Modal onClose={()=>sendSurvey('clickout')} data-testid='test-modal'>
-          <StyledCard>
-            <CloseDialogWrapper>
-              <CloseButton data-testid="close-modal" asWrapper onClick={()=>sendSurvey('close')}>
-                <Header weight="normal" color="text" tag="h6" align="right">
-                  <Icon center glyph="view-close" />
-                </Header>
-              </CloseButton>
-            </CloseDialogWrapper>
-            <Header tag="h5" align="center">
-              <Markdown raw={survey.title} />
-            </Header>
-            <div style={{ textAlign: 'center' }}>
-              <small align="center"><Markdown raw={survey.description} /></small>
-            </div>
+      {// istanbul ignore next
+      isModalOpen && (
+        <Modal onClose={() => sendSurvey('clickout')} data-testid="test-modal">
+          <StyledCard backgroundColor="primary">
+            <Pane variant="b">
+              <CloseDialogWrapper>
+                <CloseButton
+                  data-testid="close-modal"
+                  asWrapper
+                  onClick={() => sendSurvey('close')}
+                >
+                  <Header weight="normal" color="text" tag="h6" align="right">
+                    <Icon center glyph="view-close" />
+                  </Header>
+                </CloseButton>
+              </CloseDialogWrapper>
+              <Header tag="h5" align="center">
+                <Markdown raw={survey.title} />
+              </Header>
+              <div style={{ textAlign: 'center' }}>
+                <small align="center">
+                  <Markdown raw={survey.description} />
+                </small>
+              </div>
+            </Pane>
+          </StyledCard>
+          <QuestionsStyledCard>
             <Form
               centeredSubmit={true}
-              quickSubmit={true}
-              onSubmit={(e) => setProducts(e[0].value)}
-              autoSearch={true}
+              getNewestFieldValue={async (field, value) => {
+                if (field == 'products') {
+                  setProducts(value);
+                }
+              }}
+              onSubmit={async e => {
+                setProducts(e[1].value);
+                setYearOfBirth(e[0].value);
+                sendSurvey('cta', {
+                  yearOfBirth: e[0].value,
+                  products: e[1].value,
+                });
+              }}
               fields={[
                 {
-                  label: '',
+                  label: survey.yearOfBirth.label,
+                  name: survey.yearOfBirth.name,
+                  type: survey.yearOfBirth.type,
+                  hint: survey.yearOfBirth.hint,
+                  value: '',
+                  onBlur: e => {
+                    // istanbul ignore next
+                    setYearOfBirth(e.target.value);
+                  },
+                  onFocus: e => {
+                    // istanbul ignore next
+                    setYearOfBirth(e.target.value);
+                  },
+                  config: {
+                    component: survey.yearOfBirth.name,
+                    validator: 'yearRange',
+                    validatorArgs: [
+                      survey.yearOfBirth.minYear,
+                      survey.yearOfBirth.maxYear,
+                    ],
+                  },
+                },
+                {
+                  label: 'Which bill do you most want to save money on?',
                   description: '',
                   config: {
                     component: 'panelCheck',
-                    validator: 'requiredRadio',
                     justifyContent: 'center',
+                    autoComplete: false,
                   },
                   name: survey.productSelection.name,
                   value: '',
@@ -150,23 +218,32 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   options: survey.productSelection.options,
                 },
               ]}
-            />
-
-            <SkipSurveyWrapper>
-              <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                <Box mb={10} style={{ display: 'flex', alignSelf: 'center' }}>
-                  <CloseButton align="center" onClick={()=>sendSurvey('cta')}>
-                    {survey.cta_label}
+              renderFooter={() => (
+                <SkipSurveyWrapper>
+                  <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Box
+                      mb={10}
+                      style={{ display: 'flex', alignSelf: 'center' }}
+                    >
+                      <CloseButton type="submit" align="center">
+                        {survey.cta_label}
+                      </CloseButton>
+                    </Box>
+                  </Box>
+                  <CloseButton
+                    asWrapper
+                    onClick={() => {
+                      sendSurvey('skip');
+                    }}
+                  >
+                    <Header weight="normal" color="text" tag="h5">
+                      {survey.skip_label}
+                    </Header>
                   </CloseButton>
-                </Box>
-              </Box>
-              <CloseButton asWrapper onClick={()=>{sendSurvey('skip')}}>
-                <Header weight="normal" color="text" tag="h5">
-                  {survey.skip_label}
-                </Header>
-              </CloseButton>
-            </SkipSurveyWrapper>
-          </StyledCard>
+                </SkipSurveyWrapper>
+              )}
+            />
+          </QuestionsStyledCard>
         </Modal>
       )}
 
@@ -235,7 +312,7 @@ Dashboard.propTypes = {
       PropTypes.shape({
         name: PropTypes.string,
         icon: PropTypes.string,
-      }),
+      })
     ),
     skippable: PropTypes.bool,
   }),

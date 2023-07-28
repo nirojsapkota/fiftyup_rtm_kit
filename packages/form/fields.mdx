@@ -642,6 +642,33 @@ items are clicked.
 
 </Playground>
 
+## SPA UI Year field
+
+<Playground>
+  <Form
+     id="my-form"
+
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Your year of birth',
+        name: 'year_of_birth',
+        type: 'text',
+        defaultValue: '11',
+        hint: 'e.g. 1981',
+        config: {
+          component: 'year_of_birth',
+          validator: 'yearRange',
+          validatorArgs: [1930, 2009],
+        }
+      },
+    ]}
+  />
+</Playground>
+
+
 ## SPA UI Month and Year field.
 
 <Playground>

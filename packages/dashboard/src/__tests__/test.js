@@ -123,7 +123,13 @@ describe('<Dashboard />', () => {
 
 describe('getSurvey', () => {
   it('fetches successfully data from an API', async () => {
-    const data = { data: { email: 'user@email.com', products: ['energy'] } };
+    const data = {
+      data: {
+        email: 'user@email.com',
+        year_of_birth: '1990',
+        products: ['energy'],
+      },
+    };
 
     axios.get.mockImplementationOnce(() => Promise.resolve(data));
 
@@ -146,9 +152,12 @@ describe('submitSurvey', () => {
     const data = {};
     axios.post.mockImplementationOnce(() => Promise.resolve(data));
 
-    await expect(submitSurvey(API, TEST_EMAIL, ['energy'])).resolves.toEqual(
-      data
-    );
+    await expect(
+      submitSurvey(API, TEST_EMAIL, {
+        yearOfBirth: '1990',
+        data: { products: ['energy'] },
+      })
+    ).resolves.toEqual(data);
   });
 
   it('pushes erroneously data to an API', async () => {
