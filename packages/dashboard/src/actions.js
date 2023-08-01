@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { track } from '@rtm-ui/tracker';
 
-export const submitSurvey = async (url, email, year_of_birth, products) => {
+export const submitSurvey = async (url, email, yearOfBirth, products) => {
   const config = {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
   };
-  const data = { email, data: { products, year_of_birth } };
+  const data = { email, data: { products, yearOfBirth } };
 
   try {
     return await axios.post(url, data, config);
