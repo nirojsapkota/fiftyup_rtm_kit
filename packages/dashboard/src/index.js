@@ -53,6 +53,7 @@ const SkipSurveyWrapper = styled(Box)`
   background: 'white';
   justify-content: center;
   flex-flow: column;
+  padding-bottom: 10px;
 `;
 
 const StyledCard = styled(Card)`
@@ -125,7 +126,19 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
 
   const sendSurvey = (action, data = null) => {
     const answeredProducts = data ? data.products : products;
-    const answeredYearOfBirth = data ? data.yearOfBirth : yearOfBirth;
+    let answeredYearOfBirth = data ? data.yearOfBirth : yearOfBirth;
+
+    // Because skip and close action does not trigger a year of birth validation,
+    // let's force blank the field if it does not meet the year range criteria
+    if (
+      action != 'cta' &&
+      answeredYearOfBirth != '' &&
+      (survey.yearOfBirth.minYear > answeredYearOfBirth ||
+        survey.yearOfBirth.maxYear < answeredYearOfBirth)
+    ) {
+      answeredYearOfBirth = '';
+    }
+
     submitSurvey(
       survey.url,
       survey.email,
