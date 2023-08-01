@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.28](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.27...@rtm-ui/dashboard@3.0.28) (2023-08-01)
+
+
+### Bug Fixes
+
+* **Dashboard:** Fixup submit survey api ([95b31a1](https://github.com/OBSAU/rtm-kit/commit/95b31a155f21ab849a9f31069b938bf854a882b1))
+
+
+
+
+
 ## [3.0.27](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.26...@rtm-ui/dashboard@3.0.27) (2023-07-28)
 
 **Note:** Version bump only for package @rtm-ui/dashboard
