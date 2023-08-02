@@ -133,8 +133,8 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
     if (
       action != 'cta' &&
       answeredYearOfBirth != '' &&
-      (survey.yearOfBirth.minYear > answeredYearOfBirth ||
-        survey.yearOfBirth.maxYear < answeredYearOfBirth)
+      (survey.yearOfBirth.config.minYear > answeredYearOfBirth ||
+        survey.yearOfBirth.config.maxYear < answeredYearOfBirth)
     ) {
       answeredYearOfBirth = '';
     }
