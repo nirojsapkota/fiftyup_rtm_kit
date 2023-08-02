@@ -114,6 +114,9 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         if (result && result.data && result.data.showSurvey) {
           // empty
           setModalOpen(true);
+        } else if(result && result.data && !result.data.yearOfBirth) {
+          setProducts(result.data.products);
+          setModalOpen(true);
         }
         // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
       })();
@@ -218,7 +221,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   },
                 },
                 {
-                  label: 'Which bill do you most want to save money on?',
+                  label: survey.productSelection.label,
                   description: '',
                   config: {
                     component: 'panelCheck',
