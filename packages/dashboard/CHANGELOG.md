@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.31](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.30...@rtm-ui/dashboard@3.0.31) (2023-08-02)
+
+
+### Bug Fixes
+
+* **Dashboard:** Fixup validation for birth of year when skipping action ([59b560d](https://github.com/OBSAU/rtm-kit/commit/59b560d8188c40d057325fa1e87f0eec8a760b76))
+
+
+
+
+
 ## [3.0.30](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.29...@rtm-ui/dashboard@3.0.30) (2023-08-01)
 
 **Note:** Version bump only for package @rtm-ui/dashboard
