@@ -23,7 +23,7 @@ export const dummyData = {
       },
     },
     productSelection: {
-      label: '',
+      label: 'Which bill do you most want to save money on?',
       name: 'products',
       type: 'checkbox',
       component: 'panelCheck',
@@ -45,7 +45,7 @@ export const dummyData = {
         },
         {
           label: 'HOME',
-          value: 'home insurnace',
+          value: 'home insurance',
           icon: 'home-2',
         },
         {
