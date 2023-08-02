@@ -118,7 +118,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
           if (result.data.data.products) { setProducts(result.data.data.products) };
           setModalOpen(true);
         }
-        setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
+        // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
       })();
     }
   }, []);
