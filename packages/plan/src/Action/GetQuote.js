@@ -67,9 +67,12 @@ const generateAgeOptions = props => {
  */
 
 // Acts as a one-off 'useEffect' loads the potential cover option amounts on load.
-const generateCoverAmount = () => {
+const generateCoverAmount = (fields, coverCaps = []) => {
   // JS Implementation of (Ruby Method - ERB file)( cover_list = (100_000..950_000).step(50_000).to_a + (1_000_000..2_000_000).step(100_000).to_a )
   let coverAmounts = [];
+
+  console.log('fields:', fields);
+  console.log('coverCaps: ', coverCaps);
 
   for (let coverLimit = 100000; coverLimit < 1000000; coverLimit += 50000) {
     coverAmounts.push({
@@ -198,7 +201,7 @@ const GetQuote = props => {
       name: 'cover_required',
       inputMode: 'none',
       initialValue: quoteFieldsValues.cover_required,
-      options: generateCoverAmount(),
+      options: generateCoverAmount(quoteFieldsValues, {coverCaps: [{age: 70, cap: '500000'}, {age: 72, cap: '400000'}]}),
     },
   ];
 
