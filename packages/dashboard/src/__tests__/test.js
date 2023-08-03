@@ -69,6 +69,27 @@ describe('<Dashboard />', () => {
     expect(queryByTestId('test-modal')).toBeNull();
   });
 
+  it('does not popup a modal when yearOfBirth data prop is given', async () => {
+    axios.get.mockResolvedValue({ data: {showSurvey: false, data: {yearOfBirth: ""}} });
+    const { queryByTestId } = render(
+      <Dashboard {...dummyData} />
+    );
+    await expect(axios.get).toHaveBeenCalled();
+    expect(queryByTestId('test-modal')).toBeNull();
+  });
+
+  it('does popup a modal when yearOfBirth data prop is not given', async () => {
+    axios.get.mockResolvedValue({ data: {showSurvey: false, data: {products: []}} });
+    const { getByText } = render(<Dashboard {...dummyData} />);
+    await expect(axios.get).toHaveBeenCalled();
+    await wait(async () => {
+      expect(getByText(dummyData.survey.skip_label)).toBeInTheDocument();
+      expect(
+        getByText('What type of offers are you most interested in?')
+      ).toBeInTheDocument();
+    });
+  });
+
   it('closes the modal after selecting a product and clicking on close button', async () => {
     axios.get.mockResolvedValue({ data: { showSurvey: true } });
     const { getAllByText, queryAllByTestId } = await render(
