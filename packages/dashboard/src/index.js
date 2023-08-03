@@ -114,8 +114,8 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         if (result && result.data && result.data.showSurvey) {
           // empty
           setModalOpen(true);
-        } else if(result && result.data && !result.data.yearOfBirth) {
-          setProducts(result.data.products);
+        } else if(result && result.data && result.data.data && !result.data.data.yearOfBirth) {
+          if (result.data.data.products) { setProducts(result.data.data.products) };
           setModalOpen(true);
         }
         // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
