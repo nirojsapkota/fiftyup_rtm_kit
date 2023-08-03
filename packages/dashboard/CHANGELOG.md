@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.33](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.32...@rtm-ui/dashboard@3.0.33) (2023-08-03)
+
+
+### Bug Fixes
+
+* **Dashboard:** Fix bug when showing dashboard of users without birth of year ([b37fc36](https://github.com/OBSAU/rtm-kit/commit/b37fc366a81d9e13ac77931d42a32609925718d7))
+
+
+
+
+
 ## [3.0.32](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.31...@rtm-ui/dashboard@3.0.32) (2023-08-02)
 
 **Note:** Version bump only for package @rtm-ui/dashboard
