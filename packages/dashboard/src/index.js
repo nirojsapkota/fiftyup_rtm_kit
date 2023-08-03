@@ -114,7 +114,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         if (result && result.data && result.data.showSurvey) {
           // empty
           setModalOpen(true);
-        } else if(result && result.data && result.data.data && !result.data.data.yearOfBirth) {
+        } else if(result && result.data && result.data.data && result.data.data.yearOfBirth == null) {
           if (result.data.data.products) { setProducts(result.data.data.products) };
           setModalOpen(true);
         }
