@@ -9,14 +9,19 @@ const StyledField = styled(TextField)`
   margin: 5px;
 `;
 
-const YearField = ({ fieldUtils, defaultValue, ...props }) => {
+const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
   const [year, setYear] = useState([]);
+  const yearPlaceholder = placeholder ? placeholder.split('') : [];
 
   useEffect(() => {
     fieldUtils.setFieldValue(props.name, defaultValue);
+    if (defaultValue) {
+      setYear(defaultValue.split(''));
+    }
   }, []);
 
-  const handleChange = (index, { target: { value } }) => {
+  const handleChange = (index, { target }) => {
+    const value = target.value;
     if (value.length < 2 && (!isNaN(Number(value)) || value == '')) {
       let updatedYear = year;
       updatedYear[index] = value;
@@ -26,7 +31,7 @@ const YearField = ({ fieldUtils, defaultValue, ...props }) => {
         `${year[0]}${year[1]}${year[2]}${year[3]}`
       );
 
-      const element = event.target;
+      const element = target;
       const nextSibling = element.nextElementSibling;
       if (nextSibling) {
         nextSibling.focus();
@@ -48,22 +53,22 @@ const YearField = ({ fieldUtils, defaultValue, ...props }) => {
       <div>
         <StyledField
           value={year[0]}
-          placeholder="Y"
+          placeholder={yearPlaceholder[0]}
           onChange={e => handleChange(0, e)}
         />
         <StyledField
           value={year[1]}
-          placeholder="Y"
+          placeholder={yearPlaceholder[1]}
           onChange={e => handleChange(1, e)}
         />
         <StyledField
           value={year[2]}
-          placeholder="Y"
+          placeholder={yearPlaceholder[2]}
           onChange={e => handleChange(2, e)}
         />
         <StyledField
           value={year[3]}
-          placeholder="Y"
+          placeholder={yearPlaceholder[3]}
           onChange={e => handleChange(3, e)}
         />
         <TextField type="hidden" name={props.name} value="" />
