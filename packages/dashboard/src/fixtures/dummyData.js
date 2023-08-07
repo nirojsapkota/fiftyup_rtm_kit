@@ -15,9 +15,12 @@ export const dummyData = {
     yearOfBirth: {
       label: 'Year of birth',
       name: 'year_of_birth',
-      type: 'number',
+      type: 'text',
       hint: 'e.g. 1981',
+      placeholder: 'YYYY',
       config: {
+        component: 'inlineYear',
+        validation: 'yearRange',
         minYear: 1930,
         maxYear: 2009,
       },

@@ -114,11 +114,18 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         if (result && result.data && result.data.showSurvey) {
           // empty
           setModalOpen(true);
-        } else if(result && result.data && result.data.data && result.data.data.yearOfBirth == null) {
-          if (result.data.data.products) { setProducts(result.data.data.products) };
+        } else if (
+          result &&
+          result.data &&
+          result.data.data &&
+          result.data.data.yearOfBirth == null
+        ) {
+          if (result.data.data.products) {
+            setProducts(result.data.data.products);
+          }
           setModalOpen(true);
         }
-        // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
+        setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
       })();
     }
   }, []);
@@ -202,6 +209,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   name: survey.yearOfBirth.name,
                   type: survey.yearOfBirth.type,
                   hint: survey.yearOfBirth.hint,
+                  placeholder: survey.yearOfBirth.placeholder,
                   value: '',
                   onBlur: e => {
                     // istanbul ignore next
@@ -212,7 +220,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                     setYearOfBirth(e.target.value);
                   },
                   config: {
-                    component: survey.yearOfBirth.name,
+                    component: 'inlineYear',
                     validator: 'yearRange',
                     validatorArgs: [
                       survey.yearOfBirth.minYear,
