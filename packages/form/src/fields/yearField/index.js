@@ -28,7 +28,12 @@ const YearField = ({ fieldUtils, defaultValue, ...props }) => {
 
       const element = event.target;
       const nextSibling = element.nextElementSibling;
-      nextSibling ? nextSibling.focus() : element.blur();
+      if (nextSibling) {
+        nextSibling.focus();
+        nextSibling.select();
+      } else {
+        element.blur();
+      }
     } else {
       setYear(year);
       fieldUtils.setFieldValue(
