@@ -668,6 +668,32 @@ items are clicked.
   />
 </Playground>
 
+## SPA UI Inline Year field
+
+<Playground>
+  <Form
+     id="my-form"
+
+    onSubmit={async function(values) {
+      alert(JSON.stringify(values, 0, 2));
+    }}
+    fields={[
+      {
+        label: 'Your year of birth',
+        name: 'year_of_birth',
+        type: 'text',
+        defaultValue: '11',
+        hint: 'e.g. 1981',
+        config: {
+          component: 'inlineYear',
+          validator: 'yearRange',
+          validatorArgs: [1930, 2009],
+        }
+      },
+    ]}
+  />
+</Playground>
+
 
 ## SPA UI Month and Year field.
 
