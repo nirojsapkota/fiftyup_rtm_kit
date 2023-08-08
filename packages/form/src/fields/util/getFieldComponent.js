@@ -4,6 +4,7 @@ import CheckboxField from '../checkboxField';
 import DropdownField from '../dropdownField';
 import HiddenField from '../hiddenField';
 import MonthField from '../monthField';
+import YearField from '../yearField';
 import MonthButtonGroupField from '../monthButtonGroupField';
 import NumberField from '../numberField';
 import PanelCheckField from '../panelCheckField';
@@ -21,24 +22,26 @@ export const getFieldComponent = (
       ? PanelRadioField
       : RadioField
     : type === 'checkbox'
-      ? component === 'panelCheck'
-        ? PanelCheckField
-        : CheckboxField
-      : component === 'month'
-        ? MonthField
-      : component === 'monthButtonGroup'
-        ? MonthButtonGroupField
-        : type === 'hidden'
-          ? HiddenField
-          : component === 'stripePayment'
-            ? StripeField
-            : component === 'autocomplete'
-              ? AutocompletField
-              : component === 'addressautocomplete'
-                ? GoogleAddressAutocompleteField
-                : component === 'dropdownfield'
-                  ? DropdownField
-                  : validator === 'mask'
-                    ? NumberField
-                    : TextField;
+    ? component === 'panelCheck'
+      ? PanelCheckField
+      : CheckboxField
+    : component === 'month'
+    ? MonthField
+    : component === 'monthButtonGroup'
+    ? MonthButtonGroupField
+    : type === 'hidden'
+    ? HiddenField
+    : component === 'stripePayment'
+    ? StripeField
+    : component === 'autocomplete'
+    ? AutocompletField
+    : component === 'addressautocomplete'
+    ? GoogleAddressAutocompleteField
+    : component === 'dropdownfield'
+    ? DropdownField
+    : validator === 'mask'
+    ? NumberField
+    : component === 'inlineYear'
+    ? YearField
+    : TextField;
 };
