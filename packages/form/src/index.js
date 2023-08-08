@@ -2,8 +2,9 @@ import Form, { getFormValues } from './form';
 import StepForm from './stepForm';
 import Accordion from './accordion';
 import MonthField from '../src/fields/monthField';
+import YearField from '../src/fields/yearField';
 import MonthButtonGroupField from '../src/fields/monthButtonGroupField';
-import BaseField from '../src/fields/baseField'
+import BaseField from '../src/fields/baseField';
 import { FormError } from './formError';
 import {
   Xform,
@@ -21,6 +22,7 @@ export {
   Accordion,
   BaseField,
   MonthField,
+  YearField,
   MonthButtonGroupField,
   getFormValues,
   FormError,
