@@ -53,25 +53,34 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
       <div>
         <StyledField
           value={year[0]}
+          data-testid="y0"
           placeholder={yearPlaceholder[0]}
           onChange={e => handleChange(0, e)}
         />
         <StyledField
           value={year[1]}
+          data-testid="y1"
           placeholder={yearPlaceholder[1]}
           onChange={e => handleChange(1, e)}
         />
         <StyledField
           value={year[2]}
+          data-testid="y2"
           placeholder={yearPlaceholder[2]}
           onChange={e => handleChange(2, e)}
         />
         <StyledField
           value={year[3]}
+          data-testid="y3"
           placeholder={yearPlaceholder[3]}
           onChange={e => handleChange(3, e)}
         />
-        <TextField type="hidden" name={props.name} value="" />
+        <TextField
+          {...props}
+          type="hidden"
+          name={props.name}
+          value={`${year.join('')}`}
+        />
       </div>
     </React.Fragment>
   );
