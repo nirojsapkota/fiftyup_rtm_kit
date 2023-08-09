@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.36](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.35...@rtm-ui/dashboard@3.0.36) (2023-08-09)
+
+
+### Bug Fixes
+
+* **Dashboard:** Fixup the skip function to properly save the year of birth ([1bc4acb](https://github.com/OBSAU/rtm-kit/commit/1bc4acb0b947f2f8e09f57a7ff36ae767e16438b))
+
+
+
+
+
 ## [3.0.35](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.34...@rtm-ui/dashboard@3.0.35) (2023-08-08)
 
 

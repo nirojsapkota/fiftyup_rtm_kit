@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.8...@rtm-ui/form@7.1.9) (2023-08-09)
+
+
+### Bug Fixes
+
+* **Form:** Add a data year attribute to each field in yearField ([115a9ce](https://github.com/OBSAU/rtm-kit/commit/115a9ceae9f4b0185f63aac32e318547b3a40520))
+
+
+
+
+
 ## [7.1.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.7...@rtm-ui/form@7.1.8) (2023-08-08)
 
 
