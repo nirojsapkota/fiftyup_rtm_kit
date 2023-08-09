@@ -211,13 +211,13 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   hint: survey.yearOfBirth.hint,
                   placeholder: survey.yearOfBirth.placeholder,
                   value: '',
-                  onBlur: e => {
+                  onBlur: ({target}) => {
                     // istanbul ignore next
-                    setYearOfBirth(e.target.value);
+                    setYearOfBirth(target.dataset.year);
                   },
-                  onFocus: e => {
+                  onFocus: ({target}) => {
                     // istanbul ignore next
-                    setYearOfBirth(e.target.value);
+                    setYearOfBirth(target.dataset.year);
                   },
                   config: {
                     component: 'inlineYear',
