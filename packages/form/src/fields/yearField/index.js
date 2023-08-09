@@ -52,28 +52,40 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
     <React.Fragment>
       <div>
         <StyledField
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
           value={year[0]}
           data-testid="y0"
           placeholder={yearPlaceholder[0]}
           onChange={e => handleChange(0, e)}
+          data-year={`${year.join('')}`}
         />
         <StyledField
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
           value={year[1]}
           data-testid="y1"
           placeholder={yearPlaceholder[1]}
           onChange={e => handleChange(1, e)}
+          data-year={`${year.join('')}`}
         />
         <StyledField
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
           value={year[2]}
           data-testid="y2"
           placeholder={yearPlaceholder[2]}
           onChange={e => handleChange(2, e)}
+          data-year={`${year.join('')}`}
         />
         <StyledField
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
           value={year[3]}
           data-testid="y3"
           placeholder={yearPlaceholder[3]}
           onChange={e => handleChange(3, e)}
+          data-year={`${year.join('')}`}
         />
         <TextField
           {...props}
