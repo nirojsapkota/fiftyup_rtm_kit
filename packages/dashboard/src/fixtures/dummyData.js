@@ -12,6 +12,7 @@ export const dummyData = {
     cta_label: 'See the offers',
     skip_label: 'Skip this step',
     email: 'user28@email.com',
+    show_for_existing_users: 1,
     yearOfBirth: {
       label: 'Year of birth',
       name: 'year_of_birth',

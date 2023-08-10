@@ -69,7 +69,7 @@ describe('<Dashboard />', () => {
     expect(queryByTestId('test-modal')).toBeNull();
   });
 
-  it('does not popup a modal when yearOfBirth data prop is given', async () => {
+  it('does not popup a modal when yearOfBirth data prop is given and show for existing users flag is set', async () => {
     axios.get.mockResolvedValue({ data: {showSurvey: false, data: {yearOfBirth: ""}} });
     const { queryByTestId } = render(
       <Dashboard {...dummyData} />
