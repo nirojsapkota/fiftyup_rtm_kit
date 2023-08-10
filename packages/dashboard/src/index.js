@@ -115,6 +115,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
           // empty
           setModalOpen(true);
         } else if (
+          survey.show_for_existing_users &&
           result &&
           result.data &&
           result.data.data &&
