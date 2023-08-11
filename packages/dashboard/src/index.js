@@ -137,7 +137,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
           }
           setModalOpen(true);
         }
-        // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
+        setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
       })();
     }
   }, []);
@@ -229,6 +229,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                     setYearOfBirth(target.dataset.year);
                   },
                   onFocus: e => {
+                    e.target.select();
                     // istanbul ignore next
                     setYearOfBirth(e.target.dataset.year);
                   },
