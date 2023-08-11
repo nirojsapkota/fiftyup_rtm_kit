@@ -23,6 +23,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
   const handleChange = (index, { target }) => {
     const value = target.value;
     if (value.length < 2 && (!isNaN(Number(value)) || value == '')) {
+      let oldYear = year;
       let updatedYear = year;
       updatedYear[index] = value;
       setYear(updatedYear);
@@ -33,11 +34,18 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
 
       const element = target;
       const nextSibling = element.nextElementSibling;
-      if (nextSibling) {
+      if (
+        year[index] != '' &&
+        (nextSibling || oldYear[index] == updatedYear[index])
+      ) {
         nextSibling.focus();
         nextSibling.select();
+      } else if (year[index] == '') {
+        element.focus();
+        element.select();
       } else {
-        element.blur();
+        nextSibling.focus();
+        nextSibling.select();
       }
     } else {
       setYear(year);
