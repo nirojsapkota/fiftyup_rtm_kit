@@ -86,6 +86,15 @@ const QuestionsStyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap-reverse;
+
+  .year-of-birth-field {
+    margin-bottom: 25px;
+
+    div {
+      text-align: center !important;
+      display: block;
+    }
+  }
 `;
 
 const CloseDialogWrapper = styled(Box)`
@@ -98,6 +107,8 @@ const CloseDialogWrapper = styled(Box)`
 const CloseButton = styled(Button)`
   outline: none;
 `;
+
+const StyledForm = styled(Form)``;
 
 export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   const featuredCampaign = campaigns.filter(
@@ -114,8 +125,16 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
         if (result && result.data && result.data.showSurvey) {
           // empty
           setModalOpen(true);
-        } else if(result && result.data && result.data.data && result.data.data.yearOfBirth == null) {
-          if (result.data.data.products) { setProducts(result.data.data.products) };
+        } else if (
+          survey.show_for_existing_users &&
+          result &&
+          result.data &&
+          result.data.data &&
+          result.data.data.yearOfBirth == null
+        ) {
+          if (result.data.data.products) {
+            setProducts(result.data.data.products);
+          }
           setModalOpen(true);
         }
         // setModalOpen(true); // uncomment this line for enabling dashboard popup in rtmui docs, comment again before pushing
@@ -181,7 +200,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
             </Pane>
           </StyledCard>
           <QuestionsStyledCard>
-            <Form
+            <StyledForm
               centeredSubmit={true}
               getNewestFieldValue={async (field, value) => {
                 if (field == 'products') {
@@ -202,17 +221,19 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   name: survey.yearOfBirth.name,
                   type: survey.yearOfBirth.type,
                   hint: survey.yearOfBirth.hint,
+                  placeholder: survey.yearOfBirth.placeholder,
                   value: '',
-                  onBlur: e => {
+                  className: 'year-of-birth-field',
+                  onBlur: ({ target }) => {
                     // istanbul ignore next
-                    setYearOfBirth(e.target.value);
+                    setYearOfBirth(target.dataset.year);
                   },
                   onFocus: e => {
                     // istanbul ignore next
-                    setYearOfBirth(e.target.value);
+                    setYearOfBirth(e.target.dataset.year);
                   },
                   config: {
-                    component: survey.yearOfBirth.name,
+                    component: 'inlineYear',
                     validator: 'yearRange',
                     validatorArgs: [
                       survey.yearOfBirth.minYear,

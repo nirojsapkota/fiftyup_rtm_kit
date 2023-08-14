@@ -12,12 +12,16 @@ export const dummyData = {
     cta_label: 'See the offers',
     skip_label: 'Skip this step',
     email: 'user28@email.com',
+    show_for_existing_users: 1,
     yearOfBirth: {
       label: 'Year of birth',
       name: 'year_of_birth',
-      type: 'number',
+      type: 'text',
       hint: 'e.g. 1981',
+      placeholder: 'YYYY',
       config: {
+        component: 'inlineYear',
+        validation: 'yearRange',
         minYear: 1930,
         maxYear: 2009,
       },

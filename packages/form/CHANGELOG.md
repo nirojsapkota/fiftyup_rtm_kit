@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.10](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.9...@rtm-ui/form@7.1.10) (2023-08-14)
+
+**Note:** Version bump only for package @rtm-ui/form
+
+
+
+
+
+## [7.1.9](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.8...@rtm-ui/form@7.1.9) (2023-08-09)
+
+
+### Bug Fixes
+
+* **Form:** Add a data year attribute to each field in yearField ([115a9ce](https://github.com/OBSAU/rtm-kit/commit/115a9ceae9f4b0185f63aac32e318547b3a40520))
+
+
+
+
+
+## [7.1.8](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.7...@rtm-ui/form@7.1.8) (2023-08-08)
+
+
+### Bug Fixes
+
+* **Form:** Add yearField to exports ([56f1e7e](https://github.com/OBSAU/rtm-kit/commit/56f1e7e8598542274f3b08ee38a9628f6729f185))
+
+
+
+
+
 ## [7.1.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.6...@rtm-ui/form@7.1.7) (2023-07-28)
 
 **Note:** Version bump only for package @rtm-ui/form

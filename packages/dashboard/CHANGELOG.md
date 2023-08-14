@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.38](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.37...@rtm-ui/dashboard@3.0.38) (2023-08-14)
+
+
+### Bug Fixes
+
+* **Dashboard:** Remove unnecessary codes ([073aa6a](https://github.com/OBSAU/rtm-kit/commit/073aa6acb392d9531bdee659bd7308c7ba1f39fc))
+
+
+
+
+
+## [3.0.37](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.36...@rtm-ui/dashboard@3.0.37) (2023-08-10)
+
+**Note:** Version bump only for package @rtm-ui/dashboard
+
+
+
+
+
+## [3.0.36](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.35...@rtm-ui/dashboard@3.0.36) (2023-08-09)
+
+
+### Bug Fixes
+
+* **Dashboard:** Fixup the skip function to properly save the year of birth ([1bc4acb](https://github.com/OBSAU/rtm-kit/commit/1bc4acb0b947f2f8e09f57a7ff36ae767e16438b))
+
+
+
+
+
+## [3.0.35](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.34...@rtm-ui/dashboard@3.0.35) (2023-08-08)
+
+
+### Bug Fixes
+
+* **Dashboard:** Comment out modal test view ([51f0693](https://github.com/OBSAU/rtm-kit/commit/51f0693ad4b4fcbbe4550589cdc1b4aa16761516))
+
+
+
+
+
 ## [3.0.34](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.33...@rtm-ui/dashboard@3.0.34) (2023-08-03)
 
 
