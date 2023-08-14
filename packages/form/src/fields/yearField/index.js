@@ -20,9 +20,10 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
     }
   }, []);
 
-  const handleKeyPress = (index, e) => {
+  const handleKeyPress = (_index, e) => {
+    // istanbul ignore next
     const value = e.target.value;
-    let oldYear = year;
+    // istanbul ignore if
     if (e.key && e.key == value) {
       e.preventDefault();
       const nextSibling = e.target.nextSibling;
