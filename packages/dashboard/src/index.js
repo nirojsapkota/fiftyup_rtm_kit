@@ -86,6 +86,15 @@ const QuestionsStyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap-reverse;
+
+  .year-of-birth-field {
+    margin-bottom: 25px;
+
+    div {
+      text-align: center !important;
+      display: block;
+    }
+  }
 `;
 
 const CloseDialogWrapper = styled(Box)`
@@ -98,6 +107,8 @@ const CloseDialogWrapper = styled(Box)`
 const CloseButton = styled(Button)`
   outline: none;
 `;
+
+const StyledForm = styled(Form)``;
 
 export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
   const featuredCampaign = campaigns.filter(
@@ -189,7 +200,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
             </Pane>
           </StyledCard>
           <QuestionsStyledCard>
-            <Form
+            <StyledForm
               centeredSubmit={true}
               getNewestFieldValue={async (field, value) => {
                 if (field == 'products') {
@@ -212,13 +223,14 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   hint: survey.yearOfBirth.hint,
                   placeholder: survey.yearOfBirth.placeholder,
                   value: '',
-                  onBlur: ({target}) => {
+                  className: 'year-of-birth-field',
+                  onBlur: ({ target }) => {
                     // istanbul ignore next
                     setYearOfBirth(target.dataset.year);
                   },
-                  onFocus: ({target}) => {
+                  onFocus: e => {
                     // istanbul ignore next
-                    setYearOfBirth(target.dataset.year);
+                    setYearOfBirth(e.target.dataset.year);
                   },
                   config: {
                     component: 'inlineYear',

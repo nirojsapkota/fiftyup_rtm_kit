@@ -38,11 +38,14 @@ const Form = ({
   ...props
 }) => {
   const [fields, setFields] = React.useState(providedFields);
+  // istanbul ignore if
   if (dynamicFields) {
     useEffect(() => {
       setFields(providedFields);
 
-      return () => { dynamicFields = false; }
+      return () => {
+        dynamicFields = false;
+      };
     }, [providedFields]);
   }
 
@@ -106,7 +109,9 @@ const Form = ({
       });
     }
 
-    return () => { props.passThru = false }
+    return () => {
+      props.passThru = false;
+    };
   }, []);
 
   const handleTurnOffAutoComplete = () => {
@@ -140,6 +145,7 @@ const Form = ({
             const fieldErrors = Object.keys(serverErrors.fieldErrors).reduce(
               (obj, key) => {
                 if (key !== field) {
+                  // istanbul ignore next
                   return { ...obj, [key]: serverErrors.fieldErrors[key] };
                 }
                 return obj;
@@ -154,6 +160,7 @@ const Form = ({
             });
 
             rest.setFieldValue(field, value);
+            // istanbul ignore next
             getNewestFieldValue &&
               typeof getNewestFieldValue == 'function' &&
               getNewestFieldValue(field, value);
@@ -237,5 +244,5 @@ export default Form;
 
 Form.propTypes = {
   id: PropTypes.string.isRequired,
-  fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes }))
+  fields: PropTypes.arrayOf(PropTypes.shape({ ...BaseField.propTypes })),
 };

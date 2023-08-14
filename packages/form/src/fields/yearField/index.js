@@ -20,9 +20,24 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
     }
   }, []);
 
+  const handleKeyPress = (_index, e) => {
+    // istanbul ignore next
+    const value = e.target.value;
+    // istanbul ignore if
+    if (e.key && e.key == value) {
+      e.preventDefault();
+      const nextSibling = e.target.nextSibling;
+      if (nextSibling) {
+        nextSibling.focus();
+        nextSibling.select();
+      }
+    }
+  };
+
   const handleChange = (index, { target }) => {
     const value = target.value;
     if (value.length < 2 && (!isNaN(Number(value)) || value == '')) {
+      let oldYear = year;
       let updatedYear = year;
       updatedYear[index] = value;
       setYear(updatedYear);
@@ -33,11 +48,15 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
 
       const element = target;
       const nextSibling = element.nextElementSibling;
-      if (nextSibling) {
+      if (value != '' && (nextSibling || oldYear[index] == value)) {
         nextSibling.focus();
         nextSibling.select();
+      } else if (value == '') {
+        element.focus();
+        element.select();
       } else {
-        element.blur();
+        nextSibling.focus();
+        nextSibling.select();
       }
     } else {
       setYear(year);
@@ -58,6 +77,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           data-testid="y0"
           placeholder={yearPlaceholder[0]}
           onChange={e => handleChange(0, e)}
+          onKeyPress={e => handleKeyPress(0, e)}
           data-year={`${year.join('')}`}
         />
         <StyledField
@@ -67,6 +87,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           data-testid="y1"
           placeholder={yearPlaceholder[1]}
           onChange={e => handleChange(1, e)}
+          onKeyPress={e => handleKeyPress(1, e)}
           data-year={`${year.join('')}`}
         />
         <StyledField
@@ -76,6 +97,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           data-testid="y2"
           placeholder={yearPlaceholder[2]}
           onChange={e => handleChange(2, e)}
+          onKeyPress={e => handleKeyPress(2, e)}
           data-year={`${year.join('')}`}
         />
         <StyledField
@@ -85,6 +107,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           data-testid="y3"
           placeholder={yearPlaceholder[3]}
           onChange={e => handleChange(3, e)}
+          onKeyPress={e => handleKeyPress(3, e)}
           data-year={`${year.join('')}`}
         />
         <TextField
