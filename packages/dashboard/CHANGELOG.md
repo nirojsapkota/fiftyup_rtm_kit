@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.38](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.37...@rtm-ui/dashboard@3.0.38) (2023-08-14)
+
+
+### Bug Fixes
+
+* **Dashboard:** Remove unnecessary codes ([073aa6a](https://github.com/OBSAU/rtm-kit/commit/073aa6acb392d9531bdee659bd7308c7ba1f39fc))
+
+
+
+
+
 ## [3.0.37](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.36...@rtm-ui/dashboard@3.0.37) (2023-08-10)
 
 **Note:** Version bump only for package @rtm-ui/dashboard
