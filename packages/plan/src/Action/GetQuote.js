@@ -67,20 +67,34 @@ const generateAgeOptions = props => {
  */
 
 // Acts as a one-off 'useEffect' loads the potential cover option amounts on load.
-const generateCoverAmount = (fields, coverCaps = []) => {
+const generateCoverAmount = (selectedAge, coverCaps = {}) => {
   // JS Implementation of (Ruby Method - ERB file)( cover_list = (100_000..950_000).step(50_000).to_a + (1_000_000..2_000_000).step(100_000).to_a )
   let coverAmounts = [];
 
-  console.log('fields:', fields);
+  console.log('selectedAge:', selectedAge);
   console.log('coverCaps: ', coverCaps);
 
-  for (let coverLimit = 100000; coverLimit < 1000000; coverLimit += 50000) {
+  let coverCap1 = coverCaps[selectedAge]
+    ? coverCaps[selectedAge] <= 1000000
+      ? coverCaps[selectedAge]
+      : 1000000
+    : 1000000;
+  let coverCap2 = coverCaps[selectedAge]
+    ? coverCaps[selectedAge] <= 2000001
+      ? coverCaps[selectedAge]
+      : 2000001
+    : 2000001;
+  console.log('coverCap1: ',coverCap1)
+  console.log('coverCap2: ',coverCap2)
+
+  for (let coverLimit = 100000; coverLimit < coverCap1; coverLimit += 50000) {
     coverAmounts.push({
       label: `$${coverLimit.toLocaleString()}`,
       value: coverLimit.toString(),
     });
   }
-  for (let coverLimit = 1000000; coverLimit < 2000001; coverLimit += 100000) {
+
+  for (let coverLimit = coverCap1; coverLimit < coverCap2; coverLimit += 100000) {
     coverAmounts.push({
       label: `$${coverLimit.toLocaleString()}`,
       value: coverLimit.toString(),
@@ -90,6 +104,7 @@ const generateCoverAmount = (fields, coverCaps = []) => {
 };
 
 const GetQuote = props => {
+  const [ageSelection, setAgeSelection] = React.useState(null);
   const [quoteResult, setQuoteResult] = React.useState(null);
   const [quoteStep, setQuoteStep] = React.useState(1);
   const [quoteFieldsValues, setQuoteFieldsValues] = React.useState({});
@@ -161,6 +176,9 @@ const GetQuote = props => {
         maxAge: props.calculatorProps.maxAgeAvailment,
       }),
       className: 'inline-fields',
+      onDropdownChange: (val) => {
+        setAgeSelection(val)
+      }
     },
     {
       label: 'Gender',
@@ -201,7 +219,7 @@ const GetQuote = props => {
       name: 'cover_required',
       inputMode: 'none',
       initialValue: quoteFieldsValues.cover_required,
-      options: generateCoverAmount(quoteFieldsValues, {coverCaps: [{age: 70, cap: '500000'}, {age: 72, cap: '400000'}]}),
+      options: generateCoverAmount(ageSelection, {'70': '500000', '72': '400000'}),
     },
   ];
 
@@ -299,6 +317,10 @@ const GetQuote = props => {
       setServerErrors(e.object);
     }
   };
+
+  React.useEffect(() => {
+    console.log('Age select: ', ageSelection)
+  },[ageSelection])
 
   return (
     <Box py={16} px={30}>
