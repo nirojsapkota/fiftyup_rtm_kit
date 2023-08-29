@@ -71,9 +71,6 @@ const generateCoverAmount = (selectedAge, coverCaps = {}) => {
   // JS Implementation of (Ruby Method - ERB file)( cover_list = (100_000..950_000).step(50_000).to_a + (1_000_000..2_000_000).step(100_000).to_a )
   let coverAmounts = [];
 
-  console.log('selectedAge:', selectedAge);
-  console.log('coverCaps: ', coverCaps);
-
   let coverCap1 = coverCaps[selectedAge]
     ? coverCaps[selectedAge] <= 1000000
       ? coverCaps[selectedAge]
@@ -84,8 +81,6 @@ const generateCoverAmount = (selectedAge, coverCaps = {}) => {
       ? coverCaps[selectedAge]
       : 2000001
     : 2000001;
-  console.log('coverCap1: ',coverCap1)
-  console.log('coverCap2: ',coverCap2)
 
   for (let coverLimit = 100000; coverLimit < coverCap1; coverLimit += 50000) {
     coverAmounts.push({
@@ -94,7 +89,11 @@ const generateCoverAmount = (selectedAge, coverCaps = {}) => {
     });
   }
 
-  for (let coverLimit = coverCap1; coverLimit < coverCap2; coverLimit += 100000) {
+  for (
+    let coverLimit = coverCap1;
+    coverLimit < coverCap2;
+    coverLimit += 100000
+  ) {
     coverAmounts.push({
       label: `$${coverLimit.toLocaleString()}`,
       value: coverLimit.toString(),
@@ -114,7 +113,7 @@ const GetQuote = props => {
     formError: props.formError || null,
     fieldErrors: props.fieldErrors || {},
   });
-  const calculatorFields = [
+  let calculatorFields = [
     {
       label: 'First name', // || stateField.label
       labelSuper: '*',
@@ -176,9 +175,9 @@ const GetQuote = props => {
         maxAge: props.calculatorProps.maxAgeAvailment,
       }),
       className: 'inline-fields',
-      onDropdownChange: (val) => {
-        setAgeSelection(val)
-      }
+      onDropdownChange: val => {
+        setAgeSelection(val);
+      },
     },
     {
       label: 'Gender',
@@ -207,21 +206,25 @@ const GetQuote = props => {
       ],
       className: 'inline-fields',
     },
-    {
-      label: 'Amount of cover',
-      labelSuper: '*',
-      config: {
-        component: 'dropdownfield',
-        scrollable: true,
-        validator: 'required',
-      },
-      type: 'text',
-      name: 'cover_required',
-      inputMode: 'none',
-      initialValue: quoteFieldsValues.cover_required,
-      options: generateCoverAmount(ageSelection, {'70': '500000', '72': '400000'}),
-    },
   ];
+
+  const coverField = {
+    label: 'Amount of cover',
+    labelSuper: '*',
+    config: {
+      component: 'dropdownfield',
+      scrollable: true,
+      validator: 'required',
+    },
+    type: 'text',
+    name: 'cover_required',
+    inputMode: 'none',
+    initialValue: quoteFieldsValues.cover_required,
+    options: generateCoverAmount(ageSelection, {
+      '70': '500000',
+      '72': '400000',
+    }),
+  };
 
   const submitHandler = async values => {
     try {
@@ -318,13 +321,24 @@ const GetQuote = props => {
     }
   };
 
+  console.log('ageSelection outside: ', ageSelection);
+  console.log('coverField outside: ', coverField);
+  const [calcFields, setCalcFields] = React.useState([
+    ...calculatorFields,
+    coverField,
+  ]);
+
   React.useEffect(() => {
-    console.log('Age select: ', ageSelection)
-  },[ageSelection])
+    console.log('ageSelection effect: ', ageSelection);
+    console.log('coverField effect: ', coverField);
+    setCalcFields([...calculatorFields, coverField]);
+    console.log('calcFields effect: ', calcFields);
+  }, [ageSelection]);
 
   return (
     <Box py={16} px={30}>
       {/* STEP ONE: Display the quote form */}
+      {console.log('calcFields render: ', calcFields)}
       {quoteStep === 1 && (
         <QuoteFormWrapper data-testid="quoteStep1">
           {props.calculatorProps.quoteHeader && (
@@ -334,7 +348,8 @@ const GetQuote = props => {
             id="life-form"
             TURN_OFF_AUTOCOMPLETE={true}
             onSubmit={submitHandler}
-            fields={calculatorFields}
+            dynamicFields={true}
+            fields={calcFields}
             renderFooter={({ FormError }) => (
               <React.Fragment>
                 {FormError && (
