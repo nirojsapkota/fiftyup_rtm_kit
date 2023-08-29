@@ -91,7 +91,7 @@ const generateCoverAmount = (selectedAge, coverCaps = {}) => {
 
   for (
     let coverLimit = coverCap1;
-    coverLimit < coverCap2;
+    coverLimit <= coverCap2;
     coverLimit += 100000
   ) {
     coverAmounts.push({
@@ -208,22 +208,25 @@ const GetQuote = props => {
     },
   ];
 
+  const coverCapByAge = parseInt(
+    props.calculatorProps.coverCaps[ageSelection] || 2000000
+  );
   const coverField = {
     label: 'Amount of cover',
     labelSuper: '*',
     config: {
       component: 'dropdownfield',
       scrollable: true,
-      validator: 'required',
+      validator: 'lessThan',
+      validatorArgs: [
+        coverCapByAge,
+        `Must be less than ${coverCapByAge.toLocaleString('en-US')}`,
+      ],
     },
     type: 'text',
     name: 'cover_required',
     inputMode: 'none',
-    initialValue: quoteFieldsValues.cover_required,
-    options: generateCoverAmount(ageSelection, {
-      '70': '500000',
-      '72': '400000',
-    }),
+    options: generateCoverAmount(ageSelection, props.calculatorProps.coverCaps),
   };
 
   const submitHandler = async values => {
