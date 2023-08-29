@@ -208,9 +208,9 @@ const GetQuote = props => {
     },
   ];
 
-  const coverCapByAge = parseInt(
-    props.calculatorProps.coverCaps[ageSelection] || 2000000
-  );
+  const coverCapByAge = props.calculatorProps.coverCaps
+    ? parseInt(props.calculatorProps.coverCaps[ageSelection] || 2000000)
+    : 2000000;
   const coverField = {
     label: 'Amount of cover',
     labelSuper: '*',
@@ -220,7 +220,7 @@ const GetQuote = props => {
       validator: 'lessThan',
       validatorArgs: [
         coverCapByAge,
-        `Must be less than ${coverCapByAge.toLocaleString('en-US')}`,
+        `Must not be more than ${coverCapByAge.toLocaleString('en-US')}`,
       ],
     },
     type: 'text',
@@ -324,24 +324,18 @@ const GetQuote = props => {
     }
   };
 
-  console.log('ageSelection outside: ', ageSelection);
-  console.log('coverField outside: ', coverField);
   const [calcFields, setCalcFields] = React.useState([
     ...calculatorFields,
     coverField,
   ]);
 
   React.useEffect(() => {
-    console.log('ageSelection effect: ', ageSelection);
-    console.log('coverField effect: ', coverField);
     setCalcFields([...calculatorFields, coverField]);
-    console.log('calcFields effect: ', calcFields);
   }, [ageSelection]);
 
   return (
     <Box py={16} px={30}>
       {/* STEP ONE: Display the quote form */}
-      {console.log('calcFields render: ', calcFields)}
       {quoteStep === 1 && (
         <QuoteFormWrapper data-testid="quoteStep1">
           {props.calculatorProps.quoteHeader && (
