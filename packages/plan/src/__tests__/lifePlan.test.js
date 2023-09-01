@@ -100,6 +100,16 @@ describe('<Plan />', () => {
       await fireEvent.click(getAllByText(/Generate a new quote/i)[0]);
       expect(getAllByText('Get A Quick Quote Now')[0]).toBeInTheDocument();
 
+      input2 = await getByLabelText(/Amount of cover/i);
+      await fireEvent.focus(input2);
+      await fireEvent.click(input2);
+      // Wait for dropdown to appear
+      await wait(async () => {
+        const dropdownItem = await getByLabelText('$100,000');
+        await expect(dropdownItem).toBeInTheDocument();
+        await fireEvent.click(dropdownItem);
+      });
+
       await fireEvent.click(getAllByText(/Get quote/i)[0].closest('button'));
       await wait(async () => {
         await expect(axios.post).toHaveBeenCalled();
@@ -119,6 +129,90 @@ describe('<Plan />', () => {
       await wait(async () => {
         await expect(axios.patch).toHaveBeenCalled();
         expect(getByTestId('quoteStep3')).toBeInTheDocument();
+      });
+    });
+
+    it('renders the proper cover cap', async () => {
+      const { getAllByText, getByLabelText, getByTestId, queryByText } = render(
+        <Plan {...lifePlanProps} />
+      );
+
+      expect(getAllByText('Get A Quick Quote Now')[0]).toBeInTheDocument();
+
+      fireEvent.change(getByLabelText(/First name/i), {
+        target: { value: 'Test' },
+      });
+
+      fireEvent.change(getByLabelText(/Surname/i), {
+        target: { value: 'Last' },
+      });
+
+      fireEvent.change(getByLabelText(/Phone number/i), {
+        target: { value: '0222222222' },
+      });
+
+      let input = await getByLabelText(/Age/i);
+      await fireEvent.focus(input);
+      await fireEvent.click(input);
+      // Wait for dropdown to appear
+      await wait(async () => {
+        const dropdownItem = await getByLabelText('20 years old');
+        await expect(dropdownItem).toBeInTheDocument();
+        await fireEvent.click(dropdownItem);
+      });
+
+      fireEvent.click(getAllByText(/Female/i)[0]);
+
+      fireEvent.click(getAllByText(/Smoker/i)[0]);
+
+      let input2 = await getByLabelText(/Amount of cover/i);
+      await fireEvent.focus(input2);
+      await fireEvent.click(input2);
+      // Wait for dropdown to appear
+      await wait(async () => {
+        const dropdownItem = await getByLabelText('$900,000');
+        await expect(dropdownItem).toBeInTheDocument();
+        await fireEvent.click(dropdownItem);
+      });
+
+      input = await getByLabelText(/Age/i);
+      await fireEvent.focus(input);
+      await fireEvent.click(input);
+      // Wait for dropdown to appear
+      await wait(async () => {
+        const dropdownItem = await getByLabelText('70 years old');
+        await expect(dropdownItem).toBeInTheDocument();
+        await fireEvent.click(dropdownItem);
+      });
+
+      await fireEvent.click(getAllByText(/Get quote/i)[0].closest('button'));
+
+      await wait(async () => {
+        expect(
+          getAllByText('Must not be more than 600,000')[0]
+        ).toBeInTheDocument();
+      });
+
+      input2 = await getByLabelText(/Amount of cover/i);
+      await fireEvent.focus(input2);
+      await fireEvent.click(input2);
+      expect(queryByText('$700,000')).not.toBeInTheDocument();
+      // Wait for dropdown to appear
+      await wait(async () => {
+        const dropdownItem = await getByLabelText('$600,000');
+        await expect(dropdownItem).toBeInTheDocument();
+        await fireEvent.click(dropdownItem);
+      });
+
+      await fireEvent.click(getAllByText(/Get quote/i)[0].closest('button'));
+
+      await wait(async () => {
+        await expect(axios.post).toHaveBeenCalled();
+        expect(getByTestId('quoteStep2')).toBeInTheDocument();
+        expect(getAllByText('Morning')[0]).toBeInTheDocument();
+        expect(getAllByText('Afternoon')[0]).toBeInTheDocument();
+        expect(getAllByText('Evening')[0]).toBeInTheDocument();
+        expect(getAllByText('Generate a new quote')[0]).toBeInTheDocument();
       });
     });
   });
