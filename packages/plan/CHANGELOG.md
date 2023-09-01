@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.1.35...@rtm-ui/plan@3.2.0) (2023-09-01)
+
+
+### Features
+
+* **Plan:** Add support for NO cover cap by age ([9758980](https://github.com/OBSAU/rtm-kit/commit/9758980907f0ea430acadf3c7892b7e63701deea))
+
+
+
+
+
 ## [3.1.35](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.1.34...@rtm-ui/plan@3.1.35) (2023-08-14)
 
 **Note:** Version bump only for package @rtm-ui/plan
