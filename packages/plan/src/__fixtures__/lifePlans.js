@@ -130,7 +130,15 @@ const planInput = {
     thankyouBody: 'Thanks',
     newQuoteText: 'Generate a new quote',
     minAgeAvailment: 16,
-    maxAgeAvailment: 74
+    maxAgeAvailment: 74,
+    coverCaps: {
+      '70': 600000,
+      '71': 600000,
+      '72': 500000,
+      '73': 400000,
+      '74': 300000,
+      '75': 300000,
+    },
   },
 };
 

@@ -25,6 +25,12 @@ export const minimumCharsValidator = min => {
     .min(min, `Must be at least ${min} characters`);
 };
 
+export const lessThanValidator = (val, message) => {
+  return Yup.number()
+    .required()
+    .lessThan(val + 1, message);
+};
+
 export const valueMatchValidator = (regexStr, message) => {
   if (typeof regexStr === 'function') {
     return regexStr();
