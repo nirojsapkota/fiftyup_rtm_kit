@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.12](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.11...@rtm-ui/form@7.1.12) (2023-09-04)
+
+
+### Bug Fixes
+
+* **Form:** Validation message for lessThanValidator ([3817511](https://github.com/OBSAU/rtm-kit/commit/381751168057b0d2af9a912e3c5d1cfce53ee690))
+
+
+
+
+
 ## [7.1.11](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/form@7.1.10...@rtm-ui/form@7.1.11) (2023-09-01)
 
 **Note:** Version bump only for package @rtm-ui/form
