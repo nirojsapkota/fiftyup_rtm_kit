@@ -27,7 +27,7 @@ export const minimumCharsValidator = min => {
 
 export const lessThanValidator = (val, message) => {
   return Yup.number()
-    .required()
+    .required('Required')
     .lessThan(val + 1, message);
 };
 
