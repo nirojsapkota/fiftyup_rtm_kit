@@ -209,7 +209,14 @@ const GetQuote = props => {
   ];
 
   const coverCapByAge = props.calculatorProps.coverCaps
-    ? parseInt(props.calculatorProps.coverCaps[ageSelection] || 2000000)
+    ? typeof props.calculatorProps.coverCaps[ageSelection] === 'number'
+      ? props.calculatorProps.coverCaps[ageSelection]
+      : typeof props.calculatorProps.coverCaps[ageSelection] === 'string'
+      ? parseInt(
+          props.calculatorProps.coverCaps[ageSelection].replace(/,/g, '') ||
+            2000000
+        )
+      : 2000000
     : 2000000;
   const coverField = {
     label: 'Amount of cover',
