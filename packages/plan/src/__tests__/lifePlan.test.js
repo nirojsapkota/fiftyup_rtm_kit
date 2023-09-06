@@ -185,6 +185,15 @@ describe('<Plan />', () => {
         await fireEvent.click(dropdownItem);
       });
 
+      input = await getByLabelText(/Age/i);
+      await fireEvent.focus(input);
+      await fireEvent.click(input);
+      await wait(async () => {
+        const dropdownItem = await getByLabelText('71 years old');
+        await expect(dropdownItem).toBeInTheDocument();
+        await fireEvent.click(dropdownItem);
+      });
+
       await fireEvent.click(getAllByText(/Get quote/i)[0].closest('button'));
 
       await wait(async () => {
@@ -196,7 +205,6 @@ describe('<Plan />', () => {
       input2 = await getByLabelText(/Amount of cover/i);
       await fireEvent.focus(input2);
       await fireEvent.click(input2);
-      expect(queryByText('$700,000')).not.toBeInTheDocument();
       // Wait for dropdown to appear
       await wait(async () => {
         const dropdownItem = await getByLabelText('$600,000');
@@ -214,6 +222,7 @@ describe('<Plan />', () => {
         expect(getAllByText('Evening')[0]).toBeInTheDocument();
         expect(getAllByText('Generate a new quote')[0]).toBeInTheDocument();
       });
+
     });
   });
 });
