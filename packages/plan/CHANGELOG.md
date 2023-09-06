@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.2.1...@rtm-ui/plan@3.2.2) (2023-09-06)
+
+
+### Bug Fixes
+
+* **Plan:** Fixup cover dropdown for age cap ([b3bbf40](https://github.com/OBSAU/rtm-kit/commit/b3bbf409687aa267bdb7d529eb24807f891cb7f5))
+
+
+
+
+
 ## [3.2.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.2.0...@rtm-ui/plan@3.2.1) (2023-09-04)
 
 **Note:** Version bump only for package @rtm-ui/plan
