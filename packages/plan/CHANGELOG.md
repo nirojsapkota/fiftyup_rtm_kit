@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.2.2...@rtm-ui/plan@3.2.3) (2023-09-11)
+
+
+### Bug Fixes
+
+* **Plan:** Fixup NO cover cap for get new quote ([a448a26](https://github.com/OBSAU/rtm-kit/commit/a448a26f09356f39f05ed01787a22195bbd03e0c))
+
+
+
+
+
 ## [3.2.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/plan@3.2.1...@rtm-ui/plan@3.2.2) (2023-09-06)
 
 
