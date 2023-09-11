@@ -65,7 +65,7 @@ const formattedCovercapByage = (ageSelection, coverCaps) => {
   let formattedCoverCap = 2000000;
 
   if (coverCaps) {
-    if(typeof coverCaps[ageSelection] === 'number') {
+    if (typeof coverCaps[ageSelection] === 'number') {
       formattedCoverCap = coverCaps[ageSelection];
     } else if (typeof coverCaps[ageSelection] === 'string') {
       formattedCoverCap = coverCaps[ageSelection].replace(/,/g, '') || 2000000;
@@ -77,7 +77,7 @@ const formattedCovercapByage = (ageSelection, coverCaps) => {
   }
 
   return parseFloat(formattedCoverCap);
-}
+};
 
 /**
  * Helper function that passes the correct development state.
@@ -89,7 +89,7 @@ const generateCoverAmount = (selectedAge, coverCaps = {}) => {
   // JS Implementation of (Ruby Method - ERB file)( cover_list = (100_000..950_000).step(50_000).to_a + (1_000_000..2_000_000).step(100_000).to_a )
   let coverAmounts = [];
 
-  let formattedCoverCap = formattedCovercapByage(selectedAge, coverCaps)
+  let formattedCoverCap = formattedCovercapByage(selectedAge, coverCaps);
 
   let coverCap1 = formattedCoverCap
     ? formattedCoverCap <= 1000000
@@ -228,7 +228,10 @@ const GetQuote = props => {
     },
   ];
 
-  const coverCapByAge = formattedCovercapByage(ageSelection, props.calculatorProps.coverCaps)
+  const coverCapByAge = formattedCovercapByage(
+    ageSelection,
+    props.calculatorProps.coverCaps
+  );
 
   const coverField = {
     label: 'Amount of cover',
@@ -349,6 +352,10 @@ const GetQuote = props => {
   ]);
 
   React.useEffect(() => {
+    if (quoteFieldsValues && !ageSelection) {
+      setAgeSelection(quoteFieldsValues.age);
+    }
+
     setCalcFields([...calculatorFields, coverField]);
   }, [ageSelection]);
 
