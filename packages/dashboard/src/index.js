@@ -97,6 +97,10 @@ const QuestionsStyledCard = styled(Card)`
   }
 `;
 
+const StyledPane = styled(Pane)`
+  background: none;
+`;
+
 const CloseDialogWrapper = styled(Box)`
   display: flex;
   background: 'white';
@@ -177,7 +181,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
       isModalOpen && (
         <Modal onClose={() => sendSurvey('clickout')} data-testid="test-modal">
           <StyledCard backgroundColor="primary">
-            <Pane variant="b">
+            <StyledPane variant="b">
               <CloseDialogWrapper>
                 <CloseButton
                   data-testid="close-modal"
@@ -197,7 +201,7 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                   <Markdown raw={survey.description} />
                 </small>
               </div>
-            </Pane>
+            </StyledPane>
           </StyledCard>
           <QuestionsStyledCard>
             <StyledForm
