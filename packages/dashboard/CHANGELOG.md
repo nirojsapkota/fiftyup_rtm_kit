@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.41](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.40...@rtm-ui/dashboard@3.0.41) (2023-10-04)
+
+
+### Bug Fixes
+
+* **Dashboard:** Fixup 50up pane background ([32ec283](https://github.com/OBSAU/rtm-kit/commit/32ec2833ca0fc1b2bbcbd49eb051180f37780878))
+
+
+
+
+
 ## [3.0.40](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.39...@rtm-ui/dashboard@3.0.40) (2023-09-04)
 
 **Note:** Version bump only for package @rtm-ui/dashboard
