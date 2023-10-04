@@ -4,8 +4,9 @@ import TextField from '../textField';
 import styled from 'styled-components';
 
 const StyledField = styled(TextField)`
-  width: 20px;
+  width: 40px;
   display: inline;
+  text-align: center;
   margin: 5px;
 `;
 
@@ -75,6 +76,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           onFocus={props.onFocus}
           value={year[0]}
           data-testid="y0"
+          inputmode="numeric"
           placeholder={yearPlaceholder[0]}
           onChange={e => handleChange(0, e)}
           onKeyPress={e => handleKeyPress(0, e)}
@@ -85,6 +87,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           onFocus={props.onFocus}
           value={year[1]}
           data-testid="y1"
+          inputmode="numeric"
           placeholder={yearPlaceholder[1]}
           onChange={e => handleChange(1, e)}
           onKeyPress={e => handleKeyPress(1, e)}
@@ -95,6 +98,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           onFocus={props.onFocus}
           value={year[2]}
           data-testid="y2"
+          inputmode="numeric"
           placeholder={yearPlaceholder[2]}
           onChange={e => handleChange(2, e)}
           onKeyPress={e => handleKeyPress(2, e)}
@@ -105,6 +109,7 @@ const YearField = ({ fieldUtils, defaultValue, placeholder, ...props }) => {
           onFocus={props.onFocus}
           value={year[3]}
           data-testid="y3"
+          inputmode="numeric"
           placeholder={yearPlaceholder[3]}
           onChange={e => handleChange(3, e)}
           onKeyPress={e => handleKeyPress(3, e)}
