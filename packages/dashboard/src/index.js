@@ -240,8 +240,8 @@ export const Dashboard = ({ campaigns, dashboardBanner, survey }) => {
                     component: 'inlineYear',
                     validator: 'yearRange',
                     validatorArgs: [
-                      survey.yearOfBirth.minYear,
-                      survey.yearOfBirth.maxYear,
+                      survey.yearOfBirth.config.minYear,
+                      survey.yearOfBirth.config.maxYear,
                     ],
                   },
                 },
