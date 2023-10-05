@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.42](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.41...@rtm-ui/dashboard@3.0.42) (2023-10-05)
+
+
+### Bug Fixes
+
+* **Dashboard:** Survey year of birth validation fix ([74f2638](https://github.com/OBSAU/rtm-kit/commit/74f2638f4c4732f908dd5f24e407af6be0396970))
+
+
+
+
+
 ## [3.0.41](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dashboard@3.0.40...@rtm-ui/dashboard@3.0.41) (2023-10-04)
 
 
