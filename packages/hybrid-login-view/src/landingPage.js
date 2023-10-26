@@ -327,7 +327,7 @@ const MainGraphic = ({
 
       {enableVideoHero && heroVideoDesktopSrc && (
         <VideoHeader>
-          <Video videoSource={heroVideoDesktopSrc}>
+          <Video videoSourceMulti={heroVideoDesktopSrc}>
             {(heroVideoText || heroVideoCtaText) && (
               <Box
                 style={{
