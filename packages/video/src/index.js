@@ -42,7 +42,7 @@ const ContentWrapper = styled('div')`
   width: 100%;
 `;
 
-const Video = ({ videoSource, children }) => {
+const Video = ({ videoSource, videoSourceMulti, children }) => {
   return (
     <VideoBackground data-testid="video-container">
       <VideoForeground>
@@ -53,7 +53,11 @@ const Video = ({ videoSource, children }) => {
           playsInline
           preload="auto"
         >
-          <source src={videoSource.src} type={videoSource.type} />
+          {videoSource && <source src={videoSource.src} type={videoSource.type} />}
+
+          {videoSourceMulti && videoSourceMulti.map((item, _index) => (
+            <source src={item.src} type={item.type} />
+          ))}
         </StyledVideo>
         <ContentWrapper>{children}</ContentWrapper>
       </VideoForeground>

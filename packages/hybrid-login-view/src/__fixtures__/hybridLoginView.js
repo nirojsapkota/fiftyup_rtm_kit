@@ -18,10 +18,16 @@ const hybridLoginView = {
   heroVideoText: '\n\n\n -> ##### Can Main Content be centered? <-',
   heroVideoCtaText: 'Check it out',
   heroVideoTextBackground: 'linear-gradient(184deg,#ffffff,#ffffff00)',
-  heroVideoDesktopSrc: {
-    src: 'https://static.gala.games/images/careers-page/mirandus_ocean.mp4',
-    type: 'video/mp4',
-  },
+  heroVideoDesktopSrc: [
+    {
+      src: 'https://static.gala.games/images/careers-page/mirandus_ocean.mp4',
+      type: 'video/mp4',
+    },
+    {
+      src: 'https://onebigswitch.com.au/facebook_hybrid_configs/429/hero_video/original-1688346029.webm?1688346029',
+      type: 'video/webm'
+    }
+  ],
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',
   asSeenOnImage: 'https://placehold.it/1080x100',
