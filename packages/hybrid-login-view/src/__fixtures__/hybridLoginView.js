@@ -11,22 +11,24 @@ const hybridLoginView = {
   loginUrl: '/guest_sessions',
   autocompletePostcodeUrl: '/suburbs/autocomplete_postcode',
   heroImageUrlDesktopUrl:
-    'https://9saver.com.au/facebook_hybrid_configs/169/desktop_banner_image/original-1638857463.jpg?1638857463',
+    'https://onebigswitch.com.au/facebook_hybrid_configs/434/desktop_banner_image/original-1697429670.jpg?1697429670',
   heroImageUrlTabletUrl: 'https://placehold.it/990x400',
   heroImageUrlMobileUrl: 'https://placehold.it/700x400',
   enableVideoHero: true,
   heroVideoText: '\n\n\n -> ##### Can Main Content be centered? <-',
   heroVideoCtaText: 'Check it out',
   heroVideoTextBackground: 'linear-gradient(184deg,#ffffff,#ffffff00)',
+  enableImageHeroBg: false,
   heroVideoDesktopSrc: [
     {
       src: 'https://static.gala.games/images/careers-page/mirandus_ocean.mp4',
       type: 'video/mp4',
     },
     {
-      src: 'https://onebigswitch.com.au/facebook_hybrid_configs/429/hero_video/original-1688346029.webm?1688346029',
-      type: 'video/webm'
-    }
+      src:
+        'https://onebigswitch.com.au/facebook_hybrid_configs/429/hero_video/original-1688346029.webm?1688346029',
+      type: 'video/webm',
+    },
   ],
   mainHeading: 'I am a main heading',
   videoSrc: 'https://www.youtube.com/embed/_NDxJucqwiQ1',

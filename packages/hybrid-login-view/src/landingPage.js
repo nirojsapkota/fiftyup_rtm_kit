@@ -164,6 +164,40 @@ const VideoContent = styled(Box)`
   max-width: 500px;
 `;
 
+const ImageHeader = styled('div')`
+  height: 200%;
+  min-height: 200px;
+  img {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 100%;
+    min-height: 100%;
+
+    // @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    //   height: 215px;
+    // }
+  }
+`;
+
+const ImageContent = styled('img')`
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 100%;
+  min-height: 100%;
+
+  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    height: 215px;
+  }
+`;
+
 const VideoCta = styled(Block)`
   @media (max-width: ${props => props.theme.grid.md}em) {
     display: table;
@@ -296,6 +330,7 @@ const MainGraphic = ({
   heroVideoTextBackground,
   heroVideoCtaText,
   mainHeading,
+  enableImageHeroBg,
 }) => {
   return (
     <>
@@ -325,7 +360,28 @@ const MainGraphic = ({
         </div>
       )}
 
-      {enableVideoHero && heroVideoDesktopSrc && (
+      {enableImageHeroBg && (
+        <ImageHeader>
+          <Box
+            style={{
+              minHeight: '200px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <ResponsiveImage
+              expandedWidth
+              desktopImgView="https://onebigswitch.com.au/facebook_hybrid_configs/434/desktop_banner_image/original-1697429670.jpg?1697429670"
+              tabletImgView="https://onebigswitch.com.au/facebook_hybrid_configs/434/mobile_banner_image/original-1697429670.jpg?1697429670"
+              mobileImgView="https://onebigswitch.com.au/facebook_hybrid_configs/434/mobile_banner_image/original-1697429670.jpg?1697429670"
+              alt="Hero image"
+            />
+          </Box>
+        </ImageHeader>
+      )}
+
+      {!enableImageHeroBg && enableVideoHero && heroVideoDesktopSrc && (
         <VideoHeader>
           <Video videoSourceMulti={heroVideoDesktopSrc}>
             {(heroVideoText || heroVideoCtaText) && (
