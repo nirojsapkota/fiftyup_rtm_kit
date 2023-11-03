@@ -334,32 +334,6 @@ const MainGraphic = ({
 }) => {
   return (
     <>
-      {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && !enableVideoHero && (
-        <div
-          scroll-target="mainContent"
-          data-testid="main-content"
-          onClick={e => {
-            scrollToElement(e, 'login-panel');
-          }}
-        >
-          <ContainerWrapper
-            className="content-wrapper"
-            style={{ paddingTop: mainHeading ? '4px' : '24px' }}
-          >
-            <Box className="hero" {...expandedProps} width={1}>
-              <Box m="auto" width={1}>
-                <ResponsiveImage
-                  desktopImgView={heroImageUrlDesktopUrl}
-                  tabletImgView={heroImageUrlTabletUrl}
-                  mobileImgView={heroImageUrlMobileUrl}
-                  alt="Hero image"
-                />
-              </Box>
-            </Box>
-          </ContainerWrapper>
-        </div>
-      )}
-
       {enableImageHeroBg && (
         <ImageHeader>
           <Box
@@ -372,9 +346,9 @@ const MainGraphic = ({
           >
             <ResponsiveImage
               expandedWidth
-              desktopImgView="https://onebigswitch.com.au/facebook_hybrid_configs/434/desktop_banner_image/original-1697429670.jpg?1697429670"
-              tabletImgView="https://onebigswitch.com.au/facebook_hybrid_configs/434/mobile_banner_image/original-1697429670.jpg?1697429670"
-              mobileImgView="https://onebigswitch.com.au/facebook_hybrid_configs/434/mobile_banner_image/original-1697429670.jpg?1697429670"
+              desktopImgView={heroImageUrlDesktopUrl}
+              tabletImgView={heroImageUrlTabletUrl}
+              mobileImgView={heroImageUrlMobileUrl}
               alt="Hero image"
             />
           </Box>
