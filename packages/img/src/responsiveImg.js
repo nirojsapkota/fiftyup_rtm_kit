@@ -52,7 +52,7 @@ const ResponsiveImage = ({
 
   return (
     <Wrapper>
-      <Img expandedWidth src={imageUrl} alt={imageUrl} />
+      <Img expandedWidth={expandedWidth} src={imageUrl} alt={imageUrl} />
     </Wrapper>
   );
 };

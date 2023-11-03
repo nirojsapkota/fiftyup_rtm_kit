@@ -27,7 +27,9 @@ describe(`<Img />`, () => {
 describe(`<ResponsiveImage />`, () => {
   const imageProps = sampleResp;
   it('should resize the image with various breakpoints', () => {
-    const { container } = render(<ResponsiveImage {...imageProps} />);
+    const { container, getByTestId } = render(
+      <ResponsiveImage {...imageProps} />
+    );
     const props = container.querySelector(`img`);
     const resizeWindow = x => {
       window.innerWidth = x;
@@ -41,5 +43,19 @@ describe(`<ResponsiveImage />`, () => {
 
     resizeWindow(2880);
     expect(props.getAttribute(`src`)).toEqual(imageProps.desktopImgView);
+
+    const item = getByTestId('testImageWrapper');
+    const style = window.getComputedStyle(item);
+    expect(style.width).toEqual('');
+  });
+
+  it('should expand the image when attribute is set', () => {
+    const { container, getByTestId } = render(
+      <ResponsiveImage {...imageProps} expandedWidth={true} />
+    );
+    const props = getByTestId('testImageWrapper');
+    //const props = container.querySelector(`div['test-id="testImageWrapper"]`);
+    const style = window.getComputedStyle(props);
+    expect(style.width).toEqual('100%');
   });
 });

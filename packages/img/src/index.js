@@ -28,19 +28,10 @@ const BaseImg = styled.img`
   min-width: 1px;
 `;
 
-const Img = ({
-  src,
-  alt,
-  title,
-  shape,
-  height,
-  width,
-  expandedWidth,
-  ...boxProps
-}) => {
+const Img = ({ src, alt, title, shape, height, width, ...boxProps }) => {
   return (
     <Wrapper>
-      <ImgWrapper expandedWidth {...boxProps} shape={shape}>
+      <ImgWrapper data-testid="testImageWrapper" {...boxProps} shape={shape}>
         <BaseImg
           height={height}
           title={title}
