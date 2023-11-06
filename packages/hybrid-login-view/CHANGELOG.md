@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.5.20...@rtm-ui/hybrid-login-view@6.0.0) (2023-11-06)
+
+
+### improvement
+
+* **HybridLoginView:** Fixup hero video for ios devices ([67d04ad](https://github.com/OBSAU/rtm-kit/commit/67d04ad9ddc9bfaa7b768f01a277903943154df1))
+
+
+### BREAKING CHANGES
+
+* **HybridLoginView:** heroVideoDesktopSrc now contains array of object
+
+
+
+
+
 ## [5.5.20](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/hybrid-login-view@5.5.19...@rtm-ui/hybrid-login-view@5.5.20) (2023-10-04)
 
 **Note:** Version bump only for package @rtm-ui/hybrid-login-view
