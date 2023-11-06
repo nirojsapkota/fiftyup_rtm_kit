@@ -21,6 +21,7 @@ const ImgWrapper = styled(Box)`
   align-items: center;
   border-radius: ${props => borderRadius(props)[props.shape] || '0'};
   overflow: hidden;
+  width: ${props => (props.expandedWidth ? '100%' : '')};
 `;
 
 const BaseImg = styled.img`
@@ -30,7 +31,7 @@ const BaseImg = styled.img`
 const Img = ({ src, alt, title, shape, height, width, ...boxProps }) => {
   return (
     <Wrapper>
-      <ImgWrapper {...boxProps} shape={shape}>
+      <ImgWrapper data-testid="testImageWrapper" {...boxProps} shape={shape}>
         <BaseImg
           height={height}
           title={title}

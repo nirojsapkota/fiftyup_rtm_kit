@@ -32,7 +32,12 @@ const useResponsiveWidth = () => {
   return window.innerWidth;
 };
 
-const ResponsiveImage = ({ desktopImgView, tabletImgView, mobileImgView }) => {
+const ResponsiveImage = ({
+  desktopImgView,
+  tabletImgView,
+  mobileImgView,
+  expandedWidth,
+}) => {
   const theme = React.useContext(ThemeContext);
 
   const minWidth = theme.width[0];
@@ -40,16 +45,14 @@ const ResponsiveImage = ({ desktopImgView, tabletImgView, mobileImgView }) => {
   let imageUrl = '';
 
   let currentWidth = useResponsiveWidth();
-  if(currentWidth <= minWidth) 
-    imageUrl = mobileImgView
-  else if(currentWidth > minWidth && currentWidth <= midWidth)
-    imageUrl = tabletImgView ? tabletImgView : desktopImgView
-  else 
-    imageUrl = desktopImgView
-    
+  if (currentWidth <= minWidth) imageUrl = mobileImgView;
+  else if (currentWidth > minWidth && currentWidth <= midWidth)
+    imageUrl = tabletImgView ? tabletImgView : desktopImgView;
+  else imageUrl = desktopImgView;
+
   return (
     <Wrapper>
-      <Img src={imageUrl} alt={imageUrl} />
+      <Img expandedWidth={expandedWidth} src={imageUrl} alt={imageUrl} />
     </Wrapper>
   );
 };
@@ -59,5 +62,5 @@ export default ResponsiveImage;
 ResponsiveImage.propTypes = {
   desktopImgView: PropTypes.string.isRequired,
   tabletImgView: PropTypes.string.isRequired,
-  mobileImgView: PropTypes.string.isRequired
+  mobileImgView: PropTypes.string.isRequired,
 };

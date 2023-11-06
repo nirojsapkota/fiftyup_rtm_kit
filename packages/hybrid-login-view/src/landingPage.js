@@ -164,6 +164,40 @@ const VideoContent = styled(Box)`
   max-width: 500px;
 `;
 
+const ImageHeader = styled('div')`
+  height: 200%;
+  min-height: 200px;
+  img {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 100%;
+    min-height: 100%;
+
+    // @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    //   height: 215px;
+    // }
+  }
+`;
+
+const ImageContent = styled('img')`
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 100%;
+  min-height: 100%;
+
+  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    height: 215px;
+  }
+`;
+
 const VideoCta = styled(Block)`
   @media (max-width: ${props => props.theme.grid.md}em) {
     display: table;
@@ -296,38 +330,34 @@ const MainGraphic = ({
   heroVideoTextBackground,
   heroVideoCtaText,
   mainHeading,
+  enableImageHeroBg,
 }) => {
   return (
     <>
-      {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && !enableVideoHero && (
-        <div
-          scroll-target="mainContent"
-          data-testid="main-content"
-          onClick={e => {
-            scrollToElement(e, 'login-panel');
-          }}
-        >
-          <ContainerWrapper
-            className="content-wrapper"
-            style={{ paddingTop: mainHeading ? '4px' : '24px' }}
+      {enableImageHeroBg && (
+        <ImageHeader>
+          <Box
+            style={{
+              minHeight: '200px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
           >
-            <Box className="hero" {...expandedProps} width={1}>
-              <Box m="auto" width={1}>
-                <ResponsiveImage
-                  desktopImgView={heroImageUrlDesktopUrl}
-                  tabletImgView={heroImageUrlTabletUrl}
-                  mobileImgView={heroImageUrlMobileUrl}
-                  alt="Hero image"
-                />
-              </Box>
-            </Box>
-          </ContainerWrapper>
-        </div>
+            <ResponsiveImage
+              expandedWidth
+              desktopImgView={heroImageUrlDesktopUrl}
+              tabletImgView={heroImageUrlTabletUrl}
+              mobileImgView={heroImageUrlMobileUrl}
+              alt="Hero image"
+            />
+          </Box>
+        </ImageHeader>
       )}
 
-      {enableVideoHero && heroVideoDesktopSrc && (
+      {!enableImageHeroBg && enableVideoHero && heroVideoDesktopSrc && (
         <VideoHeader>
-          <Video videoSource={heroVideoDesktopSrc}>
+          <Video videoSourceMulti={heroVideoDesktopSrc}>
             {(heroVideoText || heroVideoCtaText) && (
               <Box
                 style={{
