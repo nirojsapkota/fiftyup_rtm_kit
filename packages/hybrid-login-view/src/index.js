@@ -27,7 +27,7 @@ import styled from 'styled-components';
 import BasicHeader from './header';
 
 import exitIntent from './exitIntentUtil';
-import { LandingPage} from './landingPage';
+import { LandingPage } from './landingPage';
 
 const HybridLoginReferenceContext = React.createContext();
 
@@ -257,8 +257,8 @@ const MainGraphic = ({
   heroImageUrlTabletUrl,
   heroImageUrlMobileUrl,
   mainHeading,
+  heroMetaTitle,
 }) => {
-
   return (
     <>
       {(heroImageUrlDesktopUrl || heroImageUrlMobileUrl) && (
@@ -280,6 +280,7 @@ const MainGraphic = ({
                   tabletImgView={heroImageUrlTabletUrl}
                   mobileImgView={heroImageUrlMobileUrl}
                   alt="Hero image"
+                  title={heroMetaTitle}
                 />
               </Box>
             </Box>
