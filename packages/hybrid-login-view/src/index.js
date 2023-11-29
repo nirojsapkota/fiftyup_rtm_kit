@@ -279,7 +279,7 @@ const MainGraphic = ({
                   desktopImgView={heroImageUrlDesktopUrl}
                   tabletImgView={heroImageUrlTabletUrl}
                   mobileImgView={heroImageUrlMobileUrl}
-                  alt="Hero image"
+                  alt={heroImageUrlDesktopUrl}
                   title={heroMetaTitle}
                 />
               </Box>
