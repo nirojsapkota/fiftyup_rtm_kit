@@ -37,6 +37,7 @@ const ResponsiveImage = ({
   tabletImgView,
   mobileImgView,
   expandedWidth,
+  title,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -52,7 +53,12 @@ const ResponsiveImage = ({
 
   return (
     <Wrapper>
-      <Img expandedWidth={expandedWidth} src={imageUrl} alt={imageUrl} />
+      <Img
+        expandedWidth={expandedWidth}
+        src={imageUrl}
+        alt={imageUrl}
+        title={title || imageUrl}
+      />
     </Wrapper>
   );
 };
