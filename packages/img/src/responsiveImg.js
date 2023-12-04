@@ -56,7 +56,7 @@ const ResponsiveImage = ({
       <Img
         expandedWidth={expandedWidth}
         src={imageUrl}
-        alt={imageUrl}
+        alt={title || imageUrl}
         title={title || imageUrl}
       />
     </Wrapper>
