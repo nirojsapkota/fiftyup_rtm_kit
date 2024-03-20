@@ -170,8 +170,10 @@ class ConfirmationWrapper extends React.Component {
     };
 
     try {
+      console.log('sending post request to: ', url);
       return await axios.post(url, data, config);
     } catch (error) {
+      console.log('error: ', error);
       console.error(error);
       return true;
     }
