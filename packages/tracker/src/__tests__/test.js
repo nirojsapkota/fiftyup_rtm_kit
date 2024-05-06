@@ -6,6 +6,8 @@ import Google from '../google';
 import Twitter from '../twitter';
 import Facebook from '../facebook';
 
+import Cookies from 'universal-cookie';
+
 describe(`useTracker`, () => {
   it(`exposes the trackEvent function and still calls the callback`, () => {
     const SampleComponent = ({ text, onClick }) => {
@@ -117,7 +119,9 @@ describe('<TrackerRegistration />', () => {
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(fullstory_id);
     expect(getByTestId('TrackingRegister').innerHTML).toContain(zendesk_id);
-    expect(getByTestId('TrackingRegister').innerHTML).toContain('widget.trustpilot.com')
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      'widget.trustpilot.com'
+    );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       google_optimize_id
     );
@@ -131,5 +135,79 @@ describe('<TrackerRegistration />', () => {
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       jackmedia_pixel_id
     );
+  });
+
+  it(`renders the script ga consent if enabled`, () => {
+    const ga_code = 'UA-121324450-2';
+    const google_tag_mgr_id = 'GMT-1111111';
+    const google_adwords_id = 'AW-964414963';
+    const facebook_pixel_id = '1111111111';
+
+    const { getByTestId } = render(
+      <TrackerRegistration
+        google_tag_mgr_id={google_tag_mgr_id}
+        ga_code={ga_code}
+        google_adwords_id={google_adwords_id}
+        facebook_pixel_id={facebook_pixel_id}
+        cookie_items={{ enable_new_cookie_consent: true }}
+        navigation_items={{ user: { email: 'test@mail.com' } }}
+        user={{ email: 'test@mail.com' }}
+      />
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      google_tag_mgr_id
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      "gtag('consent'"
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      "'ad_storage': 'denied'"
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(ga_code);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      google_adwords_id
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      facebook_pixel_id
+    );
+  });
+  it(`renders the script ga granted consent if conesnt options is enabled and cookie is set`, () => {
+    const originalCookiesGet = Cookies.prototype.get;
+    Cookies.prototype.get = jest.fn(() => 'true');
+
+    const ga_code = 'UA-121324450-2';
+    const google_tag_mgr_id = 'GMT-1111111';
+    const google_adwords_id = 'AW-964414963';
+    const facebook_pixel_id = '1111111111';
+
+    const { getByTestId } = render(
+      <TrackerRegistration
+        google_tag_mgr_id={google_tag_mgr_id}
+        ga_code={ga_code}
+        google_adwords_id={google_adwords_id}
+        facebook_pixel_id={facebook_pixel_id}
+        cookie_items={{ enable_new_cookie_consent: true }}
+        user={{ email: 'test@mail.com' }}
+      />
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      google_tag_mgr_id
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      "gtag('consent'"
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      "'ad_storage': 'granted'"
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(ga_code);
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      google_adwords_id
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      facebook_pixel_id
+    );
+
+    jest.clearAllMocks();
+    Cookies.prototype.get = originalCookiesGet;
   });
 });

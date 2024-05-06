@@ -87,16 +87,19 @@ class TrackerRegistration extends React.Component {
   componentDidMount() {
     // Load ga config defaults
     let ga_config = document.createElement('script');
-    gtag_mgr.innerHTML = `window.dataLayer = window.dataLayer || [];
+    ga_config.innerHTML = `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
     `;
     this.instance.appendChild(ga_config);
 
     // When cookie consent option is enabled
-    if (this.props.cookie_items.enable_new_cookie_consent) {
+    if (
+      this.props.cookie_items &&
+      this.props.cookie_items.enable_new_cookie_consent
+    ) {
       // Load default consent
       let ga_consent_default = document.createElement('script');
-      gtag_mgr.innerHTML = `
+      ga_consent_default.innerHTML = `
         gtag('consent', 'default', {
           'ad_storage': 'denied',
           'ad_user_data': 'denied',
@@ -107,13 +110,14 @@ class TrackerRegistration extends React.Component {
       this.instance.appendChild(ga_consent_default);
 
       if (
-        (this.props.navigation_items.user &&
+        (this.props.navigation_items &&
+          this.props.navigation_items.user &&
           this.props.navigation_items.user.email) ||
         cookies.get('isUseCookie')
       ) {
         // Load consent granted for logged in users or users with cookie consent
         let ga_consent_granted = document.createElement('script');
-        gtag_mgr.innerHTML = `gtag('consent', 'update', {
+        ga_consent_granted.innerHTML = `gtag('consent', 'update', {
           'ad_storage': 'granted',
           'ad_user_data': 'granted',
           'ad_personalization': 'granted',
@@ -123,7 +127,7 @@ class TrackerRegistration extends React.Component {
       } else {
         // Otherwise deny ga tracking
         let ga_consent_denied = document.createElement('script');
-        gtag_mgr.innerHTML = `gtag('consent', 'update', {
+        ga_consent_denied.innerHTML = `gtag('consent', 'update', {
           'ad_storage': 'denied',
           'ad_user_data': 'denied',
           'ad_personalization': 'denied',
