@@ -2,6 +2,7 @@ version: 0.2
 phases:
   install:
     commands:
+      - export NODE_OPTIONS="--openssl-legacy-provider"
       - npm install -g npm@6.14.11
       - npm install
       - npm config list
