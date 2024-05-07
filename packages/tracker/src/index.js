@@ -7,6 +7,9 @@ import Facebook from './facebook';
 import Funnel from './funnel';
 import Twitter from './twitter';
 import Bing from './bing';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const safeSendTo = (service, data) => {
   try {
@@ -82,6 +85,58 @@ export const TrackingProvider = ({
 
 class TrackerRegistration extends React.Component {
   componentDidMount() {
+    // Load ga config defaults
+    let ga_config = document.createElement('script');
+    ga_config.innerHTML = `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+    `;
+    this.instance.appendChild(ga_config);
+
+    // When cookie consent option is enabled
+    if (
+      this.props.cookie_items &&
+      this.props.cookie_items.enable_new_cookie_consent
+    ) {
+      // Load default consent
+      let ga_consent_default = document.createElement('script');
+      ga_consent_default.innerHTML = `
+        gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied'
+        });
+      `;
+      this.instance.appendChild(ga_consent_default);
+
+      if (
+        (this.props.navigation_items &&
+          this.props.navigation_items.user &&
+          this.props.navigation_items.user.email) ||
+        cookies.get('isUseCookie')
+      ) {
+        // Load consent granted for logged in users or users with cookie consent
+        let ga_consent_granted = document.createElement('script');
+        ga_consent_granted.innerHTML = `gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
+          'analytics_storage': 'granted'
+        });`;
+        this.instance.appendChild(ga_consent_granted);
+      } else {
+        // Otherwise deny ga tracking
+        let ga_consent_denied = document.createElement('script');
+        ga_consent_denied.innerHTML = `gtag('consent', 'update', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied'
+        });`;
+        this.instance.appendChild(ga_consent_denied);
+      }
+    }
+
     // Twitter Business Conversion tracking
     if (this.props.twitter_analytics_id) {
       let twitter_tracker = document.createElement('script');
@@ -176,8 +231,6 @@ class TrackerRegistration extends React.Component {
 
       const googleAnalytics2 = document.createElement('script');
       googleAnalytics2.innerHTML =
-        'window.dataLayer = window.dataLayer || [];' +
-        'function gtag(){dataLayer.push(arguments);}' +
         "gtag('js', new Date());" +
         "gtag('config', '" +
         `${this.props.ga_code}` +
@@ -223,10 +276,6 @@ class TrackerRegistration extends React.Component {
     if (this.props.google_adwords_id) {
       const adwords2 = document.createElement('script');
       adwords2.innerHTML =
-        'window.dataLayer = window.dataLayer || [];' +
-        'function gtag() {' +
-        'dataLayer.push(arguments);' +
-        '}' +
         "gtag('js', new Date());" +
         "gtag('config', '" +
         `${this.props.google_adwords_id}` +
