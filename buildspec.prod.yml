@@ -7,6 +7,7 @@ env:
 phases:
   install:
     commands:
+      - export NODE_OPTIONS="--openssl-legacy-provider"
       - npm install -g npm@6.14.11
       - git remote set-url origin $GITHUB_URL
       - git fetch
