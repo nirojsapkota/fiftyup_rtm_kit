@@ -7,6 +7,7 @@ import Facebook from './facebook';
 import Funnel from './funnel';
 import Twitter from './twitter';
 import Bing from './bing';
+import Tiktok from './tiktok';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -25,6 +26,7 @@ export const track = (action, trackingData) => {
   safeSendTo(Facebook, data);
   safeSendTo(Funnel, data);
   safeSendTo(Bing, data);
+  safeSendTo(Tiktok, data);
   safeSendTo(Twitter, data);
 };
 
@@ -327,6 +329,10 @@ class TrackerRegistration extends React.Component {
       window.facebook_conversion_url = this.props.facebook_conversion_url;
     }
 
+    if (this.props.tiktok_events_url) {
+      window.tiktok_events_url = this.props.tiktok_events_url;
+    }
+
     if (this.props.enable_trustpilot_js_script) {
       const tpilot = document.createElement('script');
       tpilot.type = 'text/javascript';
@@ -460,4 +466,5 @@ TrackerRegistration.propTypes = {
   zendesk_id: PropTypes.string,
   sfmc_business_account_id: PropTypes.string,
   facebook_conversion_url: PropTypes.string,
+  tiktok_events_url: PropTypes.string,
 };
