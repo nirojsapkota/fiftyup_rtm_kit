@@ -333,6 +333,10 @@ class TrackerRegistration extends React.Component {
       window.tiktok_events_url = this.props.tiktok_events_url;
     }
 
+    if (this.props.tiktok_pixel_id) {
+      window.tiktok_pixel_id = this.props.tiktok_pixel_id;
+    }
+
     if (this.props.enable_trustpilot_js_script) {
       const tpilot = document.createElement('script');
       tpilot.type = 'text/javascript';

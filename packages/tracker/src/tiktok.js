@@ -13,11 +13,18 @@ const cookies = new Cookies();
 const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
   const ttclid = cookies.get('ttclid');
-  const tiktokEventUrl = window.tiktok_events_url;
-  const pixelId = window.tiktok_pixel;
-  const hashedEmail = createHash(tracking.meta.email).update('bacon').digest('base64');
+  const tiktokEventUrl =
+    window.tiktok_events_url || window.current_entity.entity.tiktok_events_url;
+  const pixelId =
+    window.tiktok_pixel_id || window.current_entity.entity.tiktok_pixel_id;
+  const hashedEmail =
+    tracking.user && tracking.user.email
+      ? createHash(tracking.meta.email)
+          .update('bacon')
+          .digest('base64')
+      : '';
 
-  if (pixelId && conversionUrl) {
+  if (pixelId && tiktokEventUrl) {
     // https://business-api.tiktok.com/portal/docs?id=1771100865818625
     const eventTime = +new Date();
     const result = await axios
@@ -30,21 +37,21 @@ const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
             event_time: eventTime,
             user: {
               ttclid: ttclid,
-              email: hashedEmail
+              email: hashedEmail,
             },
             page: {
-              url: fullEventPath
+              url: fullEventPath,
             },
             properties: {
               contents: [
                 {
                   content_category: tracking.category,
-                  content_name: tracking.meta.plan_type
-                }
-              ]
-            }
-          }
-        ]
+                  content_name: tracking.meta.plan_type,
+                },
+              ],
+            },
+          },
+        ],
       })
       .then(response => {
         return response.data;
@@ -57,7 +64,7 @@ const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   } else {
     return false;
   }
-}
+};
 
 const genericPlanKeys = tracking => {
   return {
