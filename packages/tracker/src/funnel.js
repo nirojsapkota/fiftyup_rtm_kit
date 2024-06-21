@@ -1,5 +1,4 @@
 const axios = require('axios');
-const LogRocket = require('logrocket');
 
 const sendDataToServer = (data, authenticityToken) => {
   const config = {
@@ -10,12 +9,8 @@ const sendDataToServer = (data, authenticityToken) => {
     },
   };
 
-  axios.post('/ajax/funnel-report/track-step', data, config).catch(error => {
-    LogRocket.captureException(error, {
-      tags: {
-        service: 'funnel',
-      },
-    });
+  axios.post('/ajax/funnel-report/track-step', data, config).catch(_error => {
+    // Log errors here
   });
 };
 
@@ -26,10 +21,10 @@ const defaultCategoryKeys = (category = '') => {
         step_code: `${category.replace(/-/g, '_')}_click_get_started`,
         plan_id: tracking.meta.tracking_id,
         product: `${category.replace(/-/g, '_')}`,
-        get_started: true
+        get_started: true,
       };
-    }
-  }
+    },
+  };
 };
 
 // Returns a key value pairs that we will send to the server
@@ -114,12 +109,13 @@ const categoryKeys = {
         get_started: true,
       };
     },
-  }
+  },
 };
 
 class Funnel {
   static sendData(tracking) {
-    const categoryKey = categoryKeys[tracking.category] || defaultCategoryKeys(tracking.category);
+    const categoryKey =
+      categoryKeys[tracking.category] || defaultCategoryKeys(tracking.category);
     if (categoryKey !== undefined) {
       const actionKey = categoryKey[tracking.action];
       if (actionKey !== undefined) {

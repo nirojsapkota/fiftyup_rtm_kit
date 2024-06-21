@@ -1,4 +1,3 @@
-import LogRocket from 'logrocket';
 import {
   getKeys,
   getValues,
@@ -17,14 +16,7 @@ class Bing {
     const requiredValues = getValues(requiredKeys, tracking, true);
 
     if (!requiredValues.every(value => value && value !== '')) {
-      LogRocket.captureException(
-        'Missing keys for Bing Analytics UET page_view',
-        {
-          tags: {
-            service: 'uet',
-          },
-        }
-      );
+      // Log errors here
     } else {
       if (tracking.category === 'default') {
         values = reformatDefault(keys, values, tracking.meta);
