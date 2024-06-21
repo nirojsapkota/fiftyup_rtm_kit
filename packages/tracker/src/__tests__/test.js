@@ -7,6 +7,7 @@ import Twitter from '../twitter';
 import Facebook from '../facebook';
 
 import Cookies from 'universal-cookie';
+import TikTok from '../tiktok';
 
 describe(`useTracker`, () => {
   it(`exposes the trackEvent function and still calls the callback`, () => {
@@ -57,12 +58,13 @@ describe(`track`, () => {
     Google.sendData = jest.fn().mockImplementation(throwError);
     Twitter.sendData = jest.fn().mockImplementation(throwError);
     Facebook.sendData = jest.fn().mockImplementation(throwError);
+    TikTok.sendData = jest.fn().mockImplementation(throwError);
 
     const logSpy = jest.spyOn(console, 'log');
 
     track('get_started', { some: 'data', meta: {} });
 
-    expect(logSpy).toHaveBeenCalledTimes(3);
+    expect(logSpy).toHaveBeenCalledTimes(4);
   });
 });
 
@@ -81,6 +83,7 @@ describe('<TrackerRegistration />', () => {
     const sfmc_business_account_id = '123456';
     const outbrain_tracking_id = '000123456';
     const jackmedia_pixel_id = '111111';
+    const tiktok_pixel_id = '111111';
 
     const { getByTestId } = render(
       <TrackerRegistration
@@ -90,6 +93,7 @@ describe('<TrackerRegistration />', () => {
         bing_uet_tag_code={bing_uet_tag_code}
         google_adwords_id={google_adwords_id}
         facebook_pixel_id={facebook_pixel_id}
+        tiktok_pixel_id={tiktok_pixel_id}
         fullstory_id={fullstory_id}
         zendesk_id={zendesk_id}
         enable_trustpilot_js_script={enable_trustpilot_js_script}
@@ -113,6 +117,9 @@ describe('<TrackerRegistration />', () => {
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       facebook_pixel_id
+    );
+    expect(getByTestId('TrackingRegister').innerHTML).toContain(
+      tiktok_pixel_id
     );
     expect(getByTestId('TrackingRegister').innerHTML).toContain(
       twitter_analytics_id

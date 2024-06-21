@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { createHash } from 'crypto';
 import {
   getKeys,
   getValues,
@@ -10,7 +9,7 @@ import {
 
 const cookies = new Cookies();
 
-const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
+export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
   const ttclid = cookies.get('ttclid');
   const tiktokEventUrl =
@@ -19,12 +18,6 @@ const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   const pixelId =
     window.tiktok_pixel_id ||
     (window.current_entity && window.current_entity.entity.tiktok_pixel_id);
-  const hashedEmail =
-    tracking.user && tracking.user.email
-      ? createHash(tracking.meta.email)
-          .update('bacon')
-          .digest('base64')
-      : '';
 
   if (pixelId && tiktokEventUrl) {
     // https://business-api.tiktok.com/portal/docs?id=1771100865818625
@@ -39,7 +32,6 @@ const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
             event_time: eventTime,
             user: {
               ttclid: ttclid,
-              email: hashedEmail,
             },
             page: {
               url: fullEventPath,
@@ -68,36 +60,8 @@ const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   }
 };
 
-const genericPlanKeys = tracking => {
-  return {
-    action: tracking.action,
-    tracking_id: tracking.meta && tracking.meta.tracking_id,
-    merchant_name: tracking.meta && tracking.meta.merchant_name,
-    product: tracking.category,
-  };
-};
-
-const energyPlanKeys = tracking => {
-  return {
-    ...genericPlanKeys(tracking),
-    state: tracking.meta && tracking.meta.state,
-    plan_type: tracking.meta && tracking.meta.plan_type,
-    is_solar: tracking.meta && tracking.meta.solar_nonsolar,
-  };
-};
-
-const categoryKeys = {
-  energy: energyPlanKeys,
-  generic: genericPlanKeys,
-};
-
-const chooseCategoryKeys = category =>
-  categoryKeys[category] || categoryKeys.generic;
-
 class TikTok {
   static async sendData(tracking) {
-    const categoryKeys = chooseCategoryKeys(tracking.category);
-
     const keys = getKeys(tracking.category);
     let values = getValues(keys, tracking);
 
@@ -123,7 +87,9 @@ class TikTok {
       // Remove empty or null values in the eventPath
       const eventPath = values.filter(e => e && e !== '').join('/');
       console.log('TIKTOK EventPath: ', eventPath);
-      await sendToTiktokEventsAPI(tracking, `virtual/${eventPath}`);
+      const res = await sendToTiktokEventsAPI(tracking, `virtual/${eventPath}`);
+      console.log('res: ', res);
+      res;
     }
   }
 }
