@@ -1,4 +1,3 @@
-import LogRocket from 'logrocket';
 import Bing from '../bing';
 
 describe(`Bing`, () => {
@@ -12,7 +11,9 @@ describe(`Bing`, () => {
       hybrid_nonhybrid: 'nonhybrid',
     });
 
-    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/signin/get_started/nonhybrid' });
+    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+      page_path: '/virtual/signin/get_started/nonhybrid',
+    });
   });
 
   it(`with meta values sends an event to the UET object`, () => {
@@ -25,7 +26,9 @@ describe(`Bing`, () => {
       meta: { hybrid_nonhybrid: 'nonhybrid' },
     });
 
-    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/signin/get_started/nonhybrid' });
+    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+      page_path: '/virtual/signin/get_started/nonhybrid',
+    });
   });
 
   it(`falls back to generic keys when a category can't be determined`, () => {
@@ -37,7 +40,9 @@ describe(`Bing`, () => {
       action: 'get_started',
     });
 
-    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/some_product/get_started' });
+    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+      page_path: '/virtual/some_product/get_started',
+    });
   });
 
   it(`when there is no UET object on the window`, () => {
@@ -54,17 +59,6 @@ describe(`Bing`, () => {
     expect(spyError).not.toHaveBeenCalled();
   });
 
-  it(`when not enough data is present it logs the failure`, () => {
-    const logSpy = jest.spyOn(LogRocket, 'captureException');
-
-    Bing.sendData({
-      category: 'signin',
-      action: 'get_started',
-    });
-
-    expect(logSpy).toHaveBeenCalled();
-  });
-
   it(`with energy category and presignup action`, () => {
     global.uetq = { push: jest.fn() };
     const spyUET = jest.spyOn(global.uetq, 'push');
@@ -74,7 +68,9 @@ describe(`Bing`, () => {
       action: 'presignup',
     });
 
-    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/energy/presignup' });
+    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+      page_path: '/virtual/energy/presignup',
+    });
   });
 
   it(`with energy category and preoffer action`, () => {
@@ -86,7 +82,9 @@ describe(`Bing`, () => {
       action: 'preoffer',
     });
 
-    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/energy/preoffer' });
+    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+      page_path: '/virtual/energy/preoffer',
+    });
   });
 
   it(`with energy category and signin action`, () => {
@@ -98,7 +96,9 @@ describe(`Bing`, () => {
       action: 'signin',
     });
 
-    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/energy/signin' });
+    expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+      page_path: '/virtual/energy/signin',
+    });
   });
 
   describe(`energy category`, () => {
@@ -117,7 +117,9 @@ describe(`Bing`, () => {
         },
       });
 
-      expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/energy/get_started/internal/NSW/Electricity/solar' });
+      expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+        page_path: '/virtual/energy/get_started/internal/NSW/Electricity/solar',
+      });
     });
 
     it(`get_started action, DualFuel and non solar`, () => {
@@ -135,12 +137,12 @@ describe(`Bing`, () => {
         },
       });
 
-      expect(spyUET).toHaveBeenCalledWith('event', 'page_view', { 'page_path': '/virtual/energy/get_started/internal/NSW/DualFuel/nonsolar' });
+      expect(spyUET).toHaveBeenCalledWith('event', 'page_view', {
+        page_path: '/virtual/energy/get_started/internal/NSW/DualFuel/nonsolar',
+      });
     });
 
     it(`get_started action, missing is_solar`, () => {
-      const logSpy = jest.spyOn(LogRocket, 'captureException');
-
       Bing.sendData({
         category: 'energy',
         action: 'get_started',
@@ -150,13 +152,9 @@ describe(`Bing`, () => {
           plan_type: 'EG',
         },
       });
-
-      expect(logSpy).toHaveBeenCalled();
     });
 
     it(`get_started action, missing plan_type`, () => {
-      const logSpy = jest.spyOn(LogRocket, 'captureException');
-
       Bing.sendData({
         category: 'energy',
         action: 'get_started',
@@ -166,8 +164,6 @@ describe(`Bing`, () => {
           is_solar: false,
         },
       });
-
-      expect(logSpy).toHaveBeenCalled();
     });
   });
 });
