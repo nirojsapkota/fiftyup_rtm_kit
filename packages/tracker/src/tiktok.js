@@ -14,9 +14,11 @@ const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
   const ttclid = cookies.get('ttclid');
   const tiktokEventUrl =
-    window.tiktok_events_url || window.current_entity.entity.tiktok_events_url;
+    window.tiktok_events_url ||
+    (window.current_entity && window.current_entity.entity.tiktok_events_url);
   const pixelId =
-    window.tiktok_pixel_id || window.current_entity.entity.tiktok_pixel_id;
+    window.tiktok_pixel_id ||
+    (window.current_entity && window.current_entity.entity.tiktok_pixel_id);
   const hashedEmail =
     tracking.user && tracking.user.email
       ? createHash(tracking.meta.email)
