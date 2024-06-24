@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.9.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.10...@rtm-ui/tracker@5.9.0) (2024-06-24)
+
+
+### Bug Fixes
+
+* **Tracker:** Remove crypto library ([3fa6919](https://github.com/OBSAU/rtm-kit/commit/3fa69190ceb6594bb1fba230193746c7ce80fc87))
+* **Tracker:** Tiktok pixel assignment ([a0e04be](https://github.com/OBSAU/rtm-kit/commit/a0e04be895b80de4aedf454064444e94d2270757))
+
+
+### Features
+
+* **Tracker:** Add a tiktok events api integration ([418ae7b](https://github.com/OBSAU/rtm-kit/commit/418ae7b72a1309638df0d71af2a42d48d073f4c5))
+* **Tracker:** Tiktok ([eb8dba7](https://github.com/OBSAU/rtm-kit/commit/eb8dba77352636a599a568a7fac9dbc985c4c1e7))
+* **Tracker:** Tiktok events ([6f5b8b6](https://github.com/OBSAU/rtm-kit/commit/6f5b8b60e5a5320aa3ec44db77cb4a9c01d801cc))
+
+
+
+
+
 ## [5.8.10](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.9...@rtm-ui/tracker@5.8.10) (2024-05-07)
 
 **Note:** Version bump only for package @rtm-ui/tracker
