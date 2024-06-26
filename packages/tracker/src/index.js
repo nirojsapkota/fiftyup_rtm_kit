@@ -94,6 +94,16 @@ class TrackerRegistration extends React.Component {
     `;
     this.instance.appendChild(ga_config);
 
+    const setupTrackings = () => {
+      if (this.props.tiktok_events_url) {
+        window.tiktok_events_url = this.props.tiktok_events_url;
+      }
+
+      if (this.props.tiktok_pixel_id) {
+        window.tiktok_pixel_id = this.props.tiktok_pixel_id;
+      }
+    };
+
     // When cookie consent option is enabled
     if (
       this.props.cookie_items &&
@@ -126,6 +136,7 @@ class TrackerRegistration extends React.Component {
           'analytics_storage': 'granted'
         });`;
         this.instance.appendChild(ga_consent_granted);
+        setupTrackings();
       } else {
         // Otherwise deny ga tracking
         let ga_consent_denied = document.createElement('script');
@@ -137,6 +148,8 @@ class TrackerRegistration extends React.Component {
         });`;
         this.instance.appendChild(ga_consent_denied);
       }
+    } else {
+      setupTrackings();
     }
 
     // Twitter Business Conversion tracking
@@ -327,14 +340,6 @@ class TrackerRegistration extends React.Component {
 
     if (this.props.facebook_conversion_url) {
       window.facebook_conversion_url = this.props.facebook_conversion_url;
-    }
-
-    if (this.props.tiktok_events_url) {
-      window.tiktok_events_url = this.props.tiktok_events_url;
-    }
-
-    if (this.props.tiktok_pixel_id) {
-      window.tiktok_pixel_id = this.props.tiktok_pixel_id;
     }
 
     if (this.props.enable_trustpilot_js_script) {
