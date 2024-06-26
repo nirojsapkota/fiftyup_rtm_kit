@@ -11,6 +11,7 @@ const cookies = new Cookies();
 
 export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
+  var currentURL = window.location.href;
   const ttclid = cookies.get('ttclid');
   const tiktokEventUrl =
     window.tiktok_events_url ||
@@ -34,13 +35,14 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
               ttclid: ttclid,
             },
             page: {
-              url: fullEventPath,
+              url: currentURL,
             },
             properties: {
               contents: [
                 {
                   content_category: tracking.category,
                   content_name: tracking.meta.plan_type,
+                  brand: tracking.entity,
                 },
               ],
             },
@@ -85,9 +87,9 @@ class TikTok {
       console.log('Missing keys for tiktok events api');
     } else {
       // Remove empty or null values in the eventPath
-      const eventPath = values.filter(e => e && e !== '').join('/');
+      const eventPath = values.filter(e => e && e !== '').join('-');
       console.log('TIKTOK EventPath: ', eventPath);
-      const res = await sendToTiktokEventsAPI(tracking, `virtual/${eventPath}`);
+      const res = await sendToTiktokEventsAPI(tracking, `virtual-${eventPath}`);
       console.log('res: ', res);
       res;
     }
