@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.9.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.9.0...@rtm-ui/tracker@5.9.1) (2024-06-26)
+
+
+### Bug Fixes
+
+* **Tracker:** Update tiktok payload ([5c7c905](https://github.com/OBSAU/rtm-kit/commit/5c7c9051027becc9aac58de17353c878bbc5e73a))
+
+
+
+
+
 # [5.9.0](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.8.10...@rtm-ui/tracker@5.9.0) (2024-06-24)
 
 
