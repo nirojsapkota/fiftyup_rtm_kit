@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.9.2](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.9.1...@rtm-ui/tracker@5.9.2) (2024-06-27)
+
+
+### Bug Fixes
+
+* **Tracker:** Consider consent for tiktok events api ([84b0253](https://github.com/OBSAU/rtm-kit/commit/84b0253fcc3f4826a99c07ae12e98b7179fa56c8))
+
+
+
+
+
 ## [5.9.1](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.9.0...@rtm-ui/tracker@5.9.1) (2024-06-26)
 
 
