@@ -13,12 +13,8 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
   var currentURL = window.location.href;
   const ttclid = cookies.get('ttclid');
-  const tiktokEventUrl =
-    window.tiktok_events_url ||
-    (window.current_entity && window.current_entity.entity.tiktok_events_url);
-  const pixelId =
-    window.tiktok_pixel_id ||
-    (window.current_entity && window.current_entity.entity.tiktok_pixel_id);
+  const tiktokEventUrl = window.tiktok_events_url;
+  const pixelId = window.tiktok_pixel_id;
 
   if (pixelId && tiktokEventUrl) {
     // https://business-api.tiktok.com/portal/docs?id=1771100865818625
