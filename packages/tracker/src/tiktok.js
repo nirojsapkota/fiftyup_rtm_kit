@@ -9,6 +9,20 @@ import {
 
 const cookies = new Cookies();
 
+const eventCode = fullEventPath => {
+  const viewContent = /^(virtual\/general\/)(onebigswitch\.com\.au|onebigswitch\.ie|fiftyupclub\.com)---campaigns$/;
+  const clickbutton = /\/signin\/submit/;
+  const search = /virtual\/mobile\/signin\/submit/;
+
+  if (viewContent.test(fullEventPath)) {
+    return 'viewContent';
+  } else if (clickbutton.test(fullEventPath)) {
+    return 'clickbutton';
+  } else if (search.test(fullEventPath)) {
+    return 'Search';
+  }
+};
+
 export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
   var currentURL = window.location.href;
@@ -25,7 +39,7 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
         event_source_id: pixelId,
         data: [
           {
-            event: fullEventPath,
+            event: eventCode(fullEventPath),
             event_time: eventTime,
             user: {
               ttclid: ttclid,
@@ -83,9 +97,9 @@ class TikTok {
       console.log('Missing keys for tiktok events api');
     } else {
       // Remove empty or null values in the eventPath
-      const eventPath = values.filter(e => e && e !== '').join('-');
+      const eventPath = values.filter(e => e && e !== '').join('/');
       console.log('TIKTOK EventPath: ', eventPath);
-      const res = await sendToTiktokEventsAPI(tracking, `virtual-${eventPath}`);
+      const res = await sendToTiktokEventsAPI(tracking, `virtual/${eventPath}`);
       console.log('res: ', res);
       res;
     }
