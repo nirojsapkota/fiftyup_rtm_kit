@@ -96,11 +96,17 @@ class TrackerRegistration extends React.Component {
 
     const setupTrackings = () => {
       if (this.props.tiktok_events_url) {
-        window.tiktok_events_url = this.props.tiktok_events_url;
+        window.tiktok_events_url =
+          this.props.tiktok_events_url ||
+          (window.current_entity &&
+            window.current_entity.entity.tiktok_events_url);
       }
 
       if (this.props.tiktok_pixel_id) {
-        window.tiktok_pixel_id = this.props.tiktok_pixel_id;
+        window.tiktok_pixel_id =
+          this.props.tiktok_pixel_id ||
+          (window.current_entity &&
+            window.current_entity.entity.tiktok_pixel_id);
       }
 
       // Twitter Business Conversion tracking
