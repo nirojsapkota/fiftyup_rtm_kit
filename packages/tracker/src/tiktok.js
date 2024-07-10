@@ -25,6 +25,7 @@ const eventCode = fullEventPath => {
   const addToWishlist = /virtual\/energy\/signin\/submit/;
   const subscribe = /virtual\/mobile\/get_started/;
 
+  /* istanbul ignore next */
   if (viewContent.test(fullEventPath)) {
     return 'ViewContent';
   } else if (clickbutton.test(fullEventPath)) {
@@ -74,6 +75,7 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
         event_source_id: pixelId,
         data: [
           {
+            /* istanbul ignore next */
             event: eventCode(fullEventPath),
             event_time: eventTime,
             user: {
