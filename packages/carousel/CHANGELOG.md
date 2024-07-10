@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.26](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/carousel@1.2.25...@rtm-ui/carousel@1.2.26) (2024-07-10)
+
+**Note:** Version bump only for package @rtm-ui/carousel
+
+
+
+
+
 ## [1.2.25](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/carousel@1.2.24...@rtm-ui/carousel@1.2.25) (2024-07-09)
 
 **Note:** Version bump only for package @rtm-ui/carousel

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.9.4](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.9.3...@rtm-ui/tracker@5.9.4) (2024-07-10)
+
+
+### Bug Fixes
+
+* **Tracker:** Add event code mapping for tiktok ([9ce4a43](https://github.com/OBSAU/rtm-kit/commit/9ce4a438d496718a793edcca7b36d535f684089d))
+* **Tracker:** Fixup typo ([9f8b639](https://github.com/OBSAU/rtm-kit/commit/9f8b63991359a4f08841bf99653e482efc3ae03b))
+* **Tracker:** Tiktok events ([4844d8b](https://github.com/OBSAU/rtm-kit/commit/4844d8b29cace302955075e6a75720b1f8356785))
+
+
+
+
+
 ## [5.9.3](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/tracker@5.9.2...@rtm-ui/tracker@5.9.3) (2024-07-09)
 
 
