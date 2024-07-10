@@ -13,6 +13,17 @@ const eventCode = fullEventPath => {
   const viewContent = /^(virtual\/general\/)(onebigswitch\.com\.au|onebigswitch\.ie|fiftyupclub\.com)---campaigns$/;
   const clickbutton = /\/signin\/submit/;
   const search = /virtual\/mobile\/signin\/submit/;
+  const submitForm = /virtual\/energy\/get_started/;
+  const download = /virtual\/travel\/get_started/;
+  const contact = /virtual\/health-insurance\/signin\/submit/;
+  const initiateCheckout = /virtual\/car-insurance\/signin\/submit/;
+  const addPaymentInfo = /virtual\/home-and-contents-insurance\/signin\/submit/;
+  const addToCart = /virtual\/travel\/signin\/submit/;
+  const completePayment = /virtual\/health\/get_started/;
+  const completeRegistration = /virtual\/car\/get_started/;
+  const placeAnOrder = /virtual\/home\/get_started/;
+  const addToWishlist = /virtual\/energy\/signin\/submit/;
+  const subscribe = /virtual\/mobile\/get_started/;
 
   if (viewContent.test(fullEventPath)) {
     return 'viewContent';
@@ -20,6 +31,30 @@ const eventCode = fullEventPath => {
     return 'clickbutton';
   } else if (search.test(fullEventPath)) {
     return 'Search';
+  } else if (submitForm.test(fullEventPath)) {
+    return 'SubmitForm';
+  } else if (download.test(fullEventPath)) {
+    return 'Download';
+  } else if (contact.test(fullEventPath)) {
+    return 'Contact';
+  } else if (initiateCheckout.test(fullEventPath)) {
+    return 'InitiateCheckout';
+  } else if (addPaymentInfo.test(fullEventPath)) {
+    return 'AddPaymentInfo';
+  } else if (addToCart.test(fullEventPath)) {
+    return 'AddToCart';
+  } else if (completePayment.test(fullEventPath)) {
+    return 'CompletePayment';
+  } else if (completeRegistration.test(fullEventPath)) {
+    return 'CompleteRegistration';
+  } else if (placeAnOrder.test(fullEventPath)) {
+    return 'PlaceAnOrder';
+  } else if (addToWishlist.test(fullEventPath)) {
+    return 'AddToWishlist';
+  } else if (subscribe.test(fullEventPath)) {
+    return 'Subscribe';
+  } else {
+    return fullEventPath.replace(/\//g, '-');
   }
 };
 
