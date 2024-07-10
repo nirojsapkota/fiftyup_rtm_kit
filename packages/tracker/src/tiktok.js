@@ -26,9 +26,9 @@ const eventCode = fullEventPath => {
   const subscribe = /virtual\/mobile\/get_started/;
 
   if (viewContent.test(fullEventPath)) {
-    return 'viewContent';
+    return 'ViewContent';
   } else if (clickbutton.test(fullEventPath)) {
-    return 'clickbutton';
+    return 'Clickbutton';
   } else if (search.test(fullEventPath)) {
     return 'Search';
   } else if (submitForm.test(fullEventPath)) {
