@@ -9,6 +9,56 @@ import {
 
 const cookies = new Cookies();
 
+const eventCode = fullEventPath => {
+  const viewContent = /^(virtual\/general\/)(onebigswitch\.com\.au|onebigswitch\.ie|fiftyupclub\.com)---campaigns$/;
+  const clickbutton = /\/signin\/submit/;
+  const search = /virtual\/mobile\/signin\/submit/;
+  const submitForm = /virtual\/energy\/get_started/;
+  const download = /virtual\/travel\/get_started/;
+  const contact = /virtual\/health-insurance\/signin\/submit/;
+  const initiateCheckout = /virtual\/car-insurance\/signin\/submit/;
+  const addPaymentInfo = /virtual\/home-and-contents-insurance\/signin\/submit/;
+  const addToCart = /virtual\/travel\/signin\/submit/;
+  const completePayment = /virtual\/health\/get_started/;
+  const completeRegistration = /virtual\/car\/get_started/;
+  const placeAnOrder = /virtual\/home\/get_started/;
+  const addToWishlist = /virtual\/energy\/signin\/submit/;
+  const subscribe = /virtual\/mobile\/get_started/;
+
+  /* istanbul ignore next */
+  if (viewContent.test(fullEventPath)) {
+    return 'ViewContent';
+  } else if (clickbutton.test(fullEventPath)) {
+    return 'Clickbutton';
+  } else if (search.test(fullEventPath)) {
+    return 'Search';
+  } else if (submitForm.test(fullEventPath)) {
+    return 'SubmitForm';
+  } else if (download.test(fullEventPath)) {
+    return 'Download';
+  } else if (contact.test(fullEventPath)) {
+    return 'Contact';
+  } else if (initiateCheckout.test(fullEventPath)) {
+    return 'InitiateCheckout';
+  } else if (addPaymentInfo.test(fullEventPath)) {
+    return 'AddPaymentInfo';
+  } else if (addToCart.test(fullEventPath)) {
+    return 'AddToCart';
+  } else if (completePayment.test(fullEventPath)) {
+    return 'CompletePayment';
+  } else if (completeRegistration.test(fullEventPath)) {
+    return 'CompleteRegistration';
+  } else if (placeAnOrder.test(fullEventPath)) {
+    return 'PlaceAnOrder';
+  } else if (addToWishlist.test(fullEventPath)) {
+    return 'AddToWishlist';
+  } else if (subscribe.test(fullEventPath)) {
+    return 'Subscribe';
+  } else {
+    return fullEventPath.replace(/\//g, '-');
+  }
+};
+
 export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
   var currentURL = window.location.href;
@@ -25,7 +75,8 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
         event_source_id: pixelId,
         data: [
           {
-            event: fullEventPath,
+            /* istanbul ignore next */
+            event: eventCode(fullEventPath),
             event_time: eventTime,
             user: {
               ttclid: ttclid,
@@ -83,9 +134,9 @@ class TikTok {
       console.log('Missing keys for tiktok events api');
     } else {
       // Remove empty or null values in the eventPath
-      const eventPath = values.filter(e => e && e !== '').join('-');
+      const eventPath = values.filter(e => e && e !== '').join('/');
       console.log('TIKTOK EventPath: ', eventPath);
-      const res = await sendToTiktokEventsAPI(tracking, `virtual-${eventPath}`);
+      const res = await sendToTiktokEventsAPI(tracking, `virtual/${eventPath}`);
       console.log('res: ', res);
       res;
     }
