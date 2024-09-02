@@ -83,6 +83,13 @@ Or:
 lerna run test --stream --scope @rtm-ui/phoneback -- -- --colors --coverage
 ```
 
+or:
+
+```sh
+npm run test:package --package=<package-name>
+e.g. npm run test:package --package=footer
+```
+
 ---
 
 From here there are a few things you can do:
