@@ -214,7 +214,7 @@ export const Footer = ({ entity, disclaimers, landing }) => {
             style={{ justifyContent: 'flex-end' }}
           >
             {legals.map((item, index) => (
-              <Box key={item.name} pb={[5, 5, 2]} mr={index === 0 ? 40 : 0}>
+              <Box key={item.name} pb={[5, 5, 2]} mr={[1, 5]}>
                 <A href={item.url} target={landing ? 'blank' : ''}>
                   {item.name}
                 </A>
