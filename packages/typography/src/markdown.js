@@ -19,9 +19,6 @@ const toComponent = (ast, i) => {
 const renderComponent = ({ type, ...props }, i) => {
   const mappedType = primitiveMap[type];
   if (typeof mappedType !== 'function') {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Mapped type not found for', type, props);
-    }
     return null;
   }
 
