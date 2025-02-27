@@ -12,7 +12,8 @@
       "Label",
       "Text",
       "Markdown",
-      "labelTextStyles"
+      "labelTextStyles",
+      "ValidateMarkdown"
     ]
   },
   "main": "build/index.js",

@@ -214,7 +214,7 @@ export const Markdown = ({ raw, referenceObject = {}, ...boxProps }) => {
   );
 };
 
-export const validMarkdown = (reference, raw) => {
+export const ValidateMarkdown = (reference, raw) => {
   const ast = unified()
     .use(markdown, { commonmark: true, footnotes: true })
     .use(interpolator, reference)

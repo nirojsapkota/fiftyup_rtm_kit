@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, fireEvent, wait } from '../../../bootstrap/setup/testSetup';
-import { Dashboard } from '../index';
+import { fireEvent, render, wait } from '../../../bootstrap/setup/testSetup';
 import { getSurvey, submitSurvey } from '../actions';
 import { dummyData } from '../fixtures/dummyData';
+import { Dashboard } from '../index';
 
 import axios from 'axios';
 
@@ -70,16 +70,18 @@ describe('<Dashboard />', () => {
   });
 
   it('does not popup a modal when yearOfBirth data prop is given and show for existing users flag is set', async () => {
-    axios.get.mockResolvedValue({ data: {showSurvey: false, data: {yearOfBirth: ""}} });
-    const { queryByTestId } = render(
-      <Dashboard {...dummyData} />
-    );
+    axios.get.mockResolvedValue({
+      data: { showSurvey: false, data: { yearOfBirth: '' } },
+    });
+    const { queryByTestId } = render(<Dashboard {...dummyData} />);
     await expect(axios.get).toHaveBeenCalled();
     expect(queryByTestId('test-modal')).toBeNull();
   });
 
   it('does popup a modal when yearOfBirth data prop is not given', async () => {
-    axios.get.mockResolvedValue({ data: {showSurvey: false, data: {products: []}} });
+    axios.get.mockResolvedValue({
+      data: { showSurvey: false, data: { products: [] } },
+    });
     const { getByText } = render(<Dashboard {...dummyData} />);
     await expect(axios.get).toHaveBeenCalled();
     await wait(async () => {
@@ -160,7 +162,7 @@ describe('getSurvey', () => {
   it('fetches erroneously data from an API', async () => {
     const errorMessage = 'Network Error';
 
-    axios.get.mockImplementationOnce(() =>
+    axios.get.mockRejectedValueOnce(() =>
       Promise.reject(new Error(errorMessage))
     );
 
@@ -184,7 +186,7 @@ describe('submitSurvey', () => {
   it('pushes erroneously data to an API', async () => {
     const errorMessage = 'Network Error';
 
-    axios.post.mockImplementationOnce(() =>
+    axios.post.mockRejectedValueOnce(() =>
       Promise.reject(new Error(errorMessage))
     );
 

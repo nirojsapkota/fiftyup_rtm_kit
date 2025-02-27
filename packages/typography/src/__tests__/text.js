@@ -9,7 +9,7 @@ import {
   Paragraph,
   Small,
   Text,
-  validMarkdown,
+  ValidateMarkdown,
 } from '../index';
 import {
   alignmentProps,
@@ -189,14 +189,14 @@ describe('<Markdown />', () => {
     expect(getByText('undefined')).toBeInTheDocument();
   });
   it('validates markdown false', () => {
-    const bool = validMarkdown(
+    const bool = ValidateMarkdown(
       { campaign: { name: 'Origin BES' } },
       'This is the {{some.other.object.key}} campaign'
     );
     expect(bool).toBe(false);
   });
   it('validates markdown true', () => {
-    const bool = validMarkdown(
+    const bool = ValidateMarkdown(
       { campaign: { name: 'Origin BES' } },
       'This is the {{campaign.name}} campaign'
     );

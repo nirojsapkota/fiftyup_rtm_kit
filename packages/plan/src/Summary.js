@@ -11,7 +11,7 @@ import {
   Markdown,
   Paragraph,
   Small,
-  validMarkdown,
+  ValidateMarkdown,
 } from '@rtm-ui/typography';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -50,7 +50,7 @@ const Main = props => {
         <List>
           {props.plan_features &&
             props.plan_features
-              .filter(({ _icon, body }) => validMarkdown(refer, body))
+              .filter(({ _icon, body }) => ValidateMarkdown(refer, body))
               .map(({ icon, body }) => ({
                 icon,
                 fill: 'primary',
