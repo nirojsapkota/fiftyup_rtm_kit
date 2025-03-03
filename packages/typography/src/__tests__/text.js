@@ -1,14 +1,22 @@
 import React from 'react';
-import { render, fireEvent } from '../../../bootstrap/setup/testSetup';
-import { Header, Paragraph, Label, Text, Small, Markdown } from '../index';
+import styled from 'styled-components';
+import { fireEvent, render } from '../../../bootstrap/setup/testSetup';
 import { blocks } from '../../docs/content.md';
 import {
-  weightProps,
-  fontStyles,
+  Header,
+  Label,
+  Markdown,
+  Paragraph,
+  Small,
+  Text,
+  ValidateMarkdown,
+} from '../index';
+import {
   alignmentProps,
+  fontStyles,
   labelTextStyles,
+  weightProps,
 } from '../text';
-import styled from 'styled-components';
 
 const mockTrackEvent = jest.fn();
 jest.mock('@rtm-ui/tracker', () => {
@@ -180,6 +188,20 @@ describe('<Markdown />', () => {
     );
     expect(getByText('undefined')).toBeInTheDocument();
   });
+  it('validates markdown false', () => {
+    const bool = ValidateMarkdown(
+      { campaign: { name: 'Origin BES' } },
+      'This is the {{some.other.object.key}} campaign'
+    );
+    expect(bool).toBe(false);
+  });
+  it('validates markdown true', () => {
+    const bool = ValidateMarkdown(
+      { campaign: { name: 'Origin BES' } },
+      'This is the {{campaign.name}} campaign'
+    );
+    expect(bool).toBe(true);
+  });
   it('renders superscripts properly', () => {
     const { container } = render(<Markdown raw="Hello [^test]" />);
     expect(container).toContainElement(document.querySelector('sup'));
@@ -187,6 +209,11 @@ describe('<Markdown />', () => {
   it('renders bold text properly', () => {
     const { container } = render(<Markdown raw="Hello **bold** text" />);
     expect(container).toContainElement(document.querySelector('strong'));
+  });
+
+  it('renders list properly', () => {
+    const { container } = render(<Markdown raw="* Like * These lists?" />);
+    expect(container).toContainElement(document.querySelector('li'));
   });
   it('renders italicized text properly', () => {
     const { container } = render(<Markdown raw="Hello _emphasized_ text" />);

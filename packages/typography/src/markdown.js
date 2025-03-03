@@ -1,17 +1,16 @@
-import React from 'react';
-import Header from './header';
-import Paragraph from './paragraph';
-import { Box } from '@rtm-ui/layout';
 import { Img } from '@rtm-ui/img';
-import styled from 'styled-components';
-import { Text } from './text';
-import unified from 'unified';
-import markdown from 'remark-parse';
+import { Box } from '@rtm-ui/layout';
+import React from 'react';
 import stringify from 'rehype-stringify';
-import remark2rehype from 'remark-rehype';
 import remarkAlign from 'remark-align';
-import interpolator from './interpolator';
+import markdown from 'remark-parse';
+import styled from 'styled-components';
+import unified from 'unified';
 import blocks from './blocks';
+import Header from './header';
+import interpolator from './interpolator';
+import Paragraph from './paragraph';
+import { Text } from './text';
 
 const toComponent = (ast, i) => {
   return renderComponent(ast, i);
@@ -20,9 +19,6 @@ const toComponent = (ast, i) => {
 const renderComponent = ({ type, ...props }, i) => {
   const mappedType = primitiveMap[type];
   if (typeof mappedType !== 'function') {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Mapped type not found for', type, props);
-    }
     return null;
   }
 
@@ -216,4 +212,35 @@ export const Markdown = ({ raw, referenceObject = {}, ...boxProps }) => {
       {ast.children.map((item, i) => toComponent(item, i))}
     </MarkdownBox>
   );
+};
+
+export const ValidateMarkdown = (reference, raw) => {
+  const ast = unified()
+    .use(markdown, { commonmark: true, footnotes: true })
+    .use(interpolator, reference)
+    .use(remarkAlign)
+    .use(blocks)
+    .use(stringify)
+    .parse(raw.toString());
+
+  if (has_undefined(ast)) {
+    console.log(`Invalid: ${raw}`);
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const has_undefined = (obj, contains_undefined = false) => {
+  for (let i = 0; i < obj.children.length; i++) {
+    if (obj.children[i].children) {
+      contains_undefined = has_undefined(obj.children[i], contains_undefined);
+    } else {
+      if (obj.children[i].value == 'undefined') {
+        contains_undefined = true;
+        break;
+      }
+    }
+  }
+  return contains_undefined;
 };

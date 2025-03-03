@@ -1,14 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Button } from '@rtm-ui/button';
-import { Header, Paragraph, Small, Markdown } from '@rtm-ui/typography';
-import { Block, Box } from '@rtm-ui/layout';
-import { Img } from '@rtm-ui/img';
-import { List } from '@rtm-ui/list';
 import { A } from '@rtm-ui/a';
-import { Theme as Variant } from '@rtm-ui/theme';
 import { Accordion } from '@rtm-ui/accordion';
+import { Button } from '@rtm-ui/button';
 import { DynamicSvg } from '@rtm-ui/dynamic-svg';
+import { Img } from '@rtm-ui/img';
+import { Block, Box } from '@rtm-ui/layout';
+import { List } from '@rtm-ui/list';
+import { Theme as Variant } from '@rtm-ui/theme';
+import {
+  Header,
+  Markdown,
+  Paragraph,
+  Small,
+  ValidateMarkdown,
+} from '@rtm-ui/typography';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Share } from './Action';
 import PlanReferenceContext from './PlanReferenceContext';
 import { PrimaryAction } from './PrimaryAction';
@@ -43,11 +49,13 @@ const Main = props => {
       <Box width={1} py={20}>
         <List>
           {props.plan_features &&
-            props.plan_features.map(({ icon, body }) => ({
-              icon,
-              fill: 'primary',
-              body: <Markdown referenceObject={refer} raw={body} />,
-            }))}
+            props.plan_features
+              .filter(({ _icon, body }) => ValidateMarkdown(refer, body))
+              .map(({ icon, body }) => ({
+                icon,
+                fill: 'primary',
+                body: <Markdown referenceObject={refer} raw={body} />,
+              }))}
         </List>
       </Box>
     </React.Fragment>

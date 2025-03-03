@@ -1,18 +1,18 @@
-import Header from './header';
-import Small from './small';
-import Paragraph from './paragraph';
-import Label from './label';
-import { Text, labelTextStyles } from './text';
 import { Blurb } from './blurb';
-import { Markdown } from './markdown';
-
+import Header from './header';
+import Label from './label';
+import { Markdown, ValidateMarkdown } from './markdown';
+import Paragraph from './paragraph';
+import Small from './small';
+import { Text, labelTextStyles } from './text';
 export {
-  Header,
-  Small,
-  Paragraph,
-  Markdown,
-  Label,
-  Text,
   Blurb,
+  Header,
+  Label,
+  Markdown,
+  Paragraph,
+  Small,
+  Text,
+  ValidateMarkdown,
   labelTextStyles,
 };
