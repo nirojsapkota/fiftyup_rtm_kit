@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.127](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/footer@1.0.126...@rtm-ui/footer@1.0.127) (2025-03-03)
+
+**Note:** Version bump only for package @rtm-ui/footer
+
+
+
+
+
 ## [1.0.126](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/footer@1.0.125...@rtm-ui/footer@1.0.126) (2024-09-17)
 
 **Note:** Version bump only for package @rtm-ui/footer
