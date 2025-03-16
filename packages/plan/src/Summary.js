@@ -207,19 +207,21 @@ const Summary = props => {
         </Box>
         <Box py={2}>
           {props.disclaimers &&
-            props.disclaimers.map((disclaimer, i) => (
-              // since fonts are em, this will result in the new
-              // base being 12px and the <Small> tag will
-              // handle applying base colors to text blocks
-              <Small key={i}>
-                <Markdown
-                  pb={10}
-                  scale={0.75}
-                  referenceObject={refer}
-                  raw={disclaimer.body}
-                />
-              </Small>
-            ))}
+            props.disclaimers
+              .filter(disclaimer => ValidateMarkdown(refer, disclaimer.body))
+              .map((disclaimer, i) => (
+                // since fonts are em, this will result in the new
+                // base being 12px and the <Small> tag will
+                // handle applying base colors to text blocks
+                <Small key={i}>
+                  <Markdown
+                    pb={10}
+                    scale={0.75}
+                    referenceObject={refer}
+                    raw={disclaimer.body}
+                  />
+                </Small>
+              ))}
           <Small dangerousHTML={props.disclaimer_html} />
         </Box>
       </Box>
