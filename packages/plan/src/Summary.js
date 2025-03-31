@@ -73,6 +73,19 @@ const Summary = props => {
     return str !== null;
   });
 
+  let finalDisclaimer = [];
+  if (props.disclaimers) {
+    const parsedAllDisclaimer = props.disclaimers.map((disclaimer, i) => {
+      return disclaimer.body.split(/\r\n+/);
+    });
+
+    finalDisclaimer = parsedAllDisclaimer.map(disclaimers => {
+      return disclaimers.filter((disclaimer, i) => {
+        return ValidateMarkdown(refer, disclaimer);
+      });
+    });
+  }
+
   return (
     <Box p={[0, 0, 0, 2]}>
       <Box px={[2, 2, 3, 0]} py={3}>
@@ -206,22 +219,20 @@ const Summary = props => {
           </Variant>
         </Box>
         <Box py={2}>
-          {props.disclaimers &&
-            props.disclaimers
-              .filter(disclaimer => ValidateMarkdown(refer, disclaimer.body))
-              .map((disclaimer, i) => (
-                // since fonts are em, this will result in the new
-                // base being 12px and the <Small> tag will
-                // handle applying base colors to text blocks
+          {finalDisclaimer &&
+            finalDisclaimer.map(disclaimers => {
+              return disclaimers.map((disclaimer, i) => (
+                // each disclaimer is an array of string of bodies
                 <Small key={i}>
                   <Markdown
                     pb={10}
                     scale={0.75}
                     referenceObject={refer}
-                    raw={disclaimer.body}
+                    raw={disclaimer}
                   />
                 </Small>
-              ))}
+              ));
+            })}
           <Small dangerousHTML={props.disclaimer_html} />
         </Box>
       </Box>
