@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/video@2.0.6...@rtm-ui/video@2.0.7) (2025-04-09)
+
+**Note:** Version bump only for package @rtm-ui/video
+
+
+
+
+
 ## [2.0.6](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/video@2.0.5...@rtm-ui/video@2.0.6) (2024-07-10)
 
 **Note:** Version bump only for package @rtm-ui/video

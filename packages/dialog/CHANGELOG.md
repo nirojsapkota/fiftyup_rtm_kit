@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.139](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dialog@4.0.138...@rtm-ui/dialog@4.0.139) (2025-04-09)
+
+**Note:** Version bump only for package @rtm-ui/dialog
+
+
+
+
+
 ## [4.0.138](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/dialog@4.0.137...@rtm-ui/dialog@4.0.138) (2025-03-03)
 
 **Note:** Version bump only for package @rtm-ui/dialog
