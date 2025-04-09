@@ -2,9 +2,9 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import {
   getKeys,
+  getOptionalKeys,
   getValues,
   reformatDefault,
-  getOptionalKeys,
 } from './pageViewHelper';
 
 const cookies = new Cookies();
@@ -59,13 +59,16 @@ const eventCode = fullEventPath => {
   }
 };
 
+// Need to send email from browser track, may be through context
+//https://business-api.tiktok.com/portal/docs?id=1741601162187777
 export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
   console.log('sendToTiktokEventsAPI data ', tracking);
   var currentURL = window.location.href;
   const ttclid = cookies.get('ttclid');
   const tiktokEventUrl = window.tiktok_events_url;
   const pixelId = window.tiktok_pixel_id;
-
+  // https://business-api.tiktok.com/portal/docs?id=1771100879787009
+  // https://www.simoahava.com/analytics/custom-templates-guide-for-google-tag-manager/
   if (pixelId && tiktokEventUrl) {
     // https://business-api.tiktok.com/portal/docs?id=1771100865818625
     const eventTime = +new Date();
@@ -73,6 +76,7 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
       .post(tiktokEventUrl, {
         event_source: 'web',
         event_source_id: pixelId,
+        event_id: `${tracking.meta.email}${eventCode(fullEventPath)}`,
         data: [
           {
             /* istanbul ignore next */
@@ -80,6 +84,8 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
             event_time: eventTime,
             user: {
               ttclid: ttclid,
+              email: cookies.get('user_email_sha256'),
+              external_id: cookies.get('user_external_id_sha256'),
             },
             page: {
               url: currentURL,
