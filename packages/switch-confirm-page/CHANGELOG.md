@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.46](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@6.0.45...@rtm-ui/switch-confirm-page@6.0.46) (2025-04-22)
+
+**Note:** Version bump only for package @rtm-ui/switch-confirm-page
+
+
+
+
+
 ## [6.0.45](https://github.com/OBSAU/rtm-kit/compare/@rtm-ui/switch-confirm-page@6.0.44...@rtm-ui/switch-confirm-page@6.0.45) (2025-04-09)
 
 **Note:** Version bump only for package @rtm-ui/switch-confirm-page
