@@ -76,7 +76,7 @@ export const sendToTiktokEventsAPI = async (tracking, fullEventPath) => {
       .post(tiktokEventUrl, {
         event_source: 'web',
         event_source_id: pixelId,
-        event_id: `${tracking.meta.email}${eventCode(fullEventPath)}`,
+        event_id: `${cookies.get('user_email')}_${eventCode(fullEventPath)}`,
         data: [
           {
             /* istanbul ignore next */
