@@ -200,7 +200,7 @@ const GetQuote = props => {
       },
     },
     {
-      label: 'Gender',
+      label: 'Sex',
       labelSuper: '*',
       config: {
         validator: 'requiredRadio',
