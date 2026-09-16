@@ -1,0 +1,60 @@
+name: Publish (dev)
+
+# Replaces buildspec.dev.yml. Runs on pushes to any branch other than master, mirroring the
+# previous CodeBuild "dev" project's trigger.
+on:
+  push:
+    branches-ignore:
+      - master
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ap-southeast-2
+  CODEARTIFACT_DOMAIN: rtm-kit
+  CODEARTIFACT_REPOSITORY: rtm-kit-dev
+
+jobs:
+  publish-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Configure AWS credentials (CodeArtifact publisher role)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.CODEARTIFACT_PUBLISHER_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Configure npm for CodeArtifact
+        run: |
+          aws codeartifact login \
+            --tool npm \
+            --domain "$CODEARTIFACT_DOMAIN" \
+            --repository "$CODEARTIFACT_REPOSITORY"
+
+      - run: npm install -g npm@6.14.11
+      - run: npm install
+      - run: npm config list
+
+      - run: npm run bootstrap
+      - run: npm run build:ci
+
+      - run: npm run test:ci
+      - run: npm run copy:builds
+      - run: npm run build:docs
+
+      # Publishes prerelease/snapshot versions to the dev CodeArtifact repository so
+      # feature branches can be consumed for testing without touching prod. --registry
+      # overrides lerna.json's default (which points at the prod registry).
+      - run: |
+          npx lerna publish --yes --canary --dist-tag dev --no-push --no-git-tag-version \
+            --registry https://repo.fiftyupclub.com/dev/

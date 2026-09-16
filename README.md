@@ -1,21 +1,29 @@
 # RTM Kit
 
-![Build Status](https://codebuild.ap-southeast-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiVVkvQkdpWVVZcU1zRHNYN0tNdjJYV0t6N1l3bG1tL3Y5WWE0R1MwaExPOUpSVU51cm1XZDJVcHRLTmtyaDNKc3IreXFpZnNDU3EwSkZzNER4YzUyblY0PSIsIml2UGFyYW1ldGVyU3BlYyI6ImUvSGxpZTF5eTZHOXlKMFciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+[![CI](https://github.com/FIFTYUPCLUBAU/rtm-kit/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/FIFTYUPCLUBAU/rtm-kit/actions/workflows/ci.yml)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 ## General Information
 
-This is a monorepo, which means that each folder under the `package` directory is it's own npm package. We are hosting our own private npm repository, which means that any of our packages will be served from there, and all others will fall back to npm.
+This is a monorepo, which means that each folder under the `package` directory is it's own npm package. We are hosting our own private npm repository (AWS CodeArtifact, provisioned via Terraform in [`/infra`](./infra)), which means that any of our packages will be served from there, and all others will fall back to npm.
 
-You'll need to make sure you have the right credentials so that you can pull from our private npm registry. This can be done via a `.npmrc` file, which can either exist in your \$HOME directory or in the project root. For this project, we'll keep it out of the project root and instead rely on each developer to have their own `.npmrc`. It should look something like this:
+You'll need to make sure you have the right credentials so that you can pull from our private npm registry. Instead of a long-lived token, authenticate with `aws codeartifact login` (requires AWS credentials for the `codeartifact-reader`/`codeartifact-publisher` IAM role - see [`/infra/README.md`](./infra/README.md)), which writes a short-lived token into your `.npmrc` for you:
+
+```sh
+aws codeartifact login --tool npm --domain rtm-kit --repository rtm-kit-dev
+```
+
+This produces a `.npmrc` entry equivalent to:
 
 ```sh
 # In ~/.npmrc
-//repo.revtech.media/dev/registry/:_authToken=<TOKEN> # Be sure this token is present
-@rtm-ui:registry=https://repo.revtech.media/dev/registry/ # Only @rtm-ui scopes
+//repo.fiftyupclub.com/dev/:_authToken=<TOKEN> # short-lived, refresh via `aws codeartifact login`
+@rtm-ui:registry=https://repo.fiftyupclub.com/dev/ # Only @rtm-ui scopes
 always-auth=true
 registry=http://registry.npmjs.org/ # All other packages
 ```
+
+Use `rtm-kit-prod` / `https://repo.fiftyupclub.com/prod/` for the production registry. This replaces the legacy `codebox-npm`-backed registry previously hosted at `repo.revtech.media/{dev,prod}/registry/`.
 
 ## Lerna
 
@@ -297,8 +305,8 @@ Docz follows the same convention and has a really helpful [CHANGELOG](https://gi
 
 Thanks to semantic versioning, we know that any projects relying on our packages won't get a breaking change by accident. Every commit to `master` is essentially a deploy and it's up the individual project to bump it's version of our packages to get the updated code.
 
-Whenever a commit to `master` is made, AWS Codebuild picks up the change from a Github hook and runs the steps defined in `buildspec.yml`. The main goal of the process is to test and publish the packages to our npm registry.
+Whenever a commit to `master` is made, the [`publish-prod.yml`](./.github/workflows/publish-prod.yml) GitHub Actions workflow picks up the change and runs the equivalent of the old `buildspec.prod.yml` steps. The main goal of the process is to test and publish the packages to our npm registry. Non-master branches are published to the `dev` registry via [`publish-dev.yml`](./.github/workflows/publish-dev.yml), replacing the previous AWS CodeBuild `buildspec.dev.yml`/`buildspec.prod.yml` pipeline.
 
 - Lerna is responsible for bumping the version of each package and will commit the change back to Github. This is where our "conventional commits" come in handy.
-- The content of each pacakge is stored in an S3 bucket, which is used by our private npm registry whenever you run `npm install @rtm-ui/foo`.
-- Additionally, Codebuild runs `npm run build`, the result of the build process is also stored as an artifact (a separate S3 bucket). The contents of this bucket, which in most cases is a just a minified build file, are synced across to yet another S3 bucket which serve as a CDN via AWS Cloudfront (work in progress).
+- The content of each package is stored via AWS CodeArtifact (provisioned in [`/infra`](./infra)), which is used by our private npm registry whenever you run `npm install @rtm-ui/foo`.
+- Additionally, the workflow runs `npm run build`, the result of the build process is also stored as an artifact (a separate S3 bucket). The contents of this bucket, which in most cases is a just a minified build file, are synced across to yet another S3 bucket which serve as a CDN via AWS Cloudfront (work in progress).

@@ -1,0 +1,2 @@
+# Populate with the actual Route53 hosted zone id for fiftyupclub.com before running terraform.
+route53_zone_id = "ZXXXXXXXXXXXXX"

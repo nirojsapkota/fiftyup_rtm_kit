@@ -8,7 +8,7 @@
       "license": "Proprietary"
     },
     "publish": {
-      "registry": "https://repo.revtech.media/dev/registry/",
+      "registry": "https://repo.fiftyupclub.com/prod/",
       "allowBranch": "master",
       "conventionalCommits": true,
       "verifyAccess": false,
