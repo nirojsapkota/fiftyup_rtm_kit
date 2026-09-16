@@ -41,3 +41,9 @@ variable "manage_dns_records" {
   type        = bool
   default     = true
 }
+
+variable "enable_custom_domain" {
+  description = "Whether to provision the ACM certificate + API Gateway custom domain name at all. Set false when no real domain/hosted zone is available yet (e.g. a sandbox AWS account) - the registry is then reachable via the raw API Gateway invoke URL instead of the friendly custom domain."
+  type        = bool
+  default     = true
+}

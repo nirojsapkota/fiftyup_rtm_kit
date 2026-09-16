@@ -10,9 +10,11 @@ terraform {
 # ACM certificate for the shared custom domain (repo.fiftyupclub.com). Only one environment's
 # module instance should create this (var.create_certificate), the other environment reuses the
 # ARN via var.existing_certificate_arn, since API Gateway custom domain names are one-per-domain
-# and base-path-mapped per environment (…/dev, …/prod).
+# and base-path-mapped per environment (…/dev, …/prod). Entirely skipped when
+# var.enable_custom_domain is false (e.g. no real domain/hosted zone available yet) - the raw
+# API Gateway invoke URL is used instead (see registry_url output).
 resource "aws_acm_certificate" "this" {
-  count             = var.create_certificate ? 1 : 0
+  count             = (var.enable_custom_domain && var.create_certificate) ? 1 : 0
   domain_name       = var.domain_name
   validation_method = "DNS"
 
@@ -22,7 +24,7 @@ resource "aws_acm_certificate" "this" {
 }
 
 resource "aws_route53_record" "cert_validation" {
-  for_each = (var.create_certificate && var.manage_dns_records) ? {
+  for_each = (var.enable_custom_domain && var.create_certificate && var.manage_dns_records) ? {
     for dvo in aws_acm_certificate.this[0].domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
@@ -38,7 +40,7 @@ resource "aws_route53_record" "cert_validation" {
 }
 
 resource "aws_acm_certificate_validation" "this" {
-  count                   = (var.create_certificate && var.manage_dns_records) ? 1 : 0
+  count                   = (var.enable_custom_domain && var.create_certificate && var.manage_dns_records) ? 1 : 0
   certificate_arn         = aws_acm_certificate.this[0].arn
   validation_record_fqdns = [for r in aws_route53_record.cert_validation : r.fqdn]
 }
@@ -46,14 +48,14 @@ resource "aws_acm_certificate_validation" "this" {
 # Looked up rather than passed as a tfvar so the "prod" environment (a separate Terraform
 # state from "dev", which creates the certificate) can resolve it without cross-state wiring.
 data "aws_acm_certificate" "existing" {
-  count       = var.create_certificate ? 0 : 1
+  count       = (var.enable_custom_domain && !var.create_certificate) ? 1 : 0
   domain      = var.domain_name
   statuses    = ["ISSUED"]
   most_recent = true
 }
 
 locals {
-  certificate_arn = var.create_certificate ? aws_acm_certificate.this[0].arn : data.aws_acm_certificate.existing[0].arn
+  certificate_arn = var.create_certificate ? try(aws_acm_certificate.this[0].arn, null) : try(data.aws_acm_certificate.existing[0].arn, null)
 }
 
 # One shared custom domain name across environments; base path mappings ("dev"/"prod") route
@@ -61,7 +63,7 @@ locals {
 # https://repo.fiftyupclub.com/dev/ and https://repo.fiftyupclub.com/prod/ matching codebox-npm's
 # original /dev/registry and /prod/registry URL shape.
 resource "aws_apigatewayv2_domain_name" "this" {
-  count       = var.create_domain ? 1 : 0
+  count       = (var.enable_custom_domain && var.create_domain) ? 1 : 0
   domain_name = var.domain_name
 
   domain_name_configuration {
@@ -74,7 +76,7 @@ resource "aws_apigatewayv2_domain_name" "this" {
 }
 
 resource "aws_route53_record" "api" {
-  count   = (var.create_domain && var.manage_dns_records) ? 1 : 0
+  count   = (var.enable_custom_domain && var.create_domain && var.manage_dns_records) ? 1 : 0
   zone_id = var.route53_zone_id
   name    = var.domain_name
   type    = "A"
@@ -115,6 +117,7 @@ resource "aws_apigatewayv2_stage" "this" {
 }
 
 resource "aws_apigatewayv2_api_mapping" "this" {
+  count           = var.enable_custom_domain ? 1 : 0
   api_id          = aws_apigatewayv2_api.this.id
   domain_name     = var.domain_name
   stage           = aws_apigatewayv2_stage.this.id

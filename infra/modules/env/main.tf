@@ -42,4 +42,5 @@ module "api_proxy" {
   create_certificate               = var.create_shared_domain_resources
   create_domain                    = var.create_shared_domain_resources
   manage_dns_records               = var.manage_dns_records
+  enable_custom_domain             = var.enable_custom_domain
 }

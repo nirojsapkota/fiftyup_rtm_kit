@@ -32,11 +32,14 @@ module "env" {
   # dev is the first environment applied: it owns the account-wide/shared resources.
   create_oidc_provider           = true
   create_shared_domain_resources = true
+  manage_dns_records             = true
 
-  # A Route53 hosted zone exists in this AWS account (a delegated zone for
-  # fiftyupclub.com, or a zone for whatever subdomain is used) - Terraform fully
-  # automates cert validation + the domain alias record via route53_zone_id.
-  manage_dns_records = true
+  # This AWS account's Route53 hosted zone (niroj.rtmkit) is not the real fiftyupclub.com
+  # domain, so ACM DNS validation for repo.fiftyupclub.com can never succeed here. Disable
+  # the custom domain entirely for now; the registry is reachable via the raw API Gateway
+  # invoke URL (see the registry_url output). Flip to true once a real domain + matching
+  # Route53 hosted zone are available.
+  enable_custom_domain = false
 }
 
 

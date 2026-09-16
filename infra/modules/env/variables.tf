@@ -60,3 +60,9 @@ variable "manage_dns_records" {
   type        = bool
   default     = true
 }
+
+variable "enable_custom_domain" {
+  description = "Whether to provision the ACM cert + API Gateway custom domain at all. Set false when no real domain/hosted zone is available yet - the registry falls back to the raw API Gateway invoke URL."
+  type        = bool
+  default     = true
+}
