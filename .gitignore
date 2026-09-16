@@ -21,3 +21,16 @@ yarn.lock
 /.changelog
 .npm/
 *.iml
+
+# Terraform local state/plan artifacts (infra/ uses a real S3 backend once bootstrapped;
+# never commit state, provider caches, or ad-hoc plan output files)
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+infra/**/terraform.tfvars
+infra/bootstrap/rtm-kit
+infra/envs/*/rtm-*

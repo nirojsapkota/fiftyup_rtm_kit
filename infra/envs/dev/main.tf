@@ -26,16 +26,17 @@ module "env" {
   source = "../../modules/env"
 
   environment          = "dev"
+  route53_zone_id      = var.route53_zone_id
   github_ref_condition = "ref:refs/heads/*"
 
   # dev is the first environment applied: it owns the account-wide/shared resources.
   create_oidc_provider           = true
   create_shared_domain_resources = true
 
-  # No Route53 hosted zone is used for dev: the ACM cert validation CNAME and the custom
-  # domain's target must be added manually to whatever DNS provider manages fiftyupclub.com.
-  # After apply, check `terraform output dns_certificate_validation_records` and
-  # `terraform output dns_domain_target` for what to add.
-  manage_dns_records = false
+  # A Route53 hosted zone exists in this AWS account (a delegated zone for
+  # fiftyupclub.com, or a zone for whatever subdomain is used) - Terraform fully
+  # automates cert validation + the domain alias record via route53_zone_id.
+  manage_dns_records = true
 }
+
 

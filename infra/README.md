@@ -26,19 +26,14 @@ minimal-code equivalent:
   `dev` is applied first and owns the account-wide/shared resources (GitHub OIDC provider, ACM
   certificate, API Gateway custom domain name); `prod` looks those up instead of recreating them.
 
-## DNS: dev uses manual DNS, no Route53
+## DNS: fully automated via Route53 (both environments)
 
-`dev` sets `manage_dns_records = false`, so Terraform creates the ACM certificate and the API
-Gateway custom domain name but does **not** touch Route53. Add the following manually, to
-whatever DNS provider manages `fiftyupclub.com`, then re-run `terraform apply` once the cert
-shows `ISSUED`:
-
-1. `terraform output dns_certificate_validation_records` (dev) → add the CNAME record(s) shown
-   so the ACM certificate can validate.
-2. `terraform output dns_domain_target` (dev) → add a CNAME/ALIAS from `repo.fiftyupclub.com` to
-   the `target_domain_name` shown.
-
-`prod` keeps `manage_dns_records = true` (default) with Route53 automation via `route53_zone_id`.
+Both `dev` and `prod` set `manage_dns_records = true` (default), so Terraform creates the ACM
+certificate, validates it, creates the API Gateway custom domain name, and creates the Route53
+alias/CNAME records automatically — you just need to supply `route53_zone_id`. This works even
+when the AWS account doesn't own the `fiftyupclub.com` apex domain, as long as a Route53 hosted
+zone (e.g. a delegated subdomain zone) exists in that account for `terraform apply` to write
+records into.
 
 ## First-time setup
 
@@ -48,9 +43,9 @@ terraform init
 terraform apply   # creates the S3 state bucket + DynamoDB lock table
 
 cd ../envs/dev
+cp terraform.tfvars.example terraform.tfvars   # fill in route53_zone_id
 terraform init
-terraform apply          # creates ACM cert + custom domain; add DNS records manually (see above)
-terraform apply          # re-run once the cert is ISSUED, to finish wiring the custom domain
+terraform apply
 
 cd ../prod
 cp terraform.tfvars.example terraform.tfvars   # fill in route53_zone_id
@@ -69,7 +64,9 @@ terraform apply
 
 - Target AWS account/region (`ap-southeast-2` used as the default, matching the existing
   CodeBuild badge in `README.md`).
-- Route53 hosted zone for `fiftyupclub.com` already exists in the target account.
+- A Route53 hosted zone already exists in the target account for whichever domain/subdomain is
+  used for the registry (the account does not need to own the `fiftyupclub.com` apex domain —
+  a delegated zone is enough).
 - No pre-existing GitHub OIDC provider or Terraform state bucket with the same names in the
   account (the config assumes a clean slate; adjust `create_oidc_provider` in `envs/dev/main.tf`
   and `bootstrap` bucket/table names otherwise).

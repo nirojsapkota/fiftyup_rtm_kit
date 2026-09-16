@@ -1,0 +1,4 @@
+# Populate with the Route53 hosted zone id in this AWS account that will hold the
+# registry's DNS records (e.g. a delegated zone/subdomain for fiftyupclub.com, since this
+# account does not own the apex fiftyupclub.com domain).
+route53_zone_id = "ZXXXXXXXXXXXXX"
