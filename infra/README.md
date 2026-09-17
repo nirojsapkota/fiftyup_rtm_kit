@@ -204,8 +204,59 @@ ever, it surfaced pre-existing gaps that predate this migration entirely:
   async cleanup bug (`@testing-library/dom`'s `wait()` throwing an unhandled promise rejection
   after the Jest environment tears down) — unrelated to this migration.
 
-Both steps are marked `continue-on-error: true` in `ci.yml` until the app-code backlog is
-triaged/fixed separately; they still run and report so the failures are visible in the Actions UI.
+Both steps are marked `continue-on-error: true` in `ci.yml` (and `test:ci` also in
+`publish-dev.yml`) until the app-code backlog is triaged/fixed separately; they still run and
+report so the failures are visible in the Actions UI.
+
+### ⚠️ Gotcha: `copy:builds` assumed every package has a `build/index.js`
+
+`scripts/copyBuilds.js` blindly iterated every folder under `packages/` and copied
+`build/index.js`. The vendored `packages/rtm-core` (private build tooling, `main: src/index.js`,
+no bundler config) has no `build/` output at all, so this always failed once `rtm-core` was added
+under `packages/`. Fixed by skipping any package with `"private": true` in its `package.json`.
+
+### ⚠️ Gotcha: `lerna publish` ignores the registry `aws codeartifact login` configures
+
+`aws codeartifact login --tool npm ...` only writes to the local `.npmrc` (`registry=...` +
+`_authToken`). `lerna publish` does **not** read that — it always uses `lerna.json`'s
+`command.publish.registry` (hardcoded to the prod custom-domain URL,
+`https://repo.fiftyupclub.com/prod/`) unless `--registry` is passed explicitly on the command
+line. `publish-dev.yml` originally hardcoded `--registry https://repo.fiftyupclub.com/dev/`, which
+doesn't resolve at all while `enable_custom_domain = false` for dev.
+
+Fixed by resolving the real endpoint at runtime instead of hardcoding any domain:
+
+```yaml
+- name: Resolve CodeArtifact registry URL
+  run: |
+    REGISTRY_URL=$(aws codeartifact get-repository-endpoint \
+      --domain "$CODEARTIFACT_DOMAIN" \
+      --repository "$CODEARTIFACT_REPOSITORY" \
+      --format npm \
+      --query repositoryEndpoint \
+      --output text)
+    echo "REGISTRY_URL=$REGISTRY_URL" >> "$GITHUB_ENV"
+- run: npx lerna publish ... --registry "$REGISTRY_URL"
+```
+
+This matches the exact endpoint `aws codeartifact login` already authenticated against, and keeps
+working regardless of whether the custom-domain proxy is ever wired up. `publish-prod.yml` /
+`lerna.json`'s default still points at `repo.fiftyupclub.com/prod/` and has the same latent issue —
+apply the same fix there before actually running a prod publish.
+
+### ⚠️ Gotcha: CodeArtifact publish permissions must be package-scoped, not repository-scoped
+
+`codeartifact:PublishPackageVersion` and `codeartifact:PutPackageMetadata` are authorized against
+**package-level** ARNs (`arn:aws:codeartifact:<region>:<account>:package/<domain>/<repo>/npm/<pkg>`),
+not the repository ARN. A policy granting these two actions on `var.codeartifact_repository_arn`
+looks reasonable but always 403s with _"no identity-based policy allows the
+codeartifact:PublishPackageVersion action"_ the moment a real publish is attempted. Fixed in
+`modules/iam/main.tf` by splitting the publisher policy: `ReadFromRepository` /
+`GetRepositoryEndpoint` stay scoped to the repository ARN, while `PublishPackageVersion` /
+`PutPackageMetadata` target a package ARN wildcard
+(`package/<domain>/<repo>/npm/*`) built from the CodeArtifact module's
+`domain_name`/`domain_owner`/`repository_name` outputs. Re-`apply` any existing environment after
+pulling this fix — it won't happen automatically.
 
 ## Assumptions to confirm before applying
 
@@ -225,3 +276,9 @@ Deployed and smoke-tested successfully in the sandbox AWS account (`enable_custo
 reverse proxy are all live. A request through the proxy with a CodeArtifact auth token
 successfully returned real `react` package metadata via the npmjs upstream, confirming the
 end-to-end path (API Gateway → CodeArtifact → npmjs fallback) works.
+
+`publish-dev.yml` has been run end-to-end successfully against this environment: all 39
+`@rtm-ui/*` packages published as `-alpha.0` canary versions to the `rtm-kit-dev` CodeArtifact
+repository (verified via `aws codeartifact list-package-versions`). See the gotchas above for the
+three bugs that had to be fixed to get there (copy:builds, registry resolution, IAM package-level
+publish permissions).
