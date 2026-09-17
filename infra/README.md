@@ -131,6 +131,22 @@ If you test in a personal/fork repo, remember to also set `github_repo` in that 
 `terraform.tfvars` to that repo (see "Assumptions to confirm" below) and re-apply — the OIDC
 trust policy only allows the exact repo configured there.
 
+### ⚠️ Gotcha: `github_ref_condition` must cover every triggering event, not just pushes
+
+The OIDC trust condition matches GitHub's token `sub` claim, whose shape depends on the
+**triggering event**, not just the branch:
+- `push` → `repo:<repo>:ref:refs/heads/<branch>`
+- `pull_request` → `repo:<repo>:pull_request`
+- `workflow_dispatch` → `repo:<repo>:ref:refs/heads/<branch>`
+
+`ci.yml` runs on both `push` and `pull_request`. If `github_ref_condition` is scoped to
+`ref:refs/heads/*` (branch pushes only), PR-triggered CI runs fail with
+`Error: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity`
+even though the repo itself is correctly trusted. `envs/dev/main.tf` uses
+`github_ref_condition = "*"` (any event, still scoped to the trusted repo) for this reason; `prod`
+stays restricted to `ref:refs/heads/master` since `publish-prod.yml` only runs on pushes to
+`master`.
+
 ## Assumptions to confirm before applying
 
 - Target AWS account/region (`ap-southeast-2` used as the default, matching the existing
