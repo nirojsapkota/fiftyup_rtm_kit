@@ -21,12 +21,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0   # lerna needs full history/tags to determine version bumps
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version-file: '.nvmrc'
 
@@ -36,7 +36,7 @@ jobs:
           git config --global user.name "${{ secrets.GIT_USER_NAME }}"
 
       - name: Configure AWS credentials (CodeArtifact publisher role)
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v5
         with:
           role-to-assume: ${{ secrets.CODEARTIFACT_PUBLISHER_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
