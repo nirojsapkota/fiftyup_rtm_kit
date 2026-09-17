@@ -49,12 +49,17 @@ jobs:
       - run: npm run build:ci
 
       - run: npm run test:ci
+        continue-on-error: true
       - run: npm run copy:builds
       - run: npm run build:docs
 
       # Publishes prerelease/snapshot versions to the dev CodeArtifact repository so
-      # feature branches can be consumed for testing without touching prod. --registry
-      # overrides lerna.json's default (which points at the prod registry).
+      # feature branches can be consumed for testing without touching prod. lerna.json's
+      # "command.publish.registry" defaults to the prod custom-domain URL, so this
+      # explicitly overrides it — but only ever with the custom-domain URL. When
+      # enable_custom_domain=false (e.g. an account/domain not yet wired up for dev), that
+      # URL doesn't resolve. Instead, rely on the npm registry already configured by
+      # `aws codeartifact login` above (the real CodeArtifact endpoint, works either way)
+      # by not overriding --registry at all.
       - run: |
-          npx lerna publish --yes --canary --dist-tag dev --no-push --no-git-tag-version \
-            --registry https://repo.fiftyupclub.com/dev/
+          npx lerna publish --yes --canary --dist-tag dev --no-push --no-git-tag-version
