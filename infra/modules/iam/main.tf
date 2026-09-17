@@ -39,10 +39,18 @@ data "aws_iam_policy_document" "github_trust" {
       values   = ["sts.amazonaws.com"]
     }
 
+    # GitHub's OIDC "sub" claim can appear in two shapes depending on the repo/owner's
+    # rename history: the classic "repo:owner/repo:<ref-condition>" form, or a newer
+    # immutable-ID-embedded form "repo:owner@<owner-id>/repo@<repo-id>:<ref-condition>"
+    # (added by GitHub to stop trust hijacking after a rename). Match both so this doesn't
+    # silently break with "Not authorized to perform sts:AssumeRoleWithWebIdentity".
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${var.github_repo}:${var.github_ref_condition}"]
+      values = [
+        "repo:${var.github_repo}:${var.github_ref_condition}",
+        "repo:${split("/", var.github_repo)[0]}@*/${split("/", var.github_repo)[1]}@*:${var.github_ref_condition}",
+      ]
     }
   }
 }
