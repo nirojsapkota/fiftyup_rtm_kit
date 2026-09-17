@@ -104,6 +104,33 @@ terraform apply
 - `publisher_role_arn` / `reader_role_arn` – set as the `role-to-assume` input for the
   `aws-actions/configure-aws-credentials` step in the corresponding GitHub Actions workflow.
 
+## Required GitHub repository secrets
+
+Add these under Settings → Secrets and variables → Actions on whichever repo actually runs the
+workflows (they must also be an OIDC-trusted repo — see `github_repo` in
+`envs/{dev,prod}/terraform.tfvars`, or the `aws-actions/configure-aws-credentials` step will fail
+with `Credentials could not be loaded`).
+
+| Secret | Used by | Value |
+|---|---|---|
+| `CODEARTIFACT_READER_ROLE_ARN` | `ci.yml` | `terraform output reader_role_arn` (per env) |
+| `CODEARTIFACT_PUBLISHER_ROLE_ARN` | `publish-dev.yml`, `publish-prod.yml` | `terraform output publisher_role_arn` (per env) |
+| `TERRAFORM_ROLE_ARN` | `terraform.yml` | ARN of an IAM role able to plan/apply this Terraform (not currently provisioned by this repo — create manually or reuse an existing admin/CI role) |
+| `GIT_USER_EMAIL` | `publish-prod.yml` | Git identity used to commit version bumps back to `master` |
+| `GIT_USER_NAME` | `publish-prod.yml` | Git identity used to commit version bumps back to `master` |
+
+Current dev values (sandbox account `077277969383`, `ap-southeast-2`):
+```
+CODEARTIFACT_READER_ROLE_ARN=arn:aws:iam::077277969383:role/rtm-kit-codeartifact-reader-dev
+CODEARTIFACT_PUBLISHER_ROLE_ARN=arn:aws:iam::077277969383:role/rtm-kit-codeartifact-publisher-dev
+```
+(`TERRAFORM_ROLE_ARN`/`GIT_USER_EMAIL`/`GIT_USER_NAME` only needed if `terraform.yml` /
+`publish-prod.yml` are exercised — not yet set up in dev.)
+
+If you test in a personal/fork repo, remember to also set `github_repo` in that env's
+`terraform.tfvars` to that repo (see "Assumptions to confirm" below) and re-apply — the OIDC
+trust policy only allows the exact repo configured there.
+
 ## Assumptions to confirm before applying
 
 - Target AWS account/region (`ap-southeast-2` used as the default, matching the existing
