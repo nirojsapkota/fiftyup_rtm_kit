@@ -6,7 +6,16 @@ on:
   push:
     branches:
       - develop
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      real_publish:
+        description: >
+          Publish the exact versions currently in each package.json (lerna "from-package",
+          no canary suffix, no version bump) instead of a canary snapshot. Use this to seed
+          CodeArtifact with real versions that other projects' package.json ranges expect
+          (e.g. rtm-offer-spa), since canary publishes never produce a stable version number.
+        type: boolean
+        default: false
 
 permissions:
   id-token: write
@@ -77,5 +86,10 @@ jobs:
           echo "REGISTRY_URL=$REGISTRY_URL" >> "$GITHUB_ENV"
 
       - run: |
-          npx lerna publish --yes --canary --dist-tag dev --no-push --no-git-tag-version \
-            --registry "$REGISTRY_URL"
+          if [ "${{ inputs.real_publish }}" = "true" ]; then
+            npx lerna publish from-package --yes --dist-tag dev --no-push --no-git-tag-version \
+              --registry "$REGISTRY_URL"
+          else
+            npx lerna publish --yes --canary --dist-tag dev --no-push --no-git-tag-version \
+              --registry "$REGISTRY_URL"
+          fi
