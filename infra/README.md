@@ -188,6 +188,25 @@ historical exact versions into a new registry is inherently fragile for this rea
 and the root README's "RTM Scripts" section) as a `file:` dependency, which has no integrity check
 and needs nothing published to any registry at all.
 
+### ⚠️ Known issue: `lint` and `test:ci` are non-blocking in CI (pre-existing app debt)
+
+The old CodeBuild pipeline (`buildspec.dev.yml` / `buildspec.prod.yml`) never ran `npm run lint`
+or `npm run test:ci` at all — only `bootstrap`/`build`/`test` (individual package tests, not the
+coverage-enforcing `test:ci` variant). Now that `ci.yml` runs the full pipeline for the first time
+ever, it surfaced pre-existing gaps that predate this migration entirely:
+
+- `lint`: `eslintConfig` referenced `@rtm/eslint-config`, a package that was **never actually
+  published/resolvable anywhere** (not even in the pre-migration `package-lock.json`). Swapped to
+  `eslint-config-react-app` (already a real dependency via vendored `@rtm/core`) plus its
+  `typescript`/`@typescript-eslint/*` peers so lint is at least runnable. It now surfaces ~18 real
+  errors / ~160 warnings across app code that were never caught before.
+- `test:ci`: all 39 packages' tests pass, but `@rtm-ui/animate` exits 1 anyway due to a pre-existing
+  async cleanup bug (`@testing-library/dom`'s `wait()` throwing an unhandled promise rejection
+  after the Jest environment tears down) — unrelated to this migration.
+
+Both steps are marked `continue-on-error: true` in `ci.yml` until the app-code backlog is
+triaged/fixed separately; they still run and report so the failures are visible in the Actions UI.
+
 ## Assumptions to confirm before applying
 
 - Target AWS account/region (`ap-southeast-2` used as the default, matching the existing

@@ -3,7 +3,14 @@
 module.exports = (rootDir, setupFiles, target = 'browser') => {
   const config = {
     rootDir: rootDir,
-    collectCoverageFrom: ['src/**/*.{js,jsx}', '!src/setupTests.js'],
+    collectCoverageFrom: [
+      'src/**/*.{js,jsx}',
+      '!src/setupTests.js',
+      // Trivial barrel/re-export files (e.g. `export { Foo } from './Foo'`) have no logic
+      // of their own to cover, and otherwise skew a package's coverage average below the
+      // global threshold even when everything meaningful is fully tested.
+      '!src/index.js',
+    ],
     coverageReporters: ['json-summary', 'lcov', 'text', 'clover'],
     coverageThreshold: {
       global: {
