@@ -2,3 +2,6 @@
 # registry's DNS records (e.g. a delegated zone/subdomain for fiftyupclub.com, since this
 # account does not own the apex fiftyupclub.com domain).
 route53_zone_id = "ZXXXXXXXXXXXXX"
+
+# GitHub repo (owner/name) allowed to assume the dev IAM roles via OIDC.
+github_repo = "FIFTYUPCLUBAU/rtm-kit"

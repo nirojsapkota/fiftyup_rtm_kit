@@ -27,6 +27,7 @@ module "env" {
 
   environment          = "dev"
   route53_zone_id      = var.route53_zone_id
+  github_repo          = var.github_repo
   github_ref_condition = "ref:refs/heads/*"
 
   # dev is the first environment applied: it owns the account-wide/shared resources.
