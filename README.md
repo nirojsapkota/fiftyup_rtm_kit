@@ -243,6 +243,13 @@ The development process for this project consists of 3 parts: testing, developme
 
 RTM Scripts acts as a single source of truth for how we build and test things. You'll notice that the root of this repo and all of the other packages don't contain much build or test configuration, that's the job of `@rtm/core`.
 
+> **Note:** `@rtm/core` used to be a separate repo published to the old self-hosted npm
+> registry. It has been **vendored in-repo** at [`packages/rtm-core`](./packages/rtm-core) and is
+> referenced as a `file:` dependency (`"@rtm/core": "file:packages/rtm-core"` in the root
+> `package.json`), so `rtm-kit` no longer depends on any external/private registry package —
+> only public npm packages (served via CodeArtifact's `npmjs` upstream fallback) are needed.
+> `packages/rtm-core` is marked `"private": true` so `lerna publish` always skips it.
+
 ---
 
 # The package.json file

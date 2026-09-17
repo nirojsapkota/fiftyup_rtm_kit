@@ -100,6 +100,7 @@ terraform apply
 ## Outputs consumed by CI
 
 `terraform output` from each environment provides:
+
 - `registry_url` – set as the `registry`/`@rtm-ui:registry` value in `.npmrc`.
 - `publisher_role_arn` / `reader_role_arn` – set as the `role-to-assume` input for the
   `aws-actions/configure-aws-credentials` step in the corresponding GitHub Actions workflow.
@@ -111,19 +112,21 @@ workflows (they must also be an OIDC-trusted repo — see `github_repo` in
 `envs/{dev,prod}/terraform.tfvars`, or the `aws-actions/configure-aws-credentials` step will fail
 with `Credentials could not be loaded`).
 
-| Secret | Used by | Value |
-|---|---|---|
-| `CODEARTIFACT_READER_ROLE_ARN` | `ci.yml` | `terraform output reader_role_arn` (per env) |
-| `CODEARTIFACT_PUBLISHER_ROLE_ARN` | `publish-dev.yml`, `publish-prod.yml` | `terraform output publisher_role_arn` (per env) |
-| `TERRAFORM_ROLE_ARN` | `terraform.yml` | ARN of an IAM role able to plan/apply this Terraform (not currently provisioned by this repo — create manually or reuse an existing admin/CI role) |
-| `GIT_USER_EMAIL` | `publish-prod.yml` | Git identity used to commit version bumps back to `master` |
-| `GIT_USER_NAME` | `publish-prod.yml` | Git identity used to commit version bumps back to `master` |
+| Secret                            | Used by                               | Value                                                                                                                                              |
+| --------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CODEARTIFACT_READER_ROLE_ARN`    | `ci.yml`                              | `terraform output reader_role_arn` (per env)                                                                                                       |
+| `CODEARTIFACT_PUBLISHER_ROLE_ARN` | `publish-dev.yml`, `publish-prod.yml` | `terraform output publisher_role_arn` (per env)                                                                                                    |
+| `TERRAFORM_ROLE_ARN`              | `terraform.yml`                       | ARN of an IAM role able to plan/apply this Terraform (not currently provisioned by this repo — create manually or reuse an existing admin/CI role) |
+| `GIT_USER_EMAIL`                  | `publish-prod.yml`                    | Git identity used to commit version bumps back to `master`                                                                                         |
+| `GIT_USER_NAME`                   | `publish-prod.yml`                    | Git identity used to commit version bumps back to `master`                                                                                         |
 
 Current dev values (sandbox account `077277969383`, `ap-southeast-2`):
+
 ```
 CODEARTIFACT_READER_ROLE_ARN=arn:aws:iam::077277969383:role/rtm-kit-codeartifact-reader-dev
 CODEARTIFACT_PUBLISHER_ROLE_ARN=arn:aws:iam::077277969383:role/rtm-kit-codeartifact-publisher-dev
 ```
+
 (`TERRAFORM_ROLE_ARN`/`GIT_USER_EMAIL`/`GIT_USER_NAME` only needed if `terraform.yml` /
 `publish-prod.yml` are exercised — not yet set up in dev.)
 
@@ -135,6 +138,7 @@ trust policy only allows the exact repo configured there.
 
 The OIDC trust condition matches GitHub's token `sub` claim, whose shape depends on the
 **triggering event**, not just the branch:
+
 - `push` → `repo:<repo>:ref:refs/heads/<branch>`
 - `pull_request` → `repo:<repo>:pull_request`
 - `workflow_dispatch` → `repo:<repo>:ref:refs/heads/<branch>`
@@ -146,6 +150,43 @@ even though the repo itself is correctly trusted. `envs/dev/main.tf` uses
 `github_ref_condition = "*"` (any event, still scoped to the trusted repo) for this reason; `prod`
 stays restricted to `ref:refs/heads/master` since `publish-prod.yml` only runs on pushes to
 `master`.
+
+### ⚠️ Gotcha: GitHub's OIDC `sub` claim can embed immutable owner/repo IDs
+
+Even with the repo, secrets, and `github_ref_condition` all correct, `AssumeRoleWithWebIdentity`
+can still fail with `Not authorized to perform sts:AssumeRoleWithWebIdentity`. GitHub's OIDC token
+`sub` claim has **two** possible shapes:
+
+- Classic: `repo:<owner>/<repo>:ref:refs/heads/<branch>`
+- ID-embedded (anti-hijacking-after-rename): `repo:<owner>@<owner_id>/<repo>@<repo_id>:ref:refs/heads/<branch>`
+
+An IAM trust condition written only as `repo:<owner>/<repo>:*` will not match the ID-embedded
+form. `modules/iam/main.tf`'s `github_trust` policy now includes **both** patterns as separate
+`StringLike` values (conditions with multiple values are OR'd), so both token shapes are trusted.
+
+To diagnose this class of issue yourself: temporarily add a workflow step that fetches the raw
+OIDC token and decodes its payload, e.g.:
+
+```yaml
+- name: Debug OIDC claims
+  run: |
+    TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+      "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+    echo "$TOKEN" | cut -d. -f2 | base64 -d 2>/dev/null | jq .
+```
+
+Remove the debug step once you've confirmed the actual `sub` value.
+
+### ⚠️ Gotcha: don't try to re-publish old package tarballs to bridge a migration
+
+When migrating `@rtm/core`'s exact `package-lock.json`-pinned version from the old registry into
+CodeArtifact, re-publishing the same version number produced a **different** tarball (and thus a
+different `sha512` integrity hash) than the one already recorded in `package-lock.json` —
+`npm install` then fails with `EINTEGRITY` even though the version resolves. Republishing
+historical exact versions into a new registry is inherently fragile for this reason. For
+`rtm-kit`, this is now moot: `@rtm/core` has been **vendored in-repo** (see `packages/rtm-core`
+and the root README's "RTM Scripts" section) as a `file:` dependency, which has no integrity check
+and needs nothing published to any registry at all.
 
 ## Assumptions to confirm before applying
 
@@ -161,8 +202,7 @@ stays restricted to `ref:refs/heads/master` since `publish-prod.yml` only runs o
 
 ## Current deployment status (dev)
 
-Deployed and smoke-tested successfully in the sandbox AWS account (`enable_custom_domain =
-false`): CodeArtifact domain/repos, npmjs upstream fallback, IAM OIDC roles, and the API Gateway
+Deployed and smoke-tested successfully in the sandbox AWS account (`enable_custom_domain = false`): CodeArtifact domain/repos, npmjs upstream fallback, IAM OIDC roles, and the API Gateway
 reverse proxy are all live. A request through the proxy with a CodeArtifact auth token
 successfully returned real `react` package metadata via the npmjs upstream, confirming the
 end-to-end path (API Gateway → CodeArtifact → npmjs fallback) works.
