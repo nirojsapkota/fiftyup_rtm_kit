@@ -1,11 +1,11 @@
 name: Publish (dev)
 
-# Replaces buildspec.dev.yml. Runs on pushes to any branch other than master, mirroring the
-# previous CodeBuild "dev" project's trigger.
+# Replaces buildspec.dev.yml. Runs only on pushes to develop, so dev builds/publishes don't
+# fire for every feature branch (ci.yml still covers those).
 on:
   push:
-    branches-ignore:
-      - master
+    branches:
+      - develop
   workflow_dispatch: {}
 
 permissions:
