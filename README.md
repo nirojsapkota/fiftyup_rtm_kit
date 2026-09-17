@@ -7,21 +7,31 @@
 
 This is a monorepo, which means that each folder under the `package` directory is it's own npm package. We are hosting our own private npm repository (AWS CodeArtifact, provisioned via Terraform in [`/infra`](./infra)), which means that any of our packages will be served from there, and all others will fall back to npm.
 
-You'll need to make sure you have the right credentials so that you can pull from our private npm registry. Instead of a long-lived token, authenticate with `aws codeartifact login` (requires AWS credentials for the `codeartifact-reader`/`codeartifact-publisher` IAM role - see [`/infra/README.md`](./infra/README.md)), which writes a short-lived token into your `.npmrc` for you:
+You'll need to make sure you have the right credentials so that you can pull from our private npm registry. Instead of a long-lived token, authenticate with `aws codeartifact login` (requires AWS credentials for the `codeartifact-reader`/`codeartifact-publisher` IAM role - see [`/infra/README.md`](./infra/README.md)).
+
+> ⚠️ **Run this from the repo root with `NPM_CONFIG_USERCONFIG` set to a project-local `.npmrc`.**
+> By default `aws codeartifact login --tool npm` writes to your **global** `~/.npmrc`, replacing
+> npm's default registry for _every_ project on your machine - breaking any unrelated npm project
+> that isn't rtm-kit. Scope it to this repo instead:
 
 ```sh
-aws codeartifact login --tool npm --domain rtm-kit --repository rtm-kit-dev
+NPM_CONFIG_USERCONFIG="$(pwd)/.npmrc" aws codeartifact login \
+  --tool npm --domain rtm-kit --repository rtm-kit-dev --namespace @rtm-ui
 ```
 
-This produces a `.npmrc` entry equivalent to:
+This writes a project-local `.npmrc` (already gitignored - never commit it, the token is
+short-lived and account-specific) equivalent to:
 
 ```sh
-# In ~/.npmrc
-//repo.fiftyupclub.com/dev/:_authToken=<TOKEN> # short-lived, refresh via `aws codeartifact login`
-@rtm-ui:registry=https://repo.fiftyupclub.com/dev/ # Only @rtm-ui scopes
+# In ./.npmrc (repo root, NOT ~/.npmrc)
+//rtm-kit-<account-id>.d.codeartifact.<region>.amazonaws.com/npm/rtm-kit-dev/:_authToken=<TOKEN>
+@rtm-ui:registry=https://rtm-kit-<account-id>.d.codeartifact.<region>.amazonaws.com/npm/rtm-kit-dev/
 always-auth=true
-registry=http://registry.npmjs.org/ # All other packages
 ```
+
+Only the `@rtm-ui` scope is redirected to CodeArtifact - everything else still resolves from your
+existing global npm config (typically the public npmjs registry), so other projects on your
+machine are unaffected. Re-run the command above whenever the token expires (12h by default).
 
 Use `rtm-kit-prod` / `https://repo.fiftyupclub.com/prod/` for the production registry. This replaces the legacy `codebox-npm`-backed registry previously hosted at `repo.revtech.media/{dev,prod}/registry/`.
 

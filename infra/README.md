@@ -258,6 +258,30 @@ codeartifact:PublishPackageVersion action"_ the moment a real publish is attempt
 `domain_name`/`domain_owner`/`repository_name` outputs. Re-`apply` any existing environment after
 pulling this fix — it won't happen automatically.
 
+### ⚠️ Gotcha: `aws codeartifact login --tool npm` overwrites your _global_ `~/.npmrc`
+
+By default, `aws codeartifact login --tool npm --domain rtm-kit --repository rtm-kit-dev` (no
+`--namespace`) sets npm's **default registry** (`registry=...`) in `~/.npmrc`, not just a scoped
+`@rtm-ui:registry` entry. That silently redirects **every other npm project on your machine** to
+this CodeArtifact repository too — any unrelated project's `npm install` starts failing (404s for
+packages not proxied/cached here, or resolves against the wrong registry entirely). This bit us
+locally after running `aws codeartifact login` a few times during testing.
+
+Fix: always pass `--namespace @rtm-ui` (scopes only that prefix, doesn't touch the default
+registry) **and** point `NPM_CONFIG_USERCONFIG` at a project-local `.npmrc` instead of the real
+`~/.npmrc`, so nothing outside this repo is ever touched:
+
+```sh
+NPM_CONFIG_USERCONFIG="$(pwd)/.npmrc" aws codeartifact login \
+  --tool npm --domain rtm-kit --repository rtm-kit-dev --namespace @rtm-ui
+```
+
+`.npmrc` is already gitignored — never commit it, the token is short-lived (12h) and
+account-specific. See the root `README.md`'s "General Information" section for the full
+onboarding instructions. If you've previously run the bare (no-namespace, no
+`NPM_CONFIG_USERCONFIG`) command, check `~/.npmrc` for a stray `registry=...`/`@rtm:registry=...`
+CodeArtifact override and remove it.
+
 ## Assumptions to confirm before applying
 
 - Target AWS account/region (`ap-southeast-2` used as the default, matching the existing
