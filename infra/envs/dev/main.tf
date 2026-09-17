@@ -28,7 +28,10 @@ module "env" {
   environment          = "dev"
   route53_zone_id      = var.route53_zone_id
   github_repo          = var.github_repo
-  github_ref_condition = "ref:refs/heads/*"
+  # "*" (not just "ref:refs/heads/*") because ci.yml also runs on pull_request events, whose
+  # OIDC sub claim is "repo:<repo>:pull_request", not a ref/heads path. Dev is fine trusting
+  # any event from the configured repo; prod stays restricted to pushes to master.
+  github_ref_condition = "*"
 
   # dev is the first environment applied: it owns the account-wide/shared resources.
   create_oidc_provider           = true
