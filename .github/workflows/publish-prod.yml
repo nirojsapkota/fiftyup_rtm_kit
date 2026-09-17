@@ -41,12 +41,16 @@ jobs:
           role-to-assume: ${{ secrets.CODEARTIFACT_PUBLISHER_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
+      # --namespace @rtm-ui scopes npm's registry override to the @rtm-ui prefix only, so
+      # everything else (react, acorn, etc.) still resolves from the default npmjs registry
+      # instead of being pulled through (and permanently cached into) CodeArtifact.
       - name: Configure npm for CodeArtifact
         run: |
           aws codeartifact login \
             --tool npm \
             --domain "$CODEARTIFACT_DOMAIN" \
-            --repository "$CODEARTIFACT_REPOSITORY"
+            --repository "$CODEARTIFACT_REPOSITORY" \
+            --namespace @rtm-ui
 
       - run: npm install -g npm@6.14.11
       - run: npm install

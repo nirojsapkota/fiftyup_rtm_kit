@@ -282,6 +282,22 @@ onboarding instructions. If you've previously run the bare (no-namespace, no
 `NPM_CONFIG_USERCONFIG`) command, check `~/.npmrc` for a stray `registry=...`/`@rtm:registry=...`
 CodeArtifact override and remove it.
 
+### ⚠️ Gotcha: an un-scoped CodeArtifact login silently caches every transitive dependency
+
+The same `--namespace`-less `aws codeartifact login` mistake also happened in CI (`ci.yml`,
+`publish-dev.yml`, `publish-prod.yml`): without `--namespace @rtm-ui`, the login sets CodeArtifact
+as npm's **default** registry, so every dependency install — not just `@rtm-ui/*` — resolves
+through it. CodeArtifact's `public:npmjs` external connection then transparently caches
+("upstreams") anything fetched that way into the repository forever (visible via
+`aws codeartifact list-packages`, with `originConfiguration.restrictions.upstream = ALLOW` /
+`publish = BLOCK` confirming it's a cached mirror, not something our pipeline published). It's
+harmless correctness-wise (cached packages are read-only, can't be overwritten), but bloats the
+repo with hundreds of unrelated packages (`react`, `acorn`, etc.).
+
+Fixed by adding `--namespace @rtm-ui` to all three workflows' login steps, so only the `@rtm-ui`
+scope routes through CodeArtifact and everything else resolves directly from the runner's default
+npmjs registry, same as the local-dev fix above.
+
 ## Assumptions to confirm before applying
 
 - Target AWS account/region (`ap-southeast-2` used as the default, matching the existing
