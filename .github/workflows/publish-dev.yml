@@ -55,11 +55,23 @@ jobs:
 
       # Publishes prerelease/snapshot versions to the dev CodeArtifact repository so
       # feature branches can be consumed for testing without touching prod. lerna.json's
-      # "command.publish.registry" defaults to the prod custom-domain URL, so this
-      # explicitly overrides it — but only ever with the custom-domain URL. When
-      # enable_custom_domain=false (e.g. an account/domain not yet wired up for dev), that
-      # URL doesn't resolve. Instead, rely on the npm registry already configured by
-      # `aws codeartifact login` above (the real CodeArtifact endpoint, works either way)
-      # by not overriding --registry at all.
+      # "command.publish.registry" defaults to the *prod* custom-domain URL
+      # (repo.fiftyupclub.com), so this must always be overridden for dev publishes.
+      # `aws codeartifact login` above only configures npm's local .npmrc - lerna publish
+      # ignores that and always uses lerna.json's registry setting unless --registry is
+      # passed explicitly. Fetch the real CodeArtifact repository endpoint directly from
+      # AWS at runtime (works whether or not the repo.fiftyupclub.com custom domain proxy
+      # is wired up) instead of hardcoding a URL here.
+      - name: Resolve CodeArtifact registry URL
+        run: |
+          REGISTRY_URL=$(aws codeartifact get-repository-endpoint \
+            --domain "$CODEARTIFACT_DOMAIN" \
+            --repository "$CODEARTIFACT_REPOSITORY" \
+            --format npm \
+            --query repositoryEndpoint \
+            --output text)
+          echo "REGISTRY_URL=$REGISTRY_URL" >> "$GITHUB_ENV"
+
       - run: |
-          npx lerna publish --yes --canary --dist-tag dev --no-push --no-git-tag-version
+          npx lerna publish --yes --canary --dist-tag dev --no-push --no-git-tag-version \
+            --registry "$REGISTRY_URL"
