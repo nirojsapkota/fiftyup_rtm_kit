@@ -298,6 +298,37 @@ Fixed by adding `--namespace @rtm-ui` to all three workflows' login steps, so on
 scope routes through CodeArtifact and everything else resolves directly from the runner's default
 npmjs registry, same as the local-dev fix above.
 
+### ⚠️ Gotcha: the reader/publisher IAM roles were never actually assumable by humans
+
+Both roles' trust policy originally trusted **only** GitHub's OIDC federated principal, despite
+code comments/docs implying developers could assume the `reader` role locally via
+`aws codeartifact login`. In reality no human, CLI user, or external project (e.g. sibling repos
+like `rtm-offer-spa` that also depend on `@rtm-ui/*` packages) could ever do this.
+
+Fixed for the `reader` role only (the `publisher` role stays CI-only, on purpose, for safety) by
+adding a second trust statement allowing the account root principal
+(`arn:aws:iam::<account>:root`) to `sts:AssumeRole`. This does **not** open the role to the whole
+account by itself — AWS still requires the calling IAM user/role to separately have an
+identity-based policy granting `sts:AssumeRole` on this specific role ARN. Also discovered (and
+fixed) that, like `PublishPackageVersion` on the publisher role, CodeArtifact's
+`ReadFromRepository` / `ListPackages` / `ListPackageVersions` actions are authorized against the
+**package-level** ARN (`package/<domain>/<repo>/npm/*`), not the repository ARN alone — a
+repository-scoped-only policy 403s on these actions despite AWS's own docs suggesting otherwise.
+
+To generate a working local `.npmrc` token as a developer (or for another project):
+
+```bash
+# 1. Requires your IAM user/role to have sts:AssumeRole granted on the reader role ARN below
+#    (ask an admin to add it if you get an AccessDenied here).
+aws sts assume-role \
+  --role-arn arn:aws:iam::<account>:role/rtm-kit-codeartifact-reader-dev \
+  --role-session-name local-npmrc
+
+# 2. Export the returned AccessKeyId / SecretAccessKey / SessionToken as env vars, then:
+aws codeartifact login --tool npm --domain rtm-kit --repository rtm-kit-dev \
+  --namespace @rtm-ui --region ap-southeast-2
+```
+
 ## Assumptions to confirm before applying
 
 - Target AWS account/region (`ap-southeast-2` used as the default, matching the existing

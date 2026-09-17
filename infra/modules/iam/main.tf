@@ -120,9 +120,27 @@ resource "aws_iam_role_policy" "publisher" {
 }
 
 # Reader role: used by ci.yml (install/build/test) and by developers assuming it locally.
+# In addition to GitHub OIDC (CI), also trust same-account IAM principals so a developer (or
+# another project, e.g. rtm-offer-spa) can `aws sts assume-role` into it locally to run
+# `aws codeartifact login`. This requires the calling principal to separately have
+# sts:AssumeRole permission on this role's ARN granted via their own IAM identity policy -
+# this trust statement alone does not grant anyone access.
+data "aws_iam_policy_document" "reader_trust" {
+  source_policy_documents = [data.aws_iam_policy_document.github_trust.json]
+
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+    }
+  }
+}
+
 resource "aws_iam_role" "reader" {
   name               = "${var.name_prefix}-codeartifact-reader-${var.environment}"
-  assume_role_policy = data.aws_iam_policy_document.github_trust.json
+  assume_role_policy = data.aws_iam_policy_document.reader_trust.json
 }
 
 data "aws_iam_policy_document" "reader_permissions" {
@@ -140,13 +158,24 @@ data "aws_iam_policy_document" "reader_permissions" {
     sid    = "CodeArtifactRead"
     effect = "Allow"
     actions = [
-      "codeartifact:ReadFromRepository",
       "codeartifact:GetRepositoryEndpoint",
       "codeartifact:DescribeRepository",
+    ]
+    resources = [var.codeartifact_repository_arn]
+  }
+
+  # As with PublishPackageVersion/PutPackageMetadata on the publisher role, in practice
+  # CodeArtifact authorizes these read/list actions against the package-level ARN, not the
+  # repository ARN alone - a repository-scoped policy for these specific actions 403s.
+  statement {
+    sid    = "CodeArtifactReadPackages"
+    effect = "Allow"
+    actions = [
+      "codeartifact:ReadFromRepository",
       "codeartifact:ListPackages",
       "codeartifact:ListPackageVersions",
     ]
-    resources = [var.codeartifact_repository_arn]
+    resources = [local.codeartifact_package_arn_pattern]
   }
 }
 
