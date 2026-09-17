@@ -7,6 +7,15 @@ terraform {
   }
 }
 
+data "aws_region" "current" {}
+
+# CodeArtifact's PublishPackageVersion/PutPackageMetadata actions are authorized against
+# package-level ARNs (arn:...:package/domain/repo/format/namespace/name), not the
+# repository ARN - a repository-scoped policy alone always 403s on these actions.
+locals {
+  codeartifact_package_arn_pattern = "arn:aws:codeartifact:${data.aws_region.current.region}:${var.codeartifact_domain_owner}:package/${var.codeartifact_domain_name}/${var.codeartifact_repository_name}/npm/*"
+}
+
 # GitHub's OIDC provider thumbprint/URL is stable and account-wide; only create it once
 # (guard with var.create_oidc_provider so a second environment/module instance can reuse it).
 resource "aws_iam_openid_connect_provider" "github" {
@@ -89,10 +98,18 @@ data "aws_iam_policy_document" "publisher_permissions" {
     actions = [
       "codeartifact:ReadFromRepository",
       "codeartifact:GetRepositoryEndpoint",
+    ]
+    resources = [var.codeartifact_repository_arn]
+  }
+
+  statement {
+    sid    = "CodeArtifactPublishPackage"
+    effect = "Allow"
+    actions = [
       "codeartifact:PublishPackageVersion",
       "codeartifact:PutPackageMetadata",
     ]
-    resources = [var.codeartifact_repository_arn]
+    resources = [local.codeartifact_package_arn_pattern]
   }
 }
 

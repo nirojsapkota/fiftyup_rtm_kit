@@ -34,3 +34,18 @@ variable "codeartifact_repository_arn" {
   description = "ARN of the CodeArtifact repository these roles need repository-level permissions on"
   type        = string
 }
+
+variable "codeartifact_domain_name" {
+  description = "CodeArtifact domain name (e.g. rtm-kit), used to build package-level ARNs for publish permissions"
+  type        = string
+}
+
+variable "codeartifact_domain_owner" {
+  description = "AWS account ID that owns the CodeArtifact domain, used to build package-level ARNs"
+  type        = string
+}
+
+variable "codeartifact_repository_name" {
+  description = "CodeArtifact repository name (e.g. rtm-kit-dev), used to build package-level ARNs for publish permissions"
+  type        = string
+}

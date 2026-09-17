@@ -22,13 +22,16 @@ module "codeartifact" {
 module "iam" {
   source = "../iam"
 
-  name_prefix                 = var.name_prefix
-  environment                 = var.environment
-  github_repo                 = var.github_repo
-  github_ref_condition        = var.github_ref_condition
-  create_oidc_provider        = var.create_oidc_provider
-  codeartifact_domain_arn     = module.codeartifact.domain_arn
-  codeartifact_repository_arn = module.codeartifact.repository_arn
+  name_prefix                  = var.name_prefix
+  environment                  = var.environment
+  github_repo                  = var.github_repo
+  github_ref_condition         = var.github_ref_condition
+  create_oidc_provider         = var.create_oidc_provider
+  codeartifact_domain_arn      = module.codeartifact.domain_arn
+  codeartifact_repository_arn  = module.codeartifact.repository_arn
+  codeartifact_domain_name     = module.codeartifact.domain_name
+  codeartifact_domain_owner    = module.codeartifact.domain_owner
+  codeartifact_repository_name = module.codeartifact.repository_name
 }
 
 module "api_proxy" {
